@@ -1,0 +1,173 @@
+---
+title: "Statistics Course Week 3"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(34634986)
+library(skimr)
+library(gtsummary)
+library(janitor)
+library(tidyverse)
+Sys.setlocale("LC_CTYPE", "Chinese")
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+example3a <- readRDS(here::here("Data", "Week 3", "example3a.rds"))
+```
+
+# Week 3
+
+## R Instructions
+
+For this lesson, make sure you have loaded the following packages.
+
+```{r loadpkgs, echo = TRUE, eval = FALSE}
+
+library(skimr)
+library(janitor)
+library(tidyverse)
+
+```
+
+For this week's assignment, you will need to learn the following functions:
+
+- `t.test`
+- `wilcox.test`
+- `binom.test`
+
+**1. t-test**
+
+This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statistician normally say that the ttest makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for just about any situation. 
+
+**Different forms of the t-test**
+
+In a simple unpaired case, for example, testing marker levels between a drug and placebo group:
+
+```{r section3a}
+
+t.test(marker ~ trt, data = trial, var.equal = TRUE)
+
+```
+
+A paired test, for example, comparing blood pressure taken before and after an intervention.
+
+<!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
+
+```{r section3b}
+
+t.test(bp ~ when, data = example3a, var.equal = TRUE, paired = TRUE)
+
+```
+
+A single sample test comparing the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?
+
+```{r section3c}
+
+t.test(midwest$percollege, mu = 32)
+
+```
+
+Let’s look at the print out from a ttest in more detail:
+
+```{r section3e}
+
+t.test(hp ~ am, data = mtcars, var.equal = TRUE)
+
+```
+
+This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (am == 0) vs manual transmission (am == 1).
+
+The `t.test` function reports the data and variables you are testing, following by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.
+
+While for an unpaired test, the `t.test` command prints the group means in each group, you may want to report the difference between means. (For a paired test, the difference in means is reported.) The group means are stored in the `estimate` attribute of the `t.test` results.
+
+```{r section3f1}
+
+hp_test <- t.test(hp ~ am, data = mtcars, var.equal = TRUE)
+hp_test$estimate
+
+```
+
+To calculate the difference in means between group 0 and group 1, you can use the `estimate` data to calculate this. The square brackets indicate which number (first mean or second mean) to take. This works to calculate the difference between group 0 and group 1, as well as between group 1 and group 0.
+
+```{r section3f2}
+
+hp_test$estimate[[1]] - hp_test$estimate[[2]]
+hp_test$estimate[[2]] - hp_test$estimate[[1]]
+
+```
+
+You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.
+
+Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is `r round(hp_test$estimate[[1]] - hp_test$estimate[[2]], 1)` higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between `r round(abs(hp_test$conf.int[[1]]), 1)` lower or `r round(abs(hp_test$conf.int[[2]]), 1)` higher in the automatic group vs the manual group.
+
+**2. Non-parametric methods**
+
+These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance. 
+
+Unpaired case, for example, do marker levels differ between the drug and placebo groups?
+
+```{r section3g2}
+
+wilcox.test(marker ~ trt, data = trial, correct = FALSE, paired = FALSE)
+
+```
+
+Paired case, for example, does an intervention cause a change in a patient's blood pressure?
+
+```{r section3h}
+
+wilcox.test(bp ~ when, data = example3a, correct = FALSE, exact = FALSE, paired = FALSE)
+
+```
+
+Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?
+
+```{r section3i}
+
+wilcox.test(midwest$percollege, mu = 32, correct = FALSE)
+
+```
+
+Note here that you don’t get any parameters for the groups such as means, medians or standard deviations. You also don’t get an estimate for the difference between groups.
+
+**3. The binomial test**
+
+The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p value). 
+
+The first argument of `binom.test` is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the `p =` option - the default is 0.5 (50%).
+
+```{r section3j}
+
+binom.test(60, 100, p = 0.5)
+
+```
+
+The following tests whether the proportion of women (sex = 1) in the dataset is different than 50%. `sum(lesson2a$sex)` counts the number of observations where sex is 1. `nrow(lesson2a)` gives the total number of observations in the `lesson2a` dataset.
+
+```{r section3k1}
+
+binom.test(sum(lesson1a$sex), nrow(lesson1a), p = 0.5)
+
+```
+
+```{r section3k2, echo = FALSE}
+
+sex_test <- binom.test(sum(lesson1a$sex), nrow(lesson1a), p = 0.5)
+
+```
+
+This tells you that you had `r sex_test$parameter` observations, and there were `r sex_test$statistic` where sex was coded as 1, an observation proportion of `r round(sex_test$estimate, 2)`. Now the "assumed" proportion was `r sex_test$null.value`, giving an expected number of `r sex_test$parameter*sex_test$null.value` women. These two values are quite close and the p value is `r style_pvalue(sex_test$p.value)`. 
+
+## Assignments
+
+Again, more questions than you need to do, unless you’re keen (also, most won’t take long). Try to do at least the first three. 
+
+- lesson3a.rds: These are data from over 1000 patients undergoing chemotherapy reporting a nausea and vomiting score from 0 to 10 on the day of treatment.  Does previous chemotherapy increase nausea scores? What about sex? 
+- lesson3b.rds: Patients with wrist osteoarthritis are randomized to a new drug or placebo. Pain is measured before and two hours after taking a dose of the drug. Is the drug effective?
+- lesson3c.rds: Some postoperative pain data again. Is pain on day 2 different than pain on day 1? Is pain on day 3 different from pain on day 2? 
+- lesson3d.rds: This is a single-arm, uncontrolled study of acupuncture for patients with neck pain. Does acupuncture increase range of motion?  Just as many men as women get neck pain. Can we say anything about the sample chosen for this trial with respect to gender? The mean age of patients with neck pain is 58.2 years. Is the trial population representative with respect to age?
+- lesson3e.rds: These data are length of stay from two different hospitals. One of the hospitals uses a new chemotherapy regime that is said to reduce adverse events and therefore length of stay. Does the new regime decrease length of stay? 
+- lesson3f.rds: These data are from a randomized trial on the effects of physiotherapy treatment on physical function in pediatric patients recovering from cancer surgery. Function is measured on a 100 point scale. Does physiotherapy help improve physical functioning?
