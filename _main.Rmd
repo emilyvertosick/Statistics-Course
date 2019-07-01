@@ -10,13 +10,6 @@ link-citations: yes
 description: "Statistics Course"
 ---
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
-
 # General Course Materials {-}
 
 ## Course Outline {-}
@@ -77,3 +70,185 @@ Note that we have had problems with plagiarism before. It is absolutely straight
 ## Guidelines for presentation of statistics {-}
 
 Please review these guidelines on the course website.
+
+<!--chapter:end:index.Rmd-->
+
+
+# Week 1
+
+Placeholder
+
+
+## R Instructions
+### Using RStudio
+### Setting Up RStudio
+### Opening a data file created by someone else
+## Looking at the data
+### Typing a command
+### Some Useful Commands
+#### Extracting a variable by name ($)
+#### Pipe operator (%>%)
+#### `head` function
+#### `str` function
+#### `tbl_summary` function
+#### `skim` function
+#### `mutate` function
+#### `if_else` function
+### Using Help
+## Assignments
+
+<!--chapter:end:01-week1.Rmd-->
+
+
+# Week 2
+
+Placeholder
+
+
+## R Instructions
+### Summarizing continuous variables
+### Centiles
+### One-way tables
+### Two-way tables
+### Graphing
+### Further Reading
+### Using R as a calculator
+## Assignment
+### Assignments
+
+<!--chapter:end:02-week2.Rmd-->
+
+
+# Week 3
+
+Placeholder
+
+
+## R Instructions
+## Assignments
+
+<!--chapter:end:03-week3.Rmd-->
+
+
+# Week 4
+
+Placeholder
+
+
+## R Instructions
+## Assignments
+
+<!--chapter:end:04-week4.Rmd-->
+
+
+# Week 5
+
+Placeholder
+
+
+## R Instructions
+### Correlation
+### Linear regression
+### Graphing the data
+### Logistic regression
+### Getting the area-under-the-curve
+## Assignments
+
+<!--chapter:end:05-week5.Rmd-->
+
+
+# Week 6
+
+Placeholder
+
+
+## R Instructions
+### Diagnostic Tests
+## Assignments
+
+<!--chapter:end:06-week6.Rmd-->
+
+
+# Week 7
+
+Placeholder
+
+
+## R Instructions
+### Time to event data
+## Assignments
+
+<!--chapter:end:07-week7.Rmd-->
+
+# Week 8
+
+Statistical Slipups Powerpoint Presentation
+
+[[TODO: Add link after pushed to Github]]
+
+<!--chapter:end:08-week8.Rmd-->
+
+
+# Assignment Answers
+
+Placeholder
+
+
+## Week 1
+## Week 2
+### lesson2a.rds: Marathon Runners
+### lesson2b.rds: Postoperative Pain
+### lesson2c.rds: Radical Prostatectomy Cohort
+### lesson2d.rds: Cost of a Minor Medical Procedure
+### lesson2e.rds: Cancer pain
+## Week 3
+### lesson3a.rds
+### lesson3b.rds
+### lesson3c.rds
+### lesson3d.rds
+### lesson3e.rds
+### lesson3f.rds
+## Week 4
+### lesson4a.rds
+### lesson4b.rds
+### lesson4c.rds
+### lesson4d.rds
+### lesson4e.rds
+## Week 5
+### lesson5a.rds
+### lesson5b.rds
+### lesson5c.rds
+### lesson5d.rds
+### lesson5e.rds
+### lesson5f.rds
+### lesson5g.rds
+### lesson5h.rds
+### lesson5i.rds
+## Week 6
+### lesson6a.rds and lesson6b.rds
+### lesson6c.rds
+### lesson6d.rds
+### lesson6e
+### lesson6f
+### lesson6g
+## Week 7
+### lesson7a
+### lesson7b.rds
+### lesson7c.rds
+### lesson7d.rds
+
+<!--chapter:end:09-answers.Rmd-->
+
+
+# Exam
+
+Placeholder
+
+
+## Question 1
+## Question 2
+## Question 3
+## Question 4
+
+<!--chapter:end:10-exam.Rmd-->
+
