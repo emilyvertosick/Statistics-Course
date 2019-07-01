@@ -18,13 +18,15 @@ library(survival)
 library(tidyverse)
 ```
 
+## Hypothesis Testing
+
 For this week's assignment, you will need to learn the following functions:
 
 - `t.test`
 - `wilcox.test`
 - `binom.test`
 
-**1. t-test**
+### **t-test**
 
 This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statistician normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for just about any situation. 
 
@@ -156,7 +158,7 @@ You don't need to worry about the t statistic or degrees of freedom (df). The nu
 
 Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is 33.4 higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between 16.3 lower or 83.1 higher in the automatic group vs the manual group.
 
-**2. Non-parametric methods**
+### **Non-parametric methods**
 
 These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance. 
 
@@ -210,7 +212,7 @@ wilcox.test(midwest$percollege, mu = 32, correct = FALSE)
 
 Note here that you don’t get any parameters for the groups such as means, medians or standard deviations. You also don’t get an estimate for the difference between groups.
 
-**3. The binomial test**
+### **The binomial test**
 
 The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p value). 
 

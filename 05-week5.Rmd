@@ -58,11 +58,11 @@ library(tidyverse)
 
 ```
 
-### Correlation
+## Correlation
 
 Correlating two or more variables is very easy: just use the `cor` function and then the dataset and selected variables.
 
-For example, if you use the `lesson2b.rds` dataset and correlate the first four pain scores, you get the following table:
+For example, if you use the "lesson2b.rds" dataset and correlate the first four pain scores, you get the following table:
 
 ```{r section5a}
 
@@ -87,13 +87,13 @@ cor(lesson2b %>% select(l01, l02, l03, l04), method = "spearman")
 
 ```
 
-### Linear regression
+## Linear regression
 
 Linear regression is when you try to predict a continuous variable. The function to use is `lm`.
 
 The first variable is the dependent variable (e.g. blood pressure) and must be continuous. The other variables are the predictor variables and can be binary or continuous: in some cases you can use ordinal variables but you have to be careful. We’ll deal with categorical variables later in the course. The dependent and predictor variables are separated by a "~", and multiple predictor variables are separated by "+".
 
-Let's use the data from `lesson3d.rds` as an example dataset. We want to see if we can predict a patient's range of motion after treatment (variable a) in terms of their age, sex and pre-treatment range of motion (variable b).
+Let's use the data from "lesson3d.rds" as an example dataset. We want to see if we can predict a patient's range of motion after treatment (variable a) in terms of their age, sex and pre-treatment range of motion (variable b).
 
 ```{r section5d}
 
@@ -152,9 +152,9 @@ At the bottom of the `summary` readout there are a few miscellaneous tidbits:
 
 - The "p-value" next to the "F-statistic" on the last line tells you whether, as a whole, your model, including the constant and three variables, is a statistically significant predictor.
 
-- The "Multiple R-squared" value (often referred to as just "R-squared") tells you how good a predictor it is on a scale from 0 to 1. We’ll discuss the meaning of r squared in more detail, but it is defined as the proportion of variation that you can explain using your model. 
+- The "Multiple R-squared" value (often referred to as just "r squared") tells you how good a predictor it is on a scale from 0 to 1. We’ll discuss the meaning of r squared in more detail, but it is defined as the proportion of variation that you can explain using your model. 
 
-### Graphing the data
+## Graphing the data
 
 Graphing the data is done using the `ggplot` function from the `ggplot2` package. In short, the main inputs for the `ggplot` function are your dataset, the x variable and the y variable. You can then create a number of different plots using this data.
 
@@ -168,15 +168,15 @@ ggplot(data = lesson5a,
 
 ```
 
-This scatterplot from the `lesson5a.rds` data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.
+This scatterplot from the "lesson5a.rds" data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.
 
-### Logistic regression
+## Logistic regression
 
 Logistic regression is used when the variable you wish to predict is binary (e.g. relapsed or not). The function to use is `glm`, with the option `family = "binomial"` to indicate that our outcome variable is binary.
 
 Again, the first variable is the dependent variable (e.g. hypertension) and must be binary. The other variables are the predictor variables and can be binary or continuous: again, in some cases you can use ordinal variables but you have to be careful. The variables are entered into the `glm` function the same way as the `lm` function (dependent ~ predictor1 + predictor2 + ...).
 
-We'll use the dataset `lesson4d.rds` as an example.
+We'll use the dataset "lesson4d.rds" as an example.
 
 ```{r section5k}
 
@@ -219,13 +219,13 @@ lesson4d_pred <-
 
 ```
 
-NOTE: The `lesson4d_pred` dataset only includes 398 patients. If you look at the table above, you will see at the top that only 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.
+NOTE: The "lesson4d_pred" dataset only includes 398 patients. If you look at the table above, you will see at the top that only 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.
 
 If you want to look at calculating predictions from logistic regression in more detail, you’ll need logit (see below). 
 
 One thing to be careful about is categorical variables. Imagine that you had the patients age and cancer stage (1, 2, 3 or 4) and wanted to know whether they recurred. If you tried `glm(recurrence ~ age + stage, ...)`, then stage would be treated as if the increase in risk going from stage 1 to 2 was exactly the same as that going from 2 to 3 and 3 to 4. To tell R that it is a categorical variable, you need to use the `factor` function with the categorical variable:
 
-```{r section5o, echo = FALSE, results = "hide"}
+```{r section5o, echo = TRUE, results = "hide"}
 
 recurrence_model <-
   glm(recurrence ~ age + factor(stage), data = example5a, family = "binomial")
@@ -270,15 +270,15 @@ pr <- (exp(xb) / (exp(xb) + 1)*100)
   
 ```
 
-Firstly, note that the p values are the same, what differs is the coefficients. Now if you are really smart, you’ll notice that the coefficient is the natural log of the odds ratios above. You can use the coefficients to work out an individual’s probability of response. We start with the constant, and subtract `r style_sigfig(abs(tbl_response_logit$coefficients[2]), digits = 4)` for each year of age and then subtract an additional `r style_sigfig(abs(tbl_response_logit$coefficients[3]), digits = 2)` if a woman and `r style_sigfig(abs(tbl_response_logit$coefficients[4]), digits = 3)` if in group 1. Call this number `l` for the log of the odds. The probability is e^l^ / (1 + e^l^). Take a 53 year old man on regimen b (group 1): l = `r style_sigfig(tbl_response_logit$coefficients[1], digits = 4)` + `r style_sigfig(tbl_response_logit$coefficients[2], digits = 4)`\*53 + `r style_sigfig(tbl_response_logit$coefficients[4], digits = 3)`, gives `r style_sigfig(xb, digits = 4)`.
+Firstly, note that the p values are the same, what differs is the coefficients. Now if you are really smart, you’ll notice that the coefficient is the natural log of the odds ratios above. You can use the coefficients to work out an individual’s probability of response. We start with the constant, and subtract `r style_sigfig(abs(tbl_response_logit$coefficients[2]), digits = 4)` for each year of age and then subtract an additional `r style_sigfig(abs(tbl_response_logit$coefficients[3]), digits = 2)` if a woman and `r style_sigfig(abs(tbl_response_logit$coefficients[4]), digits = 3)` if in group 1. Call this number "l" for the log of the odds. The probability is e^l^ / (1 + e^l^). Take a 53 year old man on regimen b (group 1): l = `r style_sigfig(tbl_response_logit$coefficients[1], digits = 4)` + `r style_sigfig(tbl_response_logit$coefficients[2], digits = 4)`\*53 + `r style_sigfig(tbl_response_logit$coefficients[4], digits = 3)`, gives `r style_sigfig(xb, digits = 4)`.
 
 To convert, type ``exp(`r style_sigfig(xb, digits = 4)`) / (exp(`r style_sigfig(xb, digits = 4)`)+1)`` to get a probability of `r style_sigfig(pr, digits = 3)`%.
 
-### Getting the area-under-the-curve
+## Getting the area-under-the-curve
 
 Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), doesn’t matter for our purposes.
 
-```{r section5t}
+```{r section5t, message = FALSE}
 
 # The "roc" function comes from the "pROC" package
 roc(cancer ~ marker, data = example5b)
@@ -289,10 +289,18 @@ So the marker has an area under the curve of `r style_sigfig(roc(example5b$cance
 
 For instance, the code below could tell you how much the area-under-the-curve increases when you add a new marker to a model to predict cancer that already includes age.
 
-```{r section5u}
+First, get the AUC for the model with age only:
+
+```{r section5u, message = FALSE}
 
 # Original model with age
 roc(cancer ~ age, data = example5b)
+
+```
+
+Now, calculate the AUC for the model with age and the marker:
+
+```{r section5v, message = FALSE}
 
 # Model adding marker
 roc(cancer ~ age + marker, data = example5b)

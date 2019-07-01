@@ -60,9 +60,9 @@ library(tidyverse)
 
 Here are some of the commands you might use when analyzing epidemiological data or data that has a similar form. For example, if you had two variables "diet" (where 1 = high fat, 0 = low fat) and "hypertension", you could use the same forms of analysis regardless of whether you were investigating a randomized trial (dietary advice assigned randomly to patients) or an epidemiological study (patients interviewed about eating habits). You can also use these methods for lab data (e.g. proportion of mice with a knockout versus wild type who develop a tumor).
 
-**Tables**
+## Tables
 
-The first command is the `tbl_summary` function from the `gtsummary` package which makes a table. This was introduced in the week 1 lesson. We are interested in "two-way" tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet. I’ll use the data set for assignment 3a (`lesson3a.rds`) to illustrate these points.
+The first command is the `tbl_summary` function from the `gtsummary` package which makes a table. This was introduced in the week 1 lesson. We are interested in "two-way" tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet. I’ll use the data set for assignment 3a ("lesson3a.rds") to illustrate these points.
 
 ```{r section4a, warning = FALSE}
 
@@ -129,7 +129,7 @@ tbl_summary(
 
 So of the `r inline_text(tbl_sex, variable = "pc", level = "1", column = "stat_0")` patients who had previous chemo, `r inline_text(tbl_sex_row, variable = "pc", level = "1", column = "1")` were women and `r inline_text(tbl_sex_row, variable = "pc", level = "1", column = "0")` were men.
 
-Now let’s use the marathon data (`lesson2a.rds`) to do something more interesting. First, I created a new category called "subfourhour" for those runners who completed the marathon in less than four hours.
+Now let’s use the marathon data ("lesson2a.rds") to do something more interesting. First, I created a new category called "subfourhour" for those runners who completed the marathon in less than four hours.
 
 ```{r section4d}
 
@@ -144,9 +144,9 @@ The `table` function is a way to make very simple tables, which is useful for do
 
 ```{r section4e}
 
-table(lesson2a$subfourhour, lesson2a$sex)
 # The first variable is the row variable
 # The second variable is the column variable
+table(lesson2a$subfourhour, lesson2a$sex)
 
 ```
 
@@ -198,7 +198,7 @@ If you are interested only:
 
 Remember that the p value when we did a ttest (`t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)`) was `r style_pvalue(t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)$p.value)`. That is, the p value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.
 
-**Getting estimates: risk difference, risk ratio, odds ratio**
+## Getting estimates: risk difference, risk ratio, odds ratio
 
 This table gives you a pvalue, but not an estimate. For this, we need the `epi.2by2` function from the `epiR` package. This function works for "cohort studies" and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the `epi.2by2` function the endpoint and the cohort (see below for more details). "Endpoint" will be something like cancer, response, progression, or running a marathon in under four hours. "Cohort" is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.
 

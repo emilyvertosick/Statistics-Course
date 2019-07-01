@@ -43,7 +43,7 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 ## R Instructions
 
-For this lesson, make sure you have the following packages downloaded and loaded.
+For this lesson, make sure you have loaded the following packages.
 
 ```{r loadpkgs2, echo = TRUE, eval = FALSE}
 
@@ -84,7 +84,7 @@ lesson1a %>% skim(age)
 
 So you can tell you have data on age for 386 patients ("obs" standards for "observations"), the mean age was 49 years, standard deviation of the mean was 13.8.
 
-The numbers below `p0`, `p25`, `p50`, `p75` and `p100` are the centiles. `p0` indicates the minimum value, and `p100` indicates the maximum value, so you can tell that the youngest patient was 19 and the oldest was 86. `p50` is the median (49 years), and the interquartile range is reported under `p25` and `p75` (40, 59).
+The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was `r skim(lesson1a$age)$value[[6]]` and the oldest was `r skim(lesson1a$age)$value[[10]]`. "p50" is the median (`r skim(lesson1a$age)$value[[8]]` years), and the interquartile range is reported under "p25" and "p75" (`r skim(lesson1a$age)$value[[7]]`, `r skim(lesson1a$age)$value[[9]]`).
 
 ```{r section2c}
 
@@ -106,7 +106,7 @@ quantile(lesson1a$age, na.rm = TRUE)
 
 ```
 
-The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the medium and quartiles. The second row gives you the actual values. So you could report this as “Median age was 49 (quartiles 40, 59)."
+The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the medium and quartiles. The second row gives you the actual values. So you could report this as “Median age was `r quantile(lesson1a$age, na.rm = TRUE)[[3]]` (quartiles `r quantile(lesson1a$age, na.rm = TRUE)[[2]]`, `r quantile(lesson1a$age, na.rm = TRUE)[[4]]`)."
 
 You aren't restricted to quartiles with the `quantile` function. For example, you can use the code below to give you the 11th, 45th and 78th centile, as well as 91.5 centile, which would be the 915th highest value in a dataset of 1000 observations. 
 
@@ -177,7 +177,7 @@ So there are `r inline_text(tbl_sex, variable = "sex", level = "1")` women and `
 
 ### Two-way tables
 
-The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable `y` gives the part of the hospital) in men and women separately.
+The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable "y" gives the part of the hospital) in men and women separately.
 
 ```{r section2h, warning = FALSE}
 
@@ -202,9 +202,9 @@ tbl_summary(
   by = "y",
   type = list(sex = "categorical")
 ) %>%
-  add_overall(last = TRUE)
   # Add a column with totals across all locations
   # "last = TRUE" puts the column on the right side of the table
+  add_overall(last = TRUE)
 
 ```
 
@@ -229,7 +229,7 @@ tbl_summary(
 
 This shows that, for example, `r inline_text(tbl_sex_y3, variable = "sex", level = "0", column = "harding")` men and `r inline_text(tbl_sex_y3, variable = "sex", level = "1", column = "harding")` women had operations at the "Harding" site.
 
-The `count` function with no options will count the number of total observations.
+Passing a dataset to the `count` function with no additional options will count the number of total observations.
 
 ```{r section2k, warning = FALSE}
 
@@ -274,7 +274,7 @@ ggplot(data = lesson1a,
 
 ```
 
-`ggplot` indicates that you want to create a graph. The dataset `lesson1a` is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
+`ggplot` indicates that you want to create a graph. The dataset "lesson1a" is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
 
 One of things that R does is to choose the number of bars for you. You can set this yourself by using the `bins` option. Try setting the number of bins to 40.
 
@@ -306,7 +306,6 @@ Only read this if you are feeling really keen...
 ```{r section2p, warning = FALSE}
 
 # The "ci" function is from the "gmodels" package
-
 ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
 
 ```
@@ -365,7 +364,7 @@ cos(45)
 
 Some of the functions give useful statistical constants.
 
-`pnorm(x)` gives the probability that an observation will be less than mean + `x` standard deviations.
+`pnorm(x)` gives the probability that an observation will be less than mean + x standard deviations.
 
 ```{r section2w}
 

@@ -9,6 +9,7 @@ library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
+library(here)
 library(tidyverse)
 
 # Set seed
@@ -51,24 +52,24 @@ There are normally four panes in the window.
 
 2. The "source" window in the top left is where you will write out R code for your final .R analysis file.
 
-3. The top right panel includes several tabs. The most important tabs here are "environment", which shows your current datasets and objects, and "history", which shows previous commands that have been run from either the "console" or the "code" window.
+3. The top right panel includes several tabs. The most important tabs here are "environment", which shows your current datasets and objects, and "history", which shows previous commands that have been run from either the "console" or the "source" window.
 
 4. The bottom right panel also includes several tabs. The "files" tab shows all files in your current directory. The "plots" tab is where plots will be shown if a plot is created. The "packages" tab shows all R packages that are available on your machine. The "help" tab will show help files, and help files can be searched from this tab. The "viewer" tab will show any other files that are created, for example, HTML files.
 
 ### Setting Up RStudio
 
-To access this course, navigate to the main folder and click to open the R project file called "Statistics Course R.Rproj". Opening the R project will allow you to easily access all files, as the "files" tab in the bottom right will automatically open to folder in which the R project file is located.
+To access this course, download the "Statistics Course.zip" file and unzip it to your desired folder. Navigate to the main folder and click to open the R project file called "Statistics Course.Rproj". Opening the R project will allow you to easily access all files, as the "files" tab in the bottom right will automatically open to folder in which the R project file is located.
 
 For this course, we will be using a set of packages called the "tidyverse". There are also several other packages that you should install. Running the line of code below will install the necessary packages for you.
 
 ```{r install, echo = TRUE, eval = FALSE}
 
-install.packages(c("tidyverse", "skimr", "epiR", "broom", "pROC", "survival", "survminer", "remotes"))
+install.packages(c("tidyverse", "here", "skimr", "epiR", "broom", "pROC", "survival", "survminer", "remotes"))
 remotes::install_github("ddsjoberg/gtsummary")
 
 ```
 
-When you open RStudio, you must either run the following code in the "console" window, or include this line of code at the top of your code file in the "code" window, so that the package is loaded to your current session. By loading the package, you will be able to use all functions without specifying the package name each time.
+When you open RStudio, you must either run the following code in the "console" window, or include this line of code at the top of your code file in the "source" window, so that the package is loaded to your current session. By loading the package, you will be able to use all functions without specifying the package name each time.
 
 ```{r loadpkgs1, echo = TRUE, eval = FALSE}
 
@@ -86,6 +87,14 @@ library(tidyverse)
 ### Opening a data file created by someone else
 
 This is mainly what you will be doing during this course. You will be loading data from files with a ".rds" extension, which is a type of file that can be exported from R. In the "files" tab in the bottom right panel, navigate to the folder where the data is stored. Click on the desired data ".rds" file. A "Load R Object" popup will appear, which allows you to change the name that the dataset will be stored under. It is fine for this course to leave the dataset names as is. Clicking "OK" will load this file to your environment, which you can confirm by looking for the dataset in the top right "environment" tab.
+
+To note, you can also load data using the following code, changing the folder names (e.g. "Week 1") and dataset names (e.g. "lesson1a.rds") as necessary:
+
+```{r loaddata, eval = FALSE}
+
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+
+```
 
 ## Looking at the data
 R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset "lesson1a" by typing the following into the console window:
@@ -132,7 +141,7 @@ One of the most useful commands is known as the pipe operator (%>%). The pipe op
 
 For example, these two pieces of code give the same results:
 
-```{r section1d, include = FALSE}
+```{r section1d, eval = FALSE}
 
 skim(lesson1a)
 
@@ -158,7 +167,7 @@ lesson1a %>% head()
 
 #### `str` function
 
-The `str` function allows you to see the variable name, variable type, and any variable attributes such as labels, for all variables in your dataset. For example, this tells you the description of the `sex` variable and its label - "1 if woman, 0 if man".
+The `str` function allows you to see the variable name, variable type, and any variable attributes such as labels, for all variables in your dataset. For example, this tells you the description of the "sex" variable and its label - "1 if woman, 0 if man".
 
 ```{r section1f}
 
@@ -187,9 +196,9 @@ tbl_summary(
 
 <br>
 
-This tells you that the `sex` variable has no missing data (no "NA" values), and that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
+This tells you that the "sex" variable has no missing data (no "NA" values), and that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
 
-Since 0 = man and 1 = woman (you can use `str(lesson1a$sex)` to confirm), this means that there were 181 men in the 386 patients and that they constituted 46.89% of the population.
+Since 0 = man and 1 = woman (you can use `str(lesson1a$sex)` to confirm), this means that there were `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(sex = "categorical"), , statistic = list(sex = "{n}")), variable = "sex", level = "0")` men in the `r nrow(lesson1a)` patients and that they constituted `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(sex = "categorical"), , statistic = list(sex = "{p}%")), variable = "sex", level = "0")` of the population.
 
 #### `skim` function
 
@@ -201,17 +210,17 @@ skim(lesson1a$age)
 
 ```
 
-So of the 386 patients, the mean age (a type of average, I’ll explain next week), 49.48, the standard deviation (again, I’ll explain next week) is 13.75. The youngest patient was 19 and the oldest is 86. 
+So of the `r nrow(lesson1a)` patients, the mean age (a type of average, I’ll explain next week), `r skim(lesson1a$age)$value[[4]]`, the standard deviation (again, I’ll explain next week) is `r skim(lesson1a$age)$value[[5]]`. The youngest patient was `r skim(lesson1a$age)$value[[6]]` and the oldest is `r skim(lesson1a$age)$value[[10]]`. 
 
-This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was 49.48, you’d probably just say 49.
+This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few minutes. So if you were reporting results for a journal, you would never say that mean age was `r skim(lesson1a$age)$value[[4]]`, you’d probably just say `r round(skim(lesson1a$age)$value[[4]], 0)`.
 
-`p0` here represents the minimum age in the dataset - 19. `p100` represents the maximum age of 86. `p25`, `p50` and `p75` are the centiles. We'll talk more about this later, but briefly, "`p25` 40" means that 25% of the patients were aged 40 and younger. The number by `p50` (i.e. 49) is the median.
+"p0" here represents the minimum age in the dataset - `r skim(lesson1a$age)$value[[6]]`. "p100" represents the maximum age of `r skim(lesson1a$age)$value[[10]]`. "p25", "p50" and "p75" are the centiles. We'll talk more about this later, but briefly, "p25 = 40" means that 25% of the patients were aged 40 and younger. The number by "p50" (i.e. `r skim(lesson1a$age)$value[[8]]`) is the median.
 
 #### `mutate` function
 
 The `mutate` function is used to create new variables, or replace variable values.
 
-The code below means "create a new variable called `a` and set it equal to 1 in all observations." The `<-` indicator means to then save out this new dataset including the `a` variable as `lesson1a`.
+The code below means "create a new variable called "a" and set it equal to 1 in all observations." The "<-" indicator means to then save out this new dataset including the "a" variable as "lesson1a".
 
 ```{r section1j}
 
@@ -221,7 +230,7 @@ lesson1a <-
 
 ```
 
-Since we have already created the variable `a`, the code below means "replace the variable `a` with the value of 2 in all observations.
+Since we have already created the variable "a" above, the code below means "replace the variable "a" with the value of 2 in all observations."
 
 ```{r section1k}
 
@@ -231,7 +240,7 @@ lesson1a <-
 
 ```
 
-You can also replace one variable with the value of another variable. The code below means "replace the variable `a` with whatever the value of `p1` is in each observation."
+You can also replace one variable with the value of another variable. The code below means "replace the variable "a" with whatever the value of "p1" is in each observation."
 
 ```{r section1l}
 
@@ -241,7 +250,7 @@ lesson1a <-
 
 ```
 
-You can also calculate values inside a `mutate` statement. For example, you can create an average of the four variables `p1` - `p4`.
+You can also calculate values inside a `mutate` statement. For example, you can create an average of the four variables "p1" - "p4".
 
 ```{r section1m}
 
@@ -255,9 +264,9 @@ lesson1a <-
 
 The `if_else` function can be used with the `mutate` function to assign values to a variable based on a specific condition.
 
-The first argument in the "if_else" function is the "if" condition. The second argument is the value of the variable for observations that meet the "if" condition. The third argument is the value of the variable for observations that do not meet the "if" condition.
+The first argument in the `if_else` function is the "if" condition. The second argument is the value of the variable for observations that meet the "if" condition. The third argument is the value of the variable for observations that do not meet the "if" condition.
 
-For example, here we are replacing the value of `a` with the value of `p1` (argument 2), but only in cases where `p1 > 4` (argument 1) is true. If `p1 > 4` is not true, we will keep the original value `a` (argument 3).
+For example, here we are replacing the value of "a" with the value of "p1" (argument 2), but only in cases where "p1 > 4" (argument 1) is true. If "p1 > 4" is not true, we will keep the original value "a" (argument 3).
 
 ```{r section1n}
 
@@ -277,7 +286,7 @@ lesson1a <-
 
 ```
 
-The `|` sign means "or", such that the code below means "set `a` equal to 1 if `y` is equal to either "campus" or "peds". Otherwise, keep the original value of `a`.
+The `|` sign means "or", such that the code below means "set "a" equal to 1 if "y" is equal to either "campus" or "peds". Otherwise, keep the original value of "a"."
 
 ```{r section1p}
 
@@ -287,7 +296,7 @@ lesson1a <-
 
 ```
 
-This code creates a subgroup of older women: `a` is 1 for older women and 0 for everybody else.
+This code creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
 
 ```{r section1q}
 

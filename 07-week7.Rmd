@@ -60,7 +60,7 @@ library(tidyverse)
 
 ```
 
-### Time to event data
+## Time to event data
 
 You need at least two variables to describe a time to event data set: how long the patients were followed (the time variable), and whether they had the event (e.g. were alive or dead) at last observation (the failure variable). The failure variable is coded 1 if the patient had the event (e.g. died, had a recurrence) and 0 otherwise. You can have any other variables (patient codes, stage of cancer, treatment, hair color etc) but these are not essential.
 
@@ -71,7 +71,6 @@ You first have to tell R that you are dealing with a survival data set. The func
 # Create the survival object
 # "t" is time in months
 # "d" is survival status (0 = alive, 1 = dead)
-
 example7a_surv <- Surv(example7a$t, example7a$d)
 
 ```
@@ -128,7 +127,7 @@ The `coxph` function (from `survival`) is for regression analyses. For example, 
 
 coxph(example7a_surv ~ drug, data = example7a)
 
-#You can use the tbl_regression function with Cox models to see the hazard ratios
+# You can use the tbl_regression function with Cox models to see the hazard ratios
 example7a_cox <- coxph(example7a_surv ~ drug, data = example7a)
 tbl_regression(example7a_cox, exponentiate = TRUE)
 

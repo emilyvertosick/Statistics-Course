@@ -58,7 +58,7 @@ library(tidyverse)
 
 ```
 
-### Diagnostic Tests
+## Diagnostic Tests
 
 For this, we will use the `epi.tests` function from the `epiR` package.
 
@@ -80,6 +80,8 @@ tbl_disease_test <-
   as.table(matrix(c(670, 202, 74, 640),
                   nrow = 2, byrow = TRUE))
 
+epi.tests(tbl_disease_test)
+
 ```
 
 Your result in this case is that sensitivity is `r style_sigfig(epi.tests(tbl_disease_test)$elements$se*100)`%, with a 95% CI `r style_sigfig(epi.tests(tbl_disease_test)$elements$se.low*100)`%, `r style_sigfig(epi.tests(tbl_disease_test)$elements$se.up*100)`%. For reasons that I am not quite sure, most investigators do not cite 95% CI with sensitivity, specificity, etc. so stating just `r style_sigfig(epi.tests(tbl_disease_test)$elements$se*100)`% is probably fine.
@@ -88,9 +90,9 @@ You can also use this function with a dataset that includes a binary variable in
 
 ```{r week6b}
 
+# This is the same code for week 4 that reverses the order of columns and rows
 tbl_example6a <-
   matrix(rev(table(example6a$test, example6a$disease)), nrow = 2)
-# This is the same code for week 4 that reverses the order of columns and rows
 
 epi.tests(tbl_example6a)
 

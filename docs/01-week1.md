@@ -12,23 +12,23 @@ There are normally four panes in the window.
 
 2. The "source" window in the top left is where you will write out R code for your final .R analysis file.
 
-3. The top right panel includes several tabs. The most important tabs here are "environment", which shows your current datasets and objects, and "history", which shows previous commands that have been run from either the "console" or the "code" window.
+3. The top right panel includes several tabs. The most important tabs here are "environment", which shows your current datasets and objects, and "history", which shows previous commands that have been run from either the "console" or the "source" window.
 
 4. The bottom right panel also includes several tabs. The "files" tab shows all files in your current directory. The "plots" tab is where plots will be shown if a plot is created. The "packages" tab shows all R packages that are available on your machine. The "help" tab will show help files, and help files can be searched from this tab. The "viewer" tab will show any other files that are created, for example, HTML files.
 
 ### Setting Up RStudio
 
-To access this course, navigate to the main folder and click to open the R project file called "Statistics Course R.Rproj". Opening the R project will allow you to easily access all files, as the "files" tab in the bottom right will automatically open to folder in which the R project file is located.
+To access this course, download the "Statistics Course.zip" file and unzip it to your desired folder. Navigate to the main folder and click to open the R project file called "Statistics Course.Rproj". Opening the R project will allow you to easily access all files, as the "files" tab in the bottom right will automatically open to folder in which the R project file is located.
 
 For this course, we will be using a set of packages called the "tidyverse". There are also several other packages that you should install. Running the line of code below will install the necessary packages for you.
 
 
 ```r
-install.packages(c("tidyverse", "skimr", "epiR", "broom", "pROC", "survival", "survminer", "remotes"))
+install.packages(c("tidyverse", "here", "skimr", "epiR", "broom", "pROC", "survival", "survminer", "remotes"))
 remotes::install_github("ddsjoberg/gtsummary")
 ```
 
-When you open RStudio, you must either run the following code in the "console" window, or include this line of code at the top of your code file in the "code" window, so that the package is loaded to your current session. By loading the package, you will be able to use all functions without specifying the package name each time.
+When you open RStudio, you must either run the following code in the "console" window, or include this line of code at the top of your code file in the "source" window, so that the package is loaded to your current session. By loading the package, you will be able to use all functions without specifying the package name each time.
 
 
 ```r
@@ -45,6 +45,13 @@ library(tidyverse)
 ### Opening a data file created by someone else
 
 This is mainly what you will be doing during this course. You will be loading data from files with a ".rds" extension, which is a type of file that can be exported from R. In the "files" tab in the bottom right panel, navigate to the folder where the data is stored. Click on the desired data ".rds" file. A "Load R Object" popup will appear, which allows you to change the name that the dataset will be stored under. It is fine for this course to leave the dataset names as is. Clicking "OK" will load this file to your environment, which you can confirm by looking for the dataset in the top right "environment" tab.
+
+To note, you can also load data using the following code, changing the folder names (e.g. "Week 1") and dataset names (e.g. "lesson1a.rds") as necessary:
+
+
+```r
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+```
 
 ## Looking at the data
 R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset "lesson1a" by typing the following into the console window:
@@ -134,6 +141,17 @@ One of the most useful commands is known as the pipe operator (%>%). The pipe op
 For example, these two pieces of code give the same results:
 
 
+```r
+skim(lesson1a)
+
+lesson1a %>% skim()
+
+# These also give the same results
+
+skim(lesson1a$age)
+
+lesson1a %>% skim(age)
+```
 
 #### `head` function
 
@@ -158,7 +176,7 @@ lesson1a %>% head()
 
 #### `str` function
 
-The `str` function allows you to see the variable name, variable type, and any variable attributes such as labels, for all variables in your dataset. For example, this tells you the description of the `sex` variable and its label - "1 if woman, 0 if man".
+The `str` function allows you to see the variable name, variable type, and any variable attributes such as labels, for all variables in your dataset. For example, this tells you the description of the "sex" variable and its label - "1 if woman, 0 if man".
 
 
 ```r
@@ -209,18 +227,279 @@ tbl_summary(
 )
 ```
 
-\captionsetup[table]{labelformat=empty,skip=1pt}
-\begin{longtable}{lc}
-\toprule
-\textbf{Characteristic}\textsuperscript{1} & \textbf{N = 386} \\ 
-\midrule
-1 if woman, 0 if man & 205 (53\%) \\ 
-\bottomrule
-\end{longtable}
-\vspace{-5mm}
-\begin{minipage}{\linewidth}
-\textsuperscript{1}Statistics presented: n (\%) \\ 
-\end{minipage}
+<!--html_preserve--><style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#iwrgxmosvm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000000;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  /* table.background.color */
+  width: auto;
+  /* table.width */
+  border-top-style: solid;
+  /* table.border.top.style */
+  border-top-width: 2px;
+  /* table.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table.border.top.color */
+}
+
+#iwrgxmosvm .gt_heading {
+  background-color: #FFFFFF;
+  /* heading.background.color */
+  border-bottom-color: #FFFFFF;
+}
+
+#iwrgxmosvm .gt_title {
+  color: #000000;
+  font-size: 125%;
+  /* heading.title.font.size */
+  padding-top: 4px;
+  /* heading.top.padding */
+  padding-bottom: 1px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iwrgxmosvm .gt_subtitle {
+  color: #000000;
+  font-size: 85%;
+  /* heading.subtitle.font.size */
+  padding-top: 1px;
+  padding-bottom: 4px;
+  /* heading.bottom.padding */
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iwrgxmosvm .gt_bottom_border {
+  border-bottom-style: solid;
+  /* heading.border.bottom.style */
+  border-bottom-width: 2px;
+  /* heading.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* heading.border.bottom.color */
+}
+
+#iwrgxmosvm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#iwrgxmosvm .gt_col_heading {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* column_labels.background.color */
+  font-size: 16px;
+  /* column_labels.font.size */
+  font-weight: initial;
+  /* column_labels.font.weight */
+  vertical-align: middle;
+  padding: 10px;
+  margin: 10px;
+}
+
+#iwrgxmosvm .gt_sep_right {
+  border-right: 5px solid #FFFFFF;
+}
+
+#iwrgxmosvm .gt_group_heading {
+  padding: 8px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#iwrgxmosvm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: #f2f2f2;
+}
+
+#iwrgxmosvm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iwrgxmosvm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iwrgxmosvm .gt_row {
+  padding: 8px;
+  /* row.padding */
+  margin: 10px;
+  vertical-align: middle;
+}
+
+#iwrgxmosvm .gt_stub {
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #A8A8A8;
+  padding-left: 12px;
+}
+
+#iwrgxmosvm .gt_summary_row {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* summary_row.background.color */
+  padding: 8px;
+  /* summary_row.padding */
+  text-transform: inherit;
+  /* summary_row.text_transform */
+}
+
+#iwrgxmosvm .gt_grand_summary_row {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* grand_summary_row.background.color */
+  padding: 8px;
+  /* grand_summary_row.padding */
+  text-transform: inherit;
+  /* grand_summary_row.text_transform */
+}
+
+#iwrgxmosvm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+}
+
+#iwrgxmosvm .gt_first_grand_summary_row {
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #A8A8A8;
+}
+
+#iwrgxmosvm .gt_table_body {
+  border-top-style: solid;
+  /* table_body.border.top.style */
+  border-top-width: 2px;
+  /* table_body.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table_body.border.top.color */
+  border-bottom-style: solid;
+  /* table_body.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table_body.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* table_body.border.bottom.color */
+}
+
+#iwrgxmosvm .gt_footnote {
+  font-size: 90%;
+  /* footnote.font.size */
+  padding: 4px;
+  /* footnote.padding */
+}
+
+#iwrgxmosvm .gt_sourcenote {
+  font-size: 90%;
+  /* sourcenote.font.size */
+  padding: 4px;
+  /* sourcenote.padding */
+}
+
+#iwrgxmosvm .gt_center {
+  text-align: center;
+}
+
+#iwrgxmosvm .gt_left {
+  text-align: left;
+}
+
+#iwrgxmosvm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iwrgxmosvm .gt_font_normal {
+  font-weight: normal;
+}
+
+#iwrgxmosvm .gt_font_bold {
+  font-weight: bold;
+}
+
+#iwrgxmosvm .gt_font_italic {
+  font-style: italic;
+}
+
+#iwrgxmosvm .gt_super {
+  font-size: 65%;
+}
+
+#iwrgxmosvm .gt_footnote_glyph {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><!--gt table start-->
+<table class='gt_table'>
+<tr>
+<th class='gt_col_heading gt_left' rowspan='1' colspan='1'><strong>Characteristic</strong><sup class='gt_footnote_glyph'>1</sup></th>
+<th class='gt_col_heading gt_center' rowspan='1' colspan='1'><strong>N = 386</strong></th>
+</tr>
+<tbody class='gt_table_body'>
+<tr>
+<td class='gt_row gt_left'>1 if woman, 0 if man</td>
+<td class='gt_row gt_center'>205 (53%)</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan='2' class='gt_footnote'><sup class='gt_footnote_glyph'><em>1</em></sup> Statistics presented: n (%)</td>
+</tr>
+</tfoot></table>
+<!--gt table end-->
+</div><!--/html_preserve-->
 
 ```r
 # If you would like to see percentages for both male and female, you can use the "type" option and specify that the variable is categorical
@@ -230,26 +509,293 @@ tbl_summary(
 )
 ```
 
-\captionsetup[table]{labelformat=empty,skip=1pt}
-\begin{longtable}{lc}
-\toprule
-\textbf{Characteristic}\textsuperscript{1} & \textbf{N = 386} \\ 
-\midrule
-1 if woman, 0 if man &  \\ 
-0 & 181 (47\%) \\ 
-1 & 205 (53\%) \\ 
-\bottomrule
-\end{longtable}
-\vspace{-5mm}
-\begin{minipage}{\linewidth}
-\textsuperscript{1}Statistics presented: n (\%) \\ 
-\end{minipage}
+<!--html_preserve--><style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#hlleqxdave .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000000;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  /* table.background.color */
+  width: auto;
+  /* table.width */
+  border-top-style: solid;
+  /* table.border.top.style */
+  border-top-width: 2px;
+  /* table.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table.border.top.color */
+}
+
+#hlleqxdave .gt_heading {
+  background-color: #FFFFFF;
+  /* heading.background.color */
+  border-bottom-color: #FFFFFF;
+}
+
+#hlleqxdave .gt_title {
+  color: #000000;
+  font-size: 125%;
+  /* heading.title.font.size */
+  padding-top: 4px;
+  /* heading.top.padding */
+  padding-bottom: 1px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hlleqxdave .gt_subtitle {
+  color: #000000;
+  font-size: 85%;
+  /* heading.subtitle.font.size */
+  padding-top: 1px;
+  padding-bottom: 4px;
+  /* heading.bottom.padding */
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hlleqxdave .gt_bottom_border {
+  border-bottom-style: solid;
+  /* heading.border.bottom.style */
+  border-bottom-width: 2px;
+  /* heading.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* heading.border.bottom.color */
+}
+
+#hlleqxdave .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hlleqxdave .gt_col_heading {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* column_labels.background.color */
+  font-size: 16px;
+  /* column_labels.font.size */
+  font-weight: initial;
+  /* column_labels.font.weight */
+  vertical-align: middle;
+  padding: 10px;
+  margin: 10px;
+}
+
+#hlleqxdave .gt_sep_right {
+  border-right: 5px solid #FFFFFF;
+}
+
+#hlleqxdave .gt_group_heading {
+  padding: 8px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#hlleqxdave .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: #f2f2f2;
+}
+
+#hlleqxdave .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hlleqxdave .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hlleqxdave .gt_row {
+  padding: 8px;
+  /* row.padding */
+  margin: 10px;
+  vertical-align: middle;
+}
+
+#hlleqxdave .gt_stub {
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #A8A8A8;
+  padding-left: 12px;
+}
+
+#hlleqxdave .gt_summary_row {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* summary_row.background.color */
+  padding: 8px;
+  /* summary_row.padding */
+  text-transform: inherit;
+  /* summary_row.text_transform */
+}
+
+#hlleqxdave .gt_grand_summary_row {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* grand_summary_row.background.color */
+  padding: 8px;
+  /* grand_summary_row.padding */
+  text-transform: inherit;
+  /* grand_summary_row.text_transform */
+}
+
+#hlleqxdave .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+}
+
+#hlleqxdave .gt_first_grand_summary_row {
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #A8A8A8;
+}
+
+#hlleqxdave .gt_table_body {
+  border-top-style: solid;
+  /* table_body.border.top.style */
+  border-top-width: 2px;
+  /* table_body.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table_body.border.top.color */
+  border-bottom-style: solid;
+  /* table_body.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table_body.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* table_body.border.bottom.color */
+}
+
+#hlleqxdave .gt_footnote {
+  font-size: 90%;
+  /* footnote.font.size */
+  padding: 4px;
+  /* footnote.padding */
+}
+
+#hlleqxdave .gt_sourcenote {
+  font-size: 90%;
+  /* sourcenote.font.size */
+  padding: 4px;
+  /* sourcenote.padding */
+}
+
+#hlleqxdave .gt_center {
+  text-align: center;
+}
+
+#hlleqxdave .gt_left {
+  text-align: left;
+}
+
+#hlleqxdave .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hlleqxdave .gt_font_normal {
+  font-weight: normal;
+}
+
+#hlleqxdave .gt_font_bold {
+  font-weight: bold;
+}
+
+#hlleqxdave .gt_font_italic {
+  font-style: italic;
+}
+
+#hlleqxdave .gt_super {
+  font-size: 65%;
+}
+
+#hlleqxdave .gt_footnote_glyph {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><!--gt table start-->
+<table class='gt_table'>
+<tr>
+<th class='gt_col_heading gt_left' rowspan='1' colspan='1'><strong>Characteristic</strong><sup class='gt_footnote_glyph'>1</sup></th>
+<th class='gt_col_heading gt_center' rowspan='1' colspan='1'><strong>N = 386</strong></th>
+</tr>
+<tbody class='gt_table_body'>
+<tr>
+<td class='gt_row gt_left'>1 if woman, 0 if man</td>
+<td class='gt_row gt_center'></td>
+</tr>
+<tr>
+<td class='gt_row gt_left gt_striped' style="text-align:left;text-indent:10px;">0</td>
+<td class='gt_row gt_center gt_striped'>181 (47%)</td>
+</tr>
+<tr>
+<td class='gt_row gt_left' style="text-align:left;text-indent:10px;">1</td>
+<td class='gt_row gt_center'>205 (53%)</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan='2' class='gt_footnote'><sup class='gt_footnote_glyph'><em>1</em></sup> Statistics presented: n (%)</td>
+</tr>
+</tfoot></table>
+<!--gt table end-->
+</div><!--/html_preserve-->
 
 <br>
 
-This tells you that the `sex` variable has no missing data (no "NA" values), and that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
+This tells you that the "sex" variable has no missing data (no "NA" values), and that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
 
-Since 0 = man and 1 = woman (you can use `str(lesson1a$sex)` to confirm), this means that there were 181 men in the 386 patients and that they constituted 46.89% of the population.
+Since 0 = man and 1 = woman (you can use `str(lesson1a$sex)` to confirm), this means that there were 181 men in the 386 patients and that they constituted 47% of the population.
 
 #### `skim` function
 
@@ -271,17 +817,17 @@ skim(lesson1a$age)
 ##  ▂▅▇▇▆▅▂▁
 ```
 
-So of the 386 patients, the mean age (a type of average, I’ll explain next week), 49.48, the standard deviation (again, I’ll explain next week) is 13.75. The youngest patient was 19 and the oldest is 86. 
+So of the 386 patients, the mean age (a type of average, I’ll explain next week), 49.484456, the standard deviation (again, I’ll explain next week) is 13.7546598. The youngest patient was 19 and the oldest is 86. 
 
-This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was 49.48, you’d probably just say 49.
+This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few minutes. So if you were reporting results for a journal, you would never say that mean age was 49.484456, you’d probably just say 49.
 
-`p0` here represents the minimum age in the dataset - 19. `p100` represents the maximum age of 86. `p25`, `p50` and `p75` are the centiles. We'll talk more about this later, but briefly, "`p25` 40" means that 25% of the patients were aged 40 and younger. The number by `p50` (i.e. 49) is the median.
+"p0" here represents the minimum age in the dataset - 19. "p100" represents the maximum age of 86. "p25", "p50" and "p75" are the centiles. We'll talk more about this later, but briefly, "p25 = 40" means that 25% of the patients were aged 40 and younger. The number by "p50" (i.e. 49) is the median.
 
 #### `mutate` function
 
 The `mutate` function is used to create new variables, or replace variable values.
 
-The code below means "create a new variable called `a` and set it equal to 1 in all observations." The `<-` indicator means to then save out this new dataset including the `a` variable as `lesson1a`.
+The code below means "create a new variable called "a" and set it equal to 1 in all observations." The "<-" indicator means to then save out this new dataset including the "a" variable as "lesson1a".
 
 
 ```r
@@ -290,7 +836,7 @@ lesson1a <-
   mutate(a = 1)
 ```
 
-Since we have already created the variable `a`, the code below means "replace the variable `a` with the value of 2 in all observations.
+Since we have already created the variable "a" above, the code below means "replace the variable "a" with the value of 2 in all observations."
 
 
 ```r
@@ -299,7 +845,7 @@ lesson1a <-
   mutate(a = 2)
 ```
 
-You can also replace one variable with the value of another variable. The code below means "replace the variable `a` with whatever the value of `p1` is in each observation."
+You can also replace one variable with the value of another variable. The code below means "replace the variable "a" with whatever the value of "p1" is in each observation."
 
 
 ```r
@@ -308,7 +854,7 @@ lesson1a <-
   mutate(a = p1)
 ```
 
-You can also calculate values inside a `mutate` statement. For example, you can create an average of the four variables `p1` - `p4`.
+You can also calculate values inside a `mutate` statement. For example, you can create an average of the four variables "p1" - "p4".
 
 
 ```r
@@ -321,9 +867,9 @@ lesson1a <-
 
 The `if_else` function can be used with the `mutate` function to assign values to a variable based on a specific condition.
 
-The first argument in the "if_else" function is the "if" condition. The second argument is the value of the variable for observations that meet the "if" condition. The third argument is the value of the variable for observations that do not meet the "if" condition.
+The first argument in the `if_else` function is the "if" condition. The second argument is the value of the variable for observations that meet the "if" condition. The third argument is the value of the variable for observations that do not meet the "if" condition.
 
-For example, here we are replacing the value of `a` with the value of `p1` (argument 2), but only in cases where `p1 > 4` (argument 1) is true. If `p1 > 4` is not true, we will keep the original value `a` (argument 3).
+For example, here we are replacing the value of "a" with the value of "p1" (argument 2), but only in cases where "p1 > 4" (argument 1) is true. If "p1 > 4" is not true, we will keep the original value "a" (argument 3).
 
 
 ```r
@@ -341,7 +887,7 @@ lesson1a <-
   mutate(a = if_else(sex == 1, p1, a))
 ```
 
-The `|` sign means "or", such that the code below means "set `a` equal to 1 if `y` is equal to either "campus" or "peds". Otherwise, keep the original value of `a`.
+The `|` sign means "or", such that the code below means "set "a" equal to 1 if "y" is equal to either "campus" or "peds". Otherwise, keep the original value of "a"."
 
 
 ```r
@@ -350,7 +896,7 @@ lesson1a <-
   mutate(a = if_else(y == "campus" | y == "peds", 1, a))
 ```
 
-This code creates a subgroup of older women: `a` is 1 for older women and 0 for everybody else.
+This code creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
 
 
 ```r
