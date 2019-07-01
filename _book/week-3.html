@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Week 3 | MSKCC Biostatistics Course</title>
+  <meta name="description" content="3 Week 3 | MSKCC Biostatistics Course" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Week 3 | MSKCC Biostatistics Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Week 3 | MSKCC Biostatistics Course" />
+  
+  
+  
+
+<meta name="author" content="Andrew Vickers" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="week-2.html">
+<link rel="next" href="week-4.html">
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>General Course Materials</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-outline"><i class="fa fa-check"></i>Course Outline</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#andrews-contact-details"><i class="fa fa-check"></i>Andrew’s Contact Details</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#passing-the-course"><i class="fa fa-check"></i>Passing the Course</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#data-checking-procedures"><i class="fa fa-check"></i>Data Checking Procedures</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#guidelines-for-presentation-of-statistics"><i class="fa fa-check"></i>Guidelines for presentation of statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="week-1.html"><a href="week-1.html"><i class="fa fa-check"></i><b>1</b> Week 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="week-1.html"><a href="week-1.html#r-instructions"><i class="fa fa-check"></i><b>1.1</b> R Instructions</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="week-1.html"><a href="week-1.html#using-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Using RStudio</a></li>
+<li class="chapter" data-level="1.1.2" data-path="week-1.html"><a href="week-1.html#setting-up-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Setting Up RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="week-1.html"><a href="week-1.html#opening-a-data-file-created-by-someone-else"><i class="fa fa-check"></i><b>1.1.3</b> Opening a data file created by someone else</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="week-1.html"><a href="week-1.html#looking-at-the-data"><i class="fa fa-check"></i><b>1.2</b> Looking at the data</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="week-1.html"><a href="week-1.html#typing-a-command"><i class="fa fa-check"></i><b>1.2.1</b> Typing a command</a></li>
+<li class="chapter" data-level="1.2.2" data-path="week-1.html"><a href="week-1.html#some-useful-commands"><i class="fa fa-check"></i><b>1.2.2</b> Some Useful Commands</a></li>
+<li class="chapter" data-level="1.2.3" data-path="week-1.html"><a href="week-1.html#using-help"><i class="fa fa-check"></i><b>1.2.3</b> Using Help</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="week-1.html"><a href="week-1.html#assignments"><i class="fa fa-check"></i><b>1.3</b> Assignments</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-2.html"><a href="week-2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="week-2.html"><a href="week-2.html#r-instructions-1"><i class="fa fa-check"></i><b>2.1</b> R Instructions</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="week-2.html"><a href="week-2.html#summarizing-continuous-variables"><i class="fa fa-check"></i><b>2.1.1</b> Summarizing continuous variables</a></li>
+<li class="chapter" data-level="2.1.2" data-path="week-2.html"><a href="week-2.html#centiles"><i class="fa fa-check"></i><b>2.1.2</b> Centiles</a></li>
+<li class="chapter" data-level="2.1.3" data-path="week-2.html"><a href="week-2.html#one-way-tables"><i class="fa fa-check"></i><b>2.1.3</b> One-way tables</a></li>
+<li class="chapter" data-level="2.1.4" data-path="week-2.html"><a href="week-2.html#two-way-tables"><i class="fa fa-check"></i><b>2.1.4</b> Two-way tables</a></li>
+<li class="chapter" data-level="2.1.5" data-path="week-2.html"><a href="week-2.html#graphing"><i class="fa fa-check"></i><b>2.1.5</b> Graphing</a></li>
+<li class="chapter" data-level="2.1.6" data-path="week-2.html"><a href="week-2.html#further-reading"><i class="fa fa-check"></i><b>2.1.6</b> Further Reading</a></li>
+<li class="chapter" data-level="2.1.7" data-path="week-2.html"><a href="week-2.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>2.1.7</b> Using R as a calculator</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="week-2.html"><a href="week-2.html#assignment"><i class="fa fa-check"></i><b>2.2</b> Assignment</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="week-2.html"><a href="week-2.html#assignments-1"><i class="fa fa-check"></i><b>2.2.1</b> Assignments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-3.html"><a href="week-3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="week-3.html"><a href="week-3.html#r-instructions-2"><i class="fa fa-check"></i><b>3.1</b> R Instructions</a></li>
+<li class="chapter" data-level="3.2" data-path="week-3.html"><a href="week-3.html#assignments-2"><i class="fa fa-check"></i><b>3.2</b> Assignments</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-4.html"><a href="week-4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a><ul>
+<li class="chapter" data-level="4.1" data-path="week-4.html"><a href="week-4.html#r-instructions-3"><i class="fa fa-check"></i><b>4.1</b> R Instructions</a></li>
+<li class="chapter" data-level="4.2" data-path="week-4.html"><a href="week-4.html#assignments-3"><i class="fa fa-check"></i><b>4.2</b> Assignments</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week-5.html"><a href="week-5.html"><i class="fa fa-check"></i><b>5</b> Week 5</a><ul>
+<li class="chapter" data-level="5.1" data-path="week-5.html"><a href="week-5.html#r-instructions-4"><i class="fa fa-check"></i><b>5.1</b> R Instructions</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="week-5.html"><a href="week-5.html#correlation"><i class="fa fa-check"></i><b>5.1.1</b> Correlation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="week-5.html"><a href="week-5.html#linear-regression"><i class="fa fa-check"></i><b>5.1.2</b> Linear regression</a></li>
+<li class="chapter" data-level="5.1.3" data-path="week-5.html"><a href="week-5.html#graphing-the-data"><i class="fa fa-check"></i><b>5.1.3</b> Graphing the data</a></li>
+<li class="chapter" data-level="5.1.4" data-path="week-5.html"><a href="week-5.html#logistic-regression"><i class="fa fa-check"></i><b>5.1.4</b> Logistic regression</a></li>
+<li class="chapter" data-level="5.1.5" data-path="week-5.html"><a href="week-5.html#getting-the-area-under-the-curve"><i class="fa fa-check"></i><b>5.1.5</b> Getting the area-under-the-curve</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="week-5.html"><a href="week-5.html#assignments-4"><i class="fa fa-check"></i><b>5.2</b> Assignments</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="week-6.html"><a href="week-6.html"><i class="fa fa-check"></i><b>6</b> Week 6</a><ul>
+<li class="chapter" data-level="6.1" data-path="week-6.html"><a href="week-6.html#r-instructions-5"><i class="fa fa-check"></i><b>6.1</b> R Instructions</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="week-6.html"><a href="week-6.html#diagnostic-tests"><i class="fa fa-check"></i><b>6.1.1</b> Diagnostic Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="week-6.html"><a href="week-6.html#assignments-5"><i class="fa fa-check"></i><b>6.2</b> Assignments</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a><ul>
+<li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#r-instructions-6"><i class="fa fa-check"></i><b>7.1</b> R Instructions</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.1.1</b> Time to event data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="week-7.html"><a href="week-7.html#assignments-6"><i class="fa fa-check"></i><b>7.1.2</b> Assignments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="week-8.html"><a href="week-8.html"><i class="fa fa-check"></i><b>8</b> Week 8</a></li>
+<li class="chapter" data-level="9" data-path="assignment-answers.html"><a href="assignment-answers.html"><i class="fa fa-check"></i><b>9</b> Assignment Answers</a><ul>
+<li class="chapter" data-level="9.1" data-path="assignment-answers.html"><a href="assignment-answers.html#week-1-1"><i class="fa fa-check"></i><b>9.1</b> Week 1</a></li>
+<li class="chapter" data-level="9.2" data-path="assignment-answers.html"><a href="assignment-answers.html#week-2-1"><i class="fa fa-check"></i><b>9.2</b> Week 2</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson2a.rds-marathon-runners"><i class="fa fa-check"></i><b>9.2.1</b> lesson2a.rds: Marathon Runners</a></li>
+<li class="chapter" data-level="9.2.2" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson2b.rds-postoperative-pain"><i class="fa fa-check"></i><b>9.2.2</b> lesson2b.rds: Postoperative Pain</a></li>
+<li class="chapter" data-level="9.2.3" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson2c.rds-radical-prostatectomy-cohort"><i class="fa fa-check"></i><b>9.2.3</b> lesson2c.rds: Radical Prostatectomy Cohort</a></li>
+<li class="chapter" data-level="9.2.4" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson2d.rds-cost-of-a-minor-medical-procedure"><i class="fa fa-check"></i><b>9.2.4</b> lesson2d.rds: Cost of a Minor Medical Procedure</a></li>
+<li class="chapter" data-level="9.2.5" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson2e.rds-cancer-pain"><i class="fa fa-check"></i><b>9.2.5</b> lesson2e.rds: Cancer pain</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="assignment-answers.html"><a href="assignment-answers.html#week-3-1"><i class="fa fa-check"></i><b>9.3</b> Week 3</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson3a.rds"><i class="fa fa-check"></i><b>9.3.1</b> lesson3a.rds</a></li>
+<li class="chapter" data-level="9.3.2" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson3b.rds"><i class="fa fa-check"></i><b>9.3.2</b> lesson3b.rds</a></li>
+<li class="chapter" data-level="9.3.3" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson3c.rds"><i class="fa fa-check"></i><b>9.3.3</b> lesson3c.rds</a></li>
+<li class="chapter" data-level="9.3.4" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson3d.rds"><i class="fa fa-check"></i><b>9.3.4</b> lesson3d.rds</a></li>
+<li class="chapter" data-level="9.3.5" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson3e.rds"><i class="fa fa-check"></i><b>9.3.5</b> lesson3e.rds</a></li>
+<li class="chapter" data-level="9.3.6" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson3f.rds"><i class="fa fa-check"></i><b>9.3.6</b> lesson3f.rds</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="assignment-answers.html"><a href="assignment-answers.html#week-4-1"><i class="fa fa-check"></i><b>9.4</b> Week 4</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson4a.rds"><i class="fa fa-check"></i><b>9.4.1</b> lesson4a.rds</a></li>
+<li class="chapter" data-level="9.4.2" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson4b.rds"><i class="fa fa-check"></i><b>9.4.2</b> lesson4b.rds</a></li>
+<li class="chapter" data-level="9.4.3" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson4c.rds"><i class="fa fa-check"></i><b>9.4.3</b> lesson4c.rds</a></li>
+<li class="chapter" data-level="9.4.4" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson4d.rds"><i class="fa fa-check"></i><b>9.4.4</b> lesson4d.rds</a></li>
+<li class="chapter" data-level="9.4.5" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson4e.rds"><i class="fa fa-check"></i><b>9.4.5</b> lesson4e.rds</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="assignment-answers.html"><a href="assignment-answers.html#week-5-1"><i class="fa fa-check"></i><b>9.5</b> Week 5</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5a.rds"><i class="fa fa-check"></i><b>9.5.1</b> lesson5a.rds</a></li>
+<li class="chapter" data-level="9.5.2" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5b.rds"><i class="fa fa-check"></i><b>9.5.2</b> lesson5b.rds</a></li>
+<li class="chapter" data-level="9.5.3" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5c.rds"><i class="fa fa-check"></i><b>9.5.3</b> lesson5c.rds</a></li>
+<li class="chapter" data-level="9.5.4" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5d.rds"><i class="fa fa-check"></i><b>9.5.4</b> lesson5d.rds</a></li>
+<li class="chapter" data-level="9.5.5" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5e.rds"><i class="fa fa-check"></i><b>9.5.5</b> lesson5e.rds</a></li>
+<li class="chapter" data-level="9.5.6" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5f.rds"><i class="fa fa-check"></i><b>9.5.6</b> lesson5f.rds</a></li>
+<li class="chapter" data-level="9.5.7" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5g.rds"><i class="fa fa-check"></i><b>9.5.7</b> lesson5g.rds</a></li>
+<li class="chapter" data-level="9.5.8" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5h.rds"><i class="fa fa-check"></i><b>9.5.8</b> lesson5h.rds</a></li>
+<li class="chapter" data-level="9.5.9" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson5i.rds"><i class="fa fa-check"></i><b>9.5.9</b> lesson5i.rds</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="assignment-answers.html"><a href="assignment-answers.html#week-6-1"><i class="fa fa-check"></i><b>9.6</b> Week 6</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson6a.rds-and-lesson6b.rds"><i class="fa fa-check"></i><b>9.6.1</b> lesson6a.rds and lesson6b.rds</a></li>
+<li class="chapter" data-level="9.6.2" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson6c.rds"><i class="fa fa-check"></i><b>9.6.2</b> lesson6c.rds</a></li>
+<li class="chapter" data-level="9.6.3" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson6d.rds"><i class="fa fa-check"></i><b>9.6.3</b> lesson6d.rds</a></li>
+<li class="chapter" data-level="9.6.4" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson6e"><i class="fa fa-check"></i><b>9.6.4</b> lesson6e</a></li>
+<li class="chapter" data-level="9.6.5" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson6f"><i class="fa fa-check"></i><b>9.6.5</b> lesson6f</a></li>
+<li class="chapter" data-level="9.6.6" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson6g"><i class="fa fa-check"></i><b>9.6.6</b> lesson6g</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="assignment-answers.html"><a href="assignment-answers.html#week-7-1"><i class="fa fa-check"></i><b>9.7</b> Week 7</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson7a"><i class="fa fa-check"></i><b>9.7.1</b> lesson7a</a></li>
+<li class="chapter" data-level="9.7.2" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson7b.rds"><i class="fa fa-check"></i><b>9.7.2</b> lesson7b.rds</a></li>
+<li class="chapter" data-level="9.7.3" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson7c.rds"><i class="fa fa-check"></i><b>9.7.3</b> lesson7c.rds</a></li>
+<li class="chapter" data-level="9.7.4" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson7d.rds"><i class="fa fa-check"></i><b>9.7.4</b> lesson7d.rds</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="exam.html"><a href="exam.html"><i class="fa fa-check"></i><b>10</b> Exam</a><ul>
+<li class="chapter" data-level="10.1" data-path="exam.html"><a href="exam.html#question-1"><i class="fa fa-check"></i><b>10.1</b> Question 1</a></li>
+<li class="chapter" data-level="10.2" data-path="exam.html"><a href="exam.html#question-2"><i class="fa fa-check"></i><b>10.2</b> Question 2</a></li>
+<li class="chapter" data-level="10.3" data-path="exam.html"><a href="exam.html#question-3"><i class="fa fa-check"></i><b>10.3</b> Question 3</a></li>
+<li class="chapter" data-level="10.4" data-path="exam.html"><a href="exam.html#question-4"><i class="fa fa-check"></i><b>10.4</b> Question 4</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MSKCC Biostatistics Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="week-3" class="section level1">
+<h1><span class="header-section-number">3</span> Week 3</h1>
+<div id="r-instructions-2" class="section level2">
+<h2><span class="header-section-number">3.1</span> R Instructions</h2>
+<p>For this lesson, make sure you have loaded the following packages.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(skimr)
+<span class="kw">library</span>(gtsummary)
+<span class="kw">library</span>(epiR)
+<span class="kw">library</span>(broom)
+<span class="kw">library</span>(pROC)
+<span class="kw">library</span>(gmodels)
+<span class="kw">library</span>(survival)
+<span class="kw">library</span>(tidyverse)</code></pre>
+<p>For this week’s assignment, you will need to learn the following functions:</p>
+<ul>
+<li><code>t.test</code></li>
+<li><code>wilcox.test</code></li>
+<li><code>binom.test</code></li>
+</ul>
+<p><strong>1. t-test</strong></p>
+<p>This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statistician normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a “theorem”, this is called the “central limit theorem”). Just how large is “large” is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is “robust” to non-normal data, even if sample sizes are low. “Robust” means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for just about any situation.</p>
+<p><strong>Different forms of the t-test</strong></p>
+<p>In a simple unpaired case, for example, testing marker levels between a drug and placebo group:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  marker by trt
+## t = -0.51222, df = 189, p-value = 0.6091
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.3092384  0.1817462
+## sample estimates:
+##    mean in group Drug mean in group Placebo 
+##             0.8981078             0.9618539</code></pre>
+<p>A paired test, for example, comparing blood pressure taken before and after an intervention.</p>
+<!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  bp by when
+## t = -3.3372, df = 119, p-value = 0.00113
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -8.112776 -2.070557
+## sample estimates:
+## mean of the differences 
+##               -5.091667</code></pre>
+<p>A single sample test comparing the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  midwest$percollege
+## t = -45.827, df = 436, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 32
+## 95 percent confidence interval:
+##  17.68400 18.86147
+## sample estimates:
+## mean of x 
+##  18.27274</code></pre>
+<p>Let’s look at the print out from a t-test in more detail:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  hp by am
+## t = 1.3733, df = 30, p-value = 0.1798
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -16.27768  83.11169
+## sample estimates:
+## mean in group 0 mean in group 1 
+##        160.2632        126.8462</code></pre>
+<p>This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (am == 0) vs manual transmission (am == 1).</p>
+<p>The <code>t.test</code> function reports the data and variables you are testing, following by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.</p>
+<p>While for an unpaired test, the <code>t.test</code> command prints the group means in each group, you may want to report the difference between means. (For a paired test, the difference in means is reported.) The group means are stored in the <code>estimate</code> attribute of the <code>t.test</code> results.</p>
+<pre class="sourceCode r"><code class="sourceCode r">hp_test &lt;-<span class="st"> </span><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)
+hp_test<span class="op">$</span>estimate</code></pre>
+<pre><code>## mean in group 0 mean in group 1 
+##        160.2632        126.8462</code></pre>
+<p>To calculate the difference in means between group 0 and group 1, you can use the <code>estimate</code> data to calculate this. The square brackets indicate which number (first mean or second mean) to take. This works to calculate the difference between group 0 and group 1, as well as between group 1 and group 0.</p>
+<pre class="sourceCode r"><code class="sourceCode r">hp_test<span class="op">$</span>estimate[[<span class="dv">1</span>]] <span class="op">-</span><span class="st"> </span>hp_test<span class="op">$</span>estimate[[<span class="dv">2</span>]]</code></pre>
+<pre><code>## [1] 33.417</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">hp_test<span class="op">$</span>estimate[[<span class="dv">2</span>]] <span class="op">-</span><span class="st"> </span>hp_test<span class="op">$</span>estimate[[<span class="dv">1</span>]]</code></pre>
+<pre><code>## [1] -33.417</code></pre>
+<p>You don’t need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.</p>
+<p>Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is 33.4 higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between 16.3 lower or 83.1 higher in the automatic group vs the manual group.</p>
+<p><strong>2. Non-parametric methods</strong></p>
+<p>These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance.</p>
+<p>Unpaired case, for example, do marker levels differ between the drug and placebo groups?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">correct =</span> <span class="ot">FALSE</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum test
+## 
+## data:  marker by trt
+## W = 4242.5, p-value = 0.4366
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>Paired case, for example, does an intervention cause a change in a patient’s blood pressure?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">correct =</span> <span class="ot">FALSE</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum test
+## 
+## data:  bp by when
+## W = 5551, p-value = 0.002159
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test
+## 
+## data:  midwest$percollege
+## V = 924, p-value &lt; 2.2e-16
+## alternative hypothesis: true location is not equal to 32</code></pre>
+<p>Note here that you don’t get any parameters for the groups such as means, medians or standard deviations. You also don’t get an estimate for the difference between groups.</p>
+<p><strong>3. The binomial test</strong></p>
+<p>The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p value).</p>
+<p>The first argument of <code>binom.test</code> is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the <code>p =</code> option - the default is 0.5 (50%).</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">binom.test</span>(<span class="dv">60</span>, <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</code></pre>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  60 and 100
+## number of successes = 60, number of trials = 100, p-value =
+## 0.05689
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4972092 0.6967052
+## sample estimates:
+## probability of success 
+##                    0.6</code></pre>
+<p>The following tests whether the proportion of women (sex = 1) in the dataset is different than 50%. <code>sum(lesson2a$sex)</code> counts the number of observations where sex is 1. <code>nrow(lesson2a)</code> gives the total number of observations in the <code>lesson2a</code> dataset.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">binom.test</span>(<span class="kw">sum</span>(lesson1a<span class="op">$</span>sex), <span class="kw">nrow</span>(lesson1a), <span class="dt">p =</span> <span class="fl">0.5</span>)</code></pre>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  sum(lesson1a$sex) and nrow(lesson1a)
+## number of successes = 205, number of trials = 386, p-value =
+## 0.2417
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4799345 0.5817614
+## sample estimates:
+## probability of success 
+##              0.5310881</code></pre>
+<p>This tells you that you had 386 observations, and there were 205 where sex was coded as 1, an observation proportion of 0.53. Now the “assumed” proportion was 0.5, giving an expected number of 193 women. These two values are quite close and the p value is 0.2.</p>
+</div>
+<div id="assignments-2" class="section level2">
+<h2><span class="header-section-number">3.2</span> Assignments</h2>
+<p>Again, more questions than you need to do, unless you’re keen (also, most won’t take long). Try to do at least the first three.</p>
+<ul>
+<li>lesson3a.rds: These are data from over 1000 patients undergoing chemotherapy reporting a nausea and vomiting score from 0 to 10 on the day of treatment. Does previous chemotherapy increase nausea scores? What about sex?</li>
+<li>lesson3b.rds: Patients with wrist osteoarthritis are randomized to a new drug or placebo. Pain is measured before and two hours after taking a dose of the drug. Is the drug effective?</li>
+<li>lesson3c.rds: Some postoperative pain data again. Is pain on day 2 different than pain on day 1? Is pain on day 3 different from pain on day 2?</li>
+<li>lesson3d.rds: This is a single-arm, uncontrolled study of acupuncture for patients with neck pain. Does acupuncture increase range of motion? Just as many men as women get neck pain. Can we say anything about the sample chosen for this trial with respect to gender? The mean age of patients with neck pain is 58.2 years. Is the trial population representative with respect to age?</li>
+<li>lesson3e.rds: These data are length of stay from two different hospitals. One of the hospitals uses a new chemotherapy regime that is said to reduce adverse events and therefore length of stay. Does the new regime decrease length of stay?</li>
+<li>lesson3f.rds: These data are from a randomized trial on the effects of physiotherapy treatment on physical function in pediatric patients recovering from cancer surgery. Function is measured on a 100 point scale. Does physiotherapy help improve physical functioning?</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="week-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="week-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

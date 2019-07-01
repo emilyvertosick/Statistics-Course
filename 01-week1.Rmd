@@ -1,0 +1,308 @@
+```{r setup1, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(tidyverse)
+
+# Set seed
+set.seed(34634986)
+
+# To display histograms from "skim"
+Sys.setlocale("LC_CTYPE", "Chinese")
+
+# Load data
+
+# Save out list of all files
+all_data <-
+  list.files(here::here("Data"), pattern = ".rds", recursive = TRUE) %>%
+  map(~ glue::glue("Data/{..1}") %>% as.character())
+
+# Give names to list (will be object names)
+all_data_names <-
+  map(all_data,
+      ~ str_split(..1, "/") %>%
+        unlist() %>%
+        pluck(3) %>%
+        str_replace(".rds", "")
+      )
+names(all_data) <- all_data_names
+
+# Load all data to environment
+list2env(map(all_data, readRDS), envir = .GlobalEnv)
+
+```
+
+# Week 1
+
+## R Instructions
+
+### Using RStudio
+
+There are normally four panes in the window.
+
+1. The "console" window at the bottom left is where results will be shown if running R code from a .R file or interactively. The console window is also where you types in instructions for R.
+
+2. The "source" window in the top left is where you will write out R code for your final .R analysis file.
+
+3. The top right panel includes several tabs. The most important tabs here are "environment", which shows your current datasets and objects, and "history", which shows previous commands that have been run from either the "console" or the "code" window.
+
+4. The bottom right panel also includes several tabs. The "files" tab shows all files in your current directory. The "plots" tab is where plots will be shown if a plot is created. The "packages" tab shows all R packages that are available on your machine. The "help" tab will show help files, and help files can be searched from this tab. The "viewer" tab will show any other files that are created, for example, HTML files.
+
+### Setting Up RStudio
+
+To access this course, navigate to the main folder and click to open the R project file called "Statistics Course R.Rproj". Opening the R project will allow you to easily access all files, as the "files" tab in the bottom right will automatically open to folder in which the R project file is located.
+
+For this course, we will be using a set of packages called the "tidyverse". There are also several other packages that you should install. Running the line of code below will install the necessary packages for you.
+
+```{r install, echo = TRUE, eval = FALSE}
+
+install.packages(c("tidyverse", "skimr", "epiR", "broom", "pROC", "survival", "survminer", "remotes"))
+remotes::install_github("ddsjoberg/gtsummary")
+
+```
+
+When you open RStudio, you must either run the following code in the "console" window, or include this line of code at the top of your code file in the "code" window, so that the package is loaded to your current session. By loading the package, you will be able to use all functions without specifying the package name each time.
+
+```{r loadpkgs1, echo = TRUE, eval = FALSE}
+
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(tidyverse)
+
+```
+
+### Opening a data file created by someone else
+
+This is mainly what you will be doing during this course. You will be loading data from files with a ".rds" extension, which is a type of file that can be exported from R. In the "files" tab in the bottom right panel, navigate to the folder where the data is stored. Click on the desired data ".rds" file. A "Load R Object" popup will appear, which allows you to change the name that the dataset will be stored under. It is fine for this course to leave the dataset names as is. Clicking "OK" will load this file to your environment, which you can confirm by looking for the dataset in the top right "environment" tab.
+
+## Looking at the data
+R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset "lesson1a" by typing the following into the console window:
+
+```{r section1a, echo = TRUE, eval = FALSE}
+
+View(lesson1a)
+
+```
+
+This is data from 386 patients undergoing surgery. You can see the patient’s hospital code number as the variable "id" and then their age and sex. There are then lists of other variables with names such as "p1", "t", "x" and so on. You can see that you can have both numbers and text as a variable. You may also notice that some variables have a value of "NA" for a particular observation. In R, "NA" indicates missing data. 
+
+### Typing a command
+
+A typical command is of the form: `packagename::function(options)`. If a package has already been loaded using the `library()` function (for example, as we did with the `skimr` package above), you can omit `packagename::` when running the code.
+
+Since you can have multiple datasets in R at the same time, your command must indicate which dataset you are referring to. Commonly this is done by including the dataset name as an option in the function call.
+
+For example, this will summarize the data for the full `lesson1a` dataset.
+
+```{r section1b, echo = TRUE, include = TRUE}
+
+skimr::skim(lesson1a)
+
+```
+
+### Some Useful Commands
+
+#### Extracting a variable by name ($)
+
+To refer to one variable in your dataset, you can use the notation `dataset$variable` to indicate which dataset you are referencing, and which variable within that dataset.
+
+For example, this will summarize just the variable `age` from the `lesson1a` dataset.
+
+```{r section1c}
+
+skim(lesson1a$age)
+
+```
+
+#### Pipe operator (%>%)
+
+One of the most useful commands is known as the pipe operator (%>%). The pipe operator can be read as "and then". Pipes allow a dataset or object to be passed from the left side of the pipe to the command on the right side. The dataset you are using will be referenced on the left side of the pipe, rather than included as an option in the next function.
+
+For example, these two pieces of code give the same results:
+
+```{r section1d, include = FALSE}
+
+skim(lesson1a)
+
+lesson1a %>% skim()
+
+# These also give the same results
+
+skim(lesson1a$age)
+
+lesson1a %>% skim(age)
+
+```
+
+#### `head` function
+
+The `head` function allows you to see the first few rows of your dataset in the console window, including the variable names and variable types at the top of the table.
+
+```{r section1e}
+
+lesson1a %>% head()
+
+```
+
+#### `str` function
+
+The `str` function allows you to see the variable name, variable type, and any variable attributes such as labels, for all variables in your dataset. For example, this tells you the description of the `sex` variable and its label - "1 if woman, 0 if man".
+
+```{r section1f}
+
+lesson1a %>% str()
+
+```
+
+#### `tbl_summary` function
+
+The `tbl_summary` function (from the `gtsummary` package) provides a formatted table of the values and frequencies for binary or categorical variables, and summary statistics (by default, median and quartiles) for continuous variables.
+
+```{r section1g}
+
+# "select" takes one or more variable names that you would like to include in your table
+tbl_summary(
+  lesson1a %>% select(sex) 
+)
+
+# If you would like to see percentages for both male and female, you can use the "type" option and specify that the variable is categorical
+tbl_summary(
+  lesson1a %>% select(sex),
+  type = list(sex = "categorical")
+)
+
+```
+
+<br>
+
+This tells you that the `sex` variable has no missing data (no "NA" values), and that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
+
+Since 0 = man and 1 = woman (you can use `str(lesson1a$sex)` to confirm), this means that there were 181 men in the 386 patients and that they constituted 46.89% of the population.
+
+#### `skim` function
+
+The `skim` function (from the `skimr`) package gives basic summary data.
+
+```{r section1i}
+
+skim(lesson1a$age)
+
+```
+
+So of the 386 patients, the mean age (a type of average, I’ll explain next week), 49.48, the standard deviation (again, I’ll explain next week) is 13.75. The youngest patient was 19 and the oldest is 86. 
+
+This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was 49.48, you’d probably just say 49.
+
+`p0` here represents the minimum age in the dataset - 19. `p100` represents the maximum age of 86. `p25`, `p50` and `p75` are the centiles. We'll talk more about this later, but briefly, "`p25` 40" means that 25% of the patients were aged 40 and younger. The number by `p50` (i.e. 49) is the median.
+
+#### `mutate` function
+
+The `mutate` function is used to create new variables, or replace variable values.
+
+The code below means "create a new variable called `a` and set it equal to 1 in all observations." The `<-` indicator means to then save out this new dataset including the `a` variable as `lesson1a`.
+
+```{r section1j}
+
+lesson1a <-
+  lesson1a %>%
+  mutate(a = 1)
+
+```
+
+Since we have already created the variable `a`, the code below means "replace the variable `a` with the value of 2 in all observations.
+
+```{r section1k}
+
+lesson1a <-
+  lesson1a %>%
+  mutate(a = 2)
+
+```
+
+You can also replace one variable with the value of another variable. The code below means "replace the variable `a` with whatever the value of `p1` is in each observation."
+
+```{r section1l}
+
+lesson1a <-
+  lesson1a %>%
+  mutate(a = p1)
+
+```
+
+You can also calculate values inside a `mutate` statement. For example, you can create an average of the four variables `p1` - `p4`.
+
+```{r section1m}
+
+lesson1a <-
+  lesson1a %>%
+  mutate(a = p1 + p2 + p3 + p4 / 4)
+
+```
+
+#### `if_else` function
+
+The `if_else` function can be used with the `mutate` function to assign values to a variable based on a specific condition.
+
+The first argument in the "if_else" function is the "if" condition. The second argument is the value of the variable for observations that meet the "if" condition. The third argument is the value of the variable for observations that do not meet the "if" condition.
+
+For example, here we are replacing the value of `a` with the value of `p1` (argument 2), but only in cases where `p1 > 4` (argument 1) is true. If `p1 > 4` is not true, we will keep the original value `a` (argument 3).
+
+```{r section1n}
+
+lesson1a <-
+  lesson1a %>%
+  mutate(a = if_else(p1 > 4, p1, a))
+
+```
+
+In this case, we are only replacing for females. Note that when you use equals sign after an "if" you have to use two of them in a row to signify "is equal to" rather than "make equal to".
+
+```{r section1o}
+
+lesson1a <-
+  lesson1a %>%
+  mutate(a = if_else(sex == 1, p1, a))
+
+```
+
+The `|` sign means "or", such that the code below means "set `a` equal to 1 if `y` is equal to either "campus" or "peds". Otherwise, keep the original value of `a`.
+
+```{r section1p}
+
+lesson1a <-
+  lesson1a %>%
+  mutate(a = if_else(y == "campus" | y == "peds", 1, a))
+
+```
+
+This code creates a subgroup of older women: `a` is 1 for older women and 0 for everybody else.
+
+```{r section1q}
+
+lesson1a <-
+  lesson1a %>%
+  mutate(a = if_else(sex == 1 & age > 50, 1, 0))
+
+```
+
+### Using Help
+
+There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be handouts about all the commands you need.
+
+## Assignments
+
+The data for you to look at are in the attached file lesson1a.rds.
+
+This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?

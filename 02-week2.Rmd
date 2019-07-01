@@ -1,0 +1,409 @@
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(tidyverse)
+
+# Set seed
+set.seed(34634986)
+
+# To display histograms from "skim"
+Sys.setlocale("LC_CTYPE", "Chinese")
+
+# Load data
+
+# Save out list of all files
+all_data <-
+  list.files(here::here("Data"), pattern = ".rds", recursive = TRUE) %>%
+  map(~ glue::glue("Data/{..1}") %>% as.character())
+
+# Give names to list (will be object names)
+all_data_names <-
+  map(all_data,
+      ~ str_split(..1, "/") %>%
+        unlist() %>%
+        pluck(3) %>%
+        str_replace(".rds", "")
+      )
+names(all_data) <- all_data_names
+
+# Load all data to environment
+list2env(map(all_data, readRDS), envir = .GlobalEnv)
+
+```
+
+# Week 2
+
+## R Instructions
+
+For this lesson, make sure you have the following packages downloaded and loaded.
+
+```{r loadpkgs2, echo = TRUE, eval = FALSE}
+
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(tidyverse)
+
+```
+
+There are several ways to see the variables in your dataset.
+
+By click on the blue circle with an arrow next to the name of your dataset in the "environment" tab, you can see the variable name, the variable type, the values from the first several observations, and any label or format attributes associated with the variable.
+
+You can see the same information in the console window using the `str` function.
+
+```{r section2a}
+
+str(lesson1a)
+
+```
+
+The commands you might think about using for the data sets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
+
+### Summarizing continuous variables
+
+The function `skim` will give summary statistics for specified variables.
+
+```{r section2b}
+
+lesson1a %>% skim(age)
+
+```
+
+So you can tell you have data on age for 386 patients ("obs" standards for "observations"), the mean age was 49 years, standard deviation of the mean was 13.8.
+
+The numbers below `p0`, `p25`, `p50`, `p75` and `p100` are the centiles. `p0` indicates the minimum value, and `p100` indicates the maximum value, so you can tell that the youngest patient was 19 and the oldest was 86. `p50` is the median (49 years), and the interquartile range is reported under `p25` and `p75` (40, 59).
+
+```{r section2c}
+
+lesson1a %>%
+  group_by(sex) %>%
+  skim(age)
+
+```
+
+The `group_by` function allows you to group your data and perform analyses separately group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
+
+### Centiles
+
+You can get R to give you centiles directly by using the `quantile` function. The option `na.rm = TRUE` tells R to ignore any missing (NA) values when calculating the centiles.
+
+```{r section2d}
+
+quantile(lesson1a$age, na.rm = TRUE)
+
+```
+
+The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the medium and quartiles. The second row gives you the actual values. So you could report this as “Median age was 49 (quartiles 40, 59)."
+
+You aren't restricted to quartiles with the `quantile` function. For example, you can use the code below to give you the 11th, 45th and 78th centile, as well as 91.5 centile, which would be the 915th highest value in a dataset of 1000 observations. 
+
+```{r section2e}
+
+quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
+
+```
+
+### One-way tables
+
+The `tbl_summary` function (from the `gtsummary` package) gives a frequency table, in this case, the number of men and women.
+
+```{r section2f, warning = FALSE}
+
+tbl_summary(
+  lesson1a %>% select(sex), # Select data and variables to include
+  type = list(sex = "categorical") # Show all levels of binary variables
+)
+
+```
+
+```{r section2g, echo = FALSE, results = "hide"}
+
+tbl_sex <-
+  tbl_summary(
+    lesson1a %>% select(sex),
+    type = list(sex = "categorical")
+  )
+
+tbl_sex_y1 <-
+  tbl_summary(
+    lesson1a %>% select(sex, y),
+    by = "y",
+    type = list(sex = "categorical"),
+    row_percent = TRUE,
+    statistic = list(sex = "{n}")
+  )
+
+tbl_sex_y2 <-
+  tbl_summary(
+    lesson1a %>% select(sex, y),
+    by = "y",
+    type = list(sex = "categorical"),
+    statistic = list(sex = "{p}%")
+  ) %>%
+  add_overall(last = TRUE)
+
+tbl_sex_y3 <-
+  tbl_summary(
+    lesson1a %>% select(sex, y),
+    by = "y",
+    type = list(sex = "categorical"),
+    row_percent = TRUE,
+    statistic = list(sex = "{p}%")
+  )
+
+siteN <-
+  lesson1a %>%
+  filter(y == "campus") %>%
+  nrow()
+
+```
+
+<br>
+
+So there are `r inline_text(tbl_sex, variable = "sex", level = "1")` women and `r inline_text(tbl_sex, variable = "sex", level = "0")` men.
+
+### Two-way tables
+
+The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable `y` gives the part of the hospital) in men and women separately.
+
+```{r section2h, warning = FALSE}
+
+tbl_summary(
+  lesson1a %>% select(sex, y), # Select both variables
+  by = "y", # The "by" option specifies which will be the column variable
+  type = list(sex = "categorical")
+)
+
+```
+
+<br>
+
+This shows that, for example, there were `r siteN` operations done at the main campus, `r inline_text(tbl_sex_y1, variable = "sex", level = "0", column = "campus")` of these were done on men and `r inline_text(tbl_sex_y1, variable = "sex", level = "1", column = "campus")` on women. This shows that `r inline_text(tbl_sex_y2, variable = "sex", level = "0", column = "satellite")` of the operations at the satellite were on men and `r inline_text(tbl_sex_y2, variable = "sex", level = "1", column = "satellite")` on women.
+
+You can use the `add_overall` function to show the total across all sites as well:
+
+```{r section2i}
+
+tbl_summary(
+  lesson1a %>% select(sex, y),
+  by = "y",
+  type = list(sex = "categorical")
+) %>%
+  add_overall(last = TRUE)
+  # Add a column with totals across all locations
+  # "last = TRUE" puts the column on the right side of the table
+
+```
+
+<br>
+
+Overall, `r inline_text(tbl_sex_y2, variable = "sex", level = "0", column = "stat_0")` of the patients treated in the hospital were men and `r inline_text(tbl_sex_y2, variable = "sex", level = "1", column = "stat_0")` were women.
+
+By default `tbl_summary` gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the `row_percent` option.
+
+```{r section2j, warning = FALSE}
+
+tbl_summary(
+  lesson1a %>% select(sex, y),
+  by = "y",
+  type = list(sex = "categorical"),
+  row_percent = TRUE # get the row percent instead of column percent
+)
+
+```
+
+<br>
+
+This shows that, for example, `r inline_text(tbl_sex_y3, variable = "sex", level = "0", column = "harding")` men and `r inline_text(tbl_sex_y3, variable = "sex", level = "1", column = "harding")` women had operations at the "Harding" site.
+
+The `count` function with no options will count the number of total observations.
+
+```{r section2k, warning = FALSE}
+
+# Count all patients in the dataset
+lesson1a %>% count()
+
+```
+
+The `filter` function allows you to subset groups of data. The `filter` function takes a condition, similar to an `if_else` statement. However, `filter` only keeps observations in the data that meet that condition.
+
+For example, we can use `filter` to count the number of women in the dataset, or the number of operations on women at the main campus. Don't forget that you need to use two equals signs here.
+
+```{r section2l, warning = FALSE}
+
+# Count the number of women
+lesson1a %>%
+  filter(sex == 1) %>%
+  count()
+
+# Count the number of women treated at the main campus
+lesson1a %>%
+  filter(sex == 1 & y == "campus") %>%
+  count()
+
+```
+
+Note that because we did not use `lesson1a <-` to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that `lesson1a` still contains all observations.
+
+### Graphing
+
+We won’t be doing much on the graphical presentation of data in this course (this has been called "graphicacy"). The only reason we are doing it here is to get a visual impression of whether data are normally presented (not something you’d want to publish).
+
+The following might sound a little complicated, but just follow it through and everything will be fine.
+
+First, run the following code.
+
+```{r section2m}
+
+ggplot(data = lesson1a,
+       aes(x = age)) +
+  geom_histogram()
+
+```
+
+`ggplot` indicates that you want to create a graph. The dataset `lesson1a` is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
+
+One of things that R does is to choose the number of bars for you. You can set this yourself by using the `bins` option. Try setting the number of bins to 40.
+
+```{r section2n}
+
+ggplot(data = lesson1a,
+       aes(x = age)) +
+  geom_histogram(bins = 40)
+
+```
+
+The graph looks "lumpy" because you are breaking the data up into too many small pieces.
+
+The following code will superimpose a curve for the normal distribution.
+
+```{r section2o}
+
+ggplot(data = lesson1a,
+       aes(x = age)) +
+  geom_histogram(aes(y = ..density..), bins = 20) +
+  geom_density()
+
+```
+
+### Further Reading
+
+Only read this if you are feeling really keen...
+
+```{r section2p, warning = FALSE}
+
+# The "ci" function is from the "gmodels" package
+
+ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
+
+```
+
+This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age)`).
+
+```{r section2q, warning = FALSE}
+
+ci.binom(lesson1a$sex, na.rm = TRUE)
+
+```
+
+For a binary variable, the function `ci.binom` from the `gmodels` package is used. This gives the proportion of women along with 95% confidence intervals (95% is the default, meaning if you don’t specify a level, it assumes you want the 95% confidence interval.)
+
+### Using R as a calculator
+
+R can be used as a calculator:
+
+```{r section2r}
+
+7*7
+
+```
+
+`log()` is the natural logarithm (to base e)
+
+```{r section2s}
+
+log(2.71828)
+
+```
+
+`exp()` is the inverse natural logarithm, that is, if exp(x)=y, e^y^=x
+
+```{r section2t}
+
+exp(1)
+
+```
+
+`log10()` gives the log to base 10
+
+```{r section2u}
+
+log10(100)
+
+```
+
+`cos(45)` gives the cosine of 45
+
+```{r section2v}
+
+cos(45)
+
+```
+
+Some of the functions give useful statistical constants.
+
+`pnorm(x)` gives the probability that an observation will be less than mean + `x` standard deviations.
+
+```{r section2w}
+
+pnorm(1)
+pnorm(-0.5)
+
+```
+
+`pnorm(1)` gives 0.84 - this means that 84% of a normally distributed set of data will be less than one standard deviation above the mean.
+
+`pnorm(-0.5)` gives 0.31, meaning that 31% of a normally distributed set of data will be less than half a standard deviation below the mean.
+
+If you had a pain score with a mean of 5 and a standard deviation of 2, you could predict that only 16% of patients would have pain scores of 7 or more and that 70% would have pain scores of 4 or more.
+
+```{r section2x}
+
+pnorm(1.96)
+pnorm(-1.96)
+
+```
+
+`pnorm(1.96)` gives 0.975 and `pnorm(-1.96)` gives 0.025. So 97.5% of observations are less than 1.96 standard deviations greater than the mean, and 2.5% are less than 1.96 standard deviations lower than the mean. In other words, 95% of observations are within 1.96 standard deviations of the mean.
+
+## Assignment
+
+It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
+
+I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable `rt` by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.
+
+All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
+
+### Assignments
+
+- lesson2a.rds: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe
+- lesson2b.rds: Postoperative pain (this is a similar data set as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
+- lesson2c.rds: This is data on 242 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
+- lesson2d.rds: Cost of a minor medical procedure. Summarize cost.
+- lesson2e.rds: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
+
+
+
