@@ -41,7 +41,7 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 ```
 
-# Week 1
+# Getting Started
 
 ## R Instructions
 
@@ -309,10 +309,10 @@ lesson1a <-
 
 ### Using Help
 
-There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be handouts about all the commands you need.
+There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
 
 ## Assignments
 
-The data for you to look at are in the attached file lesson1a.rds.
+The data for you to look at are in the attached file lesson1a.rds. <add link to assignment?>
 
 This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?

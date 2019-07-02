@@ -1,7 +1,7 @@
 book_filename: "MSKCC-Biostatistics-Course"
 language:
   ui:
-    chapter_name: "Section "
+    chapter_name: "Week "
 delete_merged_file: true
 output_dir: "docs"
 new_session: yes
