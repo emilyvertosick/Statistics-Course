@@ -3,6 +3,6 @@ bookdown::gitbook:
     toc:
       collapse: section
       download: ["pdf"]
-bookdown::pdf_book:
+rmarkdown::pdf_document:
   keep_tex: yes
   latex_engine: xelatex
