@@ -69,7 +69,7 @@ The first command is the `tbl_summary` function from the `gtsummary` package whi
 tbl_summary(
   lesson3a %>% select(pc, sex),
   by = "sex",
-  type = list(pc = "categorical")
+  type = list(vars(pc) ~ "categorical")
 )
 
 ```
@@ -80,8 +80,8 @@ tbl_sex <-
   tbl_summary(
     lesson3a %>% select(pc, sex),
     by = "sex",
-    type = list(pc = "categorical"),
-    statistic = list(pc = "{n}")
+    type = list(vars(pc) ~ "categorical"),
+    statistic = list(vars(pc) ~ "{n}")
   ) %>%
   add_overall(last = TRUE)
 
@@ -89,16 +89,16 @@ tbl_sex_p <-
   tbl_summary(
     lesson3a %>% select(pc, sex),
     by = "sex",
-    type = list(pc = "categorical"),
-    statistic = list(pc = "{p}%")
+    type = list(vars(pc) ~ "categorical"),
+    statistic = list(vars(pc) ~ "{p}%")
   )
 
 tbl_sex_row <-
   tbl_summary(
     lesson3a %>% select(pc, sex),
     by = "sex",
-    type = list(pc = "categorical"),
-    statistic = list(pc = "{p}%"),
+    type = list(vars(pc) ~ "categorical"),
+    statistic = list(vars(pc) ~ "{p}%"),
     row_percent = TRUE
   ) %>%
   add_overall(last = TRUE)
@@ -118,7 +118,7 @@ As mentioned in lesson 2, the `tbl_summary` command gives column percentages by 
 tbl_summary(
   lesson3a %>% select(pc, sex),
   by = "sex",
-  type = list(pc = "categorical"),
+  type = list(vars(pc) ~ "categorical"),
   row_percent = TRUE
 ) %>%
   add_overall(last = TRUE)
@@ -168,9 +168,9 @@ TODO: PENDING BEING ABLE TO DO THIS WITHOUT CONTINUITY CORRECTION
 tbl_summary(
   lesson2a %>% select(subfourhour, sex),
   by = "sex",
-  type = list(subfourhour = "categorical")
+  type = list(vars(subfourhour) ~ "categorical")
 ) %>%
-  add_p(test = list(subfourhour = "chisq.test"))
+  add_p(test = list(vars(subfourhour) ~ "chisq.test"))
 
 ```
 
@@ -182,8 +182,8 @@ tbl_subfour_p <-
   tbl_summary(
     lesson2a %>% select(subfourhour, sex),
     by = "sex",
-    type = list(subfourhour = "categorical"),
-    statistic = list(subfourhour = "{p}%")
+    type = list(vars(subfourhour) ~ "categorical"),
+    statistic = list(vars(subfourhour) ~ "{p}%")
   )
 
 ```
@@ -241,7 +241,7 @@ epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
 
 <!-- This code also works (for tabyls): as.matrix(select(rev(arrange(tabyl(lesson2a, sex, subfourhour), desc(sex))), 1:2)) -->
 
-```{r section4l, waning = FALSE, include = FALSE}
+```{r section4l, warning = FALSE, include = FALSE}
 
 tbl_marathon <-
   epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
@@ -288,9 +288,9 @@ Similar to the chi-squared test, you can also get the Fisher's exact pvalue usin
 tbl_summary(
   example4a %>% select(toxin, cancer),
   by = "cancer",
-  type = list(toxin = "categorical")
+  type = list(vars(toxin) ~ "categorical")
 ) %>%
-  add_p(test = list(toxin = "fisher.test"))
+  add_p(test = list(vars(toxin) ~ "fisher.test"))
 
 ```
 

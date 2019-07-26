@@ -32,7 +32,7 @@ all_data_names <-
         unlist() %>%
         pluck(3) %>%
         str_replace(".rds", "")
-      )
+  )
 names(all_data) <- all_data_names
 
 # Load all data to environment
@@ -95,9 +95,10 @@ lesson2a <-
 lesson2a %>%
   select(-tm, -id) %>%
   tbl_summary(
-    statistic = list(..continuous.. = "{mean} ({sd}))"),
-    label = list(age = "Age", sex = "Women", rt = "Race time in minutes",
-                 shoe = "Favorite Running Shoe")
+    statistic = list(vars(..continuous..) ~ "{mean} ({sd}))"),
+    label = list(vars(age) ~ "Age", vars(sex) ~ "Women",
+                 vars(rt) ~ "Race time in minutes",
+                 vars(shoe) ~ "Favorite Running Shoe")
   )
 
 ```
@@ -109,8 +110,9 @@ However, look at this.
 lesson2a %>%
   select(-tm, -id) %>%
   tbl_summary(
-    label = list(age = "Age", sex = "Women", rt = "Race time in minutes",
-                 shoe = "Favorite Running Shoe")
+    label = list(vars(age) ~ "Age", vars(sex) ~ "Women",
+                 vars(rt) ~ "Race time in minutes",
+                 vars(shoe) ~ "Favorite Running Shoe")
   )
 
 ```
@@ -202,7 +204,7 @@ lesson2c <-
 
 lesson2c %>%
   select(stage_category) %>%
-  tbl_summary(label = list(stage_category = "Stage"))
+  tbl_summary(label = list(vars(stage_category) ~ "Stage"))
 
 ```
 
@@ -239,10 +241,10 @@ lesson2c %>%
       )
   ) %>%
   select(stage_category, grade_category, age, psa) %>%
-  tbl_summary(label = list(stage_category = "Stage",
-                           grade_category = "Grade",
-                           age = "Age",
-                           psa = "PSA"))
+  tbl_summary(label = list(vars(stage_category) ~ "Stage",
+                           vars(grade_category) ~ "Grade",
+                           vars(age) ~ "Age",
+                           vars(psa) ~ "PSA"))
 
 ```
 
@@ -258,7 +260,7 @@ I asked you to summarize the cost. You can see from a graph that the data are no
 
 The data are grossly non-normal and you could use the median pain score with interquartile range. 
 
-As for summarizing the number of days in pain, almost everyone has 31 days of pain. So I would give proportions of patients who had pain for 31 days and then the number who, say, had pain at least 3 out of every 4 days and 2 out of 4 days. There are two ways of doing this. You could use `tbl_summary(lesson2e %>% select(f), type = list(f = "categorical"))` and then combine some of the results. Or, and this is a little more complicated, you could create a new variable.
+As for summarizing the number of days in pain, almost everyone has 31 days of pain. So I would give proportions of patients who had pain for 31 days and then the number who, say, had pain at least 3 out of every 4 days and 2 out of 4 days. There are two ways of doing this. You could use `tbl_summary(lesson2e %>% select(f), type = list(vars(f) ~ "categorical"))` and then combine some of the results. Or, and this is a little more complicated, you could create a new variable.
 
 
 ```{r week2j}
@@ -292,7 +294,7 @@ tbl_summary(
 tbl_2e <-
   tbl_summary(
     lesson2e %>% select(days),
-    statistic = list(days = "{p}%")
+    statistic = list(vars(days) ~ "{p}%")
   )
 
 ```
@@ -411,7 +413,7 @@ And then the table:
 tbl_summary(
   lesson3a %>% select(missing, sex),
   by = "sex",
-  type = list(missing = "categorical")
+  type = list(vars(missing) ~ "categorical")
 )
 
 ```
@@ -649,7 +651,7 @@ To have a quick look at the data, create a two-by-two table:
 tbl_summary(
   lesson4a %>% select(nv, cs),
   by = "cs",
-  type = list(nv = "categorical")
+  type = list(vars(nv) ~ "categorical")
 )
 
 ```
@@ -660,8 +662,8 @@ tbl_nv <-
   tbl_summary(
     lesson4a %>% select(nv, cs),
     by = "cs",
-    type = list(nv = "categorical"),
-    statistic = list(nv = "{p}%")
+    type = list(vars(nv) ~ "categorical"),
+    statistic = list(vars(nv) ~ "{p}%")
   )
 
 ```
@@ -716,7 +718,7 @@ tbl_meatrow <-
   tbl_summary(
     lesson4b %>% select(meat, hbp),
     by = "hbp",
-    statistic = list(meat = "{p}%"),
+    statistic = list(vars(meat) ~ "{p}%"),
     row_percent = TRUE
   )
 
@@ -724,7 +726,7 @@ tbl_meatcol <-
   tbl_summary(
     lesson4b %>% select(meat, hbp),
     by = "hbp",
-    statistic = list(meat = "{p}%")
+    statistic = list(vars(meat) ~ "{p}%")
   )
 
 ```
@@ -878,7 +880,7 @@ tbl_hbp <-
   select(meat_fac, hbp_fac) %>%
   tbl_summary(
     by = "hbp_fac",
-    label = list(meat_fac = "Meat Consumption"),
+    label = list(vars(meat_fac) ~ "Meat Consumption"),
     row_percent = TRUE)
 
 tbl_hbp %>%
@@ -934,8 +936,8 @@ tbl_mutant <-
   tbl_summary(
     lesson4c %>% select(mutant, toxicity),
     by = "toxicity",
-    type = list(mutant = "categorical"),
-    statistic = list(mutant = "{p}%")
+    type = list(vars(mutant) ~ "categorical"),
+    statistic = list(vars(mutant) ~ "{p}%")
   )
 
 tbl_mutant_epi <- epi.2by2(matrix(rev(table(lesson4c$mutant, lesson4c$toxicity)), nrow = 2))
@@ -963,7 +965,7 @@ tbl_gene_toxic <-
   select(gene_fac, toxicity_fac) %>%
   tbl_summary(
     by = "toxicity_fac",
-    label = list(gene_fac = "Gene"),
+    label = list(vars(gene_fac) ~ "Gene"),
     row_percent = TRUE)
 
 tbl_gene_toxic %>%
@@ -987,8 +989,8 @@ tbl_chemoresponse <-
   tbl_summary(
     lesson4d %>% select(group, response),
     by = "response",
-    type = list(group = "categorical"),
-    statistic = list(group = "{p}%")
+    type = list(vars(group) ~ "categorical"),
+    statistic = list(vars(group) ~ "{p}%")
   )
 
 tbl_chemoresponse_epi <- 
@@ -1073,7 +1075,7 @@ A BIG HOWEVER - have a look at the data or this table:
 tbl_summary(
   lesson4e %>% select(gene1, gene2),
   by = "gene2",
-  type = list(gene1 = "categorical")
+  type = list(vars(gene1) ~ "categorical")
 )
 
 ```
@@ -1122,16 +1124,18 @@ rt_tbl1 <-
   lesson5a %>%
   filter(!is.na(wt)) %>%
   tbl_summary(
-    label = list(age = "Age (years)", sex = "Female", tr = "Training miles per week",
-                 wt = "Weight (kg)", rt = "Race time (minutes)"),
-    statistic = list(..continuous.. = "{mean} ({sd})")
+    label = list(vars(age) ~ "Age (years)", vars(sex) ~ "Female",
+                 vars(tr) ~ "Training miles per week",
+                 vars(wt) ~ "Weight (kg)", vars(rt) ~ "Race time (minutes)"),
+    statistic = list(vars(..continuous..) ~ "{mean} ({sd})")
   )
 
 rt_tbl2 <-
   rt_model %>%
   tbl_regression(
-    label = list(age = "Age (years)", sex = "Female", tr = "Training miles per week",
-                 wt = "Weight (kg)")
+    label = list(vars(age) ~ "Age (years)", vars(sex) ~ "Female",
+                 vars(tr) ~ "Training miles per week",
+                 vars(wt) ~ "Weight (kg)")
   )
 
 male_avg <-
@@ -1513,7 +1517,7 @@ df_tbl5d <-
   tbl_summary(
     lesson5d %>% select(dose, s),
     by = "dose",
-    statistic = list(..continuous.. = "{mean} ({sd})"))
+    statistic = list(vars(..continuous..) ~ "{mean} ({sd})"))
 
 df_tbl5dcol <-
   df_tbl5d$table_body %>%
@@ -1676,14 +1680,14 @@ Try this:
 tbl_summary(
   lesson5g %>% filter(sex == 0) %>% select(response, chemo),
   by = "chemo",
-  type = list(response = "categorical")
+  type = list(vars(response) ~ "categorical")
 )
 
 # For women
 tbl_summary(
   lesson5g %>% filter(sex == 1) %>% select(response, chemo),
   by = "chemo",
-  type = list(response = "categorical")
+  type = list(vars(response) ~ "categorical")
 )
 
 # Here, summarize stores out the p values for the chi-squared test by sex
@@ -1699,16 +1703,16 @@ chitable_men <-
   tbl_summary(
     lesson5g %>% filter(sex == 0) %>% select(response, chemo),
     by = "chemo",
-    type = list(response = "categorical"),
-    statistic = list(response = "{p}%")
+    type = list(vars(response) ~ "categorical"),
+    statistic = list(vars(response) ~ "{p}%")
   )
 
 chitable_women <-
   tbl_summary(
     lesson5g %>% filter(sex == 1) %>% select(response, chemo),
     by = "chemo",
-    type = list(response = "categorical"),
-    statistic = list(response = "{p}%")
+    type = list(vars(response) ~ "categorical"),
+    statistic = list(vars(response) ~ "{p}%")
   )
 
 chip1 <-
@@ -1725,7 +1729,7 @@ This shows that regime b is better for men (`r inline_text(chitable_men, variabl
 tbl_summary(
   lesson5g %>% select(response, sex),
   by = "sex",
-  type = list(response = "categorical")
+  type = list(vars(response) ~ "categorical")
 )
 
 table(lesson5g$response, lesson5g$sex) %>%
@@ -1772,14 +1776,14 @@ Then do the subgroup analysis as above:
 tbl_summary(
   lesson5g %>% filter(hiage == 0) %>% select(response, chemo),
   by = "chemo",
-  type = list(response = "categorical")
+  type = list(vars(response) ~ "categorical")
 )
 
 # For older patients
 tbl_summary(
   lesson5g %>% filter(hiage == 1) %>% select(response, chemo),
   by = "chemo",
-  type = list(response = "categorical")
+  type = list(vars(response) ~ "categorical")
 )
 
 lesson5g %>%
@@ -1817,16 +1821,16 @@ chitable_lowage <-
   tbl_summary(
     lesson5g %>% filter(hiage == 0) %>% select(chemo, response),
     by = "chemo",
-    type = list(response = "categorical"),
-    statistic = list(response = "{p}%")
+    type = list(vars(response) ~ "categorical"),
+    statistic = list(vars(response) ~ "{p}%")
   )
 
 chitable_hiage <-
   tbl_summary(
     lesson5g %>% filter(hiage == 1) %>% select(chemo, response),
     by = "chemo",
-    type = list(response = "categorical"),
-    statistic = list(response = "{p}%")
+    type = list(vars(response) ~ "categorical"),
+    statistic = list(vars(response) ~ "{p}%")
   )
 
 ```
@@ -1856,10 +1860,10 @@ tbl_psa <-
   lesson5h %>%
   select(-cancer) %>%
   tbl_summary(
-    label = list(psa = "Total PSA (ng/mL)",
-                 psan = "Nicked PSA (ng/mL)",
-                 psai = "Intact PSA (ng/mL)",
-                 psant = "Nicked-to-total ratio")
+    label = list(vars(psa) ~ "Total PSA (ng/mL)",
+                 vars(psan) ~ "Nicked PSA (ng/mL)",
+                 vars(psai) ~ "Intact PSA (ng/mL)",
+                 vars(psant) ~ "Nicked-to-total ratio")
   )
 
 pred_psa <-
@@ -1914,9 +1918,9 @@ tbl_psa
 
 tbl_regression(nont_model,
                exponentiate = TRUE,
-               label = list(psa = "Total PSA",
-                            psan = "Nicked PSA",
-                            psai = "Intact PSA"))
+               label = list(vars(psa) ~ "Total PSA",
+                            vars(psan) ~ "Nicked PSA",
+                            vars(psai) ~ "Intact PSA"))
 
 ```
 
@@ -2035,6 +2039,7 @@ tbl_ss <-
   )
 
 ```
+
 The thing to take away from this is that sensitivity and specificity don’t change, but the positive and negative predictive value do. The prevalence of myocardial infarct is obviously much lower in the general hospital population compared to the coronary care population. So negative predictive value is higher in general patients (you are unlikely to have an MI anyway, so if the test says you’re negative, it is almost definite) and positive predictive value higher in coronary care patients (you at high risk of having an MI, so a positive test just about confirms it).
 
 ### lesson6c.rds
@@ -2059,7 +2064,7 @@ Let's try:
 tbl_summary(
   lesson6c %>% filter(!is.na(marker)) %>% select(cancer, marker),
   by = "marker",
-  type = list(cancer = "categorical")
+  type = list(vars(cancer) ~ "categorical")
 )
 
 ```
@@ -2082,7 +2087,7 @@ The first question concerns the value of the current method of determining refer
 tbl_summary(
   lesson6d %>% select(recurrence, hi_risk),
   by = "hi_risk",
-  type = list(recurrence = "categorical")
+  type = list(vars(recurrence) ~ "categorical")
 )
 
 ```
@@ -2093,8 +2098,8 @@ tbl_recur <-
   tbl_summary(
     lesson6d %>% select(recurrence, hi_risk),
     by = "hi_risk",
-    type = list(recurrence = "categorical"),
-    statistic = list(recurrence = "{p}%")
+    type = list(vars(recurrence) ~ "categorical"),
+    statistic = list(vars(recurrence) ~ "{p}%")
   )
 
 auc_recur <- as.numeric(auc(roc(recurrence ~ hi_risk, data = lesson6d)))
@@ -2153,7 +2158,7 @@ lesson6d_pred <-
 tbl_summary(
   lesson6d_pred %>% select(model_hirisk, hi_risk),
   by = "hi_risk",
-  type = list(model_hirisk = "categorical")
+  type = list(vars(model_hirisk) ~ "categorical")
 )
 
 ```
@@ -2206,7 +2211,7 @@ lesson6d_pred <-
 tbl_summary(
   lesson6d_pred %>% select(model_hirisk2, hi_risk),
   by = "hi_risk",
-  type = list(model_hirisk2 = "categorical")
+  type = list(vars(model_hirisk2) ~ "categorical")
 )
 
 ```
@@ -2217,24 +2222,24 @@ tbl_markermodel <-
   tbl_summary(
     lesson6d_pred %>% select(model_hirisk2, hi_risk),
     by = "hi_risk",
-    type = list(model_hirisk2 = "categorical"),
-    statistic = list(model_hirisk2 = "{n}")
+    type = list(vars(model_hirisk2) ~ "categorical"),
+    statistic = list(vars(model_hirisk2) ~ "{n}")
   )
 
 tbl_recur1 <-
   tbl_summary(
     lesson6d_pred %>% filter(model_hirisk2 == 1 & hi_risk == 0) %>%
       select(recurrence),
-    type = list(recurrence = "categorical"),
-    statistic = list(recurrence = "{p}%")
+    type = list(vars(recurrence) ~ "categorical"),
+    statistic = list(vars(recurrence) ~ "{p}%")
   )
 
 tbl_recur2 <-
   tbl_summary(
     lesson6d_pred %>% filter(model_hirisk2 == 0 & hi_risk == 1) %>%
       select(recurrence),
-    type = list(recurrence = "categorical"),
-    statistic = list(recurrence = "{p}%")
+    type = list(vars(recurrence) ~ "categorical"),
+    statistic = list(vars(recurrence) ~ "{p}%")
   )
 
 ```
@@ -2246,13 +2251,13 @@ You can see now that `r inline_text(tbl_markermodel, variable = "model_hirisk2",
 tbl_summary(
   lesson6d_pred %>% filter(model_hirisk2 == 1 & hi_risk == 0) %>%
     select(recurrence),
-  type = list(recurrence = "categorical")
+  type = list(vars(recurrence) ~ "categorical")
 )
 
 tbl_summary(
   lesson6d_pred %>% filter(model_hirisk2 == 0 & hi_risk == 1) %>%
     select(recurrence),
-  type = list(recurrence = "categorical")
+  type = list(vars(recurrence) ~ "categorical")
 )
 
 ```
@@ -2298,7 +2303,7 @@ lesson6d_pred <-
 tbl_summary(
   lesson6d_pred %>% select(model_hirisk3, model_hirisk2),
   by = "model_hirisk2",
-  type = list(model_hirisk3 = "categorical")
+  type = list(vars(model_hirisk3) ~ "categorical")
 )
 
 ```
@@ -2309,8 +2314,8 @@ tbl_imaging <-
   tbl_summary(
     lesson6d_pred %>% select(model_hirisk3, model_hirisk2),
     by = "model_hirisk2",
-    type = list(model_hirisk3 = "categorical"),
-    statistic = list(model_hirisk3 = "{n}")
+    type = list(vars(model_hirisk3) ~ "categorical"),
+    statistic = list(vars(model_hirisk3) ~ "{n}")
   )
 
 imaging_reclass <-
@@ -2474,29 +2479,28 @@ survfit_7a <- survfit(Surv(lesson7a$survival_time/365.25, lesson7a$died) ~ 1)
 
 median_surv <-
   (lesson7a %>%
-  filter(died != 1) %>%
-  skim(survival_time) %>%
-  filter(stat == "p50") %>%
-  pull(value)) / 365.25
+     filter(died != 1) %>%
+     skim(survival_time) %>%
+     filter(stat == "p50") %>%
+     pull(value)) / 365.25
 
 tbl_summary_7a <-
   tbl_summary(
     lesson7a %>%
       select(sex, age, obstruction, adhesions, node4),
-    type = list(sex = "categorical", obstruction = "categorical",
-                adhesions = "categorical"),
-    label = list(sex = "Sex", age = "Age",
-                 obstruction = "Obstruction", adhesions = "Adhesions",
-                 node4 = "Number of nodes")
+    type = list(vars(sex, obstruction, adhesions) ~ "categorical"),
+    label = list(vars(sex) ~ "Sex", vars(age) ~ "Age",
+                 vars(obstruction) ~ "Obstruction", vars(adhesions) ~ "Adhesions",
+                 vars(node4) ~ "Number of nodes")
   )
 
 tbl_cox_7a <-
   coxph(lesson7a_surv ~ sex + age + obstruction + adhesions + factor(node4), data = lesson7a) %>%
   tbl_regression(
     exponentiate = TRUE,
-    label = list(sex = "Female", age = "Age (per 1 year)",
-                 obstruction = "Obstruction", adhesions = "Adhesions",
-                 `factor(node4)` = "Number of nodes"))
+    label = list(vars(sex) ~ "Female", vars(age) ~ "Age (per 1 year)",
+                 vars(obstruction) ~ "Obstruction", vars(adhesions) ~ "Adhesions",
+                 vars(`factor(node4)`) ~ "Number of nodes"))
 
 
 ```
@@ -2569,10 +2573,10 @@ You find that the hazard ratio for survival is `r inline_text(tbl_regression(les
 
 median_surv_7b <-
   (lesson7b %>%
-  filter(recurrence != 1) %>%
-  skim(time) %>%
-  filter(stat == "p50") %>%
-  pull(value)) / 12
+     filter(recurrence != 1) %>%
+     skim(time) %>%
+     filter(stat == "p50") %>%
+     pull(value)) / 12
 
 recur_ct <-
   lesson7b %>%
@@ -2581,7 +2585,7 @@ recur_ct <-
 
 est_surv <-
   summary(survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume),
-        times = c(183, 365, 548))
+          times = c(183, 365, 548))
 
 ```
 
@@ -2622,10 +2626,10 @@ survfit_7c <- survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesso
 
 median_surv_7c <-
   (lesson7c %>%
-  filter(died != 1) %>%
-  skim(survival_time) %>%
-  filter(stat == "p50") %>%
-  pull(value)) / 365.25
+     filter(died != 1) %>%
+     skim(survival_time) %>%
+     filter(stat == "p50") %>%
+     pull(value)) / 365.25
 
 style_sigfig(as.numeric(summary(survfit_7c)$table["median"]))
 

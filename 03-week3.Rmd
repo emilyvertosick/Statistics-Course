@@ -16,7 +16,7 @@ set.seed(34634986)
 # To display histograms from "skim"
 Sys.setlocale("LC_CTYPE", "Chinese")
 
-# Load data
+# Load daat
 
 # Save out list of all files
 all_data <-

@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: July 02, 2019"
+date: "Last Updated: July 26, 2019"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:

@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 ```{r setup2, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -124,7 +129,7 @@ The `tbl_summary` function (from the `gtsummary` package) gives a frequency tabl
 
 tbl_summary(
   lesson1a %>% select(sex), # Select data and variables to include
-  type = list(sex = "categorical") # Show all levels of binary variables
+  type = list(vars(sex) ~ "categorical") # Show all levels of binary variables
 )
 
 ```
@@ -134,24 +139,24 @@ tbl_summary(
 tbl_sex <-
   tbl_summary(
     lesson1a %>% select(sex),
-    type = list(sex = "categorical")
+    type = list(vars(sex) ~ "categorical")
   )
 
 tbl_sex_y1 <-
   tbl_summary(
     lesson1a %>% select(sex, y),
     by = "y",
-    type = list(sex = "categorical"),
+    type = list(vars(sex) ~ "categorical"),
     row_percent = TRUE,
-    statistic = list(sex = "{n}")
+    statistic = list(vars(sex) ~ "{n}")
   )
 
 tbl_sex_y2 <-
   tbl_summary(
     lesson1a %>% select(sex, y),
     by = "y",
-    type = list(sex = "categorical"),
-    statistic = list(sex = "{p}%")
+    type = list(vars(sex) ~ "categorical"),
+    statistic = list(vars(sex) ~ "{p}%")
   ) %>%
   add_overall(last = TRUE)
 
@@ -159,9 +164,9 @@ tbl_sex_y3 <-
   tbl_summary(
     lesson1a %>% select(sex, y),
     by = "y",
-    type = list(sex = "categorical"),
+    type = list(vars(sex) ~ "categorical"),
     row_percent = TRUE,
-    statistic = list(sex = "{p}%")
+    statistic = list(vars(sex) ~ "{p}%")
   )
 
 siteN <-
@@ -184,7 +189,7 @@ The `tbl_summary` function can also give a two-way table, for example, a table t
 tbl_summary(
   lesson1a %>% select(sex, y), # Select both variables
   by = "y", # The "by" option specifies which will be the column variable
-  type = list(sex = "categorical")
+  type = list(vars(sex) ~ "categorical")
 )
 
 ```
@@ -200,7 +205,7 @@ You can use the `add_overall` function to show the total across all sites as wel
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = "y",
-  type = list(sex = "categorical")
+  type = list(vars(sex) ~ "categorical")
 ) %>%
   # Add a column with totals across all locations
   # "last = TRUE" puts the column on the right side of the table
@@ -219,7 +224,7 @@ By default `tbl_summary` gives column percents (here, the percentage of patients
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = "y",
-  type = list(sex = "categorical"),
+  type = list(vars(sex) ~ "categorical"),
   row_percent = TRUE # get the row percent instead of column percent
 )
 

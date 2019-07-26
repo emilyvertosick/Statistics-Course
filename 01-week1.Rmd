@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 ```{r setup1, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -190,7 +195,7 @@ tbl_summary(
 # If you would like to see percentages for both male and female, you can use the "type" option and specify that the variable is categorical
 tbl_summary(
   lesson1a %>% select(sex),
-  type = list(sex = "categorical")
+  type = list(vars(sex) ~ "categorical")
 )
 
 ```
@@ -199,7 +204,7 @@ tbl_summary(
 
 This tells you that the "sex" variable has no missing data (no "NA" values), and that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
 
-Since 0 = man and 1 = woman (you can use `str(lesson1a$sex)` to confirm), this means that there were `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(sex = "categorical"), , statistic = list(sex = "{n}")), variable = "sex", level = "0")` men in the `r nrow(lesson1a)` patients and that they constituted `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(sex = "categorical"), , statistic = list(sex = "{p}%")), variable = "sex", level = "0")` of the population.
+Since 0 = man and 1 = woman (you can use `str(lesson1a$sex)` to confirm), this means that there were `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(vars(sex) ~ "categorical"), statistic = list(vars(sex) ~ "{n}")), variable = "sex", level = "0")` men in the `r nrow(lesson1a)` patients and that they constituted `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(vars(sex) ~ "categorical"), statistic = list(vars(sex) ~ "{p}%")), variable = "sex", level = "0")` of the population.
 
 #### `skim` function
 
