@@ -314,7 +314,7 @@ lesson1a <-
 
 ### Using Help
 
-# TODO: Discuss with Andrew re: taking this section out
+<!-- TODO: Discuss with Andrew re: taking this section out -->
 
 There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
 

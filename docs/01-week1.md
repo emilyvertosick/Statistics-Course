@@ -87,11 +87,11 @@ skimr::skim(lesson1a)
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character ----------------------------------------------------------------------------------
+## -- Variable type:character -------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric ------------------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -133,7 +133,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ------------------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -908,7 +908,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ------------------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -1005,7 +1005,7 @@ lesson1a <-
 
 ### Using Help
 
-# TODO: Discuss with Andrew re: taking this section out
+<!-- TODO: Discuss with Andrew re: taking this section out -->
 
 There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
 
