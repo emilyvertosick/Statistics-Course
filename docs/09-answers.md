@@ -4,9 +4,28 @@
 
 ## Week 1
 
+
+```r
+# Week 1: load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(survminer)
+library(tidyverse)
+
+# Week 1: load data
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+```
+
+### lesson1a.rds
+
 **This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?**
 
-The data set has 11 variables:
+The dataset has 11 variables:
 
 - "id" is clearly a hospital record number. It doesn’t matter what type of variable it is, because you only want to know the type of variable in order to summarize or analyze data, and you’d never want to analyze or summarize patient id.
 - "sex" is a binary variable
@@ -16,6 +35,27 @@ The data set has 11 variables:
 - "x", "y" and "z": should you attempt to summarize a variable if you don’t know what it is? It is obvious for y, this is some kind of hospital location, and is a categorical variable. But what about x and z? As it happens, z looks ordinal but isn’t: it is blood group coded 1=o, 2=a, 3=b, 4=ab.
 
 ## Week 2
+
+
+```r
+# Week 2: load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(survminer)
+library(tidyverse)
+
+# Week 2: load data
+lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
+lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
+lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
+lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
+lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
+```
 
 ### lesson2a.rds
 
@@ -27,6 +67,7 @@ Sex is binary: use `tbl_summary(lesson2a %>% select(sex))` to get percentages. B
 
 
 ```r
+# Summary statistics for race time, separately by sex
 lesson2a %>%
   group_by(sex) %>%
   skim(rt)
@@ -38,7 +79,7 @@ lesson2a %>%
 ##  n variables: 6 
 ##  group variables: sex 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##  sex variable missing complete  n   mean    sd  p0    p25   p50    p75
 ##    0       rt       0       66 66 243.23 49.85 158 214.25 236   268.75
 ##    1       rt       0       32 32 264.84 37.45 222 237    251.5 283.25
@@ -56,13 +97,6 @@ Favorite running shoe: `lesson2a %>% skim(shoe)` gives a mean of 3.08 and a medi
 AN ADDITIONAL IMPORTANT POINT: you should give the number of observations and the number of missing observations. n is 98 for all observations except for favorite running shoe, where there are 95 observations and 3 missing observations.
 
 So here is a model answer, suitable for publication (assuming that sex==1 is coded as female.)
-
-
-```
-## Warning: `.key` is deprecated
-
-## Warning: `.key` is deprecated
-```
 
 <!--html_preserve--><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -149,6 +183,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_columns_top_border {
@@ -232,6 +267,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_stub {
@@ -350,7 +386,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   font-size: 65%;
 }
 
-#iwrgxmosvm .gt_footnote_glyph {
+#iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -358,7 +394,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
 <div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 98</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -404,7 +440,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -417,13 +453,6 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
 </table></div><!--/html_preserve-->
 
 However, look at this.
-
-
-```
-## Warning: `.key` is deprecated
-
-## Warning: `.key` is deprecated
-```
 
 <!--html_preserve--><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -510,6 +539,7 @@ However, look at this.
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #hlleqxdave .gt_columns_top_border {
@@ -593,6 +623,7 @@ However, look at this.
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #hlleqxdave .gt_stub {
@@ -711,7 +742,7 @@ However, look at this.
   font-size: 65%;
 }
 
-#hlleqxdave .gt_footnote_glyph {
+#hlleqxdave .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -719,7 +750,7 @@ However, look at this.
 <div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 98</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -765,7 +796,7 @@ However, look at this.
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -787,6 +818,7 @@ This is data on postoperative pain. You were asked to summarize average pain aft
 
 
 ```r
+# Create histogram to assess whether data look skewed
 ggplot(data = lesson2b,
        aes(x = t)) +
   geom_histogram()
@@ -905,6 +937,7 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_columns_top_border {
@@ -988,6 +1021,7 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_stub {
@@ -1106,7 +1140,7 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   font-size: 65%;
 }
 
-#kqtxbhydst .gt_footnote_glyph {
+#kqtxbhydst .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -1114,7 +1148,7 @@ A second issue is how to characterize the categorical variables. There are 8 dif
 <div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 241</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -1148,7 +1182,7 @@ A second issue is how to characterize the categorical variables. There are 8 dif
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -1164,6 +1198,7 @@ To get the table, I created a new variable as follows:
 
 
 ```r
+# Create new variable for stage and save into "lesson2c" dataset
 lesson2c <-
   lesson2c %>%
   mutate(
@@ -1176,7 +1211,7 @@ lesson2c <-
   )
 ```
 
-The `case_when` function is similar to the `if_else` function, but it allows for more than the 2 options of TRUE/FALSE. In this case, TRUE indicates all values that were not included in the prior categories.
+The `case_when` function is similar to the `if_else` function, but it allows for more than the 2 options of TRUE/FALSE. "TRUE" in the last line indicates all values that were not included in the prior categories.
 
 There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9. Now a key point is that what you decide to do in situations like this will often need to take into account your medical understanding. It might seems sensible to categorize grade as ≤6 or ≥7, or perhaps 4/5, 6, 7, 8/9. But as it turns out in prostate cancer, pathologists can’t reliably grade a cancer as 4 or 5 and these cancers should really be grouped with grade 6. Grade 8, on the other hand, signifies very aggressive disease and really needs to be reported separately even if there are only a few patients with grade 8. So grade would probably be summarized as per the following table:
 
@@ -1265,6 +1300,7 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #qzjvxzfwte .gt_columns_top_border {
@@ -1348,6 +1384,7 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #qzjvxzfwte .gt_stub {
@@ -1466,7 +1503,7 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
   font-size: 65%;
 }
 
-#qzjvxzfwte .gt_footnote_glyph {
+#qzjvxzfwte .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -1474,7 +1511,7 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
 <div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 241</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -1540,7 +1577,7 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -1558,7 +1595,7 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
 
 I asked you to summarize the cost. You can see from a graph that the data are not normally distributed. If we were to follow the rule book slavishly, we would report a median and interquartile range. But what use is a median for cost data? We want to know "average" cost so that we can predict, for example, how much we should budget for next year. This requires a mean.
 
-### lesson2e.rds: Cancer pain
+### lesson2e.rds
 
 **Summarize total cancer pain in one month in a group of chronic cancer patients.**
 
@@ -1569,6 +1606,7 @@ As for summarizing the number of days in pain, almost everyone has 31 days of pa
 
 
 ```r
+# Create variable to categorize number of days in pain
 lesson2e <-
   lesson2e %>%
   mutate(
@@ -1586,6 +1624,7 @@ In other words, create a new variable called "days", and set it to 0 for anyone 
 
 
 ```r
+# Print formatted table summarizing number of days in pain
 tbl_summary(
   lesson2e %>% select(days)
 )
@@ -1676,6 +1715,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #pqsnuprvju .gt_columns_top_border {
@@ -1759,6 +1799,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #pqsnuprvju .gt_stub {
@@ -1877,7 +1918,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#pqsnuprvju .gt_footnote_glyph {
+#pqsnuprvju .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -1885,7 +1926,7 @@ tbl_summary(
 <div id="pqsnuprvju" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 100</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -1919,7 +1960,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -1941,6 +1982,7 @@ You could also try a log transformation of the pain scores. Create a new variabl
 
 
 ```r
+# Create a variable for log of the pain score
 lesson2e <-
   lesson2e %>%
   mutate(log = log(pain))
@@ -1951,6 +1993,28 @@ Analyze this variable and you’ll see it appears normally distributed.
 The mean of log is 5.42. You can transform the log back by calculating e^5.42^ (the function is ``exp(5.42)``) to get 225, close to the median. Backtransforming the standard deviation is more complicated and can’t really be done directly. What you need to do is make any calculations you need on the log transformed scale and then backtransform the results. Imagine you wanted a 95% confidence interval. A 95% confidence interval is the mean ± 1.96 standard deviations. The standard deviation of the log data is close to one. So the confidence interval is 3.45 to 7.39. Transforming this ``exp(3.45)`` and ``exp(7.39)`` gives a confidence interval on the original scale of 31.44 and 1614.07. This is a reasonable approximation to the 5th (50) and 95th centile (1319).
 
 ## Week 3
+
+
+```r
+# Week 3: load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(survminer)
+library(tidyverse)
+
+# Week 3: load data
+lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
+lesson3b <- readRDS(here::here("Data", "Week 3", "lesson3b.rds"))
+lesson3c <- readRDS(here::here("Data", "Week 3", "lesson3c.rds"))
+lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
+lesson3e <- readRDS(here::here("Data", "Week 3", "lesson3e.rds"))
+lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
+```
 
 ### lesson3a.rds
 
@@ -1970,6 +2034,7 @@ Now, I'll explain what I did. First, I did the two t-tests:
 
 
 ```r
+# t-test for nausea/vomiting by prior chemotherapy
 t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 ```
 
@@ -1988,6 +2053,7 @@ t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 ```
 
 ```r
+# t-test for nausea/vomiting by sex
 t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
 ```
 
@@ -2009,6 +2075,7 @@ Then I created a new variable for missing data on nausea and vomiting:
 
 
 ```r
+# Create new variable to indicate whether "nv" variable is missing
 lesson3a <-
   lesson3a %>%
   mutate(
@@ -2021,6 +2088,7 @@ And then the table:
 
 
 ```r
+# Formatted table to look at rates of missingness in "nv" variable by sex
 tbl_summary(
   lesson3a %>% select(missing, sex),
   by = "sex",
@@ -2113,6 +2181,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #opulaeyvxv .gt_columns_top_border {
@@ -2196,6 +2265,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #opulaeyvxv .gt_stub {
@@ -2314,7 +2384,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#opulaeyvxv .gt_footnote_glyph {
+#opulaeyvxv .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -2322,7 +2392,7 @@ tbl_summary(
 <div id="opulaeyvxv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 523</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 575</th>
   </tr>
@@ -2348,7 +2418,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -2370,6 +2440,7 @@ The other thing you can do is to find out the precise p value from the t value (
 
 
 ```r
+# Find out p value from t value
 pt(-4.6275, 510)*2
 ```
 
@@ -2389,6 +2460,7 @@ The data look relatively normal and the most obvious thing to do would be to do:
 
 
 ```r
+# t-test for pain after treatment, by group
 t.test(p ~ g, data = lesson3b, var.equal = TRUE)
 ```
 
@@ -2414,6 +2486,7 @@ You could analyze the data from each wrist separately by creating new variables 
 
 
 ```r
+# Analyze data separately by wrist
 lesson3b <-
   lesson3b %>%
   # Create a new variable called "pright" equivalent to "p"
@@ -2472,6 +2545,7 @@ The most obvious issue here is that you are measuring the same patients on two o
 
 
 ```r
+# Non-parametric test comparing day 1 and day 2 pain
 wilcox.test(lesson3c$t1, lesson3c$t2, correct = FALSE, exact = FALSE, paired = TRUE)
 ```
 
@@ -2488,6 +2562,7 @@ wilcox.test(lesson3c$t1, lesson3c$t2, correct = FALSE, exact = FALSE, paired = T
 
 
 ```r
+# paired t-test comparing day 1 and day 2 pain
 t.test(lesson3c$t1, lesson3c$t2, var.equal = TRUE, paired = TRUE)
 ```
 
@@ -2511,10 +2586,12 @@ What about normality of the data? Doesn’t that figure into whether you assess 
 
 
 ```r
+# Create a variable containing the difference in pain scores between days 1 and 2
 lesson3c <-
   lesson3c %>%
   mutate(delta12 = t2 - t1)
 
+# Summarize change in pain scores
 skim(lesson3c$delta12)
 ```
 
@@ -2522,7 +2599,7 @@ skim(lesson3c$delta12)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##          variable missing complete  n  mean   sd p0 p25 p50 p75 p100
 ##  lesson3c$delta12       0       22 22 -0.27 0.83 -2  -1   0   0    1
 ##      hist
@@ -2545,6 +2622,7 @@ There are two ways of doing the t-test:
 
 
 ```r
+# paired t-test for before and after pain scores
 t.test(lesson3d$b, lesson3d$a, var.equal = TRUE, paired = TRUE)
 ```
 
@@ -2566,6 +2644,7 @@ t.test(lesson3d$b, lesson3d$a, var.equal = TRUE, paired = TRUE)
 
 
 ```r
+# t-test for whether difference between before and after scores is different than zero
 t.test(lesson3d$d, mu = 0)
 ```
 
@@ -2585,10 +2664,11 @@ t.test(lesson3d$d, mu = 0)
 
 Both methods give you an identical p value of <0.001. But note, I didn’t ask for the p value. I asked "Does acupuncture increase range of motion?" Given that this is an uncontrolled trial, it may be that range of motion has improved naturally over time. So in fact you can’t answer the question about whether acupuncture increases range of motion from these data!
 
-BTW: for those who are interested, acupuncture has been shown to improve neck pain and range of motion in a controlled trial, see: Irnich D, Behrens N, Gleditsch JM, Stör W, Schrieber MA,  Schöps P, Vickers AJ, Beyer A. Immediate effects of dry needling and acupuncture at distant points in chronic neck pain: results of a randomized, double-blind, sham-controlled crossover trial. Pain 2002;99(1-2):83)
+BTW: for those who are interested, acupuncture has been shown to improve neck pain and range of motion in a controlled trial, see: [Irnich, Behrens et al., Immediate effects of dry needling and acupuncture at distant points in chronic neck pain: results of a randomized, double-blind, sham-controlled crossover trial.](https://www.ncbi.nlm.nih.gov/pubmed/12237186)
 
 
 ```r
+# Test whether proportion of women is different from 50%
 binom.test(sum(lesson3d$sex), nrow(lesson3d), p = 0.5)
 ```
 
@@ -2610,6 +2690,7 @@ Only about a quarter of the patients are women, and the binomial test gives a p 
 
 
 ```r
+# t-test for whether age is significantly different from 58.2
 t.test(lesson3d$age, mu = 58.2)
 ```
 
@@ -2637,6 +2718,7 @@ Well, before running off and doing t-tests, let’s have a look at the data:
 
 
 ```r
+# Summarize data by hospital
 lesson3e %>%
   group_by(hospital) %>%
   skim()
@@ -2648,7 +2730,7 @@ lesson3e %>%
 ##  n variables: 2 
 ##  group variables: hospital 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##  hospital variable missing complete  n  mean    sd p0   p25 p50  p75 p100
 ##         1      los       0       29 29 44.86 13.57 30 34     41 55     79
 ##         2      los       0       28 28 45.14 10.85 28 39.25  45 50.5   70
@@ -2665,6 +2747,7 @@ The data are non-normally distributed so you could try a log transform:
 
 
 ```r
+# Create variable for log of length of stay
 lesson3e <-
   lesson3e %>%
   mutate(loglos = log(los))
@@ -2674,6 +2757,7 @@ The distribution of this new variable for both groups combined is normal, theref
 
 
 ```r
+# paired t-test using log of length of stay as outcome
 t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE, paired = FALSE)
 ```
 
@@ -2705,6 +2789,7 @@ You will want to do an unpaired t-test or non-parametric test on these data.
 
 
 ```r
+# unpaired t-test for change in pain by physiotherapy group
 t.test(delta ~ physio, data = lesson3f, var.equal = TRUE, paired = FALSE)
 ```
 
@@ -2736,14 +2821,36 @@ An alternative conclusion, which I think I actually prefer, would be to focus on
 
 ## Week 4
 
+
+```r
+# Week 4: load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(survminer)
+library(tidyverse)
+
+# Week 4: load data
+lesson4a <- readRDS(here::here("Data", "Week 4", "lesson4a.rds"))
+lesson4b <- readRDS(here::here("Data", "Week 4", "lesson4b.rds"))
+lesson4c <- readRDS(here::here("Data", "Week 4", "lesson4c.rds"))
+lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
+lesson4e <- readRDS(here::here("Data", "Week 4", "lesson4e.rds"))
+```
+
 ### lesson4a.rds
 
-**This is a data set on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
+**This is a dataset on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
 
 To have a quick look at the data, create a two-by-two table:
 
 
 ```r
+# Create formatted table of nausea/vomiting by car sickness history
 tbl_summary(
   lesson4a %>% select(nv, cs),
   by = "cs",
@@ -2836,6 +2943,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #zlxeaoptgx .gt_columns_top_border {
@@ -2919,6 +3027,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #zlxeaoptgx .gt_stub {
@@ -3037,7 +3146,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#zlxeaoptgx .gt_footnote_glyph {
+#zlxeaoptgx .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -3045,7 +3154,7 @@ tbl_summary(
 <div id="zlxeaoptgx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 6</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 9</th>
   </tr>
@@ -3071,7 +3180,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -3089,6 +3198,7 @@ This shows, for example, 56% of those who get car sick reported problematic naus
 
 
 ```r
+# Chi squared test
 chisq.test(table(lesson4a$nv, lesson4a$cs), correct = FALSE)
 ```
 
@@ -3101,6 +3211,7 @@ chisq.test(table(lesson4a$nv, lesson4a$cs), correct = FALSE)
 ```
 
 ```r
+# Fisher's exact test
 fisher.test(table(lesson4a$nv, lesson4a$cs))
 ```
 
@@ -3128,6 +3239,7 @@ For point 3, you need the confidence interval. You get this by using the `epi.2b
 
 
 ```r
+# Confidence interval for difference between groups
 epi.2by2(matrix(rev(table(lesson4a$cs, lesson4a$nv)), nrow = 2))
 ```
 
@@ -3176,6 +3288,7 @@ There are three levels of meat consumption. The outcome (hypertension) is binary
 
 
 ```r
+# Formatted table of meat consumption by hypertension status
 tbl_summary(
   lesson4b %>% select(meat, hbp),
   by = "hbp"
@@ -3267,6 +3380,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #hgemkgngwa .gt_columns_top_border {
@@ -3350,6 +3464,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #hgemkgngwa .gt_stub {
@@ -3468,7 +3583,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#hgemkgngwa .gt_footnote_glyph {
+#hgemkgngwa .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -3476,7 +3591,7 @@ tbl_summary(
 <div id="hgemkgngwa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 35</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 71</th>
   </tr>
@@ -3507,7 +3622,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -3525,6 +3640,7 @@ You also could have created this table:
 
 
 ```r
+# Formatted table of meat consumption by hypertension status (row percents)
 tbl_summary(
   lesson4b %>% select(meat, hbp),
   by = "hbp",
@@ -3617,6 +3733,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #vnsfmmrbvs .gt_columns_top_border {
@@ -3700,6 +3817,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #vnsfmmrbvs .gt_stub {
@@ -3818,7 +3936,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#vnsfmmrbvs .gt_footnote_glyph {
+#vnsfmmrbvs .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -3826,7 +3944,7 @@ tbl_summary(
 <div id="vnsfmmrbvs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 35</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 71</th>
   </tr>
@@ -3857,7 +3975,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -3875,6 +3993,7 @@ To assess statistical significance, use the `chisq.test` function with the hyper
 
 
 ```r
+# Chi squared test for association between meat consumption and hypertension
 chisq.test(table(lesson4b$hbp, lesson4b$meat), correct = FALSE)
 ```
 
@@ -3890,6 +4009,7 @@ The p value is p=0.005. How to interpret this? The formal statistical interpreta
 
 
 ```r
+# Change values of meat consumption variable
 lesson4b_changed <-
   lesson4b %>%
   mutate(
@@ -3901,6 +4021,7 @@ lesson4b_changed <-
       )
   )
 
+# Re-run chi squared test
 chisq.test(table(lesson4b_changed$hbp, lesson4b_changed$meat), correct = FALSE)
 ```
 
@@ -3920,7 +4041,6 @@ So it might be useful to do what are called "pairwise" comparisons: what differe
 ```r
 # Create a new variable "c1" which is "1" if meat consumption is high and "0" if it is medium
 # "c1" is missing for low meat consumption: these patients are left out of the analysis
-
 lesson4b <-
   lesson4b %>%
   mutate(
@@ -3931,6 +4051,7 @@ lesson4b <-
       )
   )
 
+# Test for difference between medium and high meat consumption
 epi.2by2(matrix(rev(table(lesson4b$c1, lesson4b$hbp)), nrow = 2))
 ```
 
@@ -3966,7 +4087,6 @@ epi.2by2(matrix(rev(table(lesson4b$c1, lesson4b$hbp)), nrow = 2))
 # Compare high vs low consumption
 # "c2" is "1" if meat consumption is high and "0" if it is low
 # "c2" is missing for medium meat consumption: these patients are left out of the analysis
-
 lesson4b <-
   lesson4b %>%
   mutate(
@@ -3977,6 +4097,7 @@ lesson4b <-
       )
   )
 
+# Test for difference between low and high meat consumption
 epi.2by2(matrix(rev(table(lesson4b$c2, lesson4b$hbp)), nrow = 2))
 ```
 
@@ -4100,6 +4221,7 @@ What these commands do is to create new variables (c1 and c2) that are used inst
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #gfhbrxnasc .gt_columns_top_border {
@@ -4183,6 +4305,7 @@ What these commands do is to create new variables (c1 and c2) that are used inst
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #gfhbrxnasc .gt_stub {
@@ -4301,7 +4424,7 @@ What these commands do is to create new variables (c1 and c2) that are used inst
   font-size: 65%;
 }
 
-#gfhbrxnasc .gt_footnote_glyph {
+#gfhbrxnasc .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -4309,7 +4432,7 @@ What these commands do is to create new variables (c1 and c2) that are used inst
 <div id="gfhbrxnasc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>No Hypertension</strong>, N = 35</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Hypertension</strong>, N = 71</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 106</th>
@@ -4345,7 +4468,7 @@ What these commands do is to create new variables (c1 and c2) that are used inst
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -4365,12 +4488,13 @@ You may have noticed that my model answer did not actually answer the question. 
 
 ### lesson4c.rds
 
-**This is a data set from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up?**
+**This is a dataset from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up?**
 
 It is immediately obvious from this table that there are very few patients who are homozygous wild type.
 
 
 ```r
+# Formatted two-way table of genes by toxicity outcome
 tbl_summary(
   lesson4c %>% select(gene, toxicity),
   by = "toxicity"
@@ -4462,6 +4586,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #tlnsbgwbeq .gt_columns_top_border {
@@ -4545,6 +4670,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #tlnsbgwbeq .gt_stub {
@@ -4663,7 +4789,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#tlnsbgwbeq .gt_footnote_glyph {
+#tlnsbgwbeq .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -4671,7 +4797,7 @@ tbl_summary(
 <div id="tlnsbgwbeq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 204</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 100</th>
   </tr>
@@ -4702,7 +4828,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -4718,12 +4844,13 @@ It would seem appropriate to combine heterozygotes and homozygous wild type into
 
 
 ```r
+# Create binary variable grouping the values of "1" and "2" for gene
 lesson4c <-
   lesson4c %>%
   mutate(
     mutant =
       case_when(
-        gene %in% c(1, 2) ~ 1,
+        gene == 1 | gene == 2 ~ 1,
         gene == 0 ~ 0
       )
   )
@@ -4820,6 +4947,7 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #bixqbsxufc .gt_columns_top_border {
@@ -4903,6 +5031,7 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #bixqbsxufc .gt_stub {
@@ -5021,7 +5150,7 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
   font-size: 65%;
 }
 
-#bixqbsxufc .gt_footnote_glyph {
+#bixqbsxufc .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -5029,7 +5158,7 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
 <div id="bixqbsxufc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>No Grade III/IV Toxicity</strong>, N = 204</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Grade III/IV Toxicity</strong>, N = 100</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 304</th>
@@ -5065,7 +5194,7 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -5104,51 +5233,35 @@ lesson4d_sex <-
   group_split(sex)
 
 # The first dataset, indicated by lesson4d_sex[[1]], is males
-lesson4d_sex[[1]]
+lesson4d_males <- lesson4d_sex[[1]]
+
+# To confirm:
+table(lesson4d_males$sex)
 ```
 
 ```
-## # A tibble: 294 x 6
-##       id chemo   age   sex response group
-##    <dbl> <chr> <dbl> <dbl>    <dbl> <dbl>
-##  1  2032 a        47     0        1     0
-##  2  3950 a        47     0        0     0
-##  3  2394 a        25     0        1     0
-##  4  2481 b        53     0        0     1
-##  5  1263 a        64     0        1     0
-##  6  1233 b        50     0        0     1
-##  7  1034 b        34     0        1     1
-##  8  4736 b        68     0        0     1
-##  9  2319 a        49     0        0     0
-## 10  1676 b        44     0        0     1
-## # ... with 284 more rows
+## 
+##   0 
+## 294
 ```
 
 ```r
 # The second dataset, indicated by lesson4d_sex[[2]], is females
-lesson4d_sex[[2]]
+lesson4d_females <- lesson4d_sex[[2]]
+
+# To confirm:
+table(lesson4d_females$sex)
 ```
 
 ```
-## # A tibble: 106 x 6
-##       id chemo   age   sex response group
-##    <dbl> <chr> <dbl> <dbl>    <dbl> <dbl>
-##  1  4743 a        49     1        0     0
-##  2  1318 a        64     1        0     0
-##  3  3579 a        28     1        1     0
-##  4  4839 a        32     1        0     0
-##  5  3465 b        49     1        0     1
-##  6  3111 b        34     1        1     1
-##  7  3378 b        35     1        0     1
-##  8  3408 a        46     1        0     0
-##  9  1991 b        45     1        0     1
-## 10  2600 b        45     1        1     1
-## # ... with 96 more rows
+## 
+##   1 
+## 106
 ```
 
 ```r
 # Males (sex == 0)
-epi.2by2(matrix(rev(table(lesson4d_sex[[1]]$group, lesson4d_sex[[1]]$response)), nrow = 2))
+epi.2by2(matrix(rev(table(lesson4d_males$group, lesson4d_males$response)), nrow = 2))
 ```
 
 ```
@@ -5178,7 +5291,7 @@ epi.2by2(matrix(rev(table(lesson4d_sex[[1]]$group, lesson4d_sex[[1]]$response)),
 
 ```r
 # Females (sex == 1)
-epi.2by2(matrix(rev(table(lesson4d_sex[[2]]$group, lesson4d_sex[[2]]$response)), nrow = 2))
+epi.2by2(matrix(rev(table(lesson4d_females$group, lesson4d_females$response)), nrow = 2))
 ```
 
 ```
@@ -5220,7 +5333,8 @@ lesson4d_age <-
   group_split(hiage)
 
 # Younger patients (lesson4d_age[[1]])
-epi.2by2(matrix(rev(table(lesson4d_age[[1]]$group, lesson4d_age[[1]]$response)), nrow = 2))
+lesson4d_younger <- lesson4d_age[[1]]
+epi.2by2(matrix(rev(table(lesson4d_younger$group, lesson4d_younger$response)), nrow = 2))
 ```
 
 ```
@@ -5249,8 +5363,9 @@ epi.2by2(matrix(rev(table(lesson4d_age[[1]]$group, lesson4d_age[[1]]$response)),
 ```
 
 ```r
-# Older patients (lesson4d_age[[2]]))
-epi.2by2(matrix(rev(table(lesson4d_age[[2]]$group, lesson4d_age[[2]]$response)), nrow = 2))
+# Older patients (lesson4d_age[[2]])
+lesson4d_older <- lesson4d_age[[2]]
+epi.2by2(matrix(rev(table(lesson4d_older$group, lesson4d_older$response)), nrow = 2))
 ```
 
 ```
@@ -5284,11 +5399,11 @@ You get no difference between groups for either older or younger patients. As it
 
 There is a further problem here: we have one question ("do effects differ between men and women?") and two p values (one for men and one for women). What you really want is one p value to answer one question. The correct statistical technique for looking at whether the effects of treatment differ between sub-groups is called interaction. We will look at this later in the course. In the meantime, if you are interested, you can read some brief articles at: 
 
-http://bmj.bmjjournals.com/cgi/content/full/313/7055/486?ijkey=f0d0304067151ab3c6490b209ca3e954acb60a29&keytype2=tf_ipsecsha
+[Statistics Notes: Interaction 1: heterogeneity of effects](http://bmj.bmjjournals.com/cgi/content/full/313/7055/486?ijkey=f0d0304067151ab3c6490b209ca3e954acb60a29&keytype2=tf_ipsecsha)
 
-http://bmj.bmjjournals.com/cgi/content/full/313/7060/808?ijkey=7172a78ea07bf92702ec4a33c6804b3ea439c46c&keytype2=tf_ipsecsha
+[Statistics Notes: Interaction 2: compare effect sizes not P values](http://bmj.bmjjournals.com/cgi/content/full/313/7060/808?ijkey=7172a78ea07bf92702ec4a33c6804b3ea439c46c&keytype2=tf_ipsecsha)
 
-http://bmj.bmjjournals.com/cgi/content/full/313/7061/862?ijkey=c1181f258aa1146139604ac7d463ec93caa4d623&keytype2=tf_ipsecsha
+[Statistics Notes: Interaction 3: How to examine heterogeneity](http://bmj.bmjjournals.com/cgi/content/full/313/7061/862?ijkey=c1181f258aa1146139604ac7d463ec93caa4d623&keytype2=tf_ipsecsha)
 
 ### lesson4e.rds
 
@@ -5300,6 +5415,7 @@ A BIG HOWEVER - have a look at the data or this table:
 
 
 ```r
+# Formatted table of gene1 by gene2
 tbl_summary(
   lesson4e %>% select(gene1, gene2),
   by = "gene2",
@@ -5392,6 +5508,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #jrfpnysbvm .gt_columns_top_border {
@@ -5475,6 +5592,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #jrfpnysbvm .gt_stub {
@@ -5593,7 +5711,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#jrfpnysbvm .gt_footnote_glyph {
+#jrfpnysbvm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -5601,7 +5719,7 @@ tbl_summary(
 <div id="jrfpnysbvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 12</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 12</th>
   </tr>
@@ -5627,7 +5745,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -5645,6 +5763,31 @@ The experimental design was to knockout no genes in some animals, gene1 in some 
 
 ## Week 5
 
+
+```r
+# Week 5: load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(survminer)
+library(tidyverse)
+
+# Week 5: load data
+lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
+lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
+lesson5c <- readRDS(here::here("Data", "Week 5", "lesson5c.rds"))
+lesson5d <- readRDS(here::here("Data", "Week 5", "lesson5d.rds"))
+lesson5e <- readRDS(here::here("Data", "Week 5", "lesson5e.rds"))
+lesson5f <- readRDS(here::here("Data", "Week 5", "lesson5f.rds"))
+lesson5g <- readRDS(here::here("Data", "Week 5", "lesson5g.rds"))
+lesson5h <- readRDS(here::here("Data", "Week 5", "lesson5h.rds"))
+lesson5i <- readRDS(here::here("Data", "Week 5", "lesson5i.rds"))
+```
+
 ### lesson5a.rds
 
 **These are data from marathon runners (again). Which of the following is associated with how fast runners complete the marathon: age, sex, training miles, weight?**
@@ -5653,7 +5796,10 @@ My guess here is that we are going to want to do a regression analysis. This wou
 
 
 ```r
+# Create linear regression model for race time
 rt_model <- lm(rt ~ age + sex + tr + wt, data = lesson5a)
+
+# Results of linear regression model
 summary(rt_model)
 ```
 
@@ -5683,21 +5829,12 @@ summary(rt_model)
 ```
 
 
-```
-## Warning: `.key` is deprecated
-
-## Warning: `.key` is deprecated
-
-## Warning: `.key` is deprecated
-
-## Warning: `.key` is deprecated
-```
 
 The p values for all the predictor variables apart from weight are very low. A model answer might be:
 
 <div class="quote-container">
 
->There were 262 runners in the data set; full data were available for 217. Summary data for these 217 are given in table 1. Predictors of race time are shown in table 2. Age, sex and number of training miles were all statistically significant predictors of race time; weight is unlikely to have an important effect.
+>There were 262 runners in the dataset; full data were available for 217. Summary data for these 217 are given in table 1. Predictors of race time are shown in table 2. Age, sex and number of training miles were all statistically significant predictors of race time; weight is unlikely to have an important effect.
 
 </div>
 
@@ -5788,6 +5925,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #jgoecrbkrg .gt_columns_top_border {
@@ -5871,6 +6009,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #jgoecrbkrg .gt_stub {
@@ -5989,7 +6128,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   font-size: 65%;
 }
 
-#jgoecrbkrg .gt_footnote_glyph {
+#jgoecrbkrg .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -5997,7 +6136,7 @@ The p values for all the predictor variables apart from weight are very low. A m
 <div id="jgoecrbkrg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 219</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -6035,7 +6174,7 @@ The p values for all the predictor variables apart from weight are very low. A m
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -6134,6 +6273,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #mafemqyuoy .gt_columns_top_border {
@@ -6217,6 +6357,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #mafemqyuoy .gt_stub {
@@ -6335,7 +6476,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   font-size: 65%;
 }
 
-#mafemqyuoy .gt_footnote_glyph {
+#mafemqyuoy .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -6345,7 +6486,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 217</strong></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Coefficient</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -6379,7 +6520,7 @@ The p values for all the predictor variables apart from weight are very low. A m
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -6399,13 +6540,17 @@ Second, race time is not normally distributed and the textbooks would have us be
 
 
 ```r
+# Create variable for log of race time
 lesson5a <-
   lesson5a %>%
   mutate(
     lt = log(rt)
   )
 
+# Create linear regression model for log of race time
 rtlog_model <- lm(lt ~ age + sex + tr + wt, data = lesson5a)
+
+# Results of linear regression model
 summary(rtlog_model)
 ```
 
@@ -6453,7 +6598,7 @@ lesson5a %>%
 ##  n obs: 190 
 ##  n variables: 6 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##  variable missing complete   n   mean    sd  p0 p25 p50 p75 p100     hist
 ##        rt       1      189 190 238.57 46.63 155 205 235 268  414 ▃▇▇▆▃▂▁▁
 ```
@@ -6470,10 +6615,10 @@ What you are trying to predict here is binary (mutation / no mutation). You are 
 
 
 ```r
-# Create model
+# Create logistic regression model
 mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
 
-# Results with odds ratios
+# Formatted results with odds ratios
 tbl_regression(mutate_model, exponentiate = TRUE)
 ```
 
@@ -6562,6 +6707,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #rbpbdnnbet .gt_columns_top_border {
@@ -6645,6 +6791,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #rbpbdnnbet .gt_stub {
@@ -6763,7 +6910,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#rbpbdnnbet .gt_footnote_glyph {
+#rbpbdnnbet .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -6772,8 +6919,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 125</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -6789,7 +6936,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -6810,10 +6957,10 @@ lesson5b <-
   lesson5b %>%
   filter(c <= 50)
 
-# Create model
+# Create logistic regression model
 mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
 
-# Results in odds ratios
+# Formatted results with odds ratios
 tbl_regression(mutate_model, exponentiate = TRUE)
 ```
 
@@ -6902,6 +7049,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #jrdysgpclz .gt_columns_top_border {
@@ -6985,6 +7133,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #jrdysgpclz .gt_stub {
@@ -7103,7 +7252,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#jrdysgpclz .gt_footnote_glyph {
+#jrdysgpclz .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -7112,8 +7261,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 124</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -7129,7 +7278,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -7143,7 +7292,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 
 
 ```r
-# Results in logits
+# Formatted results in logits
 tbl_regression(mutate_model, exponentiate = FALSE)
 ```
 
@@ -7232,6 +7381,7 @@ tbl_regression(mutate_model, exponentiate = FALSE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #tusbkbxopk .gt_columns_top_border {
@@ -7315,6 +7465,7 @@ tbl_regression(mutate_model, exponentiate = FALSE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #tusbkbxopk .gt_stub {
@@ -7433,7 +7584,7 @@ tbl_regression(mutate_model, exponentiate = FALSE)
   font-size: 65%;
 }
 
-#tusbkbxopk .gt_footnote_glyph {
+#tusbkbxopk .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -7442,8 +7593,8 @@ tbl_regression(mutate_model, exponentiate = FALSE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 124</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>log(OR)</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>log(OR)</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -7459,7 +7610,7 @@ tbl_regression(mutate_model, exponentiate = FALSE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -7571,6 +7722,7 @@ tbl_regression(mutate_model,
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #mbchtzpmbb .gt_columns_top_border {
@@ -7654,6 +7806,7 @@ tbl_regression(mutate_model,
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #mbchtzpmbb .gt_stub {
@@ -7772,7 +7925,7 @@ tbl_regression(mutate_model,
   font-size: 65%;
 }
 
-#mbchtzpmbb .gt_footnote_glyph {
+#mbchtzpmbb .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -7781,8 +7934,8 @@ tbl_regression(mutate_model,
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 124</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>log(OR)</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>log(OR)</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -7804,7 +7957,7 @@ tbl_regression(mutate_model,
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -7829,7 +7982,6 @@ If you wanted to get flashy, you could work out the risk for each year between 2
 # Create predictions
 lesson5b_pred <-
   augment(mutate_model,
-          newdata = lesson5b,
           type.predict = "response")
 
 # Show resulting dataset
@@ -7837,19 +7989,19 @@ lesson5b_pred
 ```
 
 ```
-## # A tibble: 124 x 4
-##    mutation     c .fitted .se.fit
-##       <dbl> <dbl>   <dbl>   <dbl>
-##  1        1    11   0.623  0.0488
-##  2        0     6   0.462  0.0637
-##  3        1    12   0.653  0.0535
-##  4        1     9   0.559  0.0461
-##  5        0    13   0.682  0.0590
-##  6        1     9   0.559  0.0461
-##  7        0     8   0.527  0.0495
-##  8        1     6   0.462  0.0637
-##  9        0    11   0.623  0.0488
-## 10        0     4   0.397  0.0811
+## # A tibble: 124 x 9
+##    mutation     c .fitted .se.fit .resid    .hat .sigma .cooksd .std.resid
+##       <dbl> <dbl>   <dbl>   <dbl>  <dbl>   <dbl>  <dbl>   <dbl>      <dbl>
+##  1        1    11   0.623  0.0488  0.973 0.0101    1.16 0.00313      0.978
+##  2        0     6   0.462  0.0637 -1.11  0.0163    1.16 0.00723     -1.12 
+##  3        1    12   0.653  0.0535  0.923 0.0126    1.16 0.00344      0.929
+##  4        1     9   0.559  0.0461  1.08  0.00862   1.16 0.00345      1.08 
+##  5        0    13   0.682  0.0590 -1.51  0.0161    1.15 0.0178      -1.53 
+##  6        1     9   0.559  0.0461  1.08  0.00862   1.16 0.00345      1.08 
+##  7        0     8   0.527  0.0495 -1.22  0.00984   1.15 0.00559     -1.23 
+##  8        1     6   0.462  0.0637  1.24  0.0163    1.15 0.00984      1.25 
+##  9        0    11   0.623  0.0488 -1.40  0.0101    1.15 0.00852     -1.40 
+## 10        0     4   0.397  0.0811 -1.01  0.0275    1.16 0.00958     -1.02 
 ## # ... with 114 more rows
 ```
 
@@ -7968,6 +8120,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #yzwkzlhjln .gt_columns_top_border {
@@ -8051,6 +8204,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #yzwkzlhjln .gt_stub {
@@ -8169,7 +8323,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#yzwkzlhjln .gt_footnote_glyph {
+#yzwkzlhjln .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -8178,8 +8332,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 124</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -8195,7 +8349,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -8218,13 +8372,15 @@ lesson5b_new <-
 # disease durations between 0.33 and 42.33.
 
 # Predict risk of mutation
-lesson5b_pred <-
+# The "newdata" option allows you to get predictions for a dataset
+# other than the dataset that was used to create the model
+lesson5b_pred_new <-
   augment(mutate_model,
           newdata = lesson5b_new,
           type.predict = "response")
 
 # Create graph
-ggplot(data = lesson5b_pred,
+ggplot(data = lesson5b_pred_new,
        aes(x = c, y = .fitted)) +
   geom_line()
 ```
@@ -8247,6 +8403,7 @@ It seems that there are not only data for each province separately but for Canad
 
 
 ```r
+# Remove the observation for all of Canada from dataset
 lesson5c_fixed <-
   lesson5c %>%
   filter(place != "Canada")
@@ -8256,6 +8413,7 @@ Now, we could just correlate the three variables together:
 
 
 ```r
+# Calculate correlation between unemployment and male/female life expectancy
 # There are missing values for unemployment,
 # so we need to indicate that we only want to use "complete observations"
 cor(lesson5c_fixed %>% select(unemp, mlife, flife),
@@ -8277,6 +8435,7 @@ Try these regression models:
 
 
 ```r
+# Create linear regression model for male life expectancy
 mlife_model <- lm(mlife ~ unemp, data = lesson5c_fixed)
 tbl_regression(mlife_model)
 ```
@@ -8366,6 +8525,7 @@ tbl_regression(mlife_model)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #gnbvekovad .gt_columns_top_border {
@@ -8449,6 +8609,7 @@ tbl_regression(mlife_model)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #gnbvekovad .gt_stub {
@@ -8567,7 +8728,7 @@ tbl_regression(mlife_model)
   font-size: 65%;
 }
 
-#gnbvekovad .gt_footnote_glyph {
+#gnbvekovad .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -8577,7 +8738,7 @@ tbl_regression(mlife_model)
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 10</strong></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Coefficient</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -8593,7 +8754,7 @@ tbl_regression(mlife_model)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -8607,6 +8768,7 @@ tbl_regression(mlife_model)
 
 
 ```r
+# Create linear regression model for female life expectancy
 flife_model <- lm(flife ~ unemp, data = lesson5c_fixed)
 tbl_regression(flife_model)
 ```
@@ -8696,6 +8858,7 @@ tbl_regression(flife_model)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #kijudtsfwn .gt_columns_top_border {
@@ -8779,6 +8942,7 @@ tbl_regression(flife_model)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #kijudtsfwn .gt_stub {
@@ -8897,7 +9061,7 @@ tbl_regression(flife_model)
   font-size: 65%;
 }
 
-#kijudtsfwn .gt_footnote_glyph {
+#kijudtsfwn .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -8907,7 +9071,7 @@ tbl_regression(flife_model)
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 10</strong></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Coefficient</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -8923,7 +9087,7 @@ tbl_regression(flife_model)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -8949,6 +9113,7 @@ This is a straightforward linear regression that shows a significant decrease in
 
 
 ```r
+# Create linear regression model for tumor size
 tumorsize_model <- lm(s ~ dose, data = lesson5d)
 summary(tumorsize_model)
 ```
@@ -8989,11 +9154,6 @@ My model answer would be:
 >Mean increase in log tumor size per day by dose is given in the table. Higher doses were associated with lower growth rates (p=0.010 by linear regression).
 
 </div>
-
-
-```
-## Warning: `.key` is deprecated
-```
 
 <!--html_preserve--><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -9080,6 +9240,7 @@ My model answer would be:
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #bvxaujwtra .gt_columns_top_border {
@@ -9163,6 +9324,7 @@ My model answer would be:
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #bvxaujwtra .gt_stub {
@@ -9281,7 +9443,7 @@ My model answer would be:
   font-size: 65%;
 }
 
-#bvxaujwtra .gt_footnote_glyph {
+#bvxaujwtra .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -9322,6 +9484,7 @@ This is a fairly simple analysis: the outcome is binary and as we want to make p
 
 
 ```r
+# Create multivariable logistic regression model for CAM
 cam_model1 <- glm(CAM ~ age + t + mets + u + q18 + e + m + ses,
                   data = lesson5e,
                   family = "binomial")
@@ -9413,6 +9576,7 @@ tbl_regression(cam_model1, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #oedswpdpir .gt_columns_top_border {
@@ -9496,6 +9660,7 @@ tbl_regression(cam_model1, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #oedswpdpir .gt_stub {
@@ -9614,7 +9779,7 @@ tbl_regression(cam_model1, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#oedswpdpir .gt_footnote_glyph {
+#oedswpdpir .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -9623,8 +9788,8 @@ tbl_regression(cam_model1, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 438</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -9682,7 +9847,7 @@ tbl_regression(cam_model1, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -9720,6 +9885,7 @@ So I would start with the full model and then remove the least predictive of soc
 
 
 ```r
+# Create logistic regression model for CAM removing "e" and "m"
 cam_model2 <- glm(CAM ~ age + t + mets + u + q18 + ses,
                   data = lesson5e,
                   family = "binomial")
@@ -9811,6 +9977,7 @@ tbl_regression(cam_model2, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #tnlmxmpshf .gt_columns_top_border {
@@ -9894,6 +10061,7 @@ tbl_regression(cam_model2, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #tnlmxmpshf .gt_stub {
@@ -10012,7 +10180,7 @@ tbl_regression(cam_model2, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#tnlmxmpshf .gt_footnote_glyph {
+#tnlmxmpshf .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -10021,8 +10189,8 @@ tbl_regression(cam_model2, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 445</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -10068,7 +10236,7 @@ tbl_regression(cam_model2, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -10084,6 +10252,7 @@ Now it appears that "q18" is predictive but not "ses". So try removing one of th
 
 
 ```r
+# Create logistic regression model for CAM removing "q18"
 cam_model3 <- glm(CAM ~ age + t + mets + u + ses,
                   data = lesson5e,
                   family = "binomial")
@@ -10175,6 +10344,7 @@ tbl_regression(cam_model3, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #sjkurdayvt .gt_columns_top_border {
@@ -10258,6 +10428,7 @@ tbl_regression(cam_model3, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #sjkurdayvt .gt_stub {
@@ -10376,7 +10547,7 @@ tbl_regression(cam_model3, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#sjkurdayvt .gt_footnote_glyph {
+#sjkurdayvt .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -10385,8 +10556,8 @@ tbl_regression(cam_model3, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 459</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -10426,7 +10597,7 @@ tbl_regression(cam_model3, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -10440,6 +10611,7 @@ tbl_regression(cam_model3, exponentiate = TRUE)
 
 
 ```r
+# Create logistic regression model for CAM removing "ses"
 cam_model4 <- glm(CAM ~ age + t + mets + u + q18,
                   data = lesson5e,
                   family = "binomial")
@@ -10531,6 +10703,7 @@ tbl_regression(cam_model4, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #ajfhjtutgr .gt_columns_top_border {
@@ -10614,6 +10787,7 @@ tbl_regression(cam_model4, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #ajfhjtutgr .gt_stub {
@@ -10732,7 +10906,7 @@ tbl_regression(cam_model4, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#ajfhjtutgr .gt_footnote_glyph {
+#ajfhjtutgr .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -10741,8 +10915,8 @@ tbl_regression(cam_model4, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 651</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -10782,7 +10956,7 @@ tbl_regression(cam_model4, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -10810,8 +10984,8 @@ Well the obvious thing to do would be a linear regression:
 
 
 ```r
-frisbee_model <- lm(distance ~ age,
-                    data = lesson5f)
+# Create linear regression model for distance
+frisbee_model <- lm(distance ~ age, data = lesson5f)
 summary(frisbee_model)
 ```
 
@@ -10840,6 +11014,7 @@ You get a coefficient of 1.62, meaning that the furthest a man can throw a Frisb
 
 
 ```r
+# Scatterplot of distance by age
 ggplot(data = lesson5f,
        aes(x = age, y = distance)) + 
   geom_point()
@@ -10855,14 +11030,15 @@ Often the relationship between an $x$ and a $y$ does not follow a straight line.
 
 
 ```r
+# Create new variable for age squared
 lesson5f <-
   lesson5f %>%
   mutate(
     age2 = age^2
   )
 
-frisbee_model2 <- lm(distance ~ age + age2,
-                     data = lesson5f)
+# Create linear regression model using age and age squared
+frisbee_model2 <- lm(distance ~ age + age2, data = lesson5f)
 summary(frisbee_model2)
 ```
 
@@ -10894,7 +11070,7 @@ This model (distance = 11.6\*age - 0.149\*age^2 + 8.13) fits extremely well (r^2
 
 ### lesson5g.rds
 
-**You’ve seen this data set before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no difference between regimes (you can test this if you like).  However, do the treatments work differently depending on age or sex?**
+**You’ve seen this dataset before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no difference between regimes (you can test this if you like).  However, do the treatments work differently depending on age or sex?**
 
 The first thing to do here is to do the sub-group analysis, just to get a feel for the data. 
 
@@ -10995,6 +11171,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #snrxyyasnx .gt_columns_top_border {
@@ -11078,6 +11255,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #snrxyyasnx .gt_stub {
@@ -11196,7 +11374,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#snrxyyasnx .gt_footnote_glyph {
+#snrxyyasnx .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -11204,7 +11382,7 @@ tbl_summary(
 <div id="snrxyyasnx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 138</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 156</th>
   </tr>
@@ -11230,7 +11408,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -11336,6 +11514,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #ktgliozlwc .gt_columns_top_border {
@@ -11419,6 +11598,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #ktgliozlwc .gt_stub {
@@ -11537,7 +11717,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#ktgliozlwc .gt_footnote_glyph {
+#ktgliozlwc .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -11545,7 +11725,7 @@ tbl_summary(
 <div id="ktgliozlwc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 62</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 44</th>
   </tr>
@@ -11571,7 +11751,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -11584,7 +11764,7 @@ tbl_summary(
 </table></div><!--/html_preserve-->
 
 ```r
-# Here, summarize stores out the p values for the chi-squared test by sex
+# Here, the "summarize" function stores out the p values for the chi-squared test by sex
 lesson5g %>%
   group_by(sex) %>%
   summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
@@ -11604,6 +11784,7 @@ This shows that regime b is better for men (51% vs 39% response rate, p=0.037). 
 
 
 ```r
+# Create two-way table of response by sex
 tbl_summary(
   lesson5g %>% select(response, sex),
   by = "sex",
@@ -11696,6 +11877,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #zjxtfnqgfo .gt_columns_top_border {
@@ -11779,6 +11961,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #zjxtfnqgfo .gt_stub {
@@ -11897,7 +12080,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#zjxtfnqgfo .gt_footnote_glyph {
+#zjxtfnqgfo .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -11905,7 +12088,7 @@ tbl_summary(
 <div id="zjxtfnqgfo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 294</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 106</th>
   </tr>
@@ -11931,7 +12114,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -11944,6 +12127,7 @@ tbl_summary(
 </table></div><!--/html_preserve-->
 
 ```r
+# Test for a difference in response by sex using chi-squared test
 table(lesson5g$response, lesson5g$sex) %>%
   chisq.test(correct = FALSE)
 ```
@@ -11962,6 +12146,7 @@ Now we want to test for interaction between chemo regime and sex in a multivaria
 
 
 ```r
+# Create logistic regression model for response including interaction between sex and chemo
 sex_int_model <- glm(response ~ sex + chemo + sex*chemo,
                      data = lesson5g,
                      family = "binomial")
@@ -12053,6 +12238,7 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #zlejpcnofh .gt_columns_top_border {
@@ -12136,6 +12322,7 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #zlejpcnofh .gt_stub {
@@ -12254,7 +12441,7 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#zlejpcnofh .gt_footnote_glyph {
+#zlejpcnofh .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -12263,8 +12450,8 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 400</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -12292,7 +12479,7 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -12318,7 +12505,7 @@ skim(lesson5g$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0   p25  p50 p75 p100
 ##  lesson5g$age       2      398 400 42.46 10.58 17 34.25 42.5  49   71
 ##      hist
@@ -12431,6 +12618,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #daegbisqwz .gt_columns_top_border {
@@ -12514,6 +12702,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #daegbisqwz .gt_stub {
@@ -12632,7 +12821,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#daegbisqwz .gt_footnote_glyph {
+#daegbisqwz .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -12640,7 +12829,7 @@ tbl_summary(
 <div id="daegbisqwz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 96</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 103</th>
   </tr>
@@ -12666,7 +12855,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -12772,6 +12961,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #tifwvoyvwi .gt_columns_top_border {
@@ -12855,6 +13045,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #tifwvoyvwi .gt_stub {
@@ -12973,7 +13164,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#tifwvoyvwi .gt_footnote_glyph {
+#tifwvoyvwi .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -12981,7 +13172,7 @@ tbl_summary(
 <div id="tifwvoyvwi" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 102</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 97</th>
   </tr>
@@ -13007,7 +13198,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -13020,6 +13211,7 @@ tbl_summary(
 </table></div><!--/html_preserve-->
 
 ```r
+# Calculate p value for each comparison
 lesson5g %>%
   filter(!is.na(age)) %>% # Exclude 2 patients missing age
   group_by(hiage) %>%
@@ -13038,6 +13230,7 @@ There do not appear to be any differences between groups. Now to do the interact
 
 
 ```r
+# Logistic regression model with interaction between chemo and age (continuous)
 age_int_model1 <-
   glm(response ~ chemo + age + chemo*age,
       data = lesson5g,
@@ -13130,6 +13323,7 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #jkehecqzjk .gt_columns_top_border {
@@ -13213,6 +13407,7 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #jkehecqzjk .gt_stub {
@@ -13331,7 +13526,7 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#jkehecqzjk .gt_footnote_glyph {
+#jkehecqzjk .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -13340,8 +13535,8 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 398</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -13369,7 +13564,7 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -13383,6 +13578,7 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
 
 
 ```r
+# Logistic regression model with interaction between chemo and hiage (binary)
 age_int_model2 <-
   glm(response ~ chemo + hiage + chemo*hiage,
       data = lesson5g,
@@ -13475,6 +13671,7 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #ofvubetlvn .gt_columns_top_border {
@@ -13558,6 +13755,7 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #ofvubetlvn .gt_stub {
@@ -13676,7 +13874,7 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#ofvubetlvn .gt_footnote_glyph {
+#ofvubetlvn .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -13685,8 +13883,8 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 398</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -13714,7 +13912,7 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -13740,18 +13938,9 @@ Incidentally, I have often emphasized the importance of including an estimate an
 
 ### lesson5h.rds
 
-**PSA is used to screen for prostate cancer. In this data set, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict prostate cancer? How accurate would this test be?**
+**PSA is used to screen for prostate cancer. In this dataset, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict prostate cancer? How accurate would this test be?**
 
 
-```
-## Warning: `.key` is deprecated
-
-## Warning: `.key` is deprecated
-
-## Warning: `.key` is deprecated
-
-## Warning: `.key` is deprecated
-```
 
 One approach to selecting which variables to include in a predictive model would be to do a regression. You could start with all the variables (i.e. `glm(cancer ~ psa + psan + psai + psant, ...)`). You might notice that psant is not a good predictor (p=0.3) and decide to take it out of the model. In a regression using the remaining three variables, psai is not statistically significant, and you might then want to remove that variable too. Both psa and psan are highly predictive, so you could leave them in the model and use the `roc` function (from the `pROC` package) to get the area-under-the-curve.
 
@@ -13850,6 +14039,7 @@ However, I would have my doubts about such an approach. What you are trying to d
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #mpvoaaoyfm .gt_columns_top_border {
@@ -13933,6 +14123,7 @@ However, I would have my doubts about such an approach. What you are trying to d
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #mpvoaaoyfm .gt_stub {
@@ -14051,7 +14242,7 @@ However, I would have my doubts about such an approach. What you are trying to d
   font-size: 65%;
 }
 
-#mpvoaaoyfm .gt_footnote_glyph {
+#mpvoaaoyfm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -14059,7 +14250,7 @@ However, I would have my doubts about such an approach. What you are trying to d
 <div id="mpvoaaoyfm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 353</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -14085,7 +14276,7 @@ However, I would have my doubts about such an approach. What you are trying to d
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -14184,6 +14375,7 @@ However, I would have my doubts about such an approach. What you are trying to d
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #phijstdxka .gt_columns_top_border {
@@ -14267,6 +14459,7 @@ However, I would have my doubts about such an approach. What you are trying to d
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #phijstdxka .gt_stub {
@@ -14385,7 +14578,7 @@ However, I would have my doubts about such an approach. What you are trying to d
   font-size: 65%;
 }
 
-#phijstdxka .gt_footnote_glyph {
+#phijstdxka .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -14394,8 +14587,8 @@ However, I would have my doubts about such an approach. What you are trying to d
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 353</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -14423,7 +14616,7 @@ However, I would have my doubts about such an approach. What you are trying to d
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -14439,12 +14632,13 @@ However, I would have my doubts about such an approach. What you are trying to d
 
 **This is a randomized trial of behavioral therapy in cancer patients with depressed mood. Patients are randomized to no treatment (group 1), informal contact with a volunteer (group 2) or behavior therapy with a trained therapist (group 3). What would you conclude about the effectiveness of these treatments?**
 
-One approach to these data is to use a test called ANOVA. This addresses the question of whether there is some overall difference between the three groups, or, more specifically, tests the null hypothesis that the three groups are equivalent. But this isn’t a very interesting hypothesis. The other thing to do would be to conduct t tests on all possible pairs (i.e. no treatment vs. therapy; therapy vs. volunteer; volunteer vs. no treatment). But I am not sure that this is particularly interesting either.
+One approach to these data is to use a test called ANOVA. This addresses the question of whether there is some overall difference between the three groups, or, more specifically, tests the null hypothesis that the three groups are equivalent. But this isn’t a very interesting hypothesis. The other thing to do would be to conduct t-tests on all possible pairs (i.e. no treatment vs. therapy; therapy vs. volunteer; volunteer vs. no treatment). But I am not sure that this is particularly interesting either.
 
 What I would use is a regression analysis.
 
 
 ```r
+# Create variables for treatment (yes/no) and therapy (yes/no)
 lesson5i <-
   lesson5i %>%
   mutate(
@@ -14452,6 +14646,7 @@ lesson5i <-
     therapy = if_else(group == 3, 1, 0),
   )
 
+# Create linear regression model for followup
 treat_model <- lm(followup ~ baseline + treat + therapy,
                   data = lesson5i)
 tbl_regression(treat_model)
@@ -14542,6 +14737,7 @@ tbl_regression(treat_model)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #alcqlbdxer .gt_columns_top_border {
@@ -14625,6 +14821,7 @@ tbl_regression(treat_model)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #alcqlbdxer .gt_stub {
@@ -14743,7 +14940,7 @@ tbl_regression(treat_model)
   font-size: 65%;
 }
 
-#alcqlbdxer .gt_footnote_glyph {
+#alcqlbdxer .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -14753,7 +14950,7 @@ tbl_regression(treat_model)
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 29</strong></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Coefficient</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -14781,7 +14978,7 @@ tbl_regression(treat_model)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -14880,6 +15077,7 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #wimnizqbsk .gt_columns_top_border {
@@ -14963,6 +15161,7 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #wimnizqbsk .gt_stub {
@@ -15081,7 +15280,7 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
   font-size: 65%;
 }
 
-#wimnizqbsk .gt_footnote_glyph {
+#wimnizqbsk .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -15124,9 +15323,29 @@ Now when you regress the change score using the variables "treat" and "therapy" 
 
 ## Week 6
 
+
+```r
+# Week 6: load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(survminer)
+library(tidyverse)
+
+# Week 6: load data
+lesson6a <- readRDS(here::here("Data", "Week 6", "lesson6a.rds"))
+lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
+lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
+lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
+```
+
 ### lesson6a.rds and lesson6b.rds
 
-**These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two data sets are from a coronary care unit population (06b) and a general hospital population (06c). What is the sensitivity, specificity, positive predictive value and negative predictive value?**
+**These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (06b) and a general hospital population (06c). What is the sensitivity, specificity, positive predictive value and negative predictive value?**
 
 
 
@@ -15140,6 +15359,7 @@ You might be tempted just to try:
 
 
 ```r
+# Calculate AUC for marker predicting cancer using marker
 roc(cancer ~ marker, data = lesson6c)
 ```
 
@@ -15251,6 +15471,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #xvkjrdadrg .gt_columns_top_border {
@@ -15334,6 +15555,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #xvkjrdadrg .gt_stub {
@@ -15452,7 +15674,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#xvkjrdadrg .gt_footnote_glyph {
+#xvkjrdadrg .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -15460,7 +15682,7 @@ tbl_summary(
 <div id="xvkjrdadrg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 600</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 400</th>
   </tr>
@@ -15486,7 +15708,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -15502,7 +15724,7 @@ So you can see that, if you only biopsied patients who were positive for the mar
 
 ### lesson6d.rds
 
-**This is a data set of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high grade disease. Recently, two new variables have been added to the data set:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:**
+**This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:**
 
 - **How good is the current method for determining whether patients should be referred to adjuvant therapy?**
 - **It has been suggested that a statistical model using stage and grade would be better than the current risk grouping. How good do you think this model would be?**
@@ -15513,6 +15735,7 @@ The first question concerns the value of the current method of determining refer
 
 
 ```r
+# Two-way table of recurrence by hi_risk
 tbl_summary(
   lesson6d %>% select(recurrence, hi_risk),
   by = "hi_risk",
@@ -15605,6 +15828,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #oguvercsxm .gt_columns_top_border {
@@ -15688,6 +15912,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #oguvercsxm .gt_stub {
@@ -15806,7 +16031,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#oguvercsxm .gt_footnote_glyph {
+#oguvercsxm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -15814,7 +16039,7 @@ tbl_summary(
 <div id="oguvercsxm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4375</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2200</th>
   </tr>
@@ -15840,7 +16065,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -15858,6 +16083,7 @@ You can see that 27% of patients who met high risk criteria recurred compared to
 
 
 ```r
+# Calculate AUC for prediction of recurrence using hi_risk
 roc(recurrence ~ hi_risk, data = lesson6d)
 ```
 
@@ -15892,7 +16118,7 @@ lesson6d_pred <-
   # Renaming to identify each prediction separately
   rename(clinpred = .fitted, clinpred_se = .se.fit)
 
-# Get the AUC
+# Calculate the AUC for the clinical model
 roc(recurrence ~ clinpred, data = lesson6d_pred)
 ```
 
@@ -15913,16 +16139,15 @@ So the AUC is better for the model than for simple risk grouping. But would usin
 lesson6d_pred <-
   lesson6d_pred %>%
   mutate(
-    model_hirisk = if_else(clinpred >= 0.1, 1, 0)
+    clinmodel_hirisk = if_else(clinpred >= 0.1, 1, 0)
   )
 
 # Compare who is defined as high risk from the model
 # with those defined as high risk using clinical criteria
-
 tbl_summary(
-  lesson6d_pred %>% select(model_hirisk, hi_risk),
+  lesson6d_pred %>% select(clinmodel_hirisk, hi_risk),
   by = "hi_risk",
-  type = list(vars(model_hirisk) ~ "categorical")
+  type = list(vars(clinmodel_hirisk) ~ "categorical")
 )
 ```
 
@@ -16011,6 +16236,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #kluxeipkeg .gt_columns_top_border {
@@ -16094,6 +16320,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #kluxeipkeg .gt_stub {
@@ -16212,7 +16439,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#kluxeipkeg .gt_footnote_glyph {
+#kluxeipkeg .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -16220,13 +16447,13 @@ tbl_summary(
 <div id="kluxeipkeg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4375</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2200</th>
   </tr>
   <body class="gt_table_body">
     <tr>
-      <td class="gt_row gt_left">model_hirisk</td>
+      <td class="gt_row gt_left">clinmodel_hirisk</td>
       <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
     </tr>
@@ -16246,7 +16473,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -16356,6 +16583,7 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #qcfdyzmmty .gt_columns_top_border {
@@ -16439,6 +16667,7 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #qcfdyzmmty .gt_stub {
@@ -16557,7 +16786,7 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#qcfdyzmmty .gt_footnote_glyph {
+#qcfdyzmmty .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -16566,8 +16795,8 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 6575</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -16613,7 +16842,7 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -16635,7 +16864,7 @@ lesson6d_pred <-
   ) %>%
   rename(markerpred = .fitted, markerpred_se = .se.fit)
 
-# Get the AUC
+# Calculate the AUC from the marker for the marker model
 roc(recurrence ~ markerpred, data = lesson6d_pred)
 ```
 
@@ -16657,14 +16886,14 @@ A couple of things to note here. First, the marker is a statistically significan
 # Identify patients at >= 10% risk from clinical+marker model
 lesson6d_pred <-
   lesson6d_pred %>%
-  mutate(model_hirisk2 = if_else(markerpred >= 0.1, 1, 0))
+  mutate(markermodel_hirisk = if_else(markerpred >= 0.1, 1, 0))
 
 # Compare who is defined as high risk from the clinical+marker model
 # with those defined as high risk using clinical criteria
 tbl_summary(
-  lesson6d_pred %>% select(model_hirisk2, hi_risk),
+  lesson6d_pred %>% select(markermodel_hirisk, hi_risk),
   by = "hi_risk",
-  type = list(vars(model_hirisk2) ~ "categorical")
+  type = list(vars(markermodel_hirisk) ~ "categorical")
 )
 ```
 
@@ -16753,6 +16982,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #vjnfqcioza .gt_columns_top_border {
@@ -16836,6 +17066,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #vjnfqcioza .gt_stub {
@@ -16954,7 +17185,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#vjnfqcioza .gt_footnote_glyph {
+#vjnfqcioza .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -16962,13 +17193,13 @@ tbl_summary(
 <div id="vjnfqcioza" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4375</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2200</th>
   </tr>
   <body class="gt_table_body">
     <tr>
-      <td class="gt_row gt_left">model_hirisk2</td>
+      <td class="gt_row gt_left">markermodel_hirisk</td>
       <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
     </tr>
@@ -16988,7 +17219,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -17006,8 +17237,9 @@ You can see now that 133 patients who would otherwise be referred to adjuvant ch
 
 
 ```r
+# Table of recurrences for those at high risk from the marker model but not clinically
 tbl_summary(
-  lesson6d_pred %>% filter(model_hirisk2 == 1 & hi_risk == 0) %>%
+  lesson6d_pred %>% filter(markermodel_hirisk == 1 & hi_risk == 0) %>%
     select(recurrence),
   type = list(vars(recurrence) ~ "categorical")
 )
@@ -17098,6 +17330,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #fssxgtwmsf .gt_columns_top_border {
@@ -17181,6 +17414,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #fssxgtwmsf .gt_stub {
@@ -17299,7 +17533,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#fssxgtwmsf .gt_footnote_glyph {
+#fssxgtwmsf .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -17307,7 +17541,7 @@ tbl_summary(
 <div id="fssxgtwmsf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 345</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -17329,7 +17563,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -17342,8 +17576,9 @@ tbl_summary(
 </table></div><!--/html_preserve-->
 
 ```r
+# Table of recurrences for those at low risk from the marker model but high risk clinically
 tbl_summary(
-  lesson6d_pred %>% filter(model_hirisk2 == 0 & hi_risk == 1) %>%
+  lesson6d_pred %>% filter(markermodel_hirisk == 0 & hi_risk == 1) %>%
     select(recurrence),
   type = list(vars(recurrence) ~ "categorical")
 )
@@ -17434,6 +17669,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #njcjwgigkv .gt_columns_top_border {
@@ -17517,6 +17753,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #njcjwgigkv .gt_stub {
@@ -17635,7 +17872,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#njcjwgigkv .gt_footnote_glyph {
+#njcjwgigkv .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -17643,7 +17880,7 @@ tbl_summary(
 <div id="njcjwgigkv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 133</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -17665,7 +17902,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -17683,10 +17920,12 @@ As for imaging, if you try:
 
 
 ```r
+# Create model that includes imaging score
 imaging_model <- glm(recurrence ~ stage + factor(grade_numeric) + marker + imaging_score,
                      data = lesson6d,
                      family = "binomial")
 
+# Get predictions for imaging model
 lesson6d_pred <-
   augment(
     imaging_model,
@@ -17695,6 +17934,7 @@ lesson6d_pred <-
   ) %>%
   rename(imagingpred = .fitted, imagingpred_se = .se.fit)
 
+# Calculate AUC for imaging model
 roc(recurrence ~ imagingpred, data = lesson6d_pred)
 ```
 
@@ -17713,16 +17953,18 @@ You'll find that imaging is a statistically significant predictor of recurrence,
 
 
 ```r
+# Create variable indicating whether patient is high risk from imaging model
 lesson6d_pred <-
   lesson6d_pred %>%
   mutate(
-    model_hirisk3 = if_else(imagingpred >= 0.1, 1, 0)
+    imagingmodel_hirisk = if_else(imagingpred >= 0.1, 1, 0)
   )
 
+# Two-way table of high risk status, based on marker model and imaging model
 tbl_summary(
-  lesson6d_pred %>% select(model_hirisk3, model_hirisk2),
-  by = "model_hirisk2",
-  type = list(vars(model_hirisk3) ~ "categorical")
+  lesson6d_pred %>% select(imagingmodel_hirisk, markermodel_hirisk),
+  by = "markermodel_hirisk",
+  type = list(vars(imagingmodel_hirisk) ~ "categorical")
 )
 ```
 
@@ -17811,6 +18053,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #jzetravkvy .gt_columns_top_border {
@@ -17894,6 +18137,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #jzetravkvy .gt_stub {
@@ -18012,7 +18256,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#jzetravkvy .gt_footnote_glyph {
+#jzetravkvy .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -18020,13 +18264,13 @@ tbl_summary(
 <div id="jzetravkvy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4163</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2412</th>
   </tr>
   <body class="gt_table_body">
     <tr>
-      <td class="gt_row gt_left">model_hirisk3</td>
+      <td class="gt_row gt_left">imagingmodel_hirisk</td>
       <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
     </tr>
@@ -18046,7 +18290,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -18109,9 +18353,29 @@ The key thing to think about here is the comparisons you want to make. Drug a al
 
 ## Week 7
 
+
+```r
+# Week 7: load packages
+library(skimr)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(survminer)
+library(tidyverse)
+
+# Week 7: load data
+lesson7a <- readRDS(here::here("Data", "Week 7", "lesson7a.rds"))
+lesson7b <- readRDS(here::here("Data", "Week 7", "lesson7b.rds"))
+lesson7c <- readRDS(here::here("Data", "Week 7", "lesson7c.rds"))
+lesson7d <- readRDS(here::here("Data", "Week 7", "lesson7d.rds"))
+```
+
 ### lesson7a.rds
 
-**This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this data set and determine which, if any, variables are prognostic in this patient group.**
+**This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this dataset and determine which, if any, variables are prognostic in this patient group.**
 
 The data list the number of days of follow-up (survival_time), whether the patient was dead or alive at last follow-up (died), sex, age and various characteristics of the colon tumor.
 
@@ -18119,6 +18383,7 @@ First, create a "Surv" object to indicate that our outcome is a survival outcome
 
 
 ```r
+# Create survival outcome for time to death
 lesson7a_surv <- Surv(lesson7a$survival_time, lesson7a$died)
 ```
 
@@ -18126,6 +18391,7 @@ We can then use `survfit` and `skim` to get the median time for all patients and
 
 
 ```r
+# Median followup for all patients
 survfit(lesson7a_surv ~ 1)
 ```
 
@@ -18137,6 +18403,7 @@ survfit(lesson7a_surv ~ 1)
 ```
 
 ```r
+# Median followup for survivors
 lesson7a %>%
   filter(died == 0) %>%
   skim(survival_time)
@@ -18147,7 +18414,7 @@ lesson7a %>%
 ##  n obs: 330 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##       variable missing complete   n    mean     sd   p0  p25  p50    p75
 ##  survival_time       0      330 330 2389.38 336.23 1279 2162 2352 2625.5
 ##  p100     hist
@@ -18158,6 +18425,7 @@ To look at predictors of survival, we might conduct a multivariable regression:
 
 
 ```r
+# Multivariable Cox model for time to death
 coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + nodes,
       data = lesson7a)
 ```
@@ -18184,6 +18452,7 @@ This suggests that the presence of obstruction or adhesion influences survival, 
 
 
 ```r
+# Table of perforation rate
 tbl_summary(
   lesson7a %>% select(perforation)
 )
@@ -18274,6 +18543,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #myzlhqiesj .gt_columns_top_border {
@@ -18357,6 +18627,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #myzlhqiesj .gt_stub {
@@ -18475,7 +18746,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#myzlhqiesj .gt_footnote_glyph {
+#myzlhqiesj .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -18483,7 +18754,7 @@ tbl_summary(
 <div id="myzlhqiesj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 614</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -18497,7 +18768,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -18513,6 +18784,7 @@ You will see that less than 3% of patients had perforations, making it almost im
 
 
 ```r
+# Summarize number of nodes
 lesson7a %>%
   skim(nodes)
 ```
@@ -18522,7 +18794,7 @@ lesson7a %>%
 ##  n obs: 614 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##  variable missing complete   n mean   sd p0 p25 p50 p75 p100     hist
 ##     nodes      15      599 614 3.59 3.49  0   1   2 4.5   33 ▇▂▁▁▁▁▁▁
 ```
@@ -18531,6 +18803,7 @@ You can see that patients had up to 33 nodes affected, yet all but a handful had
 
 
 ```r
+# Exclude patients with > 10 notes
 lesson7a <-
   lesson7a %>%
   mutate(
@@ -18539,6 +18812,7 @@ lesson7a <-
     # This sets "n2" to missing for those with > 10 nodes
   )
 
+# Re-run cox model using "n2" (excluding patients with > 10 nodes)
 coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + n2, data = lesson7a)
 ```
 
@@ -18564,6 +18838,7 @@ This creates a new variable that excludes patients with large numbers of nodes f
 
 
 ```r
+# Categorize values of nodes removed
 lesson7a <-
   lesson7a %>%
   mutate(
@@ -18583,6 +18858,8 @@ The regression code would then be:
 
 
 ```r
+# Re-run Cox model using categorized variable for nodes
+# Since "node4" is categorical, we must use "factor()" with this variable
 coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + factor(node4),
       data = lesson7a)
 ```
@@ -18607,14 +18884,7 @@ coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + factor
 ##    (15 observations deleted due to missingness)
 ```
 
-```r
-# Since "node4" is categorical, we must use "factor()" with this variable
-```
 
-
-```
-## Warning: `.key` is deprecated
-```
 
 A model answer for this dataset might be:
 
@@ -18623,6 +18893,8 @@ A model answer for this dataset might be:
 >Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, 11+. In a Cox regression of the 599 patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
 
 </div>
+
+**Table 1.** Patient Characteristics
 
 <!--html_preserve--><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -18709,6 +18981,7 @@ A model answer for this dataset might be:
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #mexgygslyy .gt_columns_top_border {
@@ -18792,6 +19065,7 @@ A model answer for this dataset might be:
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #mexgygslyy .gt_stub {
@@ -18910,7 +19184,7 @@ A model answer for this dataset might be:
   font-size: 65%;
 }
 
-#mexgygslyy .gt_footnote_glyph {
+#mexgygslyy .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -18918,7 +19192,7 @@ A model answer for this dataset might be:
 <div id="mexgygslyy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 614</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -18963,7 +19237,7 @@ A model answer for this dataset might be:
       <td class="gt_row gt_center gt_striped">88 (14%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">Number of nodes</td>
+      <td class="gt_row gt_left">node4</td>
       <td class="gt_row gt_center"></td>
     </tr>
     <tr>
@@ -18992,7 +19266,7 @@ A model answer for this dataset might be:
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -19003,6 +19277,8 @@ A model answer for this dataset might be:
     </tr>
   </tfoot>
 </table></div><!--/html_preserve-->
+
+**Table 2.** Results of Cox proportional hazards model for time to death
 
 <!--html_preserve--><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -19089,6 +19365,7 @@ A model answer for this dataset might be:
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #zrfktzocbr .gt_columns_top_border {
@@ -19172,6 +19449,7 @@ A model answer for this dataset might be:
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #zrfktzocbr .gt_stub {
@@ -19290,7 +19568,7 @@ A model answer for this dataset might be:
   font-size: 65%;
 }
 
-#zrfktzocbr .gt_footnote_glyph {
+#zrfktzocbr .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -19299,8 +19577,8 @@ A model answer for this dataset might be:
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 599</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>HR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>HR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -19364,7 +19642,7 @@ A model answer for this dataset might be:
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -19384,6 +19662,7 @@ We can test the difference between groups by using the `survdiff` function:
 
 
 ```r
+# Test for difference in time to recurrence by hivolume
 survdiff(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume)
 ```
 
@@ -19399,10 +19678,6 @@ survdiff(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume)
 ##  Chisq= 2.5  on 1 degrees of freedom, p= 0.1
 ```
 
-```r
-# You can also put the "Surv" function directly inside other commands
-```
-
 
 
 We get a p-value of 0.11.
@@ -19411,6 +19686,7 @@ This is not sufficient evidence to conclude that high volume hospitals and more 
 
 
 ```r
+# Look at number of recurrence events in this dataset
 survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ 1)
 ```
 
@@ -19426,6 +19702,7 @@ You can then look at a Cox model:
 
 
 ```r
+# Cox model for time to recurrence
 lesson7b_cox <-
   coxph(Surv(time, recurrence) ~ hivolume, data = lesson7b)
 tbl_regression(lesson7b_cox, exponentiate = TRUE)
@@ -19516,6 +19793,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #qeykezvosr .gt_columns_top_border {
@@ -19599,6 +19877,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #qeykezvosr .gt_stub {
@@ -19717,7 +19996,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#qeykezvosr .gt_footnote_glyph {
+#qeykezvosr .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -19726,8 +20005,8 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 40</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>HR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>HR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -19743,7 +20022,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -19755,7 +20034,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   </tfoot>
 </table></div><!--/html_preserve-->
 
-You find that the hazard ratio for survival is 0.35. The 95% CI is 0.09, 1.35. Clearly, high volume hospitals seem to do better, this data set just isn’t large enough to see it. 
+You find that the hazard ratio for survival is 0.35. The 95% CI is 0.09, 1.35. Clearly, high volume hospitals seem to do better, this dataset just isn’t large enough to see it. 
 
 
 
@@ -19775,6 +20054,7 @@ Another way of doing this would be to estimate survival at say, 6, 12 and 18 mon
 
 
 ```r
+# Estimate survival at 6, 12 and 18 months
 summary(survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume),
         times = c(183, 365, 548))
 ```
@@ -19800,7 +20080,7 @@ You could report survival of 100%, 90%, and 85% in the high volume hospital comp
 
 ### lesson7c.rds
 
-**These are data from a randomized trial comparing no treatment, 5FU (a chemotherapy agent) and 5FU plus levamisole in the adjuvant treatment of colon cancer. Describe the data set. What conclusions would you draw about the effectiveness of the different treatments?**
+**These are data from a randomized trial comparing no treatment, 5FU (a chemotherapy agent) and 5FU plus levamisole in the adjuvant treatment of colon cancer. Describe the dataset. What conclusions would you draw about the effectiveness of the different treatments?**
 
 
 
@@ -19820,6 +20100,7 @@ In case you are wondering how I did all this, one key is to see that in the data
 
 
 ```r
+# Two-way table of group by treatment
 tbl_summary(
   lesson7c %>% select(group, treatment),
   by = "treatment"
@@ -19911,6 +20192,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #vscgzddlst .gt_columns_top_border {
@@ -19994,6 +20276,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #vscgzddlst .gt_stub {
@@ -20112,7 +20395,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#vscgzddlst .gt_footnote_glyph {
+#vscgzddlst .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -20120,7 +20403,7 @@ tbl_summary(
 <div id="vscgzddlst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>5FU</strong>, N = 310</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>5FU+Levamisole</strong>, N = 304</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>control</strong>, N = 315</th>
@@ -20156,7 +20439,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -20172,14 +20455,18 @@ When I did the graph, I used the variable "treatment" to get the names of the tr
 
 
 ```r
+# Create Kaplan-Meier plot by treatment group
 ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
            legend = "bottom")
 ```
+
+<img src="09-answers_files/figure-html/week7v-1.png" width="672" />
 
 When I did the Cox regression, I created dummy variables by typing:
 
 
 ```r
+# Create dummy variable for treatment
 lesson7c <-
   lesson7c %>%
   mutate(
@@ -20192,7 +20479,7 @@ Then it was straightforward to create the cox model and get the overall p-value 
 
 
 ```r
-# Cox model
+# Cox model with dummy variables
 coxph(Surv(survival_time, died) ~ fu + lev, data = lesson7c)
 ```
 
@@ -20209,7 +20496,7 @@ coxph(Surv(survival_time, died) ~ fu + lev, data = lesson7c)
 ```
 
 ```r
-# Overall p-value
+# Overall p-value for all 3 groups
 survdiff(Surv(survival_time, died) ~ group, data = lesson7c)
 ```
 
@@ -20225,11 +20512,11 @@ survdiff(Surv(survival_time, died) ~ group, data = lesson7c)
 ##  Chisq= 11.7  on 2 degrees of freedom, p= 0.003
 ```
 
-Any oncologists notice a problem here? It is this: Levamisole doesn’t work at all, but 5FU (obviously) does. It turns out that this whole data set (which I downloaded from the internet) was miscoded: it should have been: control, levamisole alone, levamisole + 5FU. Which goes to show the importance of checking your data.
+Any oncologists notice a problem here? It is this: Levamisole doesn’t work at all, but 5FU (obviously) does. It turns out that this whole dataset (which I downloaded from the internet) was miscoded: it should have been: control, levamisole alone, levamisole + 5FU. Which goes to show the importance of checking your data.
 
 ### lesson7d.rds
 
-**More data on time to recurrence by hospital volume. Given this data set, determine whether patients treated at a “high volume” hospital have a longer time to recurrence.**
+**More data on time to recurrence by hospital volume. Given this dataset, determine whether patients treated at a “high volume” hospital have a longer time to recurrence.**
 
 These data are comparable to lesson7b.rds, except with a longer length of follow-up. There are more recurrences (events) because more time has elapsed. So though the hazard ratio is very similar, and the number of patients identical, the confidence interval is much narrower and the results statistically significant. However, do be careful about drawing causal inferences: just because recurrence rates are lower at the high volume hospital, it doesn't mean that treatment at a high volume hospital reduces risk of recurrence. There may be other differences between hospitals (e.g. case mix).
 

@@ -2,12 +2,11 @@
 
 # Week 6
 
-## R Instructions
-
-For this lesson, make sure you have loaded the following packages.
+## Setting Up
 
 
 ```r
+# Load packages
 library(skimr)
 library(gtsummary)
 library(epiR)
@@ -16,9 +15,14 @@ library(pROC)
 library(gmodels)
 library(survival)
 library(tidyverse)
+
+# Load other data necessary to run Week 6 examples
+example6a <- readRDS(here::here("Data", "Week 6", "example6a.rds"))
 ```
 
-## Diagnostic Tests
+## R Instructions
+
+### Diagnostic Tests
 
 For this, we will use the `epi.tests` function from the `epiR` package.
 
@@ -26,20 +30,19 @@ Imagine you want to calculate the sensitivity. If you already know the counts fo
 
 
 ```r
-# Enter the data in the following order
+# Enter the data in the following order to create the 2x2 table
   # Disease-positive, test-positive
   # Disease-negative, test-positive
   # Disease-positive, test-negative
   # Disease-negative, test-negative
-
+tbl_disease_test <-
+  as.table(matrix(c(670, 202, 74, 640),
+                  nrow = 2, byrow = TRUE))
 # The matrix function allows you to enter in the numbers and convert to a table
 # "nrow = 2" indicates that there should be 2 rows in the table (test-positive and test-negative)
 # "byrow = TRUE" correctly assigns the columns as "disease-positive" first and "disease-negative" second
 
-tbl_disease_test <-
-  as.table(matrix(c(670, 202, 74, 640),
-                  nrow = 2, byrow = TRUE))
-
+# Use the "epi.tests" function with the new 2x2 table
 epi.tests(tbl_disease_test)
 ```
 
@@ -72,6 +75,7 @@ You can also use this function with a dataset that includes a binary variable in
 tbl_example6a <-
   matrix(rev(table(example6a$test, example6a$disease)), nrow = 2)
 
+# Calculate sensitivity and specificity from table above
 epi.tests(tbl_example6a)
 ```
 
@@ -100,11 +104,11 @@ See instructions from lecture 5 on how to get an area-under-the-curve.
 
 ## Assignments
 
-- lesson6a.rds and lesson6b.rds: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two data sets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
+- lesson6a.rds and lesson6b.rds: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
 
 - lesson6c.rds: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy? 
 
-- lesson6d.rds: This is a data set of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high-grade disease. Recently, two new variables have been added to the data set:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:
+- lesson6d.rds: This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high-grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:
     - How good is the current method for determining whether patients should be referred to adjuvant therapy?
     - It has been suggested that a statistical model using stage and grade would be better than the current risk grouping. How good do you think this model would be?
     - Does the marker add information to the model of stage and grade?
@@ -207,6 +211,7 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_columns_top_border {
@@ -290,6 +295,7 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_stub {
@@ -408,7 +414,7 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   font-size: 65%;
 }
 
-#iwrgxmosvm .gt_footnote_glyph {
+#iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -435,8 +441,6 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   
   
 </table></div><!--/html_preserve-->
-
-<br>
 
 So, I want you to give similar answers to the following research questions:
 

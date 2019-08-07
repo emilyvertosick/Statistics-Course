@@ -2,12 +2,11 @@
 
 # Week 4
 
-## R Instructions
-
-For this lesson, make sure you have loaded the following packages.
+## Setting Up
 
 
 ```r
+# Load packages
 library(skimr)
 library(gtsummary)
 library(epiR)
@@ -16,16 +15,26 @@ library(pROC)
 library(gmodels)
 library(survival)
 library(tidyverse)
+
+# Load other data necessary to run Week 4 examples
+lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
+lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
+example4a <- readRDS(here::here("Data", "Week 4", "example4a.rds"))
 ```
+
+## R Instructions
 
 Here are some of the commands you might use when analyzing epidemiological data or data that has a similar form. For example, if you had two variables "diet" (where 1 = high fat, 0 = low fat) and "hypertension", you could use the same forms of analysis regardless of whether you were investigating a randomized trial (dietary advice assigned randomly to patients) or an epidemiological study (patients interviewed about eating habits). You can also use these methods for lab data (e.g. proportion of mice with a knockout versus wild type who develop a tumor).
 
-## Tables
+### Tables
 
-The first command is the `tbl_summary` function from the `gtsummary` package which makes a table. This was introduced in the week 1 lesson. We are interested in "two-way" tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet. I’ll use the data set for assignment 3a ("lesson3a.rds") to illustrate these points.
+The first command is the `tbl_summary` function from the `gtsummary` package which makes a table. This was introduced in the week 1 lesson. We are interested in "two-way" tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet.
+
+I’ll use the dataset for assignment 3a ("lesson3a.rds") to illustrate these points. This dataset includes patients who had prior chemotherapy, patient sex, and whether patients had postoperative nausea and vomiting.
 
 
 ```r
+# Create twoway table of prior chemotherapy by sex
 tbl_summary(
   lesson3a %>% select(pc, sex),
   by = "sex",
@@ -118,6 +127,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_columns_top_border {
@@ -201,6 +211,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_stub {
@@ -319,7 +330,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#iwrgxmosvm .gt_footnote_glyph {
+#iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -327,7 +338,7 @@ tbl_summary(
 <div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 523</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 575</th>
   </tr>
@@ -358,7 +369,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="3">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -382,6 +393,7 @@ As mentioned in lesson 2, the `tbl_summary` command gives column percentages by 
 
 
 ```r
+# Create twoway table with "overall" column and display row percents
 tbl_summary(
   lesson3a %>% select(pc, sex),
   by = "sex",
@@ -476,6 +488,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #hlleqxdave .gt_columns_top_border {
@@ -559,6 +572,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #hlleqxdave .gt_stub {
@@ -677,7 +691,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#hlleqxdave .gt_footnote_glyph {
+#hlleqxdave .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -685,7 +699,7 @@ tbl_summary(
 <div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 523</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 575</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 1098</th>
@@ -721,7 +735,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -741,6 +755,7 @@ Now let’s use the marathon data ("lesson2a.rds") to do something more interest
 
 
 ```r
+# Create a new variable that indicates whether patients had marathon time <= 240 minutes
 lesson2a <-
   lesson2a %>%
   mutate(subfourhour =
@@ -767,6 +782,7 @@ We can compare sub-four hour marathons by sex using a chi-squared test (`chisq.t
 
 
 ```r
+# Create the table and then perform the chi-squared test
 table(lesson2a$subfourhour, lesson2a$sex) %>%
   chisq.test(correct = FALSE)
 ```
@@ -785,6 +801,7 @@ TODO: PENDING BEING ABLE TO DO THIS WITHOUT CONTINUITY CORRECTION
 
 
 ```r
+# Create two-way table including chi-squared p value
 tbl_summary(
   lesson2a %>% select(subfourhour, sex),
   by = "sex",
@@ -878,6 +895,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_columns_top_border {
@@ -961,6 +979,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_stub {
@@ -1079,7 +1098,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#kqtxbhydst .gt_footnote_glyph {
+#kqtxbhydst .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -1087,10 +1106,10 @@ tbl_summary(
 <div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 66</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 32</th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong><sup class="gt_footnote_glyph">2</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
   </tr>
   <body class="gt_table_body">
     <tr>
@@ -1117,7 +1136,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -1125,7 +1144,7 @@ tbl_summary(
           <br />
         </p>
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>2</em>
           </sup>
            
@@ -1149,7 +1168,7 @@ If you are interested only:
 
 Remember that the p value when we did a ttest (`t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)`) was 0.032. That is, the p value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.
 
-## Getting estimates: risk difference, risk ratio, odds ratio
+### Getting estimates: risk difference, risk ratio, odds ratio
 
 This table gives you a pvalue, but not an estimate. For this, we need the `epi.2by2` function from the `epiR` package. This function works for "cohort studies" and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the `epi.2by2` function the endpoint and the cohort (see below for more details). "Endpoint" will be something like cancer, response, progression, or running a marathon in under four hours. "Cohort" is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.
 
@@ -1161,6 +1180,7 @@ The `epi.2by2` function takes a two-way table with the endpoint and the cohort. 
 
 
 ```r
+# Create a two-way table
 table(lesson2a$sex, lesson2a$subfourhour)
 ```
 
@@ -1171,12 +1191,15 @@ table(lesson2a$sex, lesson2a$subfourhour)
 ##   1 21 11
 ```
 
-However, `epi.2by2` requires that the first row be the "exposed" group (in this case, sex == 1) and the first column be the "case" group (subfourhour == 1). By default, R will sort the table numerically, so by default the first table row will be the "non-exposed" group (sex == 0) and the first column will be the "control" group (subfourhour == 0).
+However, for the `epi.2by2` function, we need the first row to be the "exposed" group (in this case, sex == 1) and the first column be the "case" group (subfourhour == 1), so that we are comparing "exposed" to "non-exposed", rather than comparing "non-exposed" to "exposed."
 
-Since the rows and columns are out of order, we should first convert the table to the correct format.
+By default, R will sort the table numerically, so by default the first table row will be the "non-exposed" group (sex == 0) and the first column will be the "control" group (subfourhour == 0).
+
+Since the rows and columns are out of order, we will first convert the table to the correct format. You do not need to remember this code - you can simply copy and paste, and replace the dataset name ("lesson2a") and variable names ("sex", "subfourhour") as necessary.
 
 
 ```r
+# This code creates the table with the correct format
 matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2)
 ```
 
@@ -1197,6 +1220,7 @@ You will see here that now both the rows and the columns are reversed in this ta
 
 
 ```r
+# Apply the epi.2by2 function to the table in the correct format
 epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
 ```
 
@@ -1247,6 +1271,7 @@ Here is another one to look through:
 
 
 ```r
+# Another example using "epi.2by2" function
 epi.2by2(matrix(rev(table(example4a$toxin, example4a$cancer)), nrow = 2))
 ```
 
@@ -1279,10 +1304,11 @@ Here it is easier to see that the "toxin" is the exposure and "cancer" is whethe
 
 **Exact statistics**
 
-Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p-value. However, using the `fisher.test` function gives the exact pvalue.
+Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p-value. However, using the `fisher.test` function gives the exact pvalue. You do not need to reverse the table for the `fisher.test` function.
 
 
 ```r
+# Calculate p value from fisher's exact test
 fisher.test(table(example4a$toxin, example4a$cancer))
 ```
 
@@ -1300,14 +1326,11 @@ fisher.test(table(example4a$toxin, example4a$cancer))
 ##   9.760631
 ```
 
-```r
-# Note - you do not need to reverse the row/column order for the "fisher.test" function
-```
-
-Similar to the chi-squared test, you can also get the Fisher's exact pvalue using the `tbl_summary` and `add_p` functions, by specifying `test = "fisher.test"` for the variable of interest.
+Similar to the chi-squared test, you can also get the Fisher's exact pvalue using the `tbl_summary` and `add_p` functions, by specifying `test = "fisher.test"` for the variable of interest. 
 
 
 ```r
+# Create formatted table with p value from fisher's exact test
 tbl_summary(
   example4a %>% select(toxin, cancer),
   by = "cancer",
@@ -1401,6 +1424,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #qzjvxzfwte .gt_columns_top_border {
@@ -1484,6 +1508,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #qzjvxzfwte .gt_stub {
@@ -1602,7 +1627,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#qzjvxzfwte .gt_footnote_glyph {
+#qzjvxzfwte .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -1610,10 +1635,10 @@ tbl_summary(
 <div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 10</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 6</th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong><sup class="gt_footnote_glyph">2</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
   </tr>
   <body class="gt_table_body">
     <tr>
@@ -1640,7 +1665,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -1648,7 +1673,7 @@ tbl_summary(
           <br />
         </p>
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>2</em>
           </sup>
            
@@ -1674,7 +1699,8 @@ You can use the `filter` command to select rows to perform ttests on subgroups o
 
 
 ```r
-t.test(nv ~ sex, data = lesson3a %>% filter(pc==1))
+# Perform a t-test only among patients with prior chemotherapy
+t.test(nv ~ sex, data = lesson3a %>% filter(pc == 1))
 ```
 
 ```
@@ -1695,7 +1721,8 @@ To perform the ttest on those without prior chemotherapy, switch the group you a
 
 
 ```r
-t.test(nv ~ sex, data = lesson3a %>% filter(pc==0))
+# t-test for patients without prior chemotherapy
+t.test(nv ~ sex, data = lesson3a %>% filter(pc == 0))
 ```
 
 ```
@@ -1718,9 +1745,9 @@ This week’s assignment concerns techniques developed to assess epidemiologic d
 
 Try to do the ones in bold, get to the non-bolded ones if you can.
 
-- **lesson4a.rds: This is a data set on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
+- **lesson4a.rds: This is a dataset on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
 - lesson4b.rds: An epidemiological study of meat consumption and hypertension in older Americans. Meat consumption was defined as low, medium or high depending on whether subjects ate less than 3, 3 to 7 or 7 + meals with meat in per week. Does meat consumption lead to hypertension?
-- lesson4c.rds: This is a data set from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up? 
+- lesson4c.rds: This is a dataset from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up? 
 - **lesson4d.rds:  Patients with lung cancer are randomized to receive either chemotherapy regimen a or b and assessed for tumor response. Which regimen would you recommend to a patient? Do the treatments work differently depending on age or sex?**
 - lesson4e.rds: This is a lab study of two candidate tumor-suppressor genes (gene1 and gene2). Wild-type mice are compared with mice that have gene1 knocked-out, gene2 knocked-out or both. The presence of tumors is measured after 30 days. Do the genes suppress cancer?
 

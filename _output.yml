@@ -3,6 +3,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       download: ["pdf"]
+  edit: https://github.mskcc.org/vertosie/Statistics-Course/edit/%s
 rmarkdown::pdf_document:
   keep_tex: yes
   latex_engine: xelatex

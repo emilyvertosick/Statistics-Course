@@ -14,7 +14,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#byjclophcj .gt_table {
+#wezemhibji .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -39,13 +39,13 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* table.border.bottom.color */
 }
 
-#byjclophcj .gt_heading {
+#wezemhibji .gt_heading {
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
 }
 
-#byjclophcj .gt_title {
+#wezemhibji .gt_title {
   color: #000000;
   font-size: 125%;
   /* heading.title.font.size */
@@ -56,7 +56,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   border-bottom-width: 0;
 }
 
-#byjclophcj .gt_subtitle {
+#wezemhibji .gt_subtitle {
   color: #000000;
   font-size: 85%;
   /* heading.subtitle.font.size */
@@ -67,7 +67,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   border-top-width: 0;
 }
 
-#byjclophcj .gt_bottom_border {
+#wezemhibji .gt_bottom_border {
   border-bottom-style: solid;
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
@@ -76,7 +76,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* heading.border.bottom.color */
 }
 
-#byjclophcj .gt_column_spanner {
+#wezemhibji .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
@@ -84,7 +84,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   padding-bottom: 4px;
 }
 
-#byjclophcj .gt_col_heading {
+#wezemhibji .gt_col_heading {
   color: #000000;
   background-color: #FFFFFF;
   /* column_labels.background.color */
@@ -95,25 +95,26 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
-#byjclophcj .gt_columns_top_border {
+#wezemhibji .gt_columns_top_border {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#byjclophcj .gt_columns_bottom_border {
+#wezemhibji .gt_columns_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
 }
 
-#byjclophcj .gt_sep_right {
+#wezemhibji .gt_sep_right {
   border-right: 5px solid #FFFFFF;
 }
 
-#byjclophcj .gt_group_heading {
+#wezemhibji .gt_group_heading {
   padding: 8px;
   color: #000000;
   background-color: #FFFFFF;
@@ -137,7 +138,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   vertical-align: middle;
 }
 
-#byjclophcj .gt_empty_group_heading {
+#wezemhibji .gt_empty_group_heading {
   padding: 0.5px;
   color: #000000;
   background-color: #FFFFFF;
@@ -161,33 +162,34 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   vertical-align: middle;
 }
 
-#byjclophcj .gt_striped {
+#wezemhibji .gt_striped {
   background-color: #f2f2f2;
 }
 
-#byjclophcj .gt_from_md > :first-child {
+#wezemhibji .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#byjclophcj .gt_from_md > :last-child {
+#wezemhibji .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#byjclophcj .gt_row {
+#wezemhibji .gt_row {
   padding: 8px;
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
-#byjclophcj .gt_stub {
+#wezemhibji .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #A8A8A8;
   padding-left: 12px;
 }
 
-#byjclophcj .gt_summary_row {
+#wezemhibji .gt_summary_row {
   color: #000000;
   background-color: #FFFFFF;
   /* summary_row.background.color */
@@ -197,7 +199,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* summary_row.text_transform */
 }
 
-#byjclophcj .gt_grand_summary_row {
+#wezemhibji .gt_grand_summary_row {
   color: #000000;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
@@ -207,19 +209,19 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* grand_summary_row.text_transform */
 }
 
-#byjclophcj .gt_first_summary_row {
+#wezemhibji .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#byjclophcj .gt_first_grand_summary_row {
+#wezemhibji .gt_first_grand_summary_row {
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #A8A8A8;
 }
 
-#byjclophcj .gt_table_body {
+#wezemhibji .gt_table_body {
   border-top-style: solid;
   /* table_body.border.top.style */
   border-top-width: 2px;
@@ -234,7 +236,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* table_body.border.bottom.color */
 }
 
-#byjclophcj .gt_footnotes {
+#wezemhibji .gt_footnotes {
   border-top-style: solid;
   /* footnotes.border.top.style */
   border-top-width: 2px;
@@ -243,7 +245,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* footnotes.border.top.color */
 }
 
-#byjclophcj .gt_footnote {
+#wezemhibji .gt_footnote {
   font-size: 90%;
   /* footnote.font.size */
   margin: 0px;
@@ -251,7 +253,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* footnote.padding */
 }
 
-#byjclophcj .gt_sourcenotes {
+#wezemhibji .gt_sourcenotes {
   border-top-style: solid;
   /* sourcenotes.border.top.style */
   border-top-width: 2px;
@@ -260,48 +262,48 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* sourcenotes.border.top.color */
 }
 
-#byjclophcj .gt_sourcenote {
+#wezemhibji .gt_sourcenote {
   font-size: 90%;
   /* sourcenote.font.size */
   padding: 4px;
   /* sourcenote.padding */
 }
 
-#byjclophcj .gt_center {
+#wezemhibji .gt_center {
   text-align: center;
 }
 
-#byjclophcj .gt_left {
+#wezemhibji .gt_left {
   text-align: left;
 }
 
-#byjclophcj .gt_right {
+#wezemhibji .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#byjclophcj .gt_font_normal {
+#wezemhibji .gt_font_normal {
   font-weight: normal;
 }
 
-#byjclophcj .gt_font_bold {
+#wezemhibji .gt_font_bold {
   font-weight: bold;
 }
 
-#byjclophcj .gt_font_italic {
+#wezemhibji .gt_font_italic {
   font-style: italic;
 }
 
-#byjclophcj .gt_super {
+#wezemhibji .gt_super {
   font-size: 65%;
 }
 
-#byjclophcj .gt_footnote_glyph {
+#wezemhibji .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="byjclophcj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="wezemhibji" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1">Characteristic</th>
@@ -335,7 +337,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#sgiwtzpiid .gt_table {
+#aqqgvfvbmi .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -360,13 +362,13 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* table.border.bottom.color */
 }
 
-#sgiwtzpiid .gt_heading {
+#aqqgvfvbmi .gt_heading {
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
 }
 
-#sgiwtzpiid .gt_title {
+#aqqgvfvbmi .gt_title {
   color: #000000;
   font-size: 125%;
   /* heading.title.font.size */
@@ -377,7 +379,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   border-bottom-width: 0;
 }
 
-#sgiwtzpiid .gt_subtitle {
+#aqqgvfvbmi .gt_subtitle {
   color: #000000;
   font-size: 85%;
   /* heading.subtitle.font.size */
@@ -388,7 +390,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   border-top-width: 0;
 }
 
-#sgiwtzpiid .gt_bottom_border {
+#aqqgvfvbmi .gt_bottom_border {
   border-bottom-style: solid;
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
@@ -397,7 +399,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* heading.border.bottom.color */
 }
 
-#sgiwtzpiid .gt_column_spanner {
+#aqqgvfvbmi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
@@ -405,7 +407,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   padding-bottom: 4px;
 }
 
-#sgiwtzpiid .gt_col_heading {
+#aqqgvfvbmi .gt_col_heading {
   color: #000000;
   background-color: #FFFFFF;
   /* column_labels.background.color */
@@ -416,25 +418,26 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
-#sgiwtzpiid .gt_columns_top_border {
+#aqqgvfvbmi .gt_columns_top_border {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#sgiwtzpiid .gt_columns_bottom_border {
+#aqqgvfvbmi .gt_columns_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
 }
 
-#sgiwtzpiid .gt_sep_right {
+#aqqgvfvbmi .gt_sep_right {
   border-right: 5px solid #FFFFFF;
 }
 
-#sgiwtzpiid .gt_group_heading {
+#aqqgvfvbmi .gt_group_heading {
   padding: 8px;
   color: #000000;
   background-color: #FFFFFF;
@@ -458,7 +461,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   vertical-align: middle;
 }
 
-#sgiwtzpiid .gt_empty_group_heading {
+#aqqgvfvbmi .gt_empty_group_heading {
   padding: 0.5px;
   color: #000000;
   background-color: #FFFFFF;
@@ -482,33 +485,34 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   vertical-align: middle;
 }
 
-#sgiwtzpiid .gt_striped {
+#aqqgvfvbmi .gt_striped {
   background-color: #f2f2f2;
 }
 
-#sgiwtzpiid .gt_from_md > :first-child {
+#aqqgvfvbmi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sgiwtzpiid .gt_from_md > :last-child {
+#aqqgvfvbmi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sgiwtzpiid .gt_row {
+#aqqgvfvbmi .gt_row {
   padding: 8px;
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
-#sgiwtzpiid .gt_stub {
+#aqqgvfvbmi .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #A8A8A8;
   padding-left: 12px;
 }
 
-#sgiwtzpiid .gt_summary_row {
+#aqqgvfvbmi .gt_summary_row {
   color: #000000;
   background-color: #FFFFFF;
   /* summary_row.background.color */
@@ -518,7 +522,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* summary_row.text_transform */
 }
 
-#sgiwtzpiid .gt_grand_summary_row {
+#aqqgvfvbmi .gt_grand_summary_row {
   color: #000000;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
@@ -528,19 +532,19 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* grand_summary_row.text_transform */
 }
 
-#sgiwtzpiid .gt_first_summary_row {
+#aqqgvfvbmi .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#sgiwtzpiid .gt_first_grand_summary_row {
+#aqqgvfvbmi .gt_first_grand_summary_row {
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #A8A8A8;
 }
 
-#sgiwtzpiid .gt_table_body {
+#aqqgvfvbmi .gt_table_body {
   border-top-style: solid;
   /* table_body.border.top.style */
   border-top-width: 2px;
@@ -555,7 +559,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* table_body.border.bottom.color */
 }
 
-#sgiwtzpiid .gt_footnotes {
+#aqqgvfvbmi .gt_footnotes {
   border-top-style: solid;
   /* footnotes.border.top.style */
   border-top-width: 2px;
@@ -564,7 +568,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* footnotes.border.top.color */
 }
 
-#sgiwtzpiid .gt_footnote {
+#aqqgvfvbmi .gt_footnote {
   font-size: 90%;
   /* footnote.font.size */
   margin: 0px;
@@ -572,7 +576,7 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* footnote.padding */
 }
 
-#sgiwtzpiid .gt_sourcenotes {
+#aqqgvfvbmi .gt_sourcenotes {
   border-top-style: solid;
   /* sourcenotes.border.top.style */
   border-top-width: 2px;
@@ -581,48 +585,48 @@ I have provided a data set ("exam 01") in two formats: R (.rds) and Excel. The e
   /* sourcenotes.border.top.color */
 }
 
-#sgiwtzpiid .gt_sourcenote {
+#aqqgvfvbmi .gt_sourcenote {
   font-size: 90%;
   /* sourcenote.font.size */
   padding: 4px;
   /* sourcenote.padding */
 }
 
-#sgiwtzpiid .gt_center {
+#aqqgvfvbmi .gt_center {
   text-align: center;
 }
 
-#sgiwtzpiid .gt_left {
+#aqqgvfvbmi .gt_left {
   text-align: left;
 }
 
-#sgiwtzpiid .gt_right {
+#aqqgvfvbmi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sgiwtzpiid .gt_font_normal {
+#aqqgvfvbmi .gt_font_normal {
   font-weight: normal;
 }
 
-#sgiwtzpiid .gt_font_bold {
+#aqqgvfvbmi .gt_font_bold {
   font-weight: bold;
 }
 
-#sgiwtzpiid .gt_font_italic {
+#aqqgvfvbmi .gt_font_italic {
   font-style: italic;
 }
 
-#sgiwtzpiid .gt_super {
+#aqqgvfvbmi .gt_super {
   font-size: 65%;
 }
 
-#sgiwtzpiid .gt_footnote_glyph {
+#aqqgvfvbmi .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="sgiwtzpiid" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="aqqgvfvbmi" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1">Characteristic</th>
@@ -658,7 +662,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#nhxzcdoboj .gt_table {
+#dtsdjzyaqa .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -683,13 +687,13 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   /* table.border.bottom.color */
 }
 
-#nhxzcdoboj .gt_heading {
+#dtsdjzyaqa .gt_heading {
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
 }
 
-#nhxzcdoboj .gt_title {
+#dtsdjzyaqa .gt_title {
   color: #000000;
   font-size: 125%;
   /* heading.title.font.size */
@@ -700,7 +704,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   border-bottom-width: 0;
 }
 
-#nhxzcdoboj .gt_subtitle {
+#dtsdjzyaqa .gt_subtitle {
   color: #000000;
   font-size: 85%;
   /* heading.subtitle.font.size */
@@ -711,7 +715,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   border-top-width: 0;
 }
 
-#nhxzcdoboj .gt_bottom_border {
+#dtsdjzyaqa .gt_bottom_border {
   border-bottom-style: solid;
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
@@ -720,7 +724,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   /* heading.border.bottom.color */
 }
 
-#nhxzcdoboj .gt_column_spanner {
+#dtsdjzyaqa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
@@ -728,7 +732,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   padding-bottom: 4px;
 }
 
-#nhxzcdoboj .gt_col_heading {
+#dtsdjzyaqa .gt_col_heading {
   color: #000000;
   background-color: #FFFFFF;
   /* column_labels.background.color */
@@ -739,25 +743,26 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
-#nhxzcdoboj .gt_columns_top_border {
+#dtsdjzyaqa .gt_columns_top_border {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#nhxzcdoboj .gt_columns_bottom_border {
+#dtsdjzyaqa .gt_columns_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #A8A8A8;
 }
 
-#nhxzcdoboj .gt_sep_right {
+#dtsdjzyaqa .gt_sep_right {
   border-right: 5px solid #FFFFFF;
 }
 
-#nhxzcdoboj .gt_group_heading {
+#dtsdjzyaqa .gt_group_heading {
   padding: 8px;
   color: #000000;
   background-color: #FFFFFF;
@@ -781,7 +786,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   vertical-align: middle;
 }
 
-#nhxzcdoboj .gt_empty_group_heading {
+#dtsdjzyaqa .gt_empty_group_heading {
   padding: 0.5px;
   color: #000000;
   background-color: #FFFFFF;
@@ -805,33 +810,34 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   vertical-align: middle;
 }
 
-#nhxzcdoboj .gt_striped {
+#dtsdjzyaqa .gt_striped {
   background-color: #f2f2f2;
 }
 
-#nhxzcdoboj .gt_from_md > :first-child {
+#dtsdjzyaqa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nhxzcdoboj .gt_from_md > :last-child {
+#dtsdjzyaqa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nhxzcdoboj .gt_row {
+#dtsdjzyaqa .gt_row {
   padding: 8px;
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
-#nhxzcdoboj .gt_stub {
+#dtsdjzyaqa .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #A8A8A8;
   padding-left: 12px;
 }
 
-#nhxzcdoboj .gt_summary_row {
+#dtsdjzyaqa .gt_summary_row {
   color: #000000;
   background-color: #FFFFFF;
   /* summary_row.background.color */
@@ -841,7 +847,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   /* summary_row.text_transform */
 }
 
-#nhxzcdoboj .gt_grand_summary_row {
+#dtsdjzyaqa .gt_grand_summary_row {
   color: #000000;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
@@ -851,19 +857,19 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   /* grand_summary_row.text_transform */
 }
 
-#nhxzcdoboj .gt_first_summary_row {
+#dtsdjzyaqa .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #A8A8A8;
 }
 
-#nhxzcdoboj .gt_first_grand_summary_row {
+#dtsdjzyaqa .gt_first_grand_summary_row {
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #A8A8A8;
 }
 
-#nhxzcdoboj .gt_table_body {
+#dtsdjzyaqa .gt_table_body {
   border-top-style: solid;
   /* table_body.border.top.style */
   border-top-width: 2px;
@@ -878,7 +884,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   /* table_body.border.bottom.color */
 }
 
-#nhxzcdoboj .gt_footnotes {
+#dtsdjzyaqa .gt_footnotes {
   border-top-style: solid;
   /* footnotes.border.top.style */
   border-top-width: 2px;
@@ -887,7 +893,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   /* footnotes.border.top.color */
 }
 
-#nhxzcdoboj .gt_footnote {
+#dtsdjzyaqa .gt_footnote {
   font-size: 90%;
   /* footnote.font.size */
   margin: 0px;
@@ -895,7 +901,7 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   /* footnote.padding */
 }
 
-#nhxzcdoboj .gt_sourcenotes {
+#dtsdjzyaqa .gt_sourcenotes {
   border-top-style: solid;
   /* sourcenotes.border.top.style */
   border-top-width: 2px;
@@ -904,48 +910,48 @@ Some colleagues of yours are working on a project to predict preoperatively whic
   /* sourcenotes.border.top.color */
 }
 
-#nhxzcdoboj .gt_sourcenote {
+#dtsdjzyaqa .gt_sourcenote {
   font-size: 90%;
   /* sourcenote.font.size */
   padding: 4px;
   /* sourcenote.padding */
 }
 
-#nhxzcdoboj .gt_center {
+#dtsdjzyaqa .gt_center {
   text-align: center;
 }
 
-#nhxzcdoboj .gt_left {
+#dtsdjzyaqa .gt_left {
   text-align: left;
 }
 
-#nhxzcdoboj .gt_right {
+#dtsdjzyaqa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nhxzcdoboj .gt_font_normal {
+#dtsdjzyaqa .gt_font_normal {
   font-weight: normal;
 }
 
-#nhxzcdoboj .gt_font_bold {
+#dtsdjzyaqa .gt_font_bold {
   font-weight: bold;
 }
 
-#nhxzcdoboj .gt_font_italic {
+#dtsdjzyaqa .gt_font_italic {
   font-style: italic;
 }
 
-#nhxzcdoboj .gt_super {
+#dtsdjzyaqa .gt_super {
   font-size: 65%;
 }
 
-#nhxzcdoboj .gt_footnote_glyph {
+#dtsdjzyaqa .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="nhxzcdoboj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="dtsdjzyaqa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1">Covariate</th>

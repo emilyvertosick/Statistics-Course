@@ -2,12 +2,11 @@
 
 # Week 5
 
-## R Instructions
-
-For this lesson, make sure you have loaded the following packages.
+## Setting Up
 
 
 ```r
+# Load packages
 library(skimr)
 library(gtsummary)
 library(epiR)
@@ -16,9 +15,19 @@ library(pROC)
 library(gmodels)
 library(survival)
 library(tidyverse)
+
+# Load other data necessary to run Week 5 examples
+lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
+lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
+lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
+lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
+example5a <- readRDS(here::here("Data", "Week 5", "example5a.rds"))
+example5b <- readRDS(here::here("Data", "Week 5", "example5b.rds"))
 ```
 
-## Correlation
+## R Instructions
+
+### Correlation
 
 Correlating two or more variables is very easy: just use the `cor` function and then the dataset and selected variables.
 
@@ -26,6 +35,7 @@ For example, if you use the "lesson2b.rds" dataset and correlate the first four 
 
 
 ```r
+# Display the correlation between variables l01, l02, l03 and l04
 cor(lesson2b %>% select(l01, l02, l03, l04))
 ```
 
@@ -37,10 +47,6 @@ cor(lesson2b %>% select(l01, l02, l03, l04))
 ## l04 0.5395075 0.7148299 0.8383224 1.0000000
 ```
 
-```r
-# The "select" function allows you to keep specific columns from your dataset
-```
-
 
 
 This shows, for example, that the correlation between l01 and l02 is 0.79 and the correlation between l02 and l04 is 0.71. From the table you can easily see that pain scores taken on consecutive days are more strongly correlated than those taken two or three days apart.
@@ -49,6 +55,7 @@ If the data are skewed, you can try a regression based on ranks, what is known a
 
 
 ```r
+# Calculate the Spearman correlation for skewed data
 cor(lesson2b %>% select(l01, l02, l03, l04), method = "spearman")
 ```
 
@@ -60,7 +67,7 @@ cor(lesson2b %>% select(l01, l02, l03, l04), method = "spearman")
 ## l04 0.5443327 0.7220277 0.8324906 1.0000000
 ```
 
-## Linear regression
+### Linear regression
 
 Linear regression is when you try to predict a continuous variable. The function to use is `lm`.
 
@@ -70,6 +77,7 @@ Let's use the data from "lesson3d.rds" as an example dataset. We want to see if 
 
 
 ```r
+# Linear regression model for a, predictors are sex, age and b
 lm(a ~ sex + age + b, data = lesson3d)
 ```
 
@@ -87,7 +95,10 @@ This gives you the very basic information from the regression, but you can get m
 
 
 ```r
+# Save out linear regression model
 rom_model <- lm(a ~ sex + age + b, data = lesson3d)
+
+# Show additional model results
 summary(rom_model)
 ```
 
@@ -122,17 +133,36 @@ Let's take a single patient: a 54 year old woman with a range of motion of 301 b
 ```r
 # The "augment" function creates a dataset of all patients included in the model
 # and all variables included in the model, as well as the predictions
-# The ".fitted" column is your prediction
+lesson3d_pred <- augment(rom_model)
 
-lesson3d_pred <-
-  augment(rom_model,
-          newdata = lesson3d)
+# Print out new dataset to show output from "augment"
+# The ".fitted" column is your prediction
+# You can ignore all columns to the right of ".fitted"
+lesson3d_pred
+```
+
+```
+## # A tibble: 34 x 11
+##        a   sex   age     b .fitted .se.fit  .resid   .hat .sigma .cooksd
+##    <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>   <dbl>
+##  1   247     1    24   263    307.   11.4  -60.1   0.201    22.5 4.47e-1
+##  2   324     0    73   339    334.    9.09  -9.79  0.129    25.7 6.38e-3
+##  3   351     0    40   361    363.    7.78 -11.9   0.0947   25.6 6.39e-3
+##  4   232     0    74   234    263.    8.49 -31.1   0.113    25.0 5.40e-2
+##  5   328     0    51   329    337.    5.89  -8.68  0.0542   25.7 1.78e-3
+##  6   380     0    26   376    379.   10.2    0.966 0.164    25.7 8.53e-5
+##  7   302     0    54   297    314.    5.13 -12.0   0.0411   25.6 2.50e-3
+##  8   254     0    39   249    288.    7.29 -34.4   0.0832   24.8 4.57e-2
+##  9   250     1    65   244    277.    9.17 -26.5   0.131    25.2 4.80e-2
+## 10   252     0    81   246    268.    9.58 -16.1   0.144    25.5 1.97e-2
+## # ... with 24 more rows, and 1 more variable: .std.resid <dbl>
 ```
 
 To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the `tbl_regression` function from the `gtsummary` package:
 
 
 ```r
+# Print formatted table of regression results
 tbl_regression(rom_model)
 ```
 
@@ -221,6 +251,7 @@ tbl_regression(rom_model)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_columns_top_border {
@@ -304,6 +335,7 @@ tbl_regression(rom_model)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_stub {
@@ -422,7 +454,7 @@ tbl_regression(rom_model)
   font-size: 65%;
 }
 
-#iwrgxmosvm .gt_footnote_glyph {
+#iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -432,7 +464,7 @@ tbl_regression(rom_model)
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 34</strong></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>Coefficient</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -460,7 +492,7 @@ tbl_regression(rom_model)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -478,6 +510,7 @@ For example, for sex, the 95% CI is -18 to 24, meaning that women might plausibl
 
 
 ```r
+# Summary of linear regression results
 summary(rom_model)
 ```
 
@@ -510,7 +543,7 @@ At the bottom of the `summary` readout there are a few miscellaneous tidbits:
 
 - The "Multiple R-squared" value (often referred to as just "r squared") tells you how good a predictor it is on a scale from 0 to 1. We’ll discuss the meaning of r squared in more detail, but it is defined as the proportion of variation that you can explain using your model. 
 
-## Graphing the data
+### Graphing the data
 
 Graphing the data is done using the `ggplot` function from the `ggplot2` package. In short, the main inputs for the `ggplot` function are your dataset, the x variable and the y variable. You can then create a number of different plots using this data.
 
@@ -518,6 +551,7 @@ To create a scatterplot, the `geom_point` function is added to the `ggplot` func
 
 
 ```r
+# Create a scatterplot of race time by age
 ggplot(data = lesson5a,
        aes(x = age, y = rt)) +
   geom_point()
@@ -527,7 +561,7 @@ ggplot(data = lesson5a,
 
 This scatterplot from the "lesson5a.rds" data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.
 
-## Logistic regression
+### Logistic regression
 
 Logistic regression is used when the variable you wish to predict is binary (e.g. relapsed or not). The function to use is `glm`, with the option `family = "binomial"` to indicate that our outcome variable is binary.
 
@@ -537,7 +571,10 @@ We'll use the dataset "lesson4d.rds" as an example.
 
 
 ```r
+# Create a logistic regression model for response, predictors are age, sex and group
 response_model <- glm(response ~ age + sex + group, data = lesson4d, family = "binomial")
+
+# Look at additional model results
 summary(response_model)
 ```
 
@@ -572,11 +609,13 @@ summary(response_model)
 
 
 
-By default, R gives the coefficients in logits. To easily see the coefficients and 95% confidence intervals for all covariates as odds ratio, we can again use the `tbl_regression` function. In this case, we use the option `exponentiate = TRUE`, which indicates that odds ratios (not logits) should be presented. (You can also use this function to see the formatted logit results by using the `exponentiate = FALSE` option.)
+By default, R gives the coefficients in logits for logistic regression models. To easily see the coefficients and 95% confidence intervals for all covariates as odds ratio, we can again use the `tbl_regression` function. In this case, we use the option `exponentiate = TRUE`, which indicates that odds ratios (not logits) should be presented. (You can also use this function to see the formatted logit results by using the `exponentiate = FALSE` option.)
 
 
 ```r
+# Create logistic regression model
 glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
+  # Pass to tbl_regression to show formatted table with odds ratios
   tbl_regression(exponentiate = TRUE)
 ```
 
@@ -665,6 +704,7 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #hlleqxdave .gt_columns_top_border {
@@ -748,6 +788,7 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #hlleqxdave .gt_stub {
@@ -866,7 +907,7 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   font-size: 65%;
 }
 
-#hlleqxdave .gt_footnote_glyph {
+#hlleqxdave .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -875,8 +916,8 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 398</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -904,7 +945,7 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -922,10 +963,32 @@ The problem here is that you can’t use any of these data to work out an indivi
 
 
 ```r
+# Get predictions from logistic regression model
+# type.predict = "response" gives predicted probabilities
 lesson4d_pred <-
-  augment(response_model,
-          newdata = lesson4d,
-          type.predict = "response")
+  augment(response_model, type.predict = "response")
+
+# Look at the dataset containing predicted probabilities (.fitted variable)
+# You can ignore all columns to the right of ".fitted"
+lesson4d_pred
+```
+
+```
+## # A tibble: 398 x 12
+##    .rownames response   age   sex group .fitted .se.fit .resid    .hat
+##    <chr>        <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>  <dbl>   <dbl>
+##  1 1                1    47     0     0   0.469  0.0391  1.23  0.00612
+##  2 2                0    47     0     0   0.469  0.0391 -1.12  0.00612
+##  3 3                1    25     0     0   0.595  0.0558  1.02  0.0129 
+##  4 4                0    53     0     1   0.358  0.0440 -0.941 0.00841
+##  5 5                1    64     0     0   0.372  0.0600  1.41  0.0154 
+##  6 6                0    50     0     1   0.374  0.0416 -0.968 0.00738
+##  7 7                1    34     0     1   0.465  0.0456  1.24  0.00838
+##  8 8                0    68     0     1   0.282  0.0601 -0.814 0.0178 
+##  9 9                0    49     0     0   0.457  0.0404 -1.11  0.00659
+## 10 10               0    44     0     1   0.407  0.0393 -1.02  0.00641
+## # ... with 388 more rows, and 3 more variables: .sigma <dbl>,
+## #   .cooksd <dbl>, .std.resid <dbl>
 ```
 
 NOTE: The "lesson4d_pred" dataset only includes 398 patients. If you look at the table above, you will see at the top that only 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.
@@ -936,14 +999,46 @@ One thing to be careful about is categorical variables. Imagine that you had the
 
 
 ```r
+# Create a model for recurrence using the categorical variable "stage"
 recurrence_model <-
   glm(recurrence ~ age + factor(stage), data = example5a, family = "binomial")
 
+# Show the results of this model
 summary(recurrence_model)
+```
+
+```
+## 
+## Call:
+## glm(formula = recurrence ~ age + factor(stage), family = "binomial", 
+##     data = example5a)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.8330  -0.8557  -0.5887   1.0807   2.1078  
+## 
+## Coefficients:
+##                 Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)    -3.410438   0.309203 -11.030  < 2e-16 ***
+## age             0.042057   0.005531   7.604 2.87e-14 ***
+## factor(stage)2  0.996064   0.152510   6.531 6.53e-11 ***
+## factor(stage)3  1.655345   0.260107   6.364 1.96e-10 ***
+## factor(stage)4  1.771858   0.292687   6.054 1.41e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1369.7  on 1063  degrees of freedom
+## Residual deviance: 1212.9  on 1059  degrees of freedom
+## AIC: 1222.9
+## 
+## Number of Fisher Scoring iterations: 3
 ```
 
 
 ```r
+# Formatted to show odds ratios
 recurrence_model %>%
   tbl_regression(exponentiate = TRUE)
 ```
@@ -1033,6 +1128,7 @@ recurrence_model %>%
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_columns_top_border {
@@ -1116,6 +1212,7 @@ recurrence_model %>%
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_stub {
@@ -1234,7 +1331,7 @@ recurrence_model %>%
   font-size: 65%;
 }
 
-#kqtxbhydst .gt_footnote_glyph {
+#kqtxbhydst .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -1243,8 +1340,8 @@ recurrence_model %>%
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 1064</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -1290,7 +1387,7 @@ recurrence_model %>%
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -1312,6 +1409,7 @@ Here we look at our "response" model on the logit scale.
 
 
 ```r
+# Look at details of "response" logistic regression model
 summary(response_model)
 ```
 
@@ -1351,13 +1449,13 @@ Firstly, note that the p values are the same, what differs is the coefficients. 
 
 To convert, type ``exp(-0.5841) / (exp(-0.5841)+1)`` to get a probability of 35.8%.
 
-## Getting the area-under-the-curve
+### Getting the area-under-the-curve
 
 Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), doesn’t matter for our purposes.
 
 
 ```r
-# The "roc" function comes from the "pROC" package
+# Calculate the AUC using the "roc" function
 roc(cancer ~ marker, data = example5b)
 ```
 
@@ -1378,7 +1476,7 @@ First, get the AUC for the model with age only:
 
 
 ```r
-# Original model with age
+# Calculate AUC of original model with age
 roc(cancer ~ age, data = example5b)
 ```
 
@@ -1395,7 +1493,7 @@ Now, calculate the AUC for the model with age and the marker:
 
 
 ```r
-# Model adding marker
+# Calculate AUC of model with age and marker
 roc(cancer ~ age + marker, data = example5b)
 ```
 
@@ -1433,8 +1531,8 @@ Regression is a very important part of statistics: I probably do more regression
 
 - _lesson5f.rds: These are the distance records for Frisbee for various ages in males. What is the relationship between age and how far a man can throw a Frisbee?_
 
-- __lesson5g.rds: You’ve seen this data set before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no statistically significant difference between regimens (you can test this if you like).  However, do the treatments work differently depending on sex? Do they work differently by age?__
+- __lesson5g.rds: You’ve seen this dataset before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no statistically significant difference between regimens (you can test this if you like).  However, do the treatments work differently depending on sex? Do they work differently by age?__
 
-- __lesson5h.rds: PSA is used to screen for prostate cancer. In this data set, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict cancer? How accurate would this test be? (NOTE: these data were taken from a real data set, but I played around with them a bit, so please don’t draw any conclusions about PSA testing from this assignment).__
+- __lesson5h.rds: PSA is used to screen for prostate cancer. In this dataset, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict cancer? How accurate would this test be? (NOTE: these data were taken from a real dataset, but I played around with them a bit, so please don’t draw any conclusions about PSA testing from this assignment).__
 
 - lesson5i.rds: This is a randomized trial of behavioral therapy in cancer patients with depressed mood (note that higher score means better mood). Patients are randomized to no treatment (group 1), informal contact with a volunteer (group 2) or behavior therapy with a trained therapist (group 3). What would you conclude about the effectiveness of these treatments?

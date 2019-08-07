@@ -1,4 +1,4 @@
-```{r setup3, include=FALSE}
+```{r setup3, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 # Load packages
@@ -40,12 +40,11 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 # Week 3
 
-## R Instructions
+## Setting up
 
-For this lesson, make sure you have loaded the following packages.
+```{r loadpkgs3, echo = TRUE, warning = FALSE, message = FALSE}
 
-```{r loadpkgs3, echo = TRUE, eval = FALSE}
-
+# Load packages
 library(skimr)
 library(gtsummary)
 library(epiR)
@@ -55,9 +54,18 @@ library(gmodels)
 library(survival)
 library(tidyverse)
 
+# The "trial" and "midwest" datasets are available automatically 
+# after you load the packages above
+
+# Load other data necessary to run Week 3 examples
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+example3a <- readRDS(here::here("Data", "Week 3", "example3a.rds"))
+
 ```
 
-## Hypothesis Testing
+## R Instructions
+
+### Hypothesis Testing
 
 For this week's assignment, you will need to learn the following functions:
 
@@ -65,7 +73,7 @@ For this week's assignment, you will need to learn the following functions:
 - `wilcox.test`
 - `binom.test`
 
-### **t-test**
+#### **t-test**
 
 This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statistician normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for just about any situation. 
 
@@ -75,6 +83,7 @@ In a simple unpaired case, for example, testing marker levels between a drug and
 
 ```{r section3a}
 
+# t-test for marker levels between treatment arms
 t.test(marker ~ trt, data = trial, var.equal = TRUE)
 
 ```
@@ -85,6 +94,7 @@ A paired test, for example, comparing blood pressure taken before and after an i
 
 ```{r section3b}
 
+# paired t-test for blood pressure between "before" and "after" groups
 t.test(bp ~ when, data = example3a, var.equal = TRUE, paired = TRUE)
 
 ```
@@ -93,6 +103,7 @@ A single sample test comparing the mean of a group of observations with some hyp
 
 ```{r section3c}
 
+# t-test assessing whether the rate of college education is different than 32%
 t.test(midwest$percollege, mu = 32)
 
 ```
@@ -101,6 +112,7 @@ Let’s look at the print out from a t-test in more detail:
 
 ```{r section3e}
 
+# t-test for difference in horsepower for manual vs automatic transmission
 t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 ```
@@ -109,11 +121,14 @@ This example is testing whether there is a difference in horsepower (hp) between
 
 The `t.test` function reports the data and variables you are testing, following by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.
 
-While for an unpaired test, the `t.test` command prints the group means in each group, you may want to report the difference between means. (For a paired test, the difference in means is reported.) The group means are stored in the `estimate` attribute of the `t.test` results.
+While for an unpaired test, the `t.test` command prints the group means in each group, you may want to report the difference between means. The group means are stored in the `t.test` results under `estimate`.
 
 ```{r section3f1}
 
+# perform t-test and save out results as "hp_test"
 hp_test <- t.test(hp ~ am, data = mtcars, var.equal = TRUE)
+
+# show the group means from "hp_test"
 hp_test$estimate
 
 ```
@@ -122,8 +137,20 @@ To calculate the difference in means between group 0 and group 1, you can use th
 
 ```{r section3f2}
 
-hp_test$estimate[[1]] - hp_test$estimate[[2]]
-hp_test$estimate[[2]] - hp_test$estimate[[1]]
+# You can save out the means for each group
+
+# The first value is mean in group 0
+# ("mean in group 0" is printed first in results)
+mean_group0 <- hp_test$estimate[[1]]
+
+# The second value is mean in group 1
+mean_group1 <- hp_test$estimate[[2]]
+
+# Subtract the mean in group 1 from the mean in group 0
+mean_group0 - mean_group1
+
+# Subtract the mean in group 0 from the mean in group 1
+mean_group1 - mean_group0
 
 ```
 
@@ -131,7 +158,7 @@ You don't need to worry about the t statistic or degrees of freedom (df). The nu
 
 Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is `r round(hp_test$estimate[[1]] - hp_test$estimate[[2]], 1)` higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between `r round(abs(hp_test$conf.int[[1]]), 1)` lower or `r round(abs(hp_test$conf.int[[2]]), 1)` higher in the automatic group vs the manual group.
 
-### **Non-parametric methods**
+#### **Non-parametric methods**
 
 These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance. 
 
@@ -139,6 +166,7 @@ Unpaired case, for example, do marker levels differ between the drug and placebo
 
 ```{r section3g2}
 
+# non-parametric test for difference in marker levels by treatment group
 wilcox.test(marker ~ trt, data = trial, correct = FALSE, paired = FALSE)
 
 ```
@@ -147,7 +175,8 @@ Paired case, for example, does an intervention cause a change in a patient's blo
 
 ```{r section3h}
 
-wilcox.test(bp ~ when, data = example3a, correct = FALSE, exact = FALSE, paired = FALSE)
+# paired non-parametric test for difference in "before" and "after" blood pressure measurements
+wilcox.test(bp ~ when, data = example3a, correct = FALSE, paired = FALSE)
 
 ```
 
@@ -155,13 +184,14 @@ Single sample, for example, is the rate of college education in the midwest diff
 
 ```{r section3i}
 
+# non-parametric test - is rate of college education different from 32%?
 wilcox.test(midwest$percollege, mu = 32, correct = FALSE)
 
 ```
 
 Note here that you don’t get any parameters for the groups such as means, medians or standard deviations. You also don’t get an estimate for the difference between groups.
 
-### **The binomial test**
+#### **The binomial test**
 
 The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p value). 
 
@@ -169,19 +199,29 @@ The first argument of `binom.test` is the number of successes, then the number o
 
 ```{r section3j}
 
+# Compare a proportion to a hypothesized value "p"
 binom.test(60, 100, p = 0.5)
 
 ```
 
-The following tests whether the proportion of women (sex = 1) in the dataset is different than 50%. `sum(lesson2a$sex)` counts the number of observations where sex is 1. `nrow(lesson2a)` gives the total number of observations in the `lesson2a` dataset.
+You can also use `binom.test` on data from a dataset. For example, if we want to test whether the proportion of women (sex = 1) is different from 50%:
 
-```{r section3k1}
+```{r section3k}
 
-binom.test(sum(lesson1a$sex), nrow(lesson1a), p = 0.5)
+# The "sum" function adds up the number of observations where sex == 1 (women)
+nwomen <- sum(lesson1a$sex)
+nwomen
+
+# The "nrow" function (for "number of rows") counts the total number of observations
+ntotal <- nrow(lesson1a)
+ntotal
+
+# Compare a proportion of patients in a dataset to a hypothesized value "p"
+binom.test(nwomen, ntotal, p = 0.5)
 
 ```
 
-```{r section3k2, echo = FALSE}
+```{r section3l, echo = FALSE, purl = FALSE}
 
 sex_test <- binom.test(sum(lesson1a$sex), nrow(lesson1a), p = 0.5)
 

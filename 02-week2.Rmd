@@ -3,7 +3,7 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
-```{r setup2, include=FALSE}
+```{r setup2, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 # Load packages
@@ -46,12 +46,11 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 # Week 2
 
-## R Instructions
+## Setting Up
 
-For this lesson, make sure you have loaded the following packages.
+```{r loadpkgs2, echo = TRUE, results = "hide", warning = FALSE, message = FALSE, purl = TRUE}
 
-```{r loadpkgs2, echo = TRUE, eval = FALSE}
-
+# Load packages
 library(skimr)
 library(gtsummary)
 library(epiR)
@@ -61,21 +60,22 @@ library(gmodels)
 library(survival)
 library(tidyverse)
 
+# Load data necessary to run Week 2 examples
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+
 ```
+
+## R Instructions
+
+### Looking at your data
 
 There are several ways to see the variables in your dataset.
 
 By click on the blue circle with an arrow next to the name of your dataset in the "environment" tab, you can see the variable name, the variable type, the values from the first several observations, and any label or format attributes associated with the variable.
 
-You can see the same information in the console window using the `str` function.
+![ ](images\environment_window.jpg)
 
-```{r section2a}
-
-str(lesson1a)
-
-```
-
-The commands you might think about using for the data sets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
+The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
 
 ### Summarizing continuous variables
 
@@ -83,23 +83,25 @@ The function `skim` will give summary statistics for specified variables.
 
 ```{r section2b}
 
+# Summary of "age" variable from "lesson1a" dataset
 lesson1a %>% skim(age)
 
 ```
 
-So you can tell you have data on age for 386 patients ("obs" standards for "observations"), the mean age was 49 years, standard deviation of the mean was 13.8.
+So you can tell you have data on age for 386 patients ("n" is the number of observations), the mean age was 49 years, standard deviation of the mean was 13.8.
 
 The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was `r skim(lesson1a$age)$value[[6]]` and the oldest was `r skim(lesson1a$age)$value[[10]]`. "p50" is the median (`r skim(lesson1a$age)$value[[8]]` years), and the interquartile range is reported under "p25" and "p75" (`r skim(lesson1a$age)$value[[7]]`, `r skim(lesson1a$age)$value[[9]]`).
 
 ```{r section2c}
 
+# Summary of "age" within men and women separately
 lesson1a %>%
   group_by(sex) %>%
   skim(age)
 
 ```
 
-The `group_by` function allows you to group your data and perform analyses separately group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
+The `group_by` function allows you to group your data and perform analyses separately by group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
 
 ### Centiles
 
@@ -107,16 +109,18 @@ You can get R to give you centiles directly by using the `quantile` function. Th
 
 ```{r section2d}
 
+# Get centiles for "age" variable
 quantile(lesson1a$age, na.rm = TRUE)
 
 ```
 
-The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the medium and quartiles. The second row gives you the actual values. So you could report this as “Median age was `r quantile(lesson1a$age, na.rm = TRUE)[[3]]` (quartiles `r quantile(lesson1a$age, na.rm = TRUE)[[2]]`, `r quantile(lesson1a$age, na.rm = TRUE)[[4]]`)."
+The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the median and quartiles. The second row gives you the actual values. So you could report this as “Median age was `r quantile(lesson1a$age, na.rm = TRUE)[[3]]` (quartiles `r quantile(lesson1a$age, na.rm = TRUE)[[2]]`, `r quantile(lesson1a$age, na.rm = TRUE)[[4]]`)."
 
 You aren't restricted to quartiles with the `quantile` function. For example, you can use the code below to give you the 11th, 45th and 78th centile, as well as 91.5 centile, which would be the 915th highest value in a dataset of 1000 observations. 
 
 ```{r section2e}
 
+# Get specific centiles (11th, 45th, 78th, 91.5th) for "age" variable
 quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
 
 ```
@@ -127,14 +131,15 @@ The `tbl_summary` function (from the `gtsummary` package) gives a frequency tabl
 
 ```{r section2f, warning = FALSE}
 
+# Get formatted one-way frequency table
 tbl_summary(
-  lesson1a %>% select(sex), # Select data and variables to include
+  lesson1a %>% select(sex), # Specify data to use and variables to include
   type = list(vars(sex) ~ "categorical") # Show all levels of binary variables
 )
 
 ```
 
-```{r section2g, echo = FALSE, results = "hide"}
+```{r section2g, echo = FALSE, results = "hide", purl = FALSE}
 
 tbl_sex <-
   tbl_summary(
@@ -186,6 +191,7 @@ The `tbl_summary` function can also give a two-way table, for example, a table t
 
 ```{r section2h, warning = FALSE}
 
+# Create a formatted two-way summary table
 tbl_summary(
   lesson1a %>% select(sex, y), # Select both variables
   by = "y", # The "by" option specifies which will be the column variable
@@ -202,6 +208,7 @@ You can use the `add_overall` function to show the total across all sites as wel
 
 ```{r section2i}
 
+# Create a formatted two-way summary table and add column for all patients
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = "y",
@@ -221,6 +228,7 @@ By default `tbl_summary` gives column percents (here, the percentage of patients
 
 ```{r section2j, warning = FALSE}
 
+# The two-way summary table can give you row percent instead of column percent
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = "y",
@@ -232,7 +240,7 @@ tbl_summary(
 
 <br>
 
-This shows that, for example, `r inline_text(tbl_sex_y3, variable = "sex", level = "0", column = "harding")` men and `r inline_text(tbl_sex_y3, variable = "sex", level = "1", column = "harding")` women had operations at the "Harding" site.
+This shows that, for example, `r inline_text(tbl_sex_y3, variable = "sex", level = "0", column = "harding")` of men and `r inline_text(tbl_sex_y3, variable = "sex", level = "1", column = "harding")` of women had operations at the "Harding" site.
 
 Passing a dataset to the `count` function with no additional options will count the number of total observations.
 
@@ -273,6 +281,7 @@ First, run the following code.
 
 ```{r section2m}
 
+# This code creates a histogram of the "age" variable
 ggplot(data = lesson1a,
        aes(x = age)) +
   geom_histogram()
@@ -281,22 +290,24 @@ ggplot(data = lesson1a,
 
 `ggplot` indicates that you want to create a graph. The dataset "lesson1a" is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
 
-One of things that R does is to choose the number of bars for you. You can set this yourself by using the `bins` option. Try setting the number of bins to 40.
+One of the things that R does is to choose the number of bars for you. Notice how the graph looks "lumpy". The output also displays a message that tells you that the default number of bars (also called "bins") is 30 and suggests to "pick a better value". This is because you are breaking the data up into too many small pieces.
+
+You can pick the number of bars yourself by using the `bins` option. Try setting the number of bins to 20, which will break the data into fewer pieces.
 
 ```{r section2n}
 
+# Here is the same histogram, setting the number of bins to 20
 ggplot(data = lesson1a,
        aes(x = age)) +
-  geom_histogram(bins = 40)
+  geom_histogram(bins = 20)
 
 ```
-
-The graph looks "lumpy" because you are breaking the data up into too many small pieces.
 
 The following code will superimpose a curve for the normal distribution.
 
 ```{r section2o}
 
+# Here is the histogram with 20 bins and density curve overlay
 ggplot(data = lesson1a,
        aes(x = age)) +
   geom_histogram(aes(y = ..density..), bins = 20) +
@@ -311,14 +322,16 @@ Only read this if you are feeling really keen...
 ```{r section2p, warning = FALSE}
 
 # The "ci" function is from the "gmodels" package
+# This gives the mean of age and 90% confidence interval
 ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
 
 ```
 
-This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age)`).
+This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age, na.rm = TRUE)`).
 
 ```{r section2q, warning = FALSE}
 
+# The "ci.binom" function gives the same information as "ci" but is used for binary variables
 ci.binom(lesson1a$sex, na.rm = TRUE)
 
 ```
@@ -331,6 +344,7 @@ R can be used as a calculator:
 
 ```{r section2r}
 
+# Multiplication
 7*7
 
 ```
@@ -339,6 +353,7 @@ R can be used as a calculator:
 
 ```{r section2s}
 
+# Natural logarithm
 log(2.71828)
 
 ```
@@ -347,6 +362,7 @@ log(2.71828)
 
 ```{r section2t}
 
+# Inverse natural logarithm
 exp(1)
 
 ```
@@ -355,6 +371,7 @@ exp(1)
 
 ```{r section2u}
 
+# Base 10 logarithm
 log10(100)
 
 ```
@@ -363,6 +380,7 @@ log10(100)
 
 ```{r section2v}
 
+# Cosine
 cos(45)
 
 ```
@@ -373,7 +391,10 @@ Some of the functions give useful statistical constants.
 
 ```{r section2w}
 
+# Probability that an observation will be less than mean + 1 standard deviations
 pnorm(1)
+
+# Probability that an observation will be less than mean - 0.5 standard deviations
 pnorm(-0.5)
 
 ```
@@ -386,14 +407,17 @@ If you had a pain score with a mean of 5 and a standard deviation of 2, you coul
 
 ```{r section2x}
 
+# Probability that an observation will be less than mean + 1.96
 pnorm(1.96)
+
+# Probability that an observation will be less than mean - 1.96
 pnorm(-1.96)
 
 ```
 
 `pnorm(1.96)` gives 0.975 and `pnorm(-1.96)` gives 0.025. So 97.5% of observations are less than 1.96 standard deviations greater than the mean, and 2.5% are less than 1.96 standard deviations lower than the mean. In other words, 95% of observations are within 1.96 standard deviations of the mean.
 
-## Assignment
+## Assignments
 
 It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
 
@@ -401,10 +425,8 @@ I am phrasing the questions in ordinary English, pretty much as you would do if 
 
 All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
 
-### Assignments
-
 - lesson2a.rds: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe
-- lesson2b.rds: Postoperative pain (this is a similar data set as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
+- lesson2b.rds: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
 - lesson2c.rds: This is data on 242 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
 - lesson2d.rds: Cost of a minor medical procedure. Summarize cost.
 - lesson2e.rds: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.

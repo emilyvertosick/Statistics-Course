@@ -7,12 +7,11 @@ editor_options:
 
 # Week 2
 
-## R Instructions
-
-For this lesson, make sure you have loaded the following packages.
+## Setting Up
 
 
 ```r
+# Load packages
 library(skimr)
 library(gtsummary)
 library(epiR)
@@ -21,52 +20,22 @@ library(pROC)
 library(gmodels)
 library(survival)
 library(tidyverse)
+
+# Load data necessary to run Week 2 examples
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
 ```
+
+## R Instructions
+
+### Looking at your data
 
 There are several ways to see the variables in your dataset.
 
 By click on the blue circle with an arrow next to the name of your dataset in the "environment" tab, you can see the variable name, the variable type, the values from the first several observations, and any label or format attributes associated with the variable.
 
-You can see the same information in the console window using the `str` function.
+![ ](images\environment_window.jpg)
 
-
-```r
-str(lesson1a)
-```
-
-```
-## Classes 'tbl_df', 'tbl' and 'data.frame':	386 obs. of  11 variables:
-##  $ id : num  541836 285383 332777 566828 193254 ...
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ sex: num  0 1 0 1 1 1 0 0 1 0 ...
-##   ..- attr(*, "label")= chr "1 if woman, 0 if man"
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ age: num  33 55 52 53 57 31 54 26 52 66 ...
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ p1 : num  0 0 0 0 0 0 0 0 0 0 ...
-##   ..- attr(*, "label")= chr "pain at time 1 postop"
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ p2 : num  0 1 0 0 1 0 1 0 0 1 ...
-##   ..- attr(*, "label")= chr "pain at time 2 postop"
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ p3 : num  0 1 3 0 2 2 4 1 0 1 ...
-##   ..- attr(*, "label")= chr "pain at time 3 postop"
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ p4 : num  0 1 3 1 3 2 1 0 0 1 ...
-##   ..- attr(*, "label")= chr "pain at time 4 postop"
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ t  : num  0 3 6 1 6 4 6 1 0 3 ...
-##   ..- attr(*, "label")= chr "total pain score times 1 - 4"
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ x  : num  2 2 1 2 2 1 1 1 2 1 ...
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-##  $ y  : chr  "campus" "campus" "campus" "campus" ...
-##   ..- attr(*, "format.stata")= chr "%9s"
-##  $ z  : num  1 1 NA NA 1 3 1 1 3 1 ...
-##   ..- attr(*, "format.stata")= chr "%9.0g"
-```
-
-The commands you might think about using for the data sets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
+The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
 
 ### Summarizing continuous variables
 
@@ -74,6 +43,7 @@ The function `skim` will give summary statistics for specified variables.
 
 
 ```r
+# Summary of "age" variable from "lesson1a" dataset
 lesson1a %>% skim(age)
 ```
 
@@ -82,17 +52,18 @@ lesson1a %>% skim(age)
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##  variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
 ##       age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```
 
-So you can tell you have data on age for 386 patients ("obs" standards for "observations"), the mean age was 49 years, standard deviation of the mean was 13.8.
+So you can tell you have data on age for 386 patients ("n" is the number of observations), the mean age was 49 years, standard deviation of the mean was 13.8.
 
 The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was 19 and the oldest was 86. "p50" is the median (49 years), and the interquartile range is reported under "p25" and "p75" (40, 59).
 
 
 ```r
+# Summary of "age" within men and women separately
 lesson1a %>%
   group_by(sex) %>%
   skim(age)
@@ -104,7 +75,7 @@ lesson1a %>%
 ##  n variables: 11 
 ##  group variables: sex 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##  sex variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##    0      age       0      181 181 49.07 13.61 19  40  49  58   82
 ##    1      age       0      205 205 49.85 13.9  21  40  49  60   86
@@ -113,7 +84,7 @@ lesson1a %>%
 ##  ▂▆▇▇▆▆▂▁
 ```
 
-The `group_by` function allows you to group your data and perform analyses separately group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
+The `group_by` function allows you to group your data and perform analyses separately by group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
 
 ### Centiles
 
@@ -121,6 +92,7 @@ You can get R to give you centiles directly by using the `quantile` function. Th
 
 
 ```r
+# Get centiles for "age" variable
 quantile(lesson1a$age, na.rm = TRUE)
 ```
 
@@ -129,12 +101,13 @@ quantile(lesson1a$age, na.rm = TRUE)
 ##   19   40   49   59   86
 ```
 
-The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the medium and quartiles. The second row gives you the actual values. So you could report this as “Median age was 49 (quartiles 40, 59)."
+The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the median and quartiles. The second row gives you the actual values. So you could report this as “Median age was 49 (quartiles 40, 59)."
 
 You aren't restricted to quartiles with the `quantile` function. For example, you can use the code below to give you the 11th, 45th and 78th centile, as well as 91.5 centile, which would be the 915th highest value in a dataset of 1000 observations. 
 
 
 ```r
+# Get specific centiles (11th, 45th, 78th, 91.5th) for "age" variable
 quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
 ```
 
@@ -149,8 +122,9 @@ The `tbl_summary` function (from the `gtsummary` package) gives a frequency tabl
 
 
 ```r
+# Get formatted one-way frequency table
 tbl_summary(
-  lesson1a %>% select(sex), # Select data and variables to include
+  lesson1a %>% select(sex), # Specify data to use and variables to include
   type = list(vars(sex) ~ "categorical") # Show all levels of binary variables
 )
 ```
@@ -240,6 +214,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_columns_top_border {
@@ -323,6 +298,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_stub {
@@ -441,7 +417,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#iwrgxmosvm .gt_footnote_glyph {
+#iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -449,7 +425,7 @@ tbl_summary(
 <div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -471,7 +447,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="2">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -495,6 +471,7 @@ The `tbl_summary` function can also give a two-way table, for example, a table t
 
 
 ```r
+# Create a formatted two-way summary table
 tbl_summary(
   lesson1a %>% select(sex, y), # Select both variables
   by = "y", # The "by" option specifies which will be the column variable
@@ -587,6 +564,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #hlleqxdave .gt_columns_top_border {
@@ -670,6 +648,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #hlleqxdave .gt_stub {
@@ -788,7 +767,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#hlleqxdave .gt_footnote_glyph {
+#hlleqxdave .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -796,7 +775,7 @@ tbl_summary(
 <div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40</th>
@@ -830,7 +809,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="5">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -850,6 +829,7 @@ You can use the `add_overall` function to show the total across all sites as wel
 
 
 ```r
+# Create a formatted two-way summary table and add column for all patients
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = "y",
@@ -945,6 +925,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_columns_top_border {
@@ -1028,6 +1009,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_stub {
@@ -1146,7 +1128,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#kqtxbhydst .gt_footnote_glyph {
+#kqtxbhydst .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -1154,7 +1136,7 @@ tbl_summary(
 <div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40</th>
@@ -1192,7 +1174,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="6">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -1212,6 +1194,7 @@ By default `tbl_summary` gives column percents (here, the percentage of patients
 
 
 ```r
+# The two-way summary table can give you row percent instead of column percent
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = "y",
@@ -1305,6 +1288,7 @@ tbl_summary(
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #qzjvxzfwte .gt_columns_top_border {
@@ -1388,6 +1372,7 @@ tbl_summary(
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #qzjvxzfwte .gt_stub {
@@ -1506,7 +1491,7 @@ tbl_summary(
   font-size: 65%;
 }
 
-#qzjvxzfwte .gt_footnote_glyph {
+#qzjvxzfwte .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -1514,7 +1499,7 @@ tbl_summary(
 <div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39</th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40</th>
@@ -1548,7 +1533,7 @@ tbl_summary(
     <tr class="gt_footnotes">
       <td colspan="5">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -1562,7 +1547,7 @@ tbl_summary(
 
 <br>
 
-This shows that, for example, 8.3% men and 12% women had operations at the "Harding" site.
+This shows that, for example, 8.3% of men and 12% of women had operations at the "Harding" site.
 
 Passing a dataset to the `count` function with no additional options will count the number of total observations.
 
@@ -1624,6 +1609,7 @@ First, run the following code.
 
 
 ```r
+# This code creates a histogram of the "age" variable
 ggplot(data = lesson1a,
        aes(x = age)) +
   geom_histogram()
@@ -1637,23 +1623,25 @@ ggplot(data = lesson1a,
 
 `ggplot` indicates that you want to create a graph. The dataset "lesson1a" is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
 
-One of things that R does is to choose the number of bars for you. You can set this yourself by using the `bins` option. Try setting the number of bins to 40.
+One of the things that R does is to choose the number of bars for you. Notice how the graph looks "lumpy". The output also displays a message that tells you that the default number of bars (also called "bins") is 30 and suggests to "pick a better value". This is because you are breaking the data up into too many small pieces.
+
+You can pick the number of bars yourself by using the `bins` option. Try setting the number of bins to 20, which will break the data into fewer pieces.
 
 
 ```r
+# Here is the same histogram, setting the number of bins to 20
 ggplot(data = lesson1a,
        aes(x = age)) +
-  geom_histogram(bins = 40)
+  geom_histogram(bins = 20)
 ```
 
 <img src="02-week2_files/figure-html/section2n-1.png" width="672" />
-
-The graph looks "lumpy" because you are breaking the data up into too many small pieces.
 
 The following code will superimpose a curve for the normal distribution.
 
 
 ```r
+# Here is the histogram with 20 bins and density curve overlay
 ggplot(data = lesson1a,
        aes(x = age)) +
   geom_histogram(aes(y = ..density..), bins = 20) +
@@ -1669,6 +1657,7 @@ Only read this if you are feeling really keen...
 
 ```r
 # The "ci" function is from the "gmodels" package
+# This gives the mean of age and 90% confidence interval
 ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
 ```
 
@@ -1677,10 +1666,11 @@ ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
 ## 49.4844560 48.3301266 50.6387853  0.7000938
 ```
 
-This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age)`).
+This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age, na.rm = TRUE)`).
 
 
 ```r
+# The "ci.binom" function gives the same information as "ci" but is used for binary variables
 ci.binom(lesson1a$sex, na.rm = TRUE)
 ```
 
@@ -1697,6 +1687,7 @@ R can be used as a calculator:
 
 
 ```r
+# Multiplication
 7*7
 ```
 
@@ -1708,6 +1699,7 @@ R can be used as a calculator:
 
 
 ```r
+# Natural logarithm
 log(2.71828)
 ```
 
@@ -1719,6 +1711,7 @@ log(2.71828)
 
 
 ```r
+# Inverse natural logarithm
 exp(1)
 ```
 
@@ -1730,6 +1723,7 @@ exp(1)
 
 
 ```r
+# Base 10 logarithm
 log10(100)
 ```
 
@@ -1741,6 +1735,7 @@ log10(100)
 
 
 ```r
+# Cosine
 cos(45)
 ```
 
@@ -1754,6 +1749,7 @@ Some of the functions give useful statistical constants.
 
 
 ```r
+# Probability that an observation will be less than mean + 1 standard deviations
 pnorm(1)
 ```
 
@@ -1762,6 +1758,7 @@ pnorm(1)
 ```
 
 ```r
+# Probability that an observation will be less than mean - 0.5 standard deviations
 pnorm(-0.5)
 ```
 
@@ -1777,6 +1774,7 @@ If you had a pain score with a mean of 5 and a standard deviation of 2, you coul
 
 
 ```r
+# Probability that an observation will be less than mean + 1.96
 pnorm(1.96)
 ```
 
@@ -1785,6 +1783,7 @@ pnorm(1.96)
 ```
 
 ```r
+# Probability that an observation will be less than mean - 1.96
 pnorm(-1.96)
 ```
 
@@ -1794,7 +1793,7 @@ pnorm(-1.96)
 
 `pnorm(1.96)` gives 0.975 and `pnorm(-1.96)` gives 0.025. So 97.5% of observations are less than 1.96 standard deviations greater than the mean, and 2.5% are less than 1.96 standard deviations lower than the mean. In other words, 95% of observations are within 1.96 standard deviations of the mean.
 
-## Assignment
+## Assignments
 
 It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
 
@@ -1802,10 +1801,8 @@ I am phrasing the questions in ordinary English, pretty much as you would do if 
 
 All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
 
-### Assignments
-
 - lesson2a.rds: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe
-- lesson2b.rds: Postoperative pain (this is a similar data set as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
+- lesson2b.rds: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
 - lesson2c.rds: This is data on 242 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
 - lesson2d.rds: Cost of a minor medical procedure. Summarize cost.
 - lesson2e.rds: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.

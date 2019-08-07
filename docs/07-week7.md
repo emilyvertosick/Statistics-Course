@@ -2,12 +2,11 @@
 
 # Week 7
 
-## R Instructions
-
-For this lesson, make sure you have the following packages downloaded and loaded.
+## Setting Up
 
 
 ```r
+# Load packages
 library(skimr)
 library(gtsummary)
 library(epiR)
@@ -17,13 +16,18 @@ library(gmodels)
 library(survival)
 library(survminer)
 library(tidyverse)
+
+# Load other data necessary to run Week 7 examples
+example7a <- readRDS(here::here("Data", "Week 7", "example7a.rds"))
 ```
 
-## Time to event data
+## R Instructions
 
-You need at least two variables to describe a time to event data set: how long the patients were followed (the time variable), and whether they had the event (e.g. were alive or dead) at last observation (the failure variable). The failure variable is coded 1 if the patient had the event (e.g. died, had a recurrence) and 0 otherwise. You can have any other variables (patient codes, stage of cancer, treatment, hair color etc) but these are not essential.
+### Time to event data
 
-You first have to tell R that you are dealing with a survival data set. The function used is the `Surv` function from the `survival` package. The function is of the form `Surv(t, d)` where "t" is the time variable and "d" is the "failure" variable (e.g. died if 1, alive at last follow-up if 0). You can save out this survival object, but note that if you go and change any data, you have to re-run the `Surv` function so it utilizes the new data.
+You need at least two variables to describe a time to event dataset: how long the patients were followed (the time variable), and whether they had the event (e.g. were alive or dead) at last observation (the failure variable). The failure variable is coded 1 if the patient had the event (e.g. died, had a recurrence) and 0 otherwise. You can have any other variables (patient codes, stage of cancer, treatment, hair color etc) but these are not essential.
+
+You first have to tell R that you are dealing with a survival dataset. The function used is the `Surv` function from the `survival` package. The function is of the form `Surv(t, d)` where "t" is the time variable and "d" is the "failure" variable (e.g. died if 1, alive at last follow-up if 0). You can save out this survival object, but note that if you go and change any data, you have to re-run the `Surv` function so it utilizes the new data.
 
 
 ```r
@@ -37,6 +41,8 @@ The `survfit` function (also from the `survival`) package describes the survival
 
 
 ```r
+# Calculate descriptive statistics on time to event data
+# The "~ 1" indicates that we want survival estimates for the entire group
 survfit(example7a_surv ~ 1)
 ```
 
@@ -47,18 +53,14 @@ survfit(example7a_surv ~ 1)
 ##      23      18      27      18      45
 ```
 
-```r
-# The "~ 1" indicates that we want survival estimates for the entire group
-# More information on this below
-```
-
 You often also report the median time of follow-up for survivors, which can easily be calculated manually.
 
 
 ```r
+# Calculate median followup for survivors only
 example7a %>%
   filter(d == 0) %>% # Keep only the surviving patients
-  skim(t) # Rembmber, "p50" indicates the median
+  skim(t) # Remember, "p50" indicates the median
 ```
 
 ```
@@ -66,7 +68,7 @@ example7a %>%
 ##  n obs: 5 
 ##  n variables: 6 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##  variable missing complete n mean    sd p0 p25 p50 p75 p100     hist
 ##         t       0        5 5 52.6 61.89 13  16  28  45  161 ▇▂▁▁▁▁▁▂
 ```
@@ -75,6 +77,7 @@ You can also plot the survival curve by adding the `plot` function around your `
 
 
 ```r
+# Plot survival curve
 plot(survfit(example7a_surv ~ 1))
 ```
 
@@ -84,6 +87,8 @@ Use "~ covariate" instead of "~ 1" to plot survival curves by group:
 
 
 ```r
+# Plot survival curve by group (drug vs no drug)
+# "~ drug" indicates to plot by "drug", vs "~ 1" which plots for all patients
 plot(survfit(example7a_surv ~ drug, data = example7a))
 ```
 
@@ -95,6 +100,7 @@ The `survdiff` function compares survival for different groups. For example, the
 
 
 ```r
+# Compare survival between drug groups
 survdiff(example7a_surv ~ drug, data = example7a)
 ```
 
@@ -113,6 +119,7 @@ The `coxph` function (from `survival`) is for regression analyses. For example, 
 
 
 ```r
+# Create Cox regression model
 coxph(example7a_surv ~ drug, data = example7a)
 ```
 
@@ -218,6 +225,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   vertical-align: middle;
   padding: 10px;
   margin: 10px;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_columns_top_border {
@@ -301,6 +309,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   /* row.padding */
   margin: 10px;
   vertical-align: middle;
+  overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_stub {
@@ -419,7 +428,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   font-size: 65%;
 }
 
-#iwrgxmosvm .gt_footnote_glyph {
+#iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
@@ -428,8 +437,8 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>N = 23</strong></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>HR</strong><sup class="gt_footnote_glyph">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_glyph">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>HR</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong></th>
   </tr>
   <body class="gt_table_body">
@@ -445,7 +454,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
     <tr class="gt_footnotes">
       <td colspan="4">
         <p class="gt_footnote">
-          <sup class="gt_footnote_glyph">
+          <sup class="gt_footnote_marks">
             <em>1</em>
           </sup>
            
@@ -461,6 +470,7 @@ The following multivariable model also includes some demographic and medical cha
 
 
 ```r
+# Create multivariable Cox regression model
 coxph(example7a_surv ~ drug + age + sex + marker, data = example7a)
 ```
 
@@ -482,7 +492,7 @@ Using the `summary` function with `survfit` lists all available followup times a
 
 
 ```r
-# For the entire cohort
+# Survival probabilities for the entire cohort
 summary(survfit(example7a_surv ~ 1, data = example7a))
 ```
 
@@ -542,6 +552,9 @@ The `times` option allows you to get survival probabilities for specific timepoi
 
 
 ```r
+# Get survival probabilities for specific time points in full dataset
+# "~ 1" indicates all patients
+# "t" variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years
 summary(survfit(example7a_surv ~ 1, data = example7a), times = c(12, 24, 60))
 ```
 
@@ -554,11 +567,7 @@ summary(survfit(example7a_surv ~ 1, data = example7a), times = c(12, 24, 60))
 ##    60      1       8   0.0828  0.0727       0.0148        0.462
 ```
 
-```r
-# "t" is in months
-```
-
-So, some typical code to analyze a data set:
+So, some typical code to analyze a dataset:
 
 
 ```r
@@ -588,7 +597,7 @@ example7a %>%
 ##  n obs: 5 
 ##  n variables: 6 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric -------------------------------------------------------------------------
 ##  variable missing complete n mean    sd p0 p25 p50 p75 p100     hist
 ##         t       0        5 5 52.6 61.89 13  16  28  45  161 ▇▂▁▁▁▁▁▂
 ```
@@ -623,10 +632,10 @@ coxph(example7a_surv ~ drug + age + sex + marker, data = example7a)
 
 Try to do at least lesson7a and lesson7b
 
-- lesson7a.rds: This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this data set and determine which, if any, variables are prognostic in this patient group.
+- lesson7a.rds: This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this dataset and determine which, if any, variables are prognostic in this patient group.
 
 - lesson7b.rds: These are time to recurrence data on forty patients with biliary cancer treated at one of two hospitals, one of which treats a large number of cancer patients and one of which does not. Do patients treated at a “high volume” hospital have a longer time to recurrence?
 
-- lesson7c.rds: These are data from a randomized trial comparing no treatment, levamisole (an immune stimulant) and levamisole combined with 5FU (a chemotherapy agent) and in the adjuvant treatment of colon cancer. Describe the data set. What conclusions would you draw about the effectiveness of the different treatments?
+- lesson7c.rds: These are data from a randomized trial comparing no treatment, levamisole (an immune stimulant) and levamisole combined with 5FU (a chemotherapy agent) and in the adjuvant treatment of colon cancer. Describe the dataset. What conclusions would you draw about the effectiveness of the different treatments?
 
-- lesson7d.rds: More data on time to recurrence by hospital volume. Given this data set, determine whether patients treated at a “high volume” hospital have a longer time to recurrence.
+- lesson7d.rds: More data on time to recurrence by hospital volume. Given this dataset, determine whether patients treated at a “high volume” hospital have a longer time to recurrence.

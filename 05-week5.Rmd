@@ -1,4 +1,4 @@
-```{r setup5, include=FALSE}
+```{r setup5, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 # Load packages
@@ -41,12 +41,11 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 # Week 5
 
-## R Instructions
+## Setting Up
 
-For this lesson, make sure you have loaded the following packages.
+```{r loadpkgs5, echo = TRUE}
 
-```{r loadpkgs5, echo = TRUE, eval = FALSE}
-
+# Load packages
 library(skimr)
 library(gtsummary)
 library(epiR)
@@ -56,9 +55,19 @@ library(gmodels)
 library(survival)
 library(tidyverse)
 
+# Load other data necessary to run Week 5 examples
+lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
+lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
+lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
+lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
+example5a <- readRDS(here::here("Data", "Week 5", "example5a.rds"))
+example5b <- readRDS(here::here("Data", "Week 5", "example5b.rds"))
+
 ```
 
-## Correlation
+## R Instructions
+
+### Correlation
 
 Correlating two or more variables is very easy: just use the `cor` function and then the dataset and selected variables.
 
@@ -66,12 +75,12 @@ For example, if you use the "lesson2b.rds" dataset and correlate the first four 
 
 ```{r section5a}
 
+# Display the correlation between variables l01, l02, l03 and l04
 cor(lesson2b %>% select(l01, l02, l03, l04))
-# The "select" function allows you to keep specific columns from your dataset
 
 ```
 
-```{r section5b, include = FALSE}
+```{r section5b, include = FALSE, purl = FALSE}
 
 tbl_cor1 <- cor(lesson2b %>% select(l01, l02, l03, l04))
 
@@ -83,11 +92,12 @@ If the data are skewed, you can try a regression based on ranks, what is known a
 
 ```{r section5c}
 
+# Calculate the Spearman correlation for skewed data
 cor(lesson2b %>% select(l01, l02, l03, l04), method = "spearman")
 
 ```
 
-## Linear regression
+### Linear regression
 
 Linear regression is when you try to predict a continuous variable. The function to use is `lm`.
 
@@ -97,6 +107,7 @@ Let's use the data from "lesson3d.rds" as an example dataset. We want to see if 
 
 ```{r section5d}
 
+# Linear regression model for a, predictors are sex, age and b
 lm(a ~ sex + age + b, data = lesson3d)
 
 ```
@@ -105,7 +116,10 @@ This gives you the very basic information from the regression, but you can get m
 
 ```{r section5e}
 
+# Save out linear regression model
 rom_model <- lm(a ~ sex + age + b, data = lesson3d)
+
+# Show additional model results
 summary(rom_model)
 
 ```
@@ -118,11 +132,12 @@ Let's take a single patient: a 54 year old woman with a range of motion of 301 b
 
 # The "augment" function creates a dataset of all patients included in the model
 # and all variables included in the model, as well as the predictions
-# The ".fitted" column is your prediction
+lesson3d_pred <- augment(rom_model)
 
-lesson3d_pred <-
-  augment(rom_model,
-          newdata = lesson3d)
+# Print out new dataset to show output from "augment"
+# The ".fitted" column is your prediction
+# You can ignore all columns to the right of ".fitted"
+lesson3d_pred
 
 ```
 
@@ -130,11 +145,12 @@ To get the number of observations, coefficients, 95% confidence interval and p-v
 
 ```{r section5g, message = FALSE}
 
+# Print formatted table of regression results
 tbl_regression(rom_model)
 
 ```
 
-```{r section5h, include = FALSE, message = FALSE}
+```{r section5h, include = FALSE, message = FALSE, purl = FALSE}
 
 tbl_rom <- tbl_regression(rom_model)
 
@@ -144,6 +160,7 @@ For example, for sex, the 95% CI is `r inline_text(tbl_rom, variable = "sex", pa
 
 ```{r section5i}
 
+# Summary of linear regression results
 summary(rom_model)
 
 ```
@@ -154,7 +171,7 @@ At the bottom of the `summary` readout there are a few miscellaneous tidbits:
 
 - The "Multiple R-squared" value (often referred to as just "r squared") tells you how good a predictor it is on a scale from 0 to 1. We’ll discuss the meaning of r squared in more detail, but it is defined as the proportion of variation that you can explain using your model. 
 
-## Graphing the data
+### Graphing the data
 
 Graphing the data is done using the `ggplot` function from the `ggplot2` package. In short, the main inputs for the `ggplot` function are your dataset, the x variable and the y variable. You can then create a number of different plots using this data.
 
@@ -162,6 +179,7 @@ To create a scatterplot, the `geom_point` function is added to the `ggplot` func
 
 ```{r section5j, warning = FALSE}
 
+# Create a scatterplot of race time by age
 ggplot(data = lesson5a,
        aes(x = age, y = rt)) +
   geom_point()
@@ -170,7 +188,7 @@ ggplot(data = lesson5a,
 
 This scatterplot from the "lesson5a.rds" data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.
 
-## Logistic regression
+### Logistic regression
 
 Logistic regression is used when the variable you wish to predict is binary (e.g. relapsed or not). The function to use is `glm`, with the option `family = "binomial"` to indicate that our outcome variable is binary.
 
@@ -180,12 +198,15 @@ We'll use the dataset "lesson4d.rds" as an example.
 
 ```{r section5k}
 
+# Create a logistic regression model for response, predictors are age, sex and group
 response_model <- glm(response ~ age + sex + group, data = lesson4d, family = "binomial")
+
+# Look at additional model results
 summary(response_model)
 
 ```
 
-```{r section5l, include = FALSE}
+```{r section5l, include = FALSE, purl = FALSE}
 
 tbl_response <-
   response_model %>%
@@ -197,11 +218,13 @@ tbl_response_logit <-
 
 ```
 
-By default, R gives the coefficients in logits. To easily see the coefficients and 95% confidence intervals for all covariates as odds ratio, we can again use the `tbl_regression` function. In this case, we use the option `exponentiate = TRUE`, which indicates that odds ratios (not logits) should be presented. (You can also use this function to see the formatted logit results by using the `exponentiate = FALSE` option.)
+By default, R gives the coefficients in logits for logistic regression models. To easily see the coefficients and 95% confidence intervals for all covariates as odds ratio, we can again use the `tbl_regression` function. In this case, we use the option `exponentiate = TRUE`, which indicates that odds ratios (not logits) should be presented. (You can also use this function to see the formatted logit results by using the `exponentiate = FALSE` option.)
 
 ```{r section5m, message = FALSE}
 
+# Create logistic regression model
 glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
+  # Pass to tbl_regression to show formatted table with odds ratios
   tbl_regression(exponentiate = TRUE)
 
 ```
@@ -212,10 +235,14 @@ The problem here is that you can’t use any of these data to work out an indivi
 
 ```{r section5n}
 
+# Get predictions from logistic regression model
+# type.predict = "response" gives predicted probabilities
 lesson4d_pred <-
-  augment(response_model,
-          newdata = lesson4d,
-          type.predict = "response")
+  augment(response_model, type.predict = "response")
+
+# Look at the dataset containing predicted probabilities (.fitted variable)
+# You can ignore all columns to the right of ".fitted"
+lesson4d_pred
 
 ```
 
@@ -225,23 +252,26 @@ If you want to look at calculating predictions from logistic regression in more 
 
 One thing to be careful about is categorical variables. Imagine that you had the patients age and cancer stage (1, 2, 3 or 4) and wanted to know whether they recurred. If you tried `glm(recurrence ~ age + stage, ...)`, then stage would be treated as if the increase in risk going from stage 1 to 2 was exactly the same as that going from 2 to 3 and 3 to 4. To tell R that it is a categorical variable, you need to use the `factor` function with the categorical variable:
 
-```{r section5o, echo = TRUE, results = "hide"}
+```{r section5o, echo = TRUE}
 
+# Create a model for recurrence using the categorical variable "stage"
 recurrence_model <-
   glm(recurrence ~ age + factor(stage), data = example5a, family = "binomial")
 
+# Show the results of this model
 summary(recurrence_model)
 
 ```
 
 ```{r section5p, results = "asis"}
 
+# Formatted to show odds ratios
 recurrence_model %>%
   tbl_regression(exponentiate = TRUE)
 
 ```
 
-```{r section5q, include = FALSE}
+```{r section5q, include = FALSE, purl = FALSE}
 
 tbl_recurrence <-
   recurrence_model %>%
@@ -257,12 +287,13 @@ Here we look at our "response" model on the logit scale.
 
 ```{r section5r}
 
+# Look at details of "response" logistic regression model
 summary(response_model)
 
 ```
 
 
-```{r section5s, include = FALSE}
+```{r section5s, include = FALSE, purl = FALSE}
 
 xb <- tbl_response_logit$coefficients[1]+tbl_response_logit$coefficients[2]*53+tbl_response_logit$coefficients[4]
 
@@ -274,13 +305,13 @@ Firstly, note that the p values are the same, what differs is the coefficients. 
 
 To convert, type ``exp(`r style_sigfig(xb, digits = 4)`) / (exp(`r style_sigfig(xb, digits = 4)`)+1)`` to get a probability of `r style_sigfig(pr, digits = 3)`%.
 
-## Getting the area-under-the-curve
+### Getting the area-under-the-curve
 
 Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), doesn’t matter for our purposes.
 
 ```{r section5t, message = FALSE}
 
-# The "roc" function comes from the "pROC" package
+# Calculate the AUC using the "roc" function
 roc(cancer ~ marker, data = example5b)
 
 ```
@@ -293,7 +324,7 @@ First, get the AUC for the model with age only:
 
 ```{r section5u, message = FALSE}
 
-# Original model with age
+# Calculate AUC of original model with age
 roc(cancer ~ age, data = example5b)
 
 ```
@@ -302,7 +333,7 @@ Now, calculate the AUC for the model with age and the marker:
 
 ```{r section5v, message = FALSE}
 
-# Model adding marker
+# Calculate AUC of model with age and marker
 roc(cancer ~ age + marker, data = example5b)
 
 ```
@@ -323,8 +354,8 @@ Regression is a very important part of statistics: I probably do more regression
 
 - _lesson5f.rds: These are the distance records for Frisbee for various ages in males. What is the relationship between age and how far a man can throw a Frisbee?_
 
-- __lesson5g.rds: You’ve seen this data set before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no statistically significant difference between regimens (you can test this if you like).  However, do the treatments work differently depending on sex? Do they work differently by age?__
+- __lesson5g.rds: You’ve seen this dataset before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no statistically significant difference between regimens (you can test this if you like).  However, do the treatments work differently depending on sex? Do they work differently by age?__
 
-- __lesson5h.rds: PSA is used to screen for prostate cancer. In this data set, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict cancer? How accurate would this test be? (NOTE: these data were taken from a real data set, but I played around with them a bit, so please don’t draw any conclusions about PSA testing from this assignment).__
+- __lesson5h.rds: PSA is used to screen for prostate cancer. In this dataset, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict cancer? How accurate would this test be? (NOTE: these data were taken from a real dataset, but I played around with them a bit, so please don’t draw any conclusions about PSA testing from this assignment).__
 
 - lesson5i.rds: This is a randomized trial of behavioral therapy in cancer patients with depressed mood (note that higher score means better mood). Patients are randomized to no treatment (group 1), informal contact with a volunteer (group 2) or behavior therapy with a trained therapist (group 3). What would you conclude about the effectiveness of these treatments?
