@@ -16,7 +16,7 @@ set.seed(34634986)
 # To display histograms from "skim"
 Sys.setlocale("LC_CTYPE", "Chinese")
 
-# Load daat
+# Load data
 
 # Save out list of all files
 all_data <-
@@ -230,6 +230,18 @@ sex_test <- binom.test(sum(lesson1a$sex), nrow(lesson1a), p = 0.5)
 This tells you that you had `r sex_test$parameter` observations, and there were `r sex_test$statistic` where sex was coded as 1, an observation proportion of `r round(sex_test$estimate, 2)`. Now the "assumed" proportion was `r sex_test$null.value`, giving an expected number of `r sex_test$parameter*sex_test$null.value` women. These two values are quite close and the p value is `r style_pvalue(sex_test$p.value)`. 
 
 ## Assignments
+
+```{r assignmentdata, eval = TRUE, purl = TRUE}
+
+# Copy and paste this code to load the data for week 3 assignments
+lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
+lesson3b <- readRDS(here::here("Data", "Week 3", "lesson3b.rds"))
+lesson3c <- readRDS(here::here("Data", "Week 3", "lesson3c.rds"))
+lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
+lesson3e <- readRDS(here::here("Data", "Week 3", "lesson3e.rds"))
+lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
+
+```
 
 Again, more questions than you need to do, unless you’re keen (also, most won’t take long). Try to do at least the first three. 
 

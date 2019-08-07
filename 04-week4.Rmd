@@ -55,7 +55,7 @@ library(gmodels)
 library(survival)
 library(tidyverse)
 
-# Load other data necessary to run Week 4 examples
+# Load data necessary to run Week 4 examples
 lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
 lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
 example4a <- readRDS(here::here("Data", "Week 4", "example4a.rds"))
@@ -343,6 +343,17 @@ t.test(nv ~ sex, data = lesson3a %>% filter(pc == 0))
 ```
 
 ## Assignments
+
+```{r assignmentdata, eval = TRUE, purl = TRUE}
+
+# Copy and paste this code to load the data for week 4 assignments
+lesson4a <- readRDS(here::here("Data", "Week 4", "lesson4a.rds"))
+lesson4b <- readRDS(here::here("Data", "Week 4", "lesson4b.rds"))
+lesson4c <- readRDS(here::here("Data", "Week 4", "lesson4c.rds"))
+lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
+lesson4e <- readRDS(here::here("Data", "Week 4", "lesson4e.rds"))
+
+```
 
 This week’s assignment concerns techniques developed to assess epidemiologic data. But remember that a number is just a number: the techniques for working out the relative risk of getting breast cancer if you has a silicone breast implant is exactly the same as working out the relative risk of death in transgenic mice exposed to a carcinogen.
 

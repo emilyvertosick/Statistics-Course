@@ -94,3 +94,15 @@ ntotal
 # Compare a proportion of patients in a dataset to a hypothesized value "p"
 binom.test(nwomen, ntotal, p = 0.5)
 
+
+
+
+
+# Copy and paste this code to load the data for week 3 assignments
+lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
+lesson3b <- readRDS(here::here("Data", "Week 3", "lesson3b.rds"))
+lesson3c <- readRDS(here::here("Data", "Week 3", "lesson3c.rds"))
+lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
+lesson3e <- readRDS(here::here("Data", "Week 3", "lesson3e.rds"))
+lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
+

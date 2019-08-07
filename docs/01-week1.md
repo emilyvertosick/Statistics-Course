@@ -23,9 +23,19 @@ Install RStudio Desktop by selecting the installer for your operating system und
 
 https://www.rstudio.com/products/rstudio/download/preview/
 
+### Setting up course files
+
+To access this course, download the "Statistics Course.zip" file [here](https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistics%20Course.zip?raw=true). Unzip the file to your chosen folder on your hard drive. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
+
+There is a "Data" folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.
+
+There is a "Code" folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book. There is also an "Answers" file which contains the code from the assignment answers.
+
+Every time you work on this course, you should open RStudio by opening the "Statistics Course.Rproj" file. It may be helpful to create a desktop link to the "Statistics Course.Rproj" file so you can easily access the course materials.
+
 ### Using RStudio
 
-There are normally four panes in the window.
+When you open the "Statistics Course.Rproj" file, RStudio will open, and you will see four panes in the RStudio window.
 
 1. The "console" window at the bottom left is where results will be shown if running R code from a .R file or interactively. The console window is also where you type in instructions for R. To run code in the console window, you can type or copy and paste the code and press "enter."
 
@@ -36,10 +46,6 @@ There are normally four panes in the window.
 4. The bottom right panel also includes several tabs. The "files" tab shows all files in your current directory. The "plots" tab is where plots will be shown if a plot is created. The "packages" tab shows all R packages that are available on your machine. The "help" tab will show help files, and help files can be searched from this tab. The "viewer" tab will show any other files that are created, for example, formatted tables.
 
 ![ ](Images/rstudio_window.jpg)
-
-### Setting up course files
-
-To access this course, download the "Statistics Course.zip" file and unzip it to your desired folder on your hard drive. Navigate to the main folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will allow you to easily access all files, as the "files" tab in the bottom right will automatically open to folder in which the R project file is located. Every time you work on this course, you should open the "Statistics Course.Rproj" file first.
 
 ### Installing packages
 
@@ -72,11 +78,7 @@ remotes::install_github("ddsjoberg/gtsummary")
 
 This is mainly what you will be doing during this course. You will be loading data from files with a ".rds" extension, which is a type of file that can be exported from R. There are two ways to do this:
 
-1. Using the "files" tab on the bottom righthand side of the RStudio window. Click on the "files" tab, and navigate to the folder where the data is stored, for example, by clicking on the "Data" folder. Click on the desired data ".rds" file. A "Load R Object" popup will appear, which allows you to change the name of the dataset when you import it. It is fine for this course to leave the dataset names as is. Clicking "OK" will load this file to your environment, which you can confirm by looking for the dataset in the top right "environment" tab.
-
-![ ](images\load_data.jpg)
-
-2. You can also load files by typing or copying the following code into the console window and pressing enter. The first part of the code (`lesson1a <- `) tells R what you would like to call your dataset when you are using it. It is fine to give it the same name as the file (i.e., save the data from "lesson1a.rds" as "lesson1a"). If you are using this method, be sure to change the folder name (e.g. "Week 1") and file name (e.g. "lesson1a.rds") as necessary to load the data you want.
+1. You can load files by typing or copying the following code into the console window and pressing enter. Each lesson will have code in the "Setting Up" section that will load all data necessary to run the examples in the lesson. You can copy and paste that code into your console window and press "enter" to load the files. In the "Assignments" section, there will also be code to load the files necessary for the assignment.
 
 
 ```r
@@ -84,6 +86,11 @@ This is mainly what you will be doing during this course. You will be loading da
 # to load the data needed for the week 1 examples
 lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
 ```
+
+2. Using the "files" tab on the bottom righthand side of the RStudio window. Click on the "files" tab, and navigate to the folder where the data is stored, for example, by clicking on the "Data" folder. Click on the desired data ".rds" file. A "Load R Object" popup will appear, which allows you to change the name of the dataset when you import it. It is fine for this course to leave the dataset names as is. Clicking "OK" will load this file to your environment, which you can confirm by looking for the dataset in the top right "environment" tab.
+
+![ ](images\load_data.jpg)
+<br>
 
 ### Loading packages
 
@@ -1013,7 +1020,8 @@ The code below means "create a new variable called 'a' and set it equal to 1 in 
 
 
 ```r
-lesson1a <- # Save the data out as "lesson1a"
+# Save the data out as "lesson1a"
+lesson1a <-
   lesson1a %>% # Take the current "lesson1a" dataset
   mutate(a = 1) # And add a variable called "a" with a value of "1"
 ```
@@ -1102,6 +1110,12 @@ TODO: Discuss with Andrew re: taking this section out
 There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
 
 ## Assignments
+
+
+```r
+# Copy and paste this code to load the data for week 1 assignments
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+```
 
 The data for you to look at are in the attached file lesson1a.rds.
 

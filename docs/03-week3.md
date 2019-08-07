@@ -317,6 +317,17 @@ This tells you that you had 386 observations, and there were 205 where sex was c
 
 ## Assignments
 
+
+```r
+# Copy and paste this code to load the data for week 3 assignments
+lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
+lesson3b <- readRDS(here::here("Data", "Week 3", "lesson3b.rds"))
+lesson3c <- readRDS(here::here("Data", "Week 3", "lesson3c.rds"))
+lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
+lesson3e <- readRDS(here::here("Data", "Week 3", "lesson3e.rds"))
+lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
+```
+
 Again, more questions than you need to do, unless you’re keen (also, most won’t take long). Try to do at least the first three. 
 
 - lesson3a.rds: These are data from over 1000 patients undergoing chemotherapy reporting a nausea and vomiting score from 0 to 10 on the day of treatment.  Does previous chemotherapy increase nausea scores? What about sex? 

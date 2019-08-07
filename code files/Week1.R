@@ -159,3 +159,8 @@ lesson1a <-
   lesson1a %>%
   mutate(a = if_else(sex == 1 & age > 50, 1, 0))
 
+
+
+# Copy and paste this code to load the data for week 1 assignments
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+

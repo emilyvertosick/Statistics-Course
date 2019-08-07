@@ -138,7 +138,7 @@ lesson2a <-
 lesson2a %>%
   select(-tm, -id) %>%
   tbl_summary(
-    statistic = list(vars(..continuous..) ~ "{mean} ({sd}))"),
+    statistic = list(vars(..continuous..) ~ "{mean} ({sd})"),
     label = list(vars(age) ~ "Age", vars(sex) ~ "Women",
                  vars(rt) ~ "Race time in minutes",
                  vars(shoe) ~ "Favorite Running Shoe")
@@ -1134,7 +1134,6 @@ A common mistake would be to use `epi.2by2` with `response` and `sex`. However, 
 ```{r week4u}
 
 # You can use the "group_split" function to split your dataset into two groups
-
 lesson4d_sex <-
   lesson4d %>%
   group_split(sex)

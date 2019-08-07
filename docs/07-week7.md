@@ -17,7 +17,7 @@ library(survival)
 library(survminer)
 library(tidyverse)
 
-# Load other data necessary to run Week 7 examples
+# Load data necessary to run Week 7 examples
 example7a <- readRDS(here::here("Data", "Week 7", "example7a.rds"))
 ```
 
@@ -630,7 +630,16 @@ coxph(example7a_surv ~ drug + age + sex + marker, data = example7a)
 
 ## Assignments
 
-Try to do at least lesson7a and lesson7b
+
+```r
+# Copy and paste this code to load the data for week 7 assignments
+lesson7a <- readRDS(here::here("Data", "Week 7", "lesson7a.rds"))
+lesson7b <- readRDS(here::here("Data", "Week 7", "lesson7b.rds"))
+lesson7c <- readRDS(here::here("Data", "Week 7", "lesson7c.rds"))
+lesson7d <- readRDS(here::here("Data", "Week 7", "lesson7d.rds"))
+```
+
+Try to do at least lesson7a and lesson7b.
 
 - lesson7a.rds: This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this dataset and determine which, if any, variables are prognostic in this patient group.
 

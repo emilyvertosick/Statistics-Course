@@ -132,8 +132,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="week-1.html"><a href="week-1.html"><i class="fa fa-check"></i><b>1</b> Week 1</a><ul>
 <li class="chapter" data-level="1.1" data-path="week-1.html"><a href="week-1.html#setting-up"><i class="fa fa-check"></i><b>1.1</b> Setting Up</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="week-1.html"><a href="week-1.html#software-installation"><i class="fa fa-check"></i><b>1.1.1</b> Software Installation</a></li>
-<li class="chapter" data-level="1.1.2" data-path="week-1.html"><a href="week-1.html#using-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Using RStudio</a></li>
-<li class="chapter" data-level="1.1.3" data-path="week-1.html"><a href="week-1.html#setting-up-course-files"><i class="fa fa-check"></i><b>1.1.3</b> Setting up course files</a></li>
+<li class="chapter" data-level="1.1.2" data-path="week-1.html"><a href="week-1.html#setting-up-course-files"><i class="fa fa-check"></i><b>1.1.2</b> Setting up course files</a></li>
+<li class="chapter" data-level="1.1.3" data-path="week-1.html"><a href="week-1.html#using-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Using RStudio</a></li>
 <li class="chapter" data-level="1.1.4" data-path="week-1.html"><a href="week-1.html#installing-packages"><i class="fa fa-check"></i><b>1.1.4</b> Installing packages</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="week-1.html"><a href="week-1.html#r-instructions"><i class="fa fa-check"></i><b>1.2</b> R Instructions</a><ul>
@@ -253,12 +253,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7.4" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson7d.rds"><i class="fa fa-check"></i><b>9.7.4</b> lesson7d.rds</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="exam.html"><a href="exam.html"><i class="fa fa-check"></i><b>10</b> Exam</a><ul>
-<li class="chapter" data-level="10.1" data-path="exam.html"><a href="exam.html#question-1"><i class="fa fa-check"></i><b>10.1</b> Question 1</a></li>
-<li class="chapter" data-level="10.2" data-path="exam.html"><a href="exam.html#question-2"><i class="fa fa-check"></i><b>10.2</b> Question 2</a></li>
-<li class="chapter" data-level="10.3" data-path="exam.html"><a href="exam.html#question-3"><i class="fa fa-check"></i><b>10.3</b> Question 3</a></li>
-<li class="chapter" data-level="10.4" data-path="exam.html"><a href="exam.html#question-4"><i class="fa fa-check"></i><b>10.4</b> Question 4</a></li>
-</ul></li>
 </ul>
 
       </nav>
@@ -289,9 +283,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Install RStudio Desktop by selecting the installer for your operating system under “Desktop Version”:</p>
 <p><a href="https://www.rstudio.com/products/rstudio/download/preview/" class="uri">https://www.rstudio.com/products/rstudio/download/preview/</a></p>
 </div>
+<div id="setting-up-course-files" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Setting up course files</h3>
+<p>To access this course, download the “Statistics Course.zip” file <a href="https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistics%20Course.zip?raw=true">here</a>. Unzip the file to your chosen folder on your hard drive. Open the “Statistics Course” folder and click to open the R project file called “Statistics Course.Rproj”. Opening this file will open RStudio (once you have it installed), and you can easily access all files from the “files” tab in the bottom right panel in RStudio.</p>
+<p>There is a “Data” folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.</p>
+<p>There is a “Code” folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book. There is also an “Answers” file which contains the code from the assignment answers.</p>
+<p>Every time you work on this course, you should open RStudio by opening the “Statistics Course.Rproj” file. It may be helpful to create a desktop link to the “Statistics Course.Rproj” file so you can easily access the course materials.</p>
+</div>
 <div id="using-rstudio" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> Using RStudio</h3>
-<p>There are normally four panes in the window.</p>
+<h3><span class="header-section-number">1.1.3</span> Using RStudio</h3>
+<p>When you open the “Statistics Course.Rproj” file, RStudio will open, and you will see four panes in the RStudio window.</p>
 <ol style="list-style-type: decimal">
 <li><p>The “console” window at the bottom left is where results will be shown if running R code from a .R file or interactively. The console window is also where you type in instructions for R. To run code in the console window, you can type or copy and paste the code and press “enter.”</p></li>
 <li><p>The “source” window in the top left is where you will write out R code for your final .R analysis file. To run code from the source window, highlight the lines of code you’d like to run and click the “run” button, located in the upper right corner of the source window, or use the shortcut “ctrl+enter” on your keyboard.</p></li>
@@ -299,10 +300,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The bottom right panel also includes several tabs. The “files” tab shows all files in your current directory. The “plots” tab is where plots will be shown if a plot is created. The “packages” tab shows all R packages that are available on your machine. The “help” tab will show help files, and help files can be searched from this tab. The “viewer” tab will show any other files that are created, for example, formatted tables.</p></li>
 </ol>
 <p><img src="images/rstudio_window.jpg" /></p>
-</div>
-<div id="setting-up-course-files" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> Setting up course files</h3>
-<p>To access this course, download the “Statistics Course.zip” file and unzip it to your desired folder on your hard drive. Navigate to the main folder and click to open the R project file called “Statistics Course.Rproj”. Opening this file will allow you to easily access all files, as the “files” tab in the bottom right will automatically open to folder in which the R project file is located. Every time you work on this course, you should open the “Statistics Course.Rproj” file first.</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3><span class="header-section-number">1.1.4</span> Installing packages</h3>
@@ -327,15 +324,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.2.1</span> Opening a data file created by someone else</h3>
 <p>This is mainly what you will be doing during this course. You will be loading data from files with a “.rds” extension, which is a type of file that can be exported from R. There are two ways to do this:</p>
 <ol style="list-style-type: decimal">
-<li>Using the “files” tab on the bottom righthand side of the RStudio window. Click on the “files” tab, and navigate to the folder where the data is stored, for example, by clicking on the “Data” folder. Click on the desired data “.rds” file. A “Load R Object” popup will appear, which allows you to change the name of the dataset when you import it. It is fine for this course to leave the dataset names as is. Clicking “OK” will load this file to your environment, which you can confirm by looking for the dataset in the top right “environment” tab.</li>
-</ol>
-<p><img src="images/load_data.jpg" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li>You can also load files by typing or copying the following code into the console window and pressing enter. The first part of the code (<code>lesson1a &lt;-</code>) tells R what you would like to call your dataset when you are using it. It is fine to give it the same name as the file (i.e., save the data from “lesson1a.rds” as “lesson1a”). If you are using this method, be sure to change the folder name (e.g. “Week 1”) and file name (e.g. “lesson1a.rds”) as necessary to load the data you want.</li>
+<li>You can load files by typing or copying the following code into the console window and pressing enter. Each lesson will have code in the “Setting Up” section that will load all data necessary to run the examples in the lesson. You can copy and paste that code into your console window and press “enter” to load the files. In the “Assignments” section, there will also be code to load the files necessary for the assignment.</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># You can copy and paste this code into the console window and press &quot;enter&quot;</span></a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="co"># to load the data needed for the week 1 examples</span></a>
 <a class="sourceLine" id="cb3-3" title="3">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Using the “files” tab on the bottom righthand side of the RStudio window. Click on the “files” tab, and navigate to the folder where the data is stored, for example, by clicking on the “Data” folder. Click on the desired data “.rds” file. A “Load R Object” popup will appear, which allows you to change the name of the dataset when you import it. It is fine for this course to leave the dataset names as is. Clicking “OK” will load this file to your environment, which you can confirm by looking for the dataset in the top right “environment” tab.</li>
+</ol>
+<p><img src="images/load_data.jpg" />
+<br></p>
 </div>
 <div id="loading-packages" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Loading packages</h3>
@@ -1160,9 +1158,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">1.2.5.6</span> <code>mutate</code> function</h4>
 <p>The <code>mutate</code> function is used to create new variables, or replace variable values.</p>
 <p>The code below means “create a new variable called ‘a’ and set it equal to 1 in all observations.” The “&lt;-” indicator means to then save out this new dataset including the “a” variable as “lesson1a”, replacing the old “lesson1a” dataset that does not include “a”.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">lesson1a &lt;-<span class="st"> </span><span class="co"># Save the data out as &quot;lesson1a&quot;</span></a>
-<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># Save the data out as &quot;lesson1a&quot;</span></a>
+<a class="sourceLine" id="cb25-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></a></code></pre></div>
 <p>Since we have already created the variable “a” above, the code below means “replace the variable ‘a’ with the value of 2 in all observations.”</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;2&quot; for all observations</span></a>
 <a class="sourceLine" id="cb26-2" title="2">lesson1a &lt;-</a>
@@ -1214,6 +1213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments" class="section level2">
 <h2><span class="header-section-number">1.3</span> Assignments</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Copy and paste this code to load the data for week 1 assignments</span></a>
+<a class="sourceLine" id="cb33-2" title="2">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
 <p>The data for you to look at are in the attached file lesson1a.rds.</p>
 <p>This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?</p>
 
@@ -1255,8 +1256,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.mskcc.org/vertosie/Statistics-Course/edit/master/01-week1.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
@@ -1265,7 +1266,7 @@ gitbook.start({
 "download": null,
 "toc": {
 "collapse": "section",
-"download": "pdf"
+"scroll_highlight": true
 }
 });
 });

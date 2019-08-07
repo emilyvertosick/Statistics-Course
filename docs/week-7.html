@@ -132,8 +132,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="week-1.html"><a href="week-1.html"><i class="fa fa-check"></i><b>1</b> Week 1</a><ul>
 <li class="chapter" data-level="1.1" data-path="week-1.html"><a href="week-1.html#setting-up"><i class="fa fa-check"></i><b>1.1</b> Setting Up</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="week-1.html"><a href="week-1.html#software-installation"><i class="fa fa-check"></i><b>1.1.1</b> Software Installation</a></li>
-<li class="chapter" data-level="1.1.2" data-path="week-1.html"><a href="week-1.html#using-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Using RStudio</a></li>
-<li class="chapter" data-level="1.1.3" data-path="week-1.html"><a href="week-1.html#setting-up-course-files"><i class="fa fa-check"></i><b>1.1.3</b> Setting up course files</a></li>
+<li class="chapter" data-level="1.1.2" data-path="week-1.html"><a href="week-1.html#setting-up-course-files"><i class="fa fa-check"></i><b>1.1.2</b> Setting up course files</a></li>
+<li class="chapter" data-level="1.1.3" data-path="week-1.html"><a href="week-1.html#using-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Using RStudio</a></li>
 <li class="chapter" data-level="1.1.4" data-path="week-1.html"><a href="week-1.html#installing-packages"><i class="fa fa-check"></i><b>1.1.4</b> Installing packages</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="week-1.html"><a href="week-1.html#r-instructions"><i class="fa fa-check"></i><b>1.2</b> R Instructions</a><ul>
@@ -253,12 +253,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7.4" data-path="assignment-answers.html"><a href="assignment-answers.html#lesson7d.rds"><i class="fa fa-check"></i><b>9.7.4</b> lesson7d.rds</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="exam.html"><a href="exam.html"><i class="fa fa-check"></i><b>10</b> Exam</a><ul>
-<li class="chapter" data-level="10.1" data-path="exam.html"><a href="exam.html#question-1"><i class="fa fa-check"></i><b>10.1</b> Question 1</a></li>
-<li class="chapter" data-level="10.2" data-path="exam.html"><a href="exam.html#question-2"><i class="fa fa-check"></i><b>10.2</b> Question 2</a></li>
-<li class="chapter" data-level="10.3" data-path="exam.html"><a href="exam.html#question-3"><i class="fa fa-check"></i><b>10.3</b> Question 3</a></li>
-<li class="chapter" data-level="10.4" data-path="exam.html"><a href="exam.html#question-4"><i class="fa fa-check"></i><b>10.4</b> Question 4</a></li>
-</ul></li>
 </ul>
 
       </nav>
@@ -291,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-9" title="9"><span class="kw">library</span>(survminer)</a>
 <a class="sourceLine" id="cb1-10" title="10"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb1-11" title="11"></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="co"># Load other data necessary to run Week 7 examples</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co"># Load data necessary to run Week 7 examples</span></a>
 <a class="sourceLine" id="cb1-13" title="13">example7a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;example7a.rds&quot;</span>))</a></code></pre></div>
 </div>
 <div id="r-instructions-6" class="section level2">
@@ -796,7 +790,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-6" class="section level2">
 <h2><span class="header-section-number">7.3</span> Assignments</h2>
-<p>Try to do at least lesson7a and lesson7b</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Copy and paste this code to load the data for week 7 assignments</span></a>
+<a class="sourceLine" id="cb29-2" title="2">lesson7a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7a.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb29-3" title="3">lesson7b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7b.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb29-4" title="4">lesson7c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7c.rds&quot;</span>))</a>
+<a class="sourceLine" id="cb29-5" title="5">lesson7d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7d.rds&quot;</span>))</a></code></pre></div>
+<p>Try to do at least lesson7a and lesson7b.</p>
 <ul>
 <li><p>lesson7a.rds: This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this dataset and determine which, if any, variables are prognostic in this patient group.</p></li>
 <li><p>lesson7b.rds: These are time to recurrence data on forty patients with biliary cancer treated at one of two hospitals, one of which treats a large number of cancer patients and one of which does not. Do patients treated at a “high volume” hospital have a longer time to recurrence?</p></li>
@@ -842,8 +841,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.mskcc.org/vertosie/Statistics-Course/edit/master/07-week7.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,
@@ -852,7 +851,7 @@ gitbook.start({
 "download": null,
 "toc": {
 "collapse": "section",
-"download": "pdf"
+"scroll_highlight": true
 }
 });
 });

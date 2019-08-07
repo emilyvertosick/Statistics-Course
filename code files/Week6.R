@@ -9,7 +9,7 @@ library(gmodels)
 library(survival)
 library(tidyverse)
 
-# Load other data necessary to run Week 6 examples
+# Load data necessary to run Week 6 examples
 example6a <- readRDS(here::here("Data", "Week 6", "example6a.rds"))
 
 
@@ -37,4 +37,12 @@ tbl_example6a <-
 
 # Calculate sensitivity and specificity from table above
 epi.tests(tbl_example6a)
+
+
+
+# Copy and paste this code to load the data for week 6 assignments
+lesson6a <- readRDS(here::here("Data", "Week 6", "lesson6a.rds"))
+lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
+lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
+lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
 

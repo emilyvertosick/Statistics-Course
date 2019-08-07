@@ -400,7 +400,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   <body class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">Age</td>
-      <td class="gt_row gt_center">42 (10))</td>
+      <td class="gt_row gt_center">42 (10)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped">Women</td>
@@ -408,7 +408,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
     </tr>
     <tr>
       <td class="gt_row gt_left">Race time in minutes</td>
-      <td class="gt_row gt_center">250 (47))</td>
+      <td class="gt_row gt_center">250 (47)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped">Favorite Running Shoe</td>
@@ -444,7 +444,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
             <em>1</em>
           </sup>
            
-          Statistics presented: mean (SD)); n (%)
+          Statistics presented: mean (SD); n (%)
           <br />
         </p>
       </td>
@@ -5227,7 +5227,6 @@ A common mistake would be to use `epi.2by2` with `response` and `sex`. However, 
 
 ```r
 # You can use the "group_split" function to split your dataset into two groups
-
 lesson4d_sex <-
   lesson4d %>%
   group_split(sex)

@@ -419,6 +419,17 @@ pnorm(-1.96)
 
 ## Assignments
 
+```{r assignmentdata, eval = TRUE, purl = TRUE}
+
+# Copy and paste this code to load the data for week 2 assignments
+lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
+lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
+lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
+lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
+lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
+
+```
+
 It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
 
 I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable `rt` by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.

@@ -10,7 +10,7 @@ library(survival)
 library(survminer)
 library(tidyverse)
 
-# Load other data necessary to run Week 7 examples
+# Load data necessary to run Week 7 examples
 example7a <- readRDS(here::here("Data", "Week 7", "example7a.rds"))
 
 
@@ -96,4 +96,12 @@ plot(survfit(example7a_surv ~ 1))
 
 # Look at predictors of survival
 coxph(example7a_surv ~ drug + age + sex + marker, data = example7a)
+
+
+
+# Copy and paste this code to load the data for week 7 assignments
+lesson7a <- readRDS(here::here("Data", "Week 7", "lesson7a.rds"))
+lesson7b <- readRDS(here::here("Data", "Week 7", "lesson7b.rds"))
+lesson7c <- readRDS(here::here("Data", "Week 7", "lesson7c.rds"))
+lesson7d <- readRDS(here::here("Data", "Week 7", "lesson7d.rds"))
 

@@ -9,7 +9,7 @@ library(gmodels)
 library(survival)
 library(tidyverse)
 
-# Load other data necessary to run Week 5 examples
+# Load data necessary to run Week 5 examples
 lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
 lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
 lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
@@ -138,4 +138,17 @@ roc(cancer ~ age, data = example5b)
 
 # Calculate AUC of model with age and marker
 roc(cancer ~ age + marker, data = example5b)
+
+
+
+# Copy and paste this code to load the data for week 5 assignments
+lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
+lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
+lesson5c <- readRDS(here::here("Data", "Week 5", "lesson5c.rds"))
+lesson5d <- readRDS(here::here("Data", "Week 5", "lesson5d.rds"))
+lesson5e <- readRDS(here::here("Data", "Week 5", "lesson5e.rds"))
+lesson5f <- readRDS(here::here("Data", "Week 5", "lesson5f.rds"))
+lesson5g <- readRDS(here::here("Data", "Week 5", "lesson5g.rds"))
+lesson5h <- readRDS(here::here("Data", "Week 5", "lesson5h.rds"))
+lesson5i <- readRDS(here::here("Data", "Week 5", "lesson5i.rds"))
 

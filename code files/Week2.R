@@ -166,3 +166,12 @@ pnorm(1.96)
 # Probability that an observation will be less than mean - 1.96
 pnorm(-1.96)
 
+
+
+# Copy and paste this code to load the data for week 2 assignments
+lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
+lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
+lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
+lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
+lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
+

@@ -55,7 +55,7 @@ library(gmodels)
 library(survival)
 library(tidyverse)
 
-# Load other data necessary to run Week 6 examples
+# Load data necessary to run Week 6 examples
 example6a <- readRDS(here::here("Data", "Week 6", "example6a.rds"))
 
 ```
@@ -107,6 +107,16 @@ As you can see, `epi.tests` also provides other information, such as specificity
 See instructions from lecture 5 on how to get an area-under-the-curve.
 
 ## Assignments
+
+```{r assignmentdata, eval = TRUE, purl = TRUE}
+
+# Copy and paste this code to load the data for week 6 assignments
+lesson6a <- readRDS(here::here("Data", "Week 6", "lesson6a.rds"))
+lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
+lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
+lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
+
+```
 
 - lesson6a.rds and lesson6b.rds: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
 
