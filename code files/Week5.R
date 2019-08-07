@@ -32,12 +32,12 @@ cor(lesson2b %>% select(l01, l02, l03, l04), method = "spearman")
 
 
 # Linear regression model for a, predictors are sex, age and b
-glm(a ~ sex + age + b, data = lesson3d)
+lm(a ~ sex + age + b, data = lesson3d)
 
 
 
 # Save out linear regression model
-rom_model <- glm(a ~ sex + age + b, data = lesson3d)
+rom_model <- lm(a ~ sex + age + b, data = lesson3d)
 
 # Show additional model results
 summary(rom_model)

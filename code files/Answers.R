@@ -129,10 +129,10 @@ lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
 
 
 
-# t test for nausea/vomiting by prior chemotherapy
+# t-test for nausea/vomiting by prior chemotherapy
 t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 
-# t test for nausea/vomiting by sex
+# t-test for nausea/vomiting by sex
 t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
 
 
@@ -161,7 +161,7 @@ pt(-4.6275, 510)*2
 
 
 
-# t test for pain after treatment, by group
+# t-test for pain after treatment, by group
 t.test(p ~ g, data = lesson3b, var.equal = TRUE)
 
 
@@ -192,7 +192,7 @@ wilcox.test(lesson3c$t1, lesson3c$t2, correct = FALSE, exact = FALSE, paired = T
 
 
 
-# t test comparing day 1 and day 2 pain
+# paired t-test comparing day 1 and day 2 pain
 t.test(lesson3c$t1, lesson3c$t2, var.equal = TRUE, paired = TRUE)
 
 
@@ -207,12 +207,12 @@ skim(lesson3c$delta12)
 
 
 
-# paired t test for before and after pain scores
+# paired t-test for before and after pain scores
 t.test(lesson3d$b, lesson3d$a, var.equal = TRUE, paired = TRUE)
 
 
 
-# t test for whether difference between before and after scores is different than zero
+# t-test for whether difference between before and after scores is different than zero
 t.test(lesson3d$d, mu = 0)
 
 
@@ -222,7 +222,7 @@ binom.test(sum(lesson3d$sex), nrow(lesson3d), p = 0.5)
 
 
 
-# t test for whether age is significantly different from 58.2
+# t-test for whether age is significantly different from 58.2
 t.test(lesson3d$age, mu = 58.2)
 
 
@@ -241,14 +241,14 @@ lesson3e <-
 
 
 
-# paired t test using log of length of stay as outcome
+# paired t-test using log of length of stay as outcome
 t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE, paired = FALSE)
 
 
 
 
 
-# unpaired t test for change in pain by physiotherapy group
+# unpaired t-test for change in pain by physiotherapy group
 t.test(delta ~ physio, data = lesson3f, var.equal = TRUE, paired = FALSE)
 
 
@@ -397,7 +397,7 @@ lesson4c <-
   mutate(
     mutant =
       case_when(
-        gene %in% c(1, 2) ~ 1,
+        gene == 1 | gene == 2 ~ 1,
         gene == 0 ~ 0
       )
   )
@@ -524,7 +524,7 @@ lesson5a %>%
 
 
 
-# Create logistic regression model model
+# Create logistic regression model
 mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
 
 # Formatted results with odds ratios
@@ -563,7 +563,6 @@ tbl_regression(mutate_model,
 # Create predictions
 lesson5b_pred <-
   augment(mutate_model,
-          newdata = lesson5b,
           type.predict = "response")
 
 # Show resulting dataset
@@ -601,13 +600,15 @@ lesson5b_new <-
 # disease durations between 0.33 and 42.33.
 
 # Predict risk of mutation
-lesson5b_pred <-
+# The "newdata" option allows you to get predictions for a dataset
+# other than the dataset that was used to create the model
+lesson5b_pred_new <-
   augment(mutate_model,
           newdata = lesson5b_new,
           type.predict = "response")
 
 # Create graph
-ggplot(data = lesson5b_pred,
+ggplot(data = lesson5b_pred_new,
        aes(x = c, y = .fitted)) +
   geom_line()
 
@@ -690,8 +691,7 @@ tbl_regression(cam_model4, exponentiate = TRUE)
 
 
 # Create linear regression model for distance
-frisbee_model <- lm(distance ~ age,
-                    data = lesson5f)
+frisbee_model <- lm(distance ~ age, data = lesson5f)
 summary(frisbee_model)
 
 
@@ -711,8 +711,7 @@ lesson5f <-
   )
 
 # Create linear regression model using age and age squared
-frisbee_model2 <- lm(distance ~ age + age2,
-                     data = lesson5f)
+frisbee_model2 <- lm(distance ~ age + age2, data = lesson5f)
 summary(frisbee_model2)
 
 
@@ -733,7 +732,7 @@ tbl_summary(
   type = list(vars(response) ~ "categorical")
 )
 
-# Here, summarize stores out the p values for the chi-squared test by sex
+# Here, the "summarize" function stores out the p values for the chi-squared test by sex
 lesson5g %>%
   group_by(sex) %>%
   summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
@@ -1158,21 +1157,21 @@ tbl_summary(
 )
 
 
-## 
-## # Create Kaplan-Meier plot by treatment group
-## ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
-##            legend = "bottom")
-## 
 
-## 
-## # Create dummy variable for treatment
-## lesson7c <-
-##   lesson7c %>%
-##   mutate(
-##     fu = if_else(group == 2, 1, 0),
-##     lev = if_else(group == 3, 1, 0)
-##   )
-## 
+# Create Kaplan-Meier plot by treatment group
+ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
+           legend = "bottom")
+
+
+
+# Create dummy variable for treatment
+lesson7c <-
+  lesson7c %>%
+  mutate(
+    fu = if_else(group == 2, 1, 0),
+    lev = if_else(group == 3, 1, 0)
+  )
+
 
 
 # Cox model with dummy variables

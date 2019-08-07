@@ -1,5 +1,3 @@
 # Week 8
 
-Statistical Slipups Powerpoint Presentation
-
-[[TODO: Add link after pushed to Github]]
+![Statistical Slipups Powerpoint Presentation](https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistical%20slip%20ups.ppt)

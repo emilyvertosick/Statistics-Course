@@ -112,11 +112,11 @@ tbl_summary(
 
 
 
-# Perform a t test only among patients with prior chemotherapy
+# Perform a t-test only among patients with prior chemotherapy
 t.test(nv ~ sex, data = lesson3a %>% filter(pc == 1))
 
 
 
-# t test for patients without prior chemotherapy
+# t-test for patients without prior chemotherapy
 t.test(nv ~ sex, data = lesson3a %>% filter(pc == 0))
 

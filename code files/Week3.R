@@ -18,27 +18,27 @@ example3a <- readRDS(here::here("Data", "Week 3", "example3a.rds"))
 
 
 
-# t test for marker levels between treatment arms
+# t-test for marker levels between treatment arms
 t.test(marker ~ trt, data = trial, var.equal = TRUE)
 
 
 
-# paired t test for blood pressure between "before" and "after" groups
+# paired t-test for blood pressure between "before" and "after" groups
 t.test(bp ~ when, data = example3a, var.equal = TRUE, paired = TRUE)
 
 
 
-# t test assessing whether the rate of college education is different than 32%
+# t-test assessing whether the rate of college education is different than 32%
 t.test(midwest$percollege, mu = 32)
 
 
 
-# t test for difference in horsepower for manual vs automatic transmission
+# t-test for difference in horsepower for manual vs automatic transmission
 t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 
 
-# perform t test and save out results as "hp_test"
+# perform t-test and save out results as "hp_test"
 hp_test <- t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 # show the group means from "hp_test"

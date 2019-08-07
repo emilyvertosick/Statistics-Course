@@ -163,4 +163,4 @@ This process should be performed when both the statistician and primary contact 
 
 Please review these guidelines on the course website.
 
-TODO: Add link.
+![Guidelines for Reporting of Statistics for Clinical Research in Urology](https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Guidelines%20for%20Reporting%20of%20Statistics%20for%20Clinical%20Research%20in%20Urology.pdf)
