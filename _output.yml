@@ -2,8 +2,6 @@ bookdown::gitbook:
   config:
     toc:
       collapse: section
-      download: ["pdf"]
-  edit: https://github.mskcc.org/vertosie/Statistics-Course/edit/%s
-rmarkdown::pdf_document:
-  keep_tex: yes
-  latex_engine: xelatex
+      scroll_highlight: yes
+    sharing: null
+    edit: https://github.mskcc.org/vertosie/Statistics-Course/edit/master/%s
