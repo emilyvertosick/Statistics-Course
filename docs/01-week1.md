@@ -49,7 +49,11 @@ When you open the "Statistics Course.Rproj" file, RStudio will open, and you wil
 
 ### Installing packages
 
-For this course, we will be using a set of packages called the "tidyverse". There are also several other packages that you should install. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
+For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click "yes".
+
+![ ](Images/rinstallmsg.png)
+
+Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
 
 
 ```r
@@ -122,7 +126,7 @@ skimr::skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -------------------------------------------------------------------------
+## -- Variable type:numeric --------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -186,11 +190,11 @@ The output above this text is the code, and the output below this shows the resu
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character -----------------------------------------------------------------------
+## -- Variable type:character ------------------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric -------------------------------------------------------------------------
+## -- Variable type:numeric --------------------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -233,7 +237,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -------------------------------------------------------------------------
+## -- Variable type:numeric --------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -999,7 +1003,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -------------------------------------------------------------------------
+## -- Variable type:numeric --------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist

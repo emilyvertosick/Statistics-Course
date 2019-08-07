@@ -89,7 +89,11 @@ When you open the "Statistics Course.Rproj" file, RStudio will open, and you wil
 
 ### Installing packages
 
-For this course, we will be using a set of packages called the "tidyverse". There are also several other packages that you should install. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
+For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click "yes".
+
+![ ](Images/rinstallmsg.png)
+
+Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
 
 ```{r install, echo = TRUE, eval = FALSE, purl = TRUE}
 
