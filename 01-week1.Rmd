@@ -207,6 +207,8 @@ This is data from 386 patients undergoing surgery. You can see the patient’s h
 
 ### Typing a command
 
+There are two options to run R code: you can type or copy and paste code into either the "console" window or the "source" window. To run code from the "console" window, simply press "enter". To run code from the "source" window, highlight the code you would like to run, and click the "run" button (top right corner of the "source" window) or use the keyboard shortcut "ctrl+enter".
+
 A typical command is of the form: `packagename::function(options)`. If a package has already been loaded using the `library` function (as we did above), you can omit `packagename::` when running the code.
 
 Since you can have multiple datasets in R at the same time, your command must indicate which dataset you are referring to. This is usually done by including the dataset name inside the parentheses of the function.
