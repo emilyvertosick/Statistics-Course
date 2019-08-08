@@ -110,7 +110,7 @@ install.packages("remotes")
 
 ```
 
-We will also be installing a package called `gtsummary` written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.
+We will also be installing a package called `gtsummary` written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package. Please note that you may work with statisticians who use different packages for formatting data, but if you would like to share this package, more information can be found here [here](http://www.danieldsjoberg.com/gtsummary/).
 
 ```{r install2, echo = TRUE, eval = FALSE, warning = FALSE, message = FALSE, purl = TRUE}
 
