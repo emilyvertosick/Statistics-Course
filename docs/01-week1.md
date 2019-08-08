@@ -78,7 +78,7 @@ remotes::install_github("ddsjoberg/gtsummary")
 
 ### A Note About Packages
 
-There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For most of these packages, if you give the package name to your statistician, they will be able to find and install the packages directly. If you'd like to share the `gtsummary` package, [this link](http://www.danieldsjoberg.com/gtsummary/) gives more detailed information on the functionality of the package as well as how to access and download the package.
+There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages except the `gtsummary` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gtsummary` package, [this link](http://www.danieldsjoberg.com/gtsummary/) gives more detailed information on the functionality of the package as well as how to access and download the package.
 
 ## R Instructions
 
