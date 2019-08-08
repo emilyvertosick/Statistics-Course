@@ -8,12 +8,14 @@
 ```r
 # Load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
+library(here)
 library(tidyverse)
 
 # Load data necessary to run Week 4 examples
@@ -37,8 +39,8 @@ I’ll use the dataset for assignment 3a ("lesson3a.rds") to illustrate these po
 # Create twoway table of prior chemotherapy by sex
 tbl_summary(
   lesson3a %>% select(pc, sex),
-  by = "sex",
-  type = list(vars(pc) ~ "categorical")
+  by = sex,
+  type = list("pc" ~ "categorical")
 )
 ```
 
@@ -389,16 +391,16 @@ So, for example, we can see that there were 575 women, 162 had prior chemo and 1
 
 This table also tells us that of men, 51% had no prior chemo, and 49% had prior chemo.
 
-As mentioned in lesson 2, the `tbl_summary` command gives column percentages by default, but can also give row percents using the `row_percent = TRUE` option:
+As mentioned in lesson 2, the `tbl_summary` command gives column percentages by default, but can also give row percents using the `percent = "row"` option:
 
 
 ```r
 # Create twoway table with "overall" column and display row percents
 tbl_summary(
   lesson3a %>% select(pc, sex),
-  by = "sex",
-  type = list(vars(pc) ~ "categorical"),
-  row_percent = TRUE
+  by = sex,
+  type = list("pc" ~ "categorical"),
+  percent = "row"
 ) %>%
   add_overall(last = TRUE)
 ```
@@ -804,10 +806,10 @@ TODO: PENDING BEING ABLE TO DO THIS WITHOUT CONTINUITY CORRECTION
 # Create two-way table including chi-squared p value
 tbl_summary(
   lesson2a %>% select(subfourhour, sex),
-  by = "sex",
-  type = list(vars(subfourhour) ~ "categorical")
+  by = sex,
+  type = list("subfourhour" ~ "categorical")
 ) %>%
-  add_p(test = list(vars(subfourhour) ~ "chisq.test"))
+  add_p(test = list("subfourhour" ~ "chisq.test"))
 ```
 
 <!--html_preserve--><style>html {
@@ -1333,10 +1335,10 @@ Similar to the chi-squared test, you can also get the Fisher's exact pvalue usin
 # Create formatted table with p value from fisher's exact test
 tbl_summary(
   example4a %>% select(toxin, cancer),
-  by = "cancer",
-  type = list(vars(toxin) ~ "categorical")
+  by = cancer,
+  type = list("toxin" ~ "categorical")
 ) %>%
-  add_p(test = list(vars(toxin) ~ "fisher.test"))
+  add_p(test = list("toxin" ~ "fisher.test"))
 ```
 
 <!--html_preserve--><style>html {

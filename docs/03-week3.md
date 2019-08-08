@@ -8,12 +8,14 @@
 ```r
 # Load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
+library(here)
 library(tidyverse)
 
 # The "trial" and "midwest" datasets are available automatically 

@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Load packages
 # library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
@@ -99,6 +100,7 @@ Enter one line at a time, and wait for the packages to install before entering t
 
 # Installing packages
 install.packages("tidyverse")
+install.packages("gt")
 install.packages("here")
 install.packages("skimr")
 install.packages("epiR")
@@ -181,6 +183,7 @@ Now you will be able to use all functions in the `skimr` package without specify
 
 # Here is the code to load all necessary packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
@@ -349,7 +352,7 @@ As you can see, there is currently only one row in the table. If a variable has 
 # Create a formatted table for the "sex" variable, showing both "0" and "1" values
 tbl_summary(
   lesson1a %>% select(sex),
-  type = list(vars(sex) ~ "categorical")
+  type = list("sex" ~ "categorical")
 )
 
 ```
@@ -358,7 +361,7 @@ tbl_summary(
 
 This tells you that the "sex" variable has no missing data because the table only shows values of "0" and "1", with no "NA" values. It also shows that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
 
-Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(vars(sex) ~ "categorical"), statistic = list(vars(sex) ~ "{n}")), variable = "sex", level = "0")` men in the `r nrow(lesson1a)` patients and that they constituted `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(vars(sex) ~ "categorical"), statistic = list(vars(sex) ~ "{p}%")), variable = "sex", level = "0")` of the population.
+Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list("sex" ~ "categorical"), statistic = list("sex" ~ "{n}")), variable = "sex", level = "0")` men in the `r nrow(lesson1a)` patients and that they constituted `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list("sex" ~ "categorical"), statistic = list("sex" ~ "{p}%")), variable = "sex", level = "0")` of the population.
 
 The `tbl_summary` function can also be used for two-way tables. The `select` function is used to select both variables of interest, and the name of the column variable is specified in the `by` statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the `table` function.
 
@@ -370,8 +373,8 @@ table(trial$response, trial$death)
 # Create two-way table for response and death using "tbl_summary" function
 tbl_summary(
   trial %>% select(response, death),
-  by = "death",
-  type = list(vars(response) ~ "categorical")
+  by = death,
+  type = list("response" ~ "categorical")
 )
 
 ```
@@ -494,9 +497,10 @@ lesson1a <-
 
 ### Using Help
 
-TODO: Discuss with Andrew re: taking this section out
+There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`.
 
-There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
+TODO: Discuss with Andrew re: taking following section out
+However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
 
 ## Assignments
 

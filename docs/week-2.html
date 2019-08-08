@@ -277,16 +277,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.1</span> Setting Up</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Load packages</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(skimr)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(gtsummary)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(epiR)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(pROC)</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">library</span>(survival)</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co"># Load data necessary to run Week 2 examples</span></a>
-<a class="sourceLine" id="cb1-12" title="12">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(gt)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(gtsummary)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(epiR)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(broom)</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(pROC)</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">library</span>(gmodels)</a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="kw">library</span>(survival)</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co"># Load data necessary to run Week 2 examples</span></a>
+<a class="sourceLine" id="cb1-14" title="14">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
 </div>
 <div id="r-instructions-1" class="section level2">
 <h2><span class="header-section-number">2.2</span> R Instructions</h2>
@@ -349,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Get formatted one-way frequency table</span></a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw">tbl_summary</span>(</a>
 <a class="sourceLine" id="cb10-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex), <span class="co"># Specify data to use and variables to include</span></a>
-<a class="sourceLine" id="cb10-4" title="4">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(sex) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>) <span class="co"># Show all levels of binary variables</span></a>
+<a class="sourceLine" id="cb10-4" title="4">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;sex&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>) <span class="co"># Show all levels of binary variables</span></a>
 <a class="sourceLine" id="cb10-5" title="5">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -689,8 +691,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># Create a formatted two-way summary table</span></a>
 <a class="sourceLine" id="cb11-2" title="2"><span class="kw">tbl_summary</span>(</a>
 <a class="sourceLine" id="cb11-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex, y), <span class="co"># Select both variables</span></a>
-<a class="sourceLine" id="cb11-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;y&quot;</span>, <span class="co"># The &quot;by&quot; option specifies which will be the column variable</span></a>
-<a class="sourceLine" id="cb11-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(sex) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
+<a class="sourceLine" id="cb11-4" title="4">  <span class="dt">by =</span> y, <span class="co"># The &quot;by&quot; option specifies which will be the column variable</span></a>
+<a class="sourceLine" id="cb11-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;sex&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
 <a class="sourceLine" id="cb11-6" title="6">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -1039,8 +1041,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Create a formatted two-way summary table and add column for all patients</span></a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="kw">tbl_summary</span>(</a>
 <a class="sourceLine" id="cb12-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex, y),</a>
-<a class="sourceLine" id="cb12-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;y&quot;</span>,</a>
-<a class="sourceLine" id="cb12-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(sex) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
+<a class="sourceLine" id="cb12-4" title="4">  <span class="dt">by =</span> y,</a>
+<a class="sourceLine" id="cb12-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;sex&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
 <a class="sourceLine" id="cb12-6" title="6">) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-7" title="7"><span class="st">  </span><span class="co"># Add a column with totals across all locations</span></a>
 <a class="sourceLine" id="cb12-8" title="8"><span class="st">  </span><span class="co"># &quot;last = TRUE&quot; puts the column on the right side of the table</span></a>
@@ -1392,13 +1394,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table></div>
 <p><br></p>
 <p>Overall, 47% of the patients treated in the hospital were men and 53% were women.</p>
-<p>By default <code>tbl_summary</code> gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the <code>row_percent</code> option.</p>
+<p>By default <code>tbl_summary</code> gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the <code>percent</code> option and specifying “row”.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># The two-way summary table can give you row percent instead of column percent</span></a>
 <a class="sourceLine" id="cb13-2" title="2"><span class="kw">tbl_summary</span>(</a>
 <a class="sourceLine" id="cb13-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex, y),</a>
-<a class="sourceLine" id="cb13-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;y&quot;</span>,</a>
-<a class="sourceLine" id="cb13-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(sex) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>),</a>
-<a class="sourceLine" id="cb13-6" title="6">  <span class="dt">row_percent =</span> <span class="ot">TRUE</span> <span class="co"># get the row percent instead of column percent</span></a>
+<a class="sourceLine" id="cb13-4" title="4">  <span class="dt">by =</span> y,</a>
+<a class="sourceLine" id="cb13-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;sex&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>),</a>
+<a class="sourceLine" id="cb13-6" title="6">  <span class="dt">percent =</span> <span class="st">&quot;row&quot;</span> <span class="co"># get the row percent instead of column percent</span></a>
 <a class="sourceLine" id="cb13-7" title="7">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;

@@ -3,13 +3,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Set seed
@@ -48,13 +49,14 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 # Week 1: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 1: load data
@@ -81,13 +83,14 @@ The dataset has 11 variables:
 
 # Week 2: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 2: load data
@@ -138,10 +141,10 @@ lesson2a <-
 lesson2a %>%
   select(-tm, -id) %>%
   tbl_summary(
-    statistic = list(vars(..continuous..) ~ "{mean} ({sd})"),
-    label = list(vars(age) ~ "Age", vars(sex) ~ "Women",
-                 vars(rt) ~ "Race time in minutes",
-                 vars(shoe) ~ "Favorite Running Shoe")
+    statistic = list(all_continuous() ~ "{mean} ({sd})"),
+    label = list("age" ~ "Age", "sex" ~ "Women",
+                 "rt" ~ "Race time in minutes",
+                 "shoe" ~ "Favorite Running Shoe")
   )
 
 ```
@@ -153,9 +156,9 @@ However, look at this.
 lesson2a %>%
   select(-tm, -id) %>%
   tbl_summary(
-    label = list(vars(age) ~ "Age", vars(sex) ~ "Women",
-                 vars(rt) ~ "Race time in minutes",
-                 vars(shoe) ~ "Favorite Running Shoe")
+    label = list("age" ~ "Age", "sex" ~ "Women",
+                 "rt" ~ "Race time in minutes",
+                 "shoe" ~ "Favorite Running Shoe")
   )
 
 ```
@@ -248,7 +251,7 @@ lesson2c <-
 
 lesson2c %>%
   select(stage_category) %>%
-  tbl_summary(label = list(vars(stage_category) ~ "Stage"))
+  tbl_summary(label = list("stage_category" ~ "Stage"))
 
 ```
 
@@ -286,10 +289,10 @@ lesson2c %>%
       )
   ) %>%
   select(stage_category, grade_category, age, psa) %>%
-  tbl_summary(label = list(vars(stage_category) ~ "Stage",
-                           vars(grade_category) ~ "Grade",
-                           vars(age) ~ "Age",
-                           vars(psa) ~ "PSA"))
+  tbl_summary(label = list("stage_category" ~ "Stage",
+                           "grade_category" ~ "Grade",
+                           "age" ~ "Age",
+                           "psa" ~ "PSA"))
 
 ```
 
@@ -305,7 +308,7 @@ I asked you to summarize the cost. You can see from a graph that the data are no
 
 The data are grossly non-normal and you could use the median pain score with interquartile range. 
 
-As for summarizing the number of days in pain, almost everyone has 31 days of pain. So I would give proportions of patients who had pain for 31 days and then the number who, say, had pain at least 3 out of every 4 days and 2 out of 4 days. There are two ways of doing this. You could use `tbl_summary(lesson2e %>% select(f), type = list(vars(f) ~ "categorical"))` and then combine some of the results. Or, and this is a little more complicated, you could create a new variable.
+As for summarizing the number of days in pain, almost everyone has 31 days of pain. So I would give proportions of patients who had pain for 31 days and then the number who, say, had pain at least 3 out of every 4 days and 2 out of 4 days. There are two ways of doing this. You could use `tbl_summary(lesson2e %>% select(f), type = list("f" ~ "categorical"))` and then combine some of the results. Or, and this is a little more complicated, you could create a new variable.
 
 
 ```{r week2j}
@@ -341,7 +344,7 @@ tbl_summary(
 tbl_2e <-
   tbl_summary(
     lesson2e %>% select(days),
-    statistic = list(vars(days) ~ "{p}%")
+    statistic = list("days" ~ "{p}%")
   )
 
 ```
@@ -371,13 +374,14 @@ The mean of log is `r round(mean(lesson2e$log, na.rm = TRUE), 2)`. You can trans
 
 # Week 3: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 3: load data
@@ -488,8 +492,8 @@ And then the table:
 # Formatted table to look at rates of missingness in "nv" variable by sex
 tbl_summary(
   lesson3a %>% select(missing, sex),
-  by = "sex",
-  type = list(vars(missing) ~ "categorical")
+  by = sex,
+  type = list("missing" ~ "categorical")
 )
 
 ```
@@ -735,13 +739,14 @@ An alternative conclusion, which I think I actually prefer, would be to focus on
 
 # Week 4: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 4: load data
@@ -764,8 +769,8 @@ To have a quick look at the data, create a two-by-two table:
 # Create formatted table of nausea/vomiting by car sickness history
 tbl_summary(
   lesson4a %>% select(nv, cs),
-  by = "cs",
-  type = list(vars(nv) ~ "categorical")
+  by = cs,
+  type = list("nv" ~ "categorical")
 )
 
 ```
@@ -775,9 +780,9 @@ tbl_summary(
 tbl_nv <-
   tbl_summary(
     lesson4a %>% select(nv, cs),
-    by = "cs",
-    type = list(vars(nv) ~ "categorical"),
-    statistic = list(vars(nv) ~ "{p}%")
+    by = cs,
+    type = list("nv" ~ "categorical"),
+    statistic = list("n" ~ "{p}%")
   )
 
 ```
@@ -834,16 +839,16 @@ This gives a "risk ratio" (same as relative risk) of `r style_ratio(tbl_cs$res$R
 tbl_meatrow <-
   tbl_summary(
     lesson4b %>% select(meat, hbp),
-    by = "hbp",
-    statistic = list(vars(meat) ~ "{p}%"),
-    row_percent = TRUE
+    by = hbp,
+    statistic = list("meat" ~ "{p}%"),
+    percent = "row"
   )
 
 tbl_meatcol <-
   tbl_summary(
     lesson4b %>% select(meat, hbp),
-    by = "hbp",
-    statistic = list(vars(meat) ~ "{p}%")
+    by = hbp,
+    statistic = list("meat" ~ "{p}%")
   )
 
 ```
@@ -855,7 +860,7 @@ There are three levels of meat consumption. The outcome (hypertension) is binary
 # Formatted table of meat consumption by hypertension status
 tbl_summary(
   lesson4b %>% select(meat, hbp),
-  by = "hbp"
+  by = hbp
 )
 
 ```
@@ -869,8 +874,8 @@ You also could have created this table:
 # Formatted table of meat consumption by hypertension status (row percents)
 tbl_summary(
   lesson4b %>% select(meat, hbp),
-  by = "hbp",
-  row_percent = TRUE
+  by = hbp,
+  percent = "row"
 )
 
 ```
@@ -1001,9 +1006,9 @@ tbl_hbp <-
   ) %>%
   select(meat_fac, hbp_fac) %>%
   tbl_summary(
-    by = "hbp_fac",
-    label = list(vars(meat_fac) ~ "Meat Consumption"),
-    row_percent = TRUE)
+    by = hbp_fac,
+    label = list("meat_fac" ~ "Meat Consumption"),
+    percent = "row")
 
 tbl_hbp %>%
   add_overall(last = TRUE)
@@ -1027,7 +1032,7 @@ It is immediately obvious from this table that there are very few patients who a
 # Formatted two-way table of genes by toxicity outcome
 tbl_summary(
   lesson4c %>% select(gene, toxicity),
-  by = "toxicity"
+  by = toxicity
 )
 
 ```
@@ -1059,9 +1064,9 @@ tbl_gene <-
 tbl_mutant <-
   tbl_summary(
     lesson4c %>% select(mutant, toxicity),
-    by = "toxicity",
-    type = list(vars(mutant) ~ "categorical"),
-    statistic = list(vars(mutant) ~ "{p}%")
+    by = toxicity,
+    type = list("mutant" ~ "categorical"),
+    statistic = list("mutant" ~ "{p}%")
   )
 
 tbl_mutant_epi <- epi.2by2(matrix(rev(table(lesson4c$mutant, lesson4c$toxicity)), nrow = 2))
@@ -1088,9 +1093,9 @@ tbl_gene_toxic <-
   ) %>%
   select(gene_fac, toxicity_fac) %>%
   tbl_summary(
-    by = "toxicity_fac",
-    label = list(vars(gene_fac) ~ "Gene"),
-    row_percent = TRUE)
+    by = toxicity_fac,
+    label = list("gene_fac" ~ "Gene"),
+    percent = "row")
 
 tbl_gene_toxic %>%
   add_overall(last = TRUE)
@@ -1112,9 +1117,9 @@ The first thing we want to do is compare response by group. But using `epi.2by2`
 tbl_chemoresponse <-
   tbl_summary(
     lesson4d %>% select(group, response),
-    by = "response",
-    type = list(vars(group) ~ "categorical"),
-    statistic = list(vars(group) ~ "{p}%")
+    by = response,
+    type = list("group" ~ "categorical"),
+    statistic = list("group" ~ "{p}%")
   )
 
 tbl_chemoresponse_epi <- 
@@ -1206,8 +1211,8 @@ A BIG HOWEVER - have a look at the data or this table:
 # Formatted table of gene1 by gene2
 tbl_summary(
   lesson4e %>% select(gene1, gene2),
-  by = "gene2",
-  type = list(vars(gene1) ~ "categorical")
+  by = gene2,
+  type = list("gene1" ~ "categorical")
 )
 
 ```
@@ -1237,13 +1242,14 @@ The experimental design was to knockout no genes in some animals, gene1 in some 
 
 # Week 5: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 5: load data
@@ -1285,18 +1291,18 @@ rt_tbl1 <-
   lesson5a %>%
   filter(!is.na(wt)) %>%
   tbl_summary(
-    label = list(vars(age) ~ "Age (years)", vars(sex) ~ "Female",
-                 vars(tr) ~ "Training miles per week",
-                 vars(wt) ~ "Weight (kg)", vars(rt) ~ "Race time (minutes)"),
-    statistic = list(vars(..continuous..) ~ "{mean} ({sd})")
+    label = list("age" ~ "Age (years)", "sex" ~ "Female",
+                 "tr" ~ "Training miles per week",
+                 "wt" ~ "Weight (kg)", "rt" ~ "Race time (minutes)"),
+    statistic = list(all_continuous() ~ "{mean} ({sd})")
   )
 
 rt_tbl2 <-
   rt_model %>%
   tbl_regression(
-    label = list(vars(age) ~ "Age (years)", vars(sex) ~ "Female",
-                 vars(tr) ~ "Training miles per week",
-                 vars(wt) ~ "Weight (kg)")
+    label = list("age" ~ "Age (years)", "sex" ~ "Female",
+                 "tr" ~ "Training miles per week",
+                 "wt" ~ "Weight (kg)")
   )
 
 male_avg <-
@@ -1687,8 +1693,8 @@ My model answer would be:
 df_tbl5d <-
   tbl_summary(
     lesson5d %>% select(dose, s),
-    by = "dose",
-    statistic = list(vars(..continuous..) ~ "{mean} ({sd})"))
+    by = dose,
+    statistic = list(all_continuous() ~ "{mean} ({sd})"))
 
 df_tbl5dcol <-
   df_tbl5d$table_body %>%
@@ -1856,15 +1862,15 @@ Try this:
 # For men
 tbl_summary(
   lesson5g %>% filter(sex == 0) %>% select(response, chemo),
-  by = "chemo",
-  type = list(vars(response) ~ "categorical")
+  by = chemo,
+  type = list("response" ~ "categorical")
 )
 
 # For women
 tbl_summary(
   lesson5g %>% filter(sex == 1) %>% select(response, chemo),
-  by = "chemo",
-  type = list(vars(response) ~ "categorical")
+  by = chemo,
+  type = list("response" ~ "categorical")
 )
 
 # Here, the "summarize" function stores out the p values for the chi-squared test by sex
@@ -1879,17 +1885,17 @@ lesson5g %>%
 chitable_men <-
   tbl_summary(
     lesson5g %>% filter(sex == 0) %>% select(response, chemo),
-    by = "chemo",
-    type = list(vars(response) ~ "categorical"),
-    statistic = list(vars(response) ~ "{p}%")
+    by = chemo,
+    type = list("response" ~ "categorical"),
+    statistic = list("response" ~ "{p}%")
   )
 
 chitable_women <-
   tbl_summary(
     lesson5g %>% filter(sex == 1) %>% select(response, chemo),
-    by = "chemo",
-    type = list(vars(response) ~ "categorical"),
-    statistic = list(vars(response) ~ "{p}%")
+    by = chemo,
+    type = list("response" ~ "categorical"),
+    statistic = list("response" ~ "{p}%")
   )
 
 chip1 <-
@@ -1906,8 +1912,8 @@ This shows that regime b is better for men (`r inline_text(chitable_men, variabl
 # Create two-way table of response by sex
 tbl_summary(
   lesson5g %>% select(response, sex),
-  by = "sex",
-  type = list(vars(response) ~ "categorical")
+  by = sex,
+  type = list("response" ~ "categorical")
 )
 
 # Test for a difference in response by sex using chi-squared test
@@ -1955,15 +1961,15 @@ Then do the subgroup analysis as above:
 # For younger patients
 tbl_summary(
   lesson5g %>% filter(hiage == 0) %>% select(response, chemo),
-  by = "chemo",
-  type = list(vars(response) ~ "categorical")
+  by = chemo,
+  type = list("response" ~ "categorical")
 )
 
 # For older patients
 tbl_summary(
   lesson5g %>% filter(hiage == 1) %>% select(response, chemo),
-  by = "chemo",
-  type = list(vars(response) ~ "categorical")
+  by = chemo,
+  type = list("response" ~ "categorical")
 )
 
 # Calculate p value for each comparison
@@ -2003,17 +2009,17 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
 chitable_lowage <-
   tbl_summary(
     lesson5g %>% filter(hiage == 0) %>% select(chemo, response),
-    by = "chemo",
-    type = list(vars(response) ~ "categorical"),
-    statistic = list(vars(response) ~ "{p}%")
+    by = chemo,
+    type = list("response" ~ "categorical"),
+    statistic = list("response" ~ "{p}%")
   )
 
 chitable_hiage <-
   tbl_summary(
     lesson5g %>% filter(hiage == 1) %>% select(chemo, response),
-    by = "chemo",
-    type = list(vars(response) ~ "categorical"),
-    statistic = list(vars(response) ~ "{p}%")
+    by = chemo,
+    type = list("response" ~ "categorical"),
+    statistic = list("response" ~ "{p}%")
   )
 
 ```
@@ -2043,10 +2049,10 @@ tbl_psa <-
   lesson5h %>%
   select(-cancer) %>%
   tbl_summary(
-    label = list(vars(psa) ~ "Total PSA (ng/mL)",
-                 vars(psan) ~ "Nicked PSA (ng/mL)",
-                 vars(psai) ~ "Intact PSA (ng/mL)",
-                 vars(psant) ~ "Nicked-to-total ratio")
+    label = list("psa" ~ "Total PSA (ng/mL)",
+                 "psan" ~ "Nicked PSA (ng/mL)",
+                 "psai" ~ "Intact PSA (ng/mL)",
+                 "psant" ~ "Nicked-to-total ratio")
   )
 
 pred_psa <-
@@ -2101,9 +2107,9 @@ tbl_psa
 
 tbl_regression(nont_model,
                exponentiate = TRUE,
-               label = list(vars(psa) ~ "Total PSA",
-                            vars(psan) ~ "Nicked PSA",
-                            vars(psai) ~ "Intact PSA"))
+               label = list("psa" ~ "Total PSA",
+                            "psan" ~ "Nicked PSA",
+                            "psai" ~ "Intact PSA"))
 
 ```
 
@@ -2173,13 +2179,14 @@ Now when you regress the change score using the variables "treat" and "therapy" 
 
 # Week 6: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 6: load data
@@ -2270,8 +2277,8 @@ Let's try:
 # Here we will drop observations missing marker data from the table (filter function)
 tbl_summary(
   lesson6c %>% filter(!is.na(marker)) %>% select(cancer, marker),
-  by = "marker",
-  type = list(vars(cancer) ~ "categorical")
+  by = marker,
+  type = list("cancer" ~ "categorical")
 )
 
 ```
@@ -2294,8 +2301,8 @@ The first question concerns the value of the current method of determining refer
 # Two-way table of recurrence by hi_risk
 tbl_summary(
   lesson6d %>% select(recurrence, hi_risk),
-  by = "hi_risk",
-  type = list(vars(recurrence) ~ "categorical")
+  by = hi_risk,
+  type = list("recurrence" ~ "categorical")
 )
 
 ```
@@ -2305,9 +2312,9 @@ tbl_summary(
 tbl_recur <-
   tbl_summary(
     lesson6d %>% select(recurrence, hi_risk),
-    by = "hi_risk",
-    type = list(vars(recurrence) ~ "categorical"),
-    statistic = list(vars(recurrence) ~ "{p}%")
+    by = hi_risk,
+    type = list("recurrence" ~ "categorical"),
+    statistic = list("recurrence" ~ "{p}%")
   )
 
 auc_recur <- as.numeric(auc(roc(recurrence ~ hi_risk, data = lesson6d)))
@@ -2365,8 +2372,8 @@ lesson6d_pred <-
 # with those defined as high risk using clinical criteria
 tbl_summary(
   lesson6d_pred %>% select(clinmodel_hirisk, hi_risk),
-  by = "hi_risk",
-  type = list(vars(clinmodel_hirisk) ~ "categorical")
+  by = hi_risk,
+  type = list("clinmodel_hirisk" ~ "categorical")
 )
 
 ```
@@ -2418,8 +2425,8 @@ lesson6d_pred <-
 # with those defined as high risk using clinical criteria
 tbl_summary(
   lesson6d_pred %>% select(markermodel_hirisk, hi_risk),
-  by = "hi_risk",
-  type = list(vars(markermodel_hirisk) ~ "categorical")
+  by = hi_risk,
+  type = list("markermodel_hirisk" ~ "categorical")
 )
 
 ```
@@ -2429,25 +2436,25 @@ tbl_summary(
 tbl_markermodel <-
   tbl_summary(
     lesson6d_pred %>% select(markermodel_hirisk, hi_risk),
-    by = "hi_risk",
-    type = list(vars(markermodel_hirisk) ~ "categorical"),
-    statistic = list(vars(markermodel_hirisk) ~ "{n}")
+    by = hi_risk,
+    type = list("markermodel_hirisk" ~ "categorical"),
+    statistic = list("markermodel_hirisk" ~ "{n}")
   )
 
 tbl_recur1 <-
   tbl_summary(
     lesson6d_pred %>% filter(markermodel_hirisk == 1 & hi_risk == 0) %>%
       select(recurrence),
-    type = list(vars(recurrence) ~ "categorical"),
-    statistic = list(vars(recurrence) ~ "{p}%")
+    type = list("recurrence" ~ "categorical"),
+    statistic = list("recurrence" ~ "{p}%")
   )
 
 tbl_recur2 <-
   tbl_summary(
     lesson6d_pred %>% filter(markermodel_hirisk == 0 & hi_risk == 1) %>%
       select(recurrence),
-    type = list(vars(recurrence) ~ "categorical"),
-    statistic = list(vars(recurrence) ~ "{p}%")
+    type = list("recurrence" ~ "categorical"),
+    statistic = list("recurrence" ~ "{p}%")
   )
 
 ```
@@ -2460,14 +2467,14 @@ You can see now that `r inline_text(tbl_markermodel, variable = "markermodel_hir
 tbl_summary(
   lesson6d_pred %>% filter(markermodel_hirisk == 1 & hi_risk == 0) %>%
     select(recurrence),
-  type = list(vars(recurrence) ~ "categorical")
+  type = list("recurrence" ~ "categorical")
 )
 
 # Table of recurrences for those at low risk from the marker model but high risk clinically
 tbl_summary(
   lesson6d_pred %>% filter(markermodel_hirisk == 0 & hi_risk == 1) %>%
     select(recurrence),
-  type = list(vars(recurrence) ~ "categorical")
+  type = list("recurrence" ~ "categorical")
 )
 
 ```
@@ -2517,8 +2524,8 @@ lesson6d_pred <-
 # Two-way table of high risk status, based on marker model and imaging model
 tbl_summary(
   lesson6d_pred %>% select(imagingmodel_hirisk, markermodel_hirisk),
-  by = "markermodel_hirisk",
-  type = list(vars(imagingmodel_hirisk) ~ "categorical")
+  by = markermodel_hirisk,
+  type = list("imagingmodel_hirisk" ~ "categorical")
 )
 
 ```
@@ -2528,9 +2535,9 @@ tbl_summary(
 tbl_imaging <-
   tbl_summary(
     lesson6d_pred %>% select(imagingmodel_hirisk, markermodel_hirisk),
-    by = "markermodel_hirisk",
-    type = list(vars(imagingmodel_hirisk) ~ "categorical"),
-    statistic = list(vars(imagingmodel_hirisk) ~ "{n}")
+    by = markermodel_hirisk,
+    type = list("imagingmodel_hirisk" ~ "categorical"),
+    statistic = list("imagingmodel_hirisk" ~ "{n}")
   )
 
 imaging_reclass <-
@@ -2592,13 +2599,14 @@ The key thing to think about here is the comparisons you want to make. Drug a al
 
 # Week 7: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 7: load data
@@ -2735,17 +2743,17 @@ tbl_summary_7a <-
     lesson7a %>%
       select(sex, age, obstruction, adhesions, node4),
     type = list(vars(sex, obstruction, adhesions) ~ "categorical"),
-    label = list(vars(sex) ~ "Sex", vars(age) ~ "Age",
-                 vars(obstruction) ~ "Obstruction", vars(adhesions) ~ "Adhesions")
+    label = list("sex" ~ "Sex", "age" ~ "Age",
+                 "obstruction" ~ "Obstruction", "adhesions" ~ "Adhesions")
   )
 
 tbl_cox_7a <-
   coxph(lesson7a_surv ~ sex + age + obstruction + adhesions + factor(node4), data = lesson7a) %>%
   tbl_regression(
     exponentiate = TRUE,
-    label = list(vars(sex) ~ "Female", vars(age) ~ "Age (per 1 year)",
-                 vars(obstruction) ~ "Obstruction", vars(adhesions) ~ "Adhesions",
-                 vars(`factor(node4)`) ~ "Number of nodes"))
+    label = list("sex" ~ "Female", "age" ~ "Age (per 1 year)",
+                 "obstruction" ~ "Obstruction", "adhesions" ~ "Adhesions")
+  )
 
 
 ```
@@ -2927,7 +2935,7 @@ In case you are wondering how I did all this, one key is to see that in the data
 # Two-way table of group by treatment
 tbl_summary(
   lesson7c %>% select(group, treatment),
-  by = "treatment"
+  by = treatment
 )
 
 ```
@@ -2937,8 +2945,8 @@ When I did the graph, I used the variable "treatment" to get the names of the tr
 ```{r week7v, results = "hide"}
 
 # Create Kaplan-Meier plot by treatment group
-ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
-           legend = "bottom")
+survminer::ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
+                      legend = "bottom")
 
 ```
 

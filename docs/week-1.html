@@ -309,14 +309,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the “console” window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Installing packages</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">install.packages</span>(<span class="st">&quot;here&quot;</span>)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">install.packages</span>(<span class="st">&quot;skimr&quot;</span>)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">install.packages</span>(<span class="st">&quot;epiR&quot;</span>)</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">install.packages</span>(<span class="st">&quot;broom&quot;</span>)</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw">install.packages</span>(<span class="st">&quot;pROC&quot;</span>)</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">install.packages</span>(<span class="st">&quot;survival&quot;</span>)</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="kw">install.packages</span>(<span class="st">&quot;survminer&quot;</span>)</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">install.packages</span>(<span class="st">&quot;gt&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">install.packages</span>(<span class="st">&quot;here&quot;</span>)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">install.packages</span>(<span class="st">&quot;skimr&quot;</span>)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">install.packages</span>(<span class="st">&quot;epiR&quot;</span>)</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">install.packages</span>(<span class="st">&quot;broom&quot;</span>)</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">install.packages</span>(<span class="st">&quot;pROC&quot;</span>)</a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="kw">install.packages</span>(<span class="st">&quot;survival&quot;</span>)</a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw">install.packages</span>(<span class="st">&quot;survminer&quot;</span>)</a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</a></code></pre></div>
 <p>We will also be installing a package called <code>gtsummary</code> written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;ddsjoberg/gtsummary&quot;</span>)</a></code></pre></div>
 </div>
@@ -366,14 +367,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now you will be able to use all functions in the <code>skimr</code> package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio. This code will also be available at the beginning of each lesson.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Here is the code to load all necessary packages</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw">library</span>(skimr)</a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="kw">library</span>(gtsummary)</a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="kw">library</span>(epiR)</a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="kw">library</span>(pROC)</a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb9-8" title="8"><span class="kw">library</span>(survival)</a>
-<a class="sourceLine" id="cb9-9" title="9"><span class="kw">library</span>(survminer)</a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<a class="sourceLine" id="cb9-3" title="3"><span class="kw">library</span>(gt)</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="kw">library</span>(gtsummary)</a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw">library</span>(epiR)</a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="kw">library</span>(broom)</a>
+<a class="sourceLine" id="cb9-7" title="7"><span class="kw">library</span>(pROC)</a>
+<a class="sourceLine" id="cb9-8" title="8"><span class="kw">library</span>(gmodels)</a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="kw">library</span>(survival)</a>
+<a class="sourceLine" id="cb9-10" title="10"><span class="kw">library</span>(survminer)</a>
+<a class="sourceLine" id="cb9-11" title="11"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 </div>
 <div id="looking-at-the-data" class="section level3">
 <h3><span class="header-section-number">1.2.3</span> Looking at the data</h3>
@@ -841,7 +843,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable, showing both &quot;0&quot; and &quot;1&quot; values</span></a>
 <a class="sourceLine" id="cb26-2" title="2"><span class="kw">tbl_summary</span>(</a>
 <a class="sourceLine" id="cb26-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex),</a>
-<a class="sourceLine" id="cb26-4" title="4">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(sex) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
+<a class="sourceLine" id="cb26-4" title="4">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;sex&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
 <a class="sourceLine" id="cb26-5" title="5">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -1185,8 +1187,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Create two-way table for response and death using &quot;tbl_summary&quot; function</span></a>
 <a class="sourceLine" id="cb29-2" title="2"><span class="kw">tbl_summary</span>(</a>
 <a class="sourceLine" id="cb29-3" title="3">  trial <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(response, death),</a>
-<a class="sourceLine" id="cb29-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;death&quot;</span>,</a>
-<a class="sourceLine" id="cb29-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(response) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
+<a class="sourceLine" id="cb29-4" title="4">  <span class="dt">by =</span> death,</a>
+<a class="sourceLine" id="cb29-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;response&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
 <a class="sourceLine" id="cb29-6" title="6">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -1597,8 +1599,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="using-help" class="section level3">
 <h3><span class="header-section-number">1.2.6</span> Using Help</h3>
-<p>TODO: Discuss with Andrew re: taking this section out</p>
-<p>There is a good help feature where you can learn more about functions (though not about statistics…). You can access the help files by typing <code>?packagename::functionname</code> or <code>?functionname</code> into the console, for example <code>?mutate</code>. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don’t start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.</p>
+<p>There is a good help feature where you can learn more about functions (though not about statistics…). You can access the help files by typing <code>?packagename::functionname</code> or <code>?functionname</code> into the console, for example <code>?mutate</code>.</p>
+<p>TODO: Discuss with Andrew re: taking following section out
+However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don’t start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.</p>
 </div>
 </div>
 <div id="assignments" class="section level2">

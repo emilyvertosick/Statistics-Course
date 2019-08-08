@@ -8,13 +8,14 @@
 ```r
 # Week 1: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 1: load data
@@ -40,13 +41,14 @@ The dataset has 11 variables:
 ```r
 # Week 2: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 2: load data
@@ -1601,7 +1603,7 @@ I asked you to summarize the cost. You can see from a graph that the data are no
 
 The data are grossly non-normal and you could use the median pain score with interquartile range. 
 
-As for summarizing the number of days in pain, almost everyone has 31 days of pain. So I would give proportions of patients who had pain for 31 days and then the number who, say, had pain at least 3 out of every 4 days and 2 out of 4 days. There are two ways of doing this. You could use `tbl_summary(lesson2e %>% select(f), type = list(vars(f) ~ "categorical"))` and then combine some of the results. Or, and this is a little more complicated, you could create a new variable.
+As for summarizing the number of days in pain, almost everyone has 31 days of pain. So I would give proportions of patients who had pain for 31 days and then the number who, say, had pain at least 3 out of every 4 days and 2 out of 4 days. There are two ways of doing this. You could use `tbl_summary(lesson2e %>% select(f), type = list("f" ~ "categorical"))` and then combine some of the results. Or, and this is a little more complicated, you could create a new variable.
 
 
 
@@ -1998,13 +2000,14 @@ The mean of log is 5.42. You can transform the log back by calculating e^5.42^ (
 ```r
 # Week 3: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 3: load data
@@ -2091,8 +2094,8 @@ And then the table:
 # Formatted table to look at rates of missingness in "nv" variable by sex
 tbl_summary(
   lesson3a %>% select(missing, sex),
-  by = "sex",
-  type = list(vars(missing) ~ "categorical")
+  by = sex,
+  type = list("missing" ~ "categorical")
 )
 ```
 
@@ -2825,13 +2828,14 @@ An alternative conclusion, which I think I actually prefer, would be to focus on
 ```r
 # Week 4: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 4: load data
@@ -2853,8 +2857,8 @@ To have a quick look at the data, create a two-by-two table:
 # Create formatted table of nausea/vomiting by car sickness history
 tbl_summary(
   lesson4a %>% select(nv, cs),
-  by = "cs",
-  type = list(vars(nv) ~ "categorical")
+  by = cs,
+  type = list("nv" ~ "categorical")
 )
 ```
 
@@ -3194,7 +3198,7 @@ tbl_summary(
 
 
 
-This shows, for example, 56% of those who get car sick reported problematic nausea compared to only 33% of those who aren't prone to car sickness. To find out whether this is statistically significant (it certainly seems clinically significant), you can use the `chisq.test` or the `fisher.test` function.
+This shows, for example, 5 (56%) of those who get car sick reported problematic nausea compared to only 2 (33%) of those who aren't prone to car sickness. To find out whether this is statistically significant (it certainly seems clinically significant), you can use the `chisq.test` or the `fisher.test` function.
 
 
 ```r
@@ -3291,7 +3295,7 @@ There are three levels of meat consumption. The outcome (hypertension) is binary
 # Formatted table of meat consumption by hypertension status
 tbl_summary(
   lesson4b %>% select(meat, hbp),
-  by = "hbp"
+  by = hbp
 )
 ```
 
@@ -3643,8 +3647,8 @@ You also could have created this table:
 # Formatted table of meat consumption by hypertension status (row percents)
 tbl_summary(
   lesson4b %>% select(meat, hbp),
-  by = "hbp",
-  row_percent = TRUE
+  by = hbp,
+  percent = "row"
 )
 ```
 
@@ -4497,7 +4501,7 @@ It is immediately obvious from this table that there are very few patients who a
 # Formatted two-way table of genes by toxicity outcome
 tbl_summary(
   lesson4c %>% select(gene, toxicity),
-  by = "toxicity"
+  by = toxicity
 )
 ```
 
@@ -5417,8 +5421,8 @@ A BIG HOWEVER - have a look at the data or this table:
 # Formatted table of gene1 by gene2
 tbl_summary(
   lesson4e %>% select(gene1, gene2),
-  by = "gene2",
-  type = list(vars(gene1) ~ "categorical")
+  by = gene2,
+  type = list("gene1" ~ "categorical")
 )
 ```
 
@@ -5766,13 +5770,14 @@ The experimental design was to knockout no genes in some animals, gene1 in some 
 ```r
 # Week 5: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 5: load data
@@ -11080,8 +11085,8 @@ Try this:
 # For men
 tbl_summary(
   lesson5g %>% filter(sex == 0) %>% select(response, chemo),
-  by = "chemo",
-  type = list(vars(response) ~ "categorical")
+  by = chemo,
+  type = list("response" ~ "categorical")
 )
 ```
 
@@ -11423,8 +11428,8 @@ tbl_summary(
 # For women
 tbl_summary(
   lesson5g %>% filter(sex == 1) %>% select(response, chemo),
-  by = "chemo",
-  type = list(vars(response) ~ "categorical")
+  by = chemo,
+  type = list("response" ~ "categorical")
 )
 ```
 
@@ -11786,8 +11791,8 @@ This shows that regime b is better for men (51% vs 39% response rate, p=0.037). 
 # Create two-way table of response by sex
 tbl_summary(
   lesson5g %>% select(response, sex),
-  by = "sex",
-  type = list(vars(response) ~ "categorical")
+  by = sex,
+  type = list("response" ~ "categorical")
 )
 ```
 
@@ -12527,8 +12532,8 @@ Then do the subgroup analysis as above:
 # For younger patients
 tbl_summary(
   lesson5g %>% filter(hiage == 0) %>% select(response, chemo),
-  by = "chemo",
-  type = list(vars(response) ~ "categorical")
+  by = chemo,
+  type = list("response" ~ "categorical")
 )
 ```
 
@@ -12870,8 +12875,8 @@ tbl_summary(
 # For older patients
 tbl_summary(
   lesson5g %>% filter(hiage == 1) %>% select(response, chemo),
-  by = "chemo",
-  type = list(vars(response) ~ "categorical")
+  by = chemo,
+  type = list("response" ~ "categorical")
 )
 ```
 
@@ -15326,13 +15331,14 @@ Now when you regress the change score using the variables "treat" and "therapy" 
 ```r
 # Week 6: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 6: load data
@@ -15380,8 +15386,8 @@ Let's try:
 # Here we will drop observations missing marker data from the table (filter function)
 tbl_summary(
   lesson6c %>% filter(!is.na(marker)) %>% select(cancer, marker),
-  by = "marker",
-  type = list(vars(cancer) ~ "categorical")
+  by = marker,
+  type = list("cancer" ~ "categorical")
 )
 ```
 
@@ -15737,8 +15743,8 @@ The first question concerns the value of the current method of determining refer
 # Two-way table of recurrence by hi_risk
 tbl_summary(
   lesson6d %>% select(recurrence, hi_risk),
-  by = "hi_risk",
-  type = list(vars(recurrence) ~ "categorical")
+  by = hi_risk,
+  type = list("recurrence" ~ "categorical")
 )
 ```
 
@@ -16145,8 +16151,8 @@ lesson6d_pred <-
 # with those defined as high risk using clinical criteria
 tbl_summary(
   lesson6d_pred %>% select(clinmodel_hirisk, hi_risk),
-  by = "hi_risk",
-  type = list(vars(clinmodel_hirisk) ~ "categorical")
+  by = hi_risk,
+  type = list("clinmodel_hirisk" ~ "categorical")
 )
 ```
 
@@ -16891,8 +16897,8 @@ lesson6d_pred <-
 # with those defined as high risk using clinical criteria
 tbl_summary(
   lesson6d_pred %>% select(markermodel_hirisk, hi_risk),
-  by = "hi_risk",
-  type = list(vars(markermodel_hirisk) ~ "categorical")
+  by = hi_risk,
+  type = list("markermodel_hirisk" ~ "categorical")
 )
 ```
 
@@ -17240,7 +17246,7 @@ You can see now that 133 patients who would otherwise be referred to adjuvant ch
 tbl_summary(
   lesson6d_pred %>% filter(markermodel_hirisk == 1 & hi_risk == 0) %>%
     select(recurrence),
-  type = list(vars(recurrence) ~ "categorical")
+  type = list("recurrence" ~ "categorical")
 )
 ```
 
@@ -17579,7 +17585,7 @@ tbl_summary(
 tbl_summary(
   lesson6d_pred %>% filter(markermodel_hirisk == 0 & hi_risk == 1) %>%
     select(recurrence),
-  type = list(vars(recurrence) ~ "categorical")
+  type = list("recurrence" ~ "categorical")
 )
 ```
 
@@ -17962,8 +17968,8 @@ lesson6d_pred <-
 # Two-way table of high risk status, based on marker model and imaging model
 tbl_summary(
   lesson6d_pred %>% select(imagingmodel_hirisk, markermodel_hirisk),
-  by = "markermodel_hirisk",
-  type = list(vars(imagingmodel_hirisk) ~ "categorical")
+  by = markermodel_hirisk,
+  type = list("imagingmodel_hirisk" ~ "categorical")
 )
 ```
 
@@ -18356,13 +18362,14 @@ The key thing to think about here is the comparisons you want to make. Drug a al
 ```r
 # Week 7: load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Week 7: load data
@@ -20102,7 +20109,7 @@ In case you are wondering how I did all this, one key is to see that in the data
 # Two-way table of group by treatment
 tbl_summary(
   lesson7c %>% select(group, treatment),
-  by = "treatment"
+  by = treatment
 )
 ```
 
@@ -20455,8 +20462,8 @@ When I did the graph, I used the variable "treatment" to get the names of the tr
 
 ```r
 # Create Kaplan-Meier plot by treatment group
-ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
-           legend = "bottom")
+survminer::ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
+                      legend = "bottom")
 ```
 
 <img src="09-answers_files/figure-html/week7v-1.png" width="672" />

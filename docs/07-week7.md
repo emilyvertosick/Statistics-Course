@@ -8,13 +8,14 @@
 ```r
 # Load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
 
 # Load data necessary to run Week 7 examples

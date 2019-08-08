@@ -59,6 +59,7 @@ Enter one line at a time, and wait for the packages to install before entering t
 ```r
 # Installing packages
 install.packages("tidyverse")
+install.packages("gt")
 install.packages("here")
 install.packages("skimr")
 install.packages("epiR")
@@ -150,6 +151,7 @@ Now you will be able to use all functions in the `skimr` package without specify
 ```r
 # Here is the code to load all necessary packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
@@ -705,7 +707,7 @@ As you can see, there is currently only one row in the table. If a variable has 
 # Create a formatted table for the "sex" variable, showing both "0" and "1" values
 tbl_summary(
   lesson1a %>% select(sex),
-  type = list(vars(sex) ~ "categorical")
+  type = list("sex" ~ "categorical")
 )
 ```
 
@@ -1064,8 +1066,8 @@ table(trial$response, trial$death)
 # Create two-way table for response and death using "tbl_summary" function
 tbl_summary(
   trial %>% select(response, death),
-  by = "death",
-  type = list(vars(response) ~ "categorical")
+  by = death,
+  type = list("response" ~ "categorical")
 )
 ```
 
@@ -1528,9 +1530,10 @@ lesson1a <-
 
 ### Using Help
 
-TODO: Discuss with Andrew re: taking this section out
+There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`.
 
-There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`. However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
+TODO: Discuss with Andrew re: taking following section out
+However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
 
 ## Assignments
 

@@ -13,12 +13,14 @@ editor_options:
 ```r
 # Load packages
 library(skimr)
+library(gt)
 library(gtsummary)
 library(epiR)
 library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
+library(here)
 library(tidyverse)
 
 # Load data necessary to run Week 2 examples
@@ -125,7 +127,7 @@ As mentioned in the first lesson, the `tbl_summary` function (from the `gtsummar
 # Get formatted one-way frequency table
 tbl_summary(
   lesson1a %>% select(sex), # Specify data to use and variables to include
-  type = list(vars(sex) ~ "categorical") # Show all levels of binary variables
+  type = list("sex" ~ "categorical") # Show all levels of binary variables
 )
 ```
 
@@ -474,8 +476,8 @@ The `tbl_summary` function can also give a two-way table, for example, a table t
 # Create a formatted two-way summary table
 tbl_summary(
   lesson1a %>% select(sex, y), # Select both variables
-  by = "y", # The "by" option specifies which will be the column variable
-  type = list(vars(sex) ~ "categorical")
+  by = y, # The "by" option specifies which will be the column variable
+  type = list("sex" ~ "categorical")
 )
 ```
 
@@ -832,8 +834,8 @@ You can use the `add_overall` function to show the total across all sites as wel
 # Create a formatted two-way summary table and add column for all patients
 tbl_summary(
   lesson1a %>% select(sex, y),
-  by = "y",
-  type = list(vars(sex) ~ "categorical")
+  by = y,
+  type = list("sex" ~ "categorical")
 ) %>%
   # Add a column with totals across all locations
   # "last = TRUE" puts the column on the right side of the table
@@ -1190,16 +1192,16 @@ tbl_summary(
 
 Overall, 47% of the patients treated in the hospital were men and 53% were women.
 
-By default `tbl_summary` gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the `row_percent` option.
+By default `tbl_summary` gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the `percent` option and specifying "row".
 
 
 ```r
 # The two-way summary table can give you row percent instead of column percent
 tbl_summary(
   lesson1a %>% select(sex, y),
-  by = "y",
-  type = list(vars(sex) ~ "categorical"),
-  row_percent = TRUE # get the row percent instead of column percent
+  by = y,
+  type = list("sex" ~ "categorical"),
+  percent = "row" # get the row percent instead of column percent
 )
 ```
 
