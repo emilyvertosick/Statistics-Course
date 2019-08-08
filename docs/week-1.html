@@ -135,6 +135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1.2" data-path="week-1.html"><a href="week-1.html#setting-up-course-files"><i class="fa fa-check"></i><b>1.1.2</b> Setting up course files</a></li>
 <li class="chapter" data-level="1.1.3" data-path="week-1.html"><a href="week-1.html#using-rstudio"><i class="fa fa-check"></i><b>1.1.3</b> Using RStudio</a></li>
 <li class="chapter" data-level="1.1.4" data-path="week-1.html"><a href="week-1.html#installing-packages"><i class="fa fa-check"></i><b>1.1.4</b> Installing packages</a></li>
+<li class="chapter" data-level="1.1.5" data-path="week-1.html"><a href="week-1.html#a-note-about-packages"><i class="fa fa-check"></i><b>1.1.5</b> A Note About Packages</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="week-1.html"><a href="week-1.html#r-instructions"><i class="fa fa-check"></i><b>1.2</b> R Instructions</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="week-1.html"><a href="week-1.html#opening-a-data-file-created-by-someone-else"><i class="fa fa-check"></i><b>1.2.1</b> Opening a data file created by someone else</a></li>
@@ -319,6 +320,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will also be installing a package called <code>gtsummary</code> written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;ddsjoberg/gtsummary&quot;</span>)</a></code></pre></div>
 </div>
+<div id="a-note-about-packages" class="section level3">
+<h3><span class="header-section-number">1.1.5</span> A Note About Packages</h3>
+<p>There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For most of these packages, if you give the package name to your statistician, they will be able to find and install the packages directly. If you’d like to share the <code>gtsummary</code> package, <a href="http://www.danieldsjoberg.com/gtsummary/">this link</a> gives more detailed information on the functionality of the package as well as how to access and download the package.</p>
+</div>
 </div>
 <div id="r-instructions" class="section level2">
 <h2><span class="header-section-number">1.2</span> R Instructions</h2>
@@ -472,13 +477,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 193254     1    57     0     1     2     3     6     2 satellite     1
 ## 6 530508     1    31     0     0     2     2     4     1 campus        3</code></pre>
 </div>
+<div id="table-function" class="section level4">
+<h4><span class="header-section-number">1.2.5.4</span> <code>table</code> function</h4>
+<p>The <code>table</code> function is the basic function for creating one-way and two-way tables. However, these tables often do not provide much information and are not formatted nicely or in a way that can easily be copied to a Word document.</p>
+<p>Here is an example:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Note: the &quot;trial&quot; dataset is automatically loaded when you load your packages</span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="co"># and does not have to be manually loaded like the &quot;lesson1a&quot; dataset</span></a>
+<a class="sourceLine" id="cb21-3" title="3"></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="co"># Create two-way table for response and death</span></a>
+<a class="sourceLine" id="cb21-5" title="5"><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</a></code></pre></div>
+<pre><code>##    
+##      0  1
+##   0 42 66
+##   1 49 34</code></pre>
+<p>If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.</p>
+<p>If you print the “response” variable, you can also see that there are “NA” values in the response variable, which the table doesn’t include at all.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># Print response variable values</span></a>
+<a class="sourceLine" id="cb23-2" title="2">trial<span class="op">$</span>response</a></code></pre></div>
+<pre><code>##   [1]  1  1  1  1  0  1  1  0  1 NA  0  1  1  1  1  0  0  0  0  0  1  0  0
+##  [24] NA  0  0  1  1  0  1  0  0 NA  1  0  0  1  0  0 NA  1  1  1  0  1  0
+##  [47]  1  1  0  0  0  0  0  1  1  0  0  0  0  1  0  1  0  1  0  0  0  1  0
+##  [70]  1  0  1  1  1  0  0  1  0 NA  0  1  0  0  0  1  0  1  1  1  1  0  1
+##  [93]  0  0  0  0  0  1  0  1  0  1  1  1  0  1  0 NA  0  1  1  1  0  1  0
+## [116]  0  0  1  0  0  0  0  0  1  1  0  0  0  1  0  0  0  0  0  0  1  1  1
+## [139]  0  0  0  0  0  1  1 NA  0  0  1  0  0  0  0  1  1  0  0  1  1  0  0
+## [162]  1  0  1  0  0  0  1  1  1  1  1  0  1  0  0  0  1  0  1  0 NA  1  1
+## [185]  1  0  1  0  0  1  1 NA  1  0  0  0  0  0  1  0
+## attr(,&quot;label&quot;)
+## [1] &quot;Tumor Response&quot;</code></pre>
+</div>
 <div id="tbl_summary-function" class="section level4">
-<h4><span class="header-section-number">1.2.5.4</span> <code>tbl_summary</code> function</h4>
-<p>The <code>tbl_summary</code> function (from the <code>gtsummary</code> package) provides a formatted table of the values and frequencies for binary or categorical variables, and summary statistics (by default, median and quartiles) for continuous variables. The <code>select</code> function allows you to list the variables you would like to include in your table. Here, we are only showing sex in the table.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable</span></a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="kw">tbl_summary</span>(</a>
-<a class="sourceLine" id="cb21-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex) </a>
-<a class="sourceLine" id="cb21-4" title="4">)</a></code></pre></div>
+<h4><span class="header-section-number">1.2.5.5</span> <code>tbl_summary</code> function</h4>
+<p>The <code>tbl_summary</code> function (from the <code>gtsummary</code> package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.</p>
+<p>In this course, we will be using the <code>tbl_summary</code> function instead of the <code>table</code> function for all tables that will be displayed. There are some cases where the <code>table</code> function will be used in conjunction with another function to perform an analysis, but these tables will not be displayed.</p>
+<p>The <code>tbl_summary</code> function can create one-way and two-way tables for binary and categorical variables. It can also create tables which include summary statistics for continuous variables (by default, median and quartiles). The <code>select</code> function allows you to list the variables you would like to include in your table. Here, we are only showing sex in the table.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable</span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="kw">tbl_summary</span>(</a>
+<a class="sourceLine" id="cb25-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex) </a>
+<a class="sourceLine" id="cb25-4" title="4">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -801,11 +837,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>As you can see, there is currently only one row in the table. If a variable has values of 0 and 1 only, the <code>tbl_summary</code> function gives the percentage of values that are equal to 1 by default. If you would like to see the percentage of both 0 and 1 values, you can use the “type” option and specify that the variable is categorical.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable, showing both &quot;0&quot; and &quot;1&quot; values</span></a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="kw">tbl_summary</span>(</a>
-<a class="sourceLine" id="cb22-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex),</a>
-<a class="sourceLine" id="cb22-4" title="4">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(sex) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
-<a class="sourceLine" id="cb22-5" title="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable, showing both &quot;0&quot; and &quot;1&quot; values</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="kw">tbl_summary</span>(</a>
+<a class="sourceLine" id="cb26-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex),</a>
+<a class="sourceLine" id="cb26-4" title="4">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(sex) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
+<a class="sourceLine" id="cb26-5" title="5">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1138,12 +1174,363 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p>This tells you that the “sex” variable has no missing data because the table only shows values of “0” and “1”, with no “NA” values. It also shows that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the <code>tbl_summary</code> function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.</p>
 <p>Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were 181 men in the 386 patients and that they constituted 47% of the population.</p>
+<p>The <code>tbl_summary</code> function can also be used for two-way tables. The <code>select</code> function is used to select both variables of interest, and the name of the column variable is specified in the <code>by</code> statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the <code>table</code> function.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># Create two-way table for response and death using &quot;table&quot; function</span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</a></code></pre></div>
+<pre><code>##    
+##      0  1
+##   0 42 66
+##   1 49 34</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Create two-way table for response and death using &quot;tbl_summary&quot; function</span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="kw">tbl_summary</span>(</a>
+<a class="sourceLine" id="cb29-3" title="3">  trial <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(response, death),</a>
+<a class="sourceLine" id="cb29-4" title="4">  <span class="dt">by =</span> <span class="st">&quot;death&quot;</span>,</a>
+<a class="sourceLine" id="cb29-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="kw">vars</span>(response) <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
+<a class="sourceLine" id="cb29-6" title="6">)</a></code></pre></div>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#kqtxbhydst .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000000;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  /* table.background.color */
+  width: auto;
+  /* table.width */
+  border-top-style: solid;
+  /* table.border.top.style */
+  border-top-width: 2px;
+  /* table.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table.border.top.color */
+  border-bottom-style: solid;
+  /* table.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* table.border.bottom.color */
+}
+
+#kqtxbhydst .gt_heading {
+  background-color: #FFFFFF;
+  /* heading.background.color */
+  border-bottom-color: #FFFFFF;
+}
+
+#kqtxbhydst .gt_title {
+  color: #000000;
+  font-size: 125%;
+  /* heading.title.font.size */
+  padding-top: 4px;
+  /* heading.top.padding */
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kqtxbhydst .gt_subtitle {
+  color: #000000;
+  font-size: 85%;
+  /* heading.subtitle.font.size */
+  padding-top: 2px;
+  padding-bottom: 2px;
+  /* heading.bottom.padding */
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kqtxbhydst .gt_bottom_border {
+  border-bottom-style: solid;
+  /* heading.border.bottom.style */
+  border-bottom-width: 2px;
+  /* heading.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* heading.border.bottom.color */
+}
+
+#kqtxbhydst .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kqtxbhydst .gt_col_heading {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* column_labels.background.color */
+  font-size: 16px;
+  /* column_labels.font.size */
+  font-weight: initial;
+  /* column_labels.font.weight */
+  vertical-align: middle;
+  padding: 10px;
+  margin: 10px;
+  overflow-x: hidden;
+}
+
+#kqtxbhydst .gt_columns_top_border {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+}
+
+#kqtxbhydst .gt_columns_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+}
+
+#kqtxbhydst .gt_sep_right {
+  border-right: 5px solid #FFFFFF;
+}
+
+#kqtxbhydst .gt_group_heading {
+  padding: 8px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#kqtxbhydst .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: #f2f2f2;
+}
+
+#kqtxbhydst .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kqtxbhydst .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kqtxbhydst .gt_row {
+  padding: 8px;
+  /* row.padding */
+  margin: 10px;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kqtxbhydst .gt_stub {
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #A8A8A8;
+  padding-left: 12px;
+}
+
+#kqtxbhydst .gt_summary_row {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* summary_row.background.color */
+  padding: 8px;
+  /* summary_row.padding */
+  text-transform: inherit;
+  /* summary_row.text_transform */
+}
+
+#kqtxbhydst .gt_grand_summary_row {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* grand_summary_row.background.color */
+  padding: 8px;
+  /* grand_summary_row.padding */
+  text-transform: inherit;
+  /* grand_summary_row.text_transform */
+}
+
+#kqtxbhydst .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+}
+
+#kqtxbhydst .gt_first_grand_summary_row {
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #A8A8A8;
+}
+
+#kqtxbhydst .gt_table_body {
+  border-top-style: solid;
+  /* table_body.border.top.style */
+  border-top-width: 2px;
+  /* table_body.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table_body.border.top.color */
+  border-bottom-style: solid;
+  /* table_body.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table_body.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* table_body.border.bottom.color */
+}
+
+#kqtxbhydst .gt_footnotes {
+  border-top-style: solid;
+  /* footnotes.border.top.style */
+  border-top-width: 2px;
+  /* footnotes.border.top.width */
+  border-top-color: #A8A8A8;
+  /* footnotes.border.top.color */
+}
+
+#kqtxbhydst .gt_footnote {
+  font-size: 90%;
+  /* footnote.font.size */
+  margin: 0px;
+  padding: 4px;
+  /* footnote.padding */
+}
+
+#kqtxbhydst .gt_sourcenotes {
+  border-top-style: solid;
+  /* sourcenotes.border.top.style */
+  border-top-width: 2px;
+  /* sourcenotes.border.top.width */
+  border-top-color: #A8A8A8;
+  /* sourcenotes.border.top.color */
+}
+
+#kqtxbhydst .gt_sourcenote {
+  font-size: 90%;
+  /* sourcenote.font.size */
+  padding: 4px;
+  /* sourcenote.padding */
+}
+
+#kqtxbhydst .gt_center {
+  text-align: center;
+}
+
+#kqtxbhydst .gt_left {
+  text-align: left;
+}
+
+#kqtxbhydst .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kqtxbhydst .gt_font_normal {
+  font-weight: normal;
+}
+
+#kqtxbhydst .gt_font_bold {
+  font-weight: bold;
+}
+
+#kqtxbhydst .gt_font_italic {
+  font-style: italic;
+}
+
+#kqtxbhydst .gt_super {
+  font-size: 65%;
+}
+
+#kqtxbhydst .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <tr>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 93</th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 107</th>
+  </tr>
+  <body class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Tumor Response</td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
+      <td class="gt_row gt_center gt_striped">42 (46%)</td>
+      <td class="gt_row gt_center gt_striped">66 (66%)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_center">49 (54%)</td>
+      <td class="gt_row gt_center">34 (34%)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">Unknown</td>
+      <td class="gt_row gt_center gt_striped">2</td>
+      <td class="gt_row gt_center gt_striped">7</td>
+    </tr>
+  </body>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="3">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          Statistics presented: n (%)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div>
 </div>
 <div id="skim-function" class="section level4">
-<h4><span class="header-section-number">1.2.5.5</span> <code>skim</code> function</h4>
+<h4><span class="header-section-number">1.2.5.6</span> <code>skim</code> function</h4>
 <p>The <code>skim</code> function (from the <code>skimr</code> package) gives basic summary data.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># Show summary statistics for &quot;age&quot;</span></a>
-<a class="sourceLine" id="cb23-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Show summary statistics for &quot;age&quot;</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
 <pre><code>## 
 ## Skim summary statistics
 ## 
@@ -1157,54 +1544,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>“p0” here represents the minimum age in the dataset - 19. “p100” represents the maximum age of 86. “p25”, “p50” and “p75” are the centiles. We’ll talk more about this later, but briefly, “p25 = 40” means that 25% of the patients were aged 40 and younger. The number by “p50” (i.e. 49) is the median.</p>
 </div>
 <div id="mutate-function" class="section level4">
-<h4><span class="header-section-number">1.2.5.6</span> <code>mutate</code> function</h4>
+<h4><span class="header-section-number">1.2.5.7</span> <code>mutate</code> function</h4>
 <p>The <code>mutate</code> function is used to create new variables, or replace variable values.</p>
 <p>The code below means “create a new variable called ‘a’ and set it equal to 1 in all observations.” The “&lt;-” indicator means to then save out this new dataset including the “a” variable as “lesson1a”, replacing the old “lesson1a” dataset that does not include “a”.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># Save the data out as &quot;lesson1a&quot;</span></a>
-<a class="sourceLine" id="cb25-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></a>
-<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Save the data out as &quot;lesson1a&quot;</span></a>
+<a class="sourceLine" id="cb32-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb32-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></a>
+<a class="sourceLine" id="cb32-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></a></code></pre></div>
 <p>Since we have already created the variable “a” above, the code below means “replace the variable ‘a’ with the value of 2 in all observations.”</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;2&quot; for all observations</span></a>
-<a class="sourceLine" id="cb26-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;2&quot; for all observations</span></a>
+<a class="sourceLine" id="cb33-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p>You can also replace one variable with the value of another variable. The code below means “replace the variable ‘a’ with whatever the value of ‘p1’ is in each observation.”</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with the value of &quot;p1&quot; for all observations</span></a>
-<a class="sourceLine" id="cb27-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> p1)</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with the value of &quot;p1&quot; for all observations</span></a>
+<a class="sourceLine" id="cb34-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> p1)</a></code></pre></div>
 <p>You can also calculate values inside a <code>mutate</code> statement. For example, you can create an average of the four variables “p1” - “p4”.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Replace &quot;a&quot; with the average of &quot;p1&quot;, &quot;p2&quot;, &quot;p3&quot; and &quot;p4&quot;</span></a>
-<a class="sourceLine" id="cb28-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> (p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4)<span class="op">/</span><span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Replace &quot;a&quot; with the average of &quot;p1&quot;, &quot;p2&quot;, &quot;p3&quot; and &quot;p4&quot;</span></a>
+<a class="sourceLine" id="cb35-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> (p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4)<span class="op">/</span><span class="dv">4</span>)</a></code></pre></div>
 </div>
 <div id="if_else-function" class="section level4">
-<h4><span class="header-section-number">1.2.5.7</span> <code>if_else</code> function</h4>
+<h4><span class="header-section-number">1.2.5.8</span> <code>if_else</code> function</h4>
 <p>The <code>if_else</code> function can be used with the <code>mutate</code> function to assign values to a variable based on a specific condition.</p>
 <p>The first argument in the <code>if_else</code> function is the “if” condition. The second argument is the value of the variable for observations that meet the “if” condition. The third argument is the value of the variable for observations that do not meet the “if” condition.</p>
 <p>For example, the code below says “replace the value of ‘a’ with ‘p1’ if ‘p1’ is greater than 4. Otherwise, keep the original value ‘a’.”</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if the value of &quot;p1&quot; is greater than 4</span></a>
-<a class="sourceLine" id="cb29-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(p1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>, p1, a))</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if the value of &quot;p1&quot; is greater than 4</span></a>
+<a class="sourceLine" id="cb36-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(p1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>, p1, a))</a></code></pre></div>
 <p>In this case, we are only replacing for females. Note that when you use equals sign after an “if” you have to use two of them in a row to signify “is equal to” rather than “make equal to”.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if &quot;sex&quot; equals 1 (female)</span></a>
-<a class="sourceLine" id="cb30-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb30-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, p1, a))</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if &quot;sex&quot; equals 1 (female)</span></a>
+<a class="sourceLine" id="cb37-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, p1, a))</a></code></pre></div>
 <p>The <code>|</code> sign means “or”, such that the code below means “set”a" equal to 1 if “y” is equal to either “campus” or “peds”. Otherwise, keep the original value of “a”."</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;1&quot; if &quot;y&quot; is equal to either &quot;campus&quot; or &quot;peds&quot;</span></a>
-<a class="sourceLine" id="cb31-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb31-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(y <span class="op">==</span><span class="st"> &quot;campus&quot;</span> <span class="op">|</span><span class="st"> </span>y <span class="op">==</span><span class="st"> &quot;peds&quot;</span>, <span class="dv">1</span>, a))</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;1&quot; if &quot;y&quot; is equal to either &quot;campus&quot; or &quot;peds&quot;</span></a>
+<a class="sourceLine" id="cb38-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(y <span class="op">==</span><span class="st"> &quot;campus&quot;</span> <span class="op">|</span><span class="st"> </span>y <span class="op">==</span><span class="st"> &quot;peds&quot;</span>, <span class="dv">1</span>, a))</a></code></pre></div>
 <p>You can give check for more than one condition by using the “&amp;” sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age &gt; 50). This creates a subgroup of older women: “a” is 1 for older women and 0 for everybody else.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with 1 if sex equals 1 (female) and age &gt; 50</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="co"># For all other observations, replace &quot;a&quot; with 0</span></a>
-<a class="sourceLine" id="cb32-3" title="3">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb32-4" title="4"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with 1 if sex equals 1 (female) and age &gt; 50</span></a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="co"># For all other observations, replace &quot;a&quot; with 0</span></a>
+<a class="sourceLine" id="cb39-3" title="3">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb39-4" title="4"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
 </div>
 </div>
 <div id="using-help" class="section level3">
@@ -1215,8 +1602,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments" class="section level2">
 <h2><span class="header-section-number">1.3</span> Assignments</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Copy and paste this code to load the data for week 1 assignments</span></a>
-<a class="sourceLine" id="cb33-2" title="2">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Copy and paste this code to load the data for week 1 assignments</span></a>
+<a class="sourceLine" id="cb40-2" title="2">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
 <p>The data for you to look at are in the attached file lesson1a.rds.</p>
 <p>This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?</p>
 

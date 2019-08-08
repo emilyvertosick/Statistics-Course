@@ -76,6 +76,10 @@ We will also be installing a package called `gtsummary` written by Dan Sjoberg, 
 remotes::install_github("ddsjoberg/gtsummary")
 ```
 
+### A Note About Packages
+
+There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For most of these packages, if you give the package name to your statistician, they will be able to find and install the packages directly. If you'd like to share the `gtsummary` package, [this link](http://www.danieldsjoberg.com/gtsummary/) gives more detailed information on the functionality of the package as well as how to access and download the package.
+
 ## R Instructions
 
 ### Opening a data file created by someone else
@@ -308,9 +312,59 @@ lesson1a %>% head()
 ## 6 530508     1    31     0     0     2     2     4     1 campus        3
 ```
 
+#### `table` function
+
+The `table` function is the basic function for creating one-way and two-way tables. However, these tables often do not provide much information and are not formatted nicely or in a way that can easily be copied to a Word document.
+
+Here is an example:
+
+
+```r
+# Note: the "trial" dataset is automatically loaded when you load your packages
+# and does not have to be manually loaded like the "lesson1a" dataset
+
+# Create two-way table for response and death
+table(trial$response, trial$death)
+```
+
+```
+##    
+##      0  1
+##   0 42 66
+##   1 49 34
+```
+
+If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.
+
+If you print the "response" variable, you can also see that there are "NA" values in the response variable, which the table doesn't include at all.
+
+
+```r
+# Print response variable values
+trial$response
+```
+
+```
+##   [1]  1  1  1  1  0  1  1  0  1 NA  0  1  1  1  1  0  0  0  0  0  1  0  0
+##  [24] NA  0  0  1  1  0  1  0  0 NA  1  0  0  1  0  0 NA  1  1  1  0  1  0
+##  [47]  1  1  0  0  0  0  0  1  1  0  0  0  0  1  0  1  0  1  0  0  0  1  0
+##  [70]  1  0  1  1  1  0  0  1  0 NA  0  1  0  0  0  1  0  1  1  1  1  0  1
+##  [93]  0  0  0  0  0  1  0  1  0  1  1  1  0  1  0 NA  0  1  1  1  0  1  0
+## [116]  0  0  1  0  0  0  0  0  1  1  0  0  0  1  0  0  0  0  0  0  1  1  1
+## [139]  0  0  0  0  0  1  1 NA  0  0  1  0  0  0  0  1  1  0  0  1  1  0  0
+## [162]  1  0  1  0  0  0  1  1  1  1  1  0  1  0  0  0  1  0  1  0 NA  1  1
+## [185]  1  0  1  0  0  1  1 NA  1  0  0  0  0  0  1  0
+## attr(,"label")
+## [1] "Tumor Response"
+```
+
 #### `tbl_summary` function
 
-The `tbl_summary` function (from the `gtsummary` package) provides a formatted table of the values and frequencies for binary or categorical variables, and summary statistics (by default, median and quartiles) for continuous variables. The `select` function allows you to list the variables you would like to include in your table. Here, we are only showing sex in the table.
+The `tbl_summary` function (from the `gtsummary` package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.
+
+In this course, we will be using the `tbl_summary` function instead of the `table` function for all tables that will be displayed. There are some cases where the `table` function will be used in conjunction with another function to perform an analysis, but these tables will not be displayed.
+
+The `tbl_summary` function can create one-way and two-way tables for binary and categorical variables. It can also create tables which include summary statistics for continuous variables (by default, median and quartiles). The `select` function allows you to list the variables you would like to include in your table. Here, we are only showing sex in the table.
 
 
 ```r
@@ -988,6 +1042,369 @@ tbl_summary(
 This tells you that the "sex" variable has no missing data because the table only shows values of "0" and "1", with no "NA" values. It also shows that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
 
 Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were 181 men in the 386 patients and that they constituted 47% of the population.
+
+The `tbl_summary` function can also be used for two-way tables. The `select` function is used to select both variables of interest, and the name of the column variable is specified in the `by` statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the `table` function.
+
+
+```r
+# Create two-way table for response and death using "table" function
+table(trial$response, trial$death)
+```
+
+```
+##    
+##      0  1
+##   0 42 66
+##   1 49 34
+```
+
+```r
+# Create two-way table for response and death using "tbl_summary" function
+tbl_summary(
+  trial %>% select(response, death),
+  by = "death",
+  type = list(vars(response) ~ "categorical")
+)
+```
+
+<!--html_preserve--><style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#kqtxbhydst .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000000;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  /* table.background.color */
+  width: auto;
+  /* table.width */
+  border-top-style: solid;
+  /* table.border.top.style */
+  border-top-width: 2px;
+  /* table.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table.border.top.color */
+  border-bottom-style: solid;
+  /* table.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* table.border.bottom.color */
+}
+
+#kqtxbhydst .gt_heading {
+  background-color: #FFFFFF;
+  /* heading.background.color */
+  border-bottom-color: #FFFFFF;
+}
+
+#kqtxbhydst .gt_title {
+  color: #000000;
+  font-size: 125%;
+  /* heading.title.font.size */
+  padding-top: 4px;
+  /* heading.top.padding */
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kqtxbhydst .gt_subtitle {
+  color: #000000;
+  font-size: 85%;
+  /* heading.subtitle.font.size */
+  padding-top: 2px;
+  padding-bottom: 2px;
+  /* heading.bottom.padding */
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kqtxbhydst .gt_bottom_border {
+  border-bottom-style: solid;
+  /* heading.border.bottom.style */
+  border-bottom-width: 2px;
+  /* heading.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* heading.border.bottom.color */
+}
+
+#kqtxbhydst .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kqtxbhydst .gt_col_heading {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* column_labels.background.color */
+  font-size: 16px;
+  /* column_labels.font.size */
+  font-weight: initial;
+  /* column_labels.font.weight */
+  vertical-align: middle;
+  padding: 10px;
+  margin: 10px;
+  overflow-x: hidden;
+}
+
+#kqtxbhydst .gt_columns_top_border {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+}
+
+#kqtxbhydst .gt_columns_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+}
+
+#kqtxbhydst .gt_sep_right {
+  border-right: 5px solid #FFFFFF;
+}
+
+#kqtxbhydst .gt_group_heading {
+  padding: 8px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#kqtxbhydst .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #000000;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #A8A8A8;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: #f2f2f2;
+}
+
+#kqtxbhydst .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kqtxbhydst .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kqtxbhydst .gt_row {
+  padding: 8px;
+  /* row.padding */
+  margin: 10px;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kqtxbhydst .gt_stub {
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #A8A8A8;
+  padding-left: 12px;
+}
+
+#kqtxbhydst .gt_summary_row {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* summary_row.background.color */
+  padding: 8px;
+  /* summary_row.padding */
+  text-transform: inherit;
+  /* summary_row.text_transform */
+}
+
+#kqtxbhydst .gt_grand_summary_row {
+  color: #000000;
+  background-color: #FFFFFF;
+  /* grand_summary_row.background.color */
+  padding: 8px;
+  /* grand_summary_row.padding */
+  text-transform: inherit;
+  /* grand_summary_row.text_transform */
+}
+
+#kqtxbhydst .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+}
+
+#kqtxbhydst .gt_first_grand_summary_row {
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #A8A8A8;
+}
+
+#kqtxbhydst .gt_table_body {
+  border-top-style: solid;
+  /* table_body.border.top.style */
+  border-top-width: 2px;
+  /* table_body.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table_body.border.top.color */
+  border-bottom-style: solid;
+  /* table_body.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table_body.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* table_body.border.bottom.color */
+}
+
+#kqtxbhydst .gt_footnotes {
+  border-top-style: solid;
+  /* footnotes.border.top.style */
+  border-top-width: 2px;
+  /* footnotes.border.top.width */
+  border-top-color: #A8A8A8;
+  /* footnotes.border.top.color */
+}
+
+#kqtxbhydst .gt_footnote {
+  font-size: 90%;
+  /* footnote.font.size */
+  margin: 0px;
+  padding: 4px;
+  /* footnote.padding */
+}
+
+#kqtxbhydst .gt_sourcenotes {
+  border-top-style: solid;
+  /* sourcenotes.border.top.style */
+  border-top-width: 2px;
+  /* sourcenotes.border.top.width */
+  border-top-color: #A8A8A8;
+  /* sourcenotes.border.top.color */
+}
+
+#kqtxbhydst .gt_sourcenote {
+  font-size: 90%;
+  /* sourcenote.font.size */
+  padding: 4px;
+  /* sourcenote.padding */
+}
+
+#kqtxbhydst .gt_center {
+  text-align: center;
+}
+
+#kqtxbhydst .gt_left {
+  text-align: left;
+}
+
+#kqtxbhydst .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kqtxbhydst .gt_font_normal {
+  font-weight: normal;
+}
+
+#kqtxbhydst .gt_font_bold {
+  font-weight: bold;
+}
+
+#kqtxbhydst .gt_font_italic {
+  font-style: italic;
+}
+
+#kqtxbhydst .gt_super {
+  font-size: 65%;
+}
+
+#kqtxbhydst .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <tr>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 93</th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 107</th>
+  </tr>
+  <body class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Tumor Response</td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
+      <td class="gt_row gt_center gt_striped">42 (46%)</td>
+      <td class="gt_row gt_center gt_striped">66 (66%)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_center">49 (54%)</td>
+      <td class="gt_row gt_center">34 (34%)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">Unknown</td>
+      <td class="gt_row gt_center gt_striped">2</td>
+      <td class="gt_row gt_center gt_striped">7</td>
+    </tr>
+  </body>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="3">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          Statistics presented: n (%)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div><!--/html_preserve-->
 
 #### `skim` function
 

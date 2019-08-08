@@ -118,7 +118,7 @@ quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
 
 ### One-way tables
 
-The `tbl_summary` function (from the `gtsummary` package) gives a frequency table, in this case, the number of men and women.
+As mentioned in the first lesson, the `tbl_summary` function (from the `gtsummary` package) can be used to create a frequency table, in this case, the number of men and women.
 
 
 ```r
@@ -467,7 +467,7 @@ So there are 205 (53%) women and 181 (47%) men.
 
 ### Two-way tables
 
-The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable "y" gives the part of the hospital) in men and women separately.
+The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable "y" gives the part of the hospital) in men and women separately. In the last lesson, a 2-by-2 table was created, but `tbl_summary` can also create a two-way table with more than 2 rows or more than 2 columns.
 
 
 ```r
