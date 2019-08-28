@@ -318,12 +318,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-9" title="9"><span class="kw">install.packages</span>(<span class="st">&quot;survival&quot;</span>)</a>
 <a class="sourceLine" id="cb1-10" title="10"><span class="kw">install.packages</span>(<span class="st">&quot;survminer&quot;</span>)</a>
 <a class="sourceLine" id="cb1-11" title="11"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</a></code></pre></div>
+<p>To install the <code>gt</code> package, copy the code below into the console window and press enter:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/gt&quot;</span>)</a></code></pre></div>
+<p>If you are using a Windows computer and get an error message that states <span style="color:red">Error: Could not find tools necessary to compile a package</span>, you will need to download and install the Rtools program before proceeding. The instructions are below:</p>
+<ol style="list-style-type: decimal">
+<li>Download the “recommended” version of Rtools (in green) from <a href="https://cran.rstudio.com/bin/windows/Rtools/">this site</a>.</li>
+<li>Open the “Rtools##.exe” file and follow the installation instructions.</li>
+<li>After installation is complete, close RStudio and re-open by clicking on the “Statistics Course.RProj” file.</li>
+<li>Re-run the above code in the console to install the <code>gt</code> package.</li>
+</ol>
 <p>We will also be installing a package called <code>gtsummary</code> written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;ddsjoberg/gtsummary&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;gtsummary&quot;</span>)</a></code></pre></div>
 </div>
 <div id="a-note-about-packages" class="section level3">
 <h3><span class="header-section-number">1.1.5</span> A Note About Packages</h3>
-<p>There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages except the <code>gtsummary</code> package, if you give the package name to your statistician, they will be able to find and install the packages directly using the <code>install.packages</code> function as we have done above. If you’d like to share the <code>gtsummary</code> package, <a href="http://www.danieldsjoberg.com/gtsummary/">this link</a> gives more detailed information on the functionality of the package as well as how to access and download the package.</p>
+<p>There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages except the <code>gt</code> package, if you give the package name to your statistician, they will be able to find and install the packages directly using the <code>install.packages</code> function as we have done above. If you’d like to share the <code>gt</code> package, <a href="https://github.com/rstudio/gt">this link</a> gives more detailed information on the functionality of the package as well as how to access and download the package.</p>
 </div>
 </div>
 <div id="r-instructions" class="section level2">
@@ -334,9 +343,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>You can load files by typing or copying the following code into the console window and pressing enter. Each lesson will have code in the “Setting Up” section that will load all data necessary to run the examples in the lesson. You can copy and paste that code into your console window and press “enter” to load the files. In the “Assignments” section, there will also be code to load the files necessary for the assignment.</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># You can copy and paste this code into the console window and press &quot;enter&quot;</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co"># to load the data needed for the week 1 examples</span></a>
-<a class="sourceLine" id="cb3-3" title="3">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># You can copy and paste this code into the console window and press &quot;enter&quot;</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co"># to load the data needed for the week 1 examples</span></a>
+<a class="sourceLine" id="cb4-3" title="3">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Using the “files” tab on the bottom righthand side of the RStudio window. Click on the “files” tab, and navigate to the folder where the data is stored, for example, by clicking on the “Data” folder. Click on the desired data “.rds” file. A “Load R Object” popup will appear, which allows you to change the name of the dataset when you import it. It is fine for this course to leave the dataset names as is. Clicking “OK” will load this file to your environment, which you can confirm by looking for the dataset in the top right “environment” tab.</li>
 </ol>
@@ -348,40 +357,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The packages you have installed contain a number of functions. There are two ways to use the functions from these packages: by loading the package, or specifying the package name every time you use a function from that package.</p>
 <p>If you attempt to use a function from a package without loading that package or specifying the package name, you will get an error.</p>
 <p>As an example, the <code>skim</code> function comes from the <code>skimr</code> package. Using <code>skim</code> without loading or specifying the <code>skimr</code> package will give an error:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># This will give an error - the &quot;skimr&quot; package isn&#39;t loaded yet</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># This will give an error - the &quot;skimr&quot; package isn&#39;t loaded yet</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
 <pre><code>## Error in skim(lesson1a$age): could not find function &quot;skim&quot;</code></pre>
 <p>You can give both the package name and function name to avoid this error:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># You can use the function &quot;skim&quot; by specifying package &quot;skimr&quot;</span></a>
-<a class="sourceLine" id="cb6-2" title="2">skimr<span class="op">::</span><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># You can use the function &quot;skim&quot; by specifying package &quot;skimr&quot;</span></a>
+<a class="sourceLine" id="cb7-2" title="2">skimr<span class="op">::</span><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
 ##  ▂▅▇▇▆▅▂▁</code></pre>
 <p>However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the <code>library</code> function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the “Statistics Course.Rproj” file in RStudio. For example, to load the <code>skimr</code> package, type or copy and paste the following line of code into the console window, and press enter.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">library</span>(skimr)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">library</span>(skimr)</a></code></pre></div>
 <p>Now you will be able to use all functions in the <code>skimr</code> package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio. This code will also be available at the beginning of each lesson.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Here is the code to load all necessary packages</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw">library</span>(skimr)</a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="kw">library</span>(gt)</a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="kw">library</span>(gtsummary)</a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="kw">library</span>(epiR)</a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="kw">library</span>(pROC)</a>
-<a class="sourceLine" id="cb9-8" title="8"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb9-9" title="9"><span class="kw">library</span>(survival)</a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="kw">library</span>(survminer)</a>
-<a class="sourceLine" id="cb9-11" title="11"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Here is the code to load all necessary packages</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">library</span>(skimr)</a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="kw">library</span>(gt)</a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="kw">library</span>(gtsummary)</a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="kw">library</span>(epiR)</a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="kw">library</span>(broom)</a>
+<a class="sourceLine" id="cb10-7" title="7"><span class="kw">library</span>(pROC)</a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="kw">library</span>(gmodels)</a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="kw">library</span>(survival)</a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="kw">library</span>(survminer)</a>
+<a class="sourceLine" id="cb10-11" title="11"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 </div>
 <div id="looking-at-the-data" class="section level3">
 <h3><span class="header-section-number">1.2.3</span> Looking at the data</h3>
 <p>R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset “lesson1a” by typing the following into the console window and hitting enter (a new window will pop up):</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># View the data as a spreadsheet</span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">View</span>(lesson1a)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># View the data as a spreadsheet</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw">View</span>(lesson1a)</a></code></pre></div>
 <p>This is data from 386 patients undergoing surgery. You can see the patient’s hospital code number as the variable “id” and then their age and sex. There are then lists of other variables with names such as “p1”, “t”, “x” and so on. You can see that you can have both numbers and text as a variable. You may also notice that some variables have a value of “NA” for a particular observation. In R, “NA” indicates missing data.</p>
 </div>
 <div id="typing-a-command" class="section level3">
@@ -390,18 +399,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A typical command is of the form: <code>packagename::function(options)</code>. If a package has already been loaded using the <code>library</code> function (as we did above), you can omit <code>packagename::</code> when running the code.</p>
 <p>Since you can have multiple datasets in R at the same time, your command must indicate which dataset you are referring to. This is usually done by including the dataset name inside the parentheses of the function.</p>
 <p>For example, this will summarize the data for the full <code>lesson1a</code> dataset.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># View a summary of the dataset</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">skim</span>(lesson1a)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># View a summary of the dataset</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw">skim</span>(lesson1a)</a></code></pre></div>
 <p>The output above this text is the code, and the output below this shows the results produced by running that code. (We will discuss the results output in more detail later.)</p>
 <pre><code>## Skim summary statistics
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character ------------------------------------------------------------------------
+## -- Variable type:character -------------------------------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -431,12 +440,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">1.2.5.1</span> Extracting a variable by name ($)</h4>
 <p>To refer to one variable in your dataset, you can use the notation <code>dataset$variable</code> to indicate which dataset you are referencing, and which variable within that dataset.</p>
 <p>For example, this will summarize just the variable <code>age</code> from the <code>lesson1a</code> dataset.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># View a summary of the &quot;age&quot; variable only</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># View a summary of the &quot;age&quot; variable only</span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -455,21 +464,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Here is an example of piping using the <code>skim</code> function:</p>
 <p>This piece of code can be read as, “Use the <code>skim</code> function on the lesson1a dataset”.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># You can put the dataset into the function</span></a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="kw">skim</span>(lesson1a)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># You can put the dataset into the function</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw">skim</span>(lesson1a)</a></code></pre></div>
 <p>This piece of code can be read as, “Take the lesson1a dataset, <strong>and then</strong> give this data to the <code>skim</code> function to use.”</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># You can also use the &quot;pipe&quot; operator</span></a>
-<a class="sourceLine" id="cb16-2" title="2">lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">skim</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># You can also use the &quot;pipe&quot; operator</span></a>
+<a class="sourceLine" id="cb17-2" title="2">lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">skim</span>()</a></code></pre></div>
 <p>You can see that both of these lines of code are doing the same thing, although the order of the function and the dataset are different. Both will give the same results - try copying both lines of code into your console window to check that this is true.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># These two pieces of code will also give the same results</span></a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">skim</span>(age)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># These two pieces of code will also give the same results</span></a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">skim</span>(age)</a></code></pre></div>
 </div>
 <div id="head-function" class="section level4">
 <h4><span class="header-section-number">1.2.5.3</span> <code>head</code> function</h4>
 <p>The <code>head</code> function allows you to see the first few rows of your dataset in the console window, including the variable names and variable types at the top of the table. (Using the code <code>head(lesson1a)</code> will also give you the same results.)</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Look at the first few rows of your data</span></a>
-<a class="sourceLine" id="cb19-2" title="2">lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Look at the first few rows of your data</span></a>
+<a class="sourceLine" id="cb20-2" title="2">lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 11
 ##       id   sex   age    p1    p2    p3    p4     t     x y             z
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
@@ -484,19 +493,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">1.2.5.4</span> <code>table</code> function</h4>
 <p>The <code>table</code> function is the basic function for creating one-way and two-way tables. However, these tables often do not provide much information and are not formatted nicely or in a way that can easily be copied to a Word document.</p>
 <p>Here is an example:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Note: the &quot;trial&quot; dataset is automatically loaded when you load your packages</span></a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="co"># and does not have to be manually loaded like the &quot;lesson1a&quot; dataset</span></a>
-<a class="sourceLine" id="cb21-3" title="3"></a>
-<a class="sourceLine" id="cb21-4" title="4"><span class="co"># Create two-way table for response and death</span></a>
-<a class="sourceLine" id="cb21-5" title="5"><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Note: the &quot;trial&quot; dataset is automatically loaded when you load your packages</span></a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="co"># and does not have to be manually loaded like the &quot;lesson1a&quot; dataset</span></a>
+<a class="sourceLine" id="cb22-3" title="3"></a>
+<a class="sourceLine" id="cb22-4" title="4"><span class="co"># Create two-way table for response and death</span></a>
+<a class="sourceLine" id="cb22-5" title="5"><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</a></code></pre></div>
 <pre><code>##    
 ##      0  1
 ##   0 42 66
 ##   1 49 34</code></pre>
 <p>If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.</p>
 <p>If you print the “response” variable, you can also see that there are “NA” values in the response variable, which the table doesn’t include at all.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># Print response variable values</span></a>
-<a class="sourceLine" id="cb23-2" title="2">trial<span class="op">$</span>response</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Print response variable values</span></a>
+<a class="sourceLine" id="cb24-2" title="2">trial<span class="op">$</span>response</a></code></pre></div>
 <pre><code>##   [1]  1  1  1  1  0  1  1  0  1 NA  0  1  1  1  1  0  0  0  0  0  1  0  0
 ##  [24] NA  0  0  1  1  0  1  0  0 NA  1  0  0  1  0  0 NA  1  1  1  0  1  0
 ##  [47]  1  1  0  0  0  0  0  1  1  0  0  0  0  1  0  1  0  1  0  0  0  1  0
@@ -514,10 +523,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>tbl_summary</code> function (from the <code>gtsummary</code> package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.</p>
 <p>In this course, we will be using the <code>tbl_summary</code> function instead of the <code>table</code> function for all tables that will be displayed. There are some cases where the <code>table</code> function will be used in conjunction with another function to perform an analysis, but these tables will not be displayed.</p>
 <p>The <code>tbl_summary</code> function can create one-way and two-way tables for binary and categorical variables. It can also create tables which include summary statistics for continuous variables (by default, median and quartiles). The <code>select</code> function allows you to list the variables you would like to include in your table. Here, we are only showing sex in the table.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable</span></a>
-<a class="sourceLine" id="cb25-2" title="2"><span class="kw">tbl_summary</span>(</a>
-<a class="sourceLine" id="cb25-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex) </a>
-<a class="sourceLine" id="cb25-4" title="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="kw">tbl_summary</span>(</a>
+<a class="sourceLine" id="cb26-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex) </a>
+<a class="sourceLine" id="cb26-4" title="4">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -840,11 +849,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>As you can see, there is currently only one row in the table. If a variable has values of 0 and 1 only, the <code>tbl_summary</code> function gives the percentage of values that are equal to 1 by default. If you would like to see the percentage of both 0 and 1 values, you can use the “type” option and specify that the variable is categorical.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable, showing both &quot;0&quot; and &quot;1&quot; values</span></a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="kw">tbl_summary</span>(</a>
-<a class="sourceLine" id="cb26-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex),</a>
-<a class="sourceLine" id="cb26-4" title="4">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;sex&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
-<a class="sourceLine" id="cb26-5" title="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># Create a formatted table for the &quot;sex&quot; variable, showing both &quot;0&quot; and &quot;1&quot; values</span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="kw">tbl_summary</span>(</a>
+<a class="sourceLine" id="cb27-3" title="3">  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex),</a>
+<a class="sourceLine" id="cb27-4" title="4">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;sex&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
+<a class="sourceLine" id="cb27-5" title="5">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1178,18 +1187,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This tells you that the “sex” variable has no missing data because the table only shows values of “0” and “1”, with no “NA” values. It also shows that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the <code>tbl_summary</code> function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.</p>
 <p>Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were 181 men in the 386 patients and that they constituted 47% of the population.</p>
 <p>The <code>tbl_summary</code> function can also be used for two-way tables. The <code>select</code> function is used to select both variables of interest, and the name of the column variable is specified in the <code>by</code> statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the <code>table</code> function.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># Create two-way table for response and death using &quot;table&quot; function</span></a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Create two-way table for response and death using &quot;table&quot; function</span></a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</a></code></pre></div>
 <pre><code>##    
 ##      0  1
 ##   0 42 66
 ##   1 49 34</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Create two-way table for response and death using &quot;tbl_summary&quot; function</span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="kw">tbl_summary</span>(</a>
-<a class="sourceLine" id="cb29-3" title="3">  trial <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(response, death),</a>
-<a class="sourceLine" id="cb29-4" title="4">  <span class="dt">by =</span> death,</a>
-<a class="sourceLine" id="cb29-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;response&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
-<a class="sourceLine" id="cb29-6" title="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Create two-way table for response and death using &quot;tbl_summary&quot; function</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="kw">tbl_summary</span>(</a>
+<a class="sourceLine" id="cb30-3" title="3">  trial <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(response, death),</a>
+<a class="sourceLine" id="cb30-4" title="4">  <span class="dt">by =</span> death,</a>
+<a class="sourceLine" id="cb30-5" title="5">  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;response&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</a>
+<a class="sourceLine" id="cb30-6" title="6">)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1532,12 +1541,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="skim-function" class="section level4">
 <h4><span class="header-section-number">1.2.5.6</span> <code>skim</code> function</h4>
 <p>The <code>skim</code> function (from the <code>skimr</code> package) gives basic summary data.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Show summary statistics for &quot;age&quot;</span></a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Show summary statistics for &quot;age&quot;</span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</a></code></pre></div>
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -1550,51 +1559,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">1.2.5.7</span> <code>mutate</code> function</h4>
 <p>The <code>mutate</code> function is used to create new variables, or replace variable values.</p>
 <p>The code below means “create a new variable called ‘a’ and set it equal to 1 in all observations.” The “&lt;-” indicator means to then save out this new dataset including the “a” variable as “lesson1a”, replacing the old “lesson1a” dataset that does not include “a”.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Save the data out as &quot;lesson1a&quot;</span></a>
-<a class="sourceLine" id="cb32-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></a>
-<a class="sourceLine" id="cb32-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></a></code></pre></div>
-<p>Since we have already created the variable “a” above, the code below means “replace the variable ‘a’ with the value of 2 in all observations.”</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;2&quot; for all observations</span></a>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Save the data out as &quot;lesson1a&quot;</span></a>
 <a class="sourceLine" id="cb33-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p>You can also replace one variable with the value of another variable. The code below means “replace the variable ‘a’ with whatever the value of ‘p1’ is in each observation.”</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with the value of &quot;p1&quot; for all observations</span></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></a>
+<a class="sourceLine" id="cb33-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></a></code></pre></div>
+<p>Since we have already created the variable “a” above, the code below means “replace the variable ‘a’ with the value of 2 in all observations.”</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;2&quot; for all observations</span></a>
 <a class="sourceLine" id="cb34-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb34-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> p1)</a></code></pre></div>
-<p>You can also calculate values inside a <code>mutate</code> statement. For example, you can create an average of the four variables “p1” - “p4”.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Replace &quot;a&quot; with the average of &quot;p1&quot;, &quot;p2&quot;, &quot;p3&quot; and &quot;p4&quot;</span></a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p>You can also replace one variable with the value of another variable. The code below means “replace the variable ‘a’ with whatever the value of ‘p1’ is in each observation.”</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with the value of &quot;p1&quot; for all observations</span></a>
 <a class="sourceLine" id="cb35-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb35-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> (p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4)<span class="op">/</span><span class="dv">4</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb35-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> p1)</a></code></pre></div>
+<p>You can also calculate values inside a <code>mutate</code> statement. For example, you can create an average of the four variables “p1” - “p4”.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Replace &quot;a&quot; with the average of &quot;p1&quot;, &quot;p2&quot;, &quot;p3&quot; and &quot;p4&quot;</span></a>
+<a class="sourceLine" id="cb36-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> (p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4)<span class="op">/</span><span class="dv">4</span>)</a></code></pre></div>
 </div>
 <div id="if_else-function" class="section level4">
 <h4><span class="header-section-number">1.2.5.8</span> <code>if_else</code> function</h4>
 <p>The <code>if_else</code> function can be used with the <code>mutate</code> function to assign values to a variable based on a specific condition.</p>
 <p>The first argument in the <code>if_else</code> function is the “if” condition. The second argument is the value of the variable for observations that meet the “if” condition. The third argument is the value of the variable for observations that do not meet the “if” condition.</p>
 <p>For example, the code below says “replace the value of ‘a’ with ‘p1’ if ‘p1’ is greater than 4. Otherwise, keep the original value ‘a’.”</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if the value of &quot;p1&quot; is greater than 4</span></a>
-<a class="sourceLine" id="cb36-2" title="2">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(p1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>, p1, a))</a></code></pre></div>
-<p>In this case, we are only replacing for females. Note that when you use equals sign after an “if” you have to use two of them in a row to signify “is equal to” rather than “make equal to”.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if &quot;sex&quot; equals 1 (female)</span></a>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if the value of &quot;p1&quot; is greater than 4</span></a>
 <a class="sourceLine" id="cb37-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, p1, a))</a></code></pre></div>
-<p>The <code>|</code> sign means “or”, such that the code below means “set”a" equal to 1 if “y” is equal to either “campus” or “peds”. Otherwise, keep the original value of “a”."</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;1&quot; if &quot;y&quot; is equal to either &quot;campus&quot; or &quot;peds&quot;</span></a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(p1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>, p1, a))</a></code></pre></div>
+<p>In this case, we are only replacing for females. Note that when you use equals sign after an “if” you have to use two of them in a row to signify “is equal to” rather than “make equal to”.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if &quot;sex&quot; equals 1 (female)</span></a>
 <a class="sourceLine" id="cb38-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(y <span class="op">==</span><span class="st"> &quot;campus&quot;</span> <span class="op">|</span><span class="st"> </span>y <span class="op">==</span><span class="st"> &quot;peds&quot;</span>, <span class="dv">1</span>, a))</a></code></pre></div>
+<a class="sourceLine" id="cb38-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, p1, a))</a></code></pre></div>
+<p>The <code>|</code> sign means “or”, such that the code below means “set”a" equal to 1 if “y” is equal to either “campus” or “peds”. Otherwise, keep the original value of “a”."</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;1&quot; if &quot;y&quot; is equal to either &quot;campus&quot; or &quot;peds&quot;</span></a>
+<a class="sourceLine" id="cb39-2" title="2">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(y <span class="op">==</span><span class="st"> &quot;campus&quot;</span> <span class="op">|</span><span class="st"> </span>y <span class="op">==</span><span class="st"> &quot;peds&quot;</span>, <span class="dv">1</span>, a))</a></code></pre></div>
 <p>You can give check for more than one condition by using the “&amp;” sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age &gt; 50). This creates a subgroup of older women: “a” is 1 for older women and 0 for everybody else.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with 1 if sex equals 1 (female) and age &gt; 50</span></a>
-<a class="sourceLine" id="cb39-2" title="2"><span class="co"># For all other observations, replace &quot;a&quot; with 0</span></a>
-<a class="sourceLine" id="cb39-3" title="3">lesson1a &lt;-</a>
-<a class="sourceLine" id="cb39-4" title="4"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with 1 if sex equals 1 (female) and age &gt; 50</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="co"># For all other observations, replace &quot;a&quot; with 0</span></a>
+<a class="sourceLine" id="cb40-3" title="3">lesson1a &lt;-</a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
 </div>
 </div>
 <div id="using-help" class="section level3">
@@ -1606,8 +1615,8 @@ However, BE CAREFUL. It is very easy to get lost in the multitude of different f
 </div>
 <div id="assignments" class="section level2">
 <h2><span class="header-section-number">1.3</span> Assignments</h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Copy and paste this code to load the data for week 1 assignments</span></a>
-<a class="sourceLine" id="cb40-2" title="2">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Copy and paste this code to load the data for week 1 assignments</span></a>
+<a class="sourceLine" id="cb41-2" title="2">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a></code></pre></div>
 <p>The data for you to look at are in the attached file lesson1a.rds.</p>
 <p>This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?</p>
 

@@ -70,16 +70,30 @@ install.packages("survminer")
 install.packages("remotes")
 ```
 
+To install the `gt` package, copy the code below into the console window and press enter:
+
+
+```r
+remotes::install_github("rstudio/gt")
+```
+
+If you are using a Windows computer and get an error message that states <span style="color:red">Error: Could not find tools necessary to compile a package</span>, you will need to download and install the Rtools program before proceeding. The instructions are below:
+
+1. Download the "recommended" version of Rtools (in green) from [this site](https://cran.rstudio.com/bin/windows/Rtools/).
+2. Open the "Rtools##.exe" file and follow the installation instructions.
+3. After installation is complete, close RStudio and re-open by clicking on the "Statistics Course.RProj" file.
+4. Re-run the above code in the console to install the `gt` package.
+
 We will also be installing a package called `gtsummary` written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.
 
 
 ```r
-remotes::install_github("ddsjoberg/gtsummary")
+install.packages("gtsummary")
 ```
 
 ### A Note About Packages
 
-There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages except the `gtsummary` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gtsummary` package, [this link](http://www.danieldsjoberg.com/gtsummary/) gives more detailed information on the functionality of the package as well as how to access and download the package.
+There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
 
 ## R Instructions
 
@@ -131,7 +145,7 @@ skimr::skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -198,11 +212,11 @@ The output above this text is the code, and the output below this shows the resu
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character ------------------------------------------------------------------------
+## -- Variable type:character -------------------------------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -245,7 +259,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -1424,7 +1438,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
