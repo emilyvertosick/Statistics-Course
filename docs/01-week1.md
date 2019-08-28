@@ -1455,7 +1455,7 @@ This simple command gives us our first lesson about the dangers of statistical s
 
 The `mutate` function is used to create new variables, or replace variable values.
 
-The code below means "create a new variable called 'a' and set it equal to 1 in all observations." The "<-" indicator means to then save out this new dataset including the "a" variable as "lesson1a", replacing the old "lesson1a" dataset that does not include "a".
+The code below means: create a new variable called "a" and set it equal to 1 in all observations. The "<-" indicator means to then save out this new dataset including the "a" variable as "lesson1a", replacing the old "lesson1a" dataset that does not include "a".
 
 
 ```r
@@ -1465,7 +1465,7 @@ lesson1a <-
   mutate(a = 1) # And add a variable called "a" with a value of "1"
 ```
 
-Since we have already created the variable "a" above, the code below means "replace the variable 'a' with the value of 2 in all observations."
+Since we have already created the variable "a" above, the code below means: replace the variable "a" with the value of 2 in all observations.
 
 
 ```r
@@ -1475,7 +1475,7 @@ lesson1a <-
   mutate(a = 2)
 ```
 
-You can also replace one variable with the value of another variable. The code below means "replace the variable 'a' with whatever the value of 'p1' is in each observation."
+You can also replace one variable with the value of another variable. The code below means: replace the variable "a" with whatever the value of "p1" is in each observation.
 
 
 ```r
@@ -1501,7 +1501,7 @@ The `if_else` function can be used with the `mutate` function to assign values t
 
 The first argument in the `if_else` function is the "if" condition. The second argument is the value of the variable for observations that meet the "if" condition. The third argument is the value of the variable for observations that do not meet the "if" condition.
 
-For example, the code below says "replace the value of 'a' with 'p1' if 'p1' is greater than 4. Otherwise, keep the original value 'a'."
+For example, the code below says: replace the value of "a" with "p1" if "p1" is greater than 4. Otherwise, keep the original value "a".
 
 
 ```r
@@ -1521,7 +1521,7 @@ lesson1a <-
   mutate(a = if_else(sex == 1, p1, a))
 ```
 
-The `|` sign means "or", such that the code below means "set "a" equal to 1 if "y" is equal to either "campus" or "peds". Otherwise, keep the original value of "a"."
+The `|` sign means "or", such that the code below means: set "a" equal to 1 if "y" is equal to either "campus" or "peds". Otherwise, keep the original value of "a".
 
 
 ```r

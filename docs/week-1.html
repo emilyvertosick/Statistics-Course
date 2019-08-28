@@ -1558,17 +1558,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mutate-function" class="section level4">
 <h4><span class="header-section-number">1.2.5.7</span> <code>mutate</code> function</h4>
 <p>The <code>mutate</code> function is used to create new variables, or replace variable values.</p>
-<p>The code below means “create a new variable called ‘a’ and set it equal to 1 in all observations.” The “&lt;-” indicator means to then save out this new dataset including the “a” variable as “lesson1a”, replacing the old “lesson1a” dataset that does not include “a”.</p>
+<p>The code below means: create a new variable called “a” and set it equal to 1 in all observations. The “&lt;-” indicator means to then save out this new dataset including the “a” variable as “lesson1a”, replacing the old “lesson1a” dataset that does not include “a”.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Save the data out as &quot;lesson1a&quot;</span></a>
 <a class="sourceLine" id="cb33-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></a>
 <a class="sourceLine" id="cb33-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></a></code></pre></div>
-<p>Since we have already created the variable “a” above, the code below means “replace the variable ‘a’ with the value of 2 in all observations.”</p>
+<p>Since we have already created the variable “a” above, the code below means: replace the variable “a” with the value of 2 in all observations.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;2&quot; for all observations</span></a>
 <a class="sourceLine" id="cb34-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb34-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p>You can also replace one variable with the value of another variable. The code below means “replace the variable ‘a’ with whatever the value of ‘p1’ is in each observation.”</p>
+<p>You can also replace one variable with the value of another variable. The code below means: replace the variable “a” with whatever the value of “p1” is in each observation.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with the value of &quot;p1&quot; for all observations</span></a>
 <a class="sourceLine" id="cb35-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb35-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
@@ -1583,7 +1583,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">1.2.5.8</span> <code>if_else</code> function</h4>
 <p>The <code>if_else</code> function can be used with the <code>mutate</code> function to assign values to a variable based on a specific condition.</p>
 <p>The first argument in the <code>if_else</code> function is the “if” condition. The second argument is the value of the variable for observations that meet the “if” condition. The third argument is the value of the variable for observations that do not meet the “if” condition.</p>
-<p>For example, the code below says “replace the value of ‘a’ with ‘p1’ if ‘p1’ is greater than 4. Otherwise, keep the original value ‘a’.”</p>
+<p>For example, the code below says: replace the value of “a” with “p1” if “p1” is greater than 4. Otherwise, keep the original value “a”.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if the value of &quot;p1&quot; is greater than 4</span></a>
 <a class="sourceLine" id="cb37-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
@@ -1593,7 +1593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb38-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb38-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, p1, a))</a></code></pre></div>
-<p>The <code>|</code> sign means “or”, such that the code below means “set”a" equal to 1 if “y” is equal to either “campus” or “peds”. Otherwise, keep the original value of “a”."</p>
+<p>The <code>|</code> sign means “or”, such that the code below means: set “a” equal to 1 if “y” is equal to either “campus” or “peds”. Otherwise, keep the original value of “a”.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Replace the value of &quot;a&quot; with &quot;1&quot; if &quot;y&quot; is equal to either &quot;campus&quot; or &quot;peds&quot;</span></a>
 <a class="sourceLine" id="cb39-2" title="2">lesson1a &lt;-</a>
 <a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></a>
