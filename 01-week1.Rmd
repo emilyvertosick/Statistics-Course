@@ -53,6 +53,8 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 ### Software Installation
 
+Note: you'll need to put aside 20 - 30 minutes to install the software on your computer. 
+
 **R**
 
 Install a pre-compiled binary of R for your OS from here by clicking on "Download R for [your operating system]":
@@ -136,7 +138,7 @@ install.packages("gtsummary")
 
 ### A Note About Packages
 
-There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
+R is "open source" software. Unlike, say, Microsoft Word, where only Microsoft engineers can make changes, R packages are written my statisticians all over the world. There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages used in the course except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
 
 ## R Instructions
 
@@ -220,7 +222,7 @@ View(lesson1a)
 
 ```
 
-This is data from 386 patients undergoing surgery. You can see the patient’s hospital code number as the variable "id" and then their age and sex. There are then lists of other variables with names such as "p1", "t", "x" and so on. You can see that you can have both numbers and text as a variable. You may also notice that some variables have a value of "NA" for a particular observation. In R, "NA" indicates missing data. 
+This is data from 386 patients undergoing surgery. You can see the patient’s hospital code number as the variable "id" and then their age and sex. There are then lists of other variables with names such as "p1", "t", "x" and so on. You can see that you can have both numbers and text as a variable. You may also notice that some variables have a value of "NA" for a particular observation (e.g. the 3rd and 4th observations for variable "z"). In R, "NA" indicates missing data. 
 
 ### Typing a command
 
