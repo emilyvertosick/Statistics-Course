@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Week 1 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Week 1 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="week-2.html">
+<link rel="prev" href="index.html"/>
+<link rel="next" href="week-2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="week-4.html"><a href="week-4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a><ul>
 <li class="chapter" data-level="4.1" data-path="week-4.html"><a href="week-4.html#setting-up-3"><i class="fa fa-check"></i><b>4.1</b> Setting Up</a></li>
 <li class="chapter" data-level="4.2" data-path="week-4.html"><a href="week-4.html#r-instructions-3"><i class="fa fa-check"></i><b>4.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="week-4.html"><a href="week-4.html#tables"><i class="fa fa-check"></i><b>4.2.1</b> Tables</a></li>
+<li class="chapter" data-level="4.2.1" data-path="week-4.html"><a href="week-4.html#tables-1"><i class="fa fa-check"></i><b>4.2.1</b> Tables</a></li>
 <li class="chapter" data-level="4.2.2" data-path="week-4.html"><a href="week-4.html#getting-estimates-risk-difference-risk-ratio-odds-ratio"><i class="fa fa-check"></i><b>4.2.2</b> Getting estimates: risk difference, risk ratio, odds ratio</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="week-4.html"><a href="week-4.html#assignments-3"><i class="fa fa-check"></i><b>4.3</b> Assignments</a></li>
@@ -366,14 +366,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
 ##  ▂▅▇▇▆▅▂▁</code></pre>
 <p>However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the <code>library</code> function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the “Statistics Course.Rproj” file in RStudio. For example, to load the <code>skimr</code> package, type or copy and paste the following line of code into the console window, and press enter.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">library</span>(skimr)</a></code></pre></div>
-<p>Now you will be able to use all functions in the <code>skimr</code> package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio. This code will also be available at the beginning of each lesson.</p>
+<p>Now you will be able to use all functions in the <code>skimr</code> package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won’t generally have to reload packages). This code will also be available at the beginning of each lesson.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Here is the code to load all necessary packages</span></a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw">library</span>(skimr)</a>
 <a class="sourceLine" id="cb10-3" title="3"><span class="kw">library</span>(gt)</a>
@@ -406,11 +406,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character ---------------------------------------------------------------
+## -- Variable type:character -------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -1601,7 +1601,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -1663,9 +1663,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="using-help" class="section level3">
 <h3><span class="header-section-number">1.2.6</span> Using Help</h3>
-<p>There is a good help feature where you can learn more about functions (though not about statistics…). You can access the help files by typing <code>?packagename::functionname</code> or <code>?functionname</code> into the console, for example <code>?mutate</code>.</p>
-<p>TODO: Discuss with Andrew re: taking following section out
-However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don’t start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.</p>
+<p>The help feature in R can be useful if you know the name of the function that you need assistance with. Sometimes, the help file for a function can be very technical at the top, but if you scroll to the bottom, there is an “examples” section which will show different examples of the code. You can copy and paste these examples and run them on your own machine which can help you better understand how to use the functions. To access the help file for a function, you can type <code>?functionname</code> (e.g., <code>?skim</code>) or <code>?packagename::functionname</code> if you have not loaded the package using the <code>library</code> command.</p>
+<p>Unfortunately, the R help function is not very useful if you don’t know the function you are trying to use. However, there are some websites that can be useful to learn more about the common functions used in the course.</p>
+<div id="data-manipulation" class="section level4">
+<h4><span class="header-section-number">1.2.6.1</span> Data Manipulation</h4>
+<p>Most of the data manipulation we will be doing in this course, such as creating variables and selecting specific variables and observations to keep, is done using functions from the <code>dplyr</code> package (part of the <code>tidyverse</code>) package. This includes the <code>select</code> and <code>mutate</code> functions that you’ve seen in this lesson, as well as other functions you will see in future lessons, like <code>filter</code>. Click <a href="https://dplyr.tidyverse.org/">here</a> if you need help remembering which function to use, or need code examples for these functions.</p>
+</div>
+<div id="statistical-functions" class="section level4">
+<h4><span class="header-section-number">1.2.6.2</span> Statistical Functions</h4>
+<p>Most of the statistical functions that will be used in this course are included in the <code>stats</code> package, which is pre-loaded when you install R. These include the following functions, among others: <code>quantile</code>, <code>binom.test</code>, <code>t.test</code>, <code>wilcox.test</code>, <code>fisher.test</code>, <code>lm</code> and <code>glm</code>. You can access the help files for these using the <code>?functionname</code> notation, for example, <code>?quantile</code>.</p>
+<p>If you need help deciding which statistical functions to use, the best place to start would be searching through the statistics course online book, using the magnifying glass option at the top left. For example, if you search “logistic regression”, you can find section 5.2.4 “Logistic regression”, which will take you to the section of the course on this topic.</p>
+</div>
+<div id="tables" class="section level4">
+<h4><span class="header-section-number">1.2.6.3</span> Tables</h4>
+<p>For more information on the <code>gtsummary</code> package, which creates formatted tables, click <a href="http://www.danieldsjoberg.com/gtsummary/">here</a>.</p>
+</div>
 </div>
 </div>
 <div id="assignments" class="section level2">

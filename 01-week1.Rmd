@@ -556,10 +556,23 @@ lesson1a <-
 
 ### Using Help
 
-There is a good help feature where you can learn more about functions (though not about statistics...). You can access the help files by typing `?packagename::functionname` or `?functionname` into the console, for example `?mutate`.
+The help feature in R can be useful if you know the name of the function that you need assistance with. Sometimes, the help file for a function can be very technical at the top, but if you scroll to the bottom, there is an "examples" section which will show different examples of the code. You can copy and paste these examples and run them on your own machine which can help you better understand how to use the functions. To access the help file for a function, you can type `?functionname` (e.g., `?skim`) or `?packagename::functionname` if you have not loaded the package using the `library` command.
 
-TODO: Discuss with Andrew re: taking following section out
-However, BE CAREFUL. It is very easy to get lost in the multitude of different functions. I strongly suggest you don't start using the help function until the end of the course. There is absolutely no reason to use help during the course because there will be examples including all commands you need.
+Unfortunately, the R help function is not very useful if you don't know the function you are trying to use. However, there are some websites that can be useful to learn more about the common functions used in the course.
+
+#### Data Manipulation
+
+Most of the data manipulation we will be doing in this course, such as creating variables and selecting specific variables and observations to keep, is done using functions from the `dplyr` package (part of the `tidyverse`) package. This includes the `select` and `mutate` functions that you've seen in this lesson, as well as other functions you will see in future lessons, like `filter`. Click [here](https://dplyr.tidyverse.org/) if you need help remembering which function to use, or need code examples for these functions.
+
+#### Statistical Functions
+
+Most of the statistical functions that will be used in this course are included in the `stats` package, which is pre-loaded when you install R. These include the following functions, among others: `quantile`, `binom.test`, `t.test`, `wilcox.test`, `fisher.test`, `lm` and `glm`. You can access the help files for these using the `?functionname` notation, for example, `?quantile`.
+
+If you need help deciding which statistical functions to use, the best place to start would be searching through the statistics course online book, using the magnifying glass option at the top left. For example, if you search "logistic regression", you can find section 5.2.4 "Logistic regression", which will take you to the section of the course on this topic.
+
+#### Tables
+
+For more information on the `gtsummary` package, which creates formatted tables, click [here](http://www.danieldsjoberg.com/gtsummary/).
 
 ## Assignments
 
