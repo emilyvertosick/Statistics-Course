@@ -193,7 +193,7 @@ library(skimr)
 
 ```
 
-Now you will be able to use all functions in the `skimr` package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio. This code will also be available at the beginning of each lesson.
+Now you will be able to use all functions in the `skimr` package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
 
 ```{r loadpkgs4, echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE}
 
