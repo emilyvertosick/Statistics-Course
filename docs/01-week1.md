@@ -271,15 +271,7 @@ skim(lesson1a$age)
 
 One of the most useful commands is known as the pipe operator (%>%). The pipe operator can be read as "and then". Pipes allow a dataset to be passed from the left side of the pipe to the command on the right side. The dataset you are using will be referenced on the left side of the pipe, rather than included as an option in the next function. This notation is useful because it can make your code more clear if you are using more than one function.
 
-For example, if you were using three functions called `function1`, `function2` and `function3`, you could write this code in two ways:
-
-1. `function3(function2(function1(lesson1a)))`
-
-or
-
-2. `lesson1a %>% function1() %>% function2() %>% function3()`
-
-Here is an example of piping using the `skim` function:
+Here is an example of piping using the `skim` function.
 
 This piece of code can be read as, "Use the `skim` function on the lesson1a dataset".
 
@@ -309,6 +301,78 @@ skim(lesson1a$age)
 lesson1a %>% skim(age)
 ```
 
+In this example, the pipe operator is not particularly useful - it actually involves more typing (`lesson1a %>% skim()`) than not using the pipe operator (`skim(lesson1a)`).
+
+However, the pipe operator is very helpful in more complex code. Here is an example of two pieces of code that do the same thing, with the second example using the pipe notation. You don't need to understand what this code does, but you can see that the pipe notation makes the code shorter, less repetitive and easier to read.
+
+
+```r
+# Without piping
+new_data <-
+  mutate(
+    trial,
+    trt = as_factor(str_sub(str_to_upper(trt), 1, 4))
+  )
+
+new_data <-
+  select(new_data, trt, age, marker, stage, grade)
+
+new_data <-
+  filter(new_data, age > 60)
+
+new_data
+```
+
+```
+## # A tibble: 37 x 5
+##    trt     age marker stage grade
+##    <fct> <dbl>  <dbl> <fct> <fct>
+##  1 DRUG     63  0.06  T1    I    
+##  2 PLAC     71  0.445 T3    I    
+##  3 DRUG     61  1.71  T4    II   
+##  4 PLAC     63  0.981 T2    II   
+##  5 DRUG     67  1.16  T1    II   
+##  6 PLAC     68  0.105 T4    III  
+##  7 DRUG     78  0.175 T2    III  
+##  8 PLAC     61  0.177 T2    III  
+##  9 DRUG     71  0.737 T4    III  
+## 10 DRUG     83  0.475 T3    III  
+## # ... with 27 more rows
+```
+
+```r
+# With piping
+new_data_pipe <-
+  trial %>%
+  mutate(
+    trt = str_to_upper(trt) %>%
+      str_sub(1, 4) %>%
+      as.factor()
+  ) %>%
+  select(trt, age, marker, stage, grade) %>%
+  filter(age > 60)
+
+new_data_pipe
+```
+
+```
+## # A tibble: 37 x 5
+##    trt     age marker stage grade
+##    <fct> <dbl>  <dbl> <fct> <fct>
+##  1 DRUG     63  0.06  T1    I    
+##  2 PLAC     71  0.445 T3    I    
+##  3 DRUG     61  1.71  T4    II   
+##  4 PLAC     63  0.981 T2    II   
+##  5 DRUG     67  1.16  T1    II   
+##  6 PLAC     68  0.105 T4    III  
+##  7 DRUG     78  0.175 T2    III  
+##  8 PLAC     61  0.177 T2    III  
+##  9 DRUG     71  0.737 T4    III  
+## 10 DRUG     83  0.475 T3    III  
+## # ... with 27 more rows
+```
+
+
 #### `head` function
 
 The `head` function allows you to see the first few rows of your dataset in the console window, including the variable names and variable types at the top of the table. (Using the code `head(lesson1a)` will also give you the same results.)
@@ -335,13 +399,28 @@ lesson1a %>% head()
 
 The `table` function is the basic function for creating one-way and two-way tables. However, these tables often do not provide much information and are not formatted nicely or in a way that can easily be copied to a Word document.
 
-Here is an example:
+**Note:** the "trial" dataset is automatically loaded when you load the `gtsummary` package, which we've done above, so this dataset does not have to be manually loaded like the "lesson1a" dataset.
+
+Here is an example of a one-way table using the `table` function:
 
 
 ```r
-# Note: the "trial" dataset is automatically loaded when you load your packages
-# and does not have to be manually loaded like the "lesson1a" dataset
+# Create one-way table for death
+table(trial$death)
+```
 
+```
+## 
+##   0   1 
+##  93 107
+```
+
+While this table does not give column names and is not formatted, you can see that it shows that there are 107 patients who died, and 93 patients who did not.
+
+Here is an example of a two-way table:
+
+
+```r
 # Create two-way table for response and death
 table(trial$response, trial$death)
 ```
@@ -353,7 +432,7 @@ table(trial$response, trial$death)
 ##   1 49 34
 ```
 
-If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.
+Unlike the one-way table, these results are not easily interpretable. If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.
 
 If you print the "response" variable, you can also see that there are "NA" values in the response variable, which the table doesn't include at all.
 
@@ -383,7 +462,11 @@ The `tbl_summary` function (from the `gtsummary` package) creates and formats ta
 
 In this course, we will be using the `tbl_summary` function instead of the `table` function for all tables that will be displayed. There are some cases where the `table` function will be used in conjunction with another function to perform an analysis, but these tables will not be displayed.
 
+**Note:** Tables created by the `tbl_summary` package will not display in the "console" window, and will instead display in the "Viewer" pane on the bottom right-hand side of the screen.
+
 The `tbl_summary` function can create one-way and two-way tables for binary and categorical variables. It can also create tables which include summary statistics for continuous variables (by default, median and quartiles). The `select` function allows you to list the variables you would like to include in your table. Here, we are only showing sex in the table.
+
+Here is an example of a one-way table created using the `tbl_summary` function:
 
 
 ```r
@@ -1062,7 +1145,7 @@ This tells you that the "sex" variable has no missing data because the table onl
 
 Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were 181 men in the 386 patients and that they constituted 47% of the population.
 
-The `tbl_summary` function can also be used for two-way tables. The `select` function is used to select both variables of interest, and the name of the column variable is specified in the `by` statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the `table` function.
+The `tbl_summary` function can also be used for two-way tables. The `select` function is used to select both variables of interest, and the name of the column variable is specified in the `by` statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the `table` function. It also includes information on the missing (NA) values, which are excluded when using the `table` function.
 
 
 ```r
@@ -1446,9 +1529,9 @@ skim(lesson1a$age)
 ##  ▂▅▇▇▆▅▂▁
 ```
 
-So of the 386 patients (column "n"), the mean age (a type of average, I’ll explain next week) is 49.484456 (column "mean"), the standard deviation (again, I’ll explain next week) is 13.7546598 (column "sd"). The youngest patient was 19 (column "p0") and the oldest is 86 (column "p100"). 
+So of the 386 patients (column "n"), the mean age (a type of average, I’ll explain next week) is 49.48 (column "mean"), the standard deviation (again, I’ll explain next week) is 13.75 (column "sd"). The youngest patient was 19 (column "p0") and the oldest is 86 (column "p100"). 
 
-This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few minutes. So if you were reporting results for a journal, you would never say that mean age was 49.484456, you’d probably just say 49.
+This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was 49.48, you’d probably just say 49.
 
 "p0" here represents the minimum age in the dataset - 19. "p100" represents the maximum age of 86. "p25", "p50" and "p75" are the centiles. We'll talk more about this later, but briefly, "p25 = 40" means that 25% of the patients were aged 40 and younger. The number by "p50" (i.e. 49) is the median.
 
