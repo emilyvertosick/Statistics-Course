@@ -193,7 +193,7 @@ library(skimr)
 
 ```
 
-Now you will be able to use all functions in the `skimr` package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio. This code will also be available at the beginning of each lesson.
+Now you will be able to use all functions in the `skimr` package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
 
 ```{r loadpkgs4, echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE}
 
@@ -408,7 +408,7 @@ skim(lesson1a$age)
 
 So of the `r nrow(lesson1a)` patients (column "n"), the mean age (a type of average, I’ll explain next week) is `r skim(lesson1a$age)$value[[4]]` (column "mean"), the standard deviation (again, I’ll explain next week) is `r skim(lesson1a$age)$value[[5]]` (column "sd"). The youngest patient was `r skim(lesson1a$age)$value[[6]]` (column "p0") and the oldest is `r skim(lesson1a$age)$value[[10]]` (column "p100"). 
 
-This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few minutes. So if you were reporting results for a journal, you would never say that mean age was `r skim(lesson1a$age)$value[[4]]`, you’d probably just say `r round(skim(lesson1a$age)$value[[4]], 0)`.
+This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was `r skim(lesson1a$age)$value[[4]]`, you’d probably just say `r round(skim(lesson1a$age)$value[[4]], 0)`.
 
 "p0" here represents the minimum age in the dataset - `r skim(lesson1a$age)$value[[6]]`. "p100" represents the maximum age of `r skim(lesson1a$age)$value[[10]]`. "p25", "p50" and "p75" are the centiles. We'll talk more about this later, but briefly, "p25 = 40" means that 25% of the patients were aged 40 and younger. The number by "p50" (i.e. `r skim(lesson1a$age)$value[[8]]`) is the median.
 
