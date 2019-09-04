@@ -12,6 +12,8 @@ editor_options:
 
 ### Software Installation
 
+Note: you'll need to put aside 20 - 30 minutes to install the software on your computer. 
+
 **R**
 
 Install a pre-compiled binary of R for your OS from here by clicking on "Download R for [your operating system]":
@@ -25,21 +27,21 @@ https://www.rstudio.com/products/rstudio/download/preview/
 
 ### Setting up course files
 
-To access this course, download the "Statistics Course.zip" file [here](https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistics%20Course.zip?raw=true). Unzip the file to your chosen folder on your hard drive. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
+To access this course, download the "Statistics Course.zip" file [here](https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistics%20Course.zip?raw=true). Create and name a folder (e.g. "MSKCC biostats course") on your hard drive, and then unzip the file and save it in that folder. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
 
 There is a "Data" folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.
 
-There is a "Code" folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book. There is also an "Answers" file which contains the code from the assignment answers.
+There is a "Code" folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book. 
 
 Every time you work on this course, you should open RStudio by opening the "Statistics Course.Rproj" file. It may be helpful to create a desktop link to the "Statistics Course.Rproj" file so you can easily access the course materials.
 
 ### Using RStudio
 
-When you open the "Statistics Course.Rproj" file, RStudio will open, and you will see four panes in the RStudio window.
+When you open the "Statistics Course.Rproj" file, RStudio will open, and you will see four panes in the RStudio window (if you only see three panes, select "new file" and "New R script").
 
 1. The "console" window at the bottom left is where results will be shown if running R code from a .R file or interactively. The console window is also where you type in instructions for R. To run code in the console window, you can type or copy and paste the code and press "enter."
 
-2. The "source" window in the top left is where you will write out R code for your final .R analysis file. To run code from the source window, highlight the lines of code you'd like to run and click the "run" button, located in the upper right corner of the source window, or use the shortcut "ctrl+enter" on your keyboard.
+2. The "source" window in the top left is where you will write out R code for your  .R analysis file. To run code from the source window, highlight the lines of code you'd like to run and click the "run" button, located in the upper right corner of the source window, or use the shortcut "ctrl+enter" on your keyboard.
 
 3. The top right panel includes several tabs. The most important tabs here are "environment", which shows your current datasets and objects, and "history", which shows previous commands that have been run from either the "console" or the "source" window.
 
@@ -59,7 +61,6 @@ Enter one line at a time, and wait for the packages to install before entering t
 ```r
 # Installing packages
 install.packages("tidyverse")
-install.packages("gt")
 install.packages("here")
 install.packages("skimr")
 install.packages("epiR")
@@ -93,7 +94,7 @@ install.packages("gtsummary")
 
 ### A Note About Packages
 
-There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
+R is "open source" software. Unlike, say, Microsoft Word, where only Microsoft engineers can make changes, R packages are written by statisticians all over the world. There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages used in the course except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
 
 ## R Instructions
 
@@ -145,7 +146,7 @@ skimr::skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -186,7 +187,7 @@ R stores the data in the form of a spreadsheet. The rows are individual observat
 View(lesson1a)
 ```
 
-This is data from 386 patients undergoing surgery. You can see the patient’s hospital code number as the variable "id" and then their age and sex. There are then lists of other variables with names such as "p1", "t", "x" and so on. You can see that you can have both numbers and text as a variable. You may also notice that some variables have a value of "NA" for a particular observation. In R, "NA" indicates missing data. 
+This is data from 386 patients undergoing surgery. You can see the patient’s hospital code number as the variable "id" and then their age and sex. There are then lists of other variables with names such as "p1", "t", "x" and so on. You can see that you can have both numbers and text as a variable. You may also notice that some variables have a value of "NA" for a particular observation (e.g. the 3rd and 4th observations for variable "z"). In R, "NA" indicates missing data. 
 
 ### Typing a command
 
@@ -212,11 +213,11 @@ The output above this text is the code, and the output below this shows the resu
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character -------------------------------------------------------------------------------------
+## -- Variable type:character ---------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -259,7 +260,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -1438,7 +1439,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist

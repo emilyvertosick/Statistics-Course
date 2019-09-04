@@ -78,7 +78,7 @@ Every time you work on this course, you should open RStudio by opening the "Stat
 
 ### Using RStudio
 
-When you open the "Statistics Course.Rproj" file, RStudio will open, and you will see four panes in the RStudio window (if you only see three panes, select "new file"and "New R script"
+When you open the "Statistics Course.Rproj" file, RStudio will open, and you will see four panes in the RStudio window (if you only see three panes, select "new file" and "New R script").
 
 1. The "console" window at the bottom left is where results will be shown if running R code from a .R file or interactively. The console window is also where you type in instructions for R. To run code in the console window, you can type or copy and paste the code and press "enter."
 
@@ -138,7 +138,7 @@ install.packages("gtsummary")
 
 ### A Note About Packages
 
-R is "open source" software. Unlike, say, Microsoft Word, where only Microsoft engineers can make changes, R packages are written my statisticians all over the world. There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages used in the course except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
+R is "open source" software. Unlike, say, Microsoft Word, where only Microsoft engineers can make changes, R packages are written by statisticians all over the world. There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages used in the course except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
 
 ## R Instructions
 
