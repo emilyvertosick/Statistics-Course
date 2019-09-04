@@ -100,7 +100,6 @@ Enter one line at a time, and wait for the packages to install before entering t
 
 # Installing packages
 install.packages("tidyverse")
-install.packages("gt")
 install.packages("here")
 install.packages("skimr")
 install.packages("epiR")
