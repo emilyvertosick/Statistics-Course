@@ -41,7 +41,7 @@ For example, look below at the variable "sex" under "lesson1a". To the right of 
 
 Other variables have names that are not self-explanatory, for example, "p1". This variable has a label that indicates that this is "pain at time 1 postop". You will also notice that sometimes there are variables that are not labeled. In this dataset, "age" does not have a label - the variable name is self-explanatory, and by looking at the values we can see that this is age in years.
 
-![ ](images\environment_window.jpg)
+![ ](images\environment_window_data.jpg)
 
 If you would like to print out this information in the console window, you can also use the `str` function:
 
