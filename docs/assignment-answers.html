@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 Assignment Answers | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 Assignment Answers | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="week-8.html">
+<link rel="prev" href="week-8.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -155,9 +155,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="week-2.html"><a href="week-2.html#centiles"><i class="fa fa-check"></i><b>2.2.3</b> Centiles</a></li>
 <li class="chapter" data-level="2.2.4" data-path="week-2.html"><a href="week-2.html#one-way-tables"><i class="fa fa-check"></i><b>2.2.4</b> One-way tables</a></li>
 <li class="chapter" data-level="2.2.5" data-path="week-2.html"><a href="week-2.html#two-way-tables"><i class="fa fa-check"></i><b>2.2.5</b> Two-way tables</a></li>
-<li class="chapter" data-level="2.2.6" data-path="week-2.html"><a href="week-2.html#graphing"><i class="fa fa-check"></i><b>2.2.6</b> Graphing</a></li>
-<li class="chapter" data-level="2.2.7" data-path="week-2.html"><a href="week-2.html#further-reading"><i class="fa fa-check"></i><b>2.2.7</b> Further Reading</a></li>
-<li class="chapter" data-level="2.2.8" data-path="week-2.html"><a href="week-2.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>2.2.8</b> Using R as a calculator</a></li>
+<li class="chapter" data-level="2.2.6" data-path="week-2.html"><a href="week-2.html#subsetting-data"><i class="fa fa-check"></i><b>2.2.6</b> Subsetting Data</a></li>
+<li class="chapter" data-level="2.2.7" data-path="week-2.html"><a href="week-2.html#graphing"><i class="fa fa-check"></i><b>2.2.7</b> Graphing</a></li>
+<li class="chapter" data-level="2.2.8" data-path="week-2.html"><a href="week-2.html#further-reading"><i class="fa fa-check"></i><b>2.2.8</b> Further Reading</a></li>
+<li class="chapter" data-level="2.2.9" data-path="week-2.html"><a href="week-2.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>2.2.9</b> Using R as a calculator</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="week-2.html"><a href="week-2.html#assignments-1"><i class="fa fa-check"></i><b>2.3</b> Assignments</a></li>
 </ul></li>
@@ -171,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="week-4.html"><a href="week-4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a><ul>
 <li class="chapter" data-level="4.1" data-path="week-4.html"><a href="week-4.html#setting-up-3"><i class="fa fa-check"></i><b>4.1</b> Setting Up</a></li>
 <li class="chapter" data-level="4.2" data-path="week-4.html"><a href="week-4.html#r-instructions-3"><i class="fa fa-check"></i><b>4.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="week-4.html"><a href="week-4.html#tables"><i class="fa fa-check"></i><b>4.2.1</b> Tables</a></li>
+<li class="chapter" data-level="4.2.1" data-path="week-4.html"><a href="week-4.html#tables-1"><i class="fa fa-check"></i><b>4.2.1</b> Tables</a></li>
 <li class="chapter" data-level="4.2.2" data-path="week-4.html"><a href="week-4.html#getting-estimates-risk-difference-risk-ratio-odds-ratio"><i class="fa fa-check"></i><b>4.2.2</b> Getting estimates: risk difference, risk ratio, odds ratio</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="week-4.html"><a href="week-4.html#assignments-3"><i class="fa fa-check"></i><b>4.3</b> Assignments</a></li>
@@ -337,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n variables: 6 
 ##  group variables: sex 
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  sex variable missing complete  n   mean    sd  p0    p25   p50    p75
 ##    0       rt       0       66 66 243.23 49.85 158 214.25 236   268.75
 ##    1       rt       0       32 32 264.84 37.45 222 237    251.5 283.25
@@ -1077,10 +1078,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="lesson2c.rds" class="section level3">
 <h3><span class="header-section-number">9.2.3</span> lesson2c.rds</h3>
-<p><strong>This is data on 242 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.</strong></p>
+<p><strong>This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.</strong></p>
 <p>One of the first things to look for here is missing data. If you type <code>lesson2c %&gt;% skim()</code>, you’ll see that there is no missing data for age, 9 missing observations for PSA and 41 for grade. You will notice that the “stage” variable is not included here, because it is a character variable, not a numeric variable.</p>
 <p>If you type <code>tbl_summary(lesson2c %&gt;% select(stage))</code>, you’ll see that all patients have a stage assigned (no “NA” values).</p>
-<p>A second issue is how to characterize the categorical variables. There are 8 different stages represented, many with very small numbers (like 2 for T4 and T1B, 4 for T3). It generally isn’t very helpful to slice and dice data into very small categories, so I would consider grouping. For instance, we could group the T1s and T3 and 4 to get something like:</p>
+<p>A second issue is how to characterize the categorical variables. There are 8 different stages represented, many with very small numbers (like 2 for T4 and T1B, 4 for T3). It generally isn’t very helpful to slice and dice data into very small categories, so I would consider grouping. For instance, we could group the T1s together, and group the T3 and T4 patients together to get something like:</p>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1422,7 +1423,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tfoot>
 </table></div>
-<p>To get the table, I created a new variable as follows:</p>
+<p><br></p>
+<p>To get this table, I created a new variable called “stage_category”.</p>
+<p>The code below uses the <code>case_when</code> function, which is similar to the <code>if_else</code> function. Both functions take a condition and assign a value, but <code>if_else</code> can only assign two values (one if the condition is TRUE, the other if the condition is FALSE). <code>case_when</code> can assign as many values as you’d like.</p>
+<p>In this case, the <code>case_when</code> function does the following:</p>
+<ol style="list-style-type: decimal">
+<li>When the value of “stage” is one of the values in the list of “T1A”, “T1B”, or “T1C”, set the variable “stage_category” to “T1”.</li>
+<li>When the value of “stage” is “T3” or “T4”, set the variable “stage_category” to “T3/T4”.</li>
+<li>In <code>case_when</code>, TRUE means “every observation that didn’t fall into any of the previous categories”. Here, this means: for all observations that didn’t fit into the previously specified “T1” or “T3/4” categories, use the value of the variable “stage”. In this case, these are the “T2A”, “T2B” and “T2C” values, which remain the same in both the “stage” and “stage_category” variables.</li>
+</ol>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Create new variable for stage and save into &quot;lesson2c&quot; dataset</span></a>
 <a class="sourceLine" id="cb7-2" title="2">lesson2c &lt;-</a>
 <a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span>lesson2c <span class="op">%&gt;%</span></a>
@@ -1434,7 +1443,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb7-9" title="9">        <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>stage</a>
 <a class="sourceLine" id="cb7-10" title="10">      )</a>
 <a class="sourceLine" id="cb7-11" title="11">  )</a></code></pre></div>
-<p>The <code>case_when</code> function is similar to the <code>if_else</code> function, but it allows for more than the 2 options of TRUE/FALSE. “TRUE” in the last line indicates all values that were not included in the prior categories.</p>
 <p>There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9. Now a key point is that what you decide to do in situations like this will often need to take into account your medical understanding. It might seems sensible to categorize grade as ≤6 or ≥7, or perhaps 4/5, 6, 7, 8/9. But as it turns out in prostate cancer, pathologists can’t reliably grade a cancer as 4 or 5 and these cancers should really be grouped with grade 6. Grade 8, on the other hand, signifies very aggressive disease and really needs to be reported separately even if there are only a few patients with grade 8. So grade would probably be summarized as per the following table:</p>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -2703,7 +2711,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##          variable missing complete  n  mean   sd p0 p25 p50 p75 p100
 ##  lesson3c$delta12       0       22 22 -0.27 0.83 -2  -1   0   0    1
 ##      hist
@@ -2792,10 +2800,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n variables: 2 
 ##  group variables: hospital 
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  hospital variable missing complete  n  mean    sd p0   p25 p50  p75 p100
-##         1      los       0       29 29 44.86 13.57 30 34     41 55     79
-##         2      los       0       28 28 45.14 10.85 28 39.25  45 50.5   70
+##         a      los       0       29 29 44.86 13.57 30 34     41 55     79
+##         b      los       0       28 28 45.14 10.85 28 39.25  45 50.5   70
 ##      hist
 ##  ▇▃▃▁▃▂▁▂
 ##  ▃▅▇▇▂▂▂▂</code></pre>
@@ -2818,7 +2826,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 95 percent confidence interval:
 ##  -0.1594693  0.1186343
 ## sample estimates:
-## mean in group 1 mean in group 2 
+## mean in group a mean in group b 
 ##        3.762733        3.783150</code></pre>
 <p>The p value is similar to the untransformed analyses. Now, look at the difference between means -0.02 and confidence interval (-0.16, 0.12).</p>
 <p>To backtransform these values, you have to remember that addition on a log scale is the same as multiplication on an untransformed scale. Backtransform -0.02 using <code>exp(-0.02)</code> and you get 0.98. In other words, length of stay in hospital a is 98% more (or 2.0% less) compared to hospital b. Do the same things with the upper and lower bounds of the confidence interval and you might conclude that the difference in length of stay is between 15% less in hospital a to 13% less in hospital b. If you wanted to convert these numbers to actual days, just multiply by the mean hospital stay in group b by 0.98, 0.85 and 1.13.</p>
@@ -6419,7 +6427,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 190 
 ##  n variables: 6 
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  variable missing complete   n   mean    sd  p0 p25 p50 p75 p100     hist
 ##        rt       1      189 190 238.57 46.63 155 205 235 268  414 ▃▇▇▆▃▂▁▁</code></pre>
 <p>Then multiply the men’s average (238.6) by 1.10 to get the women’s time, which gives 263.2.</p>
@@ -12112,7 +12120,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0   p25  p50 p75 p100
 ##  lesson5g$age       2      398 400 42.46 10.58 17 34.25 42.5  49   71
 ##      hist
@@ -17836,7 +17844,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 330 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##       variable missing complete   n    mean     sd   p0  p25  p50    p75
 ##  survival_time       0      330 330 2389.38 336.23 1279 2162 2352 2625.5
 ##  p100     hist
@@ -18194,7 +18202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 614 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric --------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  variable missing complete   n mean   sd p0 p25 p50 p75 p100     hist
 ##     nodes      15      599 614 3.59 3.49  0   1   2 4.5   33 ▇▂▁▁▁▁▁▁</code></pre>
 <p>You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to:</p>
@@ -19869,8 +19877,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

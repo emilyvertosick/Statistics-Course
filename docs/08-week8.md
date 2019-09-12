@@ -1,3 +1,4 @@
 # Week 8
 
-[Statistical Slipups Powerpoint Presentation](https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistical%20slip%20ups.ppt?raw=true)
+Please review this
+[this powerpoint](https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistical%20slip%20ups.ppt?raw=true) about statistical slipups.

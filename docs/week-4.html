@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Week 4 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Week 4 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="week-3.html">
-<link rel="next" href="week-5.html">
+<link rel="prev" href="week-3.html"/>
+<link rel="next" href="week-5.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -155,9 +155,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="week-2.html"><a href="week-2.html#centiles"><i class="fa fa-check"></i><b>2.2.3</b> Centiles</a></li>
 <li class="chapter" data-level="2.2.4" data-path="week-2.html"><a href="week-2.html#one-way-tables"><i class="fa fa-check"></i><b>2.2.4</b> One-way tables</a></li>
 <li class="chapter" data-level="2.2.5" data-path="week-2.html"><a href="week-2.html#two-way-tables"><i class="fa fa-check"></i><b>2.2.5</b> Two-way tables</a></li>
-<li class="chapter" data-level="2.2.6" data-path="week-2.html"><a href="week-2.html#graphing"><i class="fa fa-check"></i><b>2.2.6</b> Graphing</a></li>
-<li class="chapter" data-level="2.2.7" data-path="week-2.html"><a href="week-2.html#further-reading"><i class="fa fa-check"></i><b>2.2.7</b> Further Reading</a></li>
-<li class="chapter" data-level="2.2.8" data-path="week-2.html"><a href="week-2.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>2.2.8</b> Using R as a calculator</a></li>
+<li class="chapter" data-level="2.2.6" data-path="week-2.html"><a href="week-2.html#subsetting-data"><i class="fa fa-check"></i><b>2.2.6</b> Subsetting Data</a></li>
+<li class="chapter" data-level="2.2.7" data-path="week-2.html"><a href="week-2.html#graphing"><i class="fa fa-check"></i><b>2.2.7</b> Graphing</a></li>
+<li class="chapter" data-level="2.2.8" data-path="week-2.html"><a href="week-2.html#further-reading"><i class="fa fa-check"></i><b>2.2.8</b> Further Reading</a></li>
+<li class="chapter" data-level="2.2.9" data-path="week-2.html"><a href="week-2.html#using-r-as-a-calculator"><i class="fa fa-check"></i><b>2.2.9</b> Using R as a calculator</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="week-2.html"><a href="week-2.html#assignments-1"><i class="fa fa-check"></i><b>2.3</b> Assignments</a></li>
 </ul></li>
@@ -171,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="week-4.html"><a href="week-4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a><ul>
 <li class="chapter" data-level="4.1" data-path="week-4.html"><a href="week-4.html#setting-up-3"><i class="fa fa-check"></i><b>4.1</b> Setting Up</a></li>
 <li class="chapter" data-level="4.2" data-path="week-4.html"><a href="week-4.html#r-instructions-3"><i class="fa fa-check"></i><b>4.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="week-4.html"><a href="week-4.html#tables"><i class="fa fa-check"></i><b>4.2.1</b> Tables</a></li>
+<li class="chapter" data-level="4.2.1" data-path="week-4.html"><a href="week-4.html#tables-1"><i class="fa fa-check"></i><b>4.2.1</b> Tables</a></li>
 <li class="chapter" data-level="4.2.2" data-path="week-4.html"><a href="week-4.html#getting-estimates-risk-difference-risk-ratio-odds-ratio"><i class="fa fa-check"></i><b>4.2.2</b> Getting estimates: risk difference, risk ratio, odds ratio</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="week-4.html"><a href="week-4.html#assignments-3"><i class="fa fa-check"></i><b>4.3</b> Assignments</a></li>
@@ -295,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-instructions-3" class="section level2">
 <h2><span class="header-section-number">4.2</span> R Instructions</h2>
 <p>Here are some of the commands you might use when analyzing epidemiological data or data that has a similar form. For example, if you had two variables “diet” (where 1 = high fat, 0 = low fat) and “hypertension”, you could use the same forms of analysis regardless of whether you were investigating a randomized trial (dietary advice assigned randomly to patients) or an epidemiological study (patients interviewed about eating habits). You can also use these methods for lab data (e.g. proportion of mice with a knockout versus wild type who develop a tumor).</p>
-<div id="tables" class="section level3">
+<div id="tables-1" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Tables</h3>
 <p>The first command is the <code>tbl_summary</code> function from the <code>gtsummary</code> package which makes a table. This was introduced in the week 1 lesson. We are interested in “two-way” tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet.</p>
 <p>I’ll use the dataset for assignment 3a (“lesson3a.rds”) to illustrate these points. This dataset includes patients who had prior chemotherapy, patient sex, and whether patients had postoperative nausea and vomiting.</p>

@@ -66,6 +66,7 @@ install.packages("skimr")
 install.packages("epiR")
 install.packages("broom")
 install.packages("pROC")
+install.packages("gmodels")
 install.packages("survival")
 install.packages("survminer")
 install.packages("remotes")
@@ -146,7 +147,7 @@ skimr::skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -213,11 +214,11 @@ The output above this text is the code, and the output below this shows the resu
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character -------------------------------------------------------------
+## -- Variable type:character --------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -260,7 +261,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist
@@ -303,22 +304,13 @@ lesson1a %>% skim(age)
 
 In this example, the pipe operator is not particularly useful - it actually involves more typing (`lesson1a %>% skim()`) than not using the pipe operator (`skim(lesson1a)`).
 
-However, the pipe operator is very helpful in more complex code. Here is an example of two pieces of code that do the same thing, with the second example using the pipe notation. You don't need to understand what this code does, but you can see that the pipe notation makes the code shorter, less repetitive and easier to read.
+However, the pipe operator is very helpful in more complex code. Here is an example of two pieces of code that do the same thing, with the second example using the pipe notation. You don't need to understand what this code does, but you can see that the pipe notation makes the code shorter and easier to read. It allows you to see what is happening in the code in order from left to right and top to bottom, while the code without pipes has to be read from the inside (the innermost set of parentheses) to the outside (the outermost set of parentheses).
 
 
 ```r
 # Without piping
-new_data <-
-  mutate(
-    trial,
-    trt = as_factor(str_sub(str_to_upper(trt), 1, 4))
-  )
-
-new_data <-
-  select(new_data, trt, age, marker, stage, grade)
-
-new_data <-
-  filter(new_data, age > 60)
+new_data <- 
+  select(filter(mutate(trial, trt = as_factor(str_sub(str_to_upper(trt), 1, 4))), age > 60), trt, age, marker, stage, grade)
 
 new_data
 ```
@@ -347,7 +339,7 @@ new_data_pipe <-
   mutate(
     trt = str_to_upper(trt) %>%
       str_sub(1, 4) %>%
-      as.factor()
+      as_factor()
   ) %>%
   select(trt, age, marker, stage, grade) %>%
   filter(age > 60)
@@ -372,6 +364,89 @@ new_data_pipe
 ## # ... with 27 more rows
 ```
 
+#### Assignment Operator (<-)
+
+The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.
+
+Below is an example of how to create a dataset that contains only patients in the "Drug" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
+
+
+```r
+# Here we are only keeping patients from the "Drug" group
+trial %>%
+  filter(trt == "Drug")
+```
+
+```
+## # A tibble: 107 x 8
+##    trt     age marker stage grade response death ttdeath
+##    <chr> <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
+##  1 Drug     23  0.16  T3    I            1     0   24   
+##  2 Drug      9  1.11  T4    III          1     1   14.9 
+##  3 Drug     31  0.277 T1    I            1     0   24   
+##  4 Drug     51  2.77  T2    II           0     1   20.0 
+##  5 Drug     39  0.613 T1    III          1     1   16.6 
+##  6 Drug     37  0.354 T4    II           1     1   12.2 
+##  7 Drug     32  1.74  T4    III          0     1    9.18
+##  8 Drug     31  0.144 T4    I            1     1   19.4 
+##  9 Drug     63  0.06  T1    I            1     0   24   
+## 10 Drug     54  0.831 T1    III          1     0   24   
+## # ... with 97 more rows
+```
+
+You can see that the data that prints out only includes observations where "trt" is "Drug". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
+
+
+```r
+trial
+```
+
+```
+## # A tibble: 200 x 8
+##    trt       age marker stage grade response death ttdeath
+##    <chr>   <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
+##  1 Drug       23  0.16  T3    I            1     0   24   
+##  2 Drug        9  1.11  T4    III          1     1   14.9 
+##  3 Drug       31  0.277 T1    I            1     0   24   
+##  4 Placebo    46  2.07  T4    II           1     1   10.2 
+##  5 Drug       51  2.77  T2    II           0     1   20.0 
+##  6 Drug       39  0.613 T1    III          1     1   16.6 
+##  7 Drug       37  0.354 T4    II           1     1   12.2 
+##  8 Drug       32  1.74  T4    III          0     1    9.18
+##  9 Drug       31  0.144 T4    I            1     1   19.4 
+## 10 Placebo    34  0.205 T2    III         NA     1    8.65
+## # ... with 190 more rows
+```
+
+Sometimes, this is fine - for example, if you simply want to take a look at the data. If you need to use this data again, give the dataset a name and use the assignment operator.
+
+
+```r
+trial_drug <-
+  trial %>%
+  filter(trt == "Drug")
+
+trial_drug
+```
+
+```
+## # A tibble: 107 x 8
+##    trt     age marker stage grade response death ttdeath
+##    <chr> <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
+##  1 Drug     23  0.16  T3    I            1     0   24   
+##  2 Drug      9  1.11  T4    III          1     1   14.9 
+##  3 Drug     31  0.277 T1    I            1     0   24   
+##  4 Drug     51  2.77  T2    II           0     1   20.0 
+##  5 Drug     39  0.613 T1    III          1     1   16.6 
+##  6 Drug     37  0.354 T4    II           1     1   12.2 
+##  7 Drug     32  1.74  T4    III          0     1    9.18
+##  8 Drug     31  0.144 T4    I            1     1   19.4 
+##  9 Drug     63  0.06  T1    I            1     0   24   
+## 10 Drug     54  0.831 T1    III          1     0   24   
+## # ... with 97 more rows
+```
+
+Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug" group.
 
 #### `head` function
 
@@ -1522,7 +1597,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
 ##      hist

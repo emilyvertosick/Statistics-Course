@@ -33,9 +33,45 @@ lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
 
 There are several ways to see the variables in your dataset.
 
-By click on the blue circle with an arrow next to the name of your dataset in the "environment" tab, you can see the variable name, the variable type, the values from the first several observations, and any label or format attributes associated with the variable.
+Click on the blue circle with an arrow next to the name of your dataset in the "environment" tab (top right). You will see the number of observations and the number of variables in your dataset next to the name of your dataset.
+
+Underneath, you can see the variable name, the variable type, the values from the first several observations, and variable labels (if they exist). In some datasets, variables are labeled with information on what data is stored in the variable and/or what the variable values mean.
+
+For example, look below at the variable "sex" under "lesson1a". To the right of the variable name, it shows that this is a numeric variable ("num") and displays the first ten values. What we would expect to find in the "sex" variable is self-explanatory, based on the variable name. However, we don't know how to interpret the values. Luckily, this information is included in the variable label on the following line.
+
+Other variables have names that are not self-explanatory, for example, "p1". This variable has a label that indicates that this is "pain at time 1 postop". You will also notice that sometimes there are variables that are not labeled. In this dataset, "age" does not have a label - the variable name is self-explanatory, and by looking at the values we can see that this is age in years.
 
 ![ ](images\environment_window.jpg)
+
+If you would like to print out this information in the console window, you can also use the `str` function:
+
+
+```r
+str(lesson1a)
+```
+
+```
+## Classes 'tbl_df', 'tbl' and 'data.frame':	386 obs. of  11 variables:
+##  $ id : num  541836 285383 332777 566828 193254 ...
+##  $ sex: num  0 1 0 1 1 1 0 0 1 0 ...
+##   ..- attr(*, "label")= chr "1 if woman, 0 if man"
+##  $ age: num  33 55 52 53 57 31 54 26 52 66 ...
+##  $ p1 : num  0 0 0 0 0 0 0 0 0 0 ...
+##   ..- attr(*, "label")= chr "pain at time 1 postop"
+##  $ p2 : num  0 1 0 0 1 0 1 0 0 1 ...
+##   ..- attr(*, "label")= chr "pain at time 2 postop"
+##  $ p3 : num  0 1 3 0 2 2 4 1 0 1 ...
+##   ..- attr(*, "label")= chr "pain at time 3 postop"
+##  $ p4 : num  0 1 3 1 3 2 1 0 0 1 ...
+##   ..- attr(*, "label")= chr "pain at time 4 postop"
+##  $ t  : num  0 3 6 1 6 4 6 1 0 3 ...
+##   ..- attr(*, "label")= chr "total pain score times 1 - 4"
+##  $ x  : num  2 2 1 2 2 1 1 1 2 1 ...
+##  $ y  : chr  "campus" "campus" "campus" "campus" ...
+##  $ z  : num  1 1 NA NA 1 3 1 1 3 1 ...
+```
+
+The "environment" tab and the `str` function are useful for getting an overview of the variables available in your dataset, they are not as useful for getting an overview of the data values available.
 
 The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
 
@@ -54,12 +90,12 @@ lesson1a %>% skim(age)
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
 ##       age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```
 
-So you can tell you have data on age for 386 patients ("n" is the number of observations), the mean age was 49 years, standard deviation of the mean was 13.8.
+So you can tell you have data on age for 386 patients ("n" is the number of observations), the mean age was about 49 years, and the standard deviation of the mean was about 13.8.
 
 The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was 19 and the oldest was 86. "p50" is the median (49 years), and the interquartile range is reported under "p25" and "p75" (40, 59).
 
@@ -77,7 +113,7 @@ lesson1a %>%
 ##  n variables: 11 
 ##  group variables: sex 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  sex variable missing complete   n  mean    sd p0 p25 p50 p75 p100
 ##    0      age       0      181 181 49.07 13.61 19  40  49  58   82
 ##    1      age       0      205 205 49.85 13.9  21  40  49  60   86
@@ -827,7 +863,7 @@ tbl_summary(
 
 This shows that, for example, there were 240 operations done at the main campus, 115 of these were done on men and 125 on women. This shows that 48% of the operations at the satellite were on men and 52% on women.
 
-You can use the `add_overall` function to show the total across all sites as well:
+You can use the `add_overall` function to add a column which shows the total across all sites. This is not generally advised - for instance, if the median age in the drug group is 65 and in the placebo group is 67, you don't need to be told that the median age in the cohort is somewhere near 66 - but there are sometimes reasons to report on the whole cohort as well.
 
 
 ```r
@@ -1551,7 +1587,11 @@ tbl_summary(
 
 This shows that, for example, 8.3% of men and 12% of women had operations at the "Harding" site.
 
-Passing a dataset to the `count` function with no additional options will count the number of total observations.
+### Subsetting Data
+
+Sometimes, you will want to subset your data - for instance, by keeping only the women from the full dataset. This can be done using the `filter` function. The `filter` function takes a condition, similar to an `if_else` statement. However, `filter` only keeps observations in the data that meet that condition.
+
+To start, we will count the number of observations in the full dataset, so we will be able to confirm whether we have subset correctly. Passing a dataset to the `count` function will count the number of total observations.
 
 
 ```r
@@ -1566,9 +1606,7 @@ lesson1a %>% count()
 ## 1   386
 ```
 
-The `filter` function allows you to subset groups of data. The `filter` function takes a condition, similar to an `if_else` statement. However, `filter` only keeps observations in the data that meet that condition.
-
-For example, we can use `filter` to count the number of women in the dataset, or the number of operations on women at the main campus. Don't forget that you need to use two equals signs here.
+In this example, we can use `filter` to count the number of women in the dataset, or the number of operations on women at the main campus. Don't forget that you need to use two equals signs here.
 
 
 ```r
@@ -1599,7 +1637,7 @@ lesson1a %>%
 ## 1   125
 ```
 
-Note that because we did not use `lesson1a <-` to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that `lesson1a` still contains all observations.
+Note that because we did not use the assignment operator (`<-`) to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that `lesson1a` still contains all observations.
 
 ### Graphing
 
@@ -1772,7 +1810,7 @@ pnorm(-0.5)
 
 `pnorm(-0.5)` gives 0.31, meaning that 31% of a normally distributed set of data will be less than half a standard deviation below the mean.
 
-If you had a pain score with a mean of 5 and a standard deviation of 2, you could predict that only 16% of patients would have pain scores of 7 or more and that 70% would have pain scores of 4 or more.
+Therefore, if you had a data set where the pain score had a mean of 5 and a standard deviation of 2, you could predict that only 16% of patients would have pain scores of 7 or more (i.e. more than one standard deviation higher than the mean) and that 69% would have pain scores of 4 or more (i.e. more than half a standard deviation below the mean: 31% of observations are half a standard deviation or more less than the mean).
 
 
 ```r
@@ -1795,6 +1833,10 @@ pnorm(-1.96)
 
 `pnorm(1.96)` gives 0.975 and `pnorm(-1.96)` gives 0.025. So 97.5% of observations are less than 1.96 standard deviations greater than the mean, and 2.5% are less than 1.96 standard deviations lower than the mean. In other words, 95% of observations are within 1.96 standard deviations of the mean.
 
+`pnorm(0.675)` gives 0.75 and `pnorm(-0.675)` gives 0.25, meaning that 50% of observations fall within approximately 2/3 of a standard deviation on either side of the mean.
+
+Almost all observations fall within 3 standard deviations of the mean, as shown by `pnorm(3)` and `pnorm(-3)`, which give 0.9987 and 0.0013, respectively. This means that 99.7% of all observations fall into this range.
+
 ## Assignments
 
 
@@ -1813,9 +1855,9 @@ I am phrasing the questions in ordinary English, pretty much as you would do if 
 
 All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
 
-- lesson2a.rds: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe
+- lesson2a.rds: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
 - lesson2b.rds: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
-- lesson2c.rds: This is data on 242 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
+- lesson2c.rds: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
 - lesson2d.rds: Cost of a minor medical procedure. Summarize cost.
 - lesson2e.rds: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
 

@@ -107,6 +107,7 @@ install.packages("skimr")
 install.packages("epiR")
 install.packages("broom")
 install.packages("pROC")
+install.packages("gmodels")
 install.packages("survival")
 install.packages("survminer")
 install.packages("remotes")
@@ -300,22 +301,13 @@ lesson1a %>% skim(age)
 
 In this example, the pipe operator is not particularly useful - it actually involves more typing (`lesson1a %>% skim()`) than not using the pipe operator (`skim(lesson1a)`).
 
-However, the pipe operator is very helpful in more complex code. Here is an example of two pieces of code that do the same thing, with the second example using the pipe notation. You don't need to understand what this code does, but you can see that the pipe notation makes the code shorter, less repetitive and easier to read.
+However, the pipe operator is very helpful in more complex code. Here is an example of two pieces of code that do the same thing, with the second example using the pipe notation. You don't need to understand what this code does, but you can see that the pipe notation makes the code shorter and easier to read. It allows you to see what is happening in the code in order from left to right and top to bottom, while the code without pipes has to be read from the inside (the innermost set of parentheses) to the outside (the outermost set of parentheses).
 
 ```{r section1d_4}
 
 # Without piping
-new_data <-
-  mutate(
-    trial,
-    trt = as_factor(str_sub(str_to_upper(trt), 1, 4))
-  )
-
-new_data <-
-  select(new_data, trt, age, marker, stage, grade)
-
-new_data <-
-  filter(new_data, age > 60)
+new_data <- 
+  select(filter(mutate(trial, trt = as_factor(str_sub(str_to_upper(trt), 1, 4))), age > 60), trt, age, marker, stage, grade)
 
 new_data
 
@@ -325,7 +317,7 @@ new_data_pipe <-
   mutate(
     trt = str_to_upper(trt) %>%
       str_sub(1, 4) %>%
-      as.factor()
+      as_factor()
   ) %>%
   select(trt, age, marker, stage, grade) %>%
   filter(age > 60)
@@ -334,6 +326,41 @@ new_data_pipe
 
 ```
 
+#### Assignment Operator (<-)
+
+The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.
+
+Below is an example of how to create a dataset that contains only patients in the "Drug" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
+
+```{r section1d1}
+
+# Here we are only keeping patients from the "Drug" group
+trial %>%
+  filter(trt == "Drug")
+
+```
+
+You can see that the data that prints out only includes observations where "trt" is "Drug". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
+
+```{r section1d2}
+
+trial
+
+```
+
+Sometimes, this is fine - for example, if you simply want to take a look at the data. If you need to use this data again, give the dataset a name and use the assignment operator.
+
+```{r section1d3}
+
+trial_drug <-
+  trial %>%
+  filter(trt == "Drug")
+
+trial_drug
+  
+```
+
+Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug" group.
 
 #### `head` function
 

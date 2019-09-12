@@ -81,7 +81,7 @@ lesson2a %>%
 ##  n variables: 6 
 ##  group variables: sex 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  sex variable missing complete  n   mean    sd  p0    p25   p50    p75
 ##    0       rt       0       66 66 243.23 49.85 158 214.25 236   268.75
 ##    1       rt       0       32 32 264.84 37.45 222 237    251.5 283.25
@@ -846,13 +846,13 @@ A graph using means seems more illustrative of what is really going on.
 
 ### lesson2c.rds
 
-**This is data on 242 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.**
+**This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.**
 
 One of the first things to look for here is missing data. If you type `lesson2c %>% skim()`, you’ll see that there is no missing data for age, 9 missing observations for PSA and 41 for grade. You will notice that the "stage" variable is not included here, because it is a character variable, not a numeric variable.
 
 If you type `tbl_summary(lesson2c %>% select(stage))`, you'll see that all patients have a stage assigned (no "NA" values).
 
-A second issue is how to characterize the categorical variables. There are 8 different stages represented, many with very small numbers (like 2 for T4 and T1B, 4 for T3). It generally isn’t very helpful to slice and dice data into very small categories, so I would consider grouping. For instance, we could group the T1s and T3 and 4 to get something like:
+A second issue is how to characterize the categorical variables. There are 8 different stages represented, many with very small numbers (like 2 for T4 and T1B, 4 for T3). It generally isn’t very helpful to slice and dice data into very small categories, so I would consider grouping. For instance, we could group the T1s together, and group the T3 and T4 patients together to get something like:
 
 <!--html_preserve--><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -1196,7 +1196,17 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   </tfoot>
 </table></div><!--/html_preserve-->
 
-To get the table, I created a new variable as follows:
+<br>
+
+To get this table, I created a new variable called "stage_category".
+
+The code below uses the `case_when` function, which is similar to the `if_else` function. Both functions take a condition and assign a value, but `if_else` can only assign two values (one if the condition is TRUE, the other if the condition is FALSE). `case_when` can assign as many values as you'd like.
+
+In this case, the `case_when` function does the following:
+
+1) When the value of "stage" is one of the values in the list of "T1A", "T1B", or "T1C", set the variable "stage_category" to "T1".
+2) When the value of "stage" is "T3" or "T4", set the variable "stage_category" to "T3/T4".
+3) In `case_when`, TRUE means "every observation that didn't fall into any of the previous categories". Here, this means: for all observations that didn't fit into the previously specified "T1" or "T3/4" categories, use the value of the variable "stage". In this case, these are the "T2A", "T2B" and "T2C" values, which remain the same in both the "stage" and "stage_category" variables.
 
 
 ```r
@@ -1212,8 +1222,6 @@ lesson2c <-
       )
   )
 ```
-
-The `case_when` function is similar to the `if_else` function, but it allows for more than the 2 options of TRUE/FALSE. "TRUE" in the last line indicates all values that were not included in the prior categories.
 
 There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9. Now a key point is that what you decide to do in situations like this will often need to take into account your medical understanding. It might seems sensible to categorize grade as ≤6 or ≥7, or perhaps 4/5, 6, 7, 8/9. But as it turns out in prostate cancer, pathologists can’t reliably grade a cancer as 4 or 5 and these cancers should really be grouped with grade 6. Grade 8, on the other hand, signifies very aggressive disease and really needs to be reported separately even if there are only a few patients with grade 8. So grade would probably be summarized as per the following table:
 
@@ -2602,7 +2610,7 @@ skim(lesson3c$delta12)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##          variable missing complete  n  mean   sd p0 p25 p50 p75 p100
 ##  lesson3c$delta12       0       22 22 -0.27 0.83 -2  -1   0   0    1
 ##      hist
@@ -2733,10 +2741,10 @@ lesson3e %>%
 ##  n variables: 2 
 ##  group variables: hospital 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  hospital variable missing complete  n  mean    sd p0   p25 p50  p75 p100
-##         1      los       0       29 29 44.86 13.57 30 34     41 55     79
-##         2      los       0       28 28 45.14 10.85 28 39.25  45 50.5   70
+##         a      los       0       29 29 44.86 13.57 30 34     41 55     79
+##         b      los       0       28 28 45.14 10.85 28 39.25  45 50.5   70
 ##      hist
 ##  ▇▃▃▁▃▂▁▂
 ##  ▃▅▇▇▂▂▂▂
@@ -2774,7 +2782,7 @@ t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE, paired = FALSE)
 ## 95 percent confidence interval:
 ##  -0.1594693  0.1186343
 ## sample estimates:
-## mean in group 1 mean in group 2 
+## mean in group a mean in group b 
 ##        3.762733        3.783150
 ```
 
@@ -6602,7 +6610,7 @@ lesson5a %>%
 ##  n obs: 190 
 ##  n variables: 6 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  variable missing complete   n   mean    sd  p0 p25 p50 p75 p100     hist
 ##        rt       1      189 190 238.57 46.63 155 205 235 268  414 ▃▇▇▆▃▂▁▁
 ```
@@ -12509,7 +12517,7 @@ skim(lesson5g$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0   p25  p50 p75 p100
 ##  lesson5g$age       2      398 400 42.46 10.58 17 34.25 42.5  49   71
 ##      hist
@@ -18420,7 +18428,7 @@ lesson7a %>%
 ##  n obs: 330 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##       variable missing complete   n    mean     sd   p0  p25  p50    p75
 ##  survival_time       0      330 330 2389.38 336.23 1279 2162 2352 2625.5
 ##  p100     hist
@@ -18800,7 +18808,7 @@ lesson7a %>%
 ##  n obs: 614 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------
 ##  variable missing complete   n mean   sd p0 p25 p50 p75 p100     hist
 ##     nodes      15      599 614 3.59 3.49  0   1   2 4.5   33 ▇▂▁▁▁▁▁▁
 ```

@@ -36,7 +36,8 @@ example5a <-
   ) %>%
   # Keep selected variables
   dplyr::select(id, stage, age,
-         year = year2, recurrence)
+         year = year2, recurrence) %>%
+  ungroup()
 
 saveRDS(example5a, here::here("Data", "Week 5", "example5a.rds"))
 
