@@ -1,3 +1,4 @@
+
 # Week 1: load packages
 library(skimr)
 library(gt)
@@ -12,6 +13,8 @@ library(tidyverse)
 
 # Week 1: load data
 lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+
+
 
 # Week 2: load packages
 library(skimr)
@@ -32,15 +35,31 @@ lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
 lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
 lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
 
+
+
 # Summary statistics for race time, separately by sex
 lesson2a %>%
   group_by(sex) %>%
   skim(rt)
 
+
+
+
+
+
+
 # Create histogram to assess whether data look skewed
 ggplot(data = lesson2b,
        aes(x = t)) +
   geom_histogram()
+
+
+
+
+
+
+
+
 
 # Create new variable for stage and save into "lesson2c" dataset
 lesson2c <-
@@ -53,6 +72,10 @@ lesson2c <-
         TRUE ~ stage
       )
   )
+
+
+
+
 
 # Create variable to categorize number of days in pain
 lesson2e <-
@@ -67,15 +90,23 @@ lesson2e <-
       )
   )
 
+
+
 # Print formatted table summarizing number of days in pain
 tbl_summary(
   lesson2e %>% select(days)
 )
 
+
+
+
+
 # Create a variable for log of the pain score
 lesson2e <-
   lesson2e %>%
   mutate(log = log(pain))
+
+
 
 # Week 3: load packages
 library(skimr)
@@ -97,11 +128,17 @@ lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
 lesson3e <- readRDS(here::here("Data", "Week 3", "lesson3e.rds"))
 lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
 
+
+
+
+
 # t-test for nausea/vomiting by prior chemotherapy
 t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 
 # t-test for nausea/vomiting by sex
 t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
+
+
 
 # Create new variable to indicate whether "nv" variable is missing
 lesson3a <-
@@ -111,6 +148,8 @@ lesson3a <-
       if_else(is.na(nv), 1, 0)
   )
 
+
+
 # Formatted table to look at rates of missingness in "nv" variable by sex
 tbl_summary(
   lesson3a %>% select(missing, sex),
@@ -118,11 +157,17 @@ tbl_summary(
   type = list("missing" ~ "categorical")
 )
 
+
+
 # Find out p value from t value
 pt(-4.6275, 510)*2
 
+
+
 # t-test for pain after treatment, by group
 t.test(p ~ g, data = lesson3b, var.equal = TRUE)
+
+
 
 # Analyze data separately by wrist
 lesson3b <-
@@ -143,11 +188,17 @@ lesson3b <-
 t.test(pright ~ g, data = lesson3b, var.equal = TRUE)
 t.test(pleft ~ g, data = lesson3b, var.equal = TRUE)
 
+
+
 # Non-parametric test comparing day 1 and day 2 pain
 wilcox.test(lesson3c$t1, lesson3c$t2, correct = FALSE, exact = FALSE, paired = TRUE)
 
+
+
 # paired t-test comparing day 1 and day 2 pain
 t.test(lesson3c$t1, lesson3c$t2, var.equal = TRUE, paired = TRUE)
+
+
 
 # Create a variable containing the difference in pain scores between days 1 and 2
 lesson3c <-
@@ -157,33 +208,55 @@ lesson3c <-
 # Summarize change in pain scores
 skim(lesson3c$delta12)
 
+
+
 # paired t-test for before and after pain scores
 t.test(lesson3d$b, lesson3d$a, var.equal = TRUE, paired = TRUE)
+
+
 
 # t-test for whether difference between before and after scores is different than zero
 t.test(lesson3d$d, mu = 0)
 
+
+
 # Test whether proportion of women is different from 50%
 binom.test(sum(lesson3d$sex), nrow(lesson3d), p = 0.5)
 
+
+
 # t-test for whether age is significantly different from 58.2
 t.test(lesson3d$age, mu = 58.2)
+
+
 
 # Summarize data by hospital
 lesson3e %>%
   group_by(hospital) %>%
   skim()
 
+
+
 # Create variable for log of length of stay
 lesson3e <-
   lesson3e %>%
   mutate(loglos = log(los))
 
+
+
 # paired t-test using log of length of stay as outcome
 t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE, paired = FALSE)
 
+
+
+
+
 # unpaired t-test for change in pain by physiotherapy group
 t.test(delta ~ physio, data = lesson3f, var.equal = TRUE, paired = FALSE)
+
+
+
+
 
 # Week 4: load packages
 library(skimr)
@@ -204,6 +277,8 @@ lesson4c <- readRDS(here::here("Data", "Week 4", "lesson4c.rds"))
 lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
 lesson4e <- readRDS(here::here("Data", "Week 4", "lesson4e.rds"))
 
+
+
 # Create formatted table of nausea/vomiting by car sickness history
 tbl_summary(
   lesson4a %>% select(nv, cs),
@@ -211,20 +286,34 @@ tbl_summary(
   type = list("nv" ~ "categorical")
 )
 
+
+
+
+
 # Chi squared test
 chisq.test(table(lesson4a$nv, lesson4a$cs), correct = FALSE)
 
 # Fisher's exact test
 fisher.test(table(lesson4a$nv, lesson4a$cs))
 
+
+
 # Confidence interval for difference between groups
 epi.2by2(matrix(rev(table(lesson4a$cs, lesson4a$nv)), nrow = 2))
+
+
+
+
+
+
 
 # Formatted table of meat consumption by hypertension status
 tbl_summary(
   lesson4b %>% select(meat, hbp),
   by = hbp
 )
+
+
 
 # Formatted table of meat consumption by hypertension status (row percents)
 tbl_summary(
@@ -233,8 +322,12 @@ tbl_summary(
   percent = "row"
 )
 
+
+
 # Chi squared test for association between meat consumption and hypertension
 chisq.test(table(lesson4b$hbp, lesson4b$meat), correct = FALSE)
+
+
 
 # Change values of meat consumption variable
 lesson4b_changed <-
@@ -251,6 +344,8 @@ lesson4b_changed <-
 # Re-run chi squared test
 chisq.test(table(lesson4b_changed$hbp, lesson4b_changed$meat), correct = FALSE)
 
+
+
 # Create a new variable "c1" which is "1" if meat consumption is high and "0" if it is medium
 # "c1" is missing for low meat consumption: these patients are left out of the analysis
 lesson4b <-
@@ -265,6 +360,10 @@ lesson4b <-
 
 # Test for difference between medium and high meat consumption
 epi.2by2(matrix(rev(table(lesson4b$c1, lesson4b$hbp)), nrow = 2))
+
+
+
+
 
 # Compare high vs low consumption
 # "c2" is "1" if meat consumption is high and "0" if it is low
@@ -282,11 +381,19 @@ lesson4b <-
 # Test for difference between low and high meat consumption
 epi.2by2(matrix(rev(table(lesson4b$c2, lesson4b$hbp)), nrow = 2))
 
+
+
+
+
+
+
 # Formatted two-way table of genes by toxicity outcome
 tbl_summary(
   lesson4c %>% select(gene, toxicity),
   by = toxicity
 )
+
+
 
 # Create binary variable grouping the values of "1" and "2" for gene
 lesson4c <-
@@ -298,6 +405,14 @@ lesson4c <-
         gene == 0 ~ 0
       )
   )
+
+
+
+
+
+
+
+
 
 # You can use the "group_split" function to split your dataset into two groups
 lesson4d_sex <-
@@ -322,6 +437,8 @@ epi.2by2(matrix(rev(table(lesson4d_males$group, lesson4d_males$response)), nrow 
 # Females (sex == 1)
 epi.2by2(matrix(rev(table(lesson4d_females$group, lesson4d_females$response)), nrow = 2))
 
+
+
 # Use "group_split" again
 lesson4d_age <-
   lesson4d %>%
@@ -337,12 +454,18 @@ epi.2by2(matrix(rev(table(lesson4d_younger$group, lesson4d_younger$response)), n
 lesson4d_older <- lesson4d_age[[2]]
 epi.2by2(matrix(rev(table(lesson4d_older$group, lesson4d_older$response)), nrow = 2))
 
+
+
 # Formatted table of gene1 by gene2
 tbl_summary(
   lesson4e %>% select(gene1, gene2),
   by = gene2,
   type = list("gene1" ~ "categorical")
 )
+
+
+
+
 
 # Week 5: load packages
 library(skimr)
@@ -367,11 +490,21 @@ lesson5g <- readRDS(here::here("Data", "Week 5", "lesson5g.rds"))
 lesson5h <- readRDS(here::here("Data", "Week 5", "lesson5h.rds"))
 lesson5i <- readRDS(here::here("Data", "Week 5", "lesson5i.rds"))
 
+
+
 # Create linear regression model for race time
 rt_model <- lm(rt ~ age + sex + tr + wt, data = lesson5a)
 
 # Results of linear regression model
 summary(rt_model)
+
+
+
+
+
+
+
+
 
 # Create variable for log of race time
 lesson5a <-
@@ -386,16 +519,22 @@ rtlog_model <- lm(lt ~ age + sex + tr + wt, data = lesson5a)
 # Results of linear regression model
 summary(rtlog_model)
 
+
+
 # Get the average time for men
 lesson5a %>%
   filter(sex == 0) %>% # Select only males
   skim(rt)
+
+
 
 # Create logistic regression model
 mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
 
 # Formatted results with odds ratios
 tbl_regression(mutate_model, exponentiate = TRUE)
+
+
 
 # Use "filter" to exclude patients with outlying disease duration
 lesson5b <-
@@ -408,14 +547,22 @@ mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
 # Formatted results with odds ratios
 tbl_regression(mutate_model, exponentiate = TRUE)
 
+
+
 # Formatted results in logits
 tbl_regression(mutate_model, exponentiate = FALSE)
+
+
+
+
 
 # Results in logits
 # The "intercept = TRUE" option includes the constant in the table
 tbl_regression(mutate_model,
                exponentiate = FALSE,
                intercept = TRUE)
+
+
 
 # Create predictions
 lesson5b_pred <-
@@ -438,11 +585,15 @@ ggplot(data = lesson5b_pred, aes(x = c, y = .fitted)) +
     y = "Risk of mutation"
   )
 
+
+
 # Reopen lesson5b dataset
 lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
 
 # Use original logistic regression model
 tbl_regression(mutate_model, exponentiate = TRUE)
+
+
 
 # Create new values for "c" (disease duration)
 lesson5b_new <-
@@ -465,13 +616,19 @@ ggplot(data = lesson5b_pred_new,
        aes(x = c, y = .fitted)) +
   geom_line()
 
+
+
 # Open up dataset to view observations
 View(lesson5c)
+
+
 
 # Remove the observation for all of Canada from dataset
 lesson5c_fixed <-
   lesson5c %>%
   filter(place != "Canada")
+
+
 
 # Calculate correlation between unemployment and male/female life expectancy
 # There are missing values for unemployment,
@@ -479,17 +636,31 @@ lesson5c_fixed <-
 cor(lesson5c_fixed %>% select(unemp, mlife, flife),
     use = "complete.obs")
 
+
+
 # Create linear regression model for male life expectancy
 mlife_model <- lm(mlife ~ unemp, data = lesson5c_fixed)
 tbl_regression(mlife_model)
+
+
 
 # Create linear regression model for female life expectancy
 flife_model <- lm(flife ~ unemp, data = lesson5c_fixed)
 tbl_regression(flife_model)
 
+
+
 # Create linear regression model for tumor size
 tumorsize_model <- lm(s ~ dose, data = lesson5d)
 summary(tumorsize_model)
+
+
+
+
+
+
+
+
 
 # Create multivariable logistic regression model for CAM
 cam_model1 <- glm(CAM ~ age + t + mets + u + q18 + e + m + ses,
@@ -497,11 +668,15 @@ cam_model1 <- glm(CAM ~ age + t + mets + u + q18 + e + m + ses,
                   family = "binomial")
 tbl_regression(cam_model1, exponentiate = TRUE)
 
+
+
 # Create logistic regression model for CAM removing "e" and "m"
 cam_model2 <- glm(CAM ~ age + t + mets + u + q18 + ses,
                   data = lesson5e,
                   family = "binomial")
 tbl_regression(cam_model2, exponentiate = TRUE)
+
+
 
 # Create logistic regression model for CAM removing "q18"
 cam_model3 <- glm(CAM ~ age + t + mets + u + ses,
@@ -509,20 +684,28 @@ cam_model3 <- glm(CAM ~ age + t + mets + u + ses,
                   family = "binomial")
 tbl_regression(cam_model3, exponentiate = TRUE)
 
+
+
 # Create logistic regression model for CAM removing "ses"
 cam_model4 <- glm(CAM ~ age + t + mets + u + q18,
                   data = lesson5e,
                   family = "binomial")
 tbl_regression(cam_model4, exponentiate = TRUE)
 
+
+
 # Create linear regression model for distance
 frisbee_model <- lm(distance ~ age, data = lesson5f)
 summary(frisbee_model)
+
+
 
 # Scatterplot of distance by age
 ggplot(data = lesson5f,
        aes(x = age, y = distance)) + 
   geom_point()
+
+
 
 # Create new variable for age squared
 lesson5f <-
@@ -534,6 +717,10 @@ lesson5f <-
 # Create linear regression model using age and age squared
 frisbee_model2 <- lm(distance ~ age + age2, data = lesson5f)
 summary(frisbee_model2)
+
+
+
+
 
 # For men
 tbl_summary(
@@ -554,6 +741,10 @@ lesson5g %>%
   group_by(sex) %>%
   summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
 
+
+
+
+
 # Create two-way table of response by sex
 tbl_summary(
   lesson5g %>% select(response, sex),
@@ -565,11 +756,15 @@ tbl_summary(
 table(lesson5g$response, lesson5g$sex) %>%
   chisq.test(correct = FALSE)
 
+
+
 # Create logistic regression model for response including interaction between sex and chemo
 sex_int_model <- glm(response ~ sex + chemo + sex*chemo,
                      data = lesson5g,
                      family = "binomial")
 tbl_regression(sex_int_model, exponentiate = TRUE)
+
+
 
 # First, get the median age
 skim(lesson5g$age)
@@ -580,6 +775,8 @@ lesson5g <-
   mutate(
     hiage = if_else(age > 42.5, 1, 0)
   )
+
+
 
 # For younger patients
 tbl_summary(
@@ -601,6 +798,8 @@ lesson5g %>%
   group_by(hiage) %>%
   summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
 
+
+
 # Logistic regression model with interaction between chemo and age (continuous)
 age_int_model1 <-
   glm(response ~ chemo + age + chemo*age,
@@ -608,12 +807,24 @@ age_int_model1 <-
       family = "binomial")
 tbl_regression(age_int_model1, exponentiate = TRUE)
 
+
+
 # Logistic regression model with interaction between chemo and hiage (binary)
 age_int_model2 <-
   glm(response ~ chemo + hiage + chemo*hiage,
       data = lesson5g,
       family = "binomial")
 tbl_regression(age_int_model2, exponentiate = TRUE)
+
+
+
+
+
+
+
+
+
+
 
 # Create variables for treatment (yes/no) and therapy (yes/no)
 lesson5i <-
@@ -627,6 +838,10 @@ lesson5i <-
 treat_model <- lm(followup ~ baseline + treat + therapy,
                   data = lesson5i)
 tbl_regression(treat_model)
+
+
+
+
 
 # Week 6: load packages
 library(skimr)
@@ -646,8 +861,14 @@ lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
 lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
 lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
 
+
+
+
+
 # Calculate AUC for marker predicting cancer using marker
 roc(cancer ~ marker, data = lesson6c)
+
+
 
 # Here we will drop observations missing marker data from the table (filter function)
 tbl_summary(
@@ -656,6 +877,8 @@ tbl_summary(
   type = list("cancer" ~ "categorical")
 )
 
+
+
 # Two-way table of recurrence by hi_risk
 tbl_summary(
   lesson6d %>% select(recurrence, hi_risk),
@@ -663,8 +886,14 @@ tbl_summary(
   type = list("recurrence" ~ "categorical")
 )
 
+
+
+
+
 # Calculate AUC for prediction of recurrence using hi_risk
 roc(recurrence ~ hi_risk, data = lesson6d)
+
+
 
 # Create the model
 # "grade" is a categorical variable, so use "factor()"
@@ -685,6 +914,8 @@ lesson6d_pred <-
 # Calculate the AUC for the clinical model
 roc(recurrence ~ clinpred, data = lesson6d_pred)
 
+
+
 # Create a new variable to define patients at high risk from the model
 lesson6d_pred <-
   lesson6d_pred %>%
@@ -699,6 +930,8 @@ tbl_summary(
   by = hi_risk,
   type = list("clinmodel_hirisk" ~ "categorical")
 )
+
+
 
 # Create the model
 marker_recur_model <- glm(recurrence ~ stage + factor(grade_numeric) + marker,
@@ -718,6 +951,10 @@ lesson6d_pred <-
 # Calculate the AUC from the marker for the marker model
 roc(recurrence ~ markerpred, data = lesson6d_pred)
 
+
+
+
+
 # Identify patients at >= 10% risk from clinical+marker model
 lesson6d_pred <-
   lesson6d_pred %>%
@@ -730,6 +967,10 @@ tbl_summary(
   by = hi_risk,
   type = list("markermodel_hirisk" ~ "categorical")
 )
+
+
+
+
 
 # Table of recurrences for those at high risk from the marker model but not clinically
 tbl_summary(
@@ -744,6 +985,8 @@ tbl_summary(
     select(recurrence),
   type = list("recurrence" ~ "categorical")
 )
+
+
 
 # Create model that includes imaging score
 imaging_model <- glm(recurrence ~ stage + factor(grade_numeric) + marker + imaging_score,
@@ -762,6 +1005,10 @@ lesson6d_pred <-
 # Calculate AUC for imaging model
 roc(recurrence ~ imagingpred, data = lesson6d_pred)
 
+
+
+
+
 # Create variable indicating whether patient is high risk from imaging model
 lesson6d_pred <-
   lesson6d_pred %>%
@@ -775,6 +1022,10 @@ tbl_summary(
   by = markermodel_hirisk,
   type = list("imagingmodel_hirisk" ~ "categorical")
 )
+
+
+
+
 
 # Week 7: load packages
 library(skimr)
@@ -794,8 +1045,12 @@ lesson7b <- readRDS(here::here("Data", "Week 7", "lesson7b.rds"))
 lesson7c <- readRDS(here::here("Data", "Week 7", "lesson7c.rds"))
 lesson7d <- readRDS(here::here("Data", "Week 7", "lesson7d.rds"))
 
+
+
 # Create survival outcome for time to death
 lesson7a_surv <- Surv(lesson7a$survival_time, lesson7a$died)
+
+
 
 # Median followup for all patients
 survfit(lesson7a_surv ~ 1)
@@ -805,18 +1060,26 @@ lesson7a %>%
   filter(died == 0) %>%
   skim(survival_time)
 
+
+
 # Multivariable Cox model for time to death
 coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + nodes,
       data = lesson7a)
+
+
 
 # Table of perforation rate
 tbl_summary(
   lesson7a %>% select(perforation)
 )
 
+
+
 # Summarize number of nodes
 lesson7a %>%
   skim(nodes)
+
+
 
 # Exclude patients with > 10 notes
 lesson7a <-
@@ -829,6 +1092,8 @@ lesson7a <-
 
 # Re-run cox model using "n2" (excluding patients with > 10 nodes)
 coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + n2, data = lesson7a)
+
+
 
 # Categorize values of nodes removed
 lesson7a <-
@@ -843,25 +1108,53 @@ lesson7a <-
       )
   )
 
+
+
 # Re-run Cox model using categorized variable for nodes
 # Since "node4" is categorical, we must use "factor()" with this variable
 coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + factor(node4),
       data = lesson7a)
 
+
+
+
+
+
+
+
+
 # Test for difference in time to recurrence by hivolume
 survdiff(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume)
 
+
+
+
+
 # Look at number of recurrence events in this dataset
 survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ 1)
+
+
 
 # Cox model for time to recurrence
 lesson7b_cox <-
   coxph(Surv(time, recurrence) ~ hivolume, data = lesson7b)
 tbl_regression(lesson7b_cox, exponentiate = TRUE)
 
+
+
+
+
+
+
 # Estimate survival at 6, 12 and 18 months
 summary(survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume),
         times = c(183, 365, 548))
+
+
+
+
+
+
 
 # Two-way table of group by treatment
 tbl_summary(
@@ -869,9 +1162,13 @@ tbl_summary(
   by = treatment
 )
 
+
+
 # Create Kaplan-Meier plot by treatment group
 survminer::ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
                       legend = "bottom")
+
+
 
 # Create dummy variable for treatment
 lesson7c <-
@@ -880,6 +1177,8 @@ lesson7c <-
     fu = if_else(group == 2, 1, 0),
     lev = if_else(group == 3, 1, 0)
   )
+
+
 
 # Cox model with dummy variables
 coxph(Surv(survival_time, died) ~ fu + lev, data = lesson7c)
