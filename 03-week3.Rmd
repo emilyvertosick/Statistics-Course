@@ -80,11 +80,11 @@ For this week's assignment, you will need to learn the following functions:
 
 #### **t-test**
 
-This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statistician normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for just about any situation. 
+This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statisticians normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for to compare a continuous outcome between two groups even if the data are pretty skewed. 
 
 **Different forms of the t-test**
 
-In a simple unpaired case, for example, testing marker levels between a drug and placebo group:
+The two main forms of the t-test are "paired" and "unpaired". "Unpaired" is used when, for example, testing marker levels between a drug and placebo group, as there are different patients in each group:
 
 ```{r section3a}
 
@@ -93,7 +93,7 @@ t.test(marker ~ trt, data = trial, var.equal = TRUE)
 
 ```
 
-A paired test, for example, comparing blood pressure taken before and after an intervention.
+A "paired" test, for example, comparing blood pressure taken before and after an intervention, because you are looking at two observations on the same patient.
 
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
@@ -102,9 +102,9 @@ A paired test, for example, comparing blood pressure taken before and after an i
 # paired t-test for blood pressure between "before" and "after" groups
 t.test(bp ~ when, data = example3a, var.equal = TRUE, paired = TRUE)
 
-```
+``
 
-A single sample test comparing the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?
+A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?
 
 ```{r section3c}
 
