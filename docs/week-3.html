@@ -165,7 +165,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="week-3.html"><a href="week-3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
 <li class="chapter" data-level="3.1" data-path="week-3.html"><a href="week-3.html#setting-up-2"><i class="fa fa-check"></i><b>3.1</b> Setting up</a></li>
 <li class="chapter" data-level="3.2" data-path="week-3.html"><a href="week-3.html#r-instructions-2"><i class="fa fa-check"></i><b>3.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="week-3.html"><a href="week-3.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.1</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="3.2.1" data-path="week-3.html"><a href="week-3.html#example-datasets"><i class="fa fa-check"></i><b>3.2.1</b> Example Datasets</a></li>
+<li class="chapter" data-level="3.2.2" data-path="week-3.html"><a href="week-3.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.2</b> Hypothesis Testing</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="week-3.html"><a href="week-3.html#assignments-2"><i class="fa fa-check"></i><b>3.3</b> Assignments</a></li>
 </ul></li>
@@ -297,8 +298,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="r-instructions-2" class="section level2">
 <h2><span class="header-section-number">3.2</span> R Instructions</h2>
+<div id="example-datasets" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Example Datasets</h3>
+<p>Normally, to do an analysis in R, you will have to load in a dataset. However, R and some packages come with built-in example datasets. For example, there is a dataset called “trial” that comes built in with the <code>gtsummary</code> package. We will use the “trial” dataset for many examples, but you do not need to load it, as the “trial” dataset will automatically be loaded after you run <code>library(gtsummary)</code>.</p>
+</div>
 <div id="hypothesis-testing" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Hypothesis Testing</h3>
+<h3><span class="header-section-number">3.2.2</span> Hypothesis Testing</h3>
 <p>For this week’s assignment, you will need to learn the following functions:</p>
 <ul>
 <li><code>t.test</code></li>
@@ -306,12 +311,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>binom.test</code></li>
 </ul>
 <div id="t-test" class="section level4">
-<h4><span class="header-section-number">3.2.1.1</span> <strong>t-test</strong></h4>
+<h4><span class="header-section-number">3.2.2.1</span> <strong>t-test</strong></h4>
 <p>This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statistician normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a “theorem”, this is called the “central limit theorem”). Just how large is “large” is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is “robust” to non-normal data, even if sample sizes are low. “Robust” means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for just about any situation.</p>
 <p><strong>Different forms of the t-test</strong></p>
 <p>In a simple unpaired case, for example, testing marker levels between a drug and placebo group:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># t-test for marker levels between treatment arms</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">t.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">t.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -323,10 +328,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##    mean in group Drug mean in group Placebo 
 ##             0.8981078             0.9618539</code></pre>
-<p>A paired test, for example, comparing blood pressure taken before and after an intervention.</p>
+<p>The first variable, “marker”, is the continuous endpoint that you are comparing by the two groups of the second variable, “trt” (Drug vs Placebo). Next, you are telling R to get the data from the dataset called “trial”. <code>paired = FALSE</code> indicates that, in this case, the observations in each group are independent - the marker values come from different people in each group. The last option (<code>var.equal = TRUE</code>) tells the <code>t.test</code> function to treat the two variances as being equal. For this course, you will need to include this option in two-group <code>t.test</code> commands but you do not need to know specific details about this concept.</p>
+<p>A paired test, for example, comparing a person’s blood pressure taken before and after an intervention.</p>
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># paired t-test for blood pressure between &quot;before&quot; and &quot;after&quot; groups</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">t.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">t.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -338,6 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of the differences 
 ##               -5.091667</code></pre>
+<p>Here, the code is the same as the last example, with “bp” as the continuous outcome, and “when” indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option <code>paired = TRUE</code> must be included.</p>
 <p>A single sample test comparing the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># t-test assessing whether the rate of college education is different than 32%</span></a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="kw">t.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>)</a></code></pre></div>
@@ -354,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  18.27274</code></pre>
 <p>Let’s look at the print out from a t-test in more detail:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># t-test for difference in horsepower for manual vs automatic transmission</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -370,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>t.test</code> function reports the data and variables you are testing, following by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.</p>
 <p>While for an unpaired test, the <code>t.test</code> command prints the group means in each group, you may want to report the difference between means. The group means are stored in the <code>t.test</code> results under <code>estimate</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># perform t-test and save out results as &quot;hp_test&quot;</span></a>
-<a class="sourceLine" id="cb10-2" title="2">hp_test &lt;-<span class="st"> </span><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-2" title="2">hp_test &lt;-<span class="st"> </span><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb10-3" title="3"></a>
 <a class="sourceLine" id="cb10-4" title="4"><span class="co"># show the group means from &quot;hp_test&quot;</span></a>
 <a class="sourceLine" id="cb10-5" title="5">hp_test<span class="op">$</span>estimate</a></code></pre></div>
@@ -396,20 +403,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is 33.4 higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between 16.3 lower or 83.1 higher in the automatic group vs the manual group.</p>
 </div>
 <div id="non-parametric-methods" class="section level4">
-<h4><span class="header-section-number">3.2.1.2</span> <strong>Non-parametric methods</strong></h4>
+<h4><span class="header-section-number">3.2.2.2</span> <strong>Non-parametric methods</strong></h4>
 <p>These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance.</p>
 <p>Unpaired case, for example, do marker levels differ between the drug and placebo groups?</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># non-parametric test for difference in marker levels by treatment group</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="kw">wilcox.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">correct =</span> <span class="ot">FALSE</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw">wilcox.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test
 ## 
 ## data:  marker by trt
 ## W = 4242.5, p-value = 0.4366
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>The inputs for the <code>wilcox.test</code> function are very similar to the inputs for the <code>t.test</code> function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable (“marker”), the group variable (“trt”) and the dataset (“trial”) are all the same. This is still an unpaired test (<code>paired = FALSE</code>).</p>
+<p>The last option <code>correct = FALSE</code> tells the <code>wilcox.test</code> function not to use a continuity correction when calculating the p-value - again, this is not something you need to understand in detail, but be sure to include this option.</p>
 <p>Paired case, for example, does an intervention cause a change in a patient’s blood pressure?</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># paired non-parametric test for difference in &quot;before&quot; and &quot;after&quot; blood pressure measurements</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">wilcox.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">correct =</span> <span class="ot">FALSE</span>, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">wilcox.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test
 ## 
@@ -428,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note here that you don’t get any parameters for the groups such as means, medians or standard deviations. You also don’t get an estimate for the difference between groups.</p>
 </div>
 <div id="the-binomial-test" class="section level4">
-<h4><span class="header-section-number">3.2.1.3</span> <strong>The binomial test</strong></h4>
+<h4><span class="header-section-number">3.2.2.3</span> <strong>The binomial test</strong></h4>
 <p>The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p value).</p>
 <p>The first argument of <code>binom.test</code> is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the <code>p =</code> option - the default is 0.5 (50%).</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Compare a proportion to a hypothesized value &quot;p&quot;</span></a>
@@ -451,8 +460,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb24-3" title="3">nwomen</a></code></pre></div>
 <pre><code>## [1] 205</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># The &quot;nrow&quot; function (for &quot;number of rows&quot;) counts the total number of observations</span></a>
-<a class="sourceLine" id="cb26-2" title="2">ntotal &lt;-<span class="st"> </span><span class="kw">nrow</span>(lesson1a)</a>
-<a class="sourceLine" id="cb26-3" title="3">ntotal</a></code></pre></div>
+<a class="sourceLine" id="cb26-2" title="2"><span class="co"># The &quot;filter&quot; function is used to count only the number of observations where</span></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="co"># &quot;sex&quot; is not missing (NA)</span></a>
+<a class="sourceLine" id="cb26-4" title="4">ntotal &lt;-<span class="st"> </span><span class="kw">nrow</span>(lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sex)))</a>
+<a class="sourceLine" id="cb26-5" title="5">ntotal</a></code></pre></div>
 <pre><code>## [1] 386</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Compare a proportion of patients in a dataset to a hypothesized value &quot;p&quot;</span></a>
 <a class="sourceLine" id="cb28-2" title="2"><span class="kw">binom.test</span>(nwomen, ntotal, <span class="dt">p =</span> <span class="fl">0.5</span>)</a></code></pre></div>
@@ -468,6 +479,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## probability of success 
 ##              0.5310881</code></pre>
+<p>Note that above, we used the <code>filter</code> function to only count those observations where “sex” was not missing (NA). The function <code>is.na</code> gives a value of TRUE if the data is missing (NA) and FALSE if the data is non-missing. The <code>!</code> means “is not” in R, so that the statement <code>!is.na(sex)</code> is indicating that we want to keep the data where sex <strong>is not</strong> missing.</p>
+<p>In this dataset, there are no missing values for “sex”, but it is a good habit to include this condition so you are using the correct denominator if your dataset does have missing values.</p>
 <p>This tells you that you had 386 observations, and there were 205 where sex was coded as 1, an observation proportion of 0.53. Now the “assumed” proportion was 0.5, giving an expected number of 193 women. These two values are quite close and the p value is 0.2.</p>
 </div>
 </div>

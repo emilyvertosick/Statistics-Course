@@ -70,6 +70,10 @@ example3a <- readRDS(here::here("Data", "Week 3", "example3a.rds"))
 
 ## R Instructions
 
+### Example Datasets
+
+Normally, to do an analysis in R, you will have to load in a dataset. However, R and some packages come with built-in example datasets. For example, there is a dataset called "trial" that comes built in with the `gtsummary` package. We will use the "trial" dataset for many examples, but you do not need to load it, as the "trial" dataset will automatically be loaded after you run `library(gtsummary)`.
+
 ### Hypothesis Testing
 
 For this week's assignment, you will need to learn the following functions:
@@ -80,31 +84,37 @@ For this week's assignment, you will need to learn the following functions:
 
 #### **t-test**
 
-This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statistician normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for just about any situation. 
+This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statisticians normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for to compare a continuous outcome between two groups even if the data are pretty skewed.
 
 **Different forms of the t-test**
 
-In a simple unpaired case, for example, testing marker levels between a drug and placebo group:
+The two main forms of the t-test are "paired" and "unpaired".
+
+"Unpaired" is used when, for example, testing marker levels between a drug and placebo group, as there are different patients in each group:
 
 ```{r section3a}
 
 # t-test for marker levels between treatment arms
-t.test(marker ~ trt, data = trial, var.equal = TRUE)
+t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
 
 ```
 
-A paired test, for example, comparing blood pressure taken before and after an intervention.
+The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug vs Placebo). Next, you are telling R to get the data from the dataset called "trial". `paired = FALSE` indicates that you want to perform an "unpaired" test. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
+
+A "paired" test, for example, would be used for comparing blood pressure taken before and after an intervention, because you are looking at two observations on the same patient.
 
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
 ```{r section3b}
 
 # paired t-test for blood pressure between "before" and "after" groups
-t.test(bp ~ when, data = example3a, var.equal = TRUE, paired = TRUE)
+t.test(bp ~ when, data = example3a, paired = TRUE, var.equal = TRUE)
 
-```
+``
 
-A single sample test comparing the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?
+Here, the code is the same as the last example, with "bp" as the continuous outcome, and "when" indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option `paired = TRUE` must be included.
+
+A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?
 
 ```{r section3c}
 
@@ -118,7 +128,7 @@ Let’s look at the print out from a t-test in more detail:
 ```{r section3e}
 
 # t-test for difference in horsepower for manual vs automatic transmission
-t.test(hp ~ am, data = mtcars, var.equal = TRUE)
+t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
 
 ```
 
@@ -131,7 +141,7 @@ While for an unpaired test, the `t.test` command prints the group means in each 
 ```{r section3f1}
 
 # perform t-test and save out results as "hp_test"
-hp_test <- t.test(hp ~ am, data = mtcars, var.equal = TRUE)
+hp_test <- t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
 
 # show the group means from "hp_test"
 hp_test$estimate
@@ -172,16 +182,20 @@ Unpaired case, for example, do marker levels differ between the drug and placebo
 ```{r section3g2}
 
 # non-parametric test for difference in marker levels by treatment group
-wilcox.test(marker ~ trt, data = trial, correct = FALSE, paired = FALSE)
+wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE, correct = FALSE)
 
 ```
+
+The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset ("trial") are all the same. This is still an unpaired test (`paired = FALSE`).
+
+The last option `correct = FALSE` tells the `wilcox.test` function not to use a continuity correction when calculating the p-value - again, this is not something you need to understand in detail, but be sure to include this option.
 
 Paired case, for example, does an intervention cause a change in a patient's blood pressure?
 
 ```{r section3h}
 
 # paired non-parametric test for difference in "before" and "after" blood pressure measurements
-wilcox.test(bp ~ when, data = example3a, correct = FALSE, paired = FALSE)
+wilcox.test(bp ~ when, data = example3a, paired = FALSE, correct = FALSE)
 
 ```
 
@@ -218,13 +232,19 @@ nwomen <- sum(lesson1a$sex)
 nwomen
 
 # The "nrow" function (for "number of rows") counts the total number of observations
-ntotal <- nrow(lesson1a)
+# The "filter" function is used to count only the number of observations where
+# "sex" is not missing (NA)
+ntotal <- nrow(lesson1a %>% filter(!is.na(sex)))
 ntotal
 
 # Compare a proportion of patients in a dataset to a hypothesized value "p"
 binom.test(nwomen, ntotal, p = 0.5)
 
 ```
+
+Note that above, we used the `filter` function to only count those observations where "sex" was not missing (NA). The function `is.na` gives a value of TRUE if the data is missing (NA) and FALSE if the data is non-missing. The `!` means "is not" in R, so that the statement `!is.na(sex)` is indicating that we want to keep the data where sex **is not** missing.
+
+In this dataset, there are no missing values for "sex", but it is a good habit to include this condition so you are using the correct denominator if your dataset does have missing values.
 
 ```{r section3l, echo = FALSE, purl = FALSE}
 

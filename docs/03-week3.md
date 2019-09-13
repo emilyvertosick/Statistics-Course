@@ -28,6 +28,10 @@ example3a <- readRDS(here::here("Data", "Week 3", "example3a.rds"))
 
 ## R Instructions
 
+### Example Datasets
+
+Normally, to do an analysis in R, you will have to load in a dataset. However, R and some packages come with built-in example datasets. For example, there is a dataset called "trial" that comes built in with the `gtsummary` package. We will use the "trial" dataset for many examples, but you do not need to load it, as the "trial" dataset will automatically be loaded after you run `library(gtsummary)`.
+
 ### Hypothesis Testing
 
 For this week's assignment, you will need to learn the following functions:
@@ -47,7 +51,7 @@ In a simple unpaired case, for example, testing marker levels between a drug and
 
 ```r
 # t-test for marker levels between treatment arms
-t.test(marker ~ trt, data = trial, var.equal = TRUE)
+t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -64,14 +68,16 @@ t.test(marker ~ trt, data = trial, var.equal = TRUE)
 ##             0.8981078             0.9618539
 ```
 
-A paired test, for example, comparing blood pressure taken before and after an intervention.
+The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug vs Placebo). Next, you are telling R to get the data from the dataset called "trial". `paired = FALSE` indicates that, in this case, the observations in each group are independent - the marker values come from different people in each group. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
+
+A paired test, for example, comparing a person's blood pressure taken before and after an intervention.
 
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
 
 ```r
 # paired t-test for blood pressure between "before" and "after" groups
-t.test(bp ~ when, data = example3a, var.equal = TRUE, paired = TRUE)
+t.test(bp ~ when, data = example3a, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
@@ -87,6 +93,8 @@ t.test(bp ~ when, data = example3a, var.equal = TRUE, paired = TRUE)
 ## mean of the differences 
 ##               -5.091667
 ```
+
+Here, the code is the same as the last example, with "bp" as the continuous outcome, and "when" indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option `paired = TRUE` must be included.
 
 A single sample test comparing the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?
 
@@ -115,7 +123,7 @@ Let’s look at the print out from a t-test in more detail:
 
 ```r
 # t-test for difference in horsepower for manual vs automatic transmission
-t.test(hp ~ am, data = mtcars, var.equal = TRUE)
+t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -141,7 +149,7 @@ While for an unpaired test, the `t.test` command prints the group means in each 
 
 ```r
 # perform t-test and save out results as "hp_test"
-hp_test <- t.test(hp ~ am, data = mtcars, var.equal = TRUE)
+hp_test <- t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
 
 # show the group means from "hp_test"
 hp_test$estimate
@@ -195,7 +203,7 @@ Unpaired case, for example, do marker levels differ between the drug and placebo
 
 ```r
 # non-parametric test for difference in marker levels by treatment group
-wilcox.test(marker ~ trt, data = trial, correct = FALSE, paired = FALSE)
+wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE, correct = FALSE)
 ```
 
 ```
@@ -207,12 +215,16 @@ wilcox.test(marker ~ trt, data = trial, correct = FALSE, paired = FALSE)
 ## alternative hypothesis: true location shift is not equal to 0
 ```
 
+The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset ("trial") are all the same. This is still an unpaired test (`paired = FALSE`).
+
+The last option `correct = FALSE` tells the `wilcox.test` function not to use a continuity correction when calculating the p-value - again, this is not something you need to understand in detail, but be sure to include this option.
+
 Paired case, for example, does an intervention cause a change in a patient's blood pressure?
 
 
 ```r
 # paired non-parametric test for difference in "before" and "after" blood pressure measurements
-wilcox.test(bp ~ when, data = example3a, correct = FALSE, paired = FALSE)
+wilcox.test(bp ~ when, data = example3a, paired = FALSE, correct = FALSE)
 ```
 
 ```
@@ -285,7 +297,9 @@ nwomen
 
 ```r
 # The "nrow" function (for "number of rows") counts the total number of observations
-ntotal <- nrow(lesson1a)
+# The "filter" function is used to count only the number of observations where
+# "sex" is not missing (NA)
+ntotal <- nrow(lesson1a %>% filter(!is.na(sex)))
 ntotal
 ```
 
@@ -312,6 +326,10 @@ binom.test(nwomen, ntotal, p = 0.5)
 ## probability of success 
 ##              0.5310881
 ```
+
+Note that above, we used the `filter` function to only count those observations where "sex" was not missing (NA). The function `is.na` gives a value of TRUE if the data is missing (NA) and FALSE if the data is non-missing. The `!` means "is not" in R, so that the statement `!is.na(sex)` is indicating that we want to keep the data where sex **is not** missing.
+
+In this dataset, there are no missing values for "sex", but it is a good habit to include this condition so you are using the correct denominator if your dataset does have missing values.
 
 
 

@@ -81,7 +81,7 @@ lesson2a %>%
 ##  n variables: 6 
 ##  group variables: sex 
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------
 ##  sex variable missing complete  n   mean    sd  p0    p25   p50    p75
 ##    0       rt       0       66 66 243.23 49.85 158 214.25 236   268.75
 ##    1       rt       0       32 32 264.84 37.45 222 237    251.5 283.25
@@ -2033,7 +2033,7 @@ lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
 
 
 
-Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)` without looking at the data? There are lots of missing data. There is a question as to whether you would actually analyze these data at all: could data be missing because patients were too ill to complete questionnaires?  Could there have been bias in ascertaining who had prior chemotherapy?  If you do decide to analyze, a t-test would be appropriate (`t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)` and `t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)`). A model answer might be:
+Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)` without looking at the data? There are lots of missing data. There is a question as to whether you would actually analyze these data at all: could data be missing because patients were too ill to complete questionnaires?  Could there have been bias in ascertaining who had prior chemotherapy?  If you do decide to analyze, a t-test would be appropriate (`t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)` and `t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)`). A model answer might be:
 
 <div class="quote-container">
 
@@ -2046,7 +2046,7 @@ Now, I'll explain what I did. First, I did the two t-tests:
 
 ```r
 # t-test for nausea/vomiting by prior chemotherapy
-t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
+t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -2065,7 +2065,7 @@ t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 
 ```r
 # t-test for nausea/vomiting by sex
-t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
+t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -2080,6 +2080,68 @@ t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
 ## sample estimates:
 ## mean in group 0 mean in group 1 
 ##        4.782258        4.721847
+```
+
+While the `t.test` function gives the confidence interval around the difference in means, it does not calculate the difference in means for you. While you can cut and paste to calculate this manually, you can do it using by saving the estimates from the t-test like we did in the horsepower example in the lesson.
+
+
+```r
+# Save out the t-test to get the estimate
+ttest_nv_pc <- t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
+ttest_nv_pc$estimate
+```
+
+```
+## mean in group 0 mean in group 1 
+##        4.459144        5.280392
+```
+
+```r
+# The first value is mean in group 0
+# ("mean in group 0" is printed first in results)
+mean_group0 <- ttest_nv_pc$estimate[[1]]
+
+# The second value is mean in group 1
+mean_group1 <- ttest_nv_pc$estimate[[2]]
+
+# Subtract the mean in group 1 from the mean in group 0
+mean_group0 - mean_group1
+```
+
+```
+## [1] -0.8212482
+```
+
+If you would like to save out the confidence interval instead of copying and pasting, you can do this in the same way by accessing `conf.int` instead of `estimate`.
+
+
+```r
+# Confidence interval
+ttest_nv_pc$conf.int
+```
+
+```
+## [1] -1.1699123 -0.4725841
+## attr(,"conf.level")
+## [1] 0.95
+```
+
+```r
+# Lower bound
+ttest_nv_pc$conf.int[[1]]
+```
+
+```
+## [1] -1.169912
+```
+
+```r
+# Upper bound
+ttest_nv_pc$conf.int[[2]]
+```
+
+```
+## [1] -0.4725841
 ```
 
 Then I created a new variable for missing data on nausea and vomiting:
@@ -2472,7 +2534,7 @@ The data look relatively normal and the most obvious thing to do would be to do:
 
 ```r
 # t-test for pain after treatment, by group
-t.test(p ~ g, data = lesson3b, var.equal = TRUE)
+t.test(p ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -2513,7 +2575,7 @@ lesson3b <-
   )
 
 # t-test for pain in right and left wrists separately
-t.test(pright ~ g, data = lesson3b, var.equal = TRUE)
+t.test(pright ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -2531,7 +2593,7 @@ t.test(pright ~ g, data = lesson3b, var.equal = TRUE)
 ```
 
 ```r
-t.test(pleft ~ g, data = lesson3b, var.equal = TRUE)
+t.test(pleft ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -2557,7 +2619,17 @@ The most obvious issue here is that you are measuring the same patients on two o
 
 ```r
 # Non-parametric test comparing day 1 and day 2 pain
-wilcox.test(lesson3c$t1, lesson3c$t2, correct = FALSE, exact = FALSE, paired = TRUE)
+wilcox.test(lesson3c$t1, lesson3c$t2, correct = FALSE, paired = TRUE)
+```
+
+```
+## Warning in wilcox.test.default(lesson3c$t1, lesson3c$t2, correct = FALSE, :
+## cannot compute exact p-value with ties
+```
+
+```
+## Warning in wilcox.test.default(lesson3c$t1, lesson3c$t2, correct = FALSE, :
+## cannot compute exact p-value with zeroes
 ```
 
 ```
@@ -2569,12 +2641,14 @@ wilcox.test(lesson3c$t1, lesson3c$t2, correct = FALSE, exact = FALSE, paired = T
 ## alternative hypothesis: true location shift is not equal to 0
 ```
 
+If you run this code, you will notice you get a warning in yellow text that states that the "exact p-value" cannot be calculated. In R, "warnings" are notes that indicate you may want to look more closely at your code, but won't stop the code from running - as you can see, this code still gives a p-value - but R is also flagging this result to tell you that this is not an "exact" p-value (you will learn more about exact p-values later). You should always take note of warnings when they occur, but sometimes you may not need to make any changes to the code.
+
 (By the way: I know this because that is what it says on the read out: if you had asked me yesterday, I doubt I would have remembered the name of a non-parametric paired test, another reason to think in concepts rather than remembering statistical techniques). The p value you get is p=0.13. We cannot conclude that pain scores are different. But is that all we want to say? The number of patients is small, maybe we failed to spot a difference. So let’s try a t-test:
 
 
 ```r
 # paired t-test comparing day 1 and day 2 pain
-t.test(lesson3c$t1, lesson3c$t2, var.equal = TRUE, paired = TRUE)
+t.test(lesson3c$t1, lesson3c$t2, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
@@ -2610,7 +2684,7 @@ skim(lesson3c$delta12)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------
 ##          variable missing complete  n  mean   sd p0 p25 p50 p75 p100
 ##  lesson3c$delta12       0       22 22 -0.27 0.83 -2  -1   0   0    1
 ##      hist
@@ -2634,7 +2708,7 @@ There are two ways of doing the t-test:
 
 ```r
 # paired t-test for before and after pain scores
-t.test(lesson3d$b, lesson3d$a, var.equal = TRUE, paired = TRUE)
+t.test(lesson3d$b, lesson3d$a, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
@@ -2680,14 +2754,14 @@ BTW: for those who are interested, acupuncture has been shown to improve neck pa
 
 ```r
 # Test whether proportion of women is different from 50%
-binom.test(sum(lesson3d$sex), nrow(lesson3d), p = 0.5)
+binom.test(sum(lesson3d$sex), nrow(lesson3d %>% filter(!is.na(sex))), p = 0.5)
 ```
 
 ```
 ## 
 ## 	Exact binomial test
 ## 
-## data:  sum(lesson3d$sex) and nrow(lesson3d)
+## data:  sum(lesson3d$sex) and nrow(lesson3d %>% filter(!is.na(sex)))
 ## number of successes = 9, number of trials = 34, p-value = 0.009041
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
@@ -2741,7 +2815,7 @@ lesson3e %>%
 ##  n variables: 2 
 ##  group variables: hospital 
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------
 ##  hospital variable missing complete  n  mean    sd p0   p25 p50  p75 p100
 ##         a      los       0       29 29 44.86 13.57 30 34     41 55     79
 ##         b      los       0       28 28 45.14 10.85 28 39.25  45 50.5   70
@@ -2769,7 +2843,7 @@ The distribution of this new variable for both groups combined is normal, theref
 
 ```r
 # paired t-test using log of length of stay as outcome
-t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE, paired = FALSE)
+t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -2801,7 +2875,7 @@ You will want to do an unpaired t-test or non-parametric test on these data.
 
 ```r
 # unpaired t-test for change in pain by physiotherapy group
-t.test(delta ~ physio, data = lesson3f, var.equal = TRUE, paired = FALSE)
+t.test(delta ~ physio, data = lesson3f, paired = FALSE, var.equal = TRUE)
 ```
 
 ```
@@ -6610,7 +6684,7 @@ lesson5a %>%
 ##  n obs: 190 
 ##  n variables: 6 
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------
 ##  variable missing complete   n   mean    sd  p0 p25 p50 p75 p100     hist
 ##        rt       1      189 190 238.57 46.63 155 205 235 268  414 ▃▇▇▆▃▂▁▁
 ```
@@ -12517,7 +12591,7 @@ skim(lesson5g$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0   p25  p50 p75 p100
 ##  lesson5g$age       2      398 400 42.46 10.58 17 34.25 42.5  49   71
 ##      hist
@@ -18428,7 +18502,7 @@ lesson7a %>%
 ##  n obs: 330 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------
 ##       variable missing complete   n    mean     sd   p0  p25  p50    p75
 ##  survival_time       0      330 330 2389.38 336.23 1279 2162 2352 2625.5
 ##  p100     hist
@@ -18808,7 +18882,7 @@ lesson7a %>%
 ##  n obs: 614 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------
 ##  variable missing complete   n mean   sd p0 p25 p50 p75 p100     hist
 ##     nodes      15      599 614 3.59 3.49  0   1   2 4.5   33 ▇▂▁▁▁▁▁▁
 ```
