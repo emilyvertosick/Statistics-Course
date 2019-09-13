@@ -42,11 +42,13 @@ For this week's assignment, you will need to learn the following functions:
 
 #### **t-test**
 
-This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statistician normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for just about any situation. 
+This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statisticians normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for to compare a continuous outcome between two groups even if the data are pretty skewed.
 
 **Different forms of the t-test**
 
-In a simple unpaired case, for example, testing marker levels between a drug and placebo group:
+The two main forms of the t-test are "paired" and "unpaired".
+
+"Unpaired" is used when, for example, testing marker levels between a drug and placebo group, as there are different patients in each group:
 
 
 ```r
@@ -68,9 +70,9 @@ t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
 ##             0.8981078             0.9618539
 ```
 
-The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug vs Placebo). Next, you are telling R to get the data from the dataset called "trial". `paired = FALSE` indicates that, in this case, the observations in each group are independent - the marker values come from different people in each group. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
+The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug vs Placebo). Next, you are telling R to get the data from the dataset called "trial". `paired = FALSE` indicates that you want to perform an "unpaired" test. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
 
-A paired test, for example, comparing a person's blood pressure taken before and after an intervention.
+A "paired" test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.
 
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
@@ -96,7 +98,7 @@ t.test(bp ~ when, data = example3a, paired = TRUE, var.equal = TRUE)
 
 Here, the code is the same as the last example, with "bp" as the continuous outcome, and "when" indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option `paired = TRUE` must be included.
 
-A single sample test comparing the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?
+A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?
 
 
 ```r

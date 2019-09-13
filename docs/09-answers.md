@@ -2529,7 +2529,7 @@ What is "degrees of freedom" and how come it is 510? Think about it this way: Yo
 
 **Patients with wrist osteoarthritis are randomized to a new drug or placebo. Pain is measured before and after treatment. Is the drug effective?**
 
-The data look relatively normal and the most obvious thing to do would be to do:
+The most obvious thing to do would be to do:
 
 
 ```r
@@ -2551,9 +2551,9 @@ t.test(p ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ##      0.55555555     -0.08888889
 ```
 
-This gives a p value of 0.057 and you might conclude that there is a "trend" towards statistical significance suggesting that the drug works. However, the t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
+This gives a p value of 0.057 and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, the t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
 
-However, if you are really keen, you could try the following:
+However, if you are really keen, you could try the following:	However, if you are really keen, you could try the following:
 
 You could analyze the data from each wrist separately by creating new variables as shown below (lines with # are comments).
 
