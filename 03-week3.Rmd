@@ -101,7 +101,7 @@ t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
 
 The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug vs Placebo). Next, you are telling R to get the data from the dataset called "trial". `paired = FALSE` indicates that you want to perform an "unpaired" test. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
 
-A "paired" test, for example, would be used for comparing blood pressure taken before and after an intervention, because you are looking at two observations on the same patient.
+A "paired" test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.
 
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
@@ -110,7 +110,7 @@ A "paired" test, for example, would be used for comparing blood pressure taken b
 # paired t-test for blood pressure between "before" and "after" groups
 t.test(bp ~ when, data = example3a, paired = TRUE, var.equal = TRUE)
 
-``
+```
 
 Here, the code is the same as the last example, with "bp" as the continuous outcome, and "when" indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option `paired = TRUE` must be included.
 
