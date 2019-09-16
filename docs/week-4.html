@@ -165,7 +165,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="week-3.html"><a href="week-3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
 <li class="chapter" data-level="3.1" data-path="week-3.html"><a href="week-3.html#setting-up-2"><i class="fa fa-check"></i><b>3.1</b> Setting up</a></li>
 <li class="chapter" data-level="3.2" data-path="week-3.html"><a href="week-3.html#r-instructions-2"><i class="fa fa-check"></i><b>3.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="week-3.html"><a href="week-3.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.1</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="3.2.1" data-path="week-3.html"><a href="week-3.html#example-datasets"><i class="fa fa-check"></i><b>3.2.1</b> Example Datasets</a></li>
+<li class="chapter" data-level="3.2.2" data-path="week-3.html"><a href="week-3.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.2</b> Hypothesis Testing</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="week-3.html"><a href="week-3.html#assignments-2"><i class="fa fa-check"></i><b>3.3</b> Assignments</a></li>
 </ul></li>
@@ -1024,6 +1025,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## data:  .
 ## X-squared = 3.513, df = 1, p-value = 0.06089</code></pre>
+<p>Similar to the <code>wilcox.test</code> function from the last lesson, you will also need to use the <code>correct = FALSE</code> option for the <code>chisq.test</code> function. This will give you the p-value without performing a continuity correction.</p>
 <p>As a note, we can also use <code>tbl_summary</code> and the <code>add_p</code> function (also from <code>gtsummary</code>) to get the chi-squared pvalue. In the <code>add_p</code> function, we specify that for the variable “subfourhour” we want to use a chi-squared test (“chisq.test”).</p>
 <p>TODO: PENDING BEING ABLE TO DO THIS WITHOUT CONTINUITY CORRECTION</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Create two-way table including chi-squared p value</span></a>

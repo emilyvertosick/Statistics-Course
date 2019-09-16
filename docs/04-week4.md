@@ -797,6 +797,8 @@ table(lesson2a$subfourhour, lesson2a$sex) %>%
 ## X-squared = 3.513, df = 1, p-value = 0.06089
 ```
 
+Similar to the `wilcox.test` function from the last lesson, you will also need to use the `correct = FALSE` option for the `chisq.test` function. This will give you the p-value without performing a continuity correction.
+
 As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared pvalue. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test").
 
 TODO: PENDING BEING ABLE TO DO THIS WITHOUT CONTINUITY CORRECTION
