@@ -280,7 +280,8 @@ So reading this table we get the following information:
 - `r tbl_marathon$tab[1, 1]` of the women finished the race in under four hours ("Exposed +" row, "Outcome +" column), `r tbl_marathon$tab[1, 2]` did not ("Exposed +" row, "Outcome -" column).
 - `r tbl_marathon$tab[2, 1]` of the men finished the race in under four hours ("Exposed -" row, "Outcome +" column), `r tbl_marathon$tab[2, 2]` did not ("Exposed -" row, "Outcome -" column)
 - `r tbl_marathon$tab[1, 4]`% of the women ("Exposed +" column, "Inc risk \*" row) and `r tbl_marathon$tab[2, 4]`% of the men ("Exposed -" column, "Inc risk \*" row) finished in under four hours.
-- `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[1]]))`% more men finished the race in under four hours ("Attrib risk *" under "Point estimates and 95% CIs"). The 95% CI is `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[2]]))`% more to `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[3]]))`% less.
+- `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[1]]))`% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the difference in rates of sub-four hour marathon in men and women.
+- After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[2]]))`% more to `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[3]]))`% less.
 - The chance that a woman finishes the race in under four hours is `r style_ratio(tbl_marathon$res$RR.strata.wald[[1]])` of that for a man ("Inc risk ratio" under "Point estimates and 95% CIs"). The 95% CI is `r style_ratio(tbl_marathon$res$RR.strata.wald[[2]])` to `r style_ratio(tbl_marathon$res$RR.strata.wald[[3]])` (i.e about one third as likely to 7% more likely).
 - The odds ratio is reported in the second row under "Point estimates and 95% CIs."
 

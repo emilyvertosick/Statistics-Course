@@ -5304,11 +5304,13 @@ The first thing we want to do is compare response by group. But using `epi.2by2`
 
 
 
-This gives response rates of 54% on regimen "a" and 46% on regimen "b", a relative risk of 0.84 and a p value of 0.11. Should we conclude that there is no difference between groups and that you should feel free to use either regimen? Imagine you are a patient. You are told that you have a 50:50 chance of response on one regimen but only a 40% chance on the other. Unless there are good reasons to choose between the regimes (e.g. toxicity), which would you choose? The point here is that statistical significance does not really inform choices between similar alternatives. Assuming that toxicity, cost and inconvenience are similar between the regimes, I would recommend regimen a, even though the difference is not statistically significant. The confidence interval here is absolutely critical: the 95% C.I. for the risk difference is -18%, 1.7%. In other words, the response rate could be 18% higher on regimen a (e.g. 55% vs. 37%) or 2% lower (e.g. 50% vs. 52%). So you might do a lot better with regimen a, you are unlikely to do much worse. 
+This gives response rates of 48% on regimen "a" and 40% on regimen "b", a relative risk of 0.84 and a p value of 0.11. Should we conclude that there is no difference between groups and that you should feel free to use either regimen? Imagine you are a patient. You are told that you have a 50:50 chance of response on one regimen but only a 40% chance on the other. Unless there are good reasons to choose between the regimes (e.g. toxicity), which would you choose? The point here is that statistical significance does not really inform choices between similar alternatives. Assuming that toxicity, cost and inconvenience are similar between the regimes, I would recommend regimen a, even though the difference is not statistically significant. The confidence interval here is absolutely critical: the 95% C.I. for the risk difference is -18%, 1.7%. In other words, the response rate could be 18% higher on regimen a (e.g. 55% vs. 37%) or 2% lower (e.g. 50% vs. 52%). So you might do a lot better with regimen a, you are unlikely to do much worse. 
 
 **The sub-group analyses**
 
-A common mistake would be to use `epi.2by2` with `response` and `sex`. However, this would examine whether, regardless of chemotherapy regimen used, men and women had different tumor outcome. What we want to see if the difference between treatment a and b changes depending on whether male or female patients are being treated. As a start, try:
+A common mistake would be to use `epi.2by2` with `response` and `sex`. However, this would examine whether, regardless of chemotherapy regimen used, men and women had different tumor outcome. What we want to see if the difference between treatment a and b changes depending on whether male or female patients are being treated.
+
+To do this analysis, we first need to split the dataset up into two groups, one dataset including only men and the other including only women. The `group_split` function can be used to do this, and will store out two datasets labelled as `[[1]]` and `[[2]]`. R decides which dataset is `[[1]]` and `[[2]]` based on the ordering of the variable values for "sex". Here, the variable "sex" is categorized as 0 for males and 1 for females, so the first dataset `[[1]]` is for males and the second dataset `[[2]]` is for females.
 
 
 ```r
@@ -19302,26 +19304,10 @@ A model answer for this dataset might be:
     </tr>
     <tr>
       <td class="gt_row gt_left">Obstruction</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center gt_striped">497 (81%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">117 (19%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped">Adhesions</td>
-      <td class="gt_row gt_center gt_striped"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">526 (86%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center gt_striped">88 (14%)</td>
     </tr>
     <tr>

@@ -1267,7 +1267,8 @@ So reading this table we get the following information:
 - 11 of the women finished the race in under four hours ("Exposed +" row, "Outcome +" column), 21 did not ("Exposed +" row, "Outcome -" column).
 - 36 of the men finished the race in under four hours ("Exposed -" row, "Outcome +" column), 30 did not ("Exposed -" row, "Outcome -" column)
 - 34.4% of the women ("Exposed +" column, "Inc risk \*" row) and 54.5% of the men ("Exposed -" column, "Inc risk \*" row) finished in under four hours.
-- 20% more men finished the race in under four hours ("Attrib risk *" under "Point estimates and 95% CIs"). The 95% CI is 41% more to 0.20% less.
+- 20% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the difference in rates of sub-four hour marathon in men and women.
+- After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from 41% more to 0.20% less.
 - The chance that a woman finishes the race in under four hours is 0.63 of that for a man ("Inc risk ratio" under "Point estimates and 95% CIs"). The 95% CI is 0.37 to 1.07 (i.e about one third as likely to 7% more likely).
 - The odds ratio is reported in the second row under "Point estimates and 95% CIs."
 

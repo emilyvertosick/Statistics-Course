@@ -1162,10 +1162,10 @@ The first thing we want to do is compare response by group. But using `epi.2by2`
 tbl_chemoresponse <-
   tbl_summary(
     lesson4d %>% select(group, response),
-    by = response,
-    type = list("group" ~ "categorical"),
-    statistic = list("group" ~ "{p}%")
-  )
+    by = group,
+    type = list("response" ~ "categorical"),
+    statistic = list("response" ~ "{p}%")
+ )
 
 tbl_chemoresponse_epi <- 
   epi.2by2(matrix(rev(table(lesson4d$group, lesson4d$response)), nrow = 2))
@@ -1175,11 +1175,13 @@ median_age <-
 
 ```
 
-This gives response rates of `r inline_text(tbl_chemoresponse, variable = "group", level = "0", column = "1")` on regimen "a" and `r inline_text(tbl_chemoresponse, variable = "group", level = "1", column = "1")` on regimen "b", a relative risk of `r style_sigfig(tbl_chemoresponse_epi$res$RR.crude.wald[[1]])` and a p value of `r style_pvalue(tbl_chemoresponse_epi$res$chisq.crude[[3]])`. Should we conclude that there is no difference between groups and that you should feel free to use either regimen? Imagine you are a patient. You are told that you have a 50:50 chance of response on one regimen but only a 40% chance on the other. Unless there are good reasons to choose between the regimes (e.g. toxicity), which would you choose? The point here is that statistical significance does not really inform choices between similar alternatives. Assuming that toxicity, cost and inconvenience are similar between the regimes, I would recommend regimen a, even though the difference is not statistically significant. The confidence interval here is absolutely critical: the 95% C.I. for the risk difference is `r style_sigfig( tbl_chemoresponse_epi$res$ARisk.crude.wald[[2]])`%, `r style_sigfig(tbl_chemoresponse_epi$res$ARisk.crude.wald[[3]])`%. In other words, the response rate could be `r style_sigfig(abs( tbl_chemoresponse_epi$res$ARisk.crude.wald[[2]]))`% higher on regimen a (e.g. 55% vs. `r style_sigfig(55 + tbl_chemoresponse_epi$res$ARisk.crude.wald[[2]])`%) or 2% lower (e.g. 50% vs. `r style_sigfig(50 + tbl_chemoresponse_epi$res$ARisk.crude.wald[[3]])`%). So you might do a lot better with regimen a, you are unlikely to do much worse. 
+This gives response rates of `r inline_text(tbl_chemoresponse, variable = "response", level = "1", column = "0")` on regimen "a" and `r inline_text(tbl_chemoresponse, variable = "response", level = "1", column = "1")` on regimen "b", a relative risk of `r style_sigfig(tbl_chemoresponse_epi$res$RR.crude.wald[[1]])` and a p value of `r style_pvalue(tbl_chemoresponse_epi$res$chisq.crude[[3]])`. Should we conclude that there is no difference between groups and that you should feel free to use either regimen? Imagine you are a patient. You are told that you have a 50:50 chance of response on one regimen but only a 40% chance on the other. Unless there are good reasons to choose between the regimes (e.g. toxicity), which would you choose? The point here is that statistical significance does not really inform choices between similar alternatives. Assuming that toxicity, cost and inconvenience are similar between the regimes, I would recommend regimen a, even though the difference is not statistically significant. The confidence interval here is absolutely critical: the 95% C.I. for the risk difference is `r style_sigfig( tbl_chemoresponse_epi$res$ARisk.crude.wald[[2]])`%, `r style_sigfig(tbl_chemoresponse_epi$res$ARisk.crude.wald[[3]])`%. In other words, the response rate could be `r style_sigfig(abs( tbl_chemoresponse_epi$res$ARisk.crude.wald[[2]]))`% higher on regimen a (e.g. 55% vs. `r style_sigfig(55 + tbl_chemoresponse_epi$res$ARisk.crude.wald[[2]])`%) or 2% lower (e.g. 50% vs. `r style_sigfig(50 + tbl_chemoresponse_epi$res$ARisk.crude.wald[[3]])`%). So you might do a lot better with regimen a, you are unlikely to do much worse. 
 
 **The sub-group analyses**
 
-A common mistake would be to use `epi.2by2` with `response` and `sex`. However, this would examine whether, regardless of chemotherapy regimen used, men and women had different tumor outcome. What we want to see if the difference between treatment a and b changes depending on whether male or female patients are being treated. As a start, try:
+A common mistake would be to use `epi.2by2` with `response` and `sex`. However, this would examine whether, regardless of chemotherapy regimen used, men and women had different tumor outcome. What we want to see if the difference between treatment a and b changes depending on whether male or female patients are being treated.
+
+To do this analysis, we first need to split the dataset up into two groups, one dataset including only men and the other including only women. The `group_split` function can be used to do this, and will store out two datasets labelled as `[[1]]` and `[[2]]`. R decides which dataset is `[[1]]` and `[[2]]` based on the ordering of the variable values for "sex". Here, the variable "sex" is categorized as 0 for males and 1 for females, so the first dataset `[[1]]` is for males and the second dataset `[[2]]` is for females.
 
 ```{r week4u}
 

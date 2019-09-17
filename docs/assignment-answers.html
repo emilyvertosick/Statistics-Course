@@ -5173,9 +5173,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.4.4</span> lesson4d.rds</h3>
 <p><strong>Patients are given chemotherapy regimen a or b and assessed for tumor response. Which regimen would you recommend to a patient? Do the treatments work differently depending on age or sex?</strong></p>
 <p>The first thing we want to do is compare response by group. But using <code>epi.2by2</code> with “response” and “chemo” doesn’t work. This is because the exposure variable has to be numeric (for example, 0 and 1), not “a” or “b”. So you need to use the “group” variable instead of the “chemo” variable.</p>
-<p>This gives response rates of 54% on regimen “a” and 46% on regimen “b”, a relative risk of 0.84 and a p value of 0.11. Should we conclude that there is no difference between groups and that you should feel free to use either regimen? Imagine you are a patient. You are told that you have a 50:50 chance of response on one regimen but only a 40% chance on the other. Unless there are good reasons to choose between the regimes (e.g. toxicity), which would you choose? The point here is that statistical significance does not really inform choices between similar alternatives. Assuming that toxicity, cost and inconvenience are similar between the regimes, I would recommend regimen a, even though the difference is not statistically significant. The confidence interval here is absolutely critical: the 95% C.I. for the risk difference is -18%, 1.7%. In other words, the response rate could be 18% higher on regimen a (e.g. 55% vs. 37%) or 2% lower (e.g. 50% vs. 52%). So you might do a lot better with regimen a, you are unlikely to do much worse.</p>
+<p>This gives response rates of 48% on regimen “a” and 40% on regimen “b”, a relative risk of 0.84 and a p value of 0.11. Should we conclude that there is no difference between groups and that you should feel free to use either regimen? Imagine you are a patient. You are told that you have a 50:50 chance of response on one regimen but only a 40% chance on the other. Unless there are good reasons to choose between the regimes (e.g. toxicity), which would you choose? The point here is that statistical significance does not really inform choices between similar alternatives. Assuming that toxicity, cost and inconvenience are similar between the regimes, I would recommend regimen a, even though the difference is not statistically significant. The confidence interval here is absolutely critical: the 95% C.I. for the risk difference is -18%, 1.7%. In other words, the response rate could be 18% higher on regimen a (e.g. 55% vs. 37%) or 2% lower (e.g. 50% vs. 52%). So you might do a lot better with regimen a, you are unlikely to do much worse.</p>
 <p><strong>The sub-group analyses</strong></p>
-<p>A common mistake would be to use <code>epi.2by2</code> with <code>response</code> and <code>sex</code>. However, this would examine whether, regardless of chemotherapy regimen used, men and women had different tumor outcome. What we want to see if the difference between treatment a and b changes depending on whether male or female patients are being treated. As a start, try:</p>
+<p>A common mistake would be to use <code>epi.2by2</code> with <code>response</code> and <code>sex</code>. However, this would examine whether, regardless of chemotherapy regimen used, men and women had different tumor outcome. What we want to see if the difference between treatment a and b changes depending on whether male or female patients are being treated.</p>
+<p>To do this analysis, we first need to split the dataset up into two groups, one dataset including only men and the other including only women. The <code>group_split</code> function can be used to do this, and will store out two datasets labelled as <code>[[1]]</code> and <code>[[2]]</code>. R decides which dataset is <code>[[1]]</code> and <code>[[2]]</code> based on the ordering of the variable values for “sex”. Here, the variable “sex” is categorized as 0 for males and 1 for females, so the first dataset <code>[[1]]</code> is for males and the second dataset <code>[[2]]</code> is for females.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="co"># You can use the &quot;group_split&quot; function to split your dataset into two groups</span></a>
 <a class="sourceLine" id="cb79-2" title="2">lesson4d_sex &lt;-</a>
 <a class="sourceLine" id="cb79-3" title="3"><span class="st">  </span>lesson4d <span class="op">%&gt;%</span></a>
@@ -18627,26 +18628,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <td class="gt_row gt_left">Obstruction</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center gt_striped">497 (81%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">117 (19%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped">Adhesions</td>
-      <td class="gt_row gt_center gt_striped"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">526 (86%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center gt_striped">88 (14%)</td>
     </tr>
     <tr>
