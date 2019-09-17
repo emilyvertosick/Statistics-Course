@@ -1407,7 +1407,7 @@ summary(rtlog_model)
 
 ```
 
-This creates a new variable called "lt" that is the log of race time. The Shapiro-Wilk test confirms that this is normally distributed. Now let’s look at the results of the regression analysis: the p values are almost exactly the same. This suggests that the non-normality of race time is not important in this setting.
+This creates a new variable called "lt" that is the log of race time. You can use the "skim" command to see that it is normally distributed. Now let’s look at the results of the regression analysis: the p values are almost exactly the same. This suggests that the non-normality of race time is not important in this setting.
 
 _For advanced students only_
 
