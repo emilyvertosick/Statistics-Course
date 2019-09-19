@@ -106,7 +106,7 @@ epi.tests(tbl_example6a)
 
 ```
 
-As you can see, `epi.tests` also provides other information, such as specificity, prevalence and positive and negative predictive value.
+As you can see, `epi.tests` also provides other information. Specificity and positive and negative predictive value you should know (remember that sensitivity is the probability of a positive result if you have the disease; specificity is the probability of a negative result if you don't have the disease; positive predictive value is the probability you have the disease if you test positive; negative predictive value is the probability that you don't have the disease ifyou test negative). True prevalence is the proportion of patients with disease in the data set. Apparent prevalence is a pretty misleading term and is the proportion of patients who test positive. You can generally ignore that, it isn't a commonly used statistic. Positive and negative likelihood ratios are used in Bayesian approaches to diagnostic tests and aren't taught on this course, so don't worry about those for now. 
 
 See instructions from lecture 5 on how to get an area-under-the-curve.
 
