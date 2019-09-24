@@ -1695,7 +1695,7 @@ plot(ggexample)
 
 ```
 
-A second thought: should you report the coefficient of `r tumorsize_model$coefficients[[2]] %>% style_sigfig(digits = 5)`? This can be interpreted as "for each increase in dose of one unit, increase in log tumor size is less by `r tumorsize_model$coefficients[[2]] %>% style_sigfig(digits = 5)`". I would argue that this coefficient might misleading because you only have a few doses and they are widely spaced. Also, dose-response is often non-linear: it generally takes a sigmoidal curve (see below). In short, you might have too few data to be confident about a linear prediction. Finally, it is rare that you really want to estimate the effects of a treatment on a mouse: generally, laboratory studies are about testing hypotheses.
+A second thought: should you report the coefficient of `r tumorsize_model$coefficients[[2]] %>% style_sigfig(digits = 5)`? This can be interpreted as "for each increase in dose of one unit, increase in log tumor size is less by `r tumorsize_model$coefficients[[2]] %>% style_sigfig(digits = 5)`". I would argue that this coefficient might be misleading because you only have a few doses and they are widely spaced. Also, dose-response is often non-linear: it generally takes a sigmoidal curve (see below). In short, you might have too few data to be confident about a linear prediction. Finally, it is rare that you really want to estimate the effects of a treatment on a mouse: generally, laboratory studies are about testing hypotheses.
 
 ```{r week5v, echo = FALSE, results = "asis", fig.width = 4, fig.height = 4, purl = FALSE}
 

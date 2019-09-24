@@ -6667,7 +6667,7 @@ summary(rtlog_model)
 ## F-statistic: 21.58 on 4 and 212 DF,  p-value: 5.978e-15
 ```
 
-This creates a new variable called "lt" that is the log of race time. The Shapiro-Wilk test confirms that this is normally distributed. Now let’s look at the results of the regression analysis: the p values are almost exactly the same. This suggests that the non-normality of race time is not important in this setting.
+This creates a new variable called "lt" that is the log of race time. You can use the "skim" command to see that it is normally distributed. Now let’s look at the results of the regression analysis: the p values are almost exactly the same. This suggests that the non-normality of race time is not important in this setting.
 
 _For advanced students only_
 
@@ -9231,7 +9231,7 @@ A couple of thoughts. Firstly, this rather obvious analysis is not often conduct
 
 <img src="09-answers_files/figure-html/week5u-1.png" width="384" />
 
-A second thought: should you report the coefficient of -0.00008? This can be interpreted as "for each increase in dose of one unit, increase in log tumor size is less by -0.00008". I would argue that this coefficient might misleading because you only have a few doses and they are widely spaced. Also, dose-response is often non-linear: it generally takes a sigmoidal curve (see below). In short, you might have too few data to be confident about a linear prediction. Finally, it is rare that you really want to estimate the effects of a treatment on a mouse: generally, laboratory studies are about testing hypotheses.
+A second thought: should you report the coefficient of -0.00008? This can be interpreted as "for each increase in dose of one unit, increase in log tumor size is less by -0.00008". I would argue that this coefficient might be misleading because you only have a few doses and they are widely spaced. Also, dose-response is often non-linear: it generally takes a sigmoidal curve (see below). In short, you might have too few data to be confident about a linear prediction. Finally, it is rare that you really want to estimate the effects of a treatment on a mouse: generally, laboratory studies are about testing hypotheses.
 
 <img src="09-answers_files/figure-html/week5v-1.png" width="384" />
 
