@@ -199,7 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a><ul>
 <li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#setting-up-6"><i class="fa fa-check"></i><b>7.1</b> Setting Up</a></li>
 <li class="chapter" data-level="7.2" data-path="week-7.html"><a href="week-7.html#r-instructions-6"><i class="fa fa-check"></i><b>7.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.2.1</b> Time to event data</a></li>
+<li class="chapter" data-level="7.2.1" data-path="week-7.html"><a href="week-7.html#introductory-remarks-on-time-to-event-analysis"><i class="fa fa-check"></i><b>7.2.1</b> Introductory remarks on time-to-event analysis</a></li>
+<li class="chapter" data-level="7.2.2" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.2.2</b> Time to event data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="week-7.html"><a href="week-7.html#assignments-6"><i class="fa fa-check"></i><b>7.3</b> Assignments</a></li>
 </ul></li>
@@ -316,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  color: #000000;
+  color: #333333;
   font-size: 16px;
   background-color: #FFFFFF;
   /* table.background.color */
@@ -343,23 +344,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_title {
-  color: #000000;
+  color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
   padding-top: 4px;
-  /* heading.top.padding */
+  /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
 #iwrgxmosvm .gt_subtitle {
-  color: #000000;
+  color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
-  padding-top: 2px;
-  padding-bottom: 2px;
-  /* heading.bottom.padding */
+  padding-top: 0;
+  padding-bottom: 4px;
+  /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -369,20 +370,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
   /* heading.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* heading.border.bottom.color */
 }
 
 #iwrgxmosvm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
 #iwrgxmosvm .gt_col_heading {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
   font-size: 16px;
@@ -390,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   font-weight: initial;
   /* column_labels.font.weight */
   vertical-align: middle;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   overflow-x: hidden;
 }
@@ -398,13 +399,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_columns_top_border {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_columns_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_sep_right {
@@ -413,7 +414,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 #iwrgxmosvm .gt_group_heading {
   padding: 8px;
-  color: #000000;
+  /* row_group.padding */
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -424,20 +426,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #iwrgxmosvm .gt_empty_group_heading {
   padding: 0.5px;
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -448,19 +450,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #iwrgxmosvm .gt_striped {
-  background-color: #f2f2f2;
+  background-color: #8080800D;
 }
 
 #iwrgxmosvm .gt_from_md > :first-child {
@@ -475,6 +477,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding: 8px;
   /* row.padding */
   margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
   vertical-align: middle;
   overflow-x: hidden;
 }
@@ -482,12 +487,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
-  border-right-color: #A8A8A8;
+  border-right-color: #D3D3D3;
   padding-left: 12px;
 }
 
 #iwrgxmosvm .gt_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
   padding: 8px;
@@ -497,7 +502,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
   padding: 8px;
@@ -509,13 +514,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_first_grand_summary_row {
   border-top-style: double;
   border-top-width: 6px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -523,13 +528,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* table_body.border.top.style */
   border-top-width: 2px;
   /* table_body.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* table_body.border.top.color */
   border-bottom-style: solid;
   /* table_body.border.bottom.style */
   border-bottom-width: 2px;
   /* table_body.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* table_body.border.bottom.color */
 }
 
@@ -538,7 +543,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* footnotes.border.top.style */
   border-top-width: 2px;
   /* footnotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* footnotes.border.top.color */
 }
 
@@ -555,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* sourcenotes.border.top.style */
   border-top-width: 2px;
   /* sourcenotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* sourcenotes.border.top.color */
 }
 
@@ -647,7 +652,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table></div>
 <p><br></p>
 <p>So, for example, we can see that there were 575 women, 162 had prior chemo and 161 had no prior chemo. You can see that 252 women were missing data on prior chemotherapy use. By default, the table shows the percent among all observations with non-missing data.</p>
-<p>This table also tells us that of men, 51% had no prior chemo, and 49% had prior chemo.</p>
+<p>This table also tells us that among men with prior chemotherapy data available, 51% had no prior chemo, and 49% had prior chemo.</p>
 <p>As mentioned in lesson 2, the <code>tbl_summary</code> command gives column percentages by default, but can also give row percents using the <code>percent = "row"</code> option:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Create twoway table with &quot;overall&quot; column and display row percents</span></a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw">tbl_summary</span>(</a>
@@ -666,7 +671,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  color: #000000;
+  color: #333333;
   font-size: 16px;
   background-color: #FFFFFF;
   /* table.background.color */
@@ -693,23 +698,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #hlleqxdave .gt_title {
-  color: #000000;
+  color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
   padding-top: 4px;
-  /* heading.top.padding */
+  /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
 #hlleqxdave .gt_subtitle {
-  color: #000000;
+  color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
-  padding-top: 2px;
-  padding-bottom: 2px;
-  /* heading.bottom.padding */
+  padding-top: 0;
+  padding-bottom: 4px;
+  /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -719,20 +724,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
   /* heading.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* heading.border.bottom.color */
 }
 
 #hlleqxdave .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
 #hlleqxdave .gt_col_heading {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
   font-size: 16px;
@@ -740,7 +745,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   font-weight: initial;
   /* column_labels.font.weight */
   vertical-align: middle;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   overflow-x: hidden;
 }
@@ -748,13 +753,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #hlleqxdave .gt_columns_top_border {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_columns_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_sep_right {
@@ -763,7 +768,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 #hlleqxdave .gt_group_heading {
   padding: 8px;
-  color: #000000;
+  /* row_group.padding */
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -774,20 +780,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #hlleqxdave .gt_empty_group_heading {
   padding: 0.5px;
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -798,19 +804,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #hlleqxdave .gt_striped {
-  background-color: #f2f2f2;
+  background-color: #8080800D;
 }
 
 #hlleqxdave .gt_from_md > :first-child {
@@ -825,6 +831,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding: 8px;
   /* row.padding */
   margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
   vertical-align: middle;
   overflow-x: hidden;
 }
@@ -832,12 +841,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #hlleqxdave .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
-  border-right-color: #A8A8A8;
+  border-right-color: #D3D3D3;
   padding-left: 12px;
 }
 
 #hlleqxdave .gt_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
   padding: 8px;
@@ -847,7 +856,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #hlleqxdave .gt_grand_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
   padding: 8px;
@@ -859,13 +868,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #hlleqxdave .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_first_grand_summary_row {
   border-top-style: double;
   border-top-width: 6px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_table_body {
@@ -873,13 +882,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* table_body.border.top.style */
   border-top-width: 2px;
   /* table_body.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* table_body.border.top.color */
   border-bottom-style: solid;
   /* table_body.border.bottom.style */
   border-bottom-width: 2px;
   /* table_body.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* table_body.border.bottom.color */
 }
 
@@ -888,7 +897,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* footnotes.border.top.style */
   border-top-width: 2px;
   /* footnotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* footnotes.border.top.color */
 }
 
@@ -905,7 +914,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* sourcenotes.border.top.style */
   border-top-width: 2px;
   /* sourcenotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* sourcenotes.border.top.color */
 }
 
@@ -1019,15 +1028,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can compare sub-four hour marathons by sex using a chi-squared test (<code>chisq.test</code> function):</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Create the table and then perform the chi-squared test</span></a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw">table</span>(lesson2a<span class="op">$</span>subfourhour, lesson2a<span class="op">$</span>sex) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">chisq.test</span>(<span class="dt">correct =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">chisq.test</span>()</a></code></pre></div>
 <pre><code>## 
-##  Pearson&#39;s Chi-squared test
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  .
-## X-squared = 3.513, df = 1, p-value = 0.06089</code></pre>
-<p>Similar to the <code>wilcox.test</code> function from the last lesson, you will also need to use the <code>correct = FALSE</code> option for the <code>chisq.test</code> function. This will give you the p-value without performing a continuity correction.</p>
+## X-squared = 2.7514, df = 1, p-value = 0.09717</code></pre>
 <p>As a note, we can also use <code>tbl_summary</code> and the <code>add_p</code> function (also from <code>gtsummary</code>) to get the chi-squared pvalue. In the <code>add_p</code> function, we specify that for the variable “subfourhour” we want to use a chi-squared test (“chisq.test”).</p>
-<p>TODO: PENDING BEING ABLE TO DO THIS WITHOUT CONTINUITY CORRECTION</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Create two-way table including chi-squared p value</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw">tbl_summary</span>(</a>
 <a class="sourceLine" id="cb9-3" title="3">  lesson2a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(subfourhour, sex),</a>
@@ -1044,7 +1051,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  color: #000000;
+  color: #333333;
   font-size: 16px;
   background-color: #FFFFFF;
   /* table.background.color */
@@ -1071,23 +1078,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #kqtxbhydst .gt_title {
-  color: #000000;
+  color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
   padding-top: 4px;
-  /* heading.top.padding */
+  /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
 #kqtxbhydst .gt_subtitle {
-  color: #000000;
+  color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
-  padding-top: 2px;
-  padding-bottom: 2px;
-  /* heading.bottom.padding */
+  padding-top: 0;
+  padding-bottom: 4px;
+  /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -1097,20 +1104,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
   /* heading.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* heading.border.bottom.color */
 }
 
 #kqtxbhydst .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
 #kqtxbhydst .gt_col_heading {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
   font-size: 16px;
@@ -1118,7 +1125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   font-weight: initial;
   /* column_labels.font.weight */
   vertical-align: middle;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   overflow-x: hidden;
 }
@@ -1126,13 +1133,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #kqtxbhydst .gt_columns_top_border {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_columns_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_sep_right {
@@ -1141,7 +1148,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 #kqtxbhydst .gt_group_heading {
   padding: 8px;
-  color: #000000;
+  /* row_group.padding */
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -1152,20 +1160,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #kqtxbhydst .gt_empty_group_heading {
   padding: 0.5px;
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -1176,19 +1184,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #kqtxbhydst .gt_striped {
-  background-color: #f2f2f2;
+  background-color: #8080800D;
 }
 
 #kqtxbhydst .gt_from_md > :first-child {
@@ -1203,6 +1211,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding: 8px;
   /* row.padding */
   margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
   vertical-align: middle;
   overflow-x: hidden;
 }
@@ -1210,12 +1221,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #kqtxbhydst .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
-  border-right-color: #A8A8A8;
+  border-right-color: #D3D3D3;
   padding-left: 12px;
 }
 
 #kqtxbhydst .gt_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
   padding: 8px;
@@ -1225,7 +1236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #kqtxbhydst .gt_grand_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
   padding: 8px;
@@ -1237,13 +1248,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #kqtxbhydst .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_first_grand_summary_row {
   border-top-style: double;
   border-top-width: 6px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1251,13 +1262,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* table_body.border.top.style */
   border-top-width: 2px;
   /* table_body.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* table_body.border.top.color */
   border-bottom-style: solid;
   /* table_body.border.bottom.style */
   border-bottom-width: 2px;
   /* table_body.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* table_body.border.bottom.color */
 }
 
@@ -1266,7 +1277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* footnotes.border.top.style */
   border-top-width: 2px;
   /* footnotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* footnotes.border.top.color */
 }
 
@@ -1283,7 +1294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* sourcenotes.border.top.style */
   border-top-width: 2px;
   /* sourcenotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* sourcenotes.border.top.color */
 }
 
@@ -1381,10 +1392,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p><br></p>
-<p>So whereas 55% of men completed the race in less than four hours, only 34% of women did so. The p value here is 0.061.</p>
+<p>So whereas 55% of men completed the race in less than four hours, only 34% of women did so. The p value here is 0.10.</p>
 <p><strong>Should you categorize a continuous variable?</strong></p>
 <p>If you are interested only:</p>
-<p>Remember that the p value when we did a ttest (<code>t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)</code>) was 0.032. That is, the p value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.</p>
+<p>Remember that the p value when we did a t-test (<code>t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)</code>) was 0.032. That is, the p value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.</p>
 </div>
 <div id="getting-estimates-risk-difference-risk-ratio-odds-ratio" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Getting estimates: risk difference, risk ratio, odds ratio</h3>
@@ -1444,11 +1455,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>11 of the women finished the race in under four hours (“Exposed +” row, “Outcome +” column), 21 did not (“Exposed +” row, “Outcome -” column).</li>
 <li>36 of the men finished the race in under four hours (“Exposed -” row, “Outcome +” column), 30 did not (“Exposed -” row, “Outcome -” column)</li>
 <li>34.4% of the women (“Exposed +” column, “Inc risk *” row) and 54.5% of the men (“Exposed -” column, “Inc risk *” row) finished in under four hours.</li>
-<li>20% more men finished the race in under four hours (“Attrib risk *” under “Point estimates and 95% CIs”). This is the difference in rates of sub-four hour marathon in men and women.</li>
+<li>20% more men finished the race in under four hours (“Attrib risk *” under “Point estimates and 95% CIs”). This is the absolute difference in rates of sub-four hour marathon in men and women.</li>
 <li>After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from 41% more to 0.20% less.</li>
 <li>The chance that a woman finishes the race in under four hours is 0.63 of that for a man (“Inc risk ratio” under “Point estimates and 95% CIs”). The 95% CI is 0.37 to 1.07 (i.e about one third as likely to 7% more likely).</li>
-<li>The odds ratio is reported in the second row under “Point estimates and 95% CIs.”</li>
+<li>The odds ratio is reported in the second row under “Point estimates and 95% CIs” and indicates the relative difference in rates.</li>
 </ul>
+<p>Be aware that when interpreting a relative difference in risks, it is useful to know the absolute risk as well. A study may report that a drug reduces the risk of heart attack by 50%, but whether you choose to use the drug would depend on whether risk was reduced from 20% to 10% (a 50% relative difference and a 10% absolute difference) or whether risk was reduced from 2% to 1% (still a 50% relative difference but only a 1% absolute difference).</p>
 <p>Here is another one to look through:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Another example using &quot;epi.2by2&quot; function</span></a>
 <a class="sourceLine" id="cb17-2" title="2"><span class="kw">epi.2by2</span>(<span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(example4a<span class="op">$</span>toxin, example4a<span class="op">$</span>cancer)), <span class="dt">nrow =</span> <span class="dv">2</span>))</a></code></pre></div>
@@ -1476,7 +1488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  * Outcomes per 100 population units</code></pre>
 <p>Here it is easier to see that the “toxin” is the exposure and “cancer” is whether you are a case.</p>
 <p><strong>Exact statistics</strong></p>
-<p>Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the “cells” in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The <code>epi.2by2</code> function gives the chi-squared p-value. However, using the <code>fisher.test</code> function gives the exact pvalue. You do not need to reverse the table for the <code>fisher.test</code> function.</p>
+<p>Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the “cells” in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The <code>epi.2by2</code> function gives the chi-squared p value. However, using the <code>fisher.test</code> function gives the exact pvalue. You do not need to reverse the table for the <code>fisher.test</code> function.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Calculate p value from fisher&#39;s exact test</span></a>
 <a class="sourceLine" id="cb19-2" title="2"><span class="kw">fisher.test</span>(<span class="kw">table</span>(example4a<span class="op">$</span>toxin, example4a<span class="op">$</span>cancer))</a></code></pre></div>
 <pre><code>## 
@@ -1507,7 +1519,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  color: #000000;
+  color: #333333;
   font-size: 16px;
   background-color: #FFFFFF;
   /* table.background.color */
@@ -1534,23 +1546,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #qzjvxzfwte .gt_title {
-  color: #000000;
+  color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
   padding-top: 4px;
-  /* heading.top.padding */
+  /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
 #qzjvxzfwte .gt_subtitle {
-  color: #000000;
+  color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
-  padding-top: 2px;
-  padding-bottom: 2px;
-  /* heading.bottom.padding */
+  padding-top: 0;
+  padding-bottom: 4px;
+  /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -1560,20 +1572,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
   /* heading.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* heading.border.bottom.color */
 }
 
 #qzjvxzfwte .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
 #qzjvxzfwte .gt_col_heading {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
   font-size: 16px;
@@ -1581,7 +1593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   font-weight: initial;
   /* column_labels.font.weight */
   vertical-align: middle;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   overflow-x: hidden;
 }
@@ -1589,13 +1601,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #qzjvxzfwte .gt_columns_top_border {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #qzjvxzfwte .gt_columns_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
 }
 
 #qzjvxzfwte .gt_sep_right {
@@ -1604,7 +1616,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 #qzjvxzfwte .gt_group_heading {
   padding: 8px;
-  color: #000000;
+  /* row_group.padding */
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -1615,20 +1628,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #qzjvxzfwte .gt_empty_group_heading {
   padding: 0.5px;
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -1639,19 +1652,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #qzjvxzfwte .gt_striped {
-  background-color: #f2f2f2;
+  background-color: #8080800D;
 }
 
 #qzjvxzfwte .gt_from_md > :first-child {
@@ -1666,6 +1679,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding: 8px;
   /* row.padding */
   margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
   vertical-align: middle;
   overflow-x: hidden;
 }
@@ -1673,12 +1689,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #qzjvxzfwte .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
-  border-right-color: #A8A8A8;
+  border-right-color: #D3D3D3;
   padding-left: 12px;
 }
 
 #qzjvxzfwte .gt_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
   padding: 8px;
@@ -1688,7 +1704,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #qzjvxzfwte .gt_grand_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
   padding: 8px;
@@ -1700,13 +1716,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #qzjvxzfwte .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #qzjvxzfwte .gt_first_grand_summary_row {
   border-top-style: double;
   border-top-width: 6px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #qzjvxzfwte .gt_table_body {
@@ -1714,13 +1730,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* table_body.border.top.style */
   border-top-width: 2px;
   /* table_body.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* table_body.border.top.color */
   border-bottom-style: solid;
   /* table_body.border.bottom.style */
   border-bottom-width: 2px;
   /* table_body.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* table_body.border.bottom.color */
 }
 
@@ -1729,7 +1745,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* footnotes.border.top.style */
   border-top-width: 2px;
   /* footnotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* footnotes.border.top.color */
 }
 
@@ -1746,7 +1762,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* sourcenotes.border.top.style */
   border-top-width: 2px;
   /* sourcenotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* sourcenotes.border.top.color */
 }
 
@@ -1848,7 +1864,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s imagine that you and I each throw two coins. I throw two heads and you throw two tails. The p value you get from a chi squared is 0.046, which seems strange as what we threw doesn’t seem that unusual. The problem is that in chi squared analysis you compare the expected and observed values, add them up, get a value for chi, and then look this up on a table. Now this table is derived from a distribution based on large samples. It is an approximation that breaks down when numbers are very small (such as less than 5 in at least one cell). “Exact” statistics works out the probability of a certain result in a different way, without reference to distributions or approximations.</p>
 <p>The exact approach to the coin throwing problem would be to write out all the possible tables you could have with four observations, and then work out the probability of each under the null hypothesis. Then count what proportion of tables are as unlikely or more unlikely than the observed results and you get your p value. It turns out that there are 9 possible outcomes for the coin throwing problem: 0 vs. 0; 0 vs 1; 0 vs. 2; 1 vs. 0; 1 vs. 1; 1 vs. 2; 2 vs. 0; 2 vs 1; 2 vs. 2. Two of these (0 vs. 2 and 2 vs. 0), are at least as extreme as the result we got, so that gives a p value of 0.33.</p>
 <p><strong>Other Commands</strong></p>
-<p>You can use the <code>filter</code> command to select rows to perform ttests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:</p>
+<p>You can use the <code>filter</code> command to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Perform a t-test only among patients with prior chemotherapy</span></a>
 <a class="sourceLine" id="cb22-2" title="2"><span class="kw">t.test</span>(nv <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> lesson3a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pc <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</a></code></pre></div>
 <pre><code>## 
@@ -1862,7 +1878,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean in group 0 mean in group 1 
 ##        5.270161        5.290076</code></pre>
-<p>To perform the ttest on those without prior chemotherapy, switch the group you are filtering on:</p>
+<p>To perform the t-test on those without prior chemotherapy, switch the group you are filtering on:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># t-test for patients without prior chemotherapy</span></a>
 <a class="sourceLine" id="cb24-2" title="2"><span class="kw">t.test</span>(nv <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> lesson3a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pc <span class="op">==</span><span class="st"> </span><span class="dv">0</span>))</a></code></pre></div>
 <pre><code>## 

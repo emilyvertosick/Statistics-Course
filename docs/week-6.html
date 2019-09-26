@@ -165,7 +165,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="week-3.html"><a href="week-3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
 <li class="chapter" data-level="3.1" data-path="week-3.html"><a href="week-3.html#setting-up-2"><i class="fa fa-check"></i><b>3.1</b> Setting up</a></li>
 <li class="chapter" data-level="3.2" data-path="week-3.html"><a href="week-3.html#r-instructions-2"><i class="fa fa-check"></i><b>3.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="week-3.html"><a href="week-3.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.1</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="3.2.1" data-path="week-3.html"><a href="week-3.html#example-datasets"><i class="fa fa-check"></i><b>3.2.1</b> Example Datasets</a></li>
+<li class="chapter" data-level="3.2.2" data-path="week-3.html"><a href="week-3.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.2</b> Hypothesis Testing</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="week-3.html"><a href="week-3.html#assignments-2"><i class="fa fa-check"></i><b>3.3</b> Assignments</a></li>
 </ul></li>
@@ -198,7 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a><ul>
 <li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#setting-up-6"><i class="fa fa-check"></i><b>7.1</b> Setting Up</a></li>
 <li class="chapter" data-level="7.2" data-path="week-7.html"><a href="week-7.html#r-instructions-6"><i class="fa fa-check"></i><b>7.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.2.1</b> Time to event data</a></li>
+<li class="chapter" data-level="7.2.1" data-path="week-7.html"><a href="week-7.html#introductory-remarks-on-time-to-event-analysis"><i class="fa fa-check"></i><b>7.2.1</b> Introductory remarks on time-to-event analysis</a></li>
+<li class="chapter" data-level="7.2.2" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.2.2</b> Time to event data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="week-7.html"><a href="week-7.html#assignments-6"><i class="fa fa-check"></i><b>7.3</b> Assignments</a></li>
 </ul></li>
@@ -351,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Positive likelihood ratio              7.41 (5.55, 9.89)
 ## Negative likelihood ratio              0.37 (0.22, 0.61)
 ## ---------------------------------------------------------</code></pre>
-<p>As you can see, <code>epi.tests</code> also provides other information, such as specificity, prevalence and positive and negative predictive value.</p>
+<p>As you can see, <code>epi.tests</code> also provides other information. Specificity and positive and negative predictive value you should know (remember that sensitivity is the probability of a positive result if you have the disease; specificity is the probability of a negative result if you don’t have the disease; positive predictive value is the probability you have the disease if you test positive; negative predictive value is the probability that you don’t have the disease if you test negative). True prevalence is the proportion of patients with disease in the data set. Apparent prevalence is a pretty misleading term and is the proportion of patients who test positive. You can generally ignore that, it isn’t a commonly used statistic. Positive and negative likelihood ratios are used in Bayesian approaches to diagnostic tests and aren’t taught on this course, so don’t worry about those for now.</p>
 <p>See instructions from lecture 5 on how to get an area-under-the-curve.</p>
 </div>
 </div>
@@ -390,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  color: #000000;
+  color: #333333;
   font-size: 16px;
   background-color: #FFFFFF;
   /* table.background.color */
@@ -417,23 +419,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_title {
-  color: #000000;
+  color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
   padding-top: 4px;
-  /* heading.top.padding */
+  /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
 #iwrgxmosvm .gt_subtitle {
-  color: #000000;
+  color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
-  padding-top: 2px;
-  padding-bottom: 2px;
-  /* heading.bottom.padding */
+  padding-top: 0;
+  padding-bottom: 4px;
+  /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -443,20 +445,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* heading.border.bottom.style */
   border-bottom-width: 2px;
   /* heading.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* heading.border.bottom.color */
 }
 
 #iwrgxmosvm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
 #iwrgxmosvm .gt_col_heading {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
   font-size: 16px;
@@ -464,7 +466,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   font-weight: initial;
   /* column_labels.font.weight */
   vertical-align: middle;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   overflow-x: hidden;
 }
@@ -472,13 +474,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_columns_top_border {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_columns_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_sep_right {
@@ -487,7 +489,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 #iwrgxmosvm .gt_group_heading {
   padding: 8px;
-  color: #000000;
+  /* row_group.padding */
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -498,20 +501,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #iwrgxmosvm .gt_empty_group_heading {
   padding: 0.5px;
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
   font-size: 16px;
@@ -522,19 +525,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.top.style */
   border-top-width: 2px;
   /* row_group.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* row_group.border.top.color */
   border-bottom-style: solid;
   /* row_group.border.bottom.style */
   border-bottom-width: 2px;
   /* row_group.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #iwrgxmosvm .gt_striped {
-  background-color: #f2f2f2;
+  background-color: #8080800D;
 }
 
 #iwrgxmosvm .gt_from_md > :first-child {
@@ -549,6 +552,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding: 8px;
   /* row.padding */
   margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
   vertical-align: middle;
   overflow-x: hidden;
 }
@@ -556,12 +562,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_stub {
   border-right-style: solid;
   border-right-width: 2px;
-  border-right-color: #A8A8A8;
+  border-right-color: #D3D3D3;
   padding-left: 12px;
 }
 
 #iwrgxmosvm .gt_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
   padding: 8px;
@@ -571,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
-  color: #000000;
+  color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
   padding: 8px;
@@ -583,13 +589,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_first_summary_row {
   border-top-style: solid;
   border-top-width: 2px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_first_grand_summary_row {
   border-top-style: double;
   border-top-width: 6px;
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -597,13 +603,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* table_body.border.top.style */
   border-top-width: 2px;
   /* table_body.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* table_body.border.top.color */
   border-bottom-style: solid;
   /* table_body.border.bottom.style */
   border-bottom-width: 2px;
   /* table_body.border.bottom.width */
-  border-bottom-color: #A8A8A8;
+  border-bottom-color: #D3D3D3;
   /* table_body.border.bottom.color */
 }
 
@@ -612,7 +618,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* footnotes.border.top.style */
   border-top-width: 2px;
   /* footnotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* footnotes.border.top.color */
 }
 
@@ -629,7 +635,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* sourcenotes.border.top.style */
   border-top-width: 2px;
   /* sourcenotes.border.top.width */
-  border-top-color: #A8A8A8;
+  border-top-color: #D3D3D3;
   /* sourcenotes.border.top.color */
 }
 

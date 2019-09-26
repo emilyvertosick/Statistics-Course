@@ -199,7 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a><ul>
 <li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#setting-up-6"><i class="fa fa-check"></i><b>7.1</b> Setting Up</a></li>
 <li class="chapter" data-level="7.2" data-path="week-7.html"><a href="week-7.html#r-instructions-6"><i class="fa fa-check"></i><b>7.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.2.1</b> Time to event data</a></li>
+<li class="chapter" data-level="7.2.1" data-path="week-7.html"><a href="week-7.html#introductory-remarks-on-time-to-event-analysis"><i class="fa fa-check"></i><b>7.2.1</b> Introductory remarks on time-to-event analysis</a></li>
+<li class="chapter" data-level="7.2.2" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.2.2</b> Time to event data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="week-7.html"><a href="week-7.html#assignments-6"><i class="fa fa-check"></i><b>7.3</b> Assignments</a></li>
 </ul></li>
@@ -375,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean in group 0 mean in group 1 
 ##        160.2632        126.8462</code></pre>
 <p>This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (am == 0) vs manual transmission (am == 1).</p>
-<p>The <code>t.test</code> function reports the data and variables you are testing, following by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.</p>
+<p>The <code>t.test</code> function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.</p>
 <p>While for an unpaired test, the <code>t.test</code> command prints the group means in each group, you may want to report the difference between means. The group means are stored in the <code>t.test</code> results under <code>estimate</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># perform t-test and save out results as &quot;hp_test&quot;</span></a>
 <a class="sourceLine" id="cb10-2" title="2">hp_test &lt;-<span class="st"> </span><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
@@ -400,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Subtract the mean in group 0 from the mean in group 1</span></a>
 <a class="sourceLine" id="cb14-2" title="2">mean_group1 <span class="op">-</span><span class="st"> </span>mean_group0</a></code></pre></div>
 <pre><code>## [1] -33.417</code></pre>
-<p>You don’t need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.</p>
+<p>You don’t need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p value, the group means, and the 95% confidence interval.</p>
 <p>Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is 33.4 higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between 16.3 lower or 83.1 higher in the automatic group vs the manual group.</p>
 </div>
 <div id="non-parametric-methods" class="section level4">
@@ -408,29 +409,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance.</p>
 <p>Unpaired case, for example, do marker levels differ between the drug and placebo groups?</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># non-parametric test for difference in marker levels by treatment group</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="kw">wilcox.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw">wilcox.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## 
-##  Wilcoxon rank sum test
+##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  marker by trt
-## W = 4242.5, p-value = 0.4366
+## W = 4242.5, p-value = 0.4374
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>The inputs for the <code>wilcox.test</code> function are very similar to the inputs for the <code>t.test</code> function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable (“marker”), the group variable (“trt”) and the dataset (“trial”) are all the same. This is still an unpaired test (<code>paired = FALSE</code>).</p>
-<p>The last option <code>correct = FALSE</code> tells the <code>wilcox.test</code> function not to use a continuity correction when calculating the p-value - again, this is not something you need to understand in detail, but be sure to include this option.</p>
 <p>Paired case, for example, does an intervention cause a change in a patient’s blood pressure?</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># paired non-parametric test for difference in &quot;before&quot; and &quot;after&quot; blood pressure measurements</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">wilcox.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">wilcox.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## 
-##  Wilcoxon rank sum test
+##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  bp by when
-## W = 5551, p-value = 0.002159
+## W = 5551, p-value = 0.002166
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># non-parametric test - is rate of college education different from 32%?</span></a>
-<a class="sourceLine" id="cb20-2" title="2"><span class="kw">wilcox.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb20-2" title="2"><span class="kw">wilcox.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>)</a></code></pre></div>
 <pre><code>## 
-##  Wilcoxon signed rank test
+##  Wilcoxon signed rank test with continuity correction
 ## 
 ## data:  midwest$percollege
 ## V = 924, p-value &lt; 2.2e-16

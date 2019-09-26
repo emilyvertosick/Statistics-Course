@@ -122,7 +122,7 @@ tbl_sex_row <-
 
 So, for example, we can see that there were `r sum(lesson3a$sex)` women, `r inline_text(tbl_sex, variable = "pc", level = "1", column = "1")` had prior chemo and `r inline_text(tbl_sex, variable = "pc", level = "0", column = "1")` had no prior chemo. You can see that `r inline_text(tbl_sex, variable = "pc", level = "Unknown", column = "1")` women were missing data on prior chemotherapy use. By default, the table shows the percent among all observations with non-missing data.
 
-This table also tells us that of men, `r inline_text(tbl_sex_p, variable = "pc", level = "0", column = "0")` had no prior chemo, and `r inline_text(tbl_sex_p, variable = "pc", level = "1", column = "0")` had prior chemo.
+This table also tells us that among men with prior chemotherapy data available, `r inline_text(tbl_sex_p, variable = "pc", level = "0", column = "0")` had no prior chemo, and `r inline_text(tbl_sex_p, variable = "pc", level = "1", column = "0")` had prior chemo.
 
 As mentioned in lesson 2, the `tbl_summary` command gives column percentages by default, but can also give row percents using the `percent = "row"` option:
 
@@ -171,15 +171,11 @@ We can compare sub-four hour marathons by sex using a chi-squared test (`chisq.t
 
 # Create the table and then perform the chi-squared test
 table(lesson2a$subfourhour, lesson2a$sex) %>%
-  chisq.test(correct = FALSE)
+  chisq.test()
 
 ```
 
-Similar to the `wilcox.test` function from the last lesson, you will also need to use the `correct = FALSE` option for the `chisq.test` function. This will give you the p-value without performing a continuity correction.
-
 As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared pvalue. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test").
-
-TODO: PENDING BEING ABLE TO DO THIS WITHOUT CONTINUITY CORRECTION
 
 ```{r section4g, results = "asis"}
 
@@ -208,14 +204,13 @@ tbl_subfour_p <-
 ```
 
 So whereas `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "0")` of men completed the race in less than four hours, only `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "1")` of women did so. The p value here is `r style_pvalue(
-chisq.test(table(lesson2a$subfourhour, lesson2a$sex), correct = FALSE)$p.value
-)`.
+chisq.test(table(lesson2a$subfourhour, lesson2a$sex))$p.value)`.
 
 **Should you categorize a continuous variable?**
 
 If you are interested only:
 
-Remember that the p value when we did a ttest (`t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)`) was `r style_pvalue(t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)$p.value)`. That is, the p value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.
+Remember that the p value when we did a t-test (`t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)`) was `r style_pvalue(t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)$p.value)`. That is, the p value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.
 
 ### Getting estimates: risk difference, risk ratio, odds ratio
 
@@ -280,10 +275,12 @@ So reading this table we get the following information:
 - `r tbl_marathon$tab[1, 1]` of the women finished the race in under four hours ("Exposed +" row, "Outcome +" column), `r tbl_marathon$tab[1, 2]` did not ("Exposed +" row, "Outcome -" column).
 - `r tbl_marathon$tab[2, 1]` of the men finished the race in under four hours ("Exposed -" row, "Outcome +" column), `r tbl_marathon$tab[2, 2]` did not ("Exposed -" row, "Outcome -" column)
 - `r tbl_marathon$tab[1, 4]`% of the women ("Exposed +" column, "Inc risk \*" row) and `r tbl_marathon$tab[2, 4]`% of the men ("Exposed -" column, "Inc risk \*" row) finished in under four hours.
-- `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[1]]))`% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the difference in rates of sub-four hour marathon in men and women.
+- `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[1]]))`% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the absolute difference in rates of sub-four hour marathon in men and women.
 - After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[2]]))`% more to `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[3]]))`% less.
 - The chance that a woman finishes the race in under four hours is `r style_ratio(tbl_marathon$res$RR.strata.wald[[1]])` of that for a man ("Inc risk ratio" under "Point estimates and 95% CIs"). The 95% CI is `r style_ratio(tbl_marathon$res$RR.strata.wald[[2]])` to `r style_ratio(tbl_marathon$res$RR.strata.wald[[3]])` (i.e about one third as likely to 7% more likely).
-- The odds ratio is reported in the second row under "Point estimates and 95% CIs."
+- The odds ratio is reported in the second row under "Point estimates and 95% CIs" and indicates the relative difference in rates.
+
+Be aware that when interpreting a relative difference in risks, it is useful to know the absolute risk as well. A study may report that a drug reduces the risk of heart attack by 50%, but whether you choose to use the drug would depend on whether risk was reduced from 20% to 10% (a 50% relative difference and a 10% absolute difference) or whether risk was reduced from 2% to 1% (still a 50% relative difference but only a 1% absolute difference).
 
 Here is another one to look through:
 
@@ -298,7 +295,7 @@ Here it is easier to see that the "toxin" is the exposure and "cancer" is whethe
 
 **Exact statistics**
 
-Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p-value. However, using the `fisher.test` function gives the exact pvalue. You do not need to reverse the table for the `fisher.test` function.
+Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p value. However, using the `fisher.test` function gives the exact pvalue. You do not need to reverse the table for the `fisher.test` function.
 
 ```{r section4n, warning = FALSE}
 
@@ -331,7 +328,7 @@ The exact approach to the coin throwing problem would be to write out all the po
 
 **Other Commands**
 
-You can use the `filter` command to select rows to perform ttests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:
+You can use the `filter` command to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:
 
 ```{r section4p}
 
@@ -340,7 +337,7 @@ t.test(nv ~ sex, data = lesson3a %>% filter(pc == 1))
 
 ```
 
-To perform the ttest on those without prior chemotherapy, switch the group you are filtering on:
+To perform the t-test on those without prior chemotherapy, switch the group you are filtering on:
 
 ```{r section4q}
 

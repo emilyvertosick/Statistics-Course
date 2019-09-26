@@ -128,7 +128,7 @@ summary(rom_model)
 
 ```
 
-The first column of numbers listed under "Coefficients" are the coefficients. You can interpret this as follows: start with `r style_sigfig(rom_model$coefficients[[1]], digits = 4)` degrees of range of motion (the intercept or constant). Then add `r style_sigfig(rom_model$coefficients[[2]], digits = 3)` if the patient is a woman, and take away `r style_sigfig(abs(rom_model$coefficients[[3]]), digits = 3)` degrees for every year of age. Find, add `r style_sigfig(rom_model$coefficients[[4]], digits = 3)` degrees for every degree of range of motion the patient had before the trial.
+The first column of numbers listed under "Coefficients" are the coefficients. You can interpret this as follows: start with `r style_sigfig(rom_model$coefficients[[1]], digits = 4)` degrees of range of motion (the intercept or constant). Then add `r style_sigfig(rom_model$coefficients[[2]], digits = 3)` if the patient is a woman, and take away `r style_sigfig(abs(rom_model$coefficients[[3]]), digits = 3)` degrees for every year of age. Finally, add `r style_sigfig(rom_model$coefficients[[4]], digits = 3)` degrees for every degree of range of motion the patient had before the trial.
 
 Let's take a single patient: a 54 year old woman with a range of motion of 301 before treatment. Her predicted range of motion afterwards is `r style_sigfig(rom_model$coefficients[[1]], digits = 4)` + `r style_sigfig(rom_model$coefficients[[2]], digits = 3)` - `r style_sigfig(abs(rom_model$coefficients[[3]]), digits = 3)`\*54 + `r style_sigfig(rom_model$coefficients[[4]], digits = 3)`\*301 = `r style_sigfig(rom_model$coefficients[[1]]+rom_model$coefficients[[2]]+rom_model$coefficients[[3]]*54+rom_model$coefficients[[4]]*301, digits = 4)`. Her actual figure was 325, so we predicted quite well for this patient. You can get R to do this automatically using the `augment` function from the `broom` package.
 
@@ -145,7 +145,7 @@ lesson3d_pred
 
 ```
 
-To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the `tbl_regression` function from the `gtsummary` package:
+To get the number of observations, coefficients, 95% confidence interval and p values printed in a table for all covariates, you can use the `tbl_regression` function from the `gtsummary` package:
 
 ```{r section5g, message = FALSE}
 
@@ -171,7 +171,7 @@ summary(rom_model)
 
 At the bottom of the `summary` readout there are a few miscellaneous tidbits:
 
-- The "p-value" next to the "F-statistic" on the last line tells you whether, as a whole, your model, including the constant and three variables, is a statistically significant predictor.
+- The "p value" next to the "F-statistic" on the last line tells you whether, as a whole, your model, including the constant and three variables, is a statistically significant predictor.
 
 - The "Multiple R-squared" value (often referred to as just "r squared") tells you how good a predictor it is on a scale from 0 to 1. We’ll discuss the meaning of r squared in more detail, but it is defined as the proportion of variation that you can explain using your model. 
 
@@ -311,7 +311,9 @@ To convert, type ``exp(`r style_sigfig(xb, digits = 4)`) / (exp(`r style_sigfig(
 
 ### Getting the area-under-the-curve
 
-Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), doesn’t matter for our purposes.
+Using regression models is a way to try to predict outcome based on the data we have. After we've created a model, we want to know - is the prediction from this model any good? One way to do this is by assessing the discrimination. Discrimination tells us how well the model discriminates between those patients who have the event and those patients who do not have the event. For logistic regression, discrimination is measured using the area-under-the-curve (AUC).
+
+Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), it doesn’t matter for our purposes.
 
 ```{r section5t, message = FALSE}
 
@@ -333,12 +335,24 @@ roc(cancer ~ age, data = example5b)
 
 ```
 
-Now, calculate the AUC for the model with age and the marker:
+The `roc` function can only take one predictor variable. For a univariate model, such as the model assessing age above, you can put "age" directly into the `roc` function. If you want to assess a model with multiple variables, you can use the predicted value:
+
+```{r section5u1, warning = FALSE}
+
+# Create the multivariable model
+marker_model <- glm(cancer ~ age + marker, data = example5b, family = "binomial")
+
+# Use "augment" to get predicted probability
+marker_pred <- augment(marker_model, type.predict = "response")
+
+```
+
+Now, calculate the AUC for the model with age and the marker by using the predicted probability based on the multivariable model:
 
 ```{r section5v, message = FALSE}
 
 # Calculate AUC of model with age and marker
-roc(cancer ~ age + marker, data = example5b)
+roc(cancer ~ .fitted, data = marker_pred)
 
 ```
 

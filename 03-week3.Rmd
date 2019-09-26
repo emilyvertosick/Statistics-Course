@@ -134,7 +134,7 @@ t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
 
 This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (am == 0) vs manual transmission (am == 1).
 
-The `t.test` function reports the data and variables you are testing, following by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.
+The `t.test` function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.
 
 While for an unpaired test, the `t.test` command prints the group means in each group, you may want to report the difference between means. The group means are stored in the `t.test` results under `estimate`.
 
@@ -169,7 +169,7 @@ mean_group1 - mean_group0
 
 ```
 
-You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.
+You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p value, the group means, and the 95% confidence interval.
 
 Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is `r round(hp_test$estimate[[1]] - hp_test$estimate[[2]], 1)` higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between `r round(abs(hp_test$conf.int[[1]]), 1)` lower or `r round(abs(hp_test$conf.int[[2]]), 1)` higher in the automatic group vs the manual group.
 
@@ -182,20 +182,18 @@ Unpaired case, for example, do marker levels differ between the drug and placebo
 ```{r section3g2}
 
 # non-parametric test for difference in marker levels by treatment group
-wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE, correct = FALSE)
+wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE)
 
 ```
 
 The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset ("trial") are all the same. This is still an unpaired test (`paired = FALSE`).
-
-The last option `correct = FALSE` tells the `wilcox.test` function not to use a continuity correction when calculating the p-value - again, this is not something you need to understand in detail, but be sure to include this option.
 
 Paired case, for example, does an intervention cause a change in a patient's blood pressure?
 
 ```{r section3h}
 
 # paired non-parametric test for difference in "before" and "after" blood pressure measurements
-wilcox.test(bp ~ when, data = example3a, paired = FALSE, correct = FALSE)
+wilcox.test(bp ~ when, data = example3a, paired = FALSE)
 
 ```
 
@@ -204,7 +202,7 @@ Single sample, for example, is the rate of college education in the midwest diff
 ```{r section3i}
 
 # non-parametric test - is rate of college education different from 32%?
-wilcox.test(midwest$percollege, mu = 32, correct = FALSE)
+wilcox.test(midwest$percollege, mu = 32)
 
 ```
 
