@@ -150,28 +150,6 @@ survdiff(example7a_surv ~ drug, data = example7a)
 
 ```
 
-The `coxph` function (from `survival`) is for regression analyses. For example, a univariate regression for the effects of "drug" on survival:
-
-```{r week7g}
-
-# Create Cox regression model
-coxph(example7a_surv ~ drug, data = example7a)
-
-# You can use the tbl_regression function with Cox models to see the hazard ratios
-example7a_cox <- coxph(example7a_surv ~ drug, data = example7a)
-tbl_regression(example7a_cox, exponentiate = TRUE)
-
-```
-
-The following multivariable model also includes some demographic and medical characteristics:
-
-```{r week7h}
-
-# Create multivariable Cox regression model
-coxph(example7a_surv ~ drug + age + sex + marker, data = example7a)
-
-```
-
 Using the `summary` function with `survfit` lists all available followup times along with survival probabilities (you get a 95% C.I. as well):
 
 ```{r week7i}
@@ -192,6 +170,28 @@ The `times` option allows you to get survival probabilities for specific timepoi
 # "~ 1" indicates all patients
 # "t" variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years
 summary(survfit(example7a_surv ~ 1, data = example7a), times = c(12, 24, 60))
+
+```
+
+The `coxph` function (from `survival`) is for regression analyses. For example, a univariate regression for the effects of "drug" on survival:
+
+```{r week7g}
+
+# Create Cox regression model
+coxph(example7a_surv ~ drug, data = example7a)
+
+# You can use the tbl_regression function with Cox models to see the hazard ratios
+example7a_cox <- coxph(example7a_surv ~ drug, data = example7a)
+tbl_regression(example7a_cox, exponentiate = TRUE)
+
+```
+
+The following multivariable model also includes some demographic and medical characteristics:
+
+```{r week7h}
+
+# Create multivariable Cox regression model
+coxph(example7a_surv ~ drug + age + sex + marker, data = example7a)
 
 ```
 

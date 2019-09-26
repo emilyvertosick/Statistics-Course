@@ -134,6 +134,85 @@ survdiff(example7a_surv ~ drug, data = example7a)
 ##  Chisq= 3.4  on 1 degrees of freedom, p= 0.07
 ```
 
+Using the `summary` function with `survfit` lists all available followup times along with survival probabilities (you get a 95% C.I. as well):
+
+
+```r
+# Survival probabilities for the entire cohort
+summary(survfit(example7a_surv ~ 1, data = example7a))
+```
+
+```
+## Call: survfit(formula = example7a_surv ~ 1, data = example7a)
+## 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##     5     23       2   0.9130  0.0588       0.8049        1.000
+##     8     21       2   0.8261  0.0790       0.6848        0.996
+##     9     19       1   0.7826  0.0860       0.6310        0.971
+##    12     18       1   0.7391  0.0916       0.5798        0.942
+##    13     17       1   0.6957  0.0959       0.5309        0.912
+##    18     14       1   0.6460  0.1011       0.4753        0.878
+##    23     13       2   0.5466  0.1073       0.3721        0.803
+##    27     11       1   0.4969  0.1084       0.3240        0.762
+##    30      9       1   0.4417  0.1095       0.2717        0.718
+##    31      8       1   0.3865  0.1089       0.2225        0.671
+##    33      7       1   0.3313  0.1064       0.1765        0.622
+##    34      6       1   0.2761  0.1020       0.1338        0.569
+##    43      5       1   0.2208  0.0954       0.0947        0.515
+##    45      4       1   0.1656  0.0860       0.0598        0.458
+##    48      2       1   0.0828  0.0727       0.0148        0.462
+```
+
+```r
+# You can also summarize the survival by group:
+summary(survfit(example7a_surv ~ drug, data = example7a))
+```
+
+```
+## Call: survfit(formula = example7a_surv ~ drug, data = example7a)
+## 
+##                 drug=0 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##     5     12       2   0.8333  0.1076       0.6470        1.000
+##     8     10       2   0.6667  0.1361       0.4468        0.995
+##    12      8       1   0.5833  0.1423       0.3616        0.941
+##    23      6       1   0.4861  0.1481       0.2675        0.883
+##    27      5       1   0.3889  0.1470       0.1854        0.816
+##    30      4       1   0.2917  0.1387       0.1148        0.741
+##    33      3       1   0.1944  0.1219       0.0569        0.664
+##    43      2       1   0.0972  0.0919       0.0153        0.620
+##    45      1       1   0.0000     NaN           NA           NA
+## 
+##                 drug=1 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##     9     11       1    0.909  0.0867       0.7541        1.000
+##    13     10       1    0.818  0.1163       0.6192        1.000
+##    18      8       1    0.716  0.1397       0.4884        1.000
+##    23      7       1    0.614  0.1526       0.3769        0.999
+##    31      5       1    0.491  0.1642       0.2549        0.946
+##    34      4       1    0.368  0.1627       0.1549        0.875
+##    48      2       1    0.184  0.1535       0.0359        0.944
+```
+
+The `times` option allows you to get survival probabilities for specific timepoints. For example, at 1 year, 2 years and 5 years:
+
+
+```r
+# Get survival probabilities for specific time points in full dataset
+# "~ 1" indicates all patients
+# "t" variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years
+summary(survfit(example7a_surv ~ 1, data = example7a), times = c(12, 24, 60))
+```
+
+```
+## Call: survfit(formula = example7a_surv ~ 1, data = example7a)
+## 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##    12     18       6   0.7391  0.0916       0.5798        0.942
+##    24     11       4   0.5466  0.1073       0.3721        0.803
+##    60      1       8   0.0828  0.0727       0.0148        0.462
+```
+
 The `coxph` function (from `survival`) is for regression analyses. For example, a univariate regression for the effects of "drug" on survival:
 
 
@@ -509,85 +588,6 @@ coxph(example7a_surv ~ drug + age + sex + marker, data = example7a)
 ## 
 ## Likelihood ratio test=8.79  on 4 df, p=0.06668
 ## n= 23, number of events= 18
-```
-
-Using the `summary` function with `survfit` lists all available followup times along with survival probabilities (you get a 95% C.I. as well):
-
-
-```r
-# Survival probabilities for the entire cohort
-summary(survfit(example7a_surv ~ 1, data = example7a))
-```
-
-```
-## Call: survfit(formula = example7a_surv ~ 1, data = example7a)
-## 
-##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
-##     5     23       2   0.9130  0.0588       0.8049        1.000
-##     8     21       2   0.8261  0.0790       0.6848        0.996
-##     9     19       1   0.7826  0.0860       0.6310        0.971
-##    12     18       1   0.7391  0.0916       0.5798        0.942
-##    13     17       1   0.6957  0.0959       0.5309        0.912
-##    18     14       1   0.6460  0.1011       0.4753        0.878
-##    23     13       2   0.5466  0.1073       0.3721        0.803
-##    27     11       1   0.4969  0.1084       0.3240        0.762
-##    30      9       1   0.4417  0.1095       0.2717        0.718
-##    31      8       1   0.3865  0.1089       0.2225        0.671
-##    33      7       1   0.3313  0.1064       0.1765        0.622
-##    34      6       1   0.2761  0.1020       0.1338        0.569
-##    43      5       1   0.2208  0.0954       0.0947        0.515
-##    45      4       1   0.1656  0.0860       0.0598        0.458
-##    48      2       1   0.0828  0.0727       0.0148        0.462
-```
-
-```r
-# You can also summarize the survival by group:
-summary(survfit(example7a_surv ~ drug, data = example7a))
-```
-
-```
-## Call: survfit(formula = example7a_surv ~ drug, data = example7a)
-## 
-##                 drug=0 
-##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
-##     5     12       2   0.8333  0.1076       0.6470        1.000
-##     8     10       2   0.6667  0.1361       0.4468        0.995
-##    12      8       1   0.5833  0.1423       0.3616        0.941
-##    23      6       1   0.4861  0.1481       0.2675        0.883
-##    27      5       1   0.3889  0.1470       0.1854        0.816
-##    30      4       1   0.2917  0.1387       0.1148        0.741
-##    33      3       1   0.1944  0.1219       0.0569        0.664
-##    43      2       1   0.0972  0.0919       0.0153        0.620
-##    45      1       1   0.0000     NaN           NA           NA
-## 
-##                 drug=1 
-##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
-##     9     11       1    0.909  0.0867       0.7541        1.000
-##    13     10       1    0.818  0.1163       0.6192        1.000
-##    18      8       1    0.716  0.1397       0.4884        1.000
-##    23      7       1    0.614  0.1526       0.3769        0.999
-##    31      5       1    0.491  0.1642       0.2549        0.946
-##    34      4       1    0.368  0.1627       0.1549        0.875
-##    48      2       1    0.184  0.1535       0.0359        0.944
-```
-
-The `times` option allows you to get survival probabilities for specific timepoints. For example, at 1 year, 2 years and 5 years:
-
-
-```r
-# Get survival probabilities for specific time points in full dataset
-# "~ 1" indicates all patients
-# "t" variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years
-summary(survfit(example7a_surv ~ 1, data = example7a), times = c(12, 24, 60))
-```
-
-```
-## Call: survfit(formula = example7a_surv ~ 1, data = example7a)
-## 
-##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
-##    12     18       6   0.7391  0.0916       0.5798        0.942
-##    24     11       4   0.5466  0.1073       0.3721        0.803
-##    60      1       8   0.0828  0.0727       0.0148        0.462
 ```
 
 So, some typical code to analyze a dataset:
