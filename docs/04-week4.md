@@ -1186,173 +1186,11 @@ This table gives you a pvalue, but not an estimate. For this, we need the `epi.2
 
 The language we've been using is a little unusual for this example. A "case" is running a marathon in under four hours (i.e., subfourhour == 1). "Exposed" means that you are a woman (i.e. sex == 1). "Risk" means the proportion of patients who were a "case".
 
-**Coding `epi.2by2` function**
+**Odds, odds ratios, risk and relative risk**
 
-The `epi.2by2` function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the `table` function with the "cohort" variable first (as rows), and the "case" variable second (as columns).
+The `epi.2by2` function will give you a number of different estimates, including the odds, odds ratio, risk and relative risk. Note that in the `epi.2by2` output, the risk is in the column "Inc risk *" and the relative risk is listed as "Inc risk ratio" under "Point estimates and 95% CIs."
 
-
-```r
-# Create a two-way table
-table(lesson2a$sex, lesson2a$subfourhour)
-```
-
-```
-##    
-##      0  1
-##   0 30 36
-##   1 21 11
-```
-
-However, for the `epi.2by2` function, we need the first row to be the "exposed" group (in this case, sex == 1) and the first column be the "case" group (subfourhour == 1), so that we are comparing "exposed" to "non-exposed", rather than comparing "non-exposed" to "exposed."
-
-By default, R will sort the table numerically, so by default the first table row will be the "non-exposed" group (sex == 0) and the first column will be the "control" group (subfourhour == 0).
-
-Since the rows and columns are out of order, we will first convert the table to the correct format. You do not need to remember this code - you can simply copy and paste, and replace the dataset name ("lesson2a") and variable names ("sex", "subfourhour") as necessary.
-
-
-```r
-# This code creates the table with the correct format
-matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2)
-```
-
-```
-##      [,1] [,2]
-## [1,]   11   21
-## [2,]   36   30
-```
-
-```r
-# For those who are curious, here is a description of the functions above:
-# "table" - creates the two-way table above
-# "rev" - reverses the order of the table
-# "matrix(..., nrow = 2)" converts the reversed data back into a two-by-two table
-```
-
-You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the `epi.2by2` function.
-
-
-```r
-# Apply the epi.2by2 function to the table in the correct format
-epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
-```
-
-```
-##              Outcome +    Outcome -      Total        Inc risk *
-## Exposed +           11           21         32              34.4
-## Exposed -           36           30         66              54.5
-## Total               47           51         98              48.0
-##                  Odds
-## Exposed +       0.524
-## Exposed -       1.200
-## Total           0.922
-## 
-## Point estimates and 95% CIs:
-## -------------------------------------------------------------------
-## Inc risk ratio                               0.63 (0.37, 1.07)
-## Odds ratio                                   0.44 (0.18, 1.05)
-## Attrib risk *                                -20.17 (-40.54, 0.20)
-## Attrib risk in population *                  -6.59 (-22.15, 8.97)
-## Attrib fraction in exposed (%)               -58.68 (-168.76, 6.32)
-## Attrib fraction in population (%)            -13.73 (-29.44, 0.07)
-## -------------------------------------------------------------------
-##  Test that odds ratio = 1: chi2(1) = 3.513 Pr>chi2 = 0.061
-##  Wald confidence limits
-##  CI: confidence interval
-##  * Outcomes per 100 population units
-```
-
-<!-- This code works to flip tables: matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2) -->
-
-<!-- This code also works (for tabyls): as.matrix(select(rev(arrange(tabyl(lesson2a, sex, subfourhour), desc(sex))), 1:2)) -->
-
-
-
-<!-- Used "Wald" option as these results match Stata output -->
-
-So reading this table we get the following information:
-
-- There were 32 women ("Exposed +" row, "Total" column) and 66 men ("Exposed -" row, "Total" column), a total of 98 patients ("Total" row and column)
-- 11 of the women finished the race in under four hours ("Exposed +" row, "Outcome +" column), 21 did not ("Exposed +" row, "Outcome -" column).
-- 36 of the men finished the race in under four hours ("Exposed -" row, "Outcome +" column), 30 did not ("Exposed -" row, "Outcome -" column)
-- 34.4% of the women ("Exposed +" column, "Inc risk \*" row) and 54.5% of the men ("Exposed -" column, "Inc risk \*" row) finished in under four hours.
-- 20% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the absolute difference in rates of sub-four hour marathon in men and women.
-- After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from 41% more to 0.20% less.
-- The chance that a woman finishes the race in under four hours is 0.63 of that for a man ("Inc risk ratio" under "Point estimates and 95% CIs"). The 95% CI is 0.37 to 1.07 (i.e about one third as likely to 7% more likely).
-- The odds ratio is reported in the second row under "Point estimates and 95% CIs" and indicates the relative difference in rates.
-
-Be aware that when interpreting a relative difference in risks, it is useful to know the absolute risk as well. A study may report that a drug reduces the risk of heart attack by 50%, but whether you choose to use the drug would depend on whether risk was reduced from 20% to 10% (a 50% relative difference and a 10% absolute difference) or whether risk was reduced from 2% to 1% (still a 50% relative difference but only a 1% absolute difference).
-
-Here is another one to look through:
-
-
-```r
-# Another example using "epi.2by2" function
-epi.2by2(matrix(rev(table(example4a$toxin, example4a$cancer)), nrow = 2))
-```
-
-```
-##              Outcome +    Outcome -      Total        Inc risk *
-## Exposed +            5            3          8              62.5
-## Exposed -            1            7          8              12.5
-## Total                6           10         16              37.5
-##                  Odds
-## Exposed +       1.667
-## Exposed -       0.143
-## Total           0.600
-## 
-## Point estimates and 95% CIs:
-## -------------------------------------------------------------------
-## Inc risk ratio                               5.00 (0.74, 33.78)
-## Odds ratio                                   11.67 (0.92, 147.56)
-## Attrib risk *                                50.00 (9.37, 90.63)
-## Attrib risk in population *                  25.00 (-7.98, 57.98)
-## Attrib fraction in exposed (%)               80.00 (-35.11, 97.04)
-## Attrib fraction in population (%)            66.67 (-69.30, 93.44)
-## -------------------------------------------------------------------
-##  Test that odds ratio = 1: chi2(1) = 4.267 Pr>chi2 = 0.039
-##  Wald confidence limits
-##  CI: confidence interval
-##  * Outcomes per 100 population units
-```
-
-Here it is easier to see that the "toxin" is the exposure and "cancer" is whether you are a case.
-
-**Exact statistics**
-
-Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p value. However, using the `fisher.test` function gives the exact pvalue. You do not need to reverse the table for the `fisher.test` function.
-
-
-```r
-# Calculate p value from fisher's exact test
-fisher.test(table(example4a$toxin, example4a$cancer))
-```
-
-```
-## 
-## 	Fisher's Exact Test for Count Data
-## 
-## data:  table(example4a$toxin, example4a$cancer)
-## p-value = 0.1189
-## alternative hypothesis: true odds ratio is not equal to 1
-## 95 percent confidence interval:
-##    0.6795665 625.2181311
-## sample estimates:
-## odds ratio 
-##   9.760631
-```
-
-Similar to the chi-squared test, you can also get the Fisher's exact pvalue using the `tbl_summary` and `add_p` functions, by specifying `test = "fisher.test"` for the variable of interest. 
-
-
-```r
-# Create formatted table with p value from fisher's exact test
-tbl_summary(
-  example4a %>% select(toxin, cancer),
-  by = cancer,
-  type = list("toxin" ~ "categorical")
-) %>%
-  add_p(test = list("toxin" ~ "fisher.test"))
-```
+The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a child passing an exam are therefore 250 ÷ 750 = 1 ÷ 3 = 33.33%. Here are some examples of probabilities and odds:
 
 <!--html_preserve--><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -1652,6 +1490,521 @@ tbl_summary(
 }
 </style>
 <div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <tr>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1">Probability of the event (e.g. surgical complication)</th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1">Probability of no event (e.g. no complication)</th>
+    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1">Odds of the event</th>
+  </tr>
+  <body class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">50%</td>
+      <td class="gt_row gt_left">50%</td>
+      <td class="gt_row gt_left">1.000</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped">25%</td>
+      <td class="gt_row gt_left gt_striped">75%</td>
+      <td class="gt_row gt_left gt_striped">0.3333</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">10%</td>
+      <td class="gt_row gt_left">90%</td>
+      <td class="gt_row gt_left">0.1111</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped">90%</td>
+      <td class="gt_row gt_left gt_striped">10%</td>
+      <td class="gt_row gt_left gt_striped">9.000</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">5%</td>
+      <td class="gt_row gt_left">95%</td>
+      <td class="gt_row gt_left">0.0526</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped">2%</td>
+      <td class="gt_row gt_left gt_striped">98%</td>
+      <td class="gt_row gt_left gt_striped">0.0204</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">1%</td>
+      <td class="gt_row gt_left">99%</td>
+      <td class="gt_row gt_left">0.0101</td>
+    </tr>
+  </body>
+  
+  
+</table></div><!--/html_preserve-->
+
+One thing you might notice is that when something doesn’t happen very often, the odds and the probability are very similar. So, for example, something with a probability of 5% (0.05) has an odds of 0.0526. This has important implications for interpreting odds ratios. You will often see in the literature something like “the odds ratio for stage was 1.26, so patients with high stage disease had a 26% higher risk of complications”. This statement is wrong because if the odds ratio is 1.26 then the odds are 26% higher, not the risk. The odds ratio and relative risk will only be similar if the probability of an event is low. A doubling of risk from 1% to 2% is an increase in odds from 0.0101 to 0.0204, so very close to an odds ratio of 2. But a doubling of risk from 25% to 50% is an odds ratio of 3 (odds of 0.3333 to odds of 1.000).
+
+**Coding `epi.2by2` function**
+
+The `epi.2by2` function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the `table` function with the "cohort" variable first (as rows), and the "case" variable second (as columns).
+
+
+```r
+# Create a two-way table
+table(lesson2a$sex, lesson2a$subfourhour)
+```
+
+```
+##    
+##      0  1
+##   0 30 36
+##   1 21 11
+```
+
+However, for the `epi.2by2` function, we need the first row to be the "exposed" group (in this case, sex == 1) and the first column be the "case" group (subfourhour == 1), so that we are comparing "exposed" to "non-exposed", rather than comparing "non-exposed" to "exposed."
+
+By default, R will sort the table numerically, so by default the first table row will be the "non-exposed" group (sex == 0) and the first column will be the "control" group (subfourhour == 0).
+
+Since the rows and columns are out of order, we will first convert the table to the correct format. You do not need to remember this code - you can simply copy and paste, and replace the dataset name ("lesson2a") and variable names ("sex", "subfourhour") as necessary.
+
+
+```r
+# This code creates the table with the correct format
+matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2)
+```
+
+```
+##      [,1] [,2]
+## [1,]   11   21
+## [2,]   36   30
+```
+
+```r
+# For those who are curious, here is a description of the functions above:
+# "table" - creates the two-way table above
+# "rev" - reverses the order of the table
+# "matrix(..., nrow = 2)" converts the reversed data back into a two-by-two table
+```
+
+You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the `epi.2by2` function.
+
+
+```r
+# Apply the epi.2by2 function to the table in the correct format
+epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
+```
+
+```
+##              Outcome +    Outcome -      Total        Inc risk *
+## Exposed +           11           21         32              34.4
+## Exposed -           36           30         66              54.5
+## Total               47           51         98              48.0
+##                  Odds
+## Exposed +       0.524
+## Exposed -       1.200
+## Total           0.922
+## 
+## Point estimates and 95% CIs:
+## -------------------------------------------------------------------
+## Inc risk ratio                               0.63 (0.37, 1.07)
+## Odds ratio                                   0.44 (0.18, 1.05)
+## Attrib risk *                                -20.17 (-40.54, 0.20)
+## Attrib risk in population *                  -6.59 (-22.15, 8.97)
+## Attrib fraction in exposed (%)               -58.68 (-168.76, 6.32)
+## Attrib fraction in population (%)            -13.73 (-29.44, 0.07)
+## -------------------------------------------------------------------
+##  Test that odds ratio = 1: chi2(1) = 3.513 Pr>chi2 = 0.061
+##  Wald confidence limits
+##  CI: confidence interval
+##  * Outcomes per 100 population units
+```
+
+<!-- This code works to flip tables: matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2) -->
+
+<!-- This code also works (for tabyls): as.matrix(select(rev(arrange(tabyl(lesson2a, sex, subfourhour), desc(sex))), 1:2)) -->
+
+
+
+<!-- Used "Wald" option as these results match Stata output -->
+
+So reading this table we get the following information:
+
+- There were 32 women ("Exposed +" row, "Total" column) and 66 men ("Exposed -" row, "Total" column), a total of 98 patients ("Total" row and column)
+- 11 of the women finished the race in under four hours ("Exposed +" row, "Outcome +" column), 21 did not ("Exposed +" row, "Outcome -" column).
+- 36 of the men finished the race in under four hours ("Exposed -" row, "Outcome +" column), 30 did not ("Exposed -" row, "Outcome -" column)
+- 34.4% of the women ("Exposed +" column, "Inc risk \*" row) and 54.5% of the men ("Exposed -" column, "Inc risk \*" row) finished in under four hours.
+- 20% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the absolute difference in rates of sub-four hour marathon in men and women.
+- After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from 41% more to 0.20% less.
+- The chance that a woman finishes the race in under four hours is 0.63 of that for a man ("Inc risk ratio" under "Point estimates and 95% CIs"). The 95% CI is 0.37 to 1.07 (i.e about one third as likely to 7% more likely).
+- The odds ratio is reported in the second row under "Point estimates and 95% CIs" and indicates the relative difference in odds.
+
+Be aware that when interpreting a relative difference in risks, it is useful to know the absolute risk as well. A study may report that a drug reduces the risk of heart attack by 50%, but whether you choose to use the drug would depend on whether risk was reduced from 20% to 10% (a 50% relative difference and a 10% absolute difference) or whether risk was reduced from 2% to 1% (still a 50% relative difference but only a 1% absolute difference).
+
+Here is another one to look through:
+
+
+```r
+# Another example using "epi.2by2" function
+epi.2by2(matrix(rev(table(example4a$toxin, example4a$cancer)), nrow = 2))
+```
+
+```
+##              Outcome +    Outcome -      Total        Inc risk *
+## Exposed +            5            3          8              62.5
+## Exposed -            1            7          8              12.5
+## Total                6           10         16              37.5
+##                  Odds
+## Exposed +       1.667
+## Exposed -       0.143
+## Total           0.600
+## 
+## Point estimates and 95% CIs:
+## -------------------------------------------------------------------
+## Inc risk ratio                               5.00 (0.74, 33.78)
+## Odds ratio                                   11.67 (0.92, 147.56)
+## Attrib risk *                                50.00 (9.37, 90.63)
+## Attrib risk in population *                  25.00 (-7.98, 57.98)
+## Attrib fraction in exposed (%)               80.00 (-35.11, 97.04)
+## Attrib fraction in population (%)            66.67 (-69.30, 93.44)
+## -------------------------------------------------------------------
+##  Test that odds ratio = 1: chi2(1) = 4.267 Pr>chi2 = 0.039
+##  Wald confidence limits
+##  CI: confidence interval
+##  * Outcomes per 100 population units
+```
+
+Here it is easier to see that the "toxin" is the exposure and "cancer" is whether you are a case.
+
+**Exact statistics**
+
+Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p value. However, using the `fisher.test` function gives the exact pvalue. You do not need to reverse the table for the `fisher.test` function.
+
+
+```r
+# Calculate p value from fisher's exact test
+fisher.test(table(example4a$toxin, example4a$cancer))
+```
+
+```
+## 
+## 	Fisher's Exact Test for Count Data
+## 
+## data:  table(example4a$toxin, example4a$cancer)
+## p-value = 0.1189
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##    0.6795665 625.2181311
+## sample estimates:
+## odds ratio 
+##   9.760631
+```
+
+Similar to the chi-squared test, you can also get the Fisher's exact pvalue using the `tbl_summary` and `add_p` functions, by specifying `test = "fisher.test"` for the variable of interest. 
+
+
+```r
+# Create formatted table with p value from fisher's exact test
+tbl_summary(
+  example4a %>% select(toxin, cancer),
+  by = cancer,
+  type = list("toxin" ~ "categorical")
+) %>%
+  add_p(test = list("toxin" ~ "fisher.test"))
+```
+
+<!--html_preserve--><style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#pqsnuprvju .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  /* table.background.color */
+  width: auto;
+  /* table.width */
+  border-top-style: solid;
+  /* table.border.top.style */
+  border-top-width: 2px;
+  /* table.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table.border.top.color */
+  border-bottom-style: solid;
+  /* table.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* table.border.bottom.color */
+}
+
+#pqsnuprvju .gt_heading {
+  background-color: #FFFFFF;
+  /* heading.background.color */
+  border-bottom-color: #FFFFFF;
+}
+
+#pqsnuprvju .gt_title {
+  color: #333333;
+  font-size: 125%;
+  /* heading.title.font.size */
+  padding-top: 4px;
+  /* heading.top.padding - not yet used */
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pqsnuprvju .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  /* heading.subtitle.font.size */
+  padding-top: 0;
+  padding-bottom: 4px;
+  /* heading.bottom.padding - not yet used */
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pqsnuprvju .gt_bottom_border {
+  border-bottom-style: solid;
+  /* heading.border.bottom.style */
+  border-bottom-width: 2px;
+  /* heading.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* heading.border.bottom.color */
+}
+
+#pqsnuprvju .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pqsnuprvju .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* column_labels.background.color */
+  font-size: 16px;
+  /* column_labels.font.size */
+  font-weight: initial;
+  /* column_labels.font.weight */
+  vertical-align: middle;
+  padding: 5px;
+  margin: 10px;
+  overflow-x: hidden;
+}
+
+#pqsnuprvju .gt_columns_top_border {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pqsnuprvju .gt_columns_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pqsnuprvju .gt_sep_right {
+  border-right: 5px solid #FFFFFF;
+}
+
+#pqsnuprvju .gt_group_heading {
+  padding: 8px;
+  /* row_group.padding */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #D3D3D3;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#pqsnuprvju .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 16px;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #D3D3D3;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#pqsnuprvju .gt_striped {
+  background-color: #8080800D;
+}
+
+#pqsnuprvju .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pqsnuprvju .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pqsnuprvju .gt_row {
+  padding: 8px;
+  /* row.padding */
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pqsnuprvju .gt_stub {
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#pqsnuprvju .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* summary_row.background.color */
+  padding: 8px;
+  /* summary_row.padding */
+  text-transform: inherit;
+  /* summary_row.text_transform */
+}
+
+#pqsnuprvju .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* grand_summary_row.background.color */
+  padding: 8px;
+  /* grand_summary_row.padding */
+  text-transform: inherit;
+  /* grand_summary_row.text_transform */
+}
+
+#pqsnuprvju .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#pqsnuprvju .gt_first_grand_summary_row {
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pqsnuprvju .gt_table_body {
+  border-top-style: solid;
+  /* table_body.border.top.style */
+  border-top-width: 2px;
+  /* table_body.border.top.width */
+  border-top-color: #D3D3D3;
+  /* table_body.border.top.color */
+  border-bottom-style: solid;
+  /* table_body.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table_body.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* table_body.border.bottom.color */
+}
+
+#pqsnuprvju .gt_footnotes {
+  border-top-style: solid;
+  /* footnotes.border.top.style */
+  border-top-width: 2px;
+  /* footnotes.border.top.width */
+  border-top-color: #D3D3D3;
+  /* footnotes.border.top.color */
+}
+
+#pqsnuprvju .gt_footnote {
+  font-size: 90%;
+  /* footnote.font.size */
+  margin: 0px;
+  padding: 4px;
+  /* footnote.padding */
+}
+
+#pqsnuprvju .gt_sourcenotes {
+  border-top-style: solid;
+  /* sourcenotes.border.top.style */
+  border-top-width: 2px;
+  /* sourcenotes.border.top.width */
+  border-top-color: #D3D3D3;
+  /* sourcenotes.border.top.color */
+}
+
+#pqsnuprvju .gt_sourcenote {
+  font-size: 90%;
+  /* sourcenote.font.size */
+  padding: 4px;
+  /* sourcenote.padding */
+}
+
+#pqsnuprvju .gt_center {
+  text-align: center;
+}
+
+#pqsnuprvju .gt_left {
+  text-align: left;
+}
+
+#pqsnuprvju .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pqsnuprvju .gt_font_normal {
+  font-weight: normal;
+}
+
+#pqsnuprvju .gt_font_bold {
+  font-weight: bold;
+}
+
+#pqsnuprvju .gt_font_italic {
+  font-style: italic;
+}
+
+#pqsnuprvju .gt_super {
+  font-size: 65%;
+}
+
+#pqsnuprvju .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="pqsnuprvju" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <tr>
     <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>

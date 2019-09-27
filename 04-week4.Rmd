@@ -218,6 +218,37 @@ This table gives you a pvalue, but not an estimate. For this, we need the `epi.2
 
 The language we've been using is a little unusual for this example. A "case" is running a marathon in under four hours (i.e., subfourhour == 1). "Exposed" means that you are a woman (i.e. sex == 1). "Risk" means the proportion of patients who were a "case".
 
+**Odds, odds ratios, risk and relative risk**
+
+The `epi.2by2` function will give you a number of different estimates, including the odds, odds ratio, risk and relative risk. Note that in the `epi.2by2` output, the risk is in the column "Inc risk *" and the relative risk is listed as "Inc risk ratio" under "Point estimates and 95% CIs."
+
+The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a child passing an exam are therefore 250 ÷ 750 = 1 ÷ 3 = 33.33%. Here are some examples of probabilities and odds:
+
+```{r section4h1, echo = FALSE, results = "asis"}
+
+tbl_probodds <-
+  tibble(
+    prob_event = c(50, 25, 10, 90, 5, 2, 1)
+  ) %>%
+  mutate(prob_noevent = 100 - prob_event,
+         odds = prob_event/prob_noevent,
+         prob_event = str_glue("{prob_event}%"),
+         prob_noevent = str_glue("{prob_noevent}%")) %>%
+  gt() %>%
+  cols_label(
+    prob_event = "Probability of the event (e.g. surgical complication)",
+    prob_noevent = "Probability of no event (e.g. no complication)",
+    odds = "Odds of the event"
+  ) %>%
+  fmt(columns = vars(odds), fns = function(x) style_sigfig(x, digits = 4)) %>%
+  cols_align(align = "left")
+
+tbl_probodds
+
+```
+
+One thing you might notice is that when something doesn’t happen very often, the odds and the probability are very similar. So, for example, something with a probability of 5% (0.05) has an odds of `r tbl_probodds %>% filter(prob_event == "5%") %>% pull(odds) %>% style_sigfig(digits = 4)`. This has important implications for interpreting odds ratios. You will often see in the literature something like “the odds ratio for stage was 1.26, so patients with high stage disease had a 26% higher risk of complications”. This statement is wrong because if the odds ratio is 1.26 then the odds are 26% higher, not the risk. The odds ratio and relative risk will only be similar if the probability of an event is low. A doubling of risk from 1% to 2% is an increase in odds from `r tbl_probodds %>% filter(prob_event == "1%") %>% pull(odds) %>% style_sigfig(digits = 4)` to `r tbl_probodds %>% filter(prob_event == "2%") %>% pull(odds) %>% style_sigfig(digits = 4)`, so very close to an odds ratio of 2. But a doubling of risk from 25% to 50% is an odds ratio of 3 (odds of `r tbl_probodds %>% filter(prob_event == "25%") %>% pull(odds) %>% style_sigfig(digits = 4)` to odds of `r tbl_probodds %>% filter(prob_event == "50%") %>% pull(odds) %>% style_sigfig(digits = 4)`).
+
 **Coding `epi.2by2` function**
 
 The `epi.2by2` function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the `table` function with the "cohort" variable first (as rows), and the "case" variable second (as columns).
@@ -278,7 +309,7 @@ So reading this table we get the following information:
 - `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[1]]))`% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the absolute difference in rates of sub-four hour marathon in men and women.
 - After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[2]]))`% more to `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[3]]))`% less.
 - The chance that a woman finishes the race in under four hours is `r style_ratio(tbl_marathon$res$RR.strata.wald[[1]])` of that for a man ("Inc risk ratio" under "Point estimates and 95% CIs"). The 95% CI is `r style_ratio(tbl_marathon$res$RR.strata.wald[[2]])` to `r style_ratio(tbl_marathon$res$RR.strata.wald[[3]])` (i.e about one third as likely to 7% more likely).
-- The odds ratio is reported in the second row under "Point estimates and 95% CIs" and indicates the relative difference in rates.
+- The odds ratio is reported in the second row under "Point estimates and 95% CIs" and indicates the relative difference in odds.
 
 Be aware that when interpreting a relative difference in risks, it is useful to know the absolute risk as well. A study may report that a drug reduces the risk of heart attack by 50%, but whether you choose to use the drug would depend on whether risk was reduced from 20% to 10% (a 50% relative difference and a 10% absolute difference) or whether risk was reduced from 2% to 1% (still a 50% relative difference but only a 1% absolute difference).
 
