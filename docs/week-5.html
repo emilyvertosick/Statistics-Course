@@ -1596,7 +1596,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="getting-the-area-under-the-curve" class="section level3">
 <h3><span class="header-section-number">5.2.5</span> Getting the area-under-the-curve</h3>
-<p>Using regression models is a way to try to predict outcome based on the data we have. After we’ve created a model, we want to know - is the prediction from this model any good? One way to do this is by assessing the discrimination. Discrimination tells us how well the model discriminates between those patients who have the event and those patients who do not have the event. For logistic regression, discrimination is measured using the area-under-the-curve (AUC).</p>
+<p>Using regression models is a way to try to predict outcome based on the data we have. After we’ve created a model, we want to know - is the prediction from this model any good? One way to do this is by assessing the discrimination. For logistic regression, where we have a binary endpoint, discrimination tells us how well the model distinguishes between patients who have the event and patients who do not have the event. Discrimination is measured using the area-under-the-curve (AUC) and varies between 0.5 (a coin flip) and 1 (perfect discrimination).</p>
 <p>Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), it doesn’t matter for our purposes.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Calculate the AUC using the &quot;roc&quot; function</span></a>
 <a class="sourceLine" id="cb26-2" title="2"><span class="kw">roc</span>(cancer <span class="op">~</span><span class="st"> </span>marker, <span class="dt">data =</span> example5b)</a></code></pre></div>
@@ -1632,6 +1632,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Data: .fitted in 1865 controls (cancer 0) &lt; 635 cases (cancer 1).
 ## Area under the curve: 0.7996</code></pre>
+<p>The AUC for the model including both age and the marker value is higher than for age alone, so we can conclude that the marker adds important predictiveness to age.</p>
 </div>
 </div>
 <div id="assignments-4" class="section level2">

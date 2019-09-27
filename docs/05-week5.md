@@ -1452,7 +1452,7 @@ To convert, type ``exp(-0.5841) / (exp(-0.5841)+1)`` to get a probability of 35.
 
 ### Getting the area-under-the-curve
 
-Using regression models is a way to try to predict outcome based on the data we have. After we've created a model, we want to know - is the prediction from this model any good? One way to do this is by assessing the discrimination. Discrimination tells us how well the model discriminates between those patients who have the event and those patients who do not have the event. For logistic regression, discrimination is measured using the area-under-the-curve (AUC).
+Using regression models is a way to try to predict outcome based on the data we have. After we've created a model, we want to know - is the prediction from this model any good? One way to do this is by assessing the discrimination. For logistic regression, where we have a binary endpoint, discrimination tells us how well the model distinguishes between patients who have the event and patients who do not have the event. Discrimination is measured using the area-under-the-curve (AUC) and varies between 0.5 (a coin flip) and 1 (perfect discrimination).
 
 Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), it doesn’t matter for our purposes.
 
@@ -1519,6 +1519,7 @@ roc(cancer ~ .fitted, data = marker_pred)
 ## Data: .fitted in 1865 controls (cancer 0) < 635 cases (cancer 1).
 ## Area under the curve: 0.7996
 ```
+The AUC for the model including both age and the marker value is higher than for age alone, so we can conclude that the marker adds important predictiveness to age. 
 
 ## Assignments
 
