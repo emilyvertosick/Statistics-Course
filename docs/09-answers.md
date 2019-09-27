@@ -81,7 +81,7 @@ lesson2a %>%
 ##  n variables: 6 
 ##  group variables: sex 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##  sex variable missing complete  n   mean    sd  p0    p25   p50    p75
 ##    0       rt       0       66 66 243.23 49.85 158 214.25 236   268.75
 ##    1       rt       0       32 32 264.84 37.45 222 237    251.5 283.25
@@ -2708,7 +2708,7 @@ skim(lesson3c$delta12)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##          variable missing complete  n  mean   sd p0 p25 p50 p75 p100
 ##  lesson3c$delta12       0       22 22 -0.27 0.83 -2  -1   0   0    1
 ##      hist
@@ -2839,7 +2839,7 @@ lesson3e %>%
 ##  n variables: 2 
 ##  group variables: hospital 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##  hospital variable missing complete  n  mean    sd p0   p25 p50  p75 p100
 ##         a      los       0       29 29 44.86 13.57 30 34     41 55     79
 ##         b      los       0       28 28 45.14 10.85 28 39.25  45 50.5   70
@@ -6733,7 +6733,7 @@ lesson5a %>%
 ##  n obs: 190 
 ##  n variables: 6 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##  variable missing complete   n   mean    sd  p0 p25 p50 p75 p100     hist
 ##        rt       1      189 190 238.57 46.63 155 205 235 268  414 ▃▇▇▆▃▂▁▁
 ```
@@ -12690,7 +12690,7 @@ skim(lesson5g$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0   p25  p50 p75 p100
 ##  lesson5g$age       2      398 400 42.46 10.58 17 34.25 42.5  49   71
 ##      hist
@@ -14147,6 +14147,7 @@ One approach to selecting which variables to include in a predictive model would
 
 
 ```r
+# Model with all variables
 glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
@@ -14503,6 +14504,7 @@ You might notice that "psant" is not a good predictor (p=0.3) and decide to take
 
 
 ```r
+# Model excluding "psant"
 glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
@@ -14853,6 +14855,7 @@ In a regression using the remaining three variables, "psai" is not statistically
 
 
 ```r
+# Model excluding "psant" and "psai"
 glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
@@ -19778,7 +19781,7 @@ lesson7a %>%
 ##  n obs: 330 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##       variable missing complete   n    mean     sd   p0  p25  p50    p75
 ##  survival_time       0      330 330 2389.38 336.23 1279 2162 2352 2625.5
 ##  p100     hist
@@ -20505,7 +20508,7 @@ lesson7a %>%
 ##  n obs: 614 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##  variable missing complete   n mean   sd p0 p25 p50 p75 p100     hist
 ##     nodes      15      599 614 3.59 3.49  0   1   2 4.5   33 ▇▂▁▁▁▁▁▁
 ```

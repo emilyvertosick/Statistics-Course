@@ -340,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n variables: 6 
 ##  group variables: sex 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##  sex variable missing complete  n   mean    sd  p0    p25   p50    p75
 ##    0       rt       0       66 66 243.23 49.85 158 214.25 236   268.75
 ##    1       rt       0       32 32 264.84 37.45 222 237    251.5 283.25
@@ -2770,7 +2770,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##          variable missing complete  n  mean   sd p0 p25 p50 p75 p100
 ##  lesson3c$delta12       0       22 22 -0.27 0.83 -2  -1   0   0    1
 ##      hist
@@ -2859,7 +2859,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n variables: 2 
 ##  group variables: hospital 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##  hospital variable missing complete  n  mean    sd p0   p25 p50  p75 p100
 ##         a      los       0       29 29 44.86 13.57 30 34     41 55     79
 ##         b      los       0       28 28 45.14 10.85 28 39.25  45 50.5   70
@@ -6510,7 +6510,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 190 
 ##  n variables: 6 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##  variable missing complete   n   mean    sd  p0 p25 p50 p75 p100     hist
 ##        rt       1      189 190 238.57 46.63 155 205 235 268  414 ▃▇▇▆▃▂▁▁</code></pre>
 <p>Then multiply the men’s average (238.6) by 1.10 to get the women’s time, which gives 263.2.</p>
@@ -12246,7 +12246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0   p25  p50 p75 p100
 ##  lesson5g$age       2      398 400 42.46 10.58 17 34.25 42.5  49   71
 ##      hist
@@ -13661,8 +13661,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.5.8</span> lesson5h.rds</h3>
 <p><strong>PSA is used to screen for prostate cancer. In this dataset, the researchers are looking at various forms of PSA (e.g. “nicked” PSA). What variables should be used to try to predict prostate cancer? How accurate would this test be?</strong></p>
 <p>One approach to selecting which variables to include in a predictive model would be to do a regression. You could start with all the variables.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">glm</span>(cancer <span class="op">~</span><span class="st"> </span>psa <span class="op">+</span><span class="st"> </span>psan <span class="op">+</span><span class="st"> </span>psai <span class="op">+</span><span class="st"> </span>psant, <span class="dt">data =</span> lesson5h, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb143-2" title="2"><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="co"># Model with all variables</span></a>
+<a class="sourceLine" id="cb143-2" title="2"><span class="kw">glm</span>(cancer <span class="op">~</span><span class="st"> </span>psa <span class="op">+</span><span class="st"> </span>psan <span class="op">+</span><span class="st"> </span>psai <span class="op">+</span><span class="st"> </span>psant, <span class="dt">data =</span> lesson5h, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-3" title="3"><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -14011,8 +14012,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>You might notice that “psant” is not a good predictor (p=0.3) and decide to take it out of the model.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">glm</span>(cancer <span class="op">~</span><span class="st"> </span>psa <span class="op">+</span><span class="st"> </span>psan <span class="op">+</span><span class="st"> </span>psai, <span class="dt">data =</span> lesson5h, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb144-2" title="2"><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="co"># Model excluding &quot;psant&quot;</span></a>
+<a class="sourceLine" id="cb144-2" title="2"><span class="kw">glm</span>(cancer <span class="op">~</span><span class="st"> </span>psa <span class="op">+</span><span class="st"> </span>psan <span class="op">+</span><span class="st"> </span>psai, <span class="dt">data =</span> lesson5h, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-3" title="3"><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -14355,8 +14357,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>In a regression using the remaining three variables, “psai” is not statistically significant, and you might then want to remove that variable too.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="kw">glm</span>(cancer <span class="op">~</span><span class="st"> </span>psa <span class="op">+</span><span class="st"> </span>psan, <span class="dt">data =</span> lesson5h, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb145-2" title="2"><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="co"># Model excluding &quot;psant&quot; and &quot;psai&quot;</span></a>
+<a class="sourceLine" id="cb145-2" title="2"><span class="kw">glm</span>(cancer <span class="op">~</span><span class="st"> </span>psa <span class="op">+</span><span class="st"> </span>psan, <span class="dt">data =</span> lesson5h, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-3" title="3"><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -19101,7 +19104,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 330 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##       variable missing complete   n    mean     sd   p0  p25  p50    p75
 ##  survival_time       0      330 330 2389.38 336.23 1279 2162 2352 2625.5
 ##  p100     hist
@@ -19808,7 +19811,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 614 
 ##  n variables: 9 
 ## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------------
+## -- Variable type:numeric ----------------------------------------------------------------------
 ##  variable missing complete   n mean   sd p0 p25 p50 p75 p100     hist
 ##     nodes      15      599 614 3.59 3.49  0   1   2 4.5   33 ▇▂▁▁▁▁▁▁</code></pre>
 <p>You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to exclude patients with more than 10 nodes. This creates a new variable that excludes patients with large numbers of nodes from the analysis.</p>

@@ -89,6 +89,7 @@ If you would like to print out this information in the console window, you can a
 
 ```{r section2a1}
 
+# Shows a list of variables and labels
 str(lesson1a)
 
 ```

@@ -2150,6 +2150,7 @@ One approach to selecting which variables to include in a predictive model would
 
 ```{r week515a}
 
+# Model with all variables
 glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 
@@ -2159,6 +2160,7 @@ You might notice that "psant" is not a good predictor (p=`r style_pvalue(tbl_psa
 
 ```{r week515b}
 
+# Model excluding "psant"
 glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 
@@ -2168,6 +2170,7 @@ In a regression using the remaining three variables, "psai" is not statistically
 
 ```{r week515c}
 
+# Model excluding "psant" and "psai"
 glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 

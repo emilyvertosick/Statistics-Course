@@ -224,7 +224,7 @@ The `epi.2by2` function will give you a number of different estimates, including
 
 The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a child passing an exam are therefore 250 ÷ 750 = 1 ÷ 3 = 33.33%. Here are some examples of probabilities and odds:
 
-```{r section4h1, echo = FALSE, results = "asis"}
+```{r section4h1, echo = FALSE, results = "asis", purl = FALSE}
 
 tbl_probodds <-
   tibble(

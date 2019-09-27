@@ -30,12 +30,12 @@ description: "Statistics Course"
 Course Schedule for K30 Biostatistics Seminar
 Course Leader: Andrew Vickers
 
-All classes are on Monday evenings from **05:30pm - 07:00pm**.
-5:30 - 6:10: I will go over the R assignments.
+All classes are on Monday evenings from **05:30pm - 07:00pm**.<br>
+5:30 - 6:10: I will go over the R assignments.<br>
 6:10 - 7:00: Open office hours
 
 Reading is from "What is a p-value anyway?" unless otherwise stated.
-Readings and assignments below are to be done **before** the class.
+Readings below are to be done **before** the class.
 R assignments are done **after** the class.
 
 -----------------------------------------------------

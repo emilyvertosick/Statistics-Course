@@ -344,6 +344,7 @@ You can see that the data that prints out only includes observations where "trt"
 
 ```{r section1d2}
 
+# Print original dataset to confirm no changes
 trial
 
 ```
@@ -352,6 +353,7 @@ Sometimes, this is fine - for example, if you simply want to take a look at the 
 
 ```{r section1d3}
 
+# Save out dataset including only patients in drug group
 trial_drug <-
   trial %>%
   filter(trt == "Drug")
