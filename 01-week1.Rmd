@@ -330,17 +330,17 @@ new_data_pipe
 
 The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.
 
-Below is an example of how to create a dataset that contains only patients in the "Drug" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
+Below is an example of how to create a dataset that contains only patients in the "Drug A" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
 
 ```{r section1d1}
 
-# Here we are only keeping patients from the "Drug" group
+# Here we are only keeping patients from the "Drug A" group
 trial %>%
-  filter(trt == "Drug")
+  filter(trt == "Drug A")
 
 ```
 
-You can see that the data that prints out only includes observations where "trt" is "Drug". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
+You can see that the data that prints out only includes observations where "trt" is "Drug A". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
 
 ```{r section1d2}
 
@@ -356,13 +356,13 @@ Sometimes, this is fine - for example, if you simply want to take a look at the 
 # Save out dataset including only patients in drug group
 trial_drug <-
   trial %>%
-  filter(trt == "Drug")
+  filter(trt == "Drug A")
 
 trial_drug
   
 ```
 
-Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug" group.
+Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug A" group.
 
 #### `head` function
 

@@ -827,7 +827,7 @@ tbl_nv <-
     lesson4a %>% select(nv, cs),
     by = cs,
     type = list("nv" ~ "categorical"),
-    statistic = list("n" ~ "{p}%")
+    statistic = list("nv" ~ "{p}%")
   )
 
 ```

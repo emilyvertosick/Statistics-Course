@@ -147,11 +147,9 @@ skimr::skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -------------------------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
-##      hist
-##  ▂▅▇▇▆▅▂▁
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
+##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
+##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```
 
 However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the `skimr` package, type or copy and paste the following line of code into the console window, and press enter.
@@ -214,11 +212,11 @@ The output above this text is the code, and the output below this shows the resu
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character -----------------------------------------------------------------------------------
+## -- Variable type:character -------------------------------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric -------------------------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -261,11 +259,9 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -------------------------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
-##      hist
-##  ▂▅▇▇▆▅▂▁
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
+##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
+##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```
 
 #### Pipe operator (%>%)
@@ -319,16 +315,16 @@ new_data
 ## # A tibble: 37 x 5
 ##    trt     age marker stage grade
 ##    <fct> <dbl>  <dbl> <fct> <fct>
-##  1 DRUG     63  0.06  T1    I    
-##  2 PLAC     71  0.445 T3    I    
-##  3 DRUG     61  1.71  T4    II   
-##  4 PLAC     63  0.981 T2    II   
+##  1 DRUG     63  0.06  T3    I    
+##  2 DRUG     71  0.445 T4    III  
+##  3 DRUG     61  1.71  T4    I    
+##  4 DRUG     63  0.981 T4    II   
 ##  5 DRUG     67  1.16  T1    II   
-##  6 PLAC     68  0.105 T4    III  
-##  7 DRUG     78  0.175 T2    III  
-##  8 PLAC     61  0.177 T2    III  
-##  9 DRUG     71  0.737 T4    III  
-## 10 DRUG     83  0.475 T3    III  
+##  6 DRUG     68  0.105 T4    II   
+##  7 DRUG     78  0.175 T3    I    
+##  8 DRUG     61  0.177 T4    III  
+##  9 DRUG     71  0.737 T1    I    
+## 10 DRUG     83  0.475 T1    III  
 ## # ... with 27 more rows
 ```
 
@@ -351,16 +347,16 @@ new_data_pipe
 ## # A tibble: 37 x 5
 ##    trt     age marker stage grade
 ##    <fct> <dbl>  <dbl> <fct> <fct>
-##  1 DRUG     63  0.06  T1    I    
-##  2 PLAC     71  0.445 T3    I    
-##  3 DRUG     61  1.71  T4    II   
-##  4 PLAC     63  0.981 T2    II   
+##  1 DRUG     63  0.06  T3    I    
+##  2 DRUG     71  0.445 T4    III  
+##  3 DRUG     61  1.71  T4    I    
+##  4 DRUG     63  0.981 T4    II   
 ##  5 DRUG     67  1.16  T1    II   
-##  6 PLAC     68  0.105 T4    III  
-##  7 DRUG     78  0.175 T2    III  
-##  8 PLAC     61  0.177 T2    III  
-##  9 DRUG     71  0.737 T4    III  
-## 10 DRUG     83  0.475 T3    III  
+##  6 DRUG     68  0.105 T4    II   
+##  7 DRUG     78  0.175 T3    I    
+##  8 DRUG     61  0.177 T4    III  
+##  9 DRUG     71  0.737 T1    I    
+## 10 DRUG     83  0.475 T1    III  
 ## # ... with 27 more rows
 ```
 
@@ -368,33 +364,33 @@ new_data_pipe
 
 The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.
 
-Below is an example of how to create a dataset that contains only patients in the "Drug" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
+Below is an example of how to create a dataset that contains only patients in the "Drug A" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
 
 
 ```r
-# Here we are only keeping patients from the "Drug" group
+# Here we are only keeping patients from the "Drug A" group
 trial %>%
-  filter(trt == "Drug")
+  filter(trt == "Drug A")
 ```
 
 ```
-## # A tibble: 107 x 8
-##    trt     age marker stage grade response death ttdeath
-##    <chr> <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
-##  1 Drug     23  0.16  T3    I            1     0   24   
-##  2 Drug      9  1.11  T4    III          1     1   14.9 
-##  3 Drug     31  0.277 T1    I            1     0   24   
-##  4 Drug     51  2.77  T2    II           0     1   20.0 
-##  5 Drug     39  0.613 T1    III          1     1   16.6 
-##  6 Drug     37  0.354 T4    II           1     1   12.2 
-##  7 Drug     32  1.74  T4    III          0     1    9.18
-##  8 Drug     31  0.144 T4    I            1     1   19.4 
-##  9 Drug     63  0.06  T1    I            1     0   24   
-## 10 Drug     54  0.831 T1    III          1     0   24   
-## # ... with 97 more rows
+## # A tibble: 98 x 8
+##    trt      age marker stage grade response death ttdeath
+##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
+##  1 Drug A    23  0.16  T1    II           0     0    24  
+##  2 Drug A    31  0.277 T1    II           0     0    24  
+##  3 Drug A    NA  2.07  T3    III          1     1    17.6
+##  4 Drug A    51  2.77  T4    III          1     1    16.4
+##  5 Drug A    37  0.354 T1    II           0     0    24  
+##  6 Drug A    32  1.74  T1    I            0     1    18.4
+##  7 Drug A    31  0.144 T1    II           0     0    24  
+##  8 Drug A    38  2.08  T4    III          1     0    24  
+##  9 Drug A    57  0.066 T1    III          0     0    24  
+## 10 Drug A    46  0.325 T1    II           0     0    24  
+## # ... with 88 more rows
 ```
 
-You can see that the data that prints out only includes observations where "trt" is "Drug". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
+You can see that the data that prints out only includes observations where "trt" is "Drug A". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
 
 
 ```r
@@ -404,18 +400,18 @@ trial
 
 ```
 ## # A tibble: 200 x 8
-##    trt       age marker stage grade response death ttdeath
-##    <chr>   <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
-##  1 Drug       23  0.16  T3    I            1     0   24   
-##  2 Drug        9  1.11  T4    III          1     1   14.9 
-##  3 Drug       31  0.277 T1    I            1     0   24   
-##  4 Placebo    46  2.07  T4    II           1     1   10.2 
-##  5 Drug       51  2.77  T2    II           0     1   20.0 
-##  6 Drug       39  0.613 T1    III          1     1   16.6 
-##  7 Drug       37  0.354 T4    II           1     1   12.2 
-##  8 Drug       32  1.74  T4    III          0     1    9.18
-##  9 Drug       31  0.144 T4    I            1     1   19.4 
-## 10 Placebo    34  0.205 T2    III         NA     1    8.65
+##    trt      age marker stage grade response death ttdeath
+##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
+##  1 Drug A    23  0.16  T1    II           0     0    24  
+##  2 Drug B     9  1.11  T2    I            1     0    24  
+##  3 Drug A    31  0.277 T1    II           0     0    24  
+##  4 Drug A    NA  2.07  T3    III          1     1    17.6
+##  5 Drug A    51  2.77  T4    III          1     1    16.4
+##  6 Drug B    39  0.613 T4    I            0     1    15.6
+##  7 Drug A    37  0.354 T1    II           0     0    24  
+##  8 Drug A    32  1.74  T1    I            0     1    18.4
+##  9 Drug A    31  0.144 T1    II           0     0    24  
+## 10 Drug B    34  0.205 T3    I            0     1    10.5
 ## # ... with 190 more rows
 ```
 
@@ -426,29 +422,29 @@ Sometimes, this is fine - for example, if you simply want to take a look at the 
 # Save out dataset including only patients in drug group
 trial_drug <-
   trial %>%
-  filter(trt == "Drug")
+  filter(trt == "Drug A")
 
 trial_drug
 ```
 
 ```
-## # A tibble: 107 x 8
-##    trt     age marker stage grade response death ttdeath
-##    <chr> <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
-##  1 Drug     23  0.16  T3    I            1     0   24   
-##  2 Drug      9  1.11  T4    III          1     1   14.9 
-##  3 Drug     31  0.277 T1    I            1     0   24   
-##  4 Drug     51  2.77  T2    II           0     1   20.0 
-##  5 Drug     39  0.613 T1    III          1     1   16.6 
-##  6 Drug     37  0.354 T4    II           1     1   12.2 
-##  7 Drug     32  1.74  T4    III          0     1    9.18
-##  8 Drug     31  0.144 T4    I            1     1   19.4 
-##  9 Drug     63  0.06  T1    I            1     0   24   
-## 10 Drug     54  0.831 T1    III          1     0   24   
-## # ... with 97 more rows
+## # A tibble: 98 x 8
+##    trt      age marker stage grade response death ttdeath
+##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
+##  1 Drug A    23  0.16  T1    II           0     0    24  
+##  2 Drug A    31  0.277 T1    II           0     0    24  
+##  3 Drug A    NA  2.07  T3    III          1     1    17.6
+##  4 Drug A    51  2.77  T4    III          1     1    16.4
+##  5 Drug A    37  0.354 T1    II           0     0    24  
+##  6 Drug A    32  1.74  T1    I            0     1    18.4
+##  7 Drug A    31  0.144 T1    II           0     0    24  
+##  8 Drug A    38  2.08  T4    III          1     0    24  
+##  9 Drug A    57  0.066 T1    III          0     0    24  
+## 10 Drug A    46  0.325 T1    II           0     0    24  
+## # ... with 88 more rows
 ```
 
-Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug" group.
+Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug A" group.
 
 #### `head` function
 
@@ -489,10 +485,10 @@ table(trial$death)
 ```
 ## 
 ##   0   1 
-##  93 107
+##  88 112
 ```
 
-While this table does not give column names and is not formatted, you can see that it shows that there are 107 patients who died, and 93 patients who did not.
+While this table does not give column names and is not formatted, you can see that it shows that there are 112 patients who died, and 88 patients who did not.
 
 Here is an example of a two-way table:
 
@@ -505,8 +501,8 @@ table(trial$response, trial$death)
 ```
 ##    
 ##      0  1
-##   0 42 66
-##   1 49 34
+##   0 49 83
+##   1 37 24
 ```
 
 Unlike the one-way table, these results are not easily interpretable. If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.
@@ -520,15 +516,14 @@ trial$response
 ```
 
 ```
-##   [1]  1  1  1  1  0  1  1  0  1 NA  0  1  1  1  1  0  0  0  0  0  1  0  0
-##  [24] NA  0  0  1  1  0  1  0  0 NA  1  0  0  1  0  0 NA  1  1  1  0  1  0
-##  [47]  1  1  0  0  0  0  0  1  1  0  0  0  0  1  0  1  0  1  0  0  0  1  0
-##  [70]  1  0  1  1  1  0  0  1  0 NA  0  1  0  0  0  1  0  1  1  1  1  0  1
-##  [93]  0  0  0  0  0  1  0  1  0  1  1  1  0  1  0 NA  0  1  1  1  0  1  0
-## [116]  0  0  1  0  0  0  0  0  1  1  0  0  0  1  0  0  0  0  0  0  1  1  1
-## [139]  0  0  0  0  0  1  1 NA  0  0  1  0  0  0  0  1  1  0  0  1  1  0  0
-## [162]  1  0  1  0  0  0  1  1  1  1  1  0  1  0  0  0  1  0  1  0 NA  1  1
-## [185]  1  0  1  0  0  1  1 NA  1  0  0  0  0  0  1  0
+##   [1]  0  1  0  1  1  0  0  0  0  0  0  1  0  0  0  0  1  0  0  0  0  0  0  0  0
+##  [26]  0  1  0  0  1  1  0  0  1  0 NA  0  1  0  0  0  1  0  1  1  1  1  0  0  0
+##  [51]  0  0  0  0  0  0  1  0  1  1  0  0  0  0 NA  0  1  1  0  0  1  0  0  0  1
+##  [76]  0  0  0  0  0  0  1  0  0  0  1  0  1  0  0  0  0  1  1  1  0  0  0  0  0
+## [101]  0  0 NA  0  0  1  0  0  0  0  1  1  0  0  1  1  0  0  0  0  1  0  0  0  0
+## [126]  1  1  0  0  0  1  0  0  0  1  0  1  1 NA  1  1  1  0  1  0  0  1  0 NA  1
+## [151]  0  0  0  0  0  0  0  0  0  1  0  0  1  1  0  0  0  1  0  1  0  1  0  1  1
+## [176]  1  0  1 NA  0  1  0  0  1  0  1  0  0  0  0  0  0  0  0 NA  0  1  1  0  0
 ## attr(,"label")
 ## [1] "Tumor Response"
 ```
@@ -561,9 +556,12 @@ tbl_summary(
   display: table;
   border-collapse: collapse;
   margin-left: auto;
+  /* table.margin.left */
   margin-right: auto;
+  /* table.margin.right */
   color: #333333;
   font-size: 16px;
+  /* table.font.size */
   background-color: #FFFFFF;
   /* table.background.color */
   width: auto;
@@ -586,16 +584,32 @@ tbl_summary(
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
+  border-left-style: hidden;
+  /* heading.border.lr.style */
+  border-left-width: 1px;
+  /* heading.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* heading.border.lr.color */
+  border-right-style: hidden;
+  /* heading.border.lr.style */
+  border-right-width: 1px;
+  /* heading.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* heading.border.lr.color */
 }
 
 #iwrgxmosvm .gt_title {
   color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
+  font-weight: initial;
+  /* heading.title.font.weight */
   padding-top: 4px;
   /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
   border-bottom-width: 0;
 }
 
@@ -603,10 +617,13 @@ tbl_summary(
   color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
+  font-weight: initial;
+  /* heading.subtitle.font.weight */
   padding-top: 0;
   padding-bottom: 4px;
   /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
+  /* table.background.color */
   border-top-width: 0;
 }
 
@@ -627,30 +644,47 @@ tbl_summary(
   padding-bottom: 4px;
 }
 
+#iwrgxmosvm .gt_col_headings {
+  border-top-style: solid;
+  /* column_labels.border.top.style */
+  border-top-width: 2px;
+  /* column_labels.border.top.width */
+  border-top-color: #D3D3D3;
+  /* column_labels.border.top.color */
+  border-bottom-style: solid;
+  /* column_labels.border.bottom.style */
+  border-bottom-width: 2px;
+  /* column_labels.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* column_labels.border.bottom.color */
+  border-left-style: none;
+  /* column_labels.border.lr.style */
+  border-left-width: 1px;
+  /* column_labels.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+  border-right-style: none;
+  /* column_labels.border.lr.style */
+  border-right-width: 1px;
+  /* column_labels.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+}
+
 #iwrgxmosvm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* column_labels.font.size */
   font-weight: initial;
   /* column_labels.font.weight */
+  text-transform: inherit;
+  /* column_labels.text_transform */
   vertical-align: middle;
   padding: 5px;
   margin: 10px;
   overflow-x: hidden;
-}
-
-#iwrgxmosvm .gt_columns_top_border {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#iwrgxmosvm .gt_columns_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_sep_right {
@@ -663,10 +697,12 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
+  text-transform: inherit;
+  /* row_group.text_transform */
   border-top-style: solid;
   /* row_group.border.top.style */
   border-top-width: 2px;
@@ -679,6 +715,18 @@ tbl_summary(
   /* row_group.border.bottom.width */
   border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
+  border-left-style: none;
+  /* row_group.border.left.style */
+  border-left-width: 1px;
+  /* row_group.border.left.width */
+  border-left-color: #D3D3D3;
+  /* row_group.border.left.color */
+  border-right-style: none;
+  /* row_group.border.right.style */
+  border-right-width: 1px;
+  /* row_group.border.right.width */
+  border-right-color: #D3D3D3;
+  /* row_group.border.right.color */
   vertical-align: middle;
 }
 
@@ -687,7 +735,7 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
@@ -707,7 +755,8 @@ tbl_summary(
 }
 
 #iwrgxmosvm .gt_striped {
-  background-color: #8080800D;
+  background-color: rgba(128, 128, 128, 0.05);
+  /* row.striping.background_color */
 }
 
 #iwrgxmosvm .gt_from_md > :first-child {
@@ -719,20 +768,49 @@ tbl_summary(
 }
 
 #iwrgxmosvm .gt_row {
-  padding: 8px;
-  /* row.padding */
+  padding-top: 8px;
+  /* data_row.padding */
+  padding-bottom: 8px;
+  /* data_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   margin: 10px;
   border-top-style: solid;
+  /* table_body.hlines.style */
   border-top-width: 1px;
+  /* table_body.hlines.width */
   border-top-color: #D3D3D3;
+  /* table_body.hlines.color */
+  border-left-style: none;
+  /* table_body.vlines.style */
+  border-left-width: 1px;
+  /* table_body.vlines.width */
+  border-left-color: #D3D3D3;
+  /* table_body.vlines.color */
+  border-right-style: none;
+  /* table_body.vlines.style */
+  border-right-width: 1px;
+  /* table_body.vlines.width */
+  border-right-color: #D3D3D3;
+  /* table_body.vlines.color */
   vertical-align: middle;
   overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* stub.background.color */
+  font-weight: initial;
+  /* stub.font.weight */
+  text-transform: inherit;
+  /* stub.text_transform */
   border-right-style: solid;
+  /* stub.border.style */
   border-right-width: 2px;
+  /* stub.border.width */
   border-right-color: #D3D3D3;
+  /* stub.border.color */
   padding-left: 12px;
 }
 
@@ -740,32 +818,58 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
-  padding: 8px;
-  /* summary_row.padding */
   text-transform: inherit;
   /* summary_row.text_transform */
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwrgxmosvm .gt_first_summary_row {
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  /* summary_row.border.style */
+  border-top-width: 2px;
+  /* summary_row.border.width */
+  border-top-color: #D3D3D3;
+  /* summary_row.border.color */
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
-  padding: 8px;
-  /* grand_summary_row.padding */
   text-transform: inherit;
   /* grand_summary_row.text_transform */
-}
-
-#iwrgxmosvm .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-style: double;
+  /* grand_summary_row.border.style */
   border-top-width: 6px;
+  /* grand_summary_row.border.width */
   border-top-color: #D3D3D3;
+  /* grand_summary_row.border.color */
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -784,44 +888,74 @@ tbl_summary(
 }
 
 #iwrgxmosvm .gt_footnotes {
-  border-top-style: solid;
-  /* footnotes.border.top.style */
-  border-top-width: 2px;
-  /* footnotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* footnotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* footnotes.background.color */
+  border-bottom-style: none;
+  /* footnotes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* footnotes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* footnotes.border.bottom.color */
+  border-left-style: none;
+  /* footnotes.border.lr.color */
+  border-left-width: 2px;
+  /* footnotes.border.lr.color */
+  border-left-color: #D3D3D3;
+  /* footnotes.border.lr.color */
+  border-right-style: none;
+  /* footnotes.border.lr.color */
+  border-right-width: 2px;
+  /* footnotes.border.lr.color */
+  border-right-color: #D3D3D3;
+  /* footnotes.border.lr.color */
 }
 
 #iwrgxmosvm .gt_footnote {
-  font-size: 90%;
-  /* footnote.font.size */
   margin: 0px;
+  font-size: 90%;
+  /* footnotes.font.size */
   padding: 4px;
-  /* footnote.padding */
+  /* footnotes.padding */
 }
 
 #iwrgxmosvm .gt_sourcenotes {
-  border-top-style: solid;
-  /* sourcenotes.border.top.style */
-  border-top-width: 2px;
-  /* sourcenotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* sourcenotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* source_notes.background.color */
+  border-bottom-style: none;
+  /* source_notes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* source_notes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* source_notes.border.bottom.color */
+  border-left-style: none;
+  /* source_notes.border.lr.style */
+  border-left-width: 2px;
+  /* source_notes.border.lr.style */
+  border-left-color: #D3D3D3;
+  /* source_notes.border.lr.style */
+  border-right-style: none;
+  /* source_notes.border.lr.style */
+  border-right-width: 2px;
+  /* source_notes.border.lr.style */
+  border-right-color: #D3D3D3;
+  /* source_notes.border.lr.style */
 }
 
 #iwrgxmosvm .gt_sourcenote {
   font-size: 90%;
-  /* sourcenote.font.size */
+  /* source_notes.font.size */
   padding: 4px;
-  /* sourcenote.padding */
-}
-
-#iwrgxmosvm .gt_center {
-  text-align: center;
+  /* source_notes.padding */
 }
 
 #iwrgxmosvm .gt_left {
   text-align: left;
+}
+
+#iwrgxmosvm .gt_center {
+  text-align: center;
 }
 
 #iwrgxmosvm .gt_right {
@@ -852,16 +986,18 @@ tbl_summary(
 </style>
 <div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
-  <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
-  </tr>
-  <body class="gt_table_body">
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">1 if woman, 0 if man</td>
       <td class="gt_row gt_center">205 (53%)</td>
     </tr>
-  </body>
+  </tbody>
   
   <tfoot>
     <tr class="gt_footnotes">
@@ -898,9 +1034,12 @@ tbl_summary(
   display: table;
   border-collapse: collapse;
   margin-left: auto;
+  /* table.margin.left */
   margin-right: auto;
+  /* table.margin.right */
   color: #333333;
   font-size: 16px;
+  /* table.font.size */
   background-color: #FFFFFF;
   /* table.background.color */
   width: auto;
@@ -923,16 +1062,32 @@ tbl_summary(
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
+  border-left-style: hidden;
+  /* heading.border.lr.style */
+  border-left-width: 1px;
+  /* heading.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* heading.border.lr.color */
+  border-right-style: hidden;
+  /* heading.border.lr.style */
+  border-right-width: 1px;
+  /* heading.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* heading.border.lr.color */
 }
 
 #hlleqxdave .gt_title {
   color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
+  font-weight: initial;
+  /* heading.title.font.weight */
   padding-top: 4px;
   /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
   border-bottom-width: 0;
 }
 
@@ -940,10 +1095,13 @@ tbl_summary(
   color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
+  font-weight: initial;
+  /* heading.subtitle.font.weight */
   padding-top: 0;
   padding-bottom: 4px;
   /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
+  /* table.background.color */
   border-top-width: 0;
 }
 
@@ -964,30 +1122,47 @@ tbl_summary(
   padding-bottom: 4px;
 }
 
+#hlleqxdave .gt_col_headings {
+  border-top-style: solid;
+  /* column_labels.border.top.style */
+  border-top-width: 2px;
+  /* column_labels.border.top.width */
+  border-top-color: #D3D3D3;
+  /* column_labels.border.top.color */
+  border-bottom-style: solid;
+  /* column_labels.border.bottom.style */
+  border-bottom-width: 2px;
+  /* column_labels.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* column_labels.border.bottom.color */
+  border-left-style: none;
+  /* column_labels.border.lr.style */
+  border-left-width: 1px;
+  /* column_labels.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+  border-right-style: none;
+  /* column_labels.border.lr.style */
+  border-right-width: 1px;
+  /* column_labels.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+}
+
 #hlleqxdave .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* column_labels.font.size */
   font-weight: initial;
   /* column_labels.font.weight */
+  text-transform: inherit;
+  /* column_labels.text_transform */
   vertical-align: middle;
   padding: 5px;
   margin: 10px;
   overflow-x: hidden;
-}
-
-#hlleqxdave .gt_columns_top_border {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#hlleqxdave .gt_columns_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_sep_right {
@@ -1000,10 +1175,12 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
+  text-transform: inherit;
+  /* row_group.text_transform */
   border-top-style: solid;
   /* row_group.border.top.style */
   border-top-width: 2px;
@@ -1016,6 +1193,18 @@ tbl_summary(
   /* row_group.border.bottom.width */
   border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
+  border-left-style: none;
+  /* row_group.border.left.style */
+  border-left-width: 1px;
+  /* row_group.border.left.width */
+  border-left-color: #D3D3D3;
+  /* row_group.border.left.color */
+  border-right-style: none;
+  /* row_group.border.right.style */
+  border-right-width: 1px;
+  /* row_group.border.right.width */
+  border-right-color: #D3D3D3;
+  /* row_group.border.right.color */
   vertical-align: middle;
 }
 
@@ -1024,7 +1213,7 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
@@ -1044,7 +1233,8 @@ tbl_summary(
 }
 
 #hlleqxdave .gt_striped {
-  background-color: #8080800D;
+  background-color: rgba(128, 128, 128, 0.05);
+  /* row.striping.background_color */
 }
 
 #hlleqxdave .gt_from_md > :first-child {
@@ -1056,20 +1246,49 @@ tbl_summary(
 }
 
 #hlleqxdave .gt_row {
-  padding: 8px;
-  /* row.padding */
+  padding-top: 8px;
+  /* data_row.padding */
+  padding-bottom: 8px;
+  /* data_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   margin: 10px;
   border-top-style: solid;
+  /* table_body.hlines.style */
   border-top-width: 1px;
+  /* table_body.hlines.width */
   border-top-color: #D3D3D3;
+  /* table_body.hlines.color */
+  border-left-style: none;
+  /* table_body.vlines.style */
+  border-left-width: 1px;
+  /* table_body.vlines.width */
+  border-left-color: #D3D3D3;
+  /* table_body.vlines.color */
+  border-right-style: none;
+  /* table_body.vlines.style */
+  border-right-width: 1px;
+  /* table_body.vlines.width */
+  border-right-color: #D3D3D3;
+  /* table_body.vlines.color */
   vertical-align: middle;
   overflow-x: hidden;
 }
 
 #hlleqxdave .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* stub.background.color */
+  font-weight: initial;
+  /* stub.font.weight */
+  text-transform: inherit;
+  /* stub.text_transform */
   border-right-style: solid;
+  /* stub.border.style */
   border-right-width: 2px;
+  /* stub.border.width */
   border-right-color: #D3D3D3;
+  /* stub.border.color */
   padding-left: 12px;
 }
 
@@ -1077,32 +1296,58 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
-  padding: 8px;
-  /* summary_row.padding */
   text-transform: inherit;
   /* summary_row.text_transform */
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hlleqxdave .gt_first_summary_row {
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  /* summary_row.border.style */
+  border-top-width: 2px;
+  /* summary_row.border.width */
+  border-top-color: #D3D3D3;
+  /* summary_row.border.color */
 }
 
 #hlleqxdave .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
-  padding: 8px;
-  /* grand_summary_row.padding */
   text-transform: inherit;
   /* grand_summary_row.text_transform */
-}
-
-#hlleqxdave .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hlleqxdave .gt_first_grand_summary_row {
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-style: double;
+  /* grand_summary_row.border.style */
   border-top-width: 6px;
+  /* grand_summary_row.border.width */
   border-top-color: #D3D3D3;
+  /* grand_summary_row.border.color */
 }
 
 #hlleqxdave .gt_table_body {
@@ -1121,44 +1366,74 @@ tbl_summary(
 }
 
 #hlleqxdave .gt_footnotes {
-  border-top-style: solid;
-  /* footnotes.border.top.style */
-  border-top-width: 2px;
-  /* footnotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* footnotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* footnotes.background.color */
+  border-bottom-style: none;
+  /* footnotes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* footnotes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* footnotes.border.bottom.color */
+  border-left-style: none;
+  /* footnotes.border.lr.color */
+  border-left-width: 2px;
+  /* footnotes.border.lr.color */
+  border-left-color: #D3D3D3;
+  /* footnotes.border.lr.color */
+  border-right-style: none;
+  /* footnotes.border.lr.color */
+  border-right-width: 2px;
+  /* footnotes.border.lr.color */
+  border-right-color: #D3D3D3;
+  /* footnotes.border.lr.color */
 }
 
 #hlleqxdave .gt_footnote {
-  font-size: 90%;
-  /* footnote.font.size */
   margin: 0px;
+  font-size: 90%;
+  /* footnotes.font.size */
   padding: 4px;
-  /* footnote.padding */
+  /* footnotes.padding */
 }
 
 #hlleqxdave .gt_sourcenotes {
-  border-top-style: solid;
-  /* sourcenotes.border.top.style */
-  border-top-width: 2px;
-  /* sourcenotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* sourcenotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* source_notes.background.color */
+  border-bottom-style: none;
+  /* source_notes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* source_notes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* source_notes.border.bottom.color */
+  border-left-style: none;
+  /* source_notes.border.lr.style */
+  border-left-width: 2px;
+  /* source_notes.border.lr.style */
+  border-left-color: #D3D3D3;
+  /* source_notes.border.lr.style */
+  border-right-style: none;
+  /* source_notes.border.lr.style */
+  border-right-width: 2px;
+  /* source_notes.border.lr.style */
+  border-right-color: #D3D3D3;
+  /* source_notes.border.lr.style */
 }
 
 #hlleqxdave .gt_sourcenote {
   font-size: 90%;
-  /* sourcenote.font.size */
+  /* source_notes.font.size */
   padding: 4px;
-  /* sourcenote.padding */
-}
-
-#hlleqxdave .gt_center {
-  text-align: center;
+  /* source_notes.padding */
 }
 
 #hlleqxdave .gt_left {
   text-align: left;
+}
+
+#hlleqxdave .gt_center {
+  text-align: center;
 }
 
 #hlleqxdave .gt_right {
@@ -1189,11 +1464,13 @@ tbl_summary(
 </style>
 <div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
-  <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
-  </tr>
-  <body class="gt_table_body">
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">1 if woman, 0 if man</td>
       <td class="gt_row gt_center"></td>
@@ -1206,7 +1483,7 @@ tbl_summary(
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">205 (53%)</td>
     </tr>
-  </body>
+  </tbody>
   
   <tfoot>
     <tr class="gt_footnotes">
@@ -1241,8 +1518,8 @@ table(trial$response, trial$death)
 ```
 ##    
 ##      0  1
-##   0 42 66
-##   1 49 34
+##   0 49 83
+##   1 37 24
 ```
 
 ```r
@@ -1262,9 +1539,12 @@ tbl_summary(
   display: table;
   border-collapse: collapse;
   margin-left: auto;
+  /* table.margin.left */
   margin-right: auto;
+  /* table.margin.right */
   color: #333333;
   font-size: 16px;
+  /* table.font.size */
   background-color: #FFFFFF;
   /* table.background.color */
   width: auto;
@@ -1287,16 +1567,32 @@ tbl_summary(
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
+  border-left-style: hidden;
+  /* heading.border.lr.style */
+  border-left-width: 1px;
+  /* heading.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* heading.border.lr.color */
+  border-right-style: hidden;
+  /* heading.border.lr.style */
+  border-right-width: 1px;
+  /* heading.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* heading.border.lr.color */
 }
 
 #kqtxbhydst .gt_title {
   color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
+  font-weight: initial;
+  /* heading.title.font.weight */
   padding-top: 4px;
   /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
   border-bottom-width: 0;
 }
 
@@ -1304,10 +1600,13 @@ tbl_summary(
   color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
+  font-weight: initial;
+  /* heading.subtitle.font.weight */
   padding-top: 0;
   padding-bottom: 4px;
   /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
+  /* table.background.color */
   border-top-width: 0;
 }
 
@@ -1328,30 +1627,47 @@ tbl_summary(
   padding-bottom: 4px;
 }
 
+#kqtxbhydst .gt_col_headings {
+  border-top-style: solid;
+  /* column_labels.border.top.style */
+  border-top-width: 2px;
+  /* column_labels.border.top.width */
+  border-top-color: #D3D3D3;
+  /* column_labels.border.top.color */
+  border-bottom-style: solid;
+  /* column_labels.border.bottom.style */
+  border-bottom-width: 2px;
+  /* column_labels.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* column_labels.border.bottom.color */
+  border-left-style: none;
+  /* column_labels.border.lr.style */
+  border-left-width: 1px;
+  /* column_labels.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+  border-right-style: none;
+  /* column_labels.border.lr.style */
+  border-right-width: 1px;
+  /* column_labels.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+}
+
 #kqtxbhydst .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* column_labels.font.size */
   font-weight: initial;
   /* column_labels.font.weight */
+  text-transform: inherit;
+  /* column_labels.text_transform */
   vertical-align: middle;
   padding: 5px;
   margin: 10px;
   overflow-x: hidden;
-}
-
-#kqtxbhydst .gt_columns_top_border {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#kqtxbhydst .gt_columns_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_sep_right {
@@ -1364,10 +1680,12 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
+  text-transform: inherit;
+  /* row_group.text_transform */
   border-top-style: solid;
   /* row_group.border.top.style */
   border-top-width: 2px;
@@ -1380,6 +1698,18 @@ tbl_summary(
   /* row_group.border.bottom.width */
   border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
+  border-left-style: none;
+  /* row_group.border.left.style */
+  border-left-width: 1px;
+  /* row_group.border.left.width */
+  border-left-color: #D3D3D3;
+  /* row_group.border.left.color */
+  border-right-style: none;
+  /* row_group.border.right.style */
+  border-right-width: 1px;
+  /* row_group.border.right.width */
+  border-right-color: #D3D3D3;
+  /* row_group.border.right.color */
   vertical-align: middle;
 }
 
@@ -1388,7 +1718,7 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
@@ -1408,7 +1738,8 @@ tbl_summary(
 }
 
 #kqtxbhydst .gt_striped {
-  background-color: #8080800D;
+  background-color: rgba(128, 128, 128, 0.05);
+  /* row.striping.background_color */
 }
 
 #kqtxbhydst .gt_from_md > :first-child {
@@ -1420,20 +1751,49 @@ tbl_summary(
 }
 
 #kqtxbhydst .gt_row {
-  padding: 8px;
-  /* row.padding */
+  padding-top: 8px;
+  /* data_row.padding */
+  padding-bottom: 8px;
+  /* data_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   margin: 10px;
   border-top-style: solid;
+  /* table_body.hlines.style */
   border-top-width: 1px;
+  /* table_body.hlines.width */
   border-top-color: #D3D3D3;
+  /* table_body.hlines.color */
+  border-left-style: none;
+  /* table_body.vlines.style */
+  border-left-width: 1px;
+  /* table_body.vlines.width */
+  border-left-color: #D3D3D3;
+  /* table_body.vlines.color */
+  border-right-style: none;
+  /* table_body.vlines.style */
+  border-right-width: 1px;
+  /* table_body.vlines.width */
+  border-right-color: #D3D3D3;
+  /* table_body.vlines.color */
   vertical-align: middle;
   overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* stub.background.color */
+  font-weight: initial;
+  /* stub.font.weight */
+  text-transform: inherit;
+  /* stub.text_transform */
   border-right-style: solid;
+  /* stub.border.style */
   border-right-width: 2px;
+  /* stub.border.width */
   border-right-color: #D3D3D3;
+  /* stub.border.color */
   padding-left: 12px;
 }
 
@@ -1441,32 +1801,58 @@ tbl_summary(
   color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
-  padding: 8px;
-  /* summary_row.padding */
   text-transform: inherit;
   /* summary_row.text_transform */
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kqtxbhydst .gt_first_summary_row {
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  /* summary_row.border.style */
+  border-top-width: 2px;
+  /* summary_row.border.width */
+  border-top-color: #D3D3D3;
+  /* summary_row.border.color */
 }
 
 #kqtxbhydst .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
-  padding: 8px;
-  /* grand_summary_row.padding */
   text-transform: inherit;
   /* grand_summary_row.text_transform */
-}
-
-#kqtxbhydst .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #kqtxbhydst .gt_first_grand_summary_row {
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-style: double;
+  /* grand_summary_row.border.style */
   border-top-width: 6px;
+  /* grand_summary_row.border.width */
   border-top-color: #D3D3D3;
+  /* grand_summary_row.border.color */
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1485,44 +1871,74 @@ tbl_summary(
 }
 
 #kqtxbhydst .gt_footnotes {
-  border-top-style: solid;
-  /* footnotes.border.top.style */
-  border-top-width: 2px;
-  /* footnotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* footnotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* footnotes.background.color */
+  border-bottom-style: none;
+  /* footnotes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* footnotes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* footnotes.border.bottom.color */
+  border-left-style: none;
+  /* footnotes.border.lr.color */
+  border-left-width: 2px;
+  /* footnotes.border.lr.color */
+  border-left-color: #D3D3D3;
+  /* footnotes.border.lr.color */
+  border-right-style: none;
+  /* footnotes.border.lr.color */
+  border-right-width: 2px;
+  /* footnotes.border.lr.color */
+  border-right-color: #D3D3D3;
+  /* footnotes.border.lr.color */
 }
 
 #kqtxbhydst .gt_footnote {
-  font-size: 90%;
-  /* footnote.font.size */
   margin: 0px;
+  font-size: 90%;
+  /* footnotes.font.size */
   padding: 4px;
-  /* footnote.padding */
+  /* footnotes.padding */
 }
 
 #kqtxbhydst .gt_sourcenotes {
-  border-top-style: solid;
-  /* sourcenotes.border.top.style */
-  border-top-width: 2px;
-  /* sourcenotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* sourcenotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* source_notes.background.color */
+  border-bottom-style: none;
+  /* source_notes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* source_notes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* source_notes.border.bottom.color */
+  border-left-style: none;
+  /* source_notes.border.lr.style */
+  border-left-width: 2px;
+  /* source_notes.border.lr.style */
+  border-left-color: #D3D3D3;
+  /* source_notes.border.lr.style */
+  border-right-style: none;
+  /* source_notes.border.lr.style */
+  border-right-width: 2px;
+  /* source_notes.border.lr.style */
+  border-right-color: #D3D3D3;
+  /* source_notes.border.lr.style */
 }
 
 #kqtxbhydst .gt_sourcenote {
   font-size: 90%;
-  /* sourcenote.font.size */
+  /* source_notes.font.size */
   padding: 4px;
-  /* sourcenote.padding */
-}
-
-#kqtxbhydst .gt_center {
-  text-align: center;
+  /* source_notes.padding */
 }
 
 #kqtxbhydst .gt_left {
   text-align: left;
+}
+
+#kqtxbhydst .gt_center {
+  text-align: center;
 }
 
 #kqtxbhydst .gt_right {
@@ -1553,12 +1969,14 @@ tbl_summary(
 </style>
 <div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
-  <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 93</th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 107</th>
-  </tr>
-  <body class="gt_table_body">
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 88</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 112</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">Tumor Response</td>
       <td class="gt_row gt_center"></td>
@@ -1566,20 +1984,20 @@ tbl_summary(
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center gt_striped">42 (46%)</td>
-      <td class="gt_row gt_center gt_striped">66 (66%)</td>
+      <td class="gt_row gt_center gt_striped">49 (57%)</td>
+      <td class="gt_row gt_center gt_striped">83 (78%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">49 (54%)</td>
-      <td class="gt_row gt_center">34 (34%)</td>
+      <td class="gt_row gt_center">37 (43%)</td>
+      <td class="gt_row gt_center">24 (22%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">Unknown</td>
       <td class="gt_row gt_center gt_striped">2</td>
-      <td class="gt_row gt_center gt_striped">7</td>
+      <td class="gt_row gt_center gt_striped">5</td>
     </tr>
-  </body>
+  </tbody>
   
   <tfoot>
     <tr class="gt_footnotes">
@@ -1611,11 +2029,9 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric -------------------------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
-##      hist
-##  ▂▅▇▇▆▅▂▁
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
+##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
+##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```
 
 So of the 386 patients (column "n"), the mean age (a type of average, I’ll explain next week) is 49.48 (column "mean"), the standard deviation (again, I’ll explain next week) is 13.75 (column "sd"). The youngest patient was 19 (column "p0") and the oldest is 86 (column "p100"). 

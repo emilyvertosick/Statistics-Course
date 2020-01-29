@@ -48,7 +48,7 @@ This is used to compare a continuous outcome (such as hemoglobin) in two groups 
 
 The two main forms of the t-test are "paired" and "unpaired".
 
-"Unpaired" is used when, for example, testing marker levels between a drug and placebo group, as there are different patients in each group:
+"Unpaired" is used when, for example, testing marker levels between two groups taking different drugs, as there are different patients in each group:
 
 
 ```r
@@ -61,16 +61,16 @@ t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
 ## 	Two Sample t-test
 ## 
 ## data:  marker by trt
-## t = -0.51222, df = 189, p-value = 0.6091
+## t = 1.5816, df = 188, p-value = 0.1154
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.3092384  0.1817462
+##  -0.04858916  0.44161134
 ## sample estimates:
-##    mean in group Drug mean in group Placebo 
-##             0.8981078             0.9618539
+## mean in group Drug A mean in group Drug B 
+##            1.0173478            0.8208367
 ```
 
-The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug vs Placebo). Next, you are telling R to get the data from the dataset called "trial". `paired = FALSE` indicates that you want to perform an "unpaired" test. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
+The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called "trial". `paired = FALSE` indicates that you want to perform an "unpaired" test. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
 
 A "paired" test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.
 
@@ -213,7 +213,7 @@ wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE)
 ## 	Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  marker by trt
-## W = 4242.5, p-value = 0.4374
+## W = 5161.5, p-value = 0.08475
 ## alternative hypothesis: true location shift is not equal to 0
 ```
 
@@ -272,8 +272,7 @@ binom.test(60, 100, p = 0.5)
 ## 	Exact binomial test
 ## 
 ## data:  60 and 100
-## number of successes = 60, number of trials = 100, p-value =
-## 0.05689
+## number of successes = 60, number of trials = 100, p-value = 0.05689
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
 ##  0.4972092 0.6967052
@@ -317,8 +316,7 @@ binom.test(nwomen, ntotal, p = 0.5)
 ## 	Exact binomial test
 ## 
 ## data:  nwomen and ntotal
-## number of successes = 205, number of trials = 386, p-value =
-## 0.2417
+## number of successes = 205, number of trials = 386, p-value = 0.2417
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
 ##  0.4799345 0.5817614

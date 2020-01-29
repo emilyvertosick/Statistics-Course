@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Week 1 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Week 1 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -38,6 +38,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -370,11 +373,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
-##      hist
-##  ▂▅▇▇▆▅▂▁</code></pre>
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
+##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
+##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁</code></pre>
 <p>However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the <code>library</code> function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the “Statistics Course.Rproj” file in RStudio. For example, to load the <code>skimr</code> package, type or copy and paste the following line of code into the console window, and press enter.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">library</span>(skimr)</a></code></pre></div>
 <p>Now you will be able to use all functions in the <code>skimr</code> package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won’t generally have to reload packages). This code will also be available at the beginning of each lesson.</p>
@@ -410,11 +411,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character --------------------------------------------------------------------
+## -- Variable type:character -------------------------------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -449,11 +450,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
-##      hist
-##  ▂▅▇▇▆▅▂▁</code></pre>
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
+##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
+##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁</code></pre>
 </div>
 <div id="pipe-operator" class="section level4">
 <h4><span class="header-section-number">1.2.5.2</span> Pipe operator (%&gt;%)</h4>
@@ -479,16 +478,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 37 x 5
 ##    trt     age marker stage grade
 ##    &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;
-##  1 DRUG     63  0.06  T1    I    
-##  2 PLAC     71  0.445 T3    I    
-##  3 DRUG     61  1.71  T4    II   
-##  4 PLAC     63  0.981 T2    II   
+##  1 DRUG     63  0.06  T3    I    
+##  2 DRUG     71  0.445 T4    III  
+##  3 DRUG     61  1.71  T4    I    
+##  4 DRUG     63  0.981 T4    II   
 ##  5 DRUG     67  1.16  T1    II   
-##  6 PLAC     68  0.105 T4    III  
-##  7 DRUG     78  0.175 T2    III  
-##  8 PLAC     61  0.177 T2    III  
-##  9 DRUG     71  0.737 T4    III  
-## 10 DRUG     83  0.475 T3    III  
+##  6 DRUG     68  0.105 T4    II   
+##  7 DRUG     78  0.175 T3    I    
+##  8 DRUG     61  0.177 T4    III  
+##  9 DRUG     71  0.737 T1    I    
+## 10 DRUG     83  0.475 T1    III  
 ## # ... with 27 more rows</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># With piping</span></a>
 <a class="sourceLine" id="cb22-2" title="2">new_data_pipe &lt;-</a>
@@ -505,78 +504,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 37 x 5
 ##    trt     age marker stage grade
 ##    &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;
-##  1 DRUG     63  0.06  T1    I    
-##  2 PLAC     71  0.445 T3    I    
-##  3 DRUG     61  1.71  T4    II   
-##  4 PLAC     63  0.981 T2    II   
+##  1 DRUG     63  0.06  T3    I    
+##  2 DRUG     71  0.445 T4    III  
+##  3 DRUG     61  1.71  T4    I    
+##  4 DRUG     63  0.981 T4    II   
 ##  5 DRUG     67  1.16  T1    II   
-##  6 PLAC     68  0.105 T4    III  
-##  7 DRUG     78  0.175 T2    III  
-##  8 PLAC     61  0.177 T2    III  
-##  9 DRUG     71  0.737 T4    III  
-## 10 DRUG     83  0.475 T3    III  
+##  6 DRUG     68  0.105 T4    II   
+##  7 DRUG     78  0.175 T3    I    
+##  8 DRUG     61  0.177 T4    III  
+##  9 DRUG     71  0.737 T1    I    
+## 10 DRUG     83  0.475 T1    III  
 ## # ... with 27 more rows</code></pre>
 </div>
 <div id="assignment-operator--" class="section level4">
 <h4><span class="header-section-number">1.2.5.3</span> Assignment Operator (&lt;-)</h4>
 <p>The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.</p>
-<p>Below is an example of how to create a dataset that contains only patients in the “Drug” group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Here we are only keeping patients from the &quot;Drug&quot; group</span></a>
+<p>Below is an example of how to create a dataset that contains only patients in the “Drug A” group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Here we are only keeping patients from the &quot;Drug A&quot; group</span></a>
 <a class="sourceLine" id="cb24-2" title="2">trial <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-3" title="3"><span class="st">  </span><span class="kw">filter</span>(trt <span class="op">==</span><span class="st"> &quot;Drug&quot;</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 107 x 8
-##    trt     age marker stage grade response death ttdeath
-##    &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
-##  1 Drug     23  0.16  T3    I            1     0   24   
-##  2 Drug      9  1.11  T4    III          1     1   14.9 
-##  3 Drug     31  0.277 T1    I            1     0   24   
-##  4 Drug     51  2.77  T2    II           0     1   20.0 
-##  5 Drug     39  0.613 T1    III          1     1   16.6 
-##  6 Drug     37  0.354 T4    II           1     1   12.2 
-##  7 Drug     32  1.74  T4    III          0     1    9.18
-##  8 Drug     31  0.144 T4    I            1     1   19.4 
-##  9 Drug     63  0.06  T1    I            1     0   24   
-## 10 Drug     54  0.831 T1    III          1     0   24   
-## # ... with 97 more rows</code></pre>
-<p>You can see that the data that prints out only includes observations where “trt” is “Drug”. While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.</p>
+<a class="sourceLine" id="cb24-3" title="3"><span class="st">  </span><span class="kw">filter</span>(trt <span class="op">==</span><span class="st"> &quot;Drug A&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 98 x 8
+##    trt      age marker stage grade response death ttdeath
+##    &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+##  1 Drug A    23  0.16  T1    II           0     0    24  
+##  2 Drug A    31  0.277 T1    II           0     0    24  
+##  3 Drug A    NA  2.07  T3    III          1     1    17.6
+##  4 Drug A    51  2.77  T4    III          1     1    16.4
+##  5 Drug A    37  0.354 T1    II           0     0    24  
+##  6 Drug A    32  1.74  T1    I            0     1    18.4
+##  7 Drug A    31  0.144 T1    II           0     0    24  
+##  8 Drug A    38  2.08  T4    III          1     0    24  
+##  9 Drug A    57  0.066 T1    III          0     0    24  
+## 10 Drug A    46  0.325 T1    II           0     0    24  
+## # ... with 88 more rows</code></pre>
+<p>You can see that the data that prints out only includes observations where “trt” is “Drug A”. While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Print original dataset to confirm no changes</span></a>
 <a class="sourceLine" id="cb26-2" title="2">trial</a></code></pre></div>
 <pre><code>## # A tibble: 200 x 8
-##    trt       age marker stage grade response death ttdeath
-##    &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
-##  1 Drug       23  0.16  T3    I            1     0   24   
-##  2 Drug        9  1.11  T4    III          1     1   14.9 
-##  3 Drug       31  0.277 T1    I            1     0   24   
-##  4 Placebo    46  2.07  T4    II           1     1   10.2 
-##  5 Drug       51  2.77  T2    II           0     1   20.0 
-##  6 Drug       39  0.613 T1    III          1     1   16.6 
-##  7 Drug       37  0.354 T4    II           1     1   12.2 
-##  8 Drug       32  1.74  T4    III          0     1    9.18
-##  9 Drug       31  0.144 T4    I            1     1   19.4 
-## 10 Placebo    34  0.205 T2    III         NA     1    8.65
+##    trt      age marker stage grade response death ttdeath
+##    &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+##  1 Drug A    23  0.16  T1    II           0     0    24  
+##  2 Drug B     9  1.11  T2    I            1     0    24  
+##  3 Drug A    31  0.277 T1    II           0     0    24  
+##  4 Drug A    NA  2.07  T3    III          1     1    17.6
+##  5 Drug A    51  2.77  T4    III          1     1    16.4
+##  6 Drug B    39  0.613 T4    I            0     1    15.6
+##  7 Drug A    37  0.354 T1    II           0     0    24  
+##  8 Drug A    32  1.74  T1    I            0     1    18.4
+##  9 Drug A    31  0.144 T1    II           0     0    24  
+## 10 Drug B    34  0.205 T3    I            0     1    10.5
 ## # ... with 190 more rows</code></pre>
 <p>Sometimes, this is fine - for example, if you simply want to take a look at the data. If you need to use this data again, give the dataset a name and use the assignment operator.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Save out dataset including only patients in drug group</span></a>
 <a class="sourceLine" id="cb28-2" title="2">trial_drug &lt;-</a>
 <a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span>trial <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span><span class="kw">filter</span>(trt <span class="op">==</span><span class="st"> &quot;Drug&quot;</span>)</a>
+<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span><span class="kw">filter</span>(trt <span class="op">==</span><span class="st"> &quot;Drug A&quot;</span>)</a>
 <a class="sourceLine" id="cb28-5" title="5"></a>
 <a class="sourceLine" id="cb28-6" title="6">trial_drug</a></code></pre></div>
-<pre><code>## # A tibble: 107 x 8
-##    trt     age marker stage grade response death ttdeath
-##    &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
-##  1 Drug     23  0.16  T3    I            1     0   24   
-##  2 Drug      9  1.11  T4    III          1     1   14.9 
-##  3 Drug     31  0.277 T1    I            1     0   24   
-##  4 Drug     51  2.77  T2    II           0     1   20.0 
-##  5 Drug     39  0.613 T1    III          1     1   16.6 
-##  6 Drug     37  0.354 T4    II           1     1   12.2 
-##  7 Drug     32  1.74  T4    III          0     1    9.18
-##  8 Drug     31  0.144 T4    I            1     1   19.4 
-##  9 Drug     63  0.06  T1    I            1     0   24   
-## 10 Drug     54  0.831 T1    III          1     0   24   
-## # ... with 97 more rows</code></pre>
-<p>Here, we’ve called this dataset “trial_drug”, and you can see that this dataset only includes the patients in the “Drug” group.</p>
+<pre><code>## # A tibble: 98 x 8
+##    trt      age marker stage grade response death ttdeath
+##    &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+##  1 Drug A    23  0.16  T1    II           0     0    24  
+##  2 Drug A    31  0.277 T1    II           0     0    24  
+##  3 Drug A    NA  2.07  T3    III          1     1    17.6
+##  4 Drug A    51  2.77  T4    III          1     1    16.4
+##  5 Drug A    37  0.354 T1    II           0     0    24  
+##  6 Drug A    32  1.74  T1    I            0     1    18.4
+##  7 Drug A    31  0.144 T1    II           0     0    24  
+##  8 Drug A    38  2.08  T4    III          1     0    24  
+##  9 Drug A    57  0.066 T1    III          0     0    24  
+## 10 Drug A    46  0.325 T1    II           0     0    24  
+## # ... with 88 more rows</code></pre>
+<p>Here, we’ve called this dataset “trial_drug”, and you can see that this dataset only includes the patients in the “Drug A” group.</p>
 </div>
 <div id="head-function" class="section level4">
 <h4><span class="header-section-number">1.2.5.4</span> <code>head</code> function</h4>
@@ -602,28 +601,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb32-2" title="2"><span class="kw">table</span>(trial<span class="op">$</span>death)</a></code></pre></div>
 <pre><code>## 
 ##   0   1 
-##  93 107</code></pre>
-<p>While this table does not give column names and is not formatted, you can see that it shows that there are 107 patients who died, and 93 patients who did not.</p>
+##  88 112</code></pre>
+<p>While this table does not give column names and is not formatted, you can see that it shows that there are 112 patients who died, and 88 patients who did not.</p>
 <p>Here is an example of a two-way table:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Create two-way table for response and death</span></a>
 <a class="sourceLine" id="cb34-2" title="2"><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</a></code></pre></div>
 <pre><code>##    
 ##      0  1
-##   0 42 66
-##   1 49 34</code></pre>
+##   0 49 83
+##   1 37 24</code></pre>
 <p>Unlike the one-way table, these results are not easily interpretable. If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.</p>
 <p>If you print the “response” variable, you can also see that there are “NA” values in the response variable, which the table doesn’t include at all.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Print response variable values</span></a>
 <a class="sourceLine" id="cb36-2" title="2">trial<span class="op">$</span>response</a></code></pre></div>
-<pre><code>##   [1]  1  1  1  1  0  1  1  0  1 NA  0  1  1  1  1  0  0  0  0  0  1  0  0
-##  [24] NA  0  0  1  1  0  1  0  0 NA  1  0  0  1  0  0 NA  1  1  1  0  1  0
-##  [47]  1  1  0  0  0  0  0  1  1  0  0  0  0  1  0  1  0  1  0  0  0  1  0
-##  [70]  1  0  1  1  1  0  0  1  0 NA  0  1  0  0  0  1  0  1  1  1  1  0  1
-##  [93]  0  0  0  0  0  1  0  1  0  1  1  1  0  1  0 NA  0  1  1  1  0  1  0
-## [116]  0  0  1  0  0  0  0  0  1  1  0  0  0  1  0  0  0  0  0  0  1  1  1
-## [139]  0  0  0  0  0  1  1 NA  0  0  1  0  0  0  0  1  1  0  0  1  1  0  0
-## [162]  1  0  1  0  0  0  1  1  1  1  1  0  1  0  0  0  1  0  1  0 NA  1  1
-## [185]  1  0  1  0  0  1  1 NA  1  0  0  0  0  0  1  0
+<pre><code>##   [1]  0  1  0  1  1  0  0  0  0  0  0  1  0  0  0  0  1  0  0  0  0  0  0  0  0
+##  [26]  0  1  0  0  1  1  0  0  1  0 NA  0  1  0  0  0  1  0  1  1  1  1  0  0  0
+##  [51]  0  0  0  0  0  0  1  0  1  1  0  0  0  0 NA  0  1  1  0  0  1  0  0  0  1
+##  [76]  0  0  0  0  0  0  1  0  0  0  1  0  1  0  0  0  0  1  1  1  0  0  0  0  0
+## [101]  0  0 NA  0  0  1  0  0  0  0  1  1  0  0  1  1  0  0  0  0  1  0  0  0  0
+## [126]  1  1  0  0  0  1  0  0  0  1  0  1  1 NA  1  1  1  0  1  0  0  1  0 NA  1
+## [151]  0  0  0  0  0  0  0  0  0  1  0  0  1  1  0  0  0  1  0  1  0  1  0  1  1
+## [176]  1  0  1 NA  0  1  0  0  1  0  1  0  0  0  0  0  0  0  0 NA  0  1  1  0  0
 ## attr(,&quot;label&quot;)
 ## [1] &quot;Tumor Response&quot;</code></pre>
 </div>
@@ -646,9 +644,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   display: table;
   border-collapse: collapse;
   margin-left: auto;
+  /* table.margin.left */
   margin-right: auto;
+  /* table.margin.right */
   color: #333333;
   font-size: 16px;
+  /* table.font.size */
   background-color: #FFFFFF;
   /* table.background.color */
   width: auto;
@@ -671,16 +672,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
+  border-left-style: hidden;
+  /* heading.border.lr.style */
+  border-left-width: 1px;
+  /* heading.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* heading.border.lr.color */
+  border-right-style: hidden;
+  /* heading.border.lr.style */
+  border-right-width: 1px;
+  /* heading.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* heading.border.lr.color */
 }
 
 #iwrgxmosvm .gt_title {
   color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
+  font-weight: initial;
+  /* heading.title.font.weight */
   padding-top: 4px;
   /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
   border-bottom-width: 0;
 }
 
@@ -688,10 +705,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
+  font-weight: initial;
+  /* heading.subtitle.font.weight */
   padding-top: 0;
   padding-bottom: 4px;
   /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
+  /* table.background.color */
   border-top-width: 0;
 }
 
@@ -712,30 +732,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-bottom: 4px;
 }
 
+#iwrgxmosvm .gt_col_headings {
+  border-top-style: solid;
+  /* column_labels.border.top.style */
+  border-top-width: 2px;
+  /* column_labels.border.top.width */
+  border-top-color: #D3D3D3;
+  /* column_labels.border.top.color */
+  border-bottom-style: solid;
+  /* column_labels.border.bottom.style */
+  border-bottom-width: 2px;
+  /* column_labels.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* column_labels.border.bottom.color */
+  border-left-style: none;
+  /* column_labels.border.lr.style */
+  border-left-width: 1px;
+  /* column_labels.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+  border-right-style: none;
+  /* column_labels.border.lr.style */
+  border-right-width: 1px;
+  /* column_labels.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+}
+
 #iwrgxmosvm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* column_labels.font.size */
   font-weight: initial;
   /* column_labels.font.weight */
+  text-transform: inherit;
+  /* column_labels.text_transform */
   vertical-align: middle;
   padding: 5px;
   margin: 10px;
   overflow-x: hidden;
-}
-
-#iwrgxmosvm .gt_columns_top_border {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#iwrgxmosvm .gt_columns_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_sep_right {
@@ -748,10 +785,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
+  text-transform: inherit;
+  /* row_group.text_transform */
   border-top-style: solid;
   /* row_group.border.top.style */
   border-top-width: 2px;
@@ -764,6 +803,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.bottom.width */
   border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
+  border-left-style: none;
+  /* row_group.border.left.style */
+  border-left-width: 1px;
+  /* row_group.border.left.width */
+  border-left-color: #D3D3D3;
+  /* row_group.border.left.color */
+  border-right-style: none;
+  /* row_group.border.right.style */
+  border-right-width: 1px;
+  /* row_group.border.right.width */
+  border-right-color: #D3D3D3;
+  /* row_group.border.right.color */
   vertical-align: middle;
 }
 
@@ -772,7 +823,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
@@ -792,7 +843,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_striped {
-  background-color: #8080800D;
+  background-color: rgba(128, 128, 128, 0.05);
+  /* row.striping.background_color */
 }
 
 #iwrgxmosvm .gt_from_md > :first-child {
@@ -804,20 +856,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_row {
-  padding: 8px;
-  /* row.padding */
+  padding-top: 8px;
+  /* data_row.padding */
+  padding-bottom: 8px;
+  /* data_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   margin: 10px;
   border-top-style: solid;
+  /* table_body.hlines.style */
   border-top-width: 1px;
+  /* table_body.hlines.width */
   border-top-color: #D3D3D3;
+  /* table_body.hlines.color */
+  border-left-style: none;
+  /* table_body.vlines.style */
+  border-left-width: 1px;
+  /* table_body.vlines.width */
+  border-left-color: #D3D3D3;
+  /* table_body.vlines.color */
+  border-right-style: none;
+  /* table_body.vlines.style */
+  border-right-width: 1px;
+  /* table_body.vlines.width */
+  border-right-color: #D3D3D3;
+  /* table_body.vlines.color */
   vertical-align: middle;
   overflow-x: hidden;
 }
 
 #iwrgxmosvm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* stub.background.color */
+  font-weight: initial;
+  /* stub.font.weight */
+  text-transform: inherit;
+  /* stub.text_transform */
   border-right-style: solid;
+  /* stub.border.style */
   border-right-width: 2px;
+  /* stub.border.width */
   border-right-color: #D3D3D3;
+  /* stub.border.color */
   padding-left: 12px;
 }
 
@@ -825,32 +906,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
-  padding: 8px;
-  /* summary_row.padding */
   text-transform: inherit;
   /* summary_row.text_transform */
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwrgxmosvm .gt_first_summary_row {
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  /* summary_row.border.style */
+  border-top-width: 2px;
+  /* summary_row.border.width */
+  border-top-color: #D3D3D3;
+  /* summary_row.border.color */
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
-  padding: 8px;
-  /* grand_summary_row.padding */
   text-transform: inherit;
   /* grand_summary_row.text_transform */
-}
-
-#iwrgxmosvm .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-style: double;
+  /* grand_summary_row.border.style */
   border-top-width: 6px;
+  /* grand_summary_row.border.width */
   border-top-color: #D3D3D3;
+  /* grand_summary_row.border.color */
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -869,44 +976,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_footnotes {
-  border-top-style: solid;
-  /* footnotes.border.top.style */
-  border-top-width: 2px;
-  /* footnotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* footnotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* footnotes.background.color */
+  border-bottom-style: none;
+  /* footnotes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* footnotes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* footnotes.border.bottom.color */
+  border-left-style: none;
+  /* footnotes.border.lr.color */
+  border-left-width: 2px;
+  /* footnotes.border.lr.color */
+  border-left-color: #D3D3D3;
+  /* footnotes.border.lr.color */
+  border-right-style: none;
+  /* footnotes.border.lr.color */
+  border-right-width: 2px;
+  /* footnotes.border.lr.color */
+  border-right-color: #D3D3D3;
+  /* footnotes.border.lr.color */
 }
 
 #iwrgxmosvm .gt_footnote {
-  font-size: 90%;
-  /* footnote.font.size */
   margin: 0px;
+  font-size: 90%;
+  /* footnotes.font.size */
   padding: 4px;
-  /* footnote.padding */
+  /* footnotes.padding */
 }
 
 #iwrgxmosvm .gt_sourcenotes {
-  border-top-style: solid;
-  /* sourcenotes.border.top.style */
-  border-top-width: 2px;
-  /* sourcenotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* sourcenotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* source_notes.background.color */
+  border-bottom-style: none;
+  /* source_notes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* source_notes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* source_notes.border.bottom.color */
+  border-left-style: none;
+  /* source_notes.border.lr.style */
+  border-left-width: 2px;
+  /* source_notes.border.lr.style */
+  border-left-color: #D3D3D3;
+  /* source_notes.border.lr.style */
+  border-right-style: none;
+  /* source_notes.border.lr.style */
+  border-right-width: 2px;
+  /* source_notes.border.lr.style */
+  border-right-color: #D3D3D3;
+  /* source_notes.border.lr.style */
 }
 
 #iwrgxmosvm .gt_sourcenote {
   font-size: 90%;
-  /* sourcenote.font.size */
+  /* source_notes.font.size */
   padding: 4px;
-  /* sourcenote.padding */
-}
-
-#iwrgxmosvm .gt_center {
-  text-align: center;
+  /* source_notes.padding */
 }
 
 #iwrgxmosvm .gt_left {
   text-align: left;
+}
+
+#iwrgxmosvm .gt_center {
+  text-align: center;
 }
 
 #iwrgxmosvm .gt_right {
@@ -937,16 +1074,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 <div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
-  <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
-  </tr>
-  <body class="gt_table_body">
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">1 if woman, 0 if man</td>
       <td class="gt_row gt_center">205 (53%)</td>
     </tr>
-  </body>
+  </tbody>
   
   <tfoot>
     <tr class="gt_footnotes">
@@ -977,9 +1116,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   display: table;
   border-collapse: collapse;
   margin-left: auto;
+  /* table.margin.left */
   margin-right: auto;
+  /* table.margin.right */
   color: #333333;
   font-size: 16px;
+  /* table.font.size */
   background-color: #FFFFFF;
   /* table.background.color */
   width: auto;
@@ -1002,16 +1144,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
+  border-left-style: hidden;
+  /* heading.border.lr.style */
+  border-left-width: 1px;
+  /* heading.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* heading.border.lr.color */
+  border-right-style: hidden;
+  /* heading.border.lr.style */
+  border-right-width: 1px;
+  /* heading.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* heading.border.lr.color */
 }
 
 #hlleqxdave .gt_title {
   color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
+  font-weight: initial;
+  /* heading.title.font.weight */
   padding-top: 4px;
   /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
   border-bottom-width: 0;
 }
 
@@ -1019,10 +1177,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
+  font-weight: initial;
+  /* heading.subtitle.font.weight */
   padding-top: 0;
   padding-bottom: 4px;
   /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
+  /* table.background.color */
   border-top-width: 0;
 }
 
@@ -1043,30 +1204,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-bottom: 4px;
 }
 
+#hlleqxdave .gt_col_headings {
+  border-top-style: solid;
+  /* column_labels.border.top.style */
+  border-top-width: 2px;
+  /* column_labels.border.top.width */
+  border-top-color: #D3D3D3;
+  /* column_labels.border.top.color */
+  border-bottom-style: solid;
+  /* column_labels.border.bottom.style */
+  border-bottom-width: 2px;
+  /* column_labels.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* column_labels.border.bottom.color */
+  border-left-style: none;
+  /* column_labels.border.lr.style */
+  border-left-width: 1px;
+  /* column_labels.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+  border-right-style: none;
+  /* column_labels.border.lr.style */
+  border-right-width: 1px;
+  /* column_labels.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+}
+
 #hlleqxdave .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* column_labels.font.size */
   font-weight: initial;
   /* column_labels.font.weight */
+  text-transform: inherit;
+  /* column_labels.text_transform */
   vertical-align: middle;
   padding: 5px;
   margin: 10px;
   overflow-x: hidden;
-}
-
-#hlleqxdave .gt_columns_top_border {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#hlleqxdave .gt_columns_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_sep_right {
@@ -1079,10 +1257,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
+  text-transform: inherit;
+  /* row_group.text_transform */
   border-top-style: solid;
   /* row_group.border.top.style */
   border-top-width: 2px;
@@ -1095,6 +1275,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.bottom.width */
   border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
+  border-left-style: none;
+  /* row_group.border.left.style */
+  border-left-width: 1px;
+  /* row_group.border.left.width */
+  border-left-color: #D3D3D3;
+  /* row_group.border.left.color */
+  border-right-style: none;
+  /* row_group.border.right.style */
+  border-right-width: 1px;
+  /* row_group.border.right.width */
+  border-right-color: #D3D3D3;
+  /* row_group.border.right.color */
   vertical-align: middle;
 }
 
@@ -1103,7 +1295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
@@ -1123,7 +1315,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #hlleqxdave .gt_striped {
-  background-color: #8080800D;
+  background-color: rgba(128, 128, 128, 0.05);
+  /* row.striping.background_color */
 }
 
 #hlleqxdave .gt_from_md > :first-child {
@@ -1135,20 +1328,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #hlleqxdave .gt_row {
-  padding: 8px;
-  /* row.padding */
+  padding-top: 8px;
+  /* data_row.padding */
+  padding-bottom: 8px;
+  /* data_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   margin: 10px;
   border-top-style: solid;
+  /* table_body.hlines.style */
   border-top-width: 1px;
+  /* table_body.hlines.width */
   border-top-color: #D3D3D3;
+  /* table_body.hlines.color */
+  border-left-style: none;
+  /* table_body.vlines.style */
+  border-left-width: 1px;
+  /* table_body.vlines.width */
+  border-left-color: #D3D3D3;
+  /* table_body.vlines.color */
+  border-right-style: none;
+  /* table_body.vlines.style */
+  border-right-width: 1px;
+  /* table_body.vlines.width */
+  border-right-color: #D3D3D3;
+  /* table_body.vlines.color */
   vertical-align: middle;
   overflow-x: hidden;
 }
 
 #hlleqxdave .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* stub.background.color */
+  font-weight: initial;
+  /* stub.font.weight */
+  text-transform: inherit;
+  /* stub.text_transform */
   border-right-style: solid;
+  /* stub.border.style */
   border-right-width: 2px;
+  /* stub.border.width */
   border-right-color: #D3D3D3;
+  /* stub.border.color */
   padding-left: 12px;
 }
 
@@ -1156,32 +1378,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
-  padding: 8px;
-  /* summary_row.padding */
   text-transform: inherit;
   /* summary_row.text_transform */
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hlleqxdave .gt_first_summary_row {
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  /* summary_row.border.style */
+  border-top-width: 2px;
+  /* summary_row.border.width */
+  border-top-color: #D3D3D3;
+  /* summary_row.border.color */
 }
 
 #hlleqxdave .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
-  padding: 8px;
-  /* grand_summary_row.padding */
   text-transform: inherit;
   /* grand_summary_row.text_transform */
-}
-
-#hlleqxdave .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hlleqxdave .gt_first_grand_summary_row {
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-style: double;
+  /* grand_summary_row.border.style */
   border-top-width: 6px;
+  /* grand_summary_row.border.width */
   border-top-color: #D3D3D3;
+  /* grand_summary_row.border.color */
 }
 
 #hlleqxdave .gt_table_body {
@@ -1200,44 +1448,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #hlleqxdave .gt_footnotes {
-  border-top-style: solid;
-  /* footnotes.border.top.style */
-  border-top-width: 2px;
-  /* footnotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* footnotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* footnotes.background.color */
+  border-bottom-style: none;
+  /* footnotes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* footnotes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* footnotes.border.bottom.color */
+  border-left-style: none;
+  /* footnotes.border.lr.color */
+  border-left-width: 2px;
+  /* footnotes.border.lr.color */
+  border-left-color: #D3D3D3;
+  /* footnotes.border.lr.color */
+  border-right-style: none;
+  /* footnotes.border.lr.color */
+  border-right-width: 2px;
+  /* footnotes.border.lr.color */
+  border-right-color: #D3D3D3;
+  /* footnotes.border.lr.color */
 }
 
 #hlleqxdave .gt_footnote {
-  font-size: 90%;
-  /* footnote.font.size */
   margin: 0px;
+  font-size: 90%;
+  /* footnotes.font.size */
   padding: 4px;
-  /* footnote.padding */
+  /* footnotes.padding */
 }
 
 #hlleqxdave .gt_sourcenotes {
-  border-top-style: solid;
-  /* sourcenotes.border.top.style */
-  border-top-width: 2px;
-  /* sourcenotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* sourcenotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* source_notes.background.color */
+  border-bottom-style: none;
+  /* source_notes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* source_notes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* source_notes.border.bottom.color */
+  border-left-style: none;
+  /* source_notes.border.lr.style */
+  border-left-width: 2px;
+  /* source_notes.border.lr.style */
+  border-left-color: #D3D3D3;
+  /* source_notes.border.lr.style */
+  border-right-style: none;
+  /* source_notes.border.lr.style */
+  border-right-width: 2px;
+  /* source_notes.border.lr.style */
+  border-right-color: #D3D3D3;
+  /* source_notes.border.lr.style */
 }
 
 #hlleqxdave .gt_sourcenote {
   font-size: 90%;
-  /* sourcenote.font.size */
+  /* source_notes.font.size */
   padding: 4px;
-  /* sourcenote.padding */
-}
-
-#hlleqxdave .gt_center {
-  text-align: center;
+  /* source_notes.padding */
 }
 
 #hlleqxdave .gt_left {
   text-align: left;
+}
+
+#hlleqxdave .gt_center {
+  text-align: center;
 }
 
 #hlleqxdave .gt_right {
@@ -1268,11 +1546,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 <div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
-  <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
-  </tr>
-  <body class="gt_table_body">
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">1 if woman, 0 if man</td>
       <td class="gt_row gt_center"></td>
@@ -1285,7 +1565,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">205 (53%)</td>
     </tr>
-  </body>
+  </tbody>
   
   <tfoot>
     <tr class="gt_footnotes">
@@ -1310,8 +1590,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb40-2" title="2"><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</a></code></pre></div>
 <pre><code>##    
 ##      0  1
-##   0 42 66
-##   1 49 34</code></pre>
+##   0 49 83
+##   1 37 24</code></pre>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Create two-way table for response and death using &quot;tbl_summary&quot; function</span></a>
 <a class="sourceLine" id="cb42-2" title="2"><span class="kw">tbl_summary</span>(</a>
 <a class="sourceLine" id="cb42-3" title="3">  trial <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(response, death),</a>
@@ -1326,9 +1606,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   display: table;
   border-collapse: collapse;
   margin-left: auto;
+  /* table.margin.left */
   margin-right: auto;
+  /* table.margin.right */
   color: #333333;
   font-size: 16px;
+  /* table.font.size */
   background-color: #FFFFFF;
   /* table.background.color */
   width: auto;
@@ -1351,16 +1634,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   background-color: #FFFFFF;
   /* heading.background.color */
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
+  border-left-style: hidden;
+  /* heading.border.lr.style */
+  border-left-width: 1px;
+  /* heading.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* heading.border.lr.color */
+  border-right-style: hidden;
+  /* heading.border.lr.style */
+  border-right-width: 1px;
+  /* heading.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* heading.border.lr.color */
 }
 
 #kqtxbhydst .gt_title {
   color: #333333;
   font-size: 125%;
   /* heading.title.font.size */
+  font-weight: initial;
+  /* heading.title.font.weight */
   padding-top: 4px;
   /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
+  /* table.background.color */
   border-bottom-width: 0;
 }
 
@@ -1368,10 +1667,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   font-size: 85%;
   /* heading.subtitle.font.size */
+  font-weight: initial;
+  /* heading.subtitle.font.weight */
   padding-top: 0;
   padding-bottom: 4px;
   /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
+  /* table.background.color */
   border-top-width: 0;
 }
 
@@ -1392,30 +1694,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-bottom: 4px;
 }
 
+#kqtxbhydst .gt_col_headings {
+  border-top-style: solid;
+  /* column_labels.border.top.style */
+  border-top-width: 2px;
+  /* column_labels.border.top.width */
+  border-top-color: #D3D3D3;
+  /* column_labels.border.top.color */
+  border-bottom-style: solid;
+  /* column_labels.border.bottom.style */
+  border-bottom-width: 2px;
+  /* column_labels.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* column_labels.border.bottom.color */
+  border-left-style: none;
+  /* column_labels.border.lr.style */
+  border-left-width: 1px;
+  /* column_labels.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+  border-right-style: none;
+  /* column_labels.border.lr.style */
+  border-right-width: 1px;
+  /* column_labels.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+}
+
 #kqtxbhydst .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   /* column_labels.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* column_labels.font.size */
   font-weight: initial;
   /* column_labels.font.weight */
+  text-transform: inherit;
+  /* column_labels.text_transform */
   vertical-align: middle;
   padding: 5px;
   margin: 10px;
   overflow-x: hidden;
-}
-
-#kqtxbhydst .gt_columns_top_border {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#kqtxbhydst .gt_columns_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_sep_right {
@@ -1428,10 +1747,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
+  text-transform: inherit;
+  /* row_group.text_transform */
   border-top-style: solid;
   /* row_group.border.top.style */
   border-top-width: 2px;
@@ -1444,6 +1765,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* row_group.border.bottom.width */
   border-bottom-color: #D3D3D3;
   /* row_group.border.bottom.color */
+  border-left-style: none;
+  /* row_group.border.left.style */
+  border-left-width: 1px;
+  /* row_group.border.left.width */
+  border-left-color: #D3D3D3;
+  /* row_group.border.left.color */
+  border-right-style: none;
+  /* row_group.border.right.style */
+  border-right-width: 1px;
+  /* row_group.border.right.width */
+  border-right-color: #D3D3D3;
+  /* row_group.border.right.color */
   vertical-align: middle;
 }
 
@@ -1452,7 +1785,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* row_group.background.color */
-  font-size: 16px;
+  font-size: 100%;
   /* row_group.font.size */
   font-weight: initial;
   /* row_group.font.weight */
@@ -1472,7 +1805,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #kqtxbhydst .gt_striped {
-  background-color: #8080800D;
+  background-color: rgba(128, 128, 128, 0.05);
+  /* row.striping.background_color */
 }
 
 #kqtxbhydst .gt_from_md > :first-child {
@@ -1484,20 +1818,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #kqtxbhydst .gt_row {
-  padding: 8px;
-  /* row.padding */
+  padding-top: 8px;
+  /* data_row.padding */
+  padding-bottom: 8px;
+  /* data_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   margin: 10px;
   border-top-style: solid;
+  /* table_body.hlines.style */
   border-top-width: 1px;
+  /* table_body.hlines.width */
   border-top-color: #D3D3D3;
+  /* table_body.hlines.color */
+  border-left-style: none;
+  /* table_body.vlines.style */
+  border-left-width: 1px;
+  /* table_body.vlines.width */
+  border-left-color: #D3D3D3;
+  /* table_body.vlines.color */
+  border-right-style: none;
+  /* table_body.vlines.style */
+  border-right-width: 1px;
+  /* table_body.vlines.width */
+  border-right-color: #D3D3D3;
+  /* table_body.vlines.color */
   vertical-align: middle;
   overflow-x: hidden;
 }
 
 #kqtxbhydst .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* stub.background.color */
+  font-weight: initial;
+  /* stub.font.weight */
+  text-transform: inherit;
+  /* stub.text_transform */
   border-right-style: solid;
+  /* stub.border.style */
   border-right-width: 2px;
+  /* stub.border.width */
   border-right-color: #D3D3D3;
+  /* stub.border.color */
   padding-left: 12px;
 }
 
@@ -1505,32 +1868,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   background-color: #FFFFFF;
   /* summary_row.background.color */
-  padding: 8px;
-  /* summary_row.padding */
   text-transform: inherit;
   /* summary_row.text_transform */
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kqtxbhydst .gt_first_summary_row {
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  /* summary_row.border.style */
+  border-top-width: 2px;
+  /* summary_row.border.width */
+  border-top-color: #D3D3D3;
+  /* summary_row.border.color */
 }
 
 #kqtxbhydst .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   /* grand_summary_row.background.color */
-  padding: 8px;
-  /* grand_summary_row.padding */
   text-transform: inherit;
   /* grand_summary_row.text_transform */
-}
-
-#kqtxbhydst .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #kqtxbhydst .gt_first_grand_summary_row {
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-style: double;
+  /* grand_summary_row.border.style */
   border-top-width: 6px;
+  /* grand_summary_row.border.width */
   border-top-color: #D3D3D3;
+  /* grand_summary_row.border.color */
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1549,44 +1938,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #kqtxbhydst .gt_footnotes {
-  border-top-style: solid;
-  /* footnotes.border.top.style */
-  border-top-width: 2px;
-  /* footnotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* footnotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* footnotes.background.color */
+  border-bottom-style: none;
+  /* footnotes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* footnotes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* footnotes.border.bottom.color */
+  border-left-style: none;
+  /* footnotes.border.lr.color */
+  border-left-width: 2px;
+  /* footnotes.border.lr.color */
+  border-left-color: #D3D3D3;
+  /* footnotes.border.lr.color */
+  border-right-style: none;
+  /* footnotes.border.lr.color */
+  border-right-width: 2px;
+  /* footnotes.border.lr.color */
+  border-right-color: #D3D3D3;
+  /* footnotes.border.lr.color */
 }
 
 #kqtxbhydst .gt_footnote {
-  font-size: 90%;
-  /* footnote.font.size */
   margin: 0px;
+  font-size: 90%;
+  /* footnotes.font.size */
   padding: 4px;
-  /* footnote.padding */
+  /* footnotes.padding */
 }
 
 #kqtxbhydst .gt_sourcenotes {
-  border-top-style: solid;
-  /* sourcenotes.border.top.style */
-  border-top-width: 2px;
-  /* sourcenotes.border.top.width */
-  border-top-color: #D3D3D3;
-  /* sourcenotes.border.top.color */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* source_notes.background.color */
+  border-bottom-style: none;
+  /* source_notes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* source_notes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* source_notes.border.bottom.color */
+  border-left-style: none;
+  /* source_notes.border.lr.style */
+  border-left-width: 2px;
+  /* source_notes.border.lr.style */
+  border-left-color: #D3D3D3;
+  /* source_notes.border.lr.style */
+  border-right-style: none;
+  /* source_notes.border.lr.style */
+  border-right-width: 2px;
+  /* source_notes.border.lr.style */
+  border-right-color: #D3D3D3;
+  /* source_notes.border.lr.style */
 }
 
 #kqtxbhydst .gt_sourcenote {
   font-size: 90%;
-  /* sourcenote.font.size */
+  /* source_notes.font.size */
   padding: 4px;
-  /* sourcenote.padding */
-}
-
-#kqtxbhydst .gt_center {
-  text-align: center;
+  /* source_notes.padding */
 }
 
 #kqtxbhydst .gt_left {
   text-align: left;
+}
+
+#kqtxbhydst .gt_center {
+  text-align: center;
 }
 
 #kqtxbhydst .gt_right {
@@ -1617,12 +2036,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 <div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
-  <tr>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 93</th>
-    <th class="gt_col_heading gt_columns_bottom_border gt_columns_top_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 107</th>
-  </tr>
-  <body class="gt_table_body">
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 88</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 112</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">Tumor Response</td>
       <td class="gt_row gt_center"></td>
@@ -1630,20 +2051,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center gt_striped">42 (46%)</td>
-      <td class="gt_row gt_center gt_striped">66 (66%)</td>
+      <td class="gt_row gt_center gt_striped">49 (57%)</td>
+      <td class="gt_row gt_center gt_striped">83 (78%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">49 (54%)</td>
-      <td class="gt_row gt_center">34 (34%)</td>
+      <td class="gt_row gt_center">37 (43%)</td>
+      <td class="gt_row gt_center">24 (22%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">Unknown</td>
       <td class="gt_row gt_center gt_striped">2</td>
-      <td class="gt_row gt_center gt_striped">7</td>
+      <td class="gt_row gt_center gt_striped">5</td>
     </tr>
-  </body>
+  </tbody>
   
   <tfoot>
     <tr class="gt_footnotes">
@@ -1669,11 +2090,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86
-##      hist
-##  ▂▅▇▇▆▅▂▁</code></pre>
+## -- Variable type:numeric ---------------------------------------------------------------------------------------
+##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
+##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁</code></pre>
 <p>So of the 386 patients (column “n”), the mean age (a type of average, I’ll explain next week) is 49.48 (column “mean”), the standard deviation (again, I’ll explain next week) is 13.75 (column “sd”). The youngest patient was 19 (column “p0”) and the oldest is 86 (column “p100”).</p>
 <p>This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was 49.48, you’d probably just say 49.</p>
 <p>“p0” here represents the minimum age in the dataset - 19. “p100” represents the maximum age of 86. “p25”, “p50” and “p75” are the centiles. We’ll talk more about this later, but briefly, “p25 = 40” means that 25% of the patients were aged 40 and younger. The number by “p50” (i.e. 49) is the median.</p>
@@ -1768,11 +2187,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -1780,12 +2201,11 @@ gitbook.start({
 "github": false,
 "facebook": false,
 "twitter": false,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1797,6 +2217,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
