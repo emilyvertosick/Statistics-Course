@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="setting-up-course-files" class="section level3">
 <h3><span class="header-section-number">1.1.2</span> Setting up course files</h3>
-<p>To access this course, download the “Statistics Course Data and Code.zip” file <a href="https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistics%20Course%20Data%20and%20Code.zip?raw=true">here</a>. Create and name a folder (e.g. “MSKCC biostats course”) on your hard drive, and then unzip the file and save it in that folder. Open the “Statistics Course” folder and click to open the R project file called “Statistics Course.Rproj”. Opening this file will open RStudio (once you have it installed), and you can easily access all files from the “files” tab in the bottom right panel in RStudio.</p>
+<p>To access this course, download the “Statistics Course Data and Code.zip” file <a href="https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data%20and%20Code.zip?raw=true">here</a>. Create and name a folder (e.g. “MSKCC biostats course”) on your hard drive, and then unzip the file and save it in that folder. Open the “Statistics Course” folder and click to open the R project file called “Statistics Course.Rproj”. Opening this file will open RStudio (once you have it installed), and you can easily access all files from the “files” tab in the bottom right panel in RStudio.</p>
 <p>There is a “Data” folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.</p>
 <p>There is a “Code” folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book.</p>
 <p>Every time you work on this course, you should open RStudio by opening the “Statistics Course.Rproj” file. It may be helpful to create a desktop link to the “Statistics Course.Rproj” file so you can easily access the course materials.</p>
@@ -373,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁</code></pre>
 <p>However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the <code>library</code> function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the “Statistics Course.Rproj” file in RStudio. For example, to load the <code>skimr</code> package, type or copy and paste the following line of code into the console window, and press enter.</p>
@@ -411,11 +411,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character -------------------------------------------------------------------------------------
+## -- Variable type:character ---------------------------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -450,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁</code></pre>
 </div>
@@ -2090,7 +2090,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ---------------------------------------------------------------------------------------
+## -- Variable type:numeric -----------------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁</code></pre>
 <p>So of the 386 patients (column “n”), the mean age (a type of average, I’ll explain next week) is 49.48 (column “mean”), the standard deviation (again, I’ll explain next week) is 13.75 (column “sd”). The youngest patient was 19 (column “p0”) and the oldest is 86 (column “p100”).</p>

@@ -5,165 +5,13 @@ editor_options:
 ---
 
 
-
-# Week 1
+# Week 2
 
 ## Setting Up
 
-### Software Installation
-
-Note: you'll need to put aside 20 - 30 minutes to install the software on your computer. 
-
-**R**
-
-Install a pre-compiled binary of R for your OS from here by clicking on "Download R for [your operating system]":
-https://cloud.r-project.org
-
-**RStudio**
-
-Install RStudio Desktop by selecting the installer for your operating system under "Desktop Version":
-
-https://www.rstudio.com/products/rstudio/download/preview/
-
-### Setting up course files
-
-To access this course, download the "Statistics Course Data and Code.zip" file [here](https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data%20and%20Code.zip?raw=true). Create and name a folder (e.g. "MSKCC biostats course") on your hard drive, and then unzip the file and save it in that folder. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
-
-There is a "Data" folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.
-
-There is a "Code" folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book. 
-
-Every time you work on this course, you should open RStudio by opening the "Statistics Course.Rproj" file. It may be helpful to create a desktop link to the "Statistics Course.Rproj" file so you can easily access the course materials.
-
-### Using RStudio
-
-When you open the "Statistics Course.Rproj" file, RStudio will open, and you will see four panes in the RStudio window (if you only see three panes, select "new file" and "New R script").
-
-1. The "console" window at the bottom left is where results will be shown if running R code from a .R file or interactively. The console window is also where you type in instructions for R. To run code in the console window, you can type or copy and paste the code and press "enter."
-
-2. The "source" window in the top left is where you will write out R code for your  .R analysis file. To run code from the source window, highlight the lines of code you'd like to run and click the "run" button, located in the upper right corner of the source window, or use the shortcut "ctrl+enter" on your keyboard.
-
-3. The top right panel includes several tabs. The most important tabs here are "environment", which shows your current datasets and objects, and "history", which shows previous commands that have been run from either the "console" or the "source" window.
-
-4. The bottom right panel also includes several tabs. The "files" tab shows all files in your current directory. The "plots" tab is where plots will be shown if a plot is created. The "packages" tab shows all R packages that are available on your machine. The "help" tab will show help files, and help files can be searched from this tab. The "viewer" tab will show any other files that are created, for example, formatted tables.
-
-![ ](Images/rstudio_window.jpg)
-
-### Installing packages
-
-For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click "yes".
-
-![ ](Images/rinstallmsg.png)
-
-Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
-
 
 ```r
-# Installing packages
-install.packages("tidyverse")
-install.packages("here")
-install.packages("skimr")
-install.packages("epiR")
-install.packages("broom")
-install.packages("pROC")
-install.packages("gmodels")
-install.packages("survival")
-install.packages("survminer")
-install.packages("remotes")
-```
-
-To install the `gt` package, copy the code below into the console window and press enter:
-
-
-```r
-remotes::install_github("rstudio/gt")
-```
-
-If you are using a Windows computer and get an error message that states <span style="color:red">Error: Could not find tools necessary to compile a package</span>, you will need to download and install the Rtools program before proceeding. The instructions are below:
-
-1. Download the "recommended" version of Rtools (in green) from [this site](https://cran.rstudio.com/bin/windows/Rtools/).
-2. Open the "Rtools##.exe" file and follow the installation instructions.
-3. After installation is complete, close RStudio and re-open by clicking on the "Statistics Course.RProj" file.
-4. Re-run the above code in the console to install the `gt` package.
-
-We will also be installing a package called `gtsummary` written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.
-
-
-```r
-install.packages("gtsummary")
-```
-
-### A Note About Packages
-
-R is "open source" software. Unlike, say, Microsoft Word, where only Microsoft engineers can make changes, R packages are written by statisticians all over the world. There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages used in the course except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
-
-## R Instructions
-
-### Opening a data file created by someone else
-
-This is mainly what you will be doing during this course. You will be loading data from files with a ".rds" extension, which is a type of file that can be exported from R. There are two ways to do this:
-
-1. You can load files by typing or copying the following code into the console window and pressing enter. Each lesson will have code in the "Setting Up" section that will load all data necessary to run the examples in the lesson. You can copy and paste that code into your console window and press "enter" to load the files. In the "Assignments" section, there will also be code to load the files necessary for the assignment.
-
-
-```r
-# You can copy and paste this code into the console window and press "enter"
-# to load the data needed for the week 1 examples
-lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
-```
-
-2. Using the "files" tab on the bottom righthand side of the RStudio window. Click on the "files" tab, and navigate to the folder where the data is stored, for example, by clicking on the "Data" folder. Click on the desired data ".rds" file. A "Load R Object" popup will appear, which allows you to change the name of the dataset when you import it. It is fine for this course to leave the dataset names as is. Clicking "OK" will load this file to your environment, which you can confirm by looking for the dataset in the top right "environment" tab.
-
-![ ](images\load_data.jpg)
-<br>
-
-### Loading packages
-
-The packages you have installed contain a number of functions. There are two ways to use the functions from these packages: by loading the package, or specifying the package name every time you use a function from that package.
-
-If you attempt to use a function from a package without loading that package or specifying the package name, you will get an error.
-
-As an example, the `skim` function comes from the `skimr` package. Using `skim` without loading or specifying the `skimr` package will give an error:
-
-
-```r
-# This will give an error - the "skimr" package isn't loaded yet
-skim(lesson1a$age)
-```
-
-```
-## Error in skim(lesson1a$age): could not find function "skim"
-```
-
-You can give both the package name and function name to avoid this error:
-
-
-```r
-# You can use the function "skim" by specifying package "skimr"
-skimr::skim(lesson1a$age)
-```
-
-```
-## 
-## Skim summary statistics
-## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
-```
-
-However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the `skimr` package, type or copy and paste the following line of code into the console window, and press enter.
-
-
-```r
-library(skimr)
-```
-
-Now you will be able to use all functions in the `skimr` package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
-
-
-```r
-# Here is the code to load all necessary packages
+# Load packages
 library(skimr)
 library(gt)
 library(gtsummary)
@@ -172,379 +20,148 @@ library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(here)
 library(tidyverse)
+
+# Load data necessary to run Week 2 examples
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
 ```
 
-### Looking at the data
+## R Instructions
 
-R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset "lesson1a" by typing the following into the console window and hitting enter (a new window will pop up):
+### Looking at your data
+
+There are several ways to see the variables in your dataset.
+
+Click on the blue circle with an arrow next to the name of your dataset in the "environment" tab (top right). You will see the number of observations and the number of variables in your dataset next to the name of your dataset.
+
+Underneath, you can see the variable name, the variable type, the values from the first several observations, and variable labels (if they exist). In some datasets, variables are labeled with information on what data is stored in the variable and/or what the variable values mean.
+
+For example, look below at the variable "sex" under "lesson1a". To the right of the variable name, it shows that this is a numeric variable ("num") and displays the first ten values. What we would expect to find in the "sex" variable is self-explanatory, based on the variable name. However, we don't know how to interpret the values. Luckily, this information is included in the variable label on the following line.
+
+Other variables have names that are not self-explanatory, for example, "p1". This variable has a label that indicates that this is "pain at time 1 postop". You will also notice that sometimes there are variables that are not labeled. In this dataset, "age" does not have a label - the variable name is self-explanatory, and by looking at the values we can see that this is age in years.
+
+![ ](images\environment_window_data.jpg)
+
+If you would like to print out this information in the console window, you can also use the `str` function:
 
 
 ```r
-# View the data as a spreadsheet
-View(lesson1a)
+# Shows a list of variables and labels
+str(lesson1a)
 ```
 
-This is data from 386 patients undergoing surgery. You can see the patient’s hospital code number as the variable "id" and then their age and sex. There are then lists of other variables with names such as "p1", "t", "x" and so on. You can see that you can have both numbers and text as a variable. You may also notice that some variables have a value of "NA" for a particular observation (e.g. the 3rd and 4th observations for variable "z"). In R, "NA" indicates missing data. 
+```
+## Classes 'tbl_df', 'tbl' and 'data.frame':	386 obs. of  11 variables:
+##  $ id : num  541836 285383 332777 566828 193254 ...
+##  $ sex: num  0 1 0 1 1 1 0 0 1 0 ...
+##   ..- attr(*, "label")= chr "1 if woman, 0 if man"
+##  $ age: num  33 55 52 53 57 31 54 26 52 66 ...
+##  $ p1 : num  0 0 0 0 0 0 0 0 0 0 ...
+##   ..- attr(*, "label")= chr "pain at time 1 postop"
+##  $ p2 : num  0 1 0 0 1 0 1 0 0 1 ...
+##   ..- attr(*, "label")= chr "pain at time 2 postop"
+##  $ p3 : num  0 1 3 0 2 2 4 1 0 1 ...
+##   ..- attr(*, "label")= chr "pain at time 3 postop"
+##  $ p4 : num  0 1 3 1 3 2 1 0 0 1 ...
+##   ..- attr(*, "label")= chr "pain at time 4 postop"
+##  $ t  : num  0 3 6 1 6 4 6 1 0 3 ...
+##   ..- attr(*, "label")= chr "total pain score times 1 - 4"
+##  $ x  : num  2 2 1 2 2 1 1 1 2 1 ...
+##  $ y  : chr  "campus" "campus" "campus" "campus" ...
+##  $ z  : num  1 1 NA NA 1 3 1 1 3 1 ...
+```
 
-### Typing a command
+The "environment" tab and the `str` function are useful for getting an overview of the variables available in your dataset, they are not as useful for getting an overview of the data values available.
 
-There are two options to run R code: you can type or copy and paste code into either the "console" window or the "source" window. To run code from the "console" window, simply press "enter". To run code from the "source" window, highlight the code you would like to run, and click the "run" button (top right corner of the "source" window) or use the keyboard shortcut "ctrl+enter".
+The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
 
-A typical command is of the form: `packagename::function(options)`. If a package has already been loaded using the `library` function (as we did above), you can omit `packagename::` when running the code.
+### Summarizing continuous variables
 
-Since you can have multiple datasets in R at the same time, your command must indicate which dataset you are referring to. This is usually done by including the dataset name inside the parentheses of the function.
-
-For example, this will summarize the data for the full `lesson1a` dataset.
+The function `skim` will give summary statistics for specified variables.
 
 
 ```r
-# View a summary of the dataset
-skim(lesson1a)
+# Summary of "age" variable from "lesson1a" dataset
+lesson1a %>% skim(age)
 ```
-
-The output above this text is the code, and the output below this shows the results produced by running that code. (We will discuss the results output in more detail later.)
-
 
 ```
 ## Skim summary statistics
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character ---------------------------------------------------------------------------------
-##  variable missing complete   n min max empty n_unique
-##         y       0      386 386   4   9     0        4
-## 
 ## -- Variable type:numeric -----------------------------------------------------------------------------------
-##  variable missing complete   n      mean        sd    p0      p25    p50
-##       age       0      386 386     49.48     13.75    19     40       49
-##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
-##        p1       0      386 386      3.24      1.66     0      2        3
-##        p2       0      386 386      3.29      1.59     0      2        3
-##        p3       0      386 386      3.09      1.63     0      2        3
-##        p4       0      386 386      2.62      1.63     0      1        3
-##       sex       0      386 386      0.53      0.5      0      0        1
-##         t       0      386 386     12.24      5.75     0      8       12
-##         x       2      384 386      1.54      0.5      1      1        2
-##         z       2      384 386      1.59      0.84     1      1        1
-##        p75  p100     hist
-##      59       86 ▂▅▇▇▆▅▂▁
-##  778010.75 1e+06 ▆▆▆▇▆▇▇▆
-##       5        6 ▂▅▂▇▁▆▇▁
-##       5        6 ▂▅▂▇▁▆▇▁
-##       4        6 ▂▅▃▇▁▆▆▁
-##       4        6 ▃▆▂▇▁▅▃▁
-##       1        1 ▇▁▁▁▁▁▁▇
-##      17       24 ▃▅▅▇▇▆▆▁
-##       2        2 ▇▁▁▁▁▁▁▇
-##       2        3 ▇▁▁▂▁▁▁▃
+##  variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
+##       age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```
 
-### Some Useful Commands
+So you can tell you have data on age for 386 patients ("n" is the number of observations), the mean age was about 49 years, and the standard deviation of the mean was about 13.8.
 
-#### Extracting a variable by name ($)
-
-To refer to one variable in your dataset, you can use the notation `dataset$variable` to indicate which dataset you are referencing, and which variable within that dataset.
-
-For example, this will summarize just the variable `age` from the `lesson1a` dataset.
+The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was 19 and the oldest was 86. "p50" is the median (49 years), and the interquartile range is reported under "p25" and "p75" (40, 59).
 
 
 ```r
-# View a summary of the "age" variable only
-skim(lesson1a$age)
+# Summary of "age" within men and women separately
+lesson1a %>%
+  group_by(sex) %>%
+  skim(age)
 ```
 
 ```
-## 
 ## Skim summary statistics
+##  n obs: 386 
+##  n variables: 11 
+##  group variables: sex 
 ## 
 ## -- Variable type:numeric -----------------------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
+##  sex variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
+##    0      age       0      181 181 49.07 13.61 19  40  49  58   82 ▂▃▇▇▆▅▂▂
+##    1      age       0      205 205 49.85 13.9  21  40  49  60   86 ▂▆▇▇▆▆▂▁
 ```
 
-#### Pipe operator (%>%)
+The `group_by` function allows you to group your data and perform analyses separately by group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
 
-One of the most useful commands is known as the pipe operator (%>%). The pipe operator can be read as "and then". Pipes allow a dataset to be passed from the left side of the pipe to the command on the right side. The dataset you are using will be referenced on the left side of the pipe, rather than included as an option in the next function. This notation is useful because it can make your code more clear if you are using more than one function.
+### Centiles
 
-Here is an example of piping using the `skim` function.
-
-This piece of code can be read as, "Use the `skim` function on the lesson1a dataset".
+You can get R to give you centiles directly by using the `quantile` function. The option `na.rm = TRUE` tells R to ignore any missing (NA) values when calculating the centiles.
 
 
 ```r
-# You can put the dataset into the function
-skim(lesson1a)
+# Get centiles for "age" variable
+quantile(lesson1a$age, na.rm = TRUE)
 ```
 
-This piece of code can be read as, "Take the lesson1a dataset, **and then** give this data to the `skim` function to use."
+```
+##   0%  25%  50%  75% 100% 
+##   19   40   49   59   86
+```
+
+The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the median and quartiles. The second row gives you the actual values. So you could report this as “Median age was 49 (quartiles 40, 59)."
+
+You aren't restricted to quartiles with the `quantile` function. For example, you can use the code below to give you the 11th, 45th and 78th centile, as well as 91.5 centile, which would be the 915th highest value in a dataset of 1000 observations. 
 
 
 ```r
-# You can also use the "pipe" operator
-lesson1a %>% skim()
+# Get specific centiles (11th, 45th, 78th, 91.5th) for "age" variable
+quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
 ```
 
-You can see that both of these lines of code are doing the same thing, although the order of the function and the dataset are different. Both will give the same results - try copying both lines of code into your console window to check that this is true.
+```
+##   11%   45%   78% 91.5% 
+##  32.0  47.0  60.3  69.0
+```
+
+### One-way tables
+
+As mentioned in the first lesson, the `tbl_summary` function (from the `gtsummary` package) can be used to create a frequency table, in this case, the number of men and women.
 
 
 ```r
-# These two pieces of code will also give the same results
-skim(lesson1a$age)
-```
-
-```r
-lesson1a %>% skim(age)
-```
-
-In this example, the pipe operator is not particularly useful - it actually involves more typing (`lesson1a %>% skim()`) than not using the pipe operator (`skim(lesson1a)`).
-
-However, the pipe operator is very helpful in more complex code. Here is an example of two pieces of code that do the same thing, with the second example using the pipe notation. You don't need to understand what this code does, but you can see that the pipe notation makes the code shorter and easier to read. It allows you to see what is happening in the code in order from left to right and top to bottom, while the code without pipes has to be read from the inside (the innermost set of parentheses) to the outside (the outermost set of parentheses).
-
-
-```r
-# Without piping
-new_data <- 
-  select(filter(mutate(trial, trt = as_factor(str_sub(str_to_upper(trt), 1, 4))), age > 60), trt, age, marker, stage, grade)
-
-new_data
-```
-
-```
-## # A tibble: 37 x 5
-##    trt     age marker stage grade
-##    <fct> <dbl>  <dbl> <fct> <fct>
-##  1 DRUG     63  0.06  T3    I    
-##  2 DRUG     71  0.445 T4    III  
-##  3 DRUG     61  1.71  T4    I    
-##  4 DRUG     63  0.981 T4    II   
-##  5 DRUG     67  1.16  T1    II   
-##  6 DRUG     68  0.105 T4    II   
-##  7 DRUG     78  0.175 T3    I    
-##  8 DRUG     61  0.177 T4    III  
-##  9 DRUG     71  0.737 T1    I    
-## 10 DRUG     83  0.475 T1    III  
-## # ... with 27 more rows
-```
-
-```r
-# With piping
-new_data_pipe <-
-  trial %>%
-  mutate(
-    trt = str_to_upper(trt) %>%
-      str_sub(1, 4) %>%
-      as_factor()
-  ) %>%
-  select(trt, age, marker, stage, grade) %>%
-  filter(age > 60)
-
-new_data_pipe
-```
-
-```
-## # A tibble: 37 x 5
-##    trt     age marker stage grade
-##    <fct> <dbl>  <dbl> <fct> <fct>
-##  1 DRUG     63  0.06  T3    I    
-##  2 DRUG     71  0.445 T4    III  
-##  3 DRUG     61  1.71  T4    I    
-##  4 DRUG     63  0.981 T4    II   
-##  5 DRUG     67  1.16  T1    II   
-##  6 DRUG     68  0.105 T4    II   
-##  7 DRUG     78  0.175 T3    I    
-##  8 DRUG     61  0.177 T4    III  
-##  9 DRUG     71  0.737 T1    I    
-## 10 DRUG     83  0.475 T1    III  
-## # ... with 27 more rows
-```
-
-#### Assignment Operator (<-)
-
-The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.
-
-Below is an example of how to create a dataset that contains only patients in the "Drug A" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
-
-
-```r
-# Here we are only keeping patients from the "Drug A" group
-trial %>%
-  filter(trt == "Drug A")
-```
-
-```
-## # A tibble: 98 x 8
-##    trt      age marker stage grade response death ttdeath
-##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
-##  1 Drug A    23  0.16  T1    II           0     0    24  
-##  2 Drug A    31  0.277 T1    II           0     0    24  
-##  3 Drug A    NA  2.07  T3    III          1     1    17.6
-##  4 Drug A    51  2.77  T4    III          1     1    16.4
-##  5 Drug A    37  0.354 T1    II           0     0    24  
-##  6 Drug A    32  1.74  T1    I            0     1    18.4
-##  7 Drug A    31  0.144 T1    II           0     0    24  
-##  8 Drug A    38  2.08  T4    III          1     0    24  
-##  9 Drug A    57  0.066 T1    III          0     0    24  
-## 10 Drug A    46  0.325 T1    II           0     0    24  
-## # ... with 88 more rows
-```
-
-You can see that the data that prints out only includes observations where "trt" is "Drug A". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
-
-
-```r
-# Print original dataset to confirm no changes
-trial
-```
-
-```
-## # A tibble: 200 x 8
-##    trt      age marker stage grade response death ttdeath
-##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
-##  1 Drug A    23  0.16  T1    II           0     0    24  
-##  2 Drug B     9  1.11  T2    I            1     0    24  
-##  3 Drug A    31  0.277 T1    II           0     0    24  
-##  4 Drug A    NA  2.07  T3    III          1     1    17.6
-##  5 Drug A    51  2.77  T4    III          1     1    16.4
-##  6 Drug B    39  0.613 T4    I            0     1    15.6
-##  7 Drug A    37  0.354 T1    II           0     0    24  
-##  8 Drug A    32  1.74  T1    I            0     1    18.4
-##  9 Drug A    31  0.144 T1    II           0     0    24  
-## 10 Drug B    34  0.205 T3    I            0     1    10.5
-## # ... with 190 more rows
-```
-
-Sometimes, this is fine - for example, if you simply want to take a look at the data. If you need to use this data again, give the dataset a name and use the assignment operator.
-
-
-```r
-# Save out dataset including only patients in drug group
-trial_drug <-
-  trial %>%
-  filter(trt == "Drug A")
-
-trial_drug
-```
-
-```
-## # A tibble: 98 x 8
-##    trt      age marker stage grade response death ttdeath
-##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
-##  1 Drug A    23  0.16  T1    II           0     0    24  
-##  2 Drug A    31  0.277 T1    II           0     0    24  
-##  3 Drug A    NA  2.07  T3    III          1     1    17.6
-##  4 Drug A    51  2.77  T4    III          1     1    16.4
-##  5 Drug A    37  0.354 T1    II           0     0    24  
-##  6 Drug A    32  1.74  T1    I            0     1    18.4
-##  7 Drug A    31  0.144 T1    II           0     0    24  
-##  8 Drug A    38  2.08  T4    III          1     0    24  
-##  9 Drug A    57  0.066 T1    III          0     0    24  
-## 10 Drug A    46  0.325 T1    II           0     0    24  
-## # ... with 88 more rows
-```
-
-Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug A" group.
-
-#### `head` function
-
-The `head` function allows you to see the first few rows of your dataset in the console window, including the variable names and variable types at the top of the table. (Using the code `head(lesson1a)` will also give you the same results.)
-
-
-```r
-# Look at the first few rows of your data
-lesson1a %>% head()
-```
-
-```
-## # A tibble: 6 x 11
-##       id   sex   age    p1    p2    p3    p4     t     x y             z
-##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <chr>     <dbl>
-## 1 541836     0    33     0     0     0     0     0     2 campus        1
-## 2 285383     1    55     0     1     1     1     3     2 campus        1
-## 3 332777     0    52     0     0     3     3     6     1 campus       NA
-## 4 566828     1    53     0     0     0     1     1     2 campus       NA
-## 5 193254     1    57     0     1     2     3     6     2 satellite     1
-## 6 530508     1    31     0     0     2     2     4     1 campus        3
-```
-
-#### `table` function
-
-The `table` function is the basic function for creating one-way and two-way tables. However, these tables often do not provide much information and are not formatted nicely or in a way that can easily be copied to a Word document.
-
-**Note:** the "trial" dataset is automatically loaded when you load the `gtsummary` package, which we've done above, so this dataset does not have to be manually loaded like the "lesson1a" dataset.
-
-Here is an example of a one-way table using the `table` function:
-
-
-```r
-# Create one-way table for death
-table(trial$death)
-```
-
-```
-## 
-##   0   1 
-##  88 112
-```
-
-While this table does not give column names and is not formatted, you can see that it shows that there are 112 patients who died, and 88 patients who did not.
-
-Here is an example of a two-way table:
-
-
-```r
-# Create two-way table for response and death
-table(trial$response, trial$death)
-```
-
-```
-##    
-##      0  1
-##   0 49 83
-##   1 37 24
-```
-
-Unlike the one-way table, these results are not easily interpretable. If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.
-
-If you print the "response" variable, you can also see that there are "NA" values in the response variable, which the table doesn't include at all.
-
-
-```r
-# Print response variable values
-trial$response
-```
-
-```
-##   [1]  0  1  0  1  1  0  0  0  0  0  0  1  0  0  0  0  1  0  0  0  0  0  0  0  0
-##  [26]  0  1  0  0  1  1  0  0  1  0 NA  0  1  0  0  0  1  0  1  1  1  1  0  0  0
-##  [51]  0  0  0  0  0  0  1  0  1  1  0  0  0  0 NA  0  1  1  0  0  1  0  0  0  1
-##  [76]  0  0  0  0  0  0  1  0  0  0  1  0  1  0  0  0  0  1  1  1  0  0  0  0  0
-## [101]  0  0 NA  0  0  1  0  0  0  0  1  1  0  0  1  1  0  0  0  0  1  0  0  0  0
-## [126]  1  1  0  0  0  1  0  0  0  1  0  1  1 NA  1  1  1  0  1  0  0  1  0 NA  1
-## [151]  0  0  0  0  0  0  0  0  0  1  0  0  1  1  0  0  0  1  0  1  0  1  0  1  1
-## [176]  1  0  1 NA  0  1  0  0  1  0  1  0  0  0  0  0  0  0  0 NA  0  1  1  0  0
-## attr(,"label")
-## [1] "Tumor Response"
-```
-
-#### `tbl_summary` function
-
-The `tbl_summary` function (from the `gtsummary` package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.
-
-In this course, we will be using the `tbl_summary` function instead of the `table` function for all tables that will be displayed. There are some cases where the `table` function will be used in conjunction with another function to perform an analysis, but these tables will not be displayed.
-
-**Note:** Tables created by the `tbl_summary` package will not display in the "console" window, and will instead display in the "Viewer" pane on the bottom right-hand side of the screen.
-
-The `tbl_summary` function can create one-way and two-way tables for binary and categorical variables. It can also create tables which include summary statistics for continuous variables (by default, median and quartiles). The `select` function allows you to list the variables you would like to include in your table. Here, we are only showing sex in the table.
-
-Here is an example of a one-way table created using the `tbl_summary` function:
-
-
-```r
-# Create a formatted table for the "sex" variable
+# Get formatted one-way frequency table
 tbl_summary(
-  lesson1a %>% select(sex) 
+  lesson1a %>% select(sex), # Specify data to use and variables to include
+  type = list("sex" ~ "categorical") # Show all levels of binary variables
 )
 ```
 
@@ -995,6 +612,14 @@ tbl_summary(
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">1 if woman, 0 if man</td>
+      <td class="gt_row gt_center"></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
+      <td class="gt_row gt_center gt_striped">181 (47%)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">205 (53%)</td>
     </tr>
   </tbody>
@@ -1015,13 +640,22 @@ tbl_summary(
   </tfoot>
 </table></div><!--/html_preserve-->
 
-As you can see, there is currently only one row in the table. If a variable has values of 0 and 1 only, the `tbl_summary` function gives the percentage of values that are equal to 1 by default. If you would like to see the percentage of both 0 and 1 values, you can use the "type" option and specify that the variable is categorical.
+
+
+<br>
+
+So there are 205 (53%) women and 181 (47%) men.
+
+### Two-way tables
+
+The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable "y" gives the part of the hospital) in men and women separately. In the last lesson, a 2-by-2 table was created, but `tbl_summary` can also create a two-way table with more than 2 rows or more than 2 columns.
 
 
 ```r
-# Create a formatted table for the "sex" variable, showing both "0" and "1" values
+# Create a formatted two-way summary table
 tbl_summary(
-  lesson1a %>% select(sex),
+  lesson1a %>% select(sex, y), # Select both variables
+  by = y, # The "by" option specifies which will be the column variable
   type = list("sex" ~ "categorical")
 )
 ```
@@ -1467,27 +1101,39 @@ tbl_summary(
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>satellite</strong>, N = 67</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">1 if woman, 0 if man</td>
       <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center gt_striped">181 (47%)</td>
+      <td class="gt_row gt_center gt_striped">115 (48%)</td>
+      <td class="gt_row gt_center gt_striped">15 (38%)</td>
+      <td class="gt_row gt_center gt_striped">19 (48%)</td>
+      <td class="gt_row gt_center gt_striped">32 (48%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">205 (53%)</td>
+      <td class="gt_row gt_center">125 (52%)</td>
+      <td class="gt_row gt_center">24 (62%)</td>
+      <td class="gt_row gt_center">21 (52%)</td>
+      <td class="gt_row gt_center">35 (52%)</td>
     </tr>
   </tbody>
   
   <tfoot>
     <tr class="gt_footnotes">
-      <td colspan="2">
+      <td colspan="5">
         <p class="gt_footnote">
           <sup class="gt_footnote_marks">
             <em>1</em>
@@ -1503,32 +1149,21 @@ tbl_summary(
 
 <br>
 
-This tells you that the "sex" variable has no missing data because the table only shows values of "0" and "1", with no "NA" values. It also shows that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
+This shows that, for example, there were 240 operations done at the main campus, 115 of these were done on men and 125 on women. This shows that 48% of the operations at the satellite were on men and 52% on women.
 
-Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were 181 men in the 386 patients and that they constituted 47% of the population.
-
-The `tbl_summary` function can also be used for two-way tables. The `select` function is used to select both variables of interest, and the name of the column variable is specified in the `by` statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the `table` function. It also includes information on the missing (NA) values, which are excluded when using the `table` function.
+You can use the `add_overall` function to add a column which shows the total across all sites. This is not generally advised - for instance, if the median age in the drug group is 65 and in the placebo group is 67, you don't need to be told that the median age in the cohort is somewhere near 66 - but there are sometimes reasons to report on the whole cohort as well.
 
 
 ```r
-# Create two-way table for response and death using "table" function
-table(trial$response, trial$death)
-```
-
-```
-##    
-##      0  1
-##   0 49 83
-##   1 37 24
-```
-
-```r
-# Create two-way table for response and death using "tbl_summary" function
+# Create a formatted two-way summary table and add column for all patients
 tbl_summary(
-  trial %>% select(response, death),
-  by = death,
-  type = list("response" ~ "categorical")
-)
+  lesson1a %>% select(sex, y),
+  by = y,
+  type = list("sex" ~ "categorical")
+) %>%
+  # Add a column with totals across all locations
+  # "last = TRUE" puts the column on the right side of the table
+  add_overall(last = TRUE)
 ```
 
 <!--html_preserve--><style>html {
@@ -1972,36 +1607,43 @@ tbl_summary(
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 88</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 112</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>satellite</strong>, N = 67</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 386</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_left">Tumor Response</td>
+      <td class="gt_row gt_left">1 if woman, 0 if man</td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
     </tr>
     <tr>
       <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center gt_striped">49 (57%)</td>
-      <td class="gt_row gt_center gt_striped">83 (78%)</td>
+      <td class="gt_row gt_center gt_striped">115 (48%)</td>
+      <td class="gt_row gt_center gt_striped">15 (38%)</td>
+      <td class="gt_row gt_center gt_striped">19 (48%)</td>
+      <td class="gt_row gt_center gt_striped">32 (48%)</td>
+      <td class="gt_row gt_center gt_striped">181 (47%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">37 (43%)</td>
-      <td class="gt_row gt_center">24 (22%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">Unknown</td>
-      <td class="gt_row gt_center gt_striped">2</td>
-      <td class="gt_row gt_center gt_striped">5</td>
+      <td class="gt_row gt_center">125 (52%)</td>
+      <td class="gt_row gt_center">24 (62%)</td>
+      <td class="gt_row gt_center">21 (52%)</td>
+      <td class="gt_row gt_center">35 (52%)</td>
+      <td class="gt_row gt_center">205 (53%)</td>
     </tr>
   </tbody>
   
   <tfoot>
     <tr class="gt_footnotes">
-      <td colspan="3">
+      <td colspan="6">
         <p class="gt_footnote">
           <sup class="gt_footnote_marks">
             <em>1</em>
@@ -2015,150 +1657,787 @@ tbl_summary(
   </tfoot>
 </table></div><!--/html_preserve-->
 
-#### `skim` function
+<br>
 
-The `skim` function (from the `skimr` package) gives basic summary data.
+Overall, 47% of the patients treated in the hospital were men and 53% were women.
 
-
-```r
-# Show summary statistics for "age"
-skim(lesson1a$age)
-```
-
-```
-## 
-## Skim summary statistics
-## 
-## -- Variable type:numeric -----------------------------------------------------------------------------------
-##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
-##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
-```
-
-So of the 386 patients (column "n"), the mean age (a type of average, I’ll explain next week) is 49.48 (column "mean"), the standard deviation (again, I’ll explain next week) is 13.75 (column "sd"). The youngest patient was 19 (column "p0") and the oldest is 86 (column "p100"). 
-
-This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was 49.48, you’d probably just say 49.
-
-"p0" here represents the minimum age in the dataset - 19. "p100" represents the maximum age of 86. "p25", "p50" and "p75" are the centiles. We'll talk more about this later, but briefly, "p25 = 40" means that 25% of the patients were aged 40 and younger. The number by "p50" (i.e. 49) is the median.
-
-#### `mutate` function
-
-The `mutate` function is used to create new variables, or replace variable values.
-
-The code below means: create a new variable called "a" and set it equal to 1 in all observations. The "<-" indicator means to then save out this new dataset including the "a" variable as "lesson1a", replacing the old "lesson1a" dataset that does not include "a".
+By default `tbl_summary` gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the `percent` option and specifying "row".
 
 
 ```r
-# Save the data out as "lesson1a"
-lesson1a <-
-  lesson1a %>% # Take the current "lesson1a" dataset
-  mutate(a = 1) # And add a variable called "a" with a value of "1"
+# The two-way summary table can give you row percent instead of column percent
+tbl_summary(
+  lesson1a %>% select(sex, y),
+  by = y,
+  type = list("sex" ~ "categorical"),
+  percent = "row" # get the row percent instead of column percent
+)
 ```
 
-Since we have already created the variable "a" above, the code below means: replace the variable "a" with the value of 2 in all observations.
+<!--html_preserve--><style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#qzjvxzfwte .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  /* table.margin.left */
+  margin-right: auto;
+  /* table.margin.right */
+  color: #333333;
+  font-size: 16px;
+  /* table.font.size */
+  background-color: #FFFFFF;
+  /* table.background.color */
+  width: auto;
+  /* table.width */
+  border-top-style: solid;
+  /* table.border.top.style */
+  border-top-width: 2px;
+  /* table.border.top.width */
+  border-top-color: #A8A8A8;
+  /* table.border.top.color */
+  border-bottom-style: solid;
+  /* table.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table.border.bottom.width */
+  border-bottom-color: #A8A8A8;
+  /* table.border.bottom.color */
+}
+
+#qzjvxzfwte .gt_heading {
+  background-color: #FFFFFF;
+  /* heading.background.color */
+  border-bottom-color: #FFFFFF;
+  /* table.background.color */
+  border-left-style: hidden;
+  /* heading.border.lr.style */
+  border-left-width: 1px;
+  /* heading.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* heading.border.lr.color */
+  border-right-style: hidden;
+  /* heading.border.lr.style */
+  border-right-width: 1px;
+  /* heading.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* heading.border.lr.color */
+}
+
+#qzjvxzfwte .gt_title {
+  color: #333333;
+  font-size: 125%;
+  /* heading.title.font.size */
+  font-weight: initial;
+  /* heading.title.font.weight */
+  padding-top: 4px;
+  /* heading.top.padding - not yet used */
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  /* table.background.color */
+  border-bottom-width: 0;
+}
+
+#qzjvxzfwte .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  /* heading.subtitle.font.size */
+  font-weight: initial;
+  /* heading.subtitle.font.weight */
+  padding-top: 0;
+  padding-bottom: 4px;
+  /* heading.bottom.padding - not yet used */
+  border-top-color: #FFFFFF;
+  /* table.background.color */
+  border-top-width: 0;
+}
+
+#qzjvxzfwte .gt_bottom_border {
+  border-bottom-style: solid;
+  /* heading.border.bottom.style */
+  border-bottom-width: 2px;
+  /* heading.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* heading.border.bottom.color */
+}
+
+#qzjvxzfwte .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qzjvxzfwte .gt_col_headings {
+  border-top-style: solid;
+  /* column_labels.border.top.style */
+  border-top-width: 2px;
+  /* column_labels.border.top.width */
+  border-top-color: #D3D3D3;
+  /* column_labels.border.top.color */
+  border-bottom-style: solid;
+  /* column_labels.border.bottom.style */
+  border-bottom-width: 2px;
+  /* column_labels.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* column_labels.border.bottom.color */
+  border-left-style: none;
+  /* column_labels.border.lr.style */
+  border-left-width: 1px;
+  /* column_labels.border.lr.width */
+  border-left-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+  border-right-style: none;
+  /* column_labels.border.lr.style */
+  border-right-width: 1px;
+  /* column_labels.border.lr.width */
+  border-right-color: #D3D3D3;
+  /* column_labels.border.lr.color */
+}
+
+#qzjvxzfwte .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* column_labels.background.color */
+  font-size: 100%;
+  /* column_labels.font.size */
+  font-weight: initial;
+  /* column_labels.font.weight */
+  text-transform: inherit;
+  /* column_labels.text_transform */
+  vertical-align: middle;
+  padding: 5px;
+  margin: 10px;
+  overflow-x: hidden;
+}
+
+#qzjvxzfwte .gt_sep_right {
+  border-right: 5px solid #FFFFFF;
+}
+
+#qzjvxzfwte .gt_group_heading {
+  padding: 8px;
+  /* row_group.padding */
+  color: #333333;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 100%;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  text-transform: inherit;
+  /* row_group.text_transform */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #D3D3D3;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* row_group.border.bottom.color */
+  border-left-style: none;
+  /* row_group.border.left.style */
+  border-left-width: 1px;
+  /* row_group.border.left.width */
+  border-left-color: #D3D3D3;
+  /* row_group.border.left.color */
+  border-right-style: none;
+  /* row_group.border.right.style */
+  border-right-width: 1px;
+  /* row_group.border.right.width */
+  border-right-color: #D3D3D3;
+  /* row_group.border.right.color */
+  vertical-align: middle;
+}
+
+#qzjvxzfwte .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  /* row_group.background.color */
+  font-size: 100%;
+  /* row_group.font.size */
+  font-weight: initial;
+  /* row_group.font.weight */
+  border-top-style: solid;
+  /* row_group.border.top.style */
+  border-top-width: 2px;
+  /* row_group.border.top.width */
+  border-top-color: #D3D3D3;
+  /* row_group.border.top.color */
+  border-bottom-style: solid;
+  /* row_group.border.bottom.style */
+  border-bottom-width: 2px;
+  /* row_group.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* row_group.border.bottom.color */
+  vertical-align: middle;
+}
+
+#qzjvxzfwte .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+  /* row.striping.background_color */
+}
+
+#qzjvxzfwte .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qzjvxzfwte .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qzjvxzfwte .gt_row {
+  padding-top: 8px;
+  /* data_row.padding */
+  padding-bottom: 8px;
+  /* data_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  /* table_body.hlines.style */
+  border-top-width: 1px;
+  /* table_body.hlines.width */
+  border-top-color: #D3D3D3;
+  /* table_body.hlines.color */
+  border-left-style: none;
+  /* table_body.vlines.style */
+  border-left-width: 1px;
+  /* table_body.vlines.width */
+  border-left-color: #D3D3D3;
+  /* table_body.vlines.color */
+  border-right-style: none;
+  /* table_body.vlines.style */
+  border-right-width: 1px;
+  /* table_body.vlines.width */
+  border-right-color: #D3D3D3;
+  /* table_body.vlines.color */
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qzjvxzfwte .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* stub.background.color */
+  font-weight: initial;
+  /* stub.font.weight */
+  text-transform: inherit;
+  /* stub.text_transform */
+  border-right-style: solid;
+  /* stub.border.style */
+  border-right-width: 2px;
+  /* stub.border.width */
+  border-right-color: #D3D3D3;
+  /* stub.border.color */
+  padding-left: 12px;
+}
+
+#qzjvxzfwte .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* summary_row.background.color */
+  text-transform: inherit;
+  /* summary_row.text_transform */
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzjvxzfwte .gt_first_summary_row {
+  padding-top: 8px;
+  /* summary_row.padding */
+  padding-bottom: 8px;
+  /* summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  /* summary_row.border.style */
+  border-top-width: 2px;
+  /* summary_row.border.width */
+  border-top-color: #D3D3D3;
+  /* summary_row.border.color */
+}
+
+#qzjvxzfwte .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* grand_summary_row.background.color */
+  text-transform: inherit;
+  /* grand_summary_row.text_transform */
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzjvxzfwte .gt_first_grand_summary_row {
+  padding-top: 8px;
+  /* grand_summary_row.padding */
+  padding-bottom: 8px;
+  /* grand_summary_row.padding */
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  /* grand_summary_row.border.style */
+  border-top-width: 6px;
+  /* grand_summary_row.border.width */
+  border-top-color: #D3D3D3;
+  /* grand_summary_row.border.color */
+}
+
+#qzjvxzfwte .gt_table_body {
+  border-top-style: solid;
+  /* table_body.border.top.style */
+  border-top-width: 2px;
+  /* table_body.border.top.width */
+  border-top-color: #D3D3D3;
+  /* table_body.border.top.color */
+  border-bottom-style: solid;
+  /* table_body.border.bottom.style */
+  border-bottom-width: 2px;
+  /* table_body.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* table_body.border.bottom.color */
+}
+
+#qzjvxzfwte .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* footnotes.background.color */
+  border-bottom-style: none;
+  /* footnotes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* footnotes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* footnotes.border.bottom.color */
+  border-left-style: none;
+  /* footnotes.border.lr.color */
+  border-left-width: 2px;
+  /* footnotes.border.lr.color */
+  border-left-color: #D3D3D3;
+  /* footnotes.border.lr.color */
+  border-right-style: none;
+  /* footnotes.border.lr.color */
+  border-right-width: 2px;
+  /* footnotes.border.lr.color */
+  border-right-color: #D3D3D3;
+  /* footnotes.border.lr.color */
+}
+
+#qzjvxzfwte .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  /* footnotes.font.size */
+  padding: 4px;
+  /* footnotes.padding */
+}
+
+#qzjvxzfwte .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  /* source_notes.background.color */
+  border-bottom-style: none;
+  /* source_notes.border.bottom.style */
+  border-bottom-width: 2px;
+  /* source_notes.border.bottom.width */
+  border-bottom-color: #D3D3D3;
+  /* source_notes.border.bottom.color */
+  border-left-style: none;
+  /* source_notes.border.lr.style */
+  border-left-width: 2px;
+  /* source_notes.border.lr.style */
+  border-left-color: #D3D3D3;
+  /* source_notes.border.lr.style */
+  border-right-style: none;
+  /* source_notes.border.lr.style */
+  border-right-width: 2px;
+  /* source_notes.border.lr.style */
+  border-right-color: #D3D3D3;
+  /* source_notes.border.lr.style */
+}
+
+#qzjvxzfwte .gt_sourcenote {
+  font-size: 90%;
+  /* source_notes.font.size */
+  padding: 4px;
+  /* source_notes.padding */
+}
+
+#qzjvxzfwte .gt_left {
+  text-align: left;
+}
+
+#qzjvxzfwte .gt_center {
+  text-align: center;
+}
+
+#qzjvxzfwte .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qzjvxzfwte .gt_font_normal {
+  font-weight: normal;
+}
+
+#qzjvxzfwte .gt_font_bold {
+  font-weight: bold;
+}
+
+#qzjvxzfwte .gt_font_italic {
+  font-style: italic;
+}
+
+#qzjvxzfwte .gt_super {
+  font-size: 65%;
+}
+
+#qzjvxzfwte .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>satellite</strong>, N = 67</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">1 if woman, 0 if man</td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+      <td class="gt_row gt_center"></td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_striped" style="text-align: left; text-indent: 10px;">0</td>
+      <td class="gt_row gt_center gt_striped">115 (64%)</td>
+      <td class="gt_row gt_center gt_striped">15 (8.3%)</td>
+      <td class="gt_row gt_center gt_striped">19 (10%)</td>
+      <td class="gt_row gt_center gt_striped">32 (18%)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_center">125 (61%)</td>
+      <td class="gt_row gt_center">24 (12%)</td>
+      <td class="gt_row gt_center">21 (10%)</td>
+      <td class="gt_row gt_center">35 (17%)</td>
+    </tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="5">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          Statistics presented: n (%)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table></div><!--/html_preserve-->
+
+<br>
+
+This shows that, for example, 8.3% of men and 12% of women had operations at the "Harding" site.
+
+### Subsetting Data
+
+Sometimes, you will want to subset your data - for instance, by keeping only the women from the full dataset. This can be done using the `filter` function. The `filter` function takes a condition, similar to an `if_else` statement. However, `filter` only keeps observations in the data that meet that condition.
+
+To start, we will count the number of observations in the full dataset, so we will be able to confirm whether we have subset correctly. Passing a dataset to the `count` function will count the number of total observations.
 
 
 ```r
-# Replace the value of "a" with "2" for all observations
-lesson1a <-
-  lesson1a %>%
-  mutate(a = 2)
+# Count all patients in the dataset
+lesson1a %>% count()
 ```
 
-You can also replace one variable with the value of another variable. The code below means: replace the variable "a" with whatever the value of "p1" is in each observation.
+```
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1   386
+```
+
+In this example, we can use `filter` to count the number of women in the dataset, or the number of operations on women at the main campus. Don't forget that you need to use two equals signs here.
 
 
 ```r
-# Replace the value of "a" with the value of "p1" for all observations
-lesson1a <-
-  lesson1a %>%
-  mutate(a = p1)
+# Count the number of women
+lesson1a %>%
+  filter(sex == 1) %>%
+  count()
 ```
 
-You can also calculate values inside a `mutate` statement. For example, you can create an average of the four variables "p1" - "p4".
+```
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1   205
+```
+
+```r
+# Count the number of women treated at the main campus
+lesson1a %>%
+  filter(sex == 1 & y == "campus") %>%
+  count()
+```
+
+```
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1   125
+```
+
+Note that because we did not use the assignment operator (`<-`) to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that `lesson1a` still contains all observations.
+
+### Graphing
+
+We won’t be doing much on the graphical presentation of data in this course (this has been called "graphicacy"). The only reason we are doing it here is to get a visual impression of whether data are normally presented (not something you’d want to publish).
+
+The following might sound a little complicated, but just follow it through and everything will be fine.
+
+First, run the following code.
 
 
 ```r
-# Replace "a" with the average of "p1", "p2", "p3" and "p4"
-lesson1a <-
-  lesson1a %>%
-  mutate(a = (p1 + p2 + p3 + p4)/4)
+# This code creates a histogram of the "age" variable
+ggplot(data = lesson1a,
+       aes(x = age)) +
+  geom_histogram()
 ```
 
-#### `if_else` function
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
 
-The `if_else` function can be used with the `mutate` function to assign values to a variable based on a specific condition.
+<img src="02-week2_files/figure-html/section2m-1.png" width="672" />
 
-The first argument in the `if_else` function is the "if" condition. The second argument is the value of the variable for observations that meet the "if" condition. The third argument is the value of the variable for observations that do not meet the "if" condition.
+`ggplot` indicates that you want to create a graph. The dataset "lesson1a" is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
 
-For example, the code below says: replace the value of "a" with "p1" if "p1" is greater than 4. Otherwise, keep the original value "a".
+One of the things that R does is to choose the number of bars for you. Notice how the graph looks "lumpy". The output also displays a message that tells you that the default number of bars (also called "bins") is 30 and suggests to "pick a better value". This is because you are breaking the data up into too many small pieces.
+
+You can pick the number of bars yourself by using the `bins` option. Try setting the number of bins to 20, which will break the data into fewer pieces.
 
 
 ```r
-# Replace the value of "a" with "p1" if the value of "p1" is greater than 4
-lesson1a <-
-  lesson1a %>%
-  mutate(a = if_else(p1 > 4, p1, a))
+# Here is the same histogram, setting the number of bins to 20
+ggplot(data = lesson1a,
+       aes(x = age)) +
+  geom_histogram(bins = 20)
 ```
 
-In this case, we are only replacing for females. Note that when you use equals sign after an "if" you have to use two of them in a row to signify "is equal to" rather than "make equal to".
+<img src="02-week2_files/figure-html/section2n-1.png" width="672" />
+
+The following code will superimpose a curve for the normal distribution.
 
 
 ```r
-# Replace the value of "a" with "p1" if "sex" equals 1 (female)
-lesson1a <-
-  lesson1a %>%
-  mutate(a = if_else(sex == 1, p1, a))
+# Here is the histogram with 20 bins and density curve overlay
+ggplot(data = lesson1a,
+       aes(x = age)) +
+  geom_histogram(aes(y = ..density..), bins = 20) +
+  geom_density()
 ```
 
-The `|` sign means "or", such that the code below means: set "a" equal to 1 if "y" is equal to either "campus" or "peds". Otherwise, keep the original value of "a".
+<img src="02-week2_files/figure-html/section2o-1.png" width="672" />
+
+### Further Reading
+
+Only read this if you are feeling really keen...
 
 
 ```r
-# Replace the value of "a" with "1" if "y" is equal to either "campus" or "peds"
-lesson1a <-
-  lesson1a %>%
-  mutate(a = if_else(y == "campus" | y == "peds", 1, a))
+# The "ci" function is from the "gmodels" package
+# This gives the mean of age and 90% confidence interval
+ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
 ```
 
-You can give check for more than one condition by using the "&" sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age > 50). This creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
+```
+##   Estimate   CI lower   CI upper Std. Error 
+## 49.4844560 48.3301266 50.6387853  0.7000938
+```
+
+This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age, na.rm = TRUE)`).
 
 
 ```r
-# Replace the value of "a" with 1 if sex equals 1 (female) and age > 50
-# For all other observations, replace "a" with 0
-lesson1a <-
-  lesson1a %>%
-  mutate(a = if_else(sex == 1 & age > 50, 1, 0))
+# The "ci.binom" function gives the same information as "ci" but is used for binary variables
+ci.binom(lesson1a$sex, na.rm = TRUE)
 ```
 
-### Using Help
+```
+##       Estimate  CI lower  CI upper Std. Error
+## [1,] 0.5310881 0.4799345 0.5817614 0.02540009
+```
 
-The help feature in R can be useful if you know the name of the function that you need assistance with. Sometimes, the help file for a function can be very technical at the top, but if you scroll to the bottom, there is an "examples" section which will show different examples of the code. You can copy and paste these examples and run them on your own machine which can help you better understand how to use the functions. To access the help file for a function, you can type `?functionname` (e.g., `?skim`) or `?packagename::functionname` if you have not loaded the package using the `library` command.
+For a binary variable, the function `ci.binom` from the `gmodels` package is used. This gives the proportion of women along with 95% confidence intervals (95% is the default, meaning if you don’t specify a level, it assumes you want the 95% confidence interval.)
 
-Unfortunately, the R help function is not very useful if you don't know the function you are trying to use. However, there are some websites that can be useful to learn more about the common functions used in the course.
+### Using R as a calculator
 
-#### Data Manipulation
+R can be used as a calculator:
 
-Most of the data manipulation we will be doing in this course, such as creating variables and selecting specific variables and observations to keep, is done using functions from the `dplyr` package (part of the `tidyverse`) package. This includes the `select` and `mutate` functions that you've seen in this lesson, as well as other functions you will see in future lessons, like `filter`. Click [here](https://dplyr.tidyverse.org/) if you need help remembering which function to use, or need code examples for these functions.
 
-#### Statistical Functions
+```r
+# Multiplication
+7*7
+```
 
-Most of the statistical functions that will be used in this course are included in the `stats` package, which is pre-loaded when you install R. These include the following functions, among others: `quantile`, `binom.test`, `t.test`, `wilcox.test`, `fisher.test`, `lm` and `glm`. You can access the help files for these using the `?functionname` notation, for example, `?quantile`.
+```
+## [1] 49
+```
 
-If you need help deciding which statistical functions to use, the best place to start would be searching through the statistics course online book, using the magnifying glass option at the top left. For example, if you search "logistic regression", you can find section 5.2.4 "Logistic regression", which will take you to the section of the course on this topic.
+`log()` is the natural logarithm (to base e)
 
-#### Tables
 
-For more information on the `gtsummary` package, which creates formatted tables, click [here](http://www.danieldsjoberg.com/gtsummary/).
+```r
+# Natural logarithm
+log(2.71828)
+```
+
+```
+## [1] 0.9999993
+```
+
+`exp()` is the inverse natural logarithm, that is, if exp(x)=y, e^y^=x
+
+
+```r
+# Inverse natural logarithm
+exp(1)
+```
+
+```
+## [1] 2.718282
+```
+
+`log10()` gives the log to base 10
+
+
+```r
+# Base 10 logarithm
+log10(100)
+```
+
+```
+## [1] 2
+```
+
+`cos(45)` gives the cosine of 45
+
+
+```r
+# Cosine
+cos(45)
+```
+
+```
+## [1] 0.525322
+```
+
+Some of the functions give useful statistical constants.
+
+`pnorm(x)` gives the probability that an observation will be less than mean + x standard deviations.
+
+
+```r
+# Probability that an observation will be less than mean + 1 standard deviations
+pnorm(1)
+```
+
+```
+## [1] 0.8413447
+```
+
+```r
+# Probability that an observation will be less than mean - 0.5 standard deviations
+pnorm(-0.5)
+```
+
+```
+## [1] 0.3085375
+```
+
+`pnorm(1)` gives 0.84 - this means that 84% of a normally distributed set of data will be less than one standard deviation above the mean.
+
+`pnorm(-0.5)` gives 0.31, meaning that 31% of a normally distributed set of data will be less than half a standard deviation below the mean.
+
+Therefore, if you had a data set where the pain score had a mean of 5 and a standard deviation of 2, you could predict that only 16% of patients would have pain scores of 7 or more (i.e. more than one standard deviation higher than the mean) and that 69% would have pain scores of 4 or more (i.e. more than half a standard deviation below the mean: 31% of observations are half a standard deviation or more less than the mean).
+
+
+```r
+# Probability that an observation will be less than mean + 1.96
+pnorm(1.96)
+```
+
+```
+## [1] 0.9750021
+```
+
+```r
+# Probability that an observation will be less than mean - 1.96
+pnorm(-1.96)
+```
+
+```
+## [1] 0.0249979
+```
+
+`pnorm(1.96)` gives 0.975 and `pnorm(-1.96)` gives 0.025. So 97.5% of observations are less than 1.96 standard deviations greater than the mean, and 2.5% are less than 1.96 standard deviations lower than the mean. In other words, 95% of observations are within 1.96 standard deviations of the mean.
+
+`pnorm(0.675)` gives 0.75 and `pnorm(-0.675)` gives 0.25, meaning that 50% of observations fall within approximately 2/3 of a standard deviation on either side of the mean.
+
+Almost all observations fall within 3 standard deviations of the mean, as shown by `pnorm(3)` and `pnorm(-3)`, which give 0.9987 and 0.0013, respectively. This means that 99.7% of all observations fall into this range.
 
 ## Assignments
 
 
 ```r
-# Copy and paste this code to load the data for week 1 assignments
-lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+# Copy and paste this code to load the data for week 2 assignments
+lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
+lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
+lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
+lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
+lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
 ```
 
-The data for you to look at are in the attached file lesson1a.rds.
+It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
 
-This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?
+I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable `rt` by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.
+
+All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
+
+- lesson2a.rds: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
+- lesson2b.rds: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
+- lesson2c.rds: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
+- lesson2d.rds: Cost of a minor medical procedure. Summarize cost.
+- lesson2e.rds: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
+
+
+

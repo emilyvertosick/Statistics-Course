@@ -68,7 +68,7 @@ https://www.rstudio.com/products/rstudio/download/preview/
 
 ### Setting up course files
 
-To access this course, download the "Statistics Course Data and Code.zip" file [here](https://github.mskcc.org/vertosie/Statistics-Course/blob/master/Statistics%20Course%20Data%20and%20Code.zip?raw=true). Create and name a folder (e.g. "MSKCC biostats course") on your hard drive, and then unzip the file and save it in that folder. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
+To access this course, download the "Statistics Course Data and Code.zip" file [here](https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data%20and%20Code.zip?raw=true). Create and name a folder (e.g. "MSKCC biostats course") on your hard drive, and then unzip the file and save it in that folder. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
 
 There is a "Data" folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.
 

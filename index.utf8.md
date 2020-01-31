@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: `r format(Sys.Date(), format='%B %d, %Y')`"
+date: "Last Updated: January 31, 2020"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -21,12 +21,7 @@ link-citations: yes
 description: "Statistics Course"
 ---
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+
 
 # General Course Materials {-}
 
