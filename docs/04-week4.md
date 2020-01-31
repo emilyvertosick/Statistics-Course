@@ -173,7 +173,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -679,7 +679,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -1229,7 +1229,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -1744,7 +1744,7 @@ The probability of something is defined as the number of times it occurs divided
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -2392,7 +2392,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */

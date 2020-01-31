@@ -297,7 +297,7 @@ tbl_regression(rom_model)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -895,7 +895,7 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -1463,7 +1463,7 @@ recurrence_model %>%
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */

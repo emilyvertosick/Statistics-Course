@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8 Week 8 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8 Week 8 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -38,6 +38,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -103,7 +106,8 @@
 <li class="chapter" data-level="3" data-path="week-3.html"><a href="week-3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
 <li class="chapter" data-level="3.1" data-path="week-3.html"><a href="week-3.html#setting-up-2"><i class="fa fa-check"></i><b>3.1</b> Setting up</a></li>
 <li class="chapter" data-level="3.2" data-path="week-3.html"><a href="week-3.html#r-instructions-2"><i class="fa fa-check"></i><b>3.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="week-3.html"><a href="week-3.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.1</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="3.2.1" data-path="week-3.html"><a href="week-3.html#example-datasets"><i class="fa fa-check"></i><b>3.2.1</b> Example Datasets</a></li>
+<li class="chapter" data-level="3.2.2" data-path="week-3.html"><a href="week-3.html#hypothesis-testing"><i class="fa fa-check"></i><b>3.2.2</b> Hypothesis Testing</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="week-3.html"><a href="week-3.html#assignments-2"><i class="fa fa-check"></i><b>3.3</b> Assignments</a></li>
 </ul></li>
@@ -136,7 +140,8 @@
 <li class="chapter" data-level="7" data-path="week-7.html"><a href="week-7.html"><i class="fa fa-check"></i><b>7</b> Week 7</a><ul>
 <li class="chapter" data-level="7.1" data-path="week-7.html"><a href="week-7.html#setting-up-6"><i class="fa fa-check"></i><b>7.1</b> Setting Up</a></li>
 <li class="chapter" data-level="7.2" data-path="week-7.html"><a href="week-7.html#r-instructions-6"><i class="fa fa-check"></i><b>7.2</b> R Instructions</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.2.1</b> Time to event data</a></li>
+<li class="chapter" data-level="7.2.1" data-path="week-7.html"><a href="week-7.html#introductory-remarks-on-time-to-event-analysis"><i class="fa fa-check"></i><b>7.2.1</b> Introductory remarks on time-to-event analysis</a></li>
+<li class="chapter" data-level="7.2.2" data-path="week-7.html"><a href="week-7.html#time-to-event-data"><i class="fa fa-check"></i><b>7.2.2</b> Time to event data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="week-7.html"><a href="week-7.html#assignments-6"><i class="fa fa-check"></i><b>7.3</b> Assignments</a></li>
 </ul></li>
@@ -227,11 +232,13 @@
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -239,12 +246,11 @@ gitbook.start({
 "github": false,
 "facebook": false,
 "twitter": false,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -256,6 +262,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

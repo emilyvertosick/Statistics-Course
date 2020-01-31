@@ -229,7 +229,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -730,7 +730,7 @@ However, look at this.
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -1273,7 +1273,7 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -1789,7 +1789,7 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -2349,7 +2349,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -3023,7 +3023,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -3941,7 +3941,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -4519,7 +4519,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -5017,7 +5017,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -5642,7 +5642,7 @@ What these commands do is to create new variables (c1 and c2) that are used inst
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -6152,7 +6152,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -6658,7 +6658,7 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -7349,7 +7349,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -7912,7 +7912,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -8405,7 +8405,7 @@ The p values for all the predictor variables apart from weight are very low. A m
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -8984,7 +8984,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -9471,7 +9471,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -9948,7 +9948,7 @@ tbl_regression(mutate_model, exponentiate = FALSE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -10434,7 +10434,7 @@ tbl_regression(mutate_model,
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -10978,7 +10978,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -11528,7 +11528,7 @@ tbl_regression(mlife_model)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -12006,7 +12006,7 @@ tbl_regression(flife_model)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -12533,7 +12533,7 @@ My model answer would be:
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -13014,7 +13014,7 @@ tbl_regression(cam_model1, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -13560,7 +13560,7 @@ tbl_regression(cam_model2, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -14072,7 +14072,7 @@ tbl_regression(cam_model3, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -14576,7 +14576,7 @@ tbl_regression(cam_model4, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -15200,7 +15200,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -15688,7 +15688,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -16196,7 +16196,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -16702,7 +16702,7 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -17225,7 +17225,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -17713,7 +17713,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -18220,7 +18220,7 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -18713,7 +18713,7 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -19223,7 +19223,7 @@ glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -19721,7 +19721,7 @@ glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -20213,7 +20213,7 @@ glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -20778,7 +20778,7 @@ So a model answer might be:
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -21259,7 +21259,7 @@ So a model answer might be:
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -21766,7 +21766,7 @@ tbl_regression(treat_model)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -22251,7 +22251,7 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -22791,7 +22791,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -23293,7 +23293,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -23846,7 +23846,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -24338,7 +24338,7 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -24882,7 +24882,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -25375,7 +25375,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -25859,7 +25859,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -26388,7 +26388,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -26997,7 +26997,7 @@ coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + nodes,
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -27508,7 +27508,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -28013,7 +28013,7 @@ coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + n2,
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -28576,7 +28576,7 @@ A model answer for this dataset might be:
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -29105,7 +29105,7 @@ A model answer for this dataset might be:
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -29678,7 +29678,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -30222,7 +30222,7 @@ tbl_summary(
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */

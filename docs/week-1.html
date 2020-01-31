@@ -281,6 +281,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">1</span> Week 1</h1>
 <div id="setting-up" class="section level2">
 <h2><span class="header-section-number">1.1</span> Setting Up</h2>
+<p>As a note about this book - you can copy and paste code referenced in this book by hovering over the gray box containing the code, and clicking on the icon that appears in the top right corner.</p>
+<p><img src="images/copycode.PNG" /></p>
 <div id="software-installation" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Software Installation</h3>
 <p>Note: you’ll need to put aside 20 - 30 minutes to install the software on your computer.</p>
@@ -295,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.1.2</span> Setting up course files</h3>
 <p>To access this course, download the “Statistics Course Data.zip” file <a href="https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data.zip?raw=true">here</a>. Create and name a folder (e.g. “MSKCC biostats course”) on your hard drive, and then unzip the file and save it in that folder. Open the “Statistics Course” folder and click to open the R project file called “Statistics Course.Rproj”. Opening this file will open RStudio (once you have it installed), and you can easily access all files from the “files” tab in the bottom right panel in RStudio.</p>
 <p>There is a “Data” folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.</p>
-<p>There is a “Code” folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book.</p>
+<p>There is a code file called “Install Packages Code.R” which contains the necessary code for you to install the packages for the course (see below for more details). There is another code file called “Code templates for students.R” which includes some example code that you can adapt.</p>
 <p>Every time you work on this course, you should open RStudio by opening the “Statistics Course.Rproj” file. It may be helpful to create a desktop link to the “Statistics Course.Rproj” file so you can easily access the course materials.</p>
 </div>
 <div id="using-rstudio" class="section level3">
@@ -311,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="installing-packages" class="section level3">
 <h3><span class="header-section-number">1.1.4</span> Installing packages</h3>
-<p>For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click “yes”. If after clicking “yes” once, the pop-up reappears, you can click “no” the second time.</p>
+<p>For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, open the “Install Packages Code.R” file. Run each line in this file by highlighting the line of code and clicking the “Run” button in the top right hand corner, or using the keyboard shortcut “ctrl-enter”. If you get the following popup message, please click “yes”. If after clicking “yes” once, the pop-up reappears, you can click “no” the second time.</p>
 <p><img src="images/rinstallmsg.png" /></p>
 <p>Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the “console” window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Installing packages</span></a>
@@ -325,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-9" title="9"><span class="kw">install.packages</span>(<span class="st">&quot;survival&quot;</span>)</a>
 <a class="sourceLine" id="cb1-10" title="10"><span class="kw">install.packages</span>(<span class="st">&quot;survminer&quot;</span>)</a>
 <a class="sourceLine" id="cb1-11" title="11"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</a></code></pre></div>
-<p>To install the <code>gt</code> package, copy the code below into the console window and press enter:</p>
+<p>To install the <code>gt</code> package, run this line of code from the “Install Packages Code.R” file:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/gt&quot;</span>)</a></code></pre></div>
 <p>If you get a message that says “These packages have more recent versions available. Which would you like to update?”, you can enter “1” in the console window and press enter. This will update all necessary packages and complete the installation.</p>
 <p><img src="images/updatepackages.PNG" /></p>
@@ -767,7 +769,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -1239,7 +1241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -1729,7 +1731,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */

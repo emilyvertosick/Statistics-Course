@@ -377,7 +377,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -859,7 +859,7 @@ coxph(example7a_surv ~ drug + age + sex + marker, data = example7a) %>%
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */
@@ -1396,7 +1396,7 @@ coxph(example7a_surv ~ drug + age + sex + marker, data = example7a) %>%
   /* column_labels.background.color */
   font-size: 100%;
   /* column_labels.font.size */
-  font-weight: initial;
+  font-weight: normal;
   /* column_labels.font.weight */
   text-transform: inherit;
   /* column_labels.text_transform */

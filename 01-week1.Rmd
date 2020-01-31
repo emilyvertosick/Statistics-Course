@@ -51,6 +51,10 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 ## Setting Up
 
+As a note about this book - you can copy and paste code referenced in this book by hovering over the gray box containing the code, and clicking on the icon that appears in the top right corner.
+
+![ ](Images/copycode.png)
+
 ### Software Installation
 
 Note: you'll need to put aside 20 - 30 minutes to install the software on your computer. 
@@ -72,7 +76,7 @@ To access this course, download the "Statistics Course Data.zip" file [here](htt
 
 There is a "Data" folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.
 
-There is a "Code" folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book. 
+There is a code file called "Install Packages Code.R" which contains the necessary code for you to install the packages for the course (see below for more details). There is another code file called "Code templates for students.R" which includes some example code that you can adapt.
 
 Every time you work on this course, you should open RStudio by opening the "Statistics Course.Rproj" file. It may be helpful to create a desktop link to the "Statistics Course.Rproj" file so you can easily access the course materials.
 
@@ -92,7 +96,7 @@ When you open the "Statistics Course.Rproj" file, RStudio will open, and you wil
 
 ### Installing packages
 
-For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click "yes". If after clicking "yes" once, the pop-up reappears, you can click "no" the second time.
+For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, open the "Install Packages Code.R" file. Run each line in this file by highlighting the line of code and clicking the "Run" button in the top right hand corner, or using the keyboard shortcut "ctrl-enter". If you get the following popup message, please click "yes". If after clicking "yes" once, the pop-up reappears, you can click "no" the second time.
 
 ![ ](Images/rinstallmsg.png)
 
@@ -114,7 +118,7 @@ install.packages("remotes")
 
 ```
 
-To install the `gt` package, copy the code below into the console window and press enter:
+To install the `gt` package, run this line of code from the "Install Packages Code.R" file:
 
 ```{r install2, eval = FALSE}
 
