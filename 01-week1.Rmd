@@ -68,7 +68,7 @@ https://www.rstudio.com/products/rstudio/download/preview/
 
 ### Setting up course files
 
-To access this course, download the "Statistics Course Data and Code.zip" file [here](https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data%20and%20Code.zip?raw=true). Create and name a folder (e.g. "MSKCC biostats course") on your hard drive, and then unzip the file and save it in that folder. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
+To access this course, download the "Statistics Course Data.zip" file [here](https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data.zip?raw=true). Create and name a folder (e.g. "MSKCC biostats course") on your hard drive, and then unzip the file and save it in that folder. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
 
 There is a "Data" folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.
 
@@ -92,7 +92,7 @@ When you open the "Statistics Course.Rproj" file, RStudio will open, and you wil
 
 ### Installing packages
 
-For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click "yes".
+For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click "yes". If after clicking "yes" once, the pop-up reappears, you can click "no" the second time.
 
 ![ ](Images/rinstallmsg.png)
 
@@ -121,6 +121,10 @@ To install the `gt` package, copy the code below into the console window and pre
 remotes::install_github("rstudio/gt")
 
 ```
+
+If you get a message that says "These packages have more recent versions available. Which would you like to update?", you can enter "1" in the console window and press enter. This will update all necessary packages and complete the installation.
+
+![ ](Images/updatepackages.PNG)
 
 If you are using a Windows computer and get an error message that states <span style="color:red">Error: Could not find tools necessary to compile a package</span>, you will need to download and install the Rtools program before proceeding. The instructions are below:
 

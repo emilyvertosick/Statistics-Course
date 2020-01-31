@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="setting-up-course-files" class="section level3">
 <h3><span class="header-section-number">1.1.2</span> Setting up course files</h3>
-<p>To access this course, download the “Statistics Course Data and Code.zip” file <a href="https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data%20and%20Code.zip?raw=true">here</a>. Create and name a folder (e.g. “MSKCC biostats course”) on your hard drive, and then unzip the file and save it in that folder. Open the “Statistics Course” folder and click to open the R project file called “Statistics Course.Rproj”. Opening this file will open RStudio (once you have it installed), and you can easily access all files from the “files” tab in the bottom right panel in RStudio.</p>
+<p>To access this course, download the “Statistics Course Data.zip” file <a href="https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data.zip?raw=true">here</a>. Create and name a folder (e.g. “MSKCC biostats course”) on your hard drive, and then unzip the file and save it in that folder. Open the “Statistics Course” folder and click to open the R project file called “Statistics Course.Rproj”. Opening this file will open RStudio (once you have it installed), and you can easily access all files from the “files” tab in the bottom right panel in RStudio.</p>
 <p>There is a “Data” folder with 7 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-7.</p>
 <p>There is a “Code” folder with 7 files inside, which contains all the code shown in each weekly lesson, so that you can easily run it yourself without copying and pasting from the book.</p>
 <p>Every time you work on this course, you should open RStudio by opening the “Statistics Course.Rproj” file. It may be helpful to create a desktop link to the “Statistics Course.Rproj” file so you can easily access the course materials.</p>
@@ -311,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="installing-packages" class="section level3">
 <h3><span class="header-section-number">1.1.4</span> Installing packages</h3>
-<p>For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click “yes”.</p>
+<p>For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, copy and paste each line of code below into the console window, and hit enter. If you get the following popup message, please click “yes”. If after clicking “yes” once, the pop-up reappears, you can click “no” the second time.</p>
 <p><img src="images/rinstallmsg.png" /></p>
 <p>Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the “console” window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Installing packages</span></a>
@@ -327,6 +327,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-11" title="11"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</a></code></pre></div>
 <p>To install the <code>gt</code> package, copy the code below into the console window and press enter:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/gt&quot;</span>)</a></code></pre></div>
+<p>If you get a message that says “These packages have more recent versions available. Which would you like to update?”, you can enter “1” in the console window and press enter. This will update all necessary packages and complete the installation.</p>
+<p><img src="images/updatepackages.PNG" /></p>
 <p>If you are using a Windows computer and get an error message that states <span style="color:red">Error: Could not find tools necessary to compile a package</span>, you will need to download and install the Rtools program before proceeding. The instructions are below:</p>
 <ol style="list-style-type: decimal">
 <li>Download the “recommended” version of Rtools (in green) from <a href="https://cran.rstudio.com/bin/windows/Rtools/">this site</a>.</li>
