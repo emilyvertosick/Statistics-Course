@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: January 31, 2020"
+date: "Last Updated: February 03, 2020"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -128,10 +128,6 @@ The exam is given at the end of the course. It is posted on the course website a
 2. The questions I give are far easier than the typical statistical problems you are likely to encounter in the course of a research career. 
 3. I mark very liberally, and have a low pass mark (50%).
 4. Anyone who fails the exam is given an opportunity to resubmit.
-
-**Feedback**
-
-Cheryl James or one of her colleagues will send you an email shortly asking for your feedback on the course. Although this is forwarded to me anonymously, Cheryl’s office will take a note of who responded and who didn’t. If you don’t complete your feedback back form, you won’t pass the course.
 
 **Working groups**
 
