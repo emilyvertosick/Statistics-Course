@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: February 03, 2020"
+date: "Last Updated: February 05, 2020"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -52,7 +52,7 @@ Location: RRL-101   **Reading:** "How To Read This Book", Chapter 1\
                     **Assignment:** Questions 1 and 4
 
 **2/10/2020**\      **Class II:** Describing Data\
-Location: M-107     **Reading:** Chapters 2-6 and chapter 20\
+Location: ZRC-105   **Reading:** Chapters 2-6 and chapter 20\
                     **Assignment:** All questions for chapters 2, 3, 4 and 6; questions 1 and 3 for chapter 5; question 1 for chapter 20
                     
 **2/24/2020**\      **Class III:** Data Distributions\
