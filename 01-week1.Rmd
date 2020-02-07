@@ -78,7 +78,7 @@ There is a "Data" folder with 7 subfolders inside, which contain the data files 
 
 There is a code file called "Install Packages Code.R" which contains the necessary code for you to install the packages for the course (see below for more details). There is another code file called "Code templates for students.R" which includes some example code that you can adapt.
 
-Every time you work on this course, you should open RStudio by opening the "Statistics Course.Rproj" file. It may be helpful to create a desktop link to the "Statistics Course.Rproj" file so you can easily access the course materials.
+Every time you work on this course, you should open RStudio by opening the “Statistics Course.Rproj” file. This allows R to automatically determine the file path location for the data files so you can access them without having to make any changes to the code. It may be helpful to create a desktop shortcut to the “Statistics Course.Rproj” file so you can easily access the course materials.
 
 ### Using RStudio
 

@@ -37,7 +37,7 @@ There is a "Data" folder with 7 subfolders inside, which contain the data files 
 
 There is a code file called "Install Packages Code.R" which contains the necessary code for you to install the packages for the course (see below for more details). There is another code file called "Code templates for students.R" which includes some example code that you can adapt.
 
-Every time you work on this course, you should open RStudio by opening the "Statistics Course.Rproj" file. It may be helpful to create a desktop link to the "Statistics Course.Rproj" file so you can easily access the course materials.
+Every time you work on this course, you should open RStudio by opening the “Statistics Course.Rproj” file. This allows R to automatically determine the file path location for the data files so you can access them without having to make any changes to the code. It may be helpful to create a desktop shortcut to the “Statistics Course.Rproj” file so you can easily access the course materials.
 
 ### Using RStudio
 
@@ -155,7 +155,7 @@ skimr::skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------------------------------------
+## -- Variable type:numeric ------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```
@@ -220,11 +220,11 @@ The output above this text is the code, and the output below this shows the resu
 ##  n obs: 386 
 ##  n variables: 11 
 ## 
-## -- Variable type:character --------------------------------------------------------------------------------------------------
+## -- Variable type:character ----------------------------------------------------------------------
 ##  variable missing complete   n min max empty n_unique
 ##         y       0      386 386   4   9     0        4
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------------------------------------
+## -- Variable type:numeric ------------------------------------------------------------------------
 ##  variable missing complete   n      mean        sd    p0      p25    p50
 ##       age       0      386 386     49.48     13.75    19     40       49
 ##        id       0      386 386 559159.34 257028.45 1e+05 337803.5 564405
@@ -267,7 +267,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------------------------------------
+## -- Variable type:numeric ------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```
@@ -2037,7 +2037,7 @@ skim(lesson1a$age)
 ## 
 ## Skim summary statistics
 ## 
-## -- Variable type:numeric ----------------------------------------------------------------------------------------------------
+## -- Variable type:numeric ------------------------------------------------------------------------
 ##      variable missing complete   n  mean    sd p0 p25 p50 p75 p100     hist
 ##  lesson1a$age       0      386 386 49.48 13.75 19  40  49  59   86 ▂▅▇▇▆▅▂▁
 ```

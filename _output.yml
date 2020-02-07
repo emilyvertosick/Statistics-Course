@@ -4,4 +4,4 @@ bookdown::gitbook:
       collapse: section
       scroll_highlight: yes
     sharing: null
-    edit: https://github.mskcc.org/vertosie/Statistics-Course/edit/master/%s
+    edit: https://www.github.com/emilyvertosick/Statistics-Course/edit/master/%s
