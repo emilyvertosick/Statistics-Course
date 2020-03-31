@@ -455,7 +455,7 @@ women_test <-
   t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)
 
 chi_test <-
-  chisq.test(table(lesson3a$sex, !is.na(lesson3a$nv)))
+  chisq.test(table(lesson3a$sex, !is.na(lesson3a$nv)), correct = FALSE)
 
 ```
 
@@ -832,12 +832,12 @@ tbl_nv <-
 
 ```
 
-This shows, for example, `r inline_text(tbl_nv, variable = "nv", level = "1", column = "1")` of those who get car sick reported problematic nausea compared to only `r inline_text(tbl_nv, variable = "nv", level = "1", column = "0")` of those who aren't prone to car sickness. To find out whether this is statistically significant (it certainly seems clinically significant), you can use the `chisq.test` or the `fisher.test` function.
+This shows, for example, `r inline_text(tbl_nv, variable = "nv", level = "1", column = "1")` of those who get car sick reported problematic nausea compared to only `r inline_text(tbl_nv, variable = "nv", level = "1", column = "0")` of those who aren't prone to car sickness. To find out whether this is statistically significant (it certainly seems clinically significant), you can use the `chisq.test` or the `fisher.test` function. For the `chisq.test` function, remember to use the `correct = FALSE` option to get the pvalue without continuity correction.
 
 ```{r week4c, warning = FALSE}
 
 # Chi squared test
-chisq.test(table(lesson4a$nv, lesson4a$cs))
+chisq.test(table(lesson4a$nv, lesson4a$cs), correct = FALSE)
 
 # Fisher's exact test
 fisher.test(table(lesson4a$nv, lesson4a$cs))
@@ -932,11 +932,11 @@ To assess statistical significance, use the `chisq.test` function with the hyper
 ```{r week4i, warning = FALSE}
 
 # Chi squared test for association between meat consumption and hypertension
-chisq.test(table(lesson4b$hbp, lesson4b$meat))
+chisq.test(table(lesson4b$hbp, lesson4b$meat), correct = FALSE)
 
 ```
 
-The p value is p=`r style_pvalue(chisq.test(table(lesson4b$hbp, lesson4b$meat))$p.value)`. How to interpret this? The formal statistical interpretation is that we can reject the null hypothesis that rates of hypertension are the same in each group. To demonstrate this, try renumbering the labels for the variable meat:
+The p value is p=`r style_pvalue(chisq.test(table(lesson4b$hbp, lesson4b$meat), correct = FALSE)$p.value)`. How to interpret this? The formal statistical interpretation is that we can reject the null hypothesis that rates of hypertension are the same in each group. To demonstrate this, try renumbering the labels for the variable meat:
 
 ```{r week4j, warning = FALSE}
 
@@ -953,7 +953,7 @@ lesson4b_changed <-
   )
 
 # Re-run chi squared test
-chisq.test(table(lesson4b_changed$hbp, lesson4b_changed$meat))
+chisq.test(table(lesson4b_changed$hbp, lesson4b_changed$meat), correct = FALSE)
 
 ```
 
@@ -983,7 +983,7 @@ epi.2by2(matrix(rev(table(lesson4b$c1, lesson4b$hbp)), nrow = 2))
 ```{r week4l, warning = FALSE, include = FALSE, purl = FALSE}
 
 # Overall chi-squared p value
-meat_chi <- chisq.test(table(lesson4b$meat, lesson4b$hbp))
+meat_chi <- chisq.test(table(lesson4b$meat, lesson4b$hbp), correct = FALSE)
 
 # High vs medium
 tbl_himed <- epi.2by2(matrix(rev(table(lesson4b$c1, lesson4b$hbp)), nrow = 2))
@@ -1939,7 +1939,7 @@ tbl_summary(
 # Here, the "summarize" function stores out the p values for the chi-squared test by sex
 lesson5g %>%
   group_by(sex) %>%
-  summarize(p = chisq.test(response, chemo)$p.value)
+  summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
 
 ```
 
@@ -1964,7 +1964,7 @@ chitable_women <-
 chip1 <-
   lesson5g %>%
   group_by(sex) %>%
-  summarize(p = chisq.test(response, chemo)$p.value)
+  summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
 
 ```
 
@@ -1981,7 +1981,7 @@ tbl_summary(
 
 # Test for a difference in response by sex using chi-squared test
 table(lesson5g$response, lesson5g$sex) %>%
-  chisq.test()
+  chisq.test(correct = FALSE)
 
 ```
 
@@ -2039,7 +2039,7 @@ tbl_summary(
 lesson5g %>%
   filter(!is.na(age)) %>% # Exclude 2 patients missing age
   group_by(hiage) %>%
-  summarize(p = chisq.test(response, chemo)$p.value)
+  summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
 
 ```
 
@@ -2869,8 +2869,8 @@ median_surv <-
   (lesson7a %>%
      filter(died != 1) %>%
      skim(survival_time) %>%
-     filter(stat == "p50") %>%
-     pull(value)) / 365.25
+     pull(numeric.p50)
+  ) / 365.25
 
 tbl_summary_7a <-
   tbl_summary(
@@ -2968,8 +2968,7 @@ median_surv_7b <-
   (lesson7b %>%
      filter(recurrence != 1) %>%
      skim(time) %>%
-     filter(stat == "p50") %>%
-     pull(value)) / 12
+     pull(numeric.p50)) / 12
 
 recur_ct <-
   lesson7b %>%
@@ -3022,8 +3021,7 @@ median_surv_7c <-
   (lesson7c %>%
      filter(died != 1) %>%
      skim(survival_time) %>%
-     filter(stat == "p50") %>%
-     pull(value)) / 365.25
+     pull(numeric.p50)) / 365.25
 
 style_sigfig(as.numeric(summary(survfit_7c)$table["median"]))
 

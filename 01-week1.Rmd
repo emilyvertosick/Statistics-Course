@@ -252,8 +252,9 @@ skim(lesson1a)
 
 The output above this text is the code, and the output below this shows the results produced by running that code. (We will discuss the results output in more detail later.)
 
-```{r section1b_2, echo = FALSE, eval = TRUE, purl = FALSE}
+```{r , echo = FALSE}
 
+# Print
 skim(lesson1a)
 
 ```
@@ -486,11 +487,11 @@ skim(lesson1a$age)
 
 ```
 
-So of the `r nrow(lesson1a)` patients (column "n"), the mean age (a type of average, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age)$value[[4]], digits = 4)` (column "mean"), the standard deviation (again, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age)$value[[5]], digits = 4)` (column "sd"). The youngest patient was `r skim(lesson1a$age)$value[[6]]` (column "p0") and the oldest is `r skim(lesson1a$age)$value[[10]]` (column "p100"). 
+So of the `r nrow(lesson1a)` patients (column "n"), the mean age (a type of average, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.mean), digits = 4)` (column "mean"), the standard deviation (again, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.sd), digits = 4)` (column "sd"). The youngest patient was `r skim(lesson1a$age) %>% pull(numeric.p0)` (column "p0") and the oldest is `r skim(lesson1a$age) %>% pull(numeric.p100)` (column "p100"). 
 
-This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was `r style_sigfig(skim(lesson1a$age)$value[[4]], digits = 4)`, you’d probably just say `r round(skim(lesson1a$age)$value[[4]], 0)`.
+This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.mean), digits = 4)`, you’d probably just say `r round(skim(lesson1a$age) %>% pull(numeric.mean), 0)`.
 
-"p0" here represents the minimum age in the dataset - `r skim(lesson1a$age)$value[[6]]`. "p100" represents the maximum age of `r skim(lesson1a$age)$value[[10]]`. "p25", "p50" and "p75" are the centiles. We'll talk more about this later, but briefly, "p25 = 40" means that 25% of the patients were aged 40 and younger. The number by "p50" (i.e. `r skim(lesson1a$age)$value[[8]]`) is the median.
+"p0" here represents the minimum age in the dataset - `r skim(lesson1a$age) %>% pull(numeric.p0)`. "p100" represents the maximum age of `r skim(lesson1a$age) %>% pull(numeric.p100)`. "p25", "p50" and "p75" are the centiles. We'll talk more about this later, but briefly, "p25 = `r skim(lesson1a$age) %>% pull(numeric.p25)`" means that 25% of the patients were aged `r skim(lesson1a$age) %>% pull(numeric.p25)` and younger. The number by "p50" (i.e. `r skim(lesson1a$age) %>% pull(numeric.p50)`) is the median.
 
 #### `mutate` function
 

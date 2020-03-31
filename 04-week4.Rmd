@@ -165,17 +165,17 @@ table(lesson2a$subfourhour, lesson2a$sex)
 
 ```
 
-We can compare sub-four hour marathons by sex using a chi-squared test (`chisq.test` function):
+We can compare sub-four hour marathons by sex using a chi-squared test (`chisq.test` function). The option `correct = FALSE` indicates that the default continuity correction should not be used.
 
 ```{r section4f}
 
 # Create the table and then perform the chi-squared test
 table(lesson2a$subfourhour, lesson2a$sex) %>%
-  chisq.test()
+  chisq.test(correct = FALSE)
 
 ```
 
-As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared pvalue. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test").
+As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared pvalue. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
 
 ```{r section4g, results = "asis"}
 
@@ -185,7 +185,7 @@ tbl_summary(
   by = sex,
   type = list("subfourhour" ~ "categorical")
 ) %>%
-  add_p(test = list("subfourhour" ~ "chisq.test"))
+  add_p(test = list("subfourhour" ~ "chisq.test.no.correct"))
 
 ```
 
@@ -203,8 +203,7 @@ tbl_subfour_p <-
 
 ```
 
-So whereas `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "0")` of men completed the race in less than four hours, only `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "1")` of women did so. The p value here is `r style_pvalue(
-chisq.test(table(lesson2a$subfourhour, lesson2a$sex))$p.value)`.
+So whereas `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "0")` of men completed the race in less than four hours, only `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "1")` of women did so. The p value here is `r style_pvalue(chisq.test(table(lesson2a$subfourhour, lesson2a$sex), correct = FALSE)$p.value)`.
 
 **Should you categorize a continuous variable?**
 
@@ -280,7 +279,7 @@ matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2)
 
 ```
 
-You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the `epi.2by2` function.
+You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the `epi.2by2` function. By default, the `epi.2by2` function gives the pvalue without any continuity correction.
 
 ```{r section4k, warning = FALSE}
 

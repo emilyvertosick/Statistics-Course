@@ -109,9 +109,9 @@ lesson1a %>% skim(age)
 
 ```
 
-So you can tell you have data on age for `r skim(lesson1a$age)$value[3]` patients ("n" is the number of observations), the mean age was about `r round(skim(lesson1a$age)$value[4], 0)` years, and the standard deviation of the mean was about `r round(skim(lesson1a$age)$value[5], 1)`.
+So you can tell you have data on age for `r nrow(lesson1a)` patients ("number of rows" is the number of observations), the mean age was about `r round(skim(lesson1a$age) %>% pull(numeric.mean), 0)` years, and the standard deviation of the mean was about `r round(skim(lesson1a$age) %>% pull(numeric.sd), 1)`.
 
-The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was `r skim(lesson1a$age)$value[[6]]` and the oldest was `r skim(lesson1a$age)$value[[10]]`. "p50" is the median (`r skim(lesson1a$age)$value[[8]]` years), and the interquartile range is reported under "p25" and "p75" (`r skim(lesson1a$age)$value[[7]]`, `r skim(lesson1a$age)$value[[9]]`).
+The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was `r skim(lesson1a$age) %>% pull(numeric.p0)` and the oldest was `r skim(lesson1a$age) %>% pull(numeric.p100)`. "p50" is the median (`r skim(lesson1a$age) %>% pull(numeric.p50)` years), and the interquartile range is reported under "p25" and "p75" (`r skim(lesson1a$age) %>% pull(numeric.p25)`, `r skim(lesson1a$age) %>% pull(numeric.p75)`).
 
 ```{r section2c}
 
