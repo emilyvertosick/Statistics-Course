@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: March 31, 2020"
+date: "Last Updated: June 01, 2020"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -169,3 +169,5 @@ This process should be performed when both the statistician and primary contact 
 Please review these guidelines on the course website.
 
 [Guidelines for Reporting of Statistics for Clinical Research in Urology](https://github.com/emilyvertosick/Statistics-Course/blob/master/Guidelines%20for%20Reporting%20of%20Statistics%20for%20Clinical%20Research%20in%20Urology.pdf?raw=true)
+
+[Guidelines for Reporting of Figures and Tables for Clinical Research in Urology](https://github.com/emilyvertosick/Statistics-Course/blob/master/Guidelines%20for%20Reporting%20of%20Figures%20and%20Tables.pdf?raw=true)
