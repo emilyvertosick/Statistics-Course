@@ -2754,21 +2754,12 @@ lesson7d <- readRDS(here::here("Data", "Week 7", "lesson7d.rds"))
 
 The data list the number of days of follow-up (survival_time), whether the patient was dead or alive at last follow-up (died), sex, age and various characteristics of the colon tumor.
 
-First, create a "Surv" object to indicate that our outcome is a survival outcome:
-
-```{r week7a}
-
-# Create survival outcome for time to death
-lesson7a_surv <- Surv(lesson7a$survival_time, lesson7a$died)
-
-```
-
-We can then use `survfit` and `skim` to get the median time for all patients and for survivors only:
+We can use `survfit` and `skim` to get the median time for all patients and for survivors only. Remember to use the `Surv` function to specify your event status and time to event.
 
 ```{r week7b}
 
 # Median followup for all patients
-survfit(lesson7a_surv ~ 1)
+survfit(Surv(survival_time, died) ~ 1, data = lesson7a)
 
 # Median followup for survivors
 lesson7a %>%
@@ -2782,7 +2773,7 @@ To look at predictors of survival, we might conduct a multivariable regression:
 ```{r week7c}
 
 # Multivariable Cox model for time to death
-coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + nodes,
+coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesions + nodes,
       data = lesson7a) %>%
   tbl_regression(exponentiate = TRUE)
 
@@ -2809,21 +2800,23 @@ lesson7a %>%
 
 ```
 
-You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to exclude patients with more than 10 nodes. This creates a new variable that excludes patients with large numbers of nodes from the analysis.
+You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to cap the number of nodes. This creates a new variable that caps the number of nodes at 10. Since fewer than 3% of patients had perforations, we will exclude this variable from our model.
 
 ```{r week7f}
 
-# Exclude patients with > 10 nodes
+# Create new nodes variable, capped at 10 nodes
 lesson7a <-
   lesson7a %>%
   mutate(
     n2 = 
-      case_when(nodes <= 10 ~ nodes)
-    # This sets "n2" to missing for those with > 10 nodes
-  )
+      case_when(
+        nodes <= 10 ~ nodes,
+        nodes > 10 ~ 10
+        )
+    )
 
-# Re-run cox model using "n2" (excluding patients with > 10 nodes)
-coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + n2,
+# Re-run cox model using "n2" (which caps the number of nodes at 10)
+coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
       data = lesson7a) %>%
   tbl_regression(exponentiate = TRUE)
 
@@ -2856,7 +2849,7 @@ The regression code would then be:
 
 # Re-run Cox model using categorized variable for nodes
 # Since "node4" is categorical, we must use "factor()" with this variable
-coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + factor(node4),
+coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + factor(node4),
       data = lesson7a)
 
 ```
@@ -2875,20 +2868,23 @@ median_surv <-
 tbl_summary_7a <-
   tbl_summary(
     lesson7a %>%
+      mutate(node4 = factor(node4, labels = c("0-2", "3-5", "5-10", ">10"))) %>%
       select(sex, age, obstruction, adhesions, node4),
-    type = list(vars(sex, obstruction, adhesions) ~ "categorical"),
-    label = list("sex" ~ "Sex", "age" ~ "Age",
+    type = list(vars(sex, obstruction, adhesions) ~ "dichotomous"),
+    label = list("sex" ~ "Female", "age" ~ "Age", "node4" ~ "Number of Nodes",
                  "obstruction" ~ "Obstruction", "adhesions" ~ "Adhesions")
   )
 
 tbl_cox_7a <-
-  coxph(lesson7a_surv ~ sex + age + obstruction + adhesions + factor(node4), data = lesson7a) %>%
+  coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + factor(node4),
+        data = lesson7a %>%
+                mutate(node4 = factor(node4, labels = c("0-2", "3-5", "5-10", ">10")))) %>%
   tbl_regression(
     exponentiate = TRUE,
     label = list("sex" ~ "Female", "age" ~ "Age (per 1 year)",
-                 "obstruction" ~ "Obstruction", "adhesions" ~ "Adhesions")
+                 "obstruction" ~ "Obstruction", "adhesions" ~ "Adhesions",
+                 "factor(node4)" ~ "Number of Nodes")
   )
-
 
 ```
 
@@ -2896,7 +2892,7 @@ A model answer for this dataset might be:
 
 <div class="quote-container">
 
->Median survival in the `r survfit_7a$n` patients in the cohort was `r style_sigfig(as.numeric(summary(survfit_7a)$table["median"]))` years, with a median duration of follow-up for survivors of `r style_sigfig(median_surv)`. There were `r sum(survfit_7a$n.event)` deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to `r max(lesson7a$nodes, na.rm = TRUE)` in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, 11+. In a Cox regression of the `r tbl_cox_7a$n` patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than `r round(mean(lesson7a$perforation, na.rm = TRUE)*100, 0)`% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
+>Median survival in the `r survfit_7a$n` patients in the cohort was `r style_sigfig(as.numeric(summary(survfit_7a)$table["median"]))` years, with a median duration of follow-up for survivors of `r style_sigfig(median_surv)`. There were `r sum(survfit_7a$n.event)` deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to `r max(lesson7a$nodes, na.rm = TRUE)` in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, and >10. In a Cox regression of the `r tbl_cox_7a$n` patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than `r round(mean(lesson7a$perforation, na.rm = TRUE)*100, 0)`% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
 
 </div>
 
@@ -2925,14 +2921,14 @@ We can test the difference between groups by using the `survdiff` function:
 ```{r week7l}
 
 # Test for difference in time to recurrence by hivolume
-survdiff(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume)
+survdiff(Surv(time, recurrence) ~ hivolume, data = lesson7b)
 
 ```
 
 ```{r week7m, echo = FALSE, purl = FALSE}
 
 survdiff_7b <-
-  survdiff(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume)
+  survdiff(Surv(time, recurrence) ~ hivolume, data = lesson7b)
 
 survdiff_p_7b <- 1 - pchisq(survdiff_7b$chisq, length(survdiff_7b$n) - 1)
 
@@ -2945,7 +2941,7 @@ This is not sufficient evidence to conclude that high volume hospitals and more 
 ```{r week7n}
 
 # Look at number of recurrence events in this dataset
-survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ 1)
+survfit(Surv(time, recurrence) ~ 1, data = lesson7b)
 
 ```
 
@@ -3002,7 +2998,7 @@ Another way of doing this would be to estimate survival at say, 6, 12 and 18 mon
 ```{r week7r}
 
 # Estimate survival at 6, 12 and 18 months
-summary(survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume),
+summary(survfit(Surv(time, recurrence) ~ hivolume, data = lesson7b),
         times = c(183, 365, 548))
 
 ```
@@ -3072,7 +3068,7 @@ tbl_summary(
 
 ```
 
-When I did the graph, I used the variable "treatment" to get the names of the treatments (rather than the group number). I also used a function called `ggsurvplot` (from the `survminer` package) rather than the standard `plot` option, because `ggsurvplot` allows more customization to the graph.
+When I did the graph, I used the variable "treatment" to get the names of the treatments (rather than the group number). I also used a function called `ggsurvplot` (from the `survminer` package) rather than the standard `plot` option, because `ggsurvplot` allows more customization to the graph. Survival time was specified as `survival_time/365.25` so that the graph is plotted showing survival time in years, rather than days.
 
 ```{r week7v, results = "hide"}
 

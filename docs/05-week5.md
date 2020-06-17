@@ -551,7 +551,7 @@ tbl_regression(rom_model)
 
 
 
-For example, for sex, the 95% CI is -18 to 24, meaning that women might plausibly have a range of motion anywhere from 18 degrees less than men to 24 degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, p=0.8. There are 34 patients included in this model.
+For example, for sex, the 95% CI is -18 to 24, meaning that women might plausibly have a range of motion anywhere from 10 degrees less than men to 24 degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, p=0.8. There are 34 patients included in this model.
 
 
 ```r

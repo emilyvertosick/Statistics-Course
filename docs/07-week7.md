@@ -46,15 +46,7 @@ Here are some key takeaways.
 
 You need at least two variables to describe a time to event dataset: how long the patients were followed (the time variable), and whether they had the event (e.g. were alive or dead) at last observation (the failure variable). The failure variable is coded 1 if the patient had the event (e.g. died, had a recurrence) and 0 otherwise. You can have any other variables (patient codes, stage of cancer, treatment, hair color etc) but these are not essential.
 
-You first have to tell R that you are dealing with a survival dataset. The function used is the `Surv` function from the `survival` package. The function is of the form `Surv(t, d)` where "t" is the time variable and "d" is the "failure" variable (e.g. died if 1, alive at last follow-up if 0). You can save out this survival object, but note that if you go and change any data, you have to re-run the `Surv` function so it utilizes the new data.
-
-
-```r
-# Create the survival object
-# "t" is time in months
-# "d" is survival status (0 = alive, 1 = dead)
-example7a_surv <- Surv(example7a$t, example7a$d)
-```
+For survival analyses, you need to indicate that your outcome is a time-to-event outcome by providing both the event status, such as death, and time to event, for example time from surgery to death or last followup. The function used to do this is the `Surv` function from the `survival` package. The function is of the form `Surv(t, d)` where "t" is the time variable and "d" is the "failure" variable (e.g. died if 1, alive at last follow-up if 0).
 
 The `survfit` function (also from the `survival`) package describes the survival data. It is common to report the median survival.
 
@@ -62,11 +54,11 @@ The `survfit` function (also from the `survival`) package describes the survival
 ```r
 # Calculate descriptive statistics on time to event data
 # The "~ 1" indicates that we want survival estimates for the entire group
-survfit(example7a_surv ~ 1)
+survfit(Surv(t, d) ~ 1, data = example7a)
 ```
 
 ```
-## Call: survfit(formula = example7a_surv ~ 1)
+## Call: survfit(formula = Surv(t, d) ~ 1, data = example7a)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
 ##      23      18      27      18      45
@@ -109,7 +101,7 @@ You can also plot the survival curve by adding the `plot` function around your `
 
 ```r
 # Plot survival curve
-plot(survfit(example7a_surv ~ 1))
+plot(survfit(Surv(t, d) ~ 1, data = example7a))
 ```
 
 <img src="07-week7_files/figure-html/week7d-1.png" width="672" />
@@ -120,7 +112,7 @@ Use "~ covariate" instead of "~ 1" to plot survival curves by group:
 ```r
 # Plot survival curve by group (drug vs no drug)
 # "~ drug" indicates to plot by "drug", vs "~ 1" which plots for all patients
-plot(survfit(example7a_surv ~ drug, data = example7a))
+plot(survfit(Surv(t, d) ~ drug, data = example7a))
 ```
 
 <img src="07-week7_files/figure-html/week7e-1.png" width="672" />
@@ -130,7 +122,7 @@ As you may notice, this graph shows both lines in black, which makes it difficul
 
 ```r
 # Plot survival curve by group (drug vs no drug) with colors
-plot(survfit(example7a_surv ~ drug, data = example7a), col = c("blue", "red"))
+plot(survfit(Surv(t, d) ~ drug, data = example7a), col = c("blue", "red"))
 ```
 
 <img src="07-week7_files/figure-html/week7e1-1.png" width="672" />
@@ -142,12 +134,12 @@ The `survdiff` function compares survival for different groups. For example, the
 
 ```r
 # Compare survival between drug groups
-survdiff(example7a_surv ~ drug, data = example7a)
+survdiff(Surv(t, d) ~ drug, data = example7a)
 ```
 
 ```
 ## Call:
-## survdiff(formula = example7a_surv ~ drug, data = example7a)
+## survdiff(formula = Surv(t, d) ~ drug, data = example7a)
 ## 
 ##         N Observed Expected (O-E)^2/E (O-E)^2/V
 ## drug=0 12       11     7.31      1.86       3.4
@@ -161,11 +153,11 @@ Using the `summary` function with `survfit` lists all available followup times a
 
 ```r
 # Survival probabilities for the entire cohort
-summary(survfit(example7a_surv ~ 1, data = example7a))
+summary(survfit(Surv(t, d) ~ 1, data = example7a))
 ```
 
 ```
-## Call: survfit(formula = example7a_surv ~ 1, data = example7a)
+## Call: survfit(formula = Surv(t, d) ~ 1, data = example7a)
 ## 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
 ##     5     23       2   0.9130  0.0588       0.8049        1.000
@@ -187,11 +179,11 @@ summary(survfit(example7a_surv ~ 1, data = example7a))
 
 ```r
 # You can also summarize the survival by group:
-summary(survfit(example7a_surv ~ drug, data = example7a))
+summary(survfit(Surv(t, d) ~ drug, data = example7a))
 ```
 
 ```
-## Call: survfit(formula = example7a_surv ~ drug, data = example7a)
+## Call: survfit(formula = Surv(t, d) ~ drug, data = example7a)
 ## 
 ##                 drug=0 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
@@ -223,11 +215,11 @@ The `times` option allows you to get survival probabilities for specific timepoi
 # Get survival probabilities for specific time points in full dataset
 # "~ 1" indicates all patients
 # "t" variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years
-summary(survfit(example7a_surv ~ 1, data = example7a), times = c(12, 24, 60))
+summary(survfit(Surv(t, d) ~ 1, data = example7a), times = c(12, 24, 60))
 ```
 
 ```
-## Call: survfit(formula = example7a_surv ~ 1, data = example7a)
+## Call: survfit(formula = Surv(t, d) ~ 1, data = example7a)
 ## 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
 ##    12     18       6   0.7391  0.0916       0.5798        0.942
@@ -240,12 +232,12 @@ The `coxph` function (from `survival`) is for regression analyses. For example, 
 
 ```r
 # Create Cox regression model
-coxph(example7a_surv ~ drug, data = example7a)
+coxph(Surv(t, d) ~ drug, data = example7a)
 ```
 
 ```
 ## Call:
-## coxph(formula = example7a_surv ~ drug, data = example7a)
+## coxph(formula = Surv(t, d) ~ drug, data = example7a)
 ## 
 ##         coef exp(coef) se(coef)      z      p
 ## drug -0.9155    0.4003   0.5119 -1.788 0.0737
@@ -256,7 +248,7 @@ coxph(example7a_surv ~ drug, data = example7a)
 
 ```r
 # You can use the tbl_regression function with Cox models to see the hazard ratios
-example7a_cox <- coxph(example7a_surv ~ drug, data = example7a)
+example7a_cox <- coxph(Surv(t, d) ~ drug, data = example7a)
 tbl_regression(example7a_cox, exponentiate = TRUE)
 ```
 
@@ -636,7 +628,7 @@ The following multivariable model also includes some demographic and medical cha
 # Create multivariable Cox regression model
 # You can use the pipe operator (%>%) to show the tbl_regression table directly
 # without storing the Cox model
-coxph(example7a_surv ~ drug + age + sex + marker, data = example7a) %>%
+coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
@@ -1031,15 +1023,13 @@ So, some typical code to analyze a dataset:
 
 
 ```r
-# Create your survival object, which indicates this is a time to event outcome
-example7a_surv <- Surv(example7a$t, example7a$d)
-
 # Get median survival and number of events for group
-survfit(example7a_surv ~ 1)
+# Use the "surv" function to indicate the event status and time to event
+survfit(Surv(t, d) ~ 1, data = example7a)
 ```
 
 ```
-## Call: survfit(formula = example7a_surv ~ 1)
+## Call: survfit(formula = Surv(t, d) ~ 1, data = example7a)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
 ##      23      18      27      18      45
@@ -1076,14 +1066,14 @@ t                        0               1   52.6   61.89   13    16    28    45
 
 ```r
 # Show a graph
-plot(survfit(example7a_surv ~ 1))
+plot(survfit(Surv(t, d) ~ 1, data = example7a))
 ```
 
 <img src="07-week7_files/figure-html/week7k-1.png" width="672" />
 
 ```r
 # Look at predictors of survival
-coxph(example7a_surv ~ drug + age + sex + marker, data = example7a) %>%
+coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
 

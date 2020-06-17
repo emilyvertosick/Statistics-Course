@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Week 6 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Week 6 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -51,9 +51,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -62,14 +62,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -78,9 +80,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -281,20 +283,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">6</span> Week 6</h1>
 <div id="setting-up-5" class="section level2">
 <h2><span class="header-section-number">6.1</span> Setting Up</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Load packages</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(skimr)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(gt)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(gtsummary)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(epiR)</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(pROC)</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="kw">library</span>(survival)</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-12" title="12"></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co"># Load data necessary to run Week 6 examples</span></a>
-<a class="sourceLine" id="cb1-14" title="14">example6a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;example6a.rds&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="week-6.html#cb1-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-2"><a href="week-6.html#cb1-2"></a><span class="kw">library</span>(skimr)</span>
+<span id="cb1-3"><a href="week-6.html#cb1-3"></a><span class="kw">library</span>(gt)</span>
+<span id="cb1-4"><a href="week-6.html#cb1-4"></a><span class="kw">library</span>(gtsummary)</span>
+<span id="cb1-5"><a href="week-6.html#cb1-5"></a><span class="kw">library</span>(epiR)</span>
+<span id="cb1-6"><a href="week-6.html#cb1-6"></a><span class="kw">library</span>(broom)</span>
+<span id="cb1-7"><a href="week-6.html#cb1-7"></a><span class="kw">library</span>(pROC)</span>
+<span id="cb1-8"><a href="week-6.html#cb1-8"></a><span class="kw">library</span>(gmodels)</span>
+<span id="cb1-9"><a href="week-6.html#cb1-9"></a><span class="kw">library</span>(survival)</span>
+<span id="cb1-10"><a href="week-6.html#cb1-10"></a><span class="kw">library</span>(here)</span>
+<span id="cb1-11"><a href="week-6.html#cb1-11"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-12"><a href="week-6.html#cb1-12"></a></span>
+<span id="cb1-13"><a href="week-6.html#cb1-13"></a><span class="co"># Load data necessary to run Week 6 examples</span></span>
+<span id="cb1-14"><a href="week-6.html#cb1-14"></a>example6a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;example6a.rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="r-instructions-5" class="section level2">
 <h2><span class="header-section-number">6.2</span> R Instructions</h2>
@@ -302,20 +304,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.2.1</span> Diagnostic Tests</h3>
 <p>For this, we will use the <code>epi.tests</code> function from the <code>epiR</code> package.</p>
 <p>Imagine you want to calculate the sensitivity. If you already know the counts for disease-positive and disease-negative, and test-positive and test-negative, you can easily create a table and use the <code>epi.tests</code> function.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Enter the data in the following order to create the 2x2 table</span></a>
-<a class="sourceLine" id="cb2-2" title="2">  <span class="co"># Disease-positive, test-positive</span></a>
-<a class="sourceLine" id="cb2-3" title="3">  <span class="co"># Disease-negative, test-positive</span></a>
-<a class="sourceLine" id="cb2-4" title="4">  <span class="co"># Disease-positive, test-negative</span></a>
-<a class="sourceLine" id="cb2-5" title="5">  <span class="co"># Disease-negative, test-negative</span></a>
-<a class="sourceLine" id="cb2-6" title="6">tbl_disease_test &lt;-</a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="st">  </span><span class="kw">as.table</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">670</span>, <span class="dv">202</span>, <span class="dv">74</span>, <span class="dv">640</span>),</a>
-<a class="sourceLine" id="cb2-8" title="8">                  <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co"># The matrix function allows you to enter in the numbers and convert to a table</span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co"># &quot;nrow = 2&quot; indicates that there should be 2 rows in the table (test-positive and test-negative)</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co"># &quot;byrow = TRUE&quot; correctly assigns the columns as &quot;disease-positive&quot; first and &quot;disease-negative&quot; second</span></a>
-<a class="sourceLine" id="cb2-12" title="12"></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co"># Use the &quot;epi.tests&quot; function with the new 2x2 table</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="kw">epi.tests</span>(tbl_disease_test)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="week-6.html#cb2-1"></a><span class="co"># Enter the data in the following order to create the 2x2 table</span></span>
+<span id="cb2-2"><a href="week-6.html#cb2-2"></a>  <span class="co"># Disease-positive, test-positive</span></span>
+<span id="cb2-3"><a href="week-6.html#cb2-3"></a>  <span class="co"># Disease-negative, test-positive</span></span>
+<span id="cb2-4"><a href="week-6.html#cb2-4"></a>  <span class="co"># Disease-positive, test-negative</span></span>
+<span id="cb2-5"><a href="week-6.html#cb2-5"></a>  <span class="co"># Disease-negative, test-negative</span></span>
+<span id="cb2-6"><a href="week-6.html#cb2-6"></a>tbl_disease_test &lt;-</span>
+<span id="cb2-7"><a href="week-6.html#cb2-7"></a><span class="st">  </span><span class="kw">as.table</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">670</span>, <span class="dv">202</span>, <span class="dv">74</span>, <span class="dv">640</span>),</span>
+<span id="cb2-8"><a href="week-6.html#cb2-8"></a>                  <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb2-9"><a href="week-6.html#cb2-9"></a><span class="co"># The matrix function allows you to enter in the numbers and convert to a table</span></span>
+<span id="cb2-10"><a href="week-6.html#cb2-10"></a><span class="co"># &quot;nrow = 2&quot; indicates that there should be 2 rows in the table (test-positive and test-negative)</span></span>
+<span id="cb2-11"><a href="week-6.html#cb2-11"></a><span class="co"># &quot;byrow = TRUE&quot; correctly assigns the columns as &quot;disease-positive&quot; first and &quot;disease-negative&quot; second</span></span>
+<span id="cb2-12"><a href="week-6.html#cb2-12"></a></span>
+<span id="cb2-13"><a href="week-6.html#cb2-13"></a><span class="co"># Use the &quot;epi.tests&quot; function with the new 2x2 table</span></span>
+<span id="cb2-14"><a href="week-6.html#cb2-14"></a><span class="kw">epi.tests</span>(tbl_disease_test)</span></code></pre></div>
 <pre><code>##           Outcome +    Outcome -      Total
 ## Test +          670          202        872
 ## Test -           74          640        714
@@ -334,12 +336,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---------------------------------------------------------</code></pre>
 <p>Your result in this case is that sensitivity is 90%, with a 95% CI 88%, 92%. For reasons that I am not quite sure, most investigators do not cite 95% CI with sensitivity, specificity, etc. so stating just 90% is probably fine.</p>
 <p>You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the <code>epi.2by2</code> function from week 4 (also from the <code>epiR</code> package), the table needs to be flipped so the columns and rows are correctly ordered. You can simply copy the code below and replace the inputs to the <code>table</code> function with your dataset, test variable, and disease (outcome) variable.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># This is the same code for week 4 that reverses the order of columns and rows</span></a>
-<a class="sourceLine" id="cb4-2" title="2">tbl_example6a &lt;-</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(example6a<span class="op">$</span>test, example6a<span class="op">$</span>disease)), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co"># Calculate sensitivity and specificity from table above</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="kw">epi.tests</span>(tbl_example6a)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="week-6.html#cb4-1"></a><span class="co"># This is the same code for week 4 that reverses the order of columns and rows</span></span>
+<span id="cb4-2"><a href="week-6.html#cb4-2"></a>tbl_example6a &lt;-</span>
+<span id="cb4-3"><a href="week-6.html#cb4-3"></a><span class="st">  </span><span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(example6a<span class="op">$</span>test, example6a<span class="op">$</span>disease)), <span class="dt">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb4-4"><a href="week-6.html#cb4-4"></a></span>
+<span id="cb4-5"><a href="week-6.html#cb4-5"></a><span class="co"># Calculate sensitivity and specificity from table above</span></span>
+<span id="cb4-6"><a href="week-6.html#cb4-6"></a><span class="kw">epi.tests</span>(tbl_example6a)</span></code></pre></div>
 <pre><code>##           Outcome +    Outcome -      Total
 ## Test +           20          180        200
 ## Test -           10         1820       1830
@@ -362,11 +364,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-5" class="section level2">
 <h2><span class="header-section-number">6.3</span> Assignments</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Copy and paste this code to load the data for week 6 assignments</span></a>
-<a class="sourceLine" id="cb6-2" title="2">lesson6a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6a.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb6-3" title="3">lesson6b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6b.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb6-4" title="4">lesson6c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6c.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb6-5" title="5">lesson6d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6d.rds&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="week-6.html#cb6-1"></a><span class="co"># Copy and paste this code to load the data for week 6 assignments</span></span>
+<span id="cb6-2"><a href="week-6.html#cb6-2"></a>lesson6a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6a.rds&quot;</span>))</span>
+<span id="cb6-3"><a href="week-6.html#cb6-3"></a>lesson6b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6b.rds&quot;</span>))</span>
+<span id="cb6-4"><a href="week-6.html#cb6-4"></a>lesson6c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6c.rds&quot;</span>))</span>
+<span id="cb6-5"><a href="week-6.html#cb6-5"></a>lesson6d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6d.rds&quot;</span>))</span></code></pre></div>
 <ul>
 <li><p>lesson6a.rds and lesson6b.rds: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?</p></li>
 <li><p>lesson6c.rds: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy?</p></li>
@@ -394,177 +396,149 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   display: table;
   border-collapse: collapse;
   margin-left: auto;
-  /* table.margin.left */
   margin-right: auto;
-  /* table.margin.right */
   color: #333333;
   font-size: 16px;
-  /* table.font.size */
   background-color: #FFFFFF;
-  /* table.background.color */
   width: auto;
-  /* table.width */
   border-top-style: solid;
-  /* table.border.top.style */
   border-top-width: 2px;
-  /* table.border.top.width */
   border-top-color: #A8A8A8;
-  /* table.border.top.color */
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
   border-bottom-style: solid;
-  /* table.border.bottom.style */
   border-bottom-width: 2px;
-  /* table.border.bottom.width */
   border-bottom-color: #A8A8A8;
-  /* table.border.bottom.color */
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_heading {
   background-color: #FFFFFF;
-  /* heading.background.color */
+  text-align: center;
   border-bottom-color: #FFFFFF;
-  /* table.background.color */
-  border-left-style: hidden;
-  /* heading.border.lr.style */
+  border-left-style: none;
   border-left-width: 1px;
-  /* heading.border.lr.width */
   border-left-color: #D3D3D3;
-  /* heading.border.lr.color */
-  border-right-style: hidden;
-  /* heading.border.lr.style */
+  border-right-style: none;
   border-right-width: 1px;
-  /* heading.border.lr.width */
   border-right-color: #D3D3D3;
-  /* heading.border.lr.color */
 }
 
 #iwrgxmosvm .gt_title {
   color: #333333;
   font-size: 125%;
-  /* heading.title.font.size */
   font-weight: initial;
-  /* heading.title.font.weight */
   padding-top: 4px;
-  /* heading.top.padding - not yet used */
   padding-bottom: 4px;
   border-bottom-color: #FFFFFF;
-  /* table.background.color */
   border-bottom-width: 0;
 }
 
 #iwrgxmosvm .gt_subtitle {
   color: #333333;
   font-size: 85%;
-  /* heading.subtitle.font.size */
   font-weight: initial;
-  /* heading.subtitle.font.weight */
   padding-top: 0;
   padding-bottom: 4px;
-  /* heading.bottom.padding - not yet used */
   border-top-color: #FFFFFF;
-  /* table.background.color */
   border-top-width: 0;
 }
 
 #iwrgxmosvm .gt_bottom_border {
   border-bottom-style: solid;
-  /* heading.border.bottom.style */
   border-bottom-width: 2px;
-  /* heading.border.bottom.width */
   border-bottom-color: #D3D3D3;
-  /* heading.border.bottom.color */
+}
+
+#iwrgxmosvm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iwrgxmosvm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iwrgxmosvm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iwrgxmosvm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
 }
 
 #iwrgxmosvm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#iwrgxmosvm .gt_col_headings {
-  border-top-style: solid;
-  /* column_labels.border.top.style */
-  border-top-width: 2px;
-  /* column_labels.border.top.width */
-  border-top-color: #D3D3D3;
-  /* column_labels.border.top.color */
-  border-bottom-style: solid;
-  /* column_labels.border.bottom.style */
-  border-bottom-width: 2px;
-  /* column_labels.border.bottom.width */
-  border-bottom-color: #D3D3D3;
-  /* column_labels.border.bottom.color */
-  border-left-style: none;
-  /* column_labels.border.lr.style */
-  border-left-width: 1px;
-  /* column_labels.border.lr.width */
-  border-left-color: #D3D3D3;
-  /* column_labels.border.lr.color */
-  border-right-style: none;
-  /* column_labels.border.lr.style */
-  border-right-width: 1px;
-  /* column_labels.border.lr.width */
-  border-right-color: #D3D3D3;
-  /* column_labels.border.lr.color */
-}
-
-#iwrgxmosvm .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  /* column_labels.background.color */
-  font-size: 100%;
-  /* column_labels.font.size */
-  font-weight: normal;
-  /* column_labels.font.weight */
-  text-transform: inherit;
-  /* column_labels.text_transform */
-  vertical-align: middle;
-  padding: 5px;
-  margin: 10px;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
   overflow-x: hidden;
-}
-
-#iwrgxmosvm .gt_sep_right {
-  border-right: 5px solid #FFFFFF;
+  display: inline-block;
+  width: 100%;
 }
 
 #iwrgxmosvm .gt_group_heading {
   padding: 8px;
-  /* row_group.padding */
   color: #333333;
   background-color: #FFFFFF;
-  /* row_group.background.color */
   font-size: 100%;
-  /* row_group.font.size */
   font-weight: initial;
-  /* row_group.font.weight */
   text-transform: inherit;
-  /* row_group.text_transform */
   border-top-style: solid;
-  /* row_group.border.top.style */
   border-top-width: 2px;
-  /* row_group.border.top.width */
   border-top-color: #D3D3D3;
-  /* row_group.border.top.color */
   border-bottom-style: solid;
-  /* row_group.border.bottom.style */
   border-bottom-width: 2px;
-  /* row_group.border.bottom.width */
   border-bottom-color: #D3D3D3;
-  /* row_group.border.bottom.color */
   border-left-style: none;
-  /* row_group.border.left.style */
   border-left-width: 1px;
-  /* row_group.border.left.width */
   border-left-color: #D3D3D3;
-  /* row_group.border.left.color */
   border-right-style: none;
-  /* row_group.border.right.style */
   border-right-width: 1px;
-  /* row_group.border.right.width */
   border-right-color: #D3D3D3;
-  /* row_group.border.right.color */
   vertical-align: middle;
 }
 
@@ -572,29 +546,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
-  /* row_group.background.color */
   font-size: 100%;
-  /* row_group.font.size */
   font-weight: initial;
-  /* row_group.font.weight */
   border-top-style: solid;
-  /* row_group.border.top.style */
   border-top-width: 2px;
-  /* row_group.border.top.width */
   border-top-color: #D3D3D3;
-  /* row_group.border.top.color */
   border-bottom-style: solid;
-  /* row_group.border.bottom.style */
   border-bottom-width: 2px;
-  /* row_group.border.bottom.width */
   border-bottom-color: #D3D3D3;
-  /* row_group.border.bottom.color */
   vertical-align: middle;
 }
 
 #iwrgxmosvm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
-  /* row.striping.background_color */
 }
 
 #iwrgxmosvm .gt_from_md > :first-child {
@@ -607,30 +571,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 #iwrgxmosvm .gt_row {
   padding-top: 8px;
-  /* data_row.padding */
   padding-bottom: 8px;
-  /* data_row.padding */
   padding-left: 5px;
   padding-right: 5px;
   margin: 10px;
   border-top-style: solid;
-  /* table_body.hlines.style */
   border-top-width: 1px;
-  /* table_body.hlines.width */
   border-top-color: #D3D3D3;
-  /* table_body.hlines.color */
   border-left-style: none;
-  /* table_body.vlines.style */
   border-left-width: 1px;
-  /* table_body.vlines.width */
   border-left-color: #D3D3D3;
-  /* table_body.vlines.color */
   border-right-style: none;
-  /* table_body.vlines.style */
   border-right-width: 1px;
-  /* table_body.vlines.width */
   border-right-color: #D3D3D3;
-  /* table_body.vlines.color */
   vertical-align: middle;
   overflow-x: hidden;
 }
@@ -638,154 +591,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
-  /* stub.background.color */
+  font-size: 100%;
   font-weight: initial;
-  /* stub.font.weight */
   text-transform: inherit;
-  /* stub.text_transform */
   border-right-style: solid;
-  /* stub.border.style */
   border-right-width: 2px;
-  /* stub.border.width */
   border-right-color: #D3D3D3;
-  /* stub.border.color */
   padding-left: 12px;
 }
 
 #iwrgxmosvm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
-  /* summary_row.background.color */
   text-transform: inherit;
-  /* summary_row.text_transform */
   padding-top: 8px;
-  /* summary_row.padding */
   padding-bottom: 8px;
-  /* summary_row.padding */
   padding-left: 5px;
   padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_first_summary_row {
   padding-top: 8px;
-  /* summary_row.padding */
   padding-bottom: 8px;
-  /* summary_row.padding */
   padding-left: 5px;
   padding-right: 5px;
   border-top-style: solid;
-  /* summary_row.border.style */
   border-top-width: 2px;
-  /* summary_row.border.width */
   border-top-color: #D3D3D3;
-  /* summary_row.border.color */
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
-  /* grand_summary_row.background.color */
   text-transform: inherit;
-  /* grand_summary_row.text_transform */
   padding-top: 8px;
-  /* grand_summary_row.padding */
   padding-bottom: 8px;
-  /* grand_summary_row.padding */
   padding-left: 5px;
   padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_first_grand_summary_row {
   padding-top: 8px;
-  /* grand_summary_row.padding */
   padding-bottom: 8px;
-  /* grand_summary_row.padding */
   padding-left: 5px;
   padding-right: 5px;
   border-top-style: double;
-  /* grand_summary_row.border.style */
   border-top-width: 6px;
-  /* grand_summary_row.border.width */
   border-top-color: #D3D3D3;
-  /* grand_summary_row.border.color */
 }
 
 #iwrgxmosvm .gt_table_body {
   border-top-style: solid;
-  /* table_body.border.top.style */
   border-top-width: 2px;
-  /* table_body.border.top.width */
   border-top-color: #D3D3D3;
-  /* table_body.border.top.color */
   border-bottom-style: solid;
-  /* table_body.border.bottom.style */
   border-bottom-width: 2px;
-  /* table_body.border.bottom.width */
   border-bottom-color: #D3D3D3;
-  /* table_body.border.bottom.color */
 }
 
 #iwrgxmosvm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
-  /* footnotes.background.color */
   border-bottom-style: none;
-  /* footnotes.border.bottom.style */
   border-bottom-width: 2px;
-  /* footnotes.border.bottom.width */
   border-bottom-color: #D3D3D3;
-  /* footnotes.border.bottom.color */
   border-left-style: none;
-  /* footnotes.border.lr.color */
   border-left-width: 2px;
-  /* footnotes.border.lr.color */
   border-left-color: #D3D3D3;
-  /* footnotes.border.lr.color */
   border-right-style: none;
-  /* footnotes.border.lr.color */
   border-right-width: 2px;
-  /* footnotes.border.lr.color */
   border-right-color: #D3D3D3;
-  /* footnotes.border.lr.color */
 }
 
 #iwrgxmosvm .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  /* footnotes.font.size */
   padding: 4px;
-  /* footnotes.padding */
 }
 
 #iwrgxmosvm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
-  /* source_notes.background.color */
   border-bottom-style: none;
-  /* source_notes.border.bottom.style */
   border-bottom-width: 2px;
-  /* source_notes.border.bottom.width */
   border-bottom-color: #D3D3D3;
-  /* source_notes.border.bottom.color */
   border-left-style: none;
-  /* source_notes.border.lr.style */
   border-left-width: 2px;
-  /* source_notes.border.lr.style */
   border-left-color: #D3D3D3;
-  /* source_notes.border.lr.style */
   border-right-style: none;
-  /* source_notes.border.lr.style */
   border-right-width: 2px;
-  /* source_notes.border.lr.style */
   border-right-color: #D3D3D3;
-  /* source_notes.border.lr.style */
 }
 
 #iwrgxmosvm .gt_sourcenote {
   font-size: 90%;
-  /* source_notes.font.size */
   padding: 4px;
-  /* source_notes.padding */
 }
 
 #iwrgxmosvm .gt_left {
@@ -838,9 +738,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td class="gt_row gt_left">? of ? (?%) responded</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left gt_striped">Regime b</td>
-      <td class="gt_row gt_left gt_striped">? of ? (?%) responded</td>
-      <td class="gt_row gt_left gt_striped">? of ? (?%) responded</td>
+      <td class="gt_row gt_left">Regime b</td>
+      <td class="gt_row gt_left">? of ? (?%) responded</td>
+      <td class="gt_row gt_left">? of ? (?%) responded</td>
     </tr>
   </tbody>
   
@@ -892,7 +792,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.mskcc.org/vertosie/Statistics-Course/edit/master/06-week6.Rmd",
+"link": "https://www.github.com/emilyvertosick/Statistics-Course/edit/master/06-week6.Rmd",
 "text": "Edit"
 },
 "history": {

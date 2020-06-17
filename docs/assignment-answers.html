@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 Assignment Answers | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 Assignment Answers | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -21400,20 +21400,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.7.1</span> lesson7a.rds</h3>
 <p><strong>This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this dataset and determine which, if any, variables are prognostic in this patient group.</strong></p>
 <p>The data list the number of days of follow-up (survival_time), whether the patient was dead or alive at last follow-up (died), sex, age and various characteristics of the colon tumor.</p>
-<p>First, create a “Surv” object to indicate that our outcome is a survival outcome:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="assignment-answers.html#cb170-1"></a><span class="co"># Create survival outcome for time to death</span></span>
-<span id="cb170-2"><a href="assignment-answers.html#cb170-2"></a>lesson7a_surv &lt;-<span class="st"> </span><span class="kw">Surv</span>(lesson7a<span class="op">$</span>survival_time, lesson7a<span class="op">$</span>died)</span></code></pre></div>
-<p>We can then use <code>survfit</code> and <code>skim</code> to get the median time for all patients and for survivors only:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="assignment-answers.html#cb171-1"></a><span class="co"># Median followup for all patients</span></span>
-<span id="cb171-2"><a href="assignment-answers.html#cb171-2"></a><span class="kw">survfit</span>(lesson7a_surv <span class="op">~</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## Call: survfit(formula = lesson7a_surv ~ 1)
+<p>We can use <code>survfit</code> and <code>skim</code> to get the median time for all patients and for survivors only. Remember to use the <code>Surv</code> function to specify your event status and time to event.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="assignment-answers.html#cb170-1"></a><span class="co"># Median followup for all patients</span></span>
+<span id="cb170-2"><a href="assignment-answers.html#cb170-2"></a><span class="kw">survfit</span>(<span class="kw">Surv</span>(survival_time, died) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> lesson7a)</span></code></pre></div>
+<pre><code>## Call: survfit(formula = Surv(survival_time, died) ~ 1, data = lesson7a)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
 ##     614     284    2910    2482      NA</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="assignment-answers.html#cb173-1"></a><span class="co"># Median followup for survivors</span></span>
-<span id="cb173-2"><a href="assignment-answers.html#cb173-2"></a>lesson7a <span class="op">%&gt;%</span></span>
-<span id="cb173-3"><a href="assignment-answers.html#cb173-3"></a><span class="st">  </span><span class="kw">filter</span>(died <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb173-4"><a href="assignment-answers.html#cb173-4"></a><span class="st">  </span><span class="kw">skim</span>(survival_time)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="assignment-answers.html#cb172-1"></a><span class="co"># Median followup for survivors</span></span>
+<span id="cb172-2"><a href="assignment-answers.html#cb172-2"></a>lesson7a <span class="op">%&gt;%</span></span>
+<span id="cb172-3"><a href="assignment-answers.html#cb172-3"></a><span class="st">  </span><span class="kw">filter</span>(died <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
+<span id="cb172-4"><a href="assignment-answers.html#cb172-4"></a><span class="st">  </span><span class="kw">skim</span>(survival_time)</span></code></pre></div>
 <table>
 <caption><span id="tab:week7b">Table 9.6: </span>Data summary</caption>
 <tbody>
@@ -21485,10 +21482,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>To look at predictors of survival, we might conduct a multivariable regression:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="assignment-answers.html#cb174-1"></a><span class="co"># Multivariable Cox model for time to death</span></span>
-<span id="cb174-2"><a href="assignment-answers.html#cb174-2"></a><span class="kw">coxph</span>(lesson7a_surv <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>obstruction <span class="op">+</span><span class="st"> </span>perforation <span class="op">+</span><span class="st"> </span>adhesions <span class="op">+</span><span class="st"> </span>nodes,</span>
-<span id="cb174-3"><a href="assignment-answers.html#cb174-3"></a>      <span class="dt">data =</span> lesson7a) <span class="op">%&gt;%</span></span>
-<span id="cb174-4"><a href="assignment-answers.html#cb174-4"></a><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="assignment-answers.html#cb173-1"></a><span class="co"># Multivariable Cox model for time to death</span></span>
+<span id="cb173-2"><a href="assignment-answers.html#cb173-2"></a><span class="kw">coxph</span>(<span class="kw">Surv</span>(survival_time, died) <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>obstruction <span class="op">+</span><span class="st"> </span>perforation <span class="op">+</span><span class="st"> </span>adhesions <span class="op">+</span><span class="st"> </span>nodes,</span>
+<span id="cb173-3"><a href="assignment-answers.html#cb173-3"></a>      <span class="dt">data =</span> lesson7a) <span class="op">%&gt;%</span></span>
+<span id="cb173-4"><a href="assignment-answers.html#cb173-4"></a><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -21888,10 +21885,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>This suggests that the presence of obstruction or adhesion influences survival, as well as the number of nodes. Neither age (surprisingly) nor sex are likely to have a large impact (the confidence interval does not include any large differences between groups). The p value for perforation is non-significant, but the confidence intervals are wide. Why is this? Try this:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="assignment-answers.html#cb175-1"></a><span class="co"># Table of perforation rate</span></span>
-<span id="cb175-2"><a href="assignment-answers.html#cb175-2"></a><span class="kw">tbl_summary</span>(</span>
-<span id="cb175-3"><a href="assignment-answers.html#cb175-3"></a>  lesson7a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(perforation)</span>
-<span id="cb175-4"><a href="assignment-answers.html#cb175-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="assignment-answers.html#cb174-1"></a><span class="co"># Table of perforation rate</span></span>
+<span id="cb174-2"><a href="assignment-answers.html#cb174-2"></a><span class="kw">tbl_summary</span>(</span>
+<span id="cb174-3"><a href="assignment-answers.html#cb174-3"></a>  lesson7a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(perforation)</span>
+<span id="cb174-4"><a href="assignment-answers.html#cb174-4"></a>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -22257,9 +22254,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>You will see that less than 3% of patients had perforations, making it almost impossible to assess its predictive value. Another useful thing to do is to try:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="assignment-answers.html#cb176-1"></a><span class="co"># Summarize number of nodes</span></span>
-<span id="cb176-2"><a href="assignment-answers.html#cb176-2"></a>lesson7a <span class="op">%&gt;%</span></span>
-<span id="cb176-3"><a href="assignment-answers.html#cb176-3"></a><span class="st">  </span><span class="kw">skim</span>(nodes)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="assignment-answers.html#cb175-1"></a><span class="co"># Summarize number of nodes</span></span>
+<span id="cb175-2"><a href="assignment-answers.html#cb175-2"></a>lesson7a <span class="op">%&gt;%</span></span>
+<span id="cb175-3"><a href="assignment-answers.html#cb175-3"></a><span class="st">  </span><span class="kw">skim</span>(nodes)</span></code></pre></div>
 <table>
 <caption><span id="tab:week7e">Table 9.7: </span>Data summary</caption>
 <tbody>
@@ -22330,20 +22327,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to exclude patients with more than 10 nodes. This creates a new variable that excludes patients with large numbers of nodes from the analysis.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="assignment-answers.html#cb177-1"></a><span class="co"># Exclude patients with &gt; 10 nodes</span></span>
-<span id="cb177-2"><a href="assignment-answers.html#cb177-2"></a>lesson7a &lt;-</span>
-<span id="cb177-3"><a href="assignment-answers.html#cb177-3"></a><span class="st">  </span>lesson7a <span class="op">%&gt;%</span></span>
-<span id="cb177-4"><a href="assignment-answers.html#cb177-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb177-5"><a href="assignment-answers.html#cb177-5"></a>    <span class="dt">n2 =</span> </span>
-<span id="cb177-6"><a href="assignment-answers.html#cb177-6"></a>      <span class="kw">case_when</span>(nodes <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span>nodes)</span>
-<span id="cb177-7"><a href="assignment-answers.html#cb177-7"></a>    <span class="co"># This sets &quot;n2&quot; to missing for those with &gt; 10 nodes</span></span>
-<span id="cb177-8"><a href="assignment-answers.html#cb177-8"></a>  )</span>
-<span id="cb177-9"><a href="assignment-answers.html#cb177-9"></a></span>
-<span id="cb177-10"><a href="assignment-answers.html#cb177-10"></a><span class="co"># Re-run cox model using &quot;n2&quot; (excluding patients with &gt; 10 nodes)</span></span>
-<span id="cb177-11"><a href="assignment-answers.html#cb177-11"></a><span class="kw">coxph</span>(lesson7a_surv <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>obstruction <span class="op">+</span><span class="st"> </span>perforation <span class="op">+</span><span class="st"> </span>adhesions <span class="op">+</span><span class="st"> </span>n2,</span>
-<span id="cb177-12"><a href="assignment-answers.html#cb177-12"></a>      <span class="dt">data =</span> lesson7a) <span class="op">%&gt;%</span></span>
-<span id="cb177-13"><a href="assignment-answers.html#cb177-13"></a><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to cap the number of nodes. This creates a new variable that caps the number of nodes at 10. Since fewer than 3% of patients had perforations, we will exclude this variable from our model.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="assignment-answers.html#cb176-1"></a><span class="co"># Create new nodes variable, capped at 10 nodes</span></span>
+<span id="cb176-2"><a href="assignment-answers.html#cb176-2"></a>lesson7a &lt;-</span>
+<span id="cb176-3"><a href="assignment-answers.html#cb176-3"></a><span class="st">  </span>lesson7a <span class="op">%&gt;%</span></span>
+<span id="cb176-4"><a href="assignment-answers.html#cb176-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb176-5"><a href="assignment-answers.html#cb176-5"></a>    <span class="dt">n2 =</span> </span>
+<span id="cb176-6"><a href="assignment-answers.html#cb176-6"></a>      <span class="kw">case_when</span>(</span>
+<span id="cb176-7"><a href="assignment-answers.html#cb176-7"></a>        nodes <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span>nodes,</span>
+<span id="cb176-8"><a href="assignment-answers.html#cb176-8"></a>        nodes <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span><span class="dv">10</span></span>
+<span id="cb176-9"><a href="assignment-answers.html#cb176-9"></a>        )</span>
+<span id="cb176-10"><a href="assignment-answers.html#cb176-10"></a>    )</span>
+<span id="cb176-11"><a href="assignment-answers.html#cb176-11"></a></span>
+<span id="cb176-12"><a href="assignment-answers.html#cb176-12"></a><span class="co"># Re-run cox model using &quot;n2&quot; (which caps the number of nodes at 10)</span></span>
+<span id="cb176-13"><a href="assignment-answers.html#cb176-13"></a><span class="kw">coxph</span>(<span class="kw">Surv</span>(survival_time, died) <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>obstruction <span class="op">+</span><span class="st"> </span>adhesions <span class="op">+</span><span class="st"> </span>n2,</span>
+<span id="cb176-14"><a href="assignment-answers.html#cb176-14"></a>      <span class="dt">data =</span> lesson7a) <span class="op">%&gt;%</span></span>
+<span id="cb176-15"><a href="assignment-answers.html#cb176-15"></a><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -22691,38 +22690,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">sex</td>
-      <td class="gt_row gt_center">0.98</td>
-      <td class="gt_row gt_center">0.76, 1.25</td>
-      <td class="gt_row gt_center">0.9</td>
+      <td class="gt_row gt_center">0.99</td>
+      <td class="gt_row gt_center">0.78, 1.26</td>
+      <td class="gt_row gt_center">>0.9</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">age</td>
       <td class="gt_row gt_center">1.01</td>
       <td class="gt_row gt_center">1.00, 1.02</td>
-      <td class="gt_row gt_center">0.2</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">obstruction</td>
-      <td class="gt_row gt_center">1.49</td>
-      <td class="gt_row gt_center">1.10, 2.03</td>
-      <td class="gt_row gt_center">0.010</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">perforation</td>
-      <td class="gt_row gt_center">0.68</td>
-      <td class="gt_row gt_center">0.33, 1.41</td>
       <td class="gt_row gt_center">0.3</td>
     </tr>
     <tr>
+      <td class="gt_row gt_left">obstruction</td>
+      <td class="gt_row gt_center">1.48</td>
+      <td class="gt_row gt_center">1.10, 1.98</td>
+      <td class="gt_row gt_center">0.009</td>
+    </tr>
+    <tr>
       <td class="gt_row gt_left">adhesions</td>
-      <td class="gt_row gt_center">1.59</td>
-      <td class="gt_row gt_center">1.15, 2.20</td>
-      <td class="gt_row gt_center">0.005</td>
+      <td class="gt_row gt_center">1.40</td>
+      <td class="gt_row gt_center">1.02, 1.92</td>
+      <td class="gt_row gt_center">0.037</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">n2</td>
-      <td class="gt_row gt_center">1.19</td>
-      <td class="gt_row gt_center">1.14, 1.25</td>
+      <td class="gt_row gt_center">1.17</td>
+      <td class="gt_row gt_center">1.13, 1.22</td>
       <td class="gt_row gt_center"><0.001</td>
     </tr>
   </tbody>
@@ -22743,45 +22736,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>However, it might be better to group patients. Here we create a new variable called “node4” that groups patients into four groups: 0 – 2 nodes, 3 – 5 nodes, 5 – 10 nodes, 11 or more nodes.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="assignment-answers.html#cb178-1"></a><span class="co"># Categorize values of nodes removed</span></span>
-<span id="cb178-2"><a href="assignment-answers.html#cb178-2"></a>lesson7a &lt;-</span>
-<span id="cb178-3"><a href="assignment-answers.html#cb178-3"></a><span class="st">  </span>lesson7a <span class="op">%&gt;%</span></span>
-<span id="cb178-4"><a href="assignment-answers.html#cb178-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb178-5"><a href="assignment-answers.html#cb178-5"></a>    <span class="dt">node4 =</span></span>
-<span id="cb178-6"><a href="assignment-answers.html#cb178-6"></a>      <span class="kw">case_when</span>(</span>
-<span id="cb178-7"><a href="assignment-answers.html#cb178-7"></a>        nodes <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
-<span id="cb178-8"><a href="assignment-answers.html#cb178-8"></a>        nodes <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>nodes <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
-<span id="cb178-9"><a href="assignment-answers.html#cb178-9"></a>        nodes <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span> <span class="op">&amp;</span><span class="st"> </span>nodes <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>,</span>
-<span id="cb178-10"><a href="assignment-answers.html#cb178-10"></a>        nodes <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span></span>
-<span id="cb178-11"><a href="assignment-answers.html#cb178-11"></a>      )</span>
-<span id="cb178-12"><a href="assignment-answers.html#cb178-12"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="assignment-answers.html#cb177-1"></a><span class="co"># Categorize values of nodes removed</span></span>
+<span id="cb177-2"><a href="assignment-answers.html#cb177-2"></a>lesson7a &lt;-</span>
+<span id="cb177-3"><a href="assignment-answers.html#cb177-3"></a><span class="st">  </span>lesson7a <span class="op">%&gt;%</span></span>
+<span id="cb177-4"><a href="assignment-answers.html#cb177-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb177-5"><a href="assignment-answers.html#cb177-5"></a>    <span class="dt">node4 =</span></span>
+<span id="cb177-6"><a href="assignment-answers.html#cb177-6"></a>      <span class="kw">case_when</span>(</span>
+<span id="cb177-7"><a href="assignment-answers.html#cb177-7"></a>        nodes <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</span>
+<span id="cb177-8"><a href="assignment-answers.html#cb177-8"></a>        nodes <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>nodes <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</span>
+<span id="cb177-9"><a href="assignment-answers.html#cb177-9"></a>        nodes <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span> <span class="op">&amp;</span><span class="st"> </span>nodes <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>,</span>
+<span id="cb177-10"><a href="assignment-answers.html#cb177-10"></a>        nodes <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span></span>
+<span id="cb177-11"><a href="assignment-answers.html#cb177-11"></a>      )</span>
+<span id="cb177-12"><a href="assignment-answers.html#cb177-12"></a>  )</span></code></pre></div>
 <p>The “cut-points” are arbitrary but are not particularly important unless you think the effect of nodes radically changes at one particular cut point or another.</p>
 <p>The regression code would then be:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="assignment-answers.html#cb179-1"></a><span class="co"># Re-run Cox model using categorized variable for nodes</span></span>
-<span id="cb179-2"><a href="assignment-answers.html#cb179-2"></a><span class="co"># Since &quot;node4&quot; is categorical, we must use &quot;factor()&quot; with this variable</span></span>
-<span id="cb179-3"><a href="assignment-answers.html#cb179-3"></a><span class="kw">coxph</span>(lesson7a_surv <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>obstruction <span class="op">+</span><span class="st"> </span>perforation <span class="op">+</span><span class="st"> </span>adhesions <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(node4),</span>
-<span id="cb179-4"><a href="assignment-answers.html#cb179-4"></a>      <span class="dt">data =</span> lesson7a)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="assignment-answers.html#cb178-1"></a><span class="co"># Re-run Cox model using categorized variable for nodes</span></span>
+<span id="cb178-2"><a href="assignment-answers.html#cb178-2"></a><span class="co"># Since &quot;node4&quot; is categorical, we must use &quot;factor()&quot; with this variable</span></span>
+<span id="cb178-3"><a href="assignment-answers.html#cb178-3"></a><span class="kw">coxph</span>(<span class="kw">Surv</span>(survival_time, died) <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>obstruction <span class="op">+</span><span class="st"> </span>adhesions <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(node4),</span>
+<span id="cb178-4"><a href="assignment-answers.html#cb178-4"></a>      <span class="dt">data =</span> lesson7a)</span></code></pre></div>
 <pre><code>## Call:
-## coxph(formula = lesson7a_surv ~ sex + age + obstruction + perforation + 
+## coxph(formula = Surv(survival_time, died) ~ sex + age + obstruction + 
 ##     adhesions + factor(node4), data = lesson7a)
 ## 
 ##                     coef exp(coef)  se(coef)      z        p
-## sex            -0.001937  0.998065  0.121949 -0.016 0.987326
-## age             0.004899  1.004912  0.005364  0.913 0.361041
-## obstruction     0.381416  1.464357  0.150828  2.529 0.011445
-## perforation    -0.338675  0.712714  0.369481 -0.917 0.359341
-## adhesions       0.373402  1.452668  0.163292  2.287 0.022212
-## factor(node4)2  0.497687  1.644913  0.147630  3.371 0.000748
-## factor(node4)3  1.078693  2.940832  0.161449  6.681 2.37e-11
-## factor(node4)4  1.187162  3.277766  0.241102  4.924 8.48e-07
+## sex            -0.006908  0.993116  0.121775 -0.057  0.95476
+## age             0.005283  1.005297  0.005355  0.987  0.32387
+## obstruction     0.363027  1.437674  0.149796  2.423  0.01537
+## adhesions       0.344250  1.410932  0.160702  2.142  0.03218
+## factor(node4)2  0.481741  1.618890  0.146725  3.283  0.00103
+## factor(node4)3  1.075440  2.931281  0.161608  6.655 2.84e-11
+## factor(node4)4  1.193543  3.298747  0.241068  4.951 7.38e-07
 ## 
-## Likelihood ratio test=60.22  on 8 df, p=4.213e-10
+## Likelihood ratio test=59.3  on 7 df, p=2.083e-10
 ## n= 599, number of events= 274 
 ##    (15 observations deleted due to missingness)</code></pre>
 <p>A model answer for this dataset might be:</p>
 <div class="quote-container">
 <blockquote>
-<p>Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, 11+. In a Cox regression of the 599 patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.</p>
+<p>Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, and &gt;10. In a Cox regression of the 599 patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.</p>
 </blockquote>
 </div>
 <p><strong>Table 1.</strong> Patient Characteristics</p>
@@ -23129,15 +23121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_left">Sex</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">296 (48%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_left">Female</td>
       <td class="gt_row gt_center">318 (52%)</td>
     </tr>
     <tr>
@@ -23146,46 +23130,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <td class="gt_row gt_left">Obstruction</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">497 (81%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">117 (19%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">Adhesions</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">526 (86%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">88 (14%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">node4</td>
+      <td class="gt_row gt_left">Number of Nodes</td>
       <td class="gt_row gt_center"></td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0-2</td>
       <td class="gt_row gt_center">311 (52%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">2</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">3-5</td>
       <td class="gt_row gt_center">168 (28%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">3</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">5-10</td>
       <td class="gt_row gt_center">92 (15%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">4</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">&gt;10</td>
       <td class="gt_row gt_center">28 (4.7%)</td>
     </tr>
     <tr>
@@ -23580,31 +23548,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td class="gt_row gt_center">0.032</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">factor(node4)</td>
+      <td class="gt_row gt_left">Number of Nodes</td>
       <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0-2</td>
       <td class="gt_row gt_center">&mdash;</td>
       <td class="gt_row gt_center">&mdash;</td>
       <td class="gt_row gt_center"></td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">2</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">3-5</td>
       <td class="gt_row gt_center">1.62</td>
       <td class="gt_row gt_center">1.21, 2.16</td>
       <td class="gt_row gt_center">0.001</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">3</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">5-10</td>
       <td class="gt_row gt_center">2.93</td>
       <td class="gt_row gt_center">2.14, 4.02</td>
       <td class="gt_row gt_center"><0.001</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">4</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">&gt;10</td>
       <td class="gt_row gt_center">3.30</td>
       <td class="gt_row gt_center">2.06, 5.29</td>
       <td class="gt_row gt_center"><0.001</td>
@@ -23631,31 +23599,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.7.2</span> lesson7b.rds</h3>
 <p><strong>These are time to recurrence data on forty patients with biliary cancer treated at one of two hospitals, one of which treats a large number of cancer patients and one of which does not. Do patients treated at a “high volume” hospital have a longer time to recurrence?</strong></p>
 <p>We can test the difference between groups by using the <code>survdiff</code> function:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="assignment-answers.html#cb181-1"></a><span class="co"># Test for difference in time to recurrence by hivolume</span></span>
-<span id="cb181-2"><a href="assignment-answers.html#cb181-2"></a><span class="kw">survdiff</span>(<span class="kw">Surv</span>(lesson7b<span class="op">$</span>time, lesson7b<span class="op">$</span>recurrence) <span class="op">~</span><span class="st"> </span>lesson7b<span class="op">$</span>hivolume)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="assignment-answers.html#cb180-1"></a><span class="co"># Test for difference in time to recurrence by hivolume</span></span>
+<span id="cb180-2"><a href="assignment-answers.html#cb180-2"></a><span class="kw">survdiff</span>(<span class="kw">Surv</span>(time, recurrence) <span class="op">~</span><span class="st"> </span>hivolume, <span class="dt">data =</span> lesson7b)</span></code></pre></div>
 <pre><code>## Call:
-## survdiff(formula = Surv(lesson7b$time, lesson7b$recurrence) ~ 
-##     lesson7b$hivolume)
+## survdiff(formula = Surv(time, recurrence) ~ hivolume, data = lesson7b)
 ## 
-##                      N Observed Expected (O-E)^2/E (O-E)^2/V
-## lesson7b$hivolume=0 20        7      4.5      1.39      2.53
-## lesson7b$hivolume=1 20        3      5.5      1.14      2.53
+##             N Observed Expected (O-E)^2/E (O-E)^2/V
+## hivolume=0 20        7      4.5      1.39      2.53
+## hivolume=1 20        3      5.5      1.14      2.53
 ## 
 ##  Chisq= 2.5  on 1 degrees of freedom, p= 0.1</code></pre>
 <p>We get a p value of 0.11.</p>
 <p>This is not sufficient evidence to conclude that high volume hospitals and more experienced surgeons lower recurrence rates. However, could there be a difference and the trial was not large enough to detect it? The key point here is not sample size, but the number of “events” (typically recurrences or deaths). Even if you had a trial of 100,000 patients, if only one or two people died you would not have any data on length of survival to test. In this dataset, though there were 40 patients, there were only ten events. You can see that if you use the <code>survfit</code> function:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="assignment-answers.html#cb183-1"></a><span class="co"># Look at number of recurrence events in this dataset</span></span>
-<span id="cb183-2"><a href="assignment-answers.html#cb183-2"></a><span class="kw">survfit</span>(<span class="kw">Surv</span>(lesson7b<span class="op">$</span>time, lesson7b<span class="op">$</span>recurrence) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## Call: survfit(formula = Surv(lesson7b$time, lesson7b$recurrence) ~ 
-##     1)
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="assignment-answers.html#cb182-1"></a><span class="co"># Look at number of recurrence events in this dataset</span></span>
+<span id="cb182-2"><a href="assignment-answers.html#cb182-2"></a><span class="kw">survfit</span>(<span class="kw">Surv</span>(time, recurrence) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> lesson7b)</span></code></pre></div>
+<pre><code>## Call: survfit(formula = Surv(time, recurrence) ~ 1, data = lesson7b)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
 ##      40      10      NA      NA      NA</code></pre>
 <p>You can then look at a Cox model:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="assignment-answers.html#cb185-1"></a><span class="co"># Cox model for time to recurrence</span></span>
-<span id="cb185-2"><a href="assignment-answers.html#cb185-2"></a>lesson7b_cox &lt;-</span>
-<span id="cb185-3"><a href="assignment-answers.html#cb185-3"></a><span class="st">  </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(time, recurrence) <span class="op">~</span><span class="st"> </span>hivolume, <span class="dt">data =</span> lesson7b)</span>
-<span id="cb185-4"><a href="assignment-answers.html#cb185-4"></a><span class="kw">tbl_regression</span>(lesson7b_cox, <span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="assignment-answers.html#cb184-1"></a><span class="co"># Cox model for time to recurrence</span></span>
+<span id="cb184-2"><a href="assignment-answers.html#cb184-2"></a>lesson7b_cox &lt;-</span>
+<span id="cb184-3"><a href="assignment-answers.html#cb184-3"></a><span class="st">  </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(time, recurrence) <span class="op">~</span><span class="st"> </span>hivolume, <span class="dt">data =</span> lesson7b)</span>
+<span id="cb184-4"><a href="assignment-answers.html#cb184-4"></a><span class="kw">tbl_regression</span>(lesson7b_cox, <span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -24034,19 +24000,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Figure 1.</strong> Kaplan-Meier curve for recurrence in low volume (blue) and high volume (red) centers</p>
 <p><img src="09-answers_files/figure-html/week7q-1.png" width="672" /></p>
 <p>Another way of doing this would be to estimate survival at say, 6, 12 and 18 months in each hospital. The command would be:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="assignment-answers.html#cb186-1"></a><span class="co"># Estimate survival at 6, 12 and 18 months</span></span>
-<span id="cb186-2"><a href="assignment-answers.html#cb186-2"></a><span class="kw">summary</span>(<span class="kw">survfit</span>(<span class="kw">Surv</span>(lesson7b<span class="op">$</span>time, lesson7b<span class="op">$</span>recurrence) <span class="op">~</span><span class="st"> </span>lesson7b<span class="op">$</span>hivolume),</span>
-<span id="cb186-3"><a href="assignment-answers.html#cb186-3"></a>        <span class="dt">times =</span> <span class="kw">c</span>(<span class="dv">183</span>, <span class="dv">365</span>, <span class="dv">548</span>))</span></code></pre></div>
-<pre><code>## Call: survfit(formula = Surv(lesson7b$time, lesson7b$recurrence) ~ 
-##     lesson7b$hivolume)
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="assignment-answers.html#cb185-1"></a><span class="co"># Estimate survival at 6, 12 and 18 months</span></span>
+<span id="cb185-2"><a href="assignment-answers.html#cb185-2"></a><span class="kw">summary</span>(<span class="kw">survfit</span>(<span class="kw">Surv</span>(time, recurrence) <span class="op">~</span><span class="st"> </span>hivolume, <span class="dt">data =</span> lesson7b),</span>
+<span id="cb185-3"><a href="assignment-answers.html#cb185-3"></a>        <span class="dt">times =</span> <span class="kw">c</span>(<span class="dv">183</span>, <span class="dv">365</span>, <span class="dv">548</span>))</span></code></pre></div>
+<pre><code>## Call: survfit(formula = Surv(time, recurrence) ~ hivolume, data = lesson7b)
 ## 
-##                 lesson7b$hivolume=0 
+##                 hivolume=0 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
 ##   183     18       2    0.900  0.0671        0.778        1.000
 ##   365     15       3    0.750  0.0968        0.582        0.966
 ##   548      5       2    0.556  0.1404        0.339        0.912
 ## 
-##                 lesson7b$hivolume=1 
+##                 hivolume=1 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
 ##   183     20       0    1.000  0.0000        1.000            1
 ##   365     18       2    0.900  0.0671        0.778            1
@@ -24065,11 +24030,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><img src="09-answers_files/figure-html/week7t-1.png" width="672" /></p>
 <p>In case you are wondering how I did all this, one key is to see that in the dataset “group” and “treatment” are equivalent:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="assignment-answers.html#cb188-1"></a><span class="co"># Two-way table of group by treatment</span></span>
-<span id="cb188-2"><a href="assignment-answers.html#cb188-2"></a><span class="kw">tbl_summary</span>(</span>
-<span id="cb188-3"><a href="assignment-answers.html#cb188-3"></a>  lesson7c <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(group, treatment),</span>
-<span id="cb188-4"><a href="assignment-answers.html#cb188-4"></a>  <span class="dt">by =</span> treatment</span>
-<span id="cb188-5"><a href="assignment-answers.html#cb188-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="assignment-answers.html#cb187-1"></a><span class="co"># Two-way table of group by treatment</span></span>
+<span id="cb187-2"><a href="assignment-answers.html#cb187-2"></a><span class="kw">tbl_summary</span>(</span>
+<span id="cb187-3"><a href="assignment-answers.html#cb187-3"></a>  lesson7c <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(group, treatment),</span>
+<span id="cb187-4"><a href="assignment-answers.html#cb187-4"></a>  <span class="dt">by =</span> treatment</span>
+<span id="cb187-5"><a href="assignment-answers.html#cb187-5"></a>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -24456,22 +24421,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tfoot>
 </table></div>
-<p>When I did the graph, I used the variable “treatment” to get the names of the treatments (rather than the group number). I also used a function called <code>ggsurvplot</code> (from the <code>survminer</code> package) rather than the standard <code>plot</code> option, because <code>ggsurvplot</code> allows more customization to the graph.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="assignment-answers.html#cb189-1"></a><span class="co"># Create Kaplan-Meier plot by treatment group</span></span>
-<span id="cb189-2"><a href="assignment-answers.html#cb189-2"></a>survminer<span class="op">::</span><span class="kw">ggsurvplot</span>(<span class="kw">survfit</span>(<span class="kw">Surv</span>(survival_time<span class="op">/</span><span class="fl">365.25</span>, died) <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> lesson7c),</span>
-<span id="cb189-3"><a href="assignment-answers.html#cb189-3"></a>                      <span class="dt">legend =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p>When I did the graph, I used the variable “treatment” to get the names of the treatments (rather than the group number). I also used a function called <code>ggsurvplot</code> (from the <code>survminer</code> package) rather than the standard <code>plot</code> option, because <code>ggsurvplot</code> allows more customization to the graph. Survival time was specified as <code>survival_time/365.25</code> so that the graph is plotted showing survival time in years, rather than days.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="assignment-answers.html#cb188-1"></a><span class="co"># Create Kaplan-Meier plot by treatment group</span></span>
+<span id="cb188-2"><a href="assignment-answers.html#cb188-2"></a>survminer<span class="op">::</span><span class="kw">ggsurvplot</span>(<span class="kw">survfit</span>(<span class="kw">Surv</span>(survival_time<span class="op">/</span><span class="fl">365.25</span>, died) <span class="op">~</span><span class="st"> </span>treatment, <span class="dt">data =</span> lesson7c),</span>
+<span id="cb188-3"><a href="assignment-answers.html#cb188-3"></a>                      <span class="dt">legend =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="09-answers_files/figure-html/week7v-1.png" width="672" /></p>
 <p>When I did the Cox regression, I created dummy variables by typing:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="assignment-answers.html#cb190-1"></a><span class="co"># Create dummy variable for treatment</span></span>
-<span id="cb190-2"><a href="assignment-answers.html#cb190-2"></a>lesson7c &lt;-</span>
-<span id="cb190-3"><a href="assignment-answers.html#cb190-3"></a><span class="st">  </span>lesson7c <span class="op">%&gt;%</span></span>
-<span id="cb190-4"><a href="assignment-answers.html#cb190-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb190-5"><a href="assignment-answers.html#cb190-5"></a>    <span class="dt">fu =</span> <span class="kw">if_else</span>(group <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb190-6"><a href="assignment-answers.html#cb190-6"></a>    <span class="dt">lev =</span> <span class="kw">if_else</span>(group <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb190-7"><a href="assignment-answers.html#cb190-7"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="assignment-answers.html#cb189-1"></a><span class="co"># Create dummy variable for treatment</span></span>
+<span id="cb189-2"><a href="assignment-answers.html#cb189-2"></a>lesson7c &lt;-</span>
+<span id="cb189-3"><a href="assignment-answers.html#cb189-3"></a><span class="st">  </span>lesson7c <span class="op">%&gt;%</span></span>
+<span id="cb189-4"><a href="assignment-answers.html#cb189-4"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb189-5"><a href="assignment-answers.html#cb189-5"></a>    <span class="dt">fu =</span> <span class="kw">if_else</span>(group <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb189-6"><a href="assignment-answers.html#cb189-6"></a>    <span class="dt">lev =</span> <span class="kw">if_else</span>(group <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb189-7"><a href="assignment-answers.html#cb189-7"></a>  )</span></code></pre></div>
 <p>Then it was straightforward to create the cox model and get the overall p value from the <code>survdiff</code> function.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="assignment-answers.html#cb191-1"></a><span class="co"># Cox model with dummy variables</span></span>
-<span id="cb191-2"><a href="assignment-answers.html#cb191-2"></a><span class="kw">coxph</span>(<span class="kw">Surv</span>(survival_time, died) <span class="op">~</span><span class="st"> </span>fu <span class="op">+</span><span class="st"> </span>lev, <span class="dt">data =</span> lesson7c)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="assignment-answers.html#cb190-1"></a><span class="co"># Cox model with dummy variables</span></span>
+<span id="cb190-2"><a href="assignment-answers.html#cb190-2"></a><span class="kw">coxph</span>(<span class="kw">Surv</span>(survival_time, died) <span class="op">~</span><span class="st"> </span>fu <span class="op">+</span><span class="st"> </span>lev, <span class="dt">data =</span> lesson7c)</span></code></pre></div>
 <pre><code>## Call:
 ## coxph(formula = Surv(survival_time, died) ~ fu + lev, data = lesson7c)
 ## 
@@ -24481,8 +24446,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Likelihood ratio test=12.15  on 2 df, p=0.002302
 ## n= 929, number of events= 452</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="assignment-answers.html#cb193-1"></a><span class="co"># Overall p value for all 3 groups</span></span>
-<span id="cb193-2"><a href="assignment-answers.html#cb193-2"></a><span class="kw">survdiff</span>(<span class="kw">Surv</span>(survival_time, died) <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> lesson7c)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="assignment-answers.html#cb192-1"></a><span class="co"># Overall p value for all 3 groups</span></span>
+<span id="cb192-2"><a href="assignment-answers.html#cb192-2"></a><span class="kw">survdiff</span>(<span class="kw">Surv</span>(survival_time, died) <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> lesson7c)</span></code></pre></div>
 <pre><code>## Call:
 ## survdiff(formula = Surv(survival_time, died) ~ group, data = lesson7c)
 ## 

@@ -21770,24 +21770,16 @@ lesson7d <- readRDS(here::here("Data", "Week 7", "lesson7d.rds"))
 
 The data list the number of days of follow-up (survival_time), whether the patient was dead or alive at last follow-up (died), sex, age and various characteristics of the colon tumor.
 
-First, create a "Surv" object to indicate that our outcome is a survival outcome:
-
-
-```r
-# Create survival outcome for time to death
-lesson7a_surv <- Surv(lesson7a$survival_time, lesson7a$died)
-```
-
-We can then use `survfit` and `skim` to get the median time for all patients and for survivors only:
+We can use `survfit` and `skim` to get the median time for all patients and for survivors only. Remember to use the `Surv` function to specify your event status and time to event.
 
 
 ```r
 # Median followup for all patients
-survfit(lesson7a_surv ~ 1)
+survfit(Surv(survival_time, died) ~ 1, data = lesson7a)
 ```
 
 ```
-## Call: survfit(formula = lesson7a_surv ~ 1)
+## Call: survfit(formula = Surv(survival_time, died) ~ 1, data = lesson7a)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
 ##     614     284    2910    2482      NA
@@ -21827,7 +21819,7 @@ To look at predictors of survival, we might conduct a multivariable regression:
 
 ```r
 # Multivariable Cox model for time to death
-coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + nodes,
+coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesions + nodes,
       data = lesson7a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
@@ -22637,21 +22629,23 @@ skim_variable    n_missing   complete_rate   mean     sd   p0   p25   p50   p75 
 --------------  ----------  --------------  -----  -----  ---  ----  ----  ----  -----  ------
 nodes                   15            0.98   3.59   3.49    0     1     2   4.5     33  ▇▁▁▁▁ 
 
-You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to exclude patients with more than 10 nodes. This creates a new variable that excludes patients with large numbers of nodes from the analysis.
+You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to cap the number of nodes. This creates a new variable that caps the number of nodes at 10. Since fewer than 3% of patients had perforations, we will exclude this variable from our model.
 
 
 ```r
-# Exclude patients with > 10 nodes
+# Create new nodes variable, capped at 10 nodes
 lesson7a <-
   lesson7a %>%
   mutate(
     n2 = 
-      case_when(nodes <= 10 ~ nodes)
-    # This sets "n2" to missing for those with > 10 nodes
-  )
+      case_when(
+        nodes <= 10 ~ nodes,
+        nodes > 10 ~ 10
+        )
+    )
 
-# Re-run cox model using "n2" (excluding patients with > 10 nodes)
-coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + n2,
+# Re-run cox model using "n2" (which caps the number of nodes at 10)
+coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
       data = lesson7a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
@@ -23003,38 +22997,32 @@ coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + n2,
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">sex</td>
-      <td class="gt_row gt_center">0.98</td>
-      <td class="gt_row gt_center">0.76, 1.25</td>
-      <td class="gt_row gt_center">0.9</td>
+      <td class="gt_row gt_center">0.99</td>
+      <td class="gt_row gt_center">0.78, 1.26</td>
+      <td class="gt_row gt_center">>0.9</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">age</td>
       <td class="gt_row gt_center">1.01</td>
       <td class="gt_row gt_center">1.00, 1.02</td>
-      <td class="gt_row gt_center">0.2</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">obstruction</td>
-      <td class="gt_row gt_center">1.49</td>
-      <td class="gt_row gt_center">1.10, 2.03</td>
-      <td class="gt_row gt_center">0.010</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">perforation</td>
-      <td class="gt_row gt_center">0.68</td>
-      <td class="gt_row gt_center">0.33, 1.41</td>
       <td class="gt_row gt_center">0.3</td>
     </tr>
     <tr>
+      <td class="gt_row gt_left">obstruction</td>
+      <td class="gt_row gt_center">1.48</td>
+      <td class="gt_row gt_center">1.10, 1.98</td>
+      <td class="gt_row gt_center">0.009</td>
+    </tr>
+    <tr>
       <td class="gt_row gt_left">adhesions</td>
-      <td class="gt_row gt_center">1.59</td>
-      <td class="gt_row gt_center">1.15, 2.20</td>
-      <td class="gt_row gt_center">0.005</td>
+      <td class="gt_row gt_center">1.40</td>
+      <td class="gt_row gt_center">1.02, 1.92</td>
+      <td class="gt_row gt_center">0.037</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">n2</td>
-      <td class="gt_row gt_center">1.19</td>
-      <td class="gt_row gt_center">1.14, 1.25</td>
+      <td class="gt_row gt_center">1.17</td>
+      <td class="gt_row gt_center">1.13, 1.22</td>
       <td class="gt_row gt_center"><0.001</td>
     </tr>
   </tbody>
@@ -23081,26 +23069,25 @@ The regression code would then be:
 ```r
 # Re-run Cox model using categorized variable for nodes
 # Since "node4" is categorical, we must use "factor()" with this variable
-coxph(lesson7a_surv ~ sex + age + obstruction + perforation + adhesions + factor(node4),
+coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + factor(node4),
       data = lesson7a)
 ```
 
 ```
 ## Call:
-## coxph(formula = lesson7a_surv ~ sex + age + obstruction + perforation + 
+## coxph(formula = Surv(survival_time, died) ~ sex + age + obstruction + 
 ##     adhesions + factor(node4), data = lesson7a)
 ## 
 ##                     coef exp(coef)  se(coef)      z        p
-## sex            -0.001937  0.998065  0.121949 -0.016 0.987326
-## age             0.004899  1.004912  0.005364  0.913 0.361041
-## obstruction     0.381416  1.464357  0.150828  2.529 0.011445
-## perforation    -0.338675  0.712714  0.369481 -0.917 0.359341
-## adhesions       0.373402  1.452668  0.163292  2.287 0.022212
-## factor(node4)2  0.497687  1.644913  0.147630  3.371 0.000748
-## factor(node4)3  1.078693  2.940832  0.161449  6.681 2.37e-11
-## factor(node4)4  1.187162  3.277766  0.241102  4.924 8.48e-07
+## sex            -0.006908  0.993116  0.121775 -0.057  0.95476
+## age             0.005283  1.005297  0.005355  0.987  0.32387
+## obstruction     0.363027  1.437674  0.149796  2.423  0.01537
+## adhesions       0.344250  1.410932  0.160702  2.142  0.03218
+## factor(node4)2  0.481741  1.618890  0.146725  3.283  0.00103
+## factor(node4)3  1.075440  2.931281  0.161608  6.655 2.84e-11
+## factor(node4)4  1.193543  3.298747  0.241068  4.951 7.38e-07
 ## 
-## Likelihood ratio test=60.22  on 8 df, p=4.213e-10
+## Likelihood ratio test=59.3  on 7 df, p=2.083e-10
 ## n= 599, number of events= 274 
 ##    (15 observations deleted due to missingness)
 ```
@@ -23111,7 +23098,7 @@ A model answer for this dataset might be:
 
 <div class="quote-container">
 
->Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, 11+. In a Cox regression of the 599 patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
+>Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, and >10. In a Cox regression of the 599 patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
 
 </div>
 
@@ -23461,15 +23448,7 @@ A model answer for this dataset might be:
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_left">Sex</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">296 (48%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_left">Female</td>
       <td class="gt_row gt_center">318 (52%)</td>
     </tr>
     <tr>
@@ -23478,46 +23457,30 @@ A model answer for this dataset might be:
     </tr>
     <tr>
       <td class="gt_row gt_left">Obstruction</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">497 (81%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">117 (19%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">Adhesions</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">526 (86%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">88 (14%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">node4</td>
+      <td class="gt_row gt_left">Number of Nodes</td>
       <td class="gt_row gt_center"></td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0-2</td>
       <td class="gt_row gt_center">311 (52%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">2</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">3-5</td>
       <td class="gt_row gt_center">168 (28%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">3</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">5-10</td>
       <td class="gt_row gt_center">92 (15%)</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">4</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">&gt;10</td>
       <td class="gt_row gt_center">28 (4.7%)</td>
     </tr>
     <tr>
@@ -23914,31 +23877,31 @@ A model answer for this dataset might be:
       <td class="gt_row gt_center">0.032</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left">factor(node4)</td>
+      <td class="gt_row gt_left">Number of Nodes</td>
       <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
       <td class="gt_row gt_center"></td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0-2</td>
       <td class="gt_row gt_center">&mdash;</td>
       <td class="gt_row gt_center">&mdash;</td>
       <td class="gt_row gt_center"></td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">2</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">3-5</td>
       <td class="gt_row gt_center">1.62</td>
       <td class="gt_row gt_center">1.21, 2.16</td>
       <td class="gt_row gt_center">0.001</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">3</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">5-10</td>
       <td class="gt_row gt_center">2.93</td>
       <td class="gt_row gt_center">2.14, 4.02</td>
       <td class="gt_row gt_center"><0.001</td>
     </tr>
     <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">4</td>
+      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">&gt;10</td>
       <td class="gt_row gt_center">3.30</td>
       <td class="gt_row gt_center">2.06, 5.29</td>
       <td class="gt_row gt_center"><0.001</td>
@@ -23970,17 +23933,16 @@ We can test the difference between groups by using the `survdiff` function:
 
 ```r
 # Test for difference in time to recurrence by hivolume
-survdiff(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume)
+survdiff(Surv(time, recurrence) ~ hivolume, data = lesson7b)
 ```
 
 ```
 ## Call:
-## survdiff(formula = Surv(lesson7b$time, lesson7b$recurrence) ~ 
-##     lesson7b$hivolume)
+## survdiff(formula = Surv(time, recurrence) ~ hivolume, data = lesson7b)
 ## 
-##                      N Observed Expected (O-E)^2/E (O-E)^2/V
-## lesson7b$hivolume=0 20        7      4.5      1.39      2.53
-## lesson7b$hivolume=1 20        3      5.5      1.14      2.53
+##             N Observed Expected (O-E)^2/E (O-E)^2/V
+## hivolume=0 20        7      4.5      1.39      2.53
+## hivolume=1 20        3      5.5      1.14      2.53
 ## 
 ##  Chisq= 2.5  on 1 degrees of freedom, p= 0.1
 ```
@@ -23994,12 +23956,11 @@ This is not sufficient evidence to conclude that high volume hospitals and more 
 
 ```r
 # Look at number of recurrence events in this dataset
-survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ 1)
+survfit(Surv(time, recurrence) ~ 1, data = lesson7b)
 ```
 
 ```
-## Call: survfit(formula = Surv(lesson7b$time, lesson7b$recurrence) ~ 
-##     1)
+## Call: survfit(formula = Surv(time, recurrence) ~ 1, data = lesson7b)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
 ##      40      10      NA      NA      NA
@@ -24405,21 +24366,20 @@ Another way of doing this would be to estimate survival at say, 6, 12 and 18 mon
 
 ```r
 # Estimate survival at 6, 12 and 18 months
-summary(survfit(Surv(lesson7b$time, lesson7b$recurrence) ~ lesson7b$hivolume),
+summary(survfit(Surv(time, recurrence) ~ hivolume, data = lesson7b),
         times = c(183, 365, 548))
 ```
 
 ```
-## Call: survfit(formula = Surv(lesson7b$time, lesson7b$recurrence) ~ 
-##     lesson7b$hivolume)
+## Call: survfit(formula = Surv(time, recurrence) ~ hivolume, data = lesson7b)
 ## 
-##                 lesson7b$hivolume=0 
+##                 hivolume=0 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
 ##   183     18       2    0.900  0.0671        0.778        1.000
 ##   365     15       3    0.750  0.0968        0.582        0.966
 ##   548      5       2    0.556  0.1404        0.339        0.912
 ## 
-##                 lesson7b$hivolume=1 
+##                 hivolume=1 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
 ##   183     20       0    1.000  0.0000        1.000            1
 ##   365     18       2    0.900  0.0671        0.778            1
@@ -24844,7 +24804,7 @@ tbl_summary(
   </tfoot>
 </table></div><!--/html_preserve-->
 
-When I did the graph, I used the variable "treatment" to get the names of the treatments (rather than the group number). I also used a function called `ggsurvplot` (from the `survminer` package) rather than the standard `plot` option, because `ggsurvplot` allows more customization to the graph.
+When I did the graph, I used the variable "treatment" to get the names of the treatments (rather than the group number). I also used a function called `ggsurvplot` (from the `survminer` package) rather than the standard `plot` option, because `ggsurvplot` allows more customization to the graph. Survival time was specified as `survival_time/365.25` so that the graph is plotted showing survival time in years, rather than days.
 
 
 ```r
