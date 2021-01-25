@@ -160,11 +160,9 @@ tbl_rom <- tbl_regression(rom_model)
 
 ```
 
+For example, for sex, the 95% CI is `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.low} to {conf.high}")`, meaning that women might plausibly have a range of motion anywhere from `r style_sigfig(abs(tbl_rom$table_body$conf.low[1]))` degrees less than men to `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.high}")` degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, `r inline_text(tbl_rom, variable = "sex", pattern = "{p.value}")`. There are `r inline_text(tbl_rom, variable = "sex", pattern = "{N}")` patients included in this model.
 
 ```{r section5i}
-
-# For example, for sex, the 95% CI is `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.low} to {conf.high}")`, meaning that women might plausibly have a range of motion anywhere from `r style_sigfig(abs(tbl_rom$table_body[1, 8]))` degrees less than men to `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.high}")` degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, `r inline_text(tbl_rom, variable = "sex", pattern = "{p.value}")`. There are `r inline_text(tbl_rom, variable = "sex", pattern = "{N}")` patients included in this model.
-
 
 # Summary of linear regression results
 summary(rom_model)

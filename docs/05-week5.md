@@ -555,12 +555,10 @@ tbl_regression(rom_model)
 
 
 
+For example, for sex, the 95% CI is -18 to 24, meaning that women might plausibly have a range of motion anywhere from 18 degrees less than men to 24 degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, p=0.8. There are 34 patients included in this model.
 
 
 ```r
-# For example, for sex, the 95% CI is `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.low} to {conf.high}")`, meaning that women might plausibly have a range of motion anywhere from `r style_sigfig(abs(tbl_rom$table_body[1, 8]))` degrees less than men to `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.high}")` degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, `r inline_text(tbl_rom, variable = "sex", pattern = "{p.value}")`. There are `r inline_text(tbl_rom, variable = "sex", pattern = "{N}")` patients included in this model.
-
-
 # Summary of linear regression results
 summary(rom_model)
 ```

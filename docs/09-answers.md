@@ -78,25 +78,24 @@ lesson2a %>%
 
 Table: (\#tab:week2a)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             98         
-Number of columns          6          
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            sex        
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |98         |
+|Number of columns        |6          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |sex        |
 
 
 **Variable type: numeric**
 
-skim_variable    sex   n_missing   complete_rate     mean      sd    p0      p25     p50      p75   p100  hist  
---------------  ----  ----------  --------------  -------  ------  ----  -------  ------  -------  -----  ------
-rt                 0           0               1   243.23   49.85   158   214.25   236.0   268.75    414  ▃▇▃▁▁ 
-rt                 1           0               1   264.84   37.45   222   237.00   251.5   283.25    362  ▇▃▂▂▁ 
+|skim_variable | sex| n_missing| complete_rate|   mean|    sd|  p0|    p25|   p50|    p75| p100|hist  |
+|:-------------|---:|---------:|-------------:|------:|-----:|---:|------:|-----:|------:|----:|:-----|
+|rt            |   0|         0|             1| 243.23| 49.85| 158| 214.25| 236.0| 268.75|  414|▃▇▃▁▁ |
+|rt            |   1|         0|             1| 264.84| 37.45| 222| 237.00| 251.5| 283.25|  362|▇▃▂▂▁ |
 
 So sex==0 are running faster than the sex==1 and it would not be unreasonable to assume that sex==1 means women. 
 
@@ -108,7 +107,9 @@ AN ADDITIONAL IMPORTANT POINT: you should give the number of observations and th
 
 So here is a model answer, suitable for publication (assuming that sex==1 is coded as female.)
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -119,6 +120,8 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -277,10 +280,6 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -358,6 +357,10 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -497,17 +500,20 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
             <em>1</em>
           </sup>
            
-          Statistics presented: mean (SD); n (%)
+          Mean (SD); n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 However, look at this.
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -518,6 +524,8 @@ However, look at this.
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -676,10 +684,6 @@ However, look at this.
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hlleqxdave .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -757,6 +761,10 @@ However, look at this.
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hlleqxdave .gt_table_body {
@@ -896,13 +904,14 @@ However, look at this.
             <em>1</em>
           </sup>
            
-          Statistics presented: median (IQR); n (%)
+          Median (IQR); n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 This really isn't much to distinguish between these tables. On the one hand using the mean and SD gives you more information (e.g. what proportion of patients are aged over 70?). On the other hand, I can't see anyone using a table 1 to do these types of calculation and the median and interquartile range give you some more immediately usable information (no multiplying by 1.64!).
 
@@ -948,7 +957,9 @@ If you type `tbl_summary(lesson2c %>% select(stage))`, you'll see that all patie
 
 A second issue is how to characterize the categorical variables. There are 8 different stages represented, many with very small numbers (like 2 for T4 and T1B, 4 for T3). It generally isn’t very helpful to slice and dice data into very small categories, so I would consider grouping. For instance, we could group the T1s together, and group the T3 and T4 patients together to get something like:
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -959,6 +970,8 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1117,10 +1130,6 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kqtxbhydst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1198,6 +1207,10 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1325,13 +1338,14 @@ A second issue is how to characterize the categorical variables. There are 8 dif
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <br>
 
@@ -1362,7 +1376,9 @@ lesson2c <-
 
 There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9. Now a key point is that what you decide to do in situations like this will often need to take into account your medical understanding. It might seems sensible to categorize grade as ≤6 or ≥7, or perhaps 4/5, 6, 7, 8/9. But as it turns out in prostate cancer, pathologists can’t reliably grade a cancer as 4 or 5 and these cancers should really be grouped with grade 6. Grade 8, on the other hand, signifies very aggressive disease and really needs to be reported separately even if there are only a few patients with grade 8. So grade would probably be summarized as per the following table:
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -1373,6 +1389,8 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1531,10 +1549,6 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
   vertical-align: middle;
 }
 
-#qzjvxzfwte .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #qzjvxzfwte .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1612,6 +1626,10 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#qzjvxzfwte .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #qzjvxzfwte .gt_table_body {
@@ -1771,13 +1789,14 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%); median (IQR)
+          n (%); Median (IQR)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ### lesson2d.rds
 
@@ -1820,7 +1839,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -1831,6 +1851,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1989,10 +2011,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#pqsnuprvju .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #pqsnuprvju .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -2070,6 +2088,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#pqsnuprvju .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #pqsnuprvju .gt_table_body {
@@ -2197,13 +2219,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -2392,7 +2415,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -2403,6 +2427,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -2561,10 +2587,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#opulaeyvxv .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #opulaeyvxv .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -2642,6 +2664,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#opulaeyvxv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #opulaeyvxv .gt_table_body {
@@ -2761,13 +2787,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 If you got that far: wow! (also, forget the course, you don’t need it). If you didn’t get that far, don’t feel bad about it, but try to get a handle on the thought process.
 
@@ -2949,24 +2976,23 @@ skim(lesson3c$delta12)
 
 Table: (\#tab:week3j)Data summary
 
-                                            
--------------------------  -----------------
-Name                       lesson3c$delta12 
-Number of rows             22               
-Number of columns          1                
-_______________________                     
-Column type frequency:                      
-numeric                    1                
-________________________                    
-Group variables            None             
--------------------------  -----------------
+|                         |                 |
+|:------------------------|:----------------|
+|Name                     |lesson3c$delta12 |
+|Number of rows           |22               |
+|Number of columns        |1                |
+|_______________________  |                 |
+|Column type frequency:   |                 |
+|numeric                  |1                |
+|________________________ |                 |
+|Group variables          |None             |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate    mean     sd   p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  ------  -----  ---  ----  ----  ----  -----  ------
-data                     0               1   -0.27   0.83   -2    -1     0     0      1  ▁▃▁▇▂ 
+|skim_variable | n_missing| complete_rate|  mean|   sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|-----:|----:|--:|---:|---:|---:|----:|:-----|
+|data          |         0|             1| -0.27| 0.83| -2|  -1|   0|   0|    1|▁▃▁▇▂ |
 
 As it turns out, the distribution of differences between pain scores are normally distributed even though pain at time 2 does not have a normal distribution. In fact, this is almost always the case. 
 
@@ -3089,25 +3115,24 @@ lesson3e %>%
 
 Table: (\#tab:week3o)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             57         
-Number of columns          2          
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            hospital   
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |57         |
+|Number of columns        |2          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |hospital   |
 
 
 **Variable type: numeric**
 
-skim_variable   hospital    n_missing   complete_rate    mean      sd   p0     p25   p50    p75   p100  hist  
---------------  ---------  ----------  --------------  ------  ------  ---  ------  ----  -----  -----  ------
-los             a                   0               1   44.86   13.57   30   34.00    41   55.0     79  ▇▇▃▂▂ 
-los             b                   0               1   45.14   10.85   28   39.25    45   50.5     70  ▃▇▇▃▂ 
+|skim_variable |hospital | n_missing| complete_rate|  mean|    sd| p0|   p25| p50|  p75| p100|hist  |
+|:-------------|:--------|---------:|-------------:|-----:|-----:|--:|-----:|---:|----:|----:|:-----|
+|los           |a        |         0|             1| 44.86| 13.57| 30| 34.00|  41| 55.0|   79|▇▇▃▂▂ |
+|los           |b        |         0|             1| 45.14| 10.85| 28| 39.25|  45| 50.5|   70|▃▇▇▃▂ |
 
 This shows us the mean, median, etc. for length of stay by hospital. The two sets of data look very similar. Regardless of whether we do a t-test or non-parametric test, we do not see a difference between groups, p is >0.9 or 0.7. Interesting question: should you report a 95% confidence interval for the difference between groups? This shows, for example, that the new regimen could reduce length of stay by up to six days, surely important in cost terms. On the other hand, this is not a randomized trial. There might be all sorts of differences between the hospitals other than the different chemotherapy regime, such as the mix of patients, discharge policies etc. So you would have to be careful in stating that the chemotherapy regime "could reduce hospital stay by as much as six days" or some such. 
 
@@ -3149,7 +3174,7 @@ t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
 
 The p value is similar to the untransformed analyses. Now, look at the difference between means -0.02 and confidence interval (-0.16, 0.12).
 
-To backtransform these values, you have to remember that addition on a log scale is the same as multiplication on an untransformed scale. Backtransform -0.02 using ``exp(-0.02)`` and you get 0.98. In other words, length of stay in hospital a is 98% more (or 2.0% less) compared to hospital b. Do the same things with the upper and lower bounds of the confidence interval and you might conclude that the difference in length of stay is between 15% less in hospital a to 13% less in hospital b. If you wanted to convert these numbers to actual days, just multiply by the mean hospital stay in group b by 0.98, 0.85 and 1.13.
+To backtransform these values, you have to remember that addition on a log scale is the same as multiplication on an untransformed scale. Backtransform -0.02 using ``exp(-0.02)`` and you get 1.0. In other words, length of stay in hospital a is 98% more (or 2.0% less) compared to hospital b. Do the same things with the upper and lower bounds of the confidence interval and you might conclude that the difference in length of stay is between 15% less in hospital a to 13% less in hospital b. If you wanted to convert these numbers to actual days, just multiply by the mean hospital stay in group b by 1.0, 0.85 and 1.13.
 
 ### lesson3f.rds
 
@@ -3229,7 +3254,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -3240,6 +3266,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -3398,10 +3426,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#zlxeaoptgx .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #zlxeaoptgx .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -3479,6 +3503,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#zlxeaoptgx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #zlxeaoptgx .gt_table_body {
@@ -3598,13 +3626,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -3705,7 +3734,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -3716,6 +3746,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -3874,10 +3906,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#hgemkgngwa .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hgemkgngwa .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -3955,6 +3983,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hgemkgngwa .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hgemkgngwa .gt_table_body {
@@ -4079,13 +4111,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 This would tell you, for example, that of the patients with hypertension, 59% ate a lot of meat and only 23% ate a little. I find this a less helpful statistic than presenting the data in terms of rates of hypertension for level of meat consumption. One other thing to notice is that the rates of hypertension are high, suggesting this is a selected population.
 
@@ -4101,7 +4134,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -4112,6 +4146,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -4270,10 +4306,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#vnsfmmrbvs .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #vnsfmmrbvs .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -4351,6 +4383,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#vnsfmmrbvs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #vnsfmmrbvs .gt_table_body {
@@ -4475,13 +4511,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 These tables show the number and percentages of patients with hypertension in each category of meat eating. Rates of hypertension are 50%, 57% and 82% in the low, medium and high meat consumption groups, respectively.
 
@@ -4620,11 +4657,13 @@ What these commands do is to create new variables (c1 and c2) that are used inst
 
 <div class="quote-container">
 
->The results of the study are shown in the table. Differences in rates of hypertension between categories of meat consumption are statistically significant (p=0.005). Rates of hypertension rise with increasing meat consumption: patients with the highest meat consumption had a risk of hypertension 1.5 times greater than those with intermediate meat consumption (95% CI 1.00, 2.1, p=0.019) and 1.6 times greater than those with the lowest levels of meat consumption (95% CI 1.1, 2.4, p=0.002). Rates of hypertension were similar between medium and low meat consumption (relative risk 1.1; 95% CI 0.69, 1.9, p=0.6).
+>The results of the study are shown in the table. Differences in rates of hypertension between categories of meat consumption are statistically significant (p=0.005). Rates of hypertension rise with increasing meat consumption: patients with the highest meat consumption had a risk of hypertension 1.5 times greater than those with intermediate meat consumption (95% CI 1.0, 2.1, p=0.019) and 1.6 times greater than those with the lowest levels of meat consumption (95% CI 1.1, 2.4, p=0.002). Rates of hypertension were similar between medium and low meat consumption (relative risk 1.1; 95% CI 0.69, 1.9, p=0.6).
 
 </div>
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -4635,6 +4674,8 @@ What these commands do is to create new variables (c1 and c2) that are used inst
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -4793,10 +4834,6 @@ What these commands do is to create new variables (c1 and c2) that are used inst
   vertical-align: middle;
 }
 
-#gfhbrxnasc .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #gfhbrxnasc .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -4874,6 +4911,10 @@ What these commands do is to create new variables (c1 and c2) that are used inst
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#gfhbrxnasc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #gfhbrxnasc .gt_table_body {
@@ -4965,7 +5006,7 @@ What these commands do is to create new variables (c1 and c2) that are used inst
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>No Hypertension</strong>, N = 35<sup class="gt_footnote_marks">1</sup></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Hypertension</strong>, N = 71<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 106</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 106<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -5003,13 +5044,14 @@ What these commands do is to create new variables (c1 and c2) that are used inst
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 You might note that I chose to compare low and medium meat consumption, that is, give all three pairwise comparisons rather than just high v. low and high v. medium. This is probably the exception rather than the rule: in this particular case, it seems worth reporting because the low and medium groups seem very comparable compared to high meat consumption.  
 
@@ -5032,7 +5074,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -5043,6 +5086,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -5201,10 +5246,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#tlnsbgwbeq .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #tlnsbgwbeq .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -5282,6 +5323,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#tlnsbgwbeq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #tlnsbgwbeq .gt_table_body {
@@ -5406,13 +5451,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 It would seem appropriate to combine heterozygotes and homozygous mutant type into a single category. You might be tempted to type `lesson4c %>% mutate(gene = if_else(gene == 2, 1, gene))`. But you should avoid changing raw data in this way: it would be preferable to create a new variable as follows:
 
@@ -5436,7 +5482,9 @@ Moreover, it would be worth reporting the results of an analysis using all three
 
 The results of the study are shown in the table. Very few participants (6 (2.0%)) were homozygous mutant. For the purposes of analysis therefore, data for these participants was combined with those heterozygous for the gene. Patients with any mutant allele (i.e. heterozygous or homozygous mutant) had lower rates of toxicity (20% vs 80%, p=0.010 by chi squared). The relative risk of toxicity is 0.59 compared to patients with the wild-type (95% CI 0.39, 0.91). This conclusion is not sensitive to the method of analysis: analysis of the table keeping participants in three groups gives p=0.033 by an exact test. These findings should be confirmed in a larger series. In particular, it would be interesting to know whether patients who are homozygous mutant are at particularly increased risk.
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -5447,6 +5495,8 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -5605,10 +5655,6 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
   vertical-align: middle;
 }
 
-#bixqbsxufc .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #bixqbsxufc .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -5686,6 +5732,10 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#bixqbsxufc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #bixqbsxufc .gt_table_body {
@@ -5777,7 +5827,7 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>No Grade III/IV Toxicity</strong>, N = 204<sup class="gt_footnote_marks">1</sup></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Grade III/IV Toxicity</strong>, N = 100<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 304</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 304<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -5815,13 +5865,14 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 Genetics type people: note that this gene is in Hardy Weinberg equilibrium!
 
@@ -6025,7 +6076,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -6036,6 +6088,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -6194,10 +6248,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#jrfpnysbvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #jrfpnysbvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -6275,6 +6325,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#jrfpnysbvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #jrfpnysbvm .gt_table_body {
@@ -6394,13 +6448,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -6486,7 +6541,9 @@ The p values for all the predictor variables apart from weight are very low. A m
 
 <center> **Table 1** </center>
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -6497,6 +6554,8 @@ The p values for all the predictor variables apart from weight are very low. A m
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -6655,10 +6714,6 @@ The p values for all the predictor variables apart from weight are very low. A m
   vertical-align: middle;
 }
 
-#jgoecrbkrg .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #jgoecrbkrg .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -6736,6 +6791,10 @@ The p values for all the predictor variables apart from weight are very low. A m
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#jgoecrbkrg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #jgoecrbkrg .gt_table_body {
@@ -6867,17 +6926,20 @@ The p values for all the predictor variables apart from weight are very low. A m
             <em>1</em>
           </sup>
            
-          Statistics presented: mean (SD); n (%)
+          Mean (SD); n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <center> **Table 2** </center>
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -6888,6 +6950,8 @@ The p values for all the predictor variables apart from weight are very low. A m
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -7046,10 +7110,6 @@ The p values for all the predictor variables apart from weight are very low. A m
   vertical-align: middle;
 }
 
-#mafemqyuoy .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #mafemqyuoy .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -7127,6 +7187,10 @@ The p values for all the predictor variables apart from weight are very low. A m
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#mafemqyuoy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #mafemqyuoy .gt_table_body {
@@ -7262,7 +7326,8 @@ The p values for all the predictor variables apart from weight are very low. A m
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 A real-life decision you could take away from this is that every additional mile you run in training would be predicted to cut about 1.5 minutes from your marathon time: add a couple of extra five mile runs per week and you’ll shave a quarter of an hour off your time. 
 
@@ -7328,24 +7393,23 @@ lesson5a %>%
 
 Table: (\#tab:week5f)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             190        
-Number of columns          6          
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            None       
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |190        |
+|Number of columns        |6          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |None       |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate     mean      sd    p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  -------  ------  ----  ----  ----  ----  -----  ------
-rt                       1            0.99   238.57   46.63   155   205   235   268    414  ▅▇▃▁▁ 
+|skim_variable | n_missing| complete_rate|   mean|    sd|  p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|------:|-----:|---:|---:|---:|---:|----:|:-----|
+|rt            |         1|          0.99| 238.57| 46.63| 155| 205| 235| 268|  414|▅▇▃▁▁ |
 
 Then multiply the men's average (238.6) by 1.10 to get the women's time, which gives 263.2.
 
@@ -7366,7 +7430,8 @@ mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
 tbl_regression(mutate_model, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -7377,6 +7442,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -7535,10 +7602,6 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#rbpbdnnbet .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #rbpbdnnbet .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -7616,6 +7679,10 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#rbpbdnnbet .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #rbpbdnnbet .gt_table_body {
@@ -7733,7 +7800,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 If you get a p value of around 0.7, you haven't been inspecting your data. One patient has apparently had the disease for 154 years. Either this is a freak of nature or the study assistant meant to type 14 or 15. You need to delete this observation from the dataset and try the model again:
 
@@ -7751,7 +7819,8 @@ mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
 tbl_regression(mutate_model, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -7762,6 +7831,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -7920,10 +7991,6 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#jrdysgpclz .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #jrdysgpclz .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -8001,6 +8068,10 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#jrdysgpclz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #jrdysgpclz .gt_table_body {
@@ -8118,7 +8189,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 ```r
@@ -8126,7 +8198,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 tbl_regression(mutate_model, exponentiate = FALSE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -8137,6 +8210,8 @@ tbl_regression(mutate_model, exponentiate = FALSE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -8295,10 +8370,6 @@ tbl_regression(mutate_model, exponentiate = FALSE)
   vertical-align: middle;
 }
 
-#tusbkbxopk .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #tusbkbxopk .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -8376,6 +8447,10 @@ tbl_regression(mutate_model, exponentiate = FALSE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#tusbkbxopk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #tusbkbxopk .gt_table_body {
@@ -8493,7 +8568,8 @@ tbl_regression(mutate_model, exponentiate = FALSE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -8510,7 +8586,8 @@ tbl_regression(mutate_model,
                intercept = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -8521,6 +8598,8 @@ tbl_regression(mutate_model,
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -8679,10 +8758,6 @@ tbl_regression(mutate_model,
   vertical-align: middle;
 }
 
-#mbchtzpmbb .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #mbchtzpmbb .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -8760,6 +8835,10 @@ tbl_regression(mutate_model,
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#mbchtzpmbb .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #mbchtzpmbb .gt_table_body {
@@ -8883,7 +8962,8 @@ tbl_regression(mutate_model,
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 This gives a coefficient of 0.13 and a constant of -0.94. This can be used to make a specific prediction using the equation below ("l" stands for the log odds).
 
@@ -8905,19 +8985,19 @@ lesson5b_pred
 ```
 
 ```
-## # A tibble: 124 x 9
-##    mutation     c .fitted .se.fit .resid    .hat .sigma .cooksd .std.resid
-##       <dbl> <dbl>   <dbl>   <dbl>  <dbl>   <dbl>  <dbl>   <dbl>      <dbl>
-##  1        1    11   0.623  0.0488  0.973 0.0101    1.16 0.00313      0.978
-##  2        0     6   0.462  0.0637 -1.11  0.0163    1.16 0.00723     -1.12 
-##  3        1    12   0.653  0.0535  0.923 0.0126    1.16 0.00344      0.929
-##  4        1     9   0.559  0.0461  1.08  0.00862   1.16 0.00345      1.08 
-##  5        0    13   0.682  0.0590 -1.51  0.0161    1.15 0.0178      -1.53 
-##  6        1     9   0.559  0.0461  1.08  0.00862   1.16 0.00345      1.08 
-##  7        0     8   0.527  0.0495 -1.22  0.00984   1.15 0.00559     -1.23 
-##  8        1     6   0.462  0.0637  1.24  0.0163    1.15 0.00984      1.25 
-##  9        0    11   0.623  0.0488 -1.40  0.0101    1.15 0.00852     -1.40 
-## 10        0     4   0.397  0.0811 -1.01  0.0275    1.16 0.00958     -1.02 
+## # A tibble: 124 x 8
+##    mutation     c .fitted .resid .std.resid    .hat .sigma .cooksd
+##       <dbl> <dbl>   <dbl>  <dbl>      <dbl>   <dbl>  <dbl>   <dbl>
+##  1        1    11   0.623  0.973      0.978 0.0101    1.16 0.00313
+##  2        0     6   0.462 -1.11      -1.12  0.0163    1.16 0.00723
+##  3        1    12   0.653  0.923      0.929 0.0126    1.16 0.00344
+##  4        1     9   0.559  1.08       1.08  0.00862   1.16 0.00345
+##  5        0    13   0.682 -1.51      -1.53  0.0161    1.15 0.0178 
+##  6        1     9   0.559  1.08       1.08  0.00862   1.16 0.00345
+##  7        0     8   0.527 -1.22      -1.23  0.00984   1.15 0.00559
+##  8        1     6   0.462  1.24       1.25  0.0163    1.15 0.00984
+##  9        0    11   0.623 -1.40      -1.40  0.0101    1.15 0.00852
+## 10        0     4   0.397 -1.01      -1.02  0.0275    1.16 0.00958
 ## # ... with 114 more rows
 ```
 
@@ -8952,7 +9032,8 @@ lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
 tbl_regression(mutate_model, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -8963,6 +9044,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -9121,10 +9204,6 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#yzwkzlhjln .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #yzwkzlhjln .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -9202,6 +9281,10 @@ tbl_regression(mutate_model, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#yzwkzlhjln .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #yzwkzlhjln .gt_table_body {
@@ -9319,7 +9402,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 ```r
@@ -9400,7 +9484,8 @@ mlife_model <- lm(mlife ~ unemp, data = lesson5c_fixed)
 tbl_regression(mlife_model)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -9411,6 +9496,8 @@ tbl_regression(mlife_model)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -9569,10 +9656,6 @@ tbl_regression(mlife_model)
   vertical-align: middle;
 }
 
-#gnbvekovad .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #gnbvekovad .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -9650,6 +9733,10 @@ tbl_regression(mlife_model)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#gnbvekovad .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #gnbvekovad .gt_table_body {
@@ -9767,7 +9854,8 @@ tbl_regression(mlife_model)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 ```r
@@ -9776,7 +9864,8 @@ flife_model <- lm(flife ~ unemp, data = lesson5c_fixed)
 tbl_regression(flife_model)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -9787,6 +9876,8 @@ tbl_regression(flife_model)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -9945,10 +10036,6 @@ tbl_regression(flife_model)
   vertical-align: middle;
 }
 
-#kijudtsfwn .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kijudtsfwn .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -10026,6 +10113,10 @@ tbl_regression(flife_model)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kijudtsfwn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kijudtsfwn .gt_table_body {
@@ -10143,7 +10234,8 @@ tbl_regression(flife_model)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 The coefficients you get (-0.10 for men and -0.08 for women) suggest that a 5% drop in unemployment is associated with about a 6 month increase in life expectancy, in other words, a small effect.
 
@@ -10201,7 +10293,9 @@ My model answer would be:
 
 </div>
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -10212,6 +10306,8 @@ My model answer would be:
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -10370,10 +10466,6 @@ My model answer would be:
   vertical-align: middle;
 }
 
-#bvxaujwtra .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #bvxaujwtra .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -10451,6 +10543,10 @@ My model answer would be:
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#bvxaujwtra .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #bvxaujwtra .gt_table_body {
@@ -10563,7 +10659,8 @@ My model answer would be:
   </tbody>
   
   
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ### lesson5e.rds
 
@@ -10580,7 +10677,8 @@ cam_model1 <- glm(CAM ~ age + t + mets + u + q18 + e + m + ses,
 tbl_regression(cam_model1, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -10591,6 +10689,8 @@ tbl_regression(cam_model1, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -10749,10 +10849,6 @@ tbl_regression(cam_model1, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#oedswpdpir .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #oedswpdpir .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -10830,6 +10926,10 @@ tbl_regression(cam_model1, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#oedswpdpir .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #oedswpdpir .gt_table_body {
@@ -10989,7 +11089,8 @@ tbl_regression(cam_model1, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 This would suggest that the strongest predictor is whether women used complementary medicine before diagnosis and that two other variables are predictive: women with a qualification after leaving high school are more likely to use complementary medicine, but use declines with age (older people are more conservative, or alternatively, wiser, depending on your point of view.)
 
@@ -11024,7 +11125,8 @@ cam_model2 <- glm(CAM ~ age + t + mets + u + q18 + ses,
 tbl_regression(cam_model2, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -11035,6 +11137,8 @@ tbl_regression(cam_model2, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -11193,10 +11297,6 @@ tbl_regression(cam_model2, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#tnlmxmpshf .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #tnlmxmpshf .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -11274,6 +11374,10 @@ tbl_regression(cam_model2, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#tnlmxmpshf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #tnlmxmpshf .gt_table_body {
@@ -11421,7 +11525,8 @@ tbl_regression(cam_model2, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 Now it appears that "q18" is predictive but not "ses". So try removing one of these from the model in turn:
 
@@ -11434,7 +11539,8 @@ cam_model3 <- glm(CAM ~ age + t + mets + u + ses,
 tbl_regression(cam_model3, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -11445,6 +11551,8 @@ tbl_regression(cam_model3, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -11603,10 +11711,6 @@ tbl_regression(cam_model3, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#sjkurdayvt .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #sjkurdayvt .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -11684,6 +11788,10 @@ tbl_regression(cam_model3, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#sjkurdayvt .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #sjkurdayvt .gt_table_body {
@@ -11825,7 +11933,8 @@ tbl_regression(cam_model3, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 ```r
@@ -11836,7 +11945,8 @@ cam_model4 <- glm(CAM ~ age + t + mets + u + q18,
 tbl_regression(cam_model4, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -11847,6 +11957,8 @@ tbl_regression(cam_model4, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -12005,10 +12117,6 @@ tbl_regression(cam_model4, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#ajfhjtutgr .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #ajfhjtutgr .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -12086,6 +12194,10 @@ tbl_regression(cam_model4, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#ajfhjtutgr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #ajfhjtutgr .gt_table_body {
@@ -12227,7 +12339,8 @@ tbl_regression(cam_model4, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 It turns out that both are predictive independently, but not together. When you think about this, it is because socioeconomic status is correlated with education. The most sensible thing to do is to leave "q18" in the model as a) it is slightly more predictive and b) it is easier to ask about; c) there are fewer missing data. As such, my model answer might be:
 
@@ -12358,7 +12471,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -12369,6 +12483,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -12527,10 +12643,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#snrxyyasnx .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #snrxyyasnx .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -12608,6 +12720,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#snrxyyasnx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #snrxyyasnx .gt_table_body {
@@ -12727,13 +12843,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ```r
 # For women
@@ -12744,7 +12861,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -12755,6 +12873,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -12913,10 +13033,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#ktgliozlwc .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #ktgliozlwc .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -12994,6 +13110,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#ktgliozlwc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #ktgliozlwc .gt_table_body {
@@ -13113,13 +13233,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ```r
 # Here, the "summarize" function stores out the p values for the chi-squared test by sex
@@ -13131,7 +13252,7 @@ lesson5g %>%
 ```
 ## # A tibble: 2 x 2
 ##     sex      p
-##   <dbl>  <dbl>
+## * <dbl>  <dbl>
 ## 1     0 0.0368
 ## 2     1 0.613
 ```
@@ -13150,7 +13271,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -13161,6 +13283,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -13319,10 +13443,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#zjxtfnqgfo .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #zjxtfnqgfo .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -13400,6 +13520,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#zjxtfnqgfo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #zjxtfnqgfo .gt_table_body {
@@ -13519,13 +13643,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ```r
 # Test for a difference in response by sex using chi-squared test
@@ -13554,7 +13679,8 @@ sex_int_model <- glm(response ~ sex + chemo + sex*chemo,
 tbl_regression(sex_int_model, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -13565,6 +13691,8 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -13723,10 +13851,6 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#zlejpcnofh .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #zlejpcnofh .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -13804,6 +13928,10 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#zlejpcnofh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #zlejpcnofh .gt_table_body {
@@ -13933,7 +14061,8 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 By the way, don't try `glm(response ~ sex*chemo, ...)`, that is, including only the interaction term. This would involve a non-randomized comparison between men and women who received the same chemotherapy treatment.
 
@@ -13948,24 +14077,23 @@ skim(lesson5g$age)
 
 Table: (\#tab:week510)Data summary
 
-                                        
--------------------------  -------------
-Name                       lesson5g$age 
-Number of rows             400          
-Number of columns          1            
-_______________________                 
-Column type frequency:                  
-numeric                    1            
-________________________                
-Group variables            None         
--------------------------  -------------
+|                         |             |
+|:------------------------|:------------|
+|Name                     |lesson5g$age |
+|Number of rows           |400          |
+|Number of columns        |1            |
+|_______________________  |             |
+|Column type frequency:   |             |
+|numeric                  |1            |
+|________________________ |             |
+|Group variables          |None         |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate    mean      sd   p0     p25    p50   p75   p100  hist  
---------------  ----------  --------------  ------  ------  ---  ------  -----  ----  -----  ------
-data                     2               1   42.46   10.58   17   34.25   42.5    49     71  ▂▆▇▅▁ 
+|skim_variable | n_missing| complete_rate|  mean|    sd| p0|   p25|  p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|-----:|-----:|--:|-----:|----:|---:|----:|:-----|
+|data          |         2|             1| 42.46| 10.58| 17| 34.25| 42.5|  49|   71|▂▆▇▅▁ |
 
 ```r
 # Then, create a category variable based on median age
@@ -13988,7 +14116,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -13999,6 +14128,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -14157,10 +14288,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#daegbisqwz .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #daegbisqwz .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -14238,6 +14365,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#daegbisqwz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #daegbisqwz .gt_table_body {
@@ -14357,13 +14488,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ```r
 # For older patients
@@ -14374,7 +14506,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -14385,6 +14518,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -14543,10 +14678,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#tifwvoyvwi .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #tifwvoyvwi .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -14624,6 +14755,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#tifwvoyvwi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #tifwvoyvwi .gt_table_body {
@@ -14743,13 +14878,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ```r
 # Calculate p value for each comparison
@@ -14762,7 +14898,7 @@ lesson5g %>%
 ```
 ## # A tibble: 2 x 2
 ##   hiage     p
-##   <dbl> <dbl>
+## * <dbl> <dbl>
 ## 1     0 0.229
 ## 2     1 0.313
 ```
@@ -14779,7 +14915,8 @@ age_int_model1 <-
 tbl_regression(age_int_model1, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -14790,6 +14927,8 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -14948,10 +15087,6 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#jkehecqzjk .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #jkehecqzjk .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -15029,6 +15164,10 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#jkehecqzjk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #jkehecqzjk .gt_table_body {
@@ -15158,7 +15297,8 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 ```r
@@ -15170,7 +15310,8 @@ age_int_model2 <-
 tbl_regression(age_int_model2, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -15181,6 +15322,8 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -15339,10 +15482,6 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#ofvubetlvn .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #ofvubetlvn .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -15420,6 +15559,10 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#ofvubetlvn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #ofvubetlvn .gt_table_body {
@@ -15549,7 +15692,8 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -15578,7 +15722,8 @@ glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -15589,6 +15734,8 @@ glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -15747,10 +15894,6 @@ glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>
   vertical-align: middle;
 }
 
-#mpvoaaoyfm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #mpvoaaoyfm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -15828,6 +15971,10 @@ glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#mpvoaaoyfm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #mpvoaaoyfm .gt_table_body {
@@ -15963,7 +16110,8 @@ glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 You might notice that "psant" is not a good predictor (p=0.3) and decide to take it out of the model.
 
@@ -15974,7 +16122,8 @@ glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -15985,6 +16134,8 @@ glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -16143,10 +16294,6 @@ glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
   vertical-align: middle;
 }
 
-#phijstdxka .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #phijstdxka .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -16224,6 +16371,10 @@ glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#phijstdxka .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #phijstdxka .gt_table_body {
@@ -16353,7 +16504,8 @@ glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 In a regression using the remaining three variables, "psai" is not statistically significant, and you might then want to remove that variable too.
 
@@ -16364,7 +16516,8 @@ glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -16375,6 +16528,8 @@ glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -16533,10 +16688,6 @@ glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
   vertical-align: middle;
 }
 
-#alcqlbdxer .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #alcqlbdxer .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -16614,6 +16765,10 @@ glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#alcqlbdxer .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #alcqlbdxer .gt_table_body {
@@ -16737,7 +16892,8 @@ glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 Both "psa" and "psan" are highly predictive, so you could leave them in the model and use the `roc` function to get the area-under-the-curve.
 
@@ -16827,7 +16983,9 @@ So a model answer might be:
 
 <center> **Table 1. Marker distributions** </center>
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -16838,6 +16996,8 @@ So a model answer might be:
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -16996,10 +17156,6 @@ So a model answer might be:
   vertical-align: middle;
 }
 
-#wimnizqbsk .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #wimnizqbsk .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -17077,6 +17233,10 @@ So a model answer might be:
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#wimnizqbsk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #wimnizqbsk .gt_table_body {
@@ -17196,17 +17356,20 @@ So a model answer might be:
             <em>1</em>
           </sup>
            
-          Statistics presented: median (IQR)
+          Median (IQR)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <center> **Table 2. Multivariable prediction model** </center>
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -17217,6 +17380,8 @@ So a model answer might be:
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -17375,10 +17540,6 @@ So a model answer might be:
   vertical-align: middle;
 }
 
-#qqptoewtbw .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #qqptoewtbw .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -17456,6 +17617,10 @@ So a model answer might be:
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#qqptoewtbw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #qqptoewtbw .gt_table_body {
@@ -17585,7 +17750,8 @@ So a model answer might be:
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ### lesson5i.rds
 
@@ -17611,7 +17777,8 @@ treat_model <- lm(followup ~ baseline + treat + therapy,
 tbl_regression(treat_model)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -17622,6 +17789,8 @@ tbl_regression(treat_model)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -17780,10 +17949,6 @@ tbl_regression(treat_model)
   vertical-align: middle;
 }
 
-#xvkjrdadrg .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #xvkjrdadrg .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -17861,6 +18026,10 @@ tbl_regression(treat_model)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#xvkjrdadrg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #xvkjrdadrg .gt_table_body {
@@ -17970,7 +18139,7 @@ tbl_regression(treat_model)
     </tr>
     <tr>
       <td class="gt_row gt_left">therapy</td>
-      <td class="gt_row gt_center">1.00</td>
+      <td class="gt_row gt_center">1.0</td>
       <td class="gt_row gt_center">0.73, 1.3</td>
       <td class="gt_row gt_center"><0.001</td>
     </tr>
@@ -17990,11 +18159,14 @@ tbl_regression(treat_model)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 What this does is to create two dummy variables "treat" and "therapy". "treat" means that you had some kind of treatment, whether that was contact with the therapist or just with a volunteer. "therapy" means you saw the trained therapist. So the groups are coded:
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -18005,6 +18177,8 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -18163,10 +18337,6 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
   vertical-align: middle;
 }
 
-#oguvercsxm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #oguvercsxm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -18244,6 +18414,10 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#oguvercsxm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #oguvercsxm .gt_table_body {
@@ -18356,13 +18530,14 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
   </tbody>
   
   
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 Now when you regress the change score using the variables "treat" and "therapy" you get an estimate of the effect of just spending time with someone and the effect of seeing a trained professional. In my view, this fits in well with the original study design. A model answer might be:
 
 <div class="quote-container">
 
-> Mood scores improved in the therapist group (2.1 points, SD 0.88) and volunteer groups (1.0, SD 0.89) but not in the no treatment group (0.1 point worsening in score, 1.1). Interaction with a considerate individual appears to improve mood by 0.83 points (95% CI 0.54, 1.1, p<0.001) with active behavior therapy further improving scores an additional 1.00 points (95% CI 0.73, 1.3, p<0.001).
+> Mood scores improved in the therapist group (2.1 points, SD 0.88) and volunteer groups (1.0, SD 0.89) but not in the no treatment group (0.1 point worsening in score, 1.1). Interaction with a considerate individual appears to improve mood by 0.83 points (95% CI 0.54, 1.1, p<0.001) with active behavior therapy further improving scores an additional 1.0 points (95% CI 0.73, 1.3, p<0.001).
 
 </div>
 
@@ -18432,7 +18607,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -18443,6 +18619,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -18601,10 +18779,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#kluxeipkeg .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kluxeipkeg .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -18682,6 +18856,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kluxeipkeg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kluxeipkeg .gt_table_body {
@@ -18801,13 +18979,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 So you can see that, if you only biopsied patients who were positive for the marker, you do 600 fewer biopsies per 1000, but you’d also miss 200 cancers. That is a lot of cancers to miss and so you might feel that using the marker to make biopsy decisions would do more harm than good. 
 
@@ -18832,7 +19011,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -18843,6 +19023,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -19001,10 +19183,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#qcfdyzmmty .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #qcfdyzmmty .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -19082,6 +19260,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#qcfdyzmmty .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #qcfdyzmmty .gt_table_body {
@@ -19171,8 +19353,8 @@ tbl_summary(
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4375<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2200<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4,375<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2,200<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -19183,8 +19365,8 @@ tbl_summary(
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">4125 (94%)</td>
-      <td class="gt_row gt_center">1609 (73%)</td>
+      <td class="gt_row gt_center">4,125 (94%)</td>
+      <td class="gt_row gt_center">1,609 (73%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
@@ -19201,13 +19383,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -19245,7 +19428,8 @@ lesson6d_pred <-
   augment(
     recur_model,
     newdata = lesson6d,
-    type.predict = "response"
+    type.predict = "response",
+    se = TRUE
   ) %>%
   # Renaming to identify each prediction separately
   rename(clinpred = .fitted, clinpred_se = .se.fit)
@@ -19283,7 +19467,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -19294,6 +19479,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -19452,10 +19639,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#vjnfqcioza .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #vjnfqcioza .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -19533,6 +19716,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#vjnfqcioza .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #vjnfqcioza .gt_table_body {
@@ -19622,8 +19809,8 @@ tbl_summary(
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4375<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2200<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4,375<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2,200<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -19634,13 +19821,13 @@ tbl_summary(
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">4375 (100%)</td>
+      <td class="gt_row gt_center">4,375 (100%)</td>
       <td class="gt_row gt_center">0 (0%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">0 (0%)</td>
-      <td class="gt_row gt_center">2200 (100%)</td>
+      <td class="gt_row gt_center">2,200 (100%)</td>
     </tr>
   </tbody>
   
@@ -19652,13 +19839,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 You can see that no patient is "reclassified" using the model. All 2200 patients defined as high risk by clinical criteria are also defined as high risk (risk ≥10%) by the model, similarly, all 4,375 patients defined as low risk by clinical criteria have risks <10% from the model.
 
@@ -19673,7 +19861,8 @@ marker_recur_model <- glm(recurrence ~ stage + factor(grade_numeric) + marker,
 tbl_regression(marker_recur_model, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -19684,6 +19873,8 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -19842,10 +20033,6 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#fssxgtwmsf .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #fssxgtwmsf .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -19923,6 +20110,10 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#fssxgtwmsf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #fssxgtwmsf .gt_table_body {
@@ -20070,7 +20261,8 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ```r
 # Get the predicted probability for each patient
@@ -20078,7 +20270,8 @@ lesson6d_pred <-
   augment(
     marker_recur_model,
     newdata = lesson6d_pred,
-    type.predict = "response"
+    type.predict = "response",
+    se = TRUE
   ) %>%
   rename(markerpred = .fitted, markerpred_se = .se.fit)
 
@@ -20115,7 +20308,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -20126,6 +20320,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -20284,10 +20480,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#njcjwgigkv .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #njcjwgigkv .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -20365,6 +20557,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#njcjwgigkv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #njcjwgigkv .gt_table_body {
@@ -20454,8 +20650,8 @@ tbl_summary(
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4375<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2200<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4,375<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2,200<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -20466,13 +20662,13 @@ tbl_summary(
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">4030 (92%)</td>
+      <td class="gt_row gt_center">4,030 (92%)</td>
       <td class="gt_row gt_center">133 (6.0%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">345 (7.9%)</td>
-      <td class="gt_row gt_center">2067 (94%)</td>
+      <td class="gt_row gt_center">2,067 (94%)</td>
     </tr>
   </tbody>
   
@@ -20484,13 +20680,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -20506,7 +20703,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -20517,6 +20715,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -20675,10 +20875,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#jzetravkvy .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #jzetravkvy .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -20756,6 +20952,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#jzetravkvy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #jzetravkvy .gt_table_body {
@@ -20871,13 +21071,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ```r
 # Table of recurrences for those at low risk from the marker model but high risk clinically
@@ -20888,7 +21089,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -20899,6 +21101,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -21057,10 +21261,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#myzlhqiesj .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #myzlhqiesj .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -21138,6 +21338,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#myzlhqiesj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #myzlhqiesj .gt_table_body {
@@ -21253,13 +21457,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 You can see that patients reclassified as low risk using the marker really are at low risk (only 6.0% of them recurred) whereas 17% of those defined as high risk from the model did indeed recur. As to whether you’d use this in practice, the question is whether it is worth measuring the marker on ~6500 to reclassify ~500. That all depends on how difficult, invasive and expensive it is to measure the marker. 
 
@@ -21277,7 +21482,8 @@ lesson6d_pred <-
   augment(
     imaging_model,
     newdata = lesson6d_pred,
-    type.predict = "response"
+    type.predict = "response",
+    se = TRUE
   ) %>%
   rename(imagingpred = .fitted, imagingpred_se = .se.fit)
 
@@ -21315,7 +21521,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -21326,6 +21533,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -21484,10 +21693,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#mexgygslyy .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #mexgygslyy .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -21565,6 +21770,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#mexgygslyy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #mexgygslyy .gt_table_body {
@@ -21654,8 +21863,8 @@ tbl_summary(
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4163<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2412<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 4,163<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 2,412<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -21666,13 +21875,13 @@ tbl_summary(
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">4073 (98%)</td>
+      <td class="gt_row gt_center">4,073 (98%)</td>
       <td class="gt_row gt_center">82 (3.4%)</td>
     </tr>
     <tr>
       <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
       <td class="gt_row gt_center">90 (2.2%)</td>
-      <td class="gt_row gt_center">2330 (97%)</td>
+      <td class="gt_row gt_center">2,330 (97%)</td>
     </tr>
   </tbody>
   
@@ -21684,17 +21893,23 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
+```
+## Warning: NAs introduced by coercion
 
-You'll see that only 172 patients are reclassified. It is questionable whether we'd want to do scans on ~6600 patients to reclassify 172 of them.
+## Warning: NAs introduced by coercion
+```
+
+You'll see that only NA patients are reclassified. It is questionable whether we'd want to do scans on ~6600 patients to reclassify NA of them.
 
 And here are the answers to the questions without data!
 
@@ -21795,24 +22010,23 @@ lesson7a %>%
 
 Table: (\#tab:week7b)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             330        
-Number of columns          9          
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            None       
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |330        |
+|Number of columns        |9          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |None       |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate      mean       sd     p0    p25    p50      p75   p100  hist  
---------------  ----------  --------------  --------  -------  -----  -----  -----  -------  -----  ------
-survival_time            0               1   2389.38   336.23   1279   2162   2352   2625.5   3329  ▁▃▇▅▁ 
+|skim_variable | n_missing| complete_rate|    mean|     sd|   p0|  p25|  p50|    p75| p100|hist  |
+|:-------------|---------:|-------------:|-------:|------:|----:|----:|----:|------:|----:|:-----|
+|survival_time |         0|             1| 2389.38| 336.23| 1279| 2162| 2352| 2625.5| 3329|▁▃▇▅▁ |
 
 To look at predictors of survival, we might conduct a multivariable regression:
 
@@ -21824,7 +22038,8 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesi
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -21835,6 +22050,8 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesi
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -21993,10 +22210,6 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesi
   vertical-align: middle;
 }
 
-#zrfktzocbr .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #zrfktzocbr .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -22074,6 +22287,10 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesi
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#zrfktzocbr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #zrfktzocbr .gt_table_body {
@@ -22221,7 +22438,8 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesi
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 This suggests that the presence of obstruction or adhesion influences survival, as well as the number of nodes. Neither age (surprisingly) nor sex are likely to have a large impact (the confidence interval does not include any large differences between groups). The p value for perforation is non-significant, but the confidence intervals are wide. Why is this? Try this:
 
@@ -22233,7 +22451,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -22244,6 +22463,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -22402,10 +22623,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#qeykezvosr .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #qeykezvosr .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -22483,6 +22700,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#qeykezvosr .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #qeykezvosr .gt_table_body {
@@ -22590,13 +22811,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 You will see that less than 3% of patients had perforations, making it almost impossible to assess its predictive value. Another useful thing to do is to try:
 
@@ -22610,24 +22832,23 @@ lesson7a %>%
 
 Table: (\#tab:week7e)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             614        
-Number of columns          9          
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            None       
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |614        |
+|Number of columns        |9          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |None       |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate   mean     sd   p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  -----  -----  ---  ----  ----  ----  -----  ------
-nodes                   15            0.98   3.59   3.49    0     1     2   4.5     33  ▇▁▁▁▁ 
+|skim_variable | n_missing| complete_rate| mean|   sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|----:|----:|--:|---:|---:|---:|----:|:-----|
+|nodes         |        15|          0.98| 3.59| 3.49|  0|   1|   2| 4.5|   33|▇▁▁▁▁ |
 
 You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to cap the number of nodes. This creates a new variable that caps the number of nodes at 10. Since fewer than 3% of patients had perforations, we will exclude this variable from our model.
 
@@ -22650,7 +22871,8 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -22661,6 +22883,8 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -22819,10 +23043,6 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   vertical-align: middle;
 }
 
-#vscgzddlst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #vscgzddlst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -22900,6 +23120,10 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#vscgzddlst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #vscgzddlst .gt_table_body {
@@ -23041,7 +23265,8 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 However, it might be better to group patients. Here we create a new variable called "node4" that groups patients into four groups: 0 – 2 nodes, 3 – 5 nodes, 5 – 10 nodes, 11 or more nodes.
 
@@ -23104,7 +23329,9 @@ A model answer for this dataset might be:
 
 **Table 1.** Patient Characteristics
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -23115,6 +23342,8 @@ A model answer for this dataset might be:
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -23273,10 +23502,6 @@ A model answer for this dataset might be:
   vertical-align: middle;
 }
 
-#dsijydijcl .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #dsijydijcl .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -23354,6 +23579,10 @@ A model answer for this dataset might be:
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#dsijydijcl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #dsijydijcl .gt_table_body {
@@ -23497,17 +23726,20 @@ A model answer for this dataset might be:
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%); median (IQR)
+          n (%); Median (IQR)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 **Table 2.** Results of Cox proportional hazards model for time to death
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -23518,6 +23750,8 @@ A model answer for this dataset might be:
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -23676,10 +23910,6 @@ A model answer for this dataset might be:
   vertical-align: middle;
 }
 
-#vzibdsvmtd .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #vzibdsvmtd .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -23757,6 +23987,10 @@ A model answer for this dataset might be:
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#vzibdsvmtd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #vzibdsvmtd .gt_table_body {
@@ -23922,7 +24156,8 @@ A model answer for this dataset might be:
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ### lesson7b.rds
 
@@ -23976,7 +24211,8 @@ lesson7b_cox <-
 tbl_regression(lesson7b_cox, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -23987,6 +24223,8 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -24145,10 +24383,6 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#kkkcaoxbev .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kkkcaoxbev .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -24226,6 +24460,10 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kkkcaoxbev .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kkkcaoxbev .gt_table_body {
@@ -24343,7 +24581,8 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 You find that the hazard ratio for survival is 0.35. The 95% CI is 0.09, 1.35. Clearly, high volume hospitals seem to do better, this dataset just isn’t large enough to see it. 
 
@@ -24417,7 +24656,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -24428,6 +24668,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -24586,10 +24828,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#rybbrzjeef .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #rybbrzjeef .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -24667,6 +24905,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#rybbrzjeef .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #rybbrzjeef .gt_table_body {
@@ -24796,13 +25038,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 When I did the graph, I used the variable "treatment" to get the names of the treatments (rather than the group number). I also used a function called `ggsurvplot` (from the `survminer` package) rather than the standard `plot` option, because `ggsurvplot` allows more customization to the graph. Survival time was specified as `survival_time/365.25` so that the graph is plotted showing survival time in years, rather than days.
 
