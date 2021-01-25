@@ -144,20 +144,20 @@ lesson3d_pred
 ```
 
 ```
-## # A tibble: 34 x 11
-##        a   sex   age     b .fitted .se.fit  .resid   .hat .sigma .cooksd
-##    <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>   <dbl>  <dbl>  <dbl>   <dbl>
-##  1   247     1    24   263    307.   11.4  -60.1   0.201    22.5 4.47e-1
-##  2   324     0    73   339    334.    9.09  -9.79  0.129    25.7 6.38e-3
-##  3   351     0    40   361    363.    7.78 -11.9   0.0947   25.6 6.39e-3
-##  4   232     0    74   234    263.    8.49 -31.1   0.113    25.0 5.40e-2
-##  5   328     0    51   329    337.    5.89  -8.68  0.0542   25.7 1.78e-3
-##  6   380     0    26   376    379.   10.2    0.966 0.164    25.7 8.53e-5
-##  7   302     0    54   297    314.    5.13 -12.0   0.0411   25.6 2.50e-3
-##  8   254     0    39   249    288.    7.29 -34.4   0.0832   24.8 4.57e-2
-##  9   250     1    65   244    277.    9.17 -26.5   0.131    25.2 4.80e-2
-## 10   252     0    81   246    268.    9.58 -16.1   0.144    25.5 1.97e-2
-## # ... with 24 more rows, and 1 more variable: .std.resid <dbl>
+## # A tibble: 34 x 10
+##        a   sex   age     b .fitted  .resid .std.resid   .hat .sigma   .cooksd
+##    <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>      <dbl>  <dbl>  <dbl>     <dbl>
+##  1   247     1    24   263    307. -60.1      -2.66   0.201    22.5 0.447    
+##  2   324     0    73   339    334.  -9.79     -0.415  0.129    25.7 0.00638  
+##  3   351     0    40   361    363. -11.9      -0.494  0.0947   25.6 0.00639  
+##  4   232     0    74   234    263. -31.1      -1.30   0.113    25.0 0.0540   
+##  5   328     0    51   329    337.  -8.68     -0.353  0.0542   25.7 0.00178  
+##  6   380     0    26   376    379.   0.966     0.0417 0.164    25.7 0.0000853
+##  7   302     0    54   297    314. -12.0      -0.483  0.0411   25.6 0.00250  
+##  8   254     0    39   249    288. -34.4      -1.42   0.0832   24.8 0.0457   
+##  9   250     1    65   244    277. -26.5      -1.13   0.131    25.2 0.0480   
+## 10   252     0    81   246    268. -16.1      -0.686  0.144    25.5 0.0197   
+## # ... with 24 more rows
 ```
 
 To get the number of observations, coefficients, 95% confidence interval and p values printed in a table for all covariates, you can use the `tbl_regression` function from the `gtsummary` package:
@@ -168,7 +168,8 @@ To get the number of observations, coefficients, 95% confidence interval and p v
 tbl_regression(rom_model)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -179,6 +180,8 @@ tbl_regression(rom_model)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -337,10 +340,6 @@ tbl_regression(rom_model)
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -418,6 +417,10 @@ tbl_regression(rom_model)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -547,14 +550,17 @@ tbl_regression(rom_model)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
-For example, for sex, the 95% CI is -18 to 24, meaning that women might plausibly have a range of motion anywhere from 10 degrees less than men to 24 degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, p=0.8. There are 34 patients included in this model.
 
 
 ```r
+# For example, for sex, the 95% CI is `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.low} to {conf.high}")`, meaning that women might plausibly have a range of motion anywhere from `r style_sigfig(abs(tbl_rom$table_body[1, 8]))` degrees less than men to `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.high}")` degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, `r inline_text(tbl_rom, variable = "sex", pattern = "{p.value}")`. There are `r inline_text(tbl_rom, variable = "sex", pattern = "{N}")` patients included in this model.
+
+
 # Summary of linear regression results
 summary(rom_model)
 ```
@@ -664,7 +670,8 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -675,6 +682,8 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -833,10 +842,6 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hlleqxdave .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -914,6 +919,10 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hlleqxdave .gt_table_body {
@@ -1043,7 +1052,8 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 The key things here are the odds ratios: you can say that the odds of response is multiplied by 0.98 for a one year increase in age; that women have an odds of response 0.84 of that for the men, though this is not statistically significant, and that response is lower in group 1, with an odds of 0.73 (you would also cite the p value and 95% CIs).
 
@@ -1062,20 +1072,20 @@ lesson4d_pred
 ```
 
 ```
-## # A tibble: 398 x 12
-##    .rownames response   age   sex group .fitted .se.fit .resid    .hat .sigma
-##    <chr>        <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>  <dbl>   <dbl>  <dbl>
-##  1 1                1    47     0     0   0.469  0.0391  1.23  0.00612   1.17
-##  2 2                0    47     0     0   0.469  0.0391 -1.12  0.00612   1.17
-##  3 3                1    25     0     0   0.595  0.0558  1.02  0.0129    1.17
-##  4 4                0    53     0     1   0.358  0.0440 -0.941 0.00841   1.17
-##  5 5                1    64     0     0   0.372  0.0600  1.41  0.0154    1.17
-##  6 6                0    50     0     1   0.374  0.0416 -0.968 0.00738   1.17
-##  7 7                1    34     0     1   0.465  0.0456  1.24  0.00838   1.17
-##  8 8                0    68     0     1   0.282  0.0601 -0.814 0.0178    1.17
-##  9 9                0    49     0     0   0.457  0.0404 -1.11  0.00659   1.17
-## 10 10               0    44     0     1   0.407  0.0393 -1.02  0.00641   1.17
-## # ... with 388 more rows, and 2 more variables: .cooksd <dbl>, .std.resid <dbl>
+## # A tibble: 398 x 11
+##    .rownames response   age   sex group .fitted .resid .std.resid    .hat .sigma
+##    <chr>        <dbl> <dbl> <dbl> <dbl>   <dbl>  <dbl>      <dbl>   <dbl>  <dbl>
+##  1 1                1    47     0     0   0.469  1.23       1.24  0.00612   1.17
+##  2 2                0    47     0     0   0.469 -1.12      -1.13  0.00612   1.17
+##  3 3                1    25     0     0   0.595  1.02       1.03  0.0129    1.17
+##  4 4                0    53     0     1   0.358 -0.941     -0.945 0.00841   1.17
+##  5 5                1    64     0     0   0.372  1.41       1.42  0.0154    1.17
+##  6 6                0    50     0     1   0.374 -0.968     -0.972 0.00738   1.17
+##  7 7                1    34     0     1   0.465  1.24       1.24  0.00838   1.17
+##  8 8                0    68     0     1   0.282 -0.814     -0.822 0.0178    1.17
+##  9 9                0    49     0     0   0.457 -1.11      -1.11  0.00659   1.17
+## 10 10               0    44     0     1   0.407 -1.02      -1.03  0.00641   1.17
+## # ... with 388 more rows, and 1 more variable: .cooksd <dbl>
 ```
 
 NOTE: The "lesson4d_pred" dataset only includes 398 patients. If you look at the table above, you will see at the top that only 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.
@@ -1130,7 +1140,14 @@ recurrence_model %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```
+## Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+```
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -1141,6 +1158,8 @@ recurrence_model %>%
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1299,10 +1318,6 @@ recurrence_model %>%
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kqtxbhydst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1380,6 +1395,10 @@ recurrence_model %>%
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1527,7 +1546,8 @@ recurrence_model %>%
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -1575,7 +1595,7 @@ summary(response_model)
 
 
 
-Firstly, note that the p values are the same, what differs is the coefficients. Now if you are really smart, you’ll notice that the coefficient is the natural log of the odds ratios above. You can use the coefficients to work out an individual’s probability of response. We start with the constant, and subtract 0.0233 for each year of age and then subtract an additional 0.18 if a woman and 0.318 if in group 1. Call this number "l" for the log of the odds. The probability is e^l^ / (1 + e^l^). Take a 53 year old man on regimen b (group 1): l = 0.9675 + -0.0233\*53 + -0.318, gives -0.5841.
+Firstly, note that the p values are the same, what differs is the coefficients. Now if you are really smart, you’ll notice that the coefficient is the natural log of the odds ratios above. You can use the coefficients to work out an individual’s probability of response. We start with the constant, and subtract 0.0233 for each year of age and then subtract an additional 0.18 if a woman and 0.318 if in group 1. Call this number "l" for the log of the odds. The probability is e^l^ / (1 + e^l^). Take a 53 year old man on regimen b (group 1): l = 0.968 + -0.0233\*53 + -0.318, gives -0.5841.
 
 To convert, type ``exp(-0.5841) / (exp(-0.5841)+1)`` to get a probability of 35.8%.
 

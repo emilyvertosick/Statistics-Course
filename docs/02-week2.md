@@ -89,24 +89,23 @@ lesson1a %>% skim(age)
 
 Table: (\#tab:section2b)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             386        
-Number of columns          11         
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            None       
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |386        |
+|Number of columns        |11         |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |None       |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate    mean      sd   p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  ------  ------  ---  ----  ----  ----  -----  ------
-age                      0               1   49.48   13.75   19    40    49    59     86  ▃▇▇▅▁ 
+|skim_variable | n_missing| complete_rate|  mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
+|age           |         0|             1| 49.48| 13.75| 19|  40|  49|  59|   86|▃▇▇▅▁ |
 
 So you can tell you have data on age for 386 patients ("number of rows" is the number of observations), the mean age was about 49 years, and the standard deviation of the mean was about 13.8.
 
@@ -123,25 +122,24 @@ lesson1a %>%
 
 Table: (\#tab:section2c)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             386        
-Number of columns          11         
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            sex        
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |386        |
+|Number of columns        |11         |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |sex        |
 
 
 **Variable type: numeric**
 
-skim_variable    sex   n_missing   complete_rate    mean      sd   p0   p25   p50   p75   p100  hist  
---------------  ----  ----------  --------------  ------  ------  ---  ----  ----  ----  -----  ------
-age                0           0               1   49.07   13.61   19    40    49    58     82  ▂▇▇▅▂ 
-age                1           0               1   49.85   13.90   21    40    49    60     86  ▃▇▇▅▁ 
+|skim_variable | sex| n_missing| complete_rate|  mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---:|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
+|age           |   0|         0|             1| 49.07| 13.61| 19|  40|  49|  58|   82|▂▇▇▅▂ |
+|age           |   1|         0|             1| 49.85| 13.90| 21|  40|  49|  60|   86|▃▇▇▅▁ |
 
 The `group_by` function allows you to group your data and perform analyses separately by group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
 
@@ -188,7 +186,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -199,6 +198,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -357,10 +358,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -438,6 +435,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -553,13 +554,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -581,7 +583,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -592,6 +595,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -750,10 +755,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hlleqxdave .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -831,6 +832,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hlleqxdave .gt_table_body {
@@ -958,13 +963,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <br>
 
@@ -985,7 +991,8 @@ tbl_summary(
   add_overall(last = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -996,6 +1003,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1154,10 +1163,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kqtxbhydst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1235,6 +1240,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1328,7 +1337,7 @@ tbl_summary(
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39<sup class="gt_footnote_marks">1</sup></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40<sup class="gt_footnote_marks">1</sup></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>satellite</strong>, N = 67<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 386</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 386<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1366,13 +1375,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <br>
 
@@ -1391,7 +1401,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -1402,6 +1413,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1560,10 +1573,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#qzjvxzfwte .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #qzjvxzfwte .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1641,6 +1650,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#qzjvxzfwte .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #qzjvxzfwte .gt_table_body {
@@ -1768,13 +1781,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <br>
 

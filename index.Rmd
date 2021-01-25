@@ -19,7 +19,7 @@ bibliography: [packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "Statistics Course"
-always_allow_html: yes
+always_allow_html: true
 ---
 
 ```{r include=FALSE}

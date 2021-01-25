@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: June 17, 2020"
+date: "Last Updated: January 25, 2021"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -19,6 +19,7 @@ bibliography: [packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "Statistics Course"
+always_allow_html: true
 ---
 
 
@@ -34,11 +35,7 @@ All classes are on Monday evenings from **05:30pm - 07:00pm**.<br>
 5:30 - 6:10: I will go over the R assignments.<br>
 6:10 - 7:00: Open office hours
 
-Locations - Please refer to schedule for room assignments.
-
-- Rockefeller Research Laboratories (430 E. 67th St between York and 1st Ave) (RRL-101)
-- Main Hospital (M-107)
-- Zuckerman Building (ZRC-105)
+**All sessions will be held virtually:** [Zoom Link](https://meetmsk.zoom.us/j/98853462018?pwd=QkV1aHAxd2pWR0s4cmMyTEJETkdIUT09)
 
 Reading is from "What is a p-value anyway?" unless otherwise stated.
 Readings below are to be done **before** the class.
@@ -47,48 +44,43 @@ R assignments are done **after** the class.
 -----------------------------------------------------
 Date / Location     Topic and Assignments
 ---------------     ---------------------------------
-**2/3/2020**\       **Class I:** What is statistics?\
-Location: RRL-101   **Reading:** "How To Read This Book", Chapter 1\
+**1/25/2021**\      **Class I:** What is statistics?\
+                    **Reading:** "How To Read This Book", Chapter 1\
                     **Assignment:** Questions 1 and 4
 
-**2/10/2020**\      **Class II:** Describing Data\
-Location: ZRC-105   **Reading:** Chapters 2-6 and chapter 20\
+**2/1/2021**\       **Class II:** Describing Data\
+                    **Reading:** Chapters 2-6 and chapter 20\
                     **Assignment:** All questions for chapters 2, 3, 4 and 6; questions 1 and 3 for chapter 5; question 1 for chapter 20
                     
-**2/24/2020**\      **Class III:** Data Distributions\
-Location: RRL-101   **Reading:** Chapters 7-9\
+**2/8/2021**\       **Class III:** Data Distributions\
+                    **Reading:** Chapters 7-9\
                     **Assignment:** Chapter 7, question 2; chapter 8, question 1; chapter 9, questions 1 and 3
                     
-**3/2/2020**\       **Class IV:** Confidence Intervals\
-Location: RRL-101   **Reading:** Chapters 10-12\
-                    **Extra for those doing R assignment:** [Statistics Notes: Diagnostic tests 3: receiver operating characteristic plots](https://www.bmj.com/content/309/6948/188.full)\
-                    **Assignment:** All questions for chapters 10 and 11; question 1 in chapter 12
+**2/22/2021**\      **Class IV:** Confidence Intervals\
+                    **Reading:** Chapters 10-12\
+                    **Assignment:** All questions for chapters 10 and 11; question 1 in chapter 12\
+                    **Extra for those doing R assignment:** [Statistics Notes: Diagnostic tests 3: receiver operating characteristic plots](https://www.bmj.com/content/309/6948/188.full)
                     
-**3/9/2020**\       **Class V:** Hypothesis Testing\
-Location: ZRC-105   **Reading:** Chapters 13-17\
+**3/1/2021**\       **Class V:** Hypothesis Testing\
+                    **Reading:** Chapters 13-17\
                     **Assignment:** Chapters 13, 15 and 16, all questions; chapter 14, question 1; chapter 17, questions 1-3
                     
-**3/23/2020**\      **Class VI:** Regression\
-Location: ZRC-105   **Reading:** Chapters 18-19\
+**3/8/2021**\       **Class VI:** Regression\
+                    **Reading:** Chapters 18-19\
                     **Assignment:** Chapter 18, questions 1-4; chapter 19, questions 1-2
                     
-**3/30/2020**\      **Class VII:** Survival Data\
-Location: RRL-101   **Reading:** Chapters 21-24 and chapter 28\
-                    **Extra for those doing R assignment:**
-                    [Survival probabilities (the Kaplan-Meier method)](https://www.bmj.com/content/317/7172/1572.full?view=full&pmid=9836663),
-                    [Time to event (survival) data](https://www.bmj.com/content/317/7156/468.1.full?view=full&pmid=9703534),
-                    [Surviving Survival Analysis: Why Censoring Is No Bad Thing](https://www.medscape.com/viewarticle/575074)\
+**3/15/2021**\      **Class VII:** Survival Data\
+                    **Reading:** Chapters 21-24 and chapter 28\
                     **Assignments:** Chapter 21, question 1; chapter 23, question 1; chapter 24, questions 1, 2 and 4
                     
-**4/6/2020**\       **Class VIII:** Errors in Statistics (all class meets)\
-Location: RRL-101   **Reading:** Chapters 30-34\
+**3/22/2021**\      **Class VIII:** Errors in Statistics (all class meets)\
+                    **Reading:** Chapters 30-34\
                     **Optional extra reading:**
                     [The scandal of poor medical research](https://www.bmj.com/content/308/6924/283.full), 
                     [Math as Mass Hypnosis: On Mortgage-Backed Securities, Maritime Warfare, and Medical Research](https://www.medscape.com/viewarticle/714772)\
                     **Assignments:** All questions for chapters 30 and 33
                     
-**4/13/2020**\      If needed
-Location: RRL-101
+**3/29/2021**\      Make-up day, if needed
                     
 -----------------------------------------------------
 

@@ -137,7 +137,9 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 
 </div>
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -148,6 +150,8 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -306,10 +310,6 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -387,6 +387,10 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -494,7 +498,8 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   </tbody>
   
   
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 So, I want you to give similar answers to the following research questions:
 

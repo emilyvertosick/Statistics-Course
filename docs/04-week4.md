@@ -44,7 +44,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -55,6 +56,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -213,10 +216,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -294,6 +293,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -418,13 +421,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 
 
@@ -448,7 +452,8 @@ tbl_summary(
   add_overall(last = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -459,6 +464,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -617,10 +624,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hlleqxdave .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -698,6 +701,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hlleqxdave .gt_table_body {
@@ -789,7 +796,7 @@ tbl_summary(
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 523<sup class="gt_footnote_marks">1</sup></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 575<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 1098</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 1,098<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -827,13 +834,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <br>
 
@@ -896,7 +904,8 @@ tbl_summary(
   add_p(test = list("subfourhour" ~ "chisq.test.no.correct"))
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -907,6 +916,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1065,10 +1076,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kqtxbhydst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1146,6 +1153,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1269,7 +1280,7 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
         <p class="gt_footnote">
@@ -1277,13 +1288,14 @@ tbl_summary(
             <em>2</em>
           </sup>
            
-          Statistical tests performed: chi-square test of independence
+          Pearson's Chi-squared test
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <br>
 
@@ -1309,7 +1321,9 @@ The `epi.2by2` function will give you a number of different estimates, including
 
 The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a child passing an exam are therefore 250 ÷ 750 = 1 ÷ 3 = 33.33%. Here are some examples of probabilities and odds:
 
-<!--html_preserve--><style>html {
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -1320,6 +1334,8 @@ The probability of something is defined as the number of times it occurs divided
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1478,10 +1494,6 @@ The probability of something is defined as the number of times it occurs divided
   vertical-align: middle;
 }
 
-#qzjvxzfwte .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #qzjvxzfwte .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1559,6 +1571,10 @@ The probability of something is defined as the number of times it occurs divided
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#qzjvxzfwte .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #qzjvxzfwte .gt_table_body {
@@ -1691,7 +1707,8 @@ The probability of something is defined as the number of times it occurs divided
   </tbody>
   
   
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 One thing you might notice is that when something doesn’t happen very often, the odds and the probability are very similar. So, for example, something with a probability of 5% (0.05) has an odds of 0.0526. This has important implications for interpreting odds ratios. You will often see in the literature something like “the odds ratio for stage was 1.26, so patients with high stage disease had a 26% higher risk of complications”. This statement is wrong because if the odds ratio is 1.26 then the odds are 26% higher, not the risk. The odds ratio and relative risk will only be similar if the probability of an event is low. A doubling of risk from 1% to 2% is an increase in odds from 0.0101 to 0.0204, so very close to an odds ratio of 2. But a doubling of risk from 25% to 50% is an odds ratio of 3 (odds of 0.3333 to odds of 1.000).
 
@@ -1855,7 +1872,8 @@ tbl_summary(
   add_p(test = list("toxin" ~ "fisher.test"))
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -1866,6 +1884,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -2024,10 +2044,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#pqsnuprvju .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #pqsnuprvju .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -2105,6 +2121,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#pqsnuprvju .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #pqsnuprvju .gt_table_body {
@@ -2228,7 +2248,7 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
         <p class="gt_footnote">
@@ -2236,13 +2256,14 @@ tbl_summary(
             <em>2</em>
           </sup>
            
-          Statistical tests performed: Fisher's exact test
+          Fisher's exact test
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <br>
 

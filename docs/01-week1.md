@@ -154,24 +154,23 @@ skimr::skim(lesson1a$age)
 
 Table: (\#tab:loadpkgs2)Data summary
 
-                                        
--------------------------  -------------
-Name                       lesson1a$age 
-Number of rows             386          
-Number of columns          1            
-_______________________                 
-Column type frequency:                  
-numeric                    1            
-________________________                
-Group variables            None         
--------------------------  -------------
+|                         |             |
+|:------------------------|:------------|
+|Name                     |lesson1a$age |
+|Number of rows           |386          |
+|Number of columns        |1            |
+|_______________________  |             |
+|Column type frequency:   |             |
+|numeric                  |1            |
+|________________________ |             |
+|Group variables          |None         |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate    mean      sd   p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  ------  ------  ---  ----  ----  ----  -----  ------
-data                     0               1   49.48   13.75   19    40    49    59     86  ▃▇▇▅▁ 
+|skim_variable | n_missing| complete_rate|  mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
+|data          |         0|             1| 49.48| 13.75| 19|  40|  49|  59|   86|▃▇▇▅▁ |
 
 However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the `skimr` package, type or copy and paste the following line of code into the console window, and press enter.
 
@@ -228,43 +227,42 @@ skim(lesson1a)
 The output above this text is the code, and the output below this shows the results produced by running that code. (We will discuss the results output in more detail later.)
 
 
-Table: (\#tab:unnamed-chunk-1)Data summary
+Table: (\#tab:section1b_1a)Data summary
 
-                                    
--------------------------  ---------
-Name                       lesson1a 
-Number of rows             386      
-Number of columns          11       
-_______________________             
-Column type frequency:              
-character                  1        
-numeric                    10       
-________________________            
-Group variables            None     
--------------------------  ---------
+|                         |         |
+|:------------------------|:--------|
+|Name                     |lesson1a |
+|Number of rows           |386      |
+|Number of columns        |11       |
+|_______________________  |         |
+|Column type frequency:   |         |
+|character                |1        |
+|numeric                  |10       |
+|________________________ |         |
+|Group variables          |None     |
 
 
 **Variable type: character**
 
-skim_variable    n_missing   complete_rate   min   max   empty   n_unique   whitespace
---------------  ----------  --------------  ----  ----  ------  ---------  -----------
-y                        0               1     4     9       0          4            0
+|skim_variable | n_missing| complete_rate| min| max| empty| n_unique| whitespace|
+|:-------------|---------:|-------------:|---:|---:|-----:|--------:|----------:|
+|y             |         0|             1|   4|   9|     0|        4|          0|
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate        mean          sd       p0        p25      p50        p75     p100  hist  
---------------  ----------  --------------  ----------  ----------  -------  ---------  -------  ---------  -------  ------
-id                       0            1.00   559159.34   257028.45   101143   337803.5   564405   778010.8   999214  ▆▇▇▇▇ 
-sex                      0            1.00        0.53        0.50        0        0.0        1        1.0        1  ▇▁▁▁▇ 
-age                      0            1.00       49.48       13.75       19       40.0       49       59.0       86  ▃▇▇▅▁ 
-p1                       0            1.00        3.24        1.66        0        2.0        3        5.0        6  ▆▂▇▅▇ 
-p2                       0            1.00        3.29        1.59        0        2.0        3        5.0        6  ▆▂▇▆▇ 
-p3                       0            1.00        3.09        1.63        0        2.0        3        4.0        6  ▇▃▇▆▇ 
-p4                       0            1.00        2.62        1.63        0        1.0        3        4.0        6  ▇▂▇▅▃ 
-t                        0            1.00       12.24        5.75        0        8.0       12       17.0       24  ▃▅▇▇▃ 
-x                        2            0.99        1.54        0.50        1        1.0        2        2.0        2  ▇▁▁▁▇ 
-z                        2            0.99        1.59        0.84        1        1.0        1        2.0        3  ▇▁▂▁▃ 
+|skim_variable | n_missing| complete_rate|      mean|        sd|     p0|      p25|    p50|      p75|   p100|hist  |
+|:-------------|---------:|-------------:|---------:|---------:|------:|--------:|------:|--------:|------:|:-----|
+|id            |         0|          1.00| 559159.34| 257028.45| 101143| 337803.5| 564405| 778010.8| 999214|▆▇▇▇▇ |
+|sex           |         0|          1.00|      0.53|      0.50|      0|      0.0|      1|      1.0|      1|▇▁▁▁▇ |
+|age           |         0|          1.00|     49.48|     13.75|     19|     40.0|     49|     59.0|     86|▃▇▇▅▁ |
+|p1            |         0|          1.00|      3.24|      1.66|      0|      2.0|      3|      5.0|      6|▆▂▇▅▇ |
+|p2            |         0|          1.00|      3.29|      1.59|      0|      2.0|      3|      5.0|      6|▆▂▇▆▇ |
+|p3            |         0|          1.00|      3.09|      1.63|      0|      2.0|      3|      4.0|      6|▇▃▇▆▇ |
+|p4            |         0|          1.00|      2.62|      1.63|      0|      1.0|      3|      4.0|      6|▇▂▇▅▃ |
+|t             |         0|          1.00|     12.24|      5.75|      0|      8.0|     12|     17.0|     24|▃▅▇▇▃ |
+|x             |         2|          0.99|      1.54|      0.50|      1|      1.0|      2|      2.0|      2|▇▁▁▁▇ |
+|z             |         2|          0.99|      1.59|      0.84|      1|      1.0|      1|      2.0|      3|▇▁▂▁▃ |
 
 ### Some Useful Commands
 
@@ -283,24 +281,23 @@ skim(lesson1a$age)
 
 Table: (\#tab:section1c)Data summary
 
-                                        
--------------------------  -------------
-Name                       lesson1a$age 
-Number of rows             386          
-Number of columns          1            
-_______________________                 
-Column type frequency:                  
-numeric                    1            
-________________________                
-Group variables            None         
--------------------------  -------------
+|                         |             |
+|:------------------------|:------------|
+|Name                     |lesson1a$age |
+|Number of rows           |386          |
+|Number of columns        |1            |
+|_______________________  |             |
+|Column type frequency:   |             |
+|numeric                  |1            |
+|________________________ |             |
+|Group variables          |None         |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate    mean      sd   p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  ------  ------  ---  ----  ----  ----  -----  ------
-data                     0               1   49.48   13.75   19    40    49    59     86  ▃▇▇▅▁ 
+|skim_variable | n_missing| complete_rate|  mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
+|data          |         0|             1| 49.48| 13.75| 19|  40|  49|  59|   86|▃▇▇▅▁ |
 
 #### Pipe operator (%>%)
 
@@ -583,7 +580,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -594,6 +592,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -752,10 +752,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -833,6 +829,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -940,13 +940,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 As you can see, there is currently only one row in the table. If a variable has values of 0 and 1 only, the `tbl_summary` function gives the percentage of values that are equal to 1 by default. If you would like to see the percentage of both 0 and 1 values, you can use the "type" option and specify that the variable is categorical.
 
@@ -959,7 +960,14 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```
+## Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+```
+
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -970,6 +978,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1128,10 +1138,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hlleqxdave .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1209,6 +1215,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hlleqxdave .gt_table_body {
@@ -1324,13 +1334,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 <br>
 
@@ -1362,7 +1373,8 @@ tbl_summary(
 )
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -1373,6 +1385,8 @@ tbl_summary(
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1531,10 +1545,6 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kqtxbhydst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1612,6 +1622,10 @@ tbl_summary(
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1736,13 +1750,14 @@ tbl_summary(
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 #### `skim` function
 
@@ -1757,24 +1772,23 @@ skim(lesson1a$age)
 
 Table: (\#tab:section1i)Data summary
 
-                                        
--------------------------  -------------
-Name                       lesson1a$age 
-Number of rows             386          
-Number of columns          1            
-_______________________                 
-Column type frequency:                  
-numeric                    1            
-________________________                
-Group variables            None         
--------------------------  -------------
+|                         |             |
+|:------------------------|:------------|
+|Name                     |lesson1a$age |
+|Number of rows           |386          |
+|Number of columns        |1            |
+|_______________________  |             |
+|Column type frequency:   |             |
+|numeric                  |1            |
+|________________________ |             |
+|Group variables          |None         |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate    mean      sd   p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  ------  ------  ---  ----  ----  ----  -----  ------
-data                     0               1   49.48   13.75   19    40    49    59     86  ▃▇▇▅▁ 
+|skim_variable | n_missing| complete_rate|  mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
+|data          |         0|             1| 49.48| 13.75| 19|  40|  49|  59|   86|▃▇▇▅▁ |
 
 So of the 386 patients (column "n"), the mean age (a type of average, I’ll explain next week) is 49.48 (column "mean"), the standard deviation (again, I’ll explain next week) is 13.75 (column "sd"). The youngest patient was 19 (column "p0") and the oldest is 86 (column "p100"). 
 

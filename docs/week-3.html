@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Week 3 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Week 3 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -48,12 +48,13 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -62,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -78,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -281,24 +284,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">3</span> Week 3</h1>
 <div id="setting-up-2" class="section level2">
 <h2><span class="header-section-number">3.1</span> Setting up</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Load packages</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(skimr)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(gt)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(gtsummary)</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(epiR)</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(pROC)</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">library</span>(gmodels)</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="kw">library</span>(survival)</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-12" title="12"></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co"># The &quot;trial&quot; and &quot;midwest&quot; datasets are available automatically </span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co"># after you load the packages above</span></a>
-<a class="sourceLine" id="cb1-15" title="15"></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="co"># Load other data necessary to run Week 3 examples</span></a>
-<a class="sourceLine" id="cb1-17" title="17">lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb1-18" title="18">example3a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;example3a.rds&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="week-3.html#cb1-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-2"><a href="week-3.html#cb1-2"></a><span class="kw">library</span>(skimr)</span>
+<span id="cb1-3"><a href="week-3.html#cb1-3"></a><span class="kw">library</span>(gt)</span>
+<span id="cb1-4"><a href="week-3.html#cb1-4"></a><span class="kw">library</span>(gtsummary)</span>
+<span id="cb1-5"><a href="week-3.html#cb1-5"></a><span class="kw">library</span>(epiR)</span>
+<span id="cb1-6"><a href="week-3.html#cb1-6"></a><span class="kw">library</span>(broom)</span>
+<span id="cb1-7"><a href="week-3.html#cb1-7"></a><span class="kw">library</span>(pROC)</span>
+<span id="cb1-8"><a href="week-3.html#cb1-8"></a><span class="kw">library</span>(gmodels)</span>
+<span id="cb1-9"><a href="week-3.html#cb1-9"></a><span class="kw">library</span>(survival)</span>
+<span id="cb1-10"><a href="week-3.html#cb1-10"></a><span class="kw">library</span>(here)</span>
+<span id="cb1-11"><a href="week-3.html#cb1-11"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-12"><a href="week-3.html#cb1-12"></a></span>
+<span id="cb1-13"><a href="week-3.html#cb1-13"></a><span class="co"># The &quot;trial&quot; and &quot;midwest&quot; datasets are available automatically </span></span>
+<span id="cb1-14"><a href="week-3.html#cb1-14"></a><span class="co"># after you load the packages above</span></span>
+<span id="cb1-15"><a href="week-3.html#cb1-15"></a></span>
+<span id="cb1-16"><a href="week-3.html#cb1-16"></a><span class="co"># Load other data necessary to run Week 3 examples</span></span>
+<span id="cb1-17"><a href="week-3.html#cb1-17"></a>lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</span>
+<span id="cb1-18"><a href="week-3.html#cb1-18"></a>example3a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;example3a.rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="r-instructions-2" class="section level2">
 <h2><span class="header-section-number">3.2</span> R Instructions</h2>
@@ -320,8 +323,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Different forms of the t-test</strong></p>
 <p>The two main forms of the t-test are “paired” and “unpaired”.</p>
 <p>“Unpaired” is used when, for example, testing marker levels between two groups taking different drugs, as there are different patients in each group:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># t-test for marker levels between treatment arms</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">t.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="week-3.html#cb2-1"></a><span class="co"># t-test for marker levels between treatment arms</span></span>
+<span id="cb2-2"><a href="week-3.html#cb2-2"></a><span class="kw">t.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -336,8 +339,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The first variable, “marker”, is the continuous endpoint that you are comparing by the two groups of the second variable, “trt” (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called “trial”. <code>paired = FALSE</code> indicates that you want to perform an “unpaired” test. The last option (<code>var.equal = TRUE</code>) tells the <code>t.test</code> function to treat the two variances as being equal. For this course, you will need to include this option in two-group <code>t.test</code> commands but you do not need to know specific details about this concept.</p>
 <p>A “paired” test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.</p>
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># paired t-test for blood pressure between &quot;before&quot; and &quot;after&quot; groups</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">t.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="week-3.html#cb4-1"></a><span class="co"># paired t-test for blood pressure between &quot;before&quot; and &quot;after&quot; groups</span></span>
+<span id="cb4-2"><a href="week-3.html#cb4-2"></a><span class="kw">t.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -351,8 +354,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##               -5.091667</code></pre>
 <p>Here, the code is the same as the last example, with “bp” as the continuous outcome, and “when” indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option <code>paired = TRUE</code> must be included.</p>
 <p>A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the midwest different than the national average of 32%?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># t-test assessing whether the rate of college education is different than 32%</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">t.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="week-3.html#cb6-1"></a><span class="co"># t-test assessing whether the rate of college education is different than 32%</span></span>
+<span id="cb6-2"><a href="week-3.html#cb6-2"></a><span class="kw">t.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -365,8 +368,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of x 
 ##  18.27274</code></pre>
 <p>Let’s look at the print out from a t-test in more detail:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># t-test for difference in horsepower for manual vs automatic transmission</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="week-3.html#cb8-1"></a><span class="co"># t-test for difference in horsepower for manual vs automatic transmission</span></span>
+<span id="cb8-2"><a href="week-3.html#cb8-2"></a><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -381,28 +384,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (am == 0) vs manual transmission (am == 1).</p>
 <p>The <code>t.test</code> function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.</p>
 <p>While for an unpaired test, the <code>t.test</code> command prints the group means in each group, you may want to report the difference between means. The group means are stored in the <code>t.test</code> results under <code>estimate</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># perform t-test and save out results as &quot;hp_test&quot;</span></a>
-<a class="sourceLine" id="cb10-2" title="2">hp_test &lt;-<span class="st"> </span><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb10-3" title="3"></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="co"># show the group means from &quot;hp_test&quot;</span></a>
-<a class="sourceLine" id="cb10-5" title="5">hp_test<span class="op">$</span>estimate</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="week-3.html#cb10-1"></a><span class="co"># perform t-test and save out results as &quot;hp_test&quot;</span></span>
+<span id="cb10-2"><a href="week-3.html#cb10-2"></a>hp_test &lt;-<span class="st"> </span><span class="kw">t.test</span>(hp <span class="op">~</span><span class="st"> </span>am, <span class="dt">data =</span> mtcars, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb10-3"><a href="week-3.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="week-3.html#cb10-4"></a><span class="co"># show the group means from &quot;hp_test&quot;</span></span>
+<span id="cb10-5"><a href="week-3.html#cb10-5"></a>hp_test<span class="op">$</span>estimate</span></code></pre></div>
 <pre><code>## mean in group 0 mean in group 1 
 ##        160.2632        126.8462</code></pre>
 <p>To calculate the difference in means between group 0 and group 1, you can use the <code>estimate</code> data to calculate this. The square brackets indicate which number (first mean or second mean) to take. This works to calculate the difference between group 0 and group 1, as well as between group 1 and group 0.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># You can save out the means for each group</span></a>
-<a class="sourceLine" id="cb12-2" title="2"></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="co"># The first value is mean in group 0</span></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="co"># (&quot;mean in group 0&quot; is printed first in results)</span></a>
-<a class="sourceLine" id="cb12-5" title="5">mean_group0 &lt;-<span class="st"> </span>hp_test<span class="op">$</span>estimate[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb12-6" title="6"></a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="co"># The second value is mean in group 1</span></a>
-<a class="sourceLine" id="cb12-8" title="8">mean_group1 &lt;-<span class="st"> </span>hp_test<span class="op">$</span>estimate[[<span class="dv">2</span>]]</a>
-<a class="sourceLine" id="cb12-9" title="9"></a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="co"># Subtract the mean in group 1 from the mean in group 0</span></a>
-<a class="sourceLine" id="cb12-11" title="11">mean_group0 <span class="op">-</span><span class="st"> </span>mean_group1</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="week-3.html#cb12-1"></a><span class="co"># You can save out the means for each group</span></span>
+<span id="cb12-2"><a href="week-3.html#cb12-2"></a></span>
+<span id="cb12-3"><a href="week-3.html#cb12-3"></a><span class="co"># The first value is mean in group 0</span></span>
+<span id="cb12-4"><a href="week-3.html#cb12-4"></a><span class="co"># (&quot;mean in group 0&quot; is printed first in results)</span></span>
+<span id="cb12-5"><a href="week-3.html#cb12-5"></a>mean_group0 &lt;-<span class="st"> </span>hp_test<span class="op">$</span>estimate[[<span class="dv">1</span>]]</span>
+<span id="cb12-6"><a href="week-3.html#cb12-6"></a></span>
+<span id="cb12-7"><a href="week-3.html#cb12-7"></a><span class="co"># The second value is mean in group 1</span></span>
+<span id="cb12-8"><a href="week-3.html#cb12-8"></a>mean_group1 &lt;-<span class="st"> </span>hp_test<span class="op">$</span>estimate[[<span class="dv">2</span>]]</span>
+<span id="cb12-9"><a href="week-3.html#cb12-9"></a></span>
+<span id="cb12-10"><a href="week-3.html#cb12-10"></a><span class="co"># Subtract the mean in group 1 from the mean in group 0</span></span>
+<span id="cb12-11"><a href="week-3.html#cb12-11"></a>mean_group0 <span class="op">-</span><span class="st"> </span>mean_group1</span></code></pre></div>
 <pre><code>## [1] 33.417</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Subtract the mean in group 0 from the mean in group 1</span></a>
-<a class="sourceLine" id="cb14-2" title="2">mean_group1 <span class="op">-</span><span class="st"> </span>mean_group0</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="week-3.html#cb14-1"></a><span class="co"># Subtract the mean in group 0 from the mean in group 1</span></span>
+<span id="cb14-2"><a href="week-3.html#cb14-2"></a>mean_group1 <span class="op">-</span><span class="st"> </span>mean_group0</span></code></pre></div>
 <pre><code>## [1] -33.417</code></pre>
 <p>You don’t need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p value, the group means, and the 95% confidence interval.</p>
 <p>Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is 33.4 higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between 16.3 lower or 83.1 higher in the automatic group vs the manual group.</p>
@@ -411,8 +414,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.2.2.2</span> <strong>Non-parametric methods</strong></h4>
 <p>These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance.</p>
 <p>Unpaired case, for example, do marker levels differ between the drug and placebo groups?</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># non-parametric test for difference in marker levels by treatment group</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="kw">wilcox.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="week-3.html#cb16-1"></a><span class="co"># non-parametric test for difference in marker levels by treatment group</span></span>
+<span id="cb16-2"><a href="week-3.html#cb16-2"></a><span class="kw">wilcox.test</span>(marker <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> trial, <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">exact =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -421,8 +424,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>The inputs for the <code>wilcox.test</code> function are very similar to the inputs for the <code>t.test</code> function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable (“marker”), the group variable (“trt”) and the dataset (“trial”) are all the same. This is still an unpaired test (<code>paired = FALSE</code>).</p>
 <p>Paired case, for example, does an intervention cause a change in a patient’s blood pressure?</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># paired non-parametric test for difference in &quot;before&quot; and &quot;after&quot; blood pressure measurements</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">wilcox.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="week-3.html#cb18-1"></a><span class="co"># paired non-parametric test for difference in &quot;before&quot; and &quot;after&quot; blood pressure measurements</span></span>
+<span id="cb18-2"><a href="week-3.html#cb18-2"></a><span class="kw">wilcox.test</span>(bp <span class="op">~</span><span class="st"> </span>when, <span class="dt">data =</span> example3a, <span class="dt">paired =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -430,8 +433,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## W = 5551, p-value = 0.002166
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># non-parametric test - is rate of college education different from 32%?</span></a>
-<a class="sourceLine" id="cb20-2" title="2"><span class="kw">wilcox.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="week-3.html#cb20-1"></a><span class="co"># non-parametric test - is rate of college education different from 32%?</span></span>
+<span id="cb20-2"><a href="week-3.html#cb20-2"></a><span class="kw">wilcox.test</span>(midwest<span class="op">$</span>percollege, <span class="dt">mu =</span> <span class="dv">32</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank test with continuity correction
 ## 
@@ -444,8 +447,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.2.2.3</span> <strong>The binomial test</strong></h4>
 <p>The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p value).</p>
 <p>The first argument of <code>binom.test</code> is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the <code>p =</code> option - the default is 0.5 (50%).</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Compare a proportion to a hypothesized value &quot;p&quot;</span></a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="kw">binom.test</span>(<span class="dv">60</span>, <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="week-3.html#cb22-1"></a><span class="co"># Compare a proportion to a hypothesized value &quot;p&quot;</span></span>
+<span id="cb22-2"><a href="week-3.html#cb22-2"></a><span class="kw">binom.test</span>(<span class="dv">60</span>, <span class="dv">100</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Exact binomial test
 ## 
@@ -458,18 +461,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## probability of success 
 ##                    0.6</code></pre>
 <p>You can also use <code>binom.test</code> on data from a dataset. For example, if we want to test whether the proportion of women (sex = 1) is different from 50%:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># The &quot;sum&quot; function adds up the number of observations where sex == 1 (women)</span></a>
-<a class="sourceLine" id="cb24-2" title="2">nwomen &lt;-<span class="st"> </span><span class="kw">sum</span>(lesson1a<span class="op">$</span>sex)</a>
-<a class="sourceLine" id="cb24-3" title="3">nwomen</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="week-3.html#cb24-1"></a><span class="co"># The &quot;sum&quot; function adds up the number of observations where sex == 1 (women)</span></span>
+<span id="cb24-2"><a href="week-3.html#cb24-2"></a>nwomen &lt;-<span class="st"> </span><span class="kw">sum</span>(lesson1a<span class="op">$</span>sex)</span>
+<span id="cb24-3"><a href="week-3.html#cb24-3"></a>nwomen</span></code></pre></div>
 <pre><code>## [1] 205</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># The &quot;nrow&quot; function (for &quot;number of rows&quot;) counts the total number of observations</span></a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="co"># The &quot;filter&quot; function is used to count only the number of observations where</span></a>
-<a class="sourceLine" id="cb26-3" title="3"><span class="co"># &quot;sex&quot; is not missing (NA)</span></a>
-<a class="sourceLine" id="cb26-4" title="4">ntotal &lt;-<span class="st"> </span><span class="kw">nrow</span>(lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sex)))</a>
-<a class="sourceLine" id="cb26-5" title="5">ntotal</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="week-3.html#cb26-1"></a><span class="co"># The &quot;nrow&quot; function (for &quot;number of rows&quot;) counts the total number of observations</span></span>
+<span id="cb26-2"><a href="week-3.html#cb26-2"></a><span class="co"># The &quot;filter&quot; function is used to count only the number of observations where</span></span>
+<span id="cb26-3"><a href="week-3.html#cb26-3"></a><span class="co"># &quot;sex&quot; is not missing (NA)</span></span>
+<span id="cb26-4"><a href="week-3.html#cb26-4"></a>ntotal &lt;-<span class="st"> </span><span class="kw">nrow</span>(lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(sex)))</span>
+<span id="cb26-5"><a href="week-3.html#cb26-5"></a>ntotal</span></code></pre></div>
 <pre><code>## [1] 386</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Compare a proportion of patients in a dataset to a hypothesized value &quot;p&quot;</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="kw">binom.test</span>(nwomen, ntotal, <span class="dt">p =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="week-3.html#cb28-1"></a><span class="co"># Compare a proportion of patients in a dataset to a hypothesized value &quot;p&quot;</span></span>
+<span id="cb28-2"><a href="week-3.html#cb28-2"></a><span class="kw">binom.test</span>(nwomen, ntotal, <span class="dt">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Exact binomial test
 ## 
@@ -489,13 +492,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-2" class="section level2">
 <h2><span class="header-section-number">3.3</span> Assignments</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Copy and paste this code to load the data for week 3 assignments</span></a>
-<a class="sourceLine" id="cb30-2" title="2">lesson3a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3a.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb30-3" title="3">lesson3b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3b.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb30-4" title="4">lesson3c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3c.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb30-5" title="5">lesson3d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3d.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb30-6" title="6">lesson3e &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3e.rds&quot;</span>))</a>
-<a class="sourceLine" id="cb30-7" title="7">lesson3f &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3f.rds&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="week-3.html#cb30-1"></a><span class="co"># Copy and paste this code to load the data for week 3 assignments</span></span>
+<span id="cb30-2"><a href="week-3.html#cb30-2"></a>lesson3a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3a.rds&quot;</span>))</span>
+<span id="cb30-3"><a href="week-3.html#cb30-3"></a>lesson3b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3b.rds&quot;</span>))</span>
+<span id="cb30-4"><a href="week-3.html#cb30-4"></a>lesson3c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3c.rds&quot;</span>))</span>
+<span id="cb30-5"><a href="week-3.html#cb30-5"></a>lesson3d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3d.rds&quot;</span>))</span>
+<span id="cb30-6"><a href="week-3.html#cb30-6"></a>lesson3e &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3e.rds&quot;</span>))</span>
+<span id="cb30-7"><a href="week-3.html#cb30-7"></a>lesson3f &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3f.rds&quot;</span>))</span></code></pre></div>
 <p>Again, more questions than you need to do, unless you’re keen (also, most won’t take long). Try to do at least the first three.</p>
 <ul>
 <li>lesson3a.rds: These are data from over 1000 patients undergoing chemotherapy reporting a nausea and vomiting score from 0 to 10 on the day of treatment. Does previous chemotherapy increase nausea scores? What about sex?</li>
@@ -545,7 +548,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.mskcc.org/vertosie/Statistics-Course/edit/master/03-week3.Rmd",
+"link": "https://www.github.com/emilyvertosick/Statistics-Course/edit/master/03-week3.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -224,7 +224,7 @@ library(tidyverse)
 
 R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset "lesson1a" by typing the following into the console window and hitting enter (a new window will pop up):
 
-```{r section1a, echo = TRUE, eval = TRUE, results = "hide"}
+```{r section1a, echo = TRUE, eval = FALSE, results = "hide"}
 
 # View the data as a spreadsheet
 View(lesson1a)
@@ -252,7 +252,7 @@ skim(lesson1a)
 
 The output above this text is the code, and the output below this shows the results produced by running that code. (We will discuss the results output in more detail later.)
 
-```{r , echo = FALSE}
+```{r section1b_1a, echo = FALSE}
 
 # Print
 skim(lesson1a)

@@ -77,24 +77,23 @@ example7a %>%
 
 Table: (\#tab:week7c)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             5          
-Number of columns          6          
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            None       
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |5          |
+|Number of columns        |6          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |None       |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate   mean      sd   p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  -----  ------  ---  ----  ----  ----  -----  ------
-t                        0               1   52.6   61.89   13    16    28    45    161  ▇▂▁▁▂ 
+|skim_variable | n_missing| complete_rate| mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|----:|-----:|--:|---:|---:|---:|----:|:-----|
+|t             |         0|             1| 52.6| 61.89| 13|  16|  28|  45|  161|▇▂▁▁▂ |
 
 You can also plot the survival curve by adding the `plot` function around your `survfit` function:
 
@@ -252,7 +251,8 @@ example7a_cox <- coxph(Surv(t, d) ~ drug, data = example7a)
 tbl_regression(example7a_cox, exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -263,6 +263,8 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -421,10 +423,6 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -502,6 +500,10 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -619,7 +621,8 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 The following multivariable model also includes some demographic and medical characteristics:
 
@@ -632,7 +635,8 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -643,6 +647,8 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -801,10 +807,6 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hlleqxdave .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -882,6 +884,10 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hlleqxdave .gt_table_body {
@@ -1017,7 +1023,8 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 So, some typical code to analyze a dataset:
 
@@ -1045,24 +1052,23 @@ example7a %>%
 
 Table: (\#tab:week7k)Data summary
 
-                                      
--------------------------  -----------
-Name                       Piped data 
-Number of rows             5          
-Number of columns          6          
-_______________________               
-Column type frequency:                
-numeric                    1          
-________________________              
-Group variables            None       
--------------------------  -----------
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |5          |
+|Number of columns        |6          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |None       |
 
 
 **Variable type: numeric**
 
-skim_variable    n_missing   complete_rate   mean      sd   p0   p25   p50   p75   p100  hist  
---------------  ----------  --------------  -----  ------  ---  ----  ----  ----  -----  ------
-t                        0               1   52.6   61.89   13    16    28    45    161  ▇▂▁▁▂ 
+|skim_variable | n_missing| complete_rate| mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|----:|-----:|--:|---:|---:|---:|----:|:-----|
+|t             |         0|             1| 52.6| 61.89| 13|  16|  28|  45|  161|▇▂▁▁▂ |
 
 ```r
 # Show a graph
@@ -1077,7 +1083,8 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
@@ -1088,6 +1095,8 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1246,10 +1255,6 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kqtxbhydst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1327,6 +1332,10 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1462,7 +1471,8 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
       </td>
     </tr>
   </tfoot>
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ## Assignments
 

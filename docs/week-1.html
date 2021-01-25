@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Week 1 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Week 1 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -311,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The top right panel includes several tabs. The most important tabs here are “environment”, which shows your current datasets and objects, and “history”, which shows previous commands that have been run from either the “console” or the “source” window.</p></li>
 <li><p>The bottom right panel also includes several tabs. The “files” tab shows all files in your current directory. The “plots” tab is where plots will be shown if a plot is created. The “packages” tab shows all R packages that are available on your machine. The “help” tab will show help files, and help files can be searched from this tab. The “viewer” tab will show any other files that are created, for example, formatted tables.</p></li>
 </ol>
-<p><img src="images/rstudio_window.jpg" /></p>
+<p><img src="images/rstudio_window.JPG" /></p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3><span class="header-section-number">1.1.4</span> Installing packages</h3>
@@ -478,7 +479,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-2"><a href="week-1.html#cb11-2"></a><span class="kw">skim</span>(lesson1a)</span></code></pre></div>
 <p>The output above this text is the code, and the output below this shows the results produced by running that code. (We will discuss the results output in more detail later.)</p>
 <table>
-<caption><span id="tab:unnamed-chunk-1">Table 1.2: </span>Data summary</caption>
+<caption>(#tab:section1b_1a)Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -705,7 +706,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="week-1.html#cb12-1"></a><span class="co"># View a summary of the &quot;age&quot; variable only</span></span>
 <span id="cb12-2"><a href="week-1.html#cb12-2"></a><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</span></code></pre></div>
 <table>
-<caption><span id="tab:section1c">Table 1.3: </span>Data summary</caption>
+<caption><span id="tab:section1c">Table 1.2: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -968,6 +969,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1126,10 +1129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1207,6 +1206,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -1314,7 +1317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
@@ -1327,6 +1330,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb35-3"><a href="week-1.html#cb35-3"></a>  lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(sex),</span>
 <span id="cb35-4"><a href="week-1.html#cb35-4"></a>  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;sex&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</span>
 <span id="cb35-5"><a href="week-1.html#cb35-5"></a>)</span></code></pre></div>
+<pre><code>## Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1338,6 +1344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1496,10 +1504,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hlleqxdave .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1577,6 +1581,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hlleqxdave .gt_table_body {
@@ -1692,7 +1700,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
@@ -1703,18 +1711,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This tells you that the “sex” variable has no missing data because the table only shows values of “0” and “1”, with no “NA” values. It also shows that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the <code>tbl_summary</code> function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.</p>
 <p>Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were 181 men in the 386 patients and that they constituted 47% of the population.</p>
 <p>The <code>tbl_summary</code> function can also be used for two-way tables. The <code>select</code> function is used to select both variables of interest, and the name of the column variable is specified in the <code>by</code> statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the <code>table</code> function. It also includes information on the missing (NA) values, which are excluded when using the <code>table</code> function.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="week-1.html#cb36-1"></a><span class="co"># Create two-way table for response and death using &quot;table&quot; function</span></span>
-<span id="cb36-2"><a href="week-1.html#cb36-2"></a><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="week-1.html#cb37-1"></a><span class="co"># Create two-way table for response and death using &quot;table&quot; function</span></span>
+<span id="cb37-2"><a href="week-1.html#cb37-2"></a><span class="kw">table</span>(trial<span class="op">$</span>response, trial<span class="op">$</span>death)</span></code></pre></div>
 <pre><code>##    
 ##      0  1
 ##   0 49 83
 ##   1 37 24</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="week-1.html#cb38-1"></a><span class="co"># Create two-way table for response and death using &quot;tbl_summary&quot; function</span></span>
-<span id="cb38-2"><a href="week-1.html#cb38-2"></a><span class="kw">tbl_summary</span>(</span>
-<span id="cb38-3"><a href="week-1.html#cb38-3"></a>  trial <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(response, death),</span>
-<span id="cb38-4"><a href="week-1.html#cb38-4"></a>  <span class="dt">by =</span> death,</span>
-<span id="cb38-5"><a href="week-1.html#cb38-5"></a>  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;response&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</span>
-<span id="cb38-6"><a href="week-1.html#cb38-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="week-1.html#cb39-1"></a><span class="co"># Create two-way table for response and death using &quot;tbl_summary&quot; function</span></span>
+<span id="cb39-2"><a href="week-1.html#cb39-2"></a><span class="kw">tbl_summary</span>(</span>
+<span id="cb39-3"><a href="week-1.html#cb39-3"></a>  trial <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(response, death),</span>
+<span id="cb39-4"><a href="week-1.html#cb39-4"></a>  <span class="dt">by =</span> death,</span>
+<span id="cb39-5"><a href="week-1.html#cb39-5"></a>  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;response&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</span>
+<span id="cb39-6"><a href="week-1.html#cb39-6"></a>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1726,6 +1734,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1884,10 +1894,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kqtxbhydst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1965,6 +1971,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kqtxbhydst .gt_table_body {
@@ -2089,7 +2099,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
@@ -2100,10 +2110,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="skim-function" class="section level4">
 <h4><span class="header-section-number">1.2.5.7</span> <code>skim</code> function</h4>
 <p>The <code>skim</code> function (from the <code>skimr</code> package) gives basic summary data.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="week-1.html#cb39-1"></a><span class="co"># Show summary statistics for &quot;age&quot;</span></span>
-<span id="cb39-2"><a href="week-1.html#cb39-2"></a><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="week-1.html#cb40-1"></a><span class="co"># Show summary statistics for &quot;age&quot;</span></span>
+<span id="cb40-2"><a href="week-1.html#cb40-2"></a><span class="kw">skim</span>(lesson1a<span class="op">$</span>age)</span></code></pre></div>
 <table>
-<caption><span id="tab:section1i">Table 1.4: </span>Data summary</caption>
+<caption><span id="tab:section1i">Table 1.3: </span>Data summary</caption>
 <tbody>
 <tr class="odd">
 <td align="left">Name</td>
@@ -2180,51 +2190,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">1.2.5.8</span> <code>mutate</code> function</h4>
 <p>The <code>mutate</code> function is used to create new variables, or replace variable values.</p>
 <p>The code below means: create a new variable called “a” and set it equal to 1 in all observations. The “&lt;-” indicator means to then save out this new dataset including the “a” variable as “lesson1a”, replacing the old “lesson1a” dataset that does not include “a”.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="week-1.html#cb40-1"></a><span class="co"># Save the data out as &quot;lesson1a&quot;</span></span>
-<span id="cb40-2"><a href="week-1.html#cb40-2"></a>lesson1a &lt;-</span>
-<span id="cb40-3"><a href="week-1.html#cb40-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></span>
-<span id="cb40-4"><a href="week-1.html#cb40-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></span></code></pre></div>
-<p>Since we have already created the variable “a” above, the code below means: replace the variable “a” with the value of 2 in all observations.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="week-1.html#cb41-1"></a><span class="co"># Replace the value of &quot;a&quot; with &quot;2&quot; for all observations</span></span>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="week-1.html#cb41-1"></a><span class="co"># Save the data out as &quot;lesson1a&quot;</span></span>
 <span id="cb41-2"><a href="week-1.html#cb41-2"></a>lesson1a &lt;-</span>
-<span id="cb41-3"><a href="week-1.html#cb41-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
-<span id="cb41-4"><a href="week-1.html#cb41-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p>You can also replace one variable with the value of another variable. The code below means: replace the variable “a” with whatever the value of “p1” is in each observation.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="week-1.html#cb42-1"></a><span class="co"># Replace the value of &quot;a&quot; with the value of &quot;p1&quot; for all observations</span></span>
+<span id="cb41-3"><a href="week-1.html#cb41-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Take the current &quot;lesson1a&quot; dataset</span></span>
+<span id="cb41-4"><a href="week-1.html#cb41-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">1</span>) <span class="co"># And add a variable called &quot;a&quot; with a value of &quot;1&quot;</span></span></code></pre></div>
+<p>Since we have already created the variable “a” above, the code below means: replace the variable “a” with the value of 2 in all observations.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="week-1.html#cb42-1"></a><span class="co"># Replace the value of &quot;a&quot; with &quot;2&quot; for all observations</span></span>
 <span id="cb42-2"><a href="week-1.html#cb42-2"></a>lesson1a &lt;-</span>
 <span id="cb42-3"><a href="week-1.html#cb42-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
-<span id="cb42-4"><a href="week-1.html#cb42-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> p1)</span></code></pre></div>
-<p>You can also calculate values inside a <code>mutate</code> statement. For example, you can create an average of the four variables “p1” - “p4”.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="week-1.html#cb43-1"></a><span class="co"># Replace &quot;a&quot; with the average of &quot;p1&quot;, &quot;p2&quot;, &quot;p3&quot; and &quot;p4&quot;</span></span>
+<span id="cb42-4"><a href="week-1.html#cb42-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>You can also replace one variable with the value of another variable. The code below means: replace the variable “a” with whatever the value of “p1” is in each observation.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="week-1.html#cb43-1"></a><span class="co"># Replace the value of &quot;a&quot; with the value of &quot;p1&quot; for all observations</span></span>
 <span id="cb43-2"><a href="week-1.html#cb43-2"></a>lesson1a &lt;-</span>
 <span id="cb43-3"><a href="week-1.html#cb43-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
-<span id="cb43-4"><a href="week-1.html#cb43-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> (p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4)<span class="op">/</span><span class="dv">4</span>)</span></code></pre></div>
+<span id="cb43-4"><a href="week-1.html#cb43-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> p1)</span></code></pre></div>
+<p>You can also calculate values inside a <code>mutate</code> statement. For example, you can create an average of the four variables “p1” - “p4”.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="week-1.html#cb44-1"></a><span class="co"># Replace &quot;a&quot; with the average of &quot;p1&quot;, &quot;p2&quot;, &quot;p3&quot; and &quot;p4&quot;</span></span>
+<span id="cb44-2"><a href="week-1.html#cb44-2"></a>lesson1a &lt;-</span>
+<span id="cb44-3"><a href="week-1.html#cb44-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
+<span id="cb44-4"><a href="week-1.html#cb44-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> (p1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">+</span><span class="st"> </span>p3 <span class="op">+</span><span class="st"> </span>p4)<span class="op">/</span><span class="dv">4</span>)</span></code></pre></div>
 </div>
 <div id="if_else-function" class="section level4">
 <h4><span class="header-section-number">1.2.5.9</span> <code>if_else</code> function</h4>
 <p>The <code>if_else</code> function can be used with the <code>mutate</code> function to assign values to a variable based on a specific condition.</p>
 <p>The first argument in the <code>if_else</code> function is the “if” condition. The second argument is the value of the variable for observations that meet the “if” condition. The third argument is the value of the variable for observations that do not meet the “if” condition.</p>
 <p>For example, the code below says: replace the value of “a” with “p1” if “p1” is greater than 4. Otherwise, keep the original value “a”.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="week-1.html#cb44-1"></a><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if the value of &quot;p1&quot; is greater than 4</span></span>
-<span id="cb44-2"><a href="week-1.html#cb44-2"></a>lesson1a &lt;-</span>
-<span id="cb44-3"><a href="week-1.html#cb44-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
-<span id="cb44-4"><a href="week-1.html#cb44-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(p1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>, p1, a))</span></code></pre></div>
-<p>In this case, we are only replacing for females. Note that when you use equals sign after an “if” you have to use two of them in a row to signify “is equal to” rather than “make equal to”.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="week-1.html#cb45-1"></a><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if &quot;sex&quot; equals 1 (female)</span></span>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="week-1.html#cb45-1"></a><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if the value of &quot;p1&quot; is greater than 4</span></span>
 <span id="cb45-2"><a href="week-1.html#cb45-2"></a>lesson1a &lt;-</span>
 <span id="cb45-3"><a href="week-1.html#cb45-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
-<span id="cb45-4"><a href="week-1.html#cb45-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, p1, a))</span></code></pre></div>
-<p>The <code>|</code> sign means “or”, such that the code below means: set “a” equal to 1 if “y” is equal to either “campus” or “peds”. Otherwise, keep the original value of “a”.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="week-1.html#cb46-1"></a><span class="co"># Replace the value of &quot;a&quot; with &quot;1&quot; if &quot;y&quot; is equal to either &quot;campus&quot; or &quot;peds&quot;</span></span>
+<span id="cb45-4"><a href="week-1.html#cb45-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(p1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>, p1, a))</span></code></pre></div>
+<p>In this case, we are only replacing for females. Note that when you use equals sign after an “if” you have to use two of them in a row to signify “is equal to” rather than “make equal to”.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="week-1.html#cb46-1"></a><span class="co"># Replace the value of &quot;a&quot; with &quot;p1&quot; if &quot;sex&quot; equals 1 (female)</span></span>
 <span id="cb46-2"><a href="week-1.html#cb46-2"></a>lesson1a &lt;-</span>
 <span id="cb46-3"><a href="week-1.html#cb46-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
-<span id="cb46-4"><a href="week-1.html#cb46-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(y <span class="op">==</span><span class="st"> &quot;campus&quot;</span> <span class="op">|</span><span class="st"> </span>y <span class="op">==</span><span class="st"> &quot;peds&quot;</span>, <span class="dv">1</span>, a))</span></code></pre></div>
+<span id="cb46-4"><a href="week-1.html#cb46-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, p1, a))</span></code></pre></div>
+<p>The <code>|</code> sign means “or”, such that the code below means: set “a” equal to 1 if “y” is equal to either “campus” or “peds”. Otherwise, keep the original value of “a”.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="week-1.html#cb47-1"></a><span class="co"># Replace the value of &quot;a&quot; with &quot;1&quot; if &quot;y&quot; is equal to either &quot;campus&quot; or &quot;peds&quot;</span></span>
+<span id="cb47-2"><a href="week-1.html#cb47-2"></a>lesson1a &lt;-</span>
+<span id="cb47-3"><a href="week-1.html#cb47-3"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
+<span id="cb47-4"><a href="week-1.html#cb47-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(y <span class="op">==</span><span class="st"> &quot;campus&quot;</span> <span class="op">|</span><span class="st"> </span>y <span class="op">==</span><span class="st"> &quot;peds&quot;</span>, <span class="dv">1</span>, a))</span></code></pre></div>
 <p>You can give check for more than one condition by using the “&amp;” sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age &gt; 50). This creates a subgroup of older women: “a” is 1 for older women and 0 for everybody else.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="week-1.html#cb47-1"></a><span class="co"># Replace the value of &quot;a&quot; with 1 if sex equals 1 (female) and age &gt; 50</span></span>
-<span id="cb47-2"><a href="week-1.html#cb47-2"></a><span class="co"># For all other observations, replace &quot;a&quot; with 0</span></span>
-<span id="cb47-3"><a href="week-1.html#cb47-3"></a>lesson1a &lt;-</span>
-<span id="cb47-4"><a href="week-1.html#cb47-4"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
-<span id="cb47-5"><a href="week-1.html#cb47-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="week-1.html#cb48-1"></a><span class="co"># Replace the value of &quot;a&quot; with 1 if sex equals 1 (female) and age &gt; 50</span></span>
+<span id="cb48-2"><a href="week-1.html#cb48-2"></a><span class="co"># For all other observations, replace &quot;a&quot; with 0</span></span>
+<span id="cb48-3"><a href="week-1.html#cb48-3"></a>lesson1a &lt;-</span>
+<span id="cb48-4"><a href="week-1.html#cb48-4"></a><span class="st">  </span>lesson1a <span class="op">%&gt;%</span></span>
+<span id="cb48-5"><a href="week-1.html#cb48-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">a =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
 </div>
 </div>
 <div id="using-help" class="section level3">
@@ -2248,8 +2258,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments" class="section level2">
 <h2><span class="header-section-number">1.3</span> Assignments</h2>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="week-1.html#cb48-1"></a><span class="co"># Copy and paste this code to load the data for week 1 assignments</span></span>
-<span id="cb48-2"><a href="week-1.html#cb48-2"></a>lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="week-1.html#cb49-1"></a><span class="co"># Copy and paste this code to load the data for week 1 assignments</span></span>
+<span id="cb49-2"><a href="week-1.html#cb49-2"></a>lesson1a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</span></code></pre></div>
 <p>The data for you to look at are in the attached file lesson1a.rds.</p>
 <p>This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?</p>
 
