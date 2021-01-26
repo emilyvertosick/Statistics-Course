@@ -73,14 +73,7 @@ install.packages("pROC")
 install.packages("gmodels")
 install.packages("survival")
 install.packages("survminer")
-install.packages("remotes")
-```
-
-To install the `gt` package, run this line of code from the "Install Packages Code.R" file:
-
-
-```r
-remotes::install_github("rstudio/gt")
+install.packages("gt")
 ```
 
 If you get a message that says "These packages have more recent versions available. Which would you like to update?", you can enter "1" in the console window and press enter. This will update all necessary packages and complete the installation.
@@ -92,7 +85,7 @@ If you are using a Windows computer and get an error message that states <span s
 1. Download the "recommended" version of Rtools (in green) from [this site](https://cran.rstudio.com/bin/windows/Rtools/).
 2. Open the "Rtools##.exe" file and follow the installation instructions.
 3. After installation is complete, close RStudio and re-open by clicking on the "Statistics Course.RProj" file.
-4. Re-run the above code in the console to install the `gt` package.
+4. Re-run the above code in the console to install the packages.
 
 We will also be installing a package called `gtsummary` written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.
 
@@ -103,7 +96,7 @@ install.packages("gtsummary")
 
 ### A Note About Packages
 
-R is "open source" software. Unlike, say, Microsoft Word, where only Microsoft engineers can make changes, R packages are written by statisticians all over the world. There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages used in the course except the `gt` package, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above. If you'd like to share the `gt` package, [this link](https://github.com/rstudio/gt) gives more detailed information on the functionality of the package as well as how to access and download the package.
+R is "open source" software. Unlike, say, Microsoft Word, where only Microsoft engineers can make changes, R packages are written by statisticians all over the world. There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages used in the course, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above.
 
 ## R Instructions
 

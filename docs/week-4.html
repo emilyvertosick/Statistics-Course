@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Week 4 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Week 4 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -324,6 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -482,10 +485,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#iwrgxmosvm .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #iwrgxmosvm .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -563,6 +562,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #iwrgxmosvm .gt_table_body {
@@ -687,7 +690,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
@@ -717,6 +720,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -875,10 +880,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #hlleqxdave .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -956,6 +957,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #hlleqxdave .gt_table_body {
@@ -1047,7 +1052,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 523<sup class="gt_footnote_marks">1</sup></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 575<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 1098</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 1,098<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1085,46 +1090,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
       </td>
     </tr>
   </tfoot>
 </table></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="week-4.html#cb4-1"></a><span class="co"># Setting the &quot;last&quot; option to TRUE puts the column with statistics for the overall cohort in the last column of the table</span></span>
+<span id="cb4-2"><a href="week-4.html#cb4-2"></a><span class="co"># The defaults etting, &quot;last = FALSE&quot;, would put this column first in the table</span></span></code></pre></div>
 <p><br></p>
 <p>So of the 318 patients who had previous chemo, 51% were women and 49% were men.</p>
 <p>Now let’s use the marathon data (“lesson2a.rds”) to do something more interesting. First, I created a new category called “subfourhour” for those runners who completed the marathon in less than four hours.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="week-4.html#cb4-1"></a><span class="co"># Create a new variable that indicates whether patients had marathon time &lt;= 240 minutes</span></span>
-<span id="cb4-2"><a href="week-4.html#cb4-2"></a>lesson2a &lt;-</span>
-<span id="cb4-3"><a href="week-4.html#cb4-3"></a><span class="st">  </span>lesson2a <span class="op">%&gt;%</span></span>
-<span id="cb4-4"><a href="week-4.html#cb4-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">subfourhour =</span></span>
-<span id="cb4-5"><a href="week-4.html#cb4-5"></a>           <span class="kw">if_else</span>(rt <span class="op">&lt;=</span><span class="st"> </span><span class="dv">240</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="week-4.html#cb5-1"></a><span class="co"># Create a new variable that indicates whether patients had marathon time &lt;= 240 minutes</span></span>
+<span id="cb5-2"><a href="week-4.html#cb5-2"></a>lesson2a &lt;-</span>
+<span id="cb5-3"><a href="week-4.html#cb5-3"></a><span class="st">  </span>lesson2a <span class="op">%&gt;%</span></span>
+<span id="cb5-4"><a href="week-4.html#cb5-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">subfourhour =</span></span>
+<span id="cb5-5"><a href="week-4.html#cb5-5"></a>           <span class="kw">if_else</span>(rt <span class="op">&lt;=</span><span class="st"> </span><span class="dv">240</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
 <p>The <code>table</code> function is a way to make very simple tables, which is useful for doing statistical tests, although these tables do not provide as much information (variable names, totals, percentages, etc.) as <code>tbl_summary</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="week-4.html#cb5-1"></a><span class="co"># The first variable is the row variable</span></span>
-<span id="cb5-2"><a href="week-4.html#cb5-2"></a><span class="co"># The second variable is the column variable</span></span>
-<span id="cb5-3"><a href="week-4.html#cb5-3"></a><span class="kw">table</span>(lesson2a<span class="op">$</span>subfourhour, lesson2a<span class="op">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="week-4.html#cb6-1"></a><span class="co"># The first variable is the row variable</span></span>
+<span id="cb6-2"><a href="week-4.html#cb6-2"></a><span class="co"># The second variable is the column variable</span></span>
+<span id="cb6-3"><a href="week-4.html#cb6-3"></a><span class="kw">table</span>(lesson2a<span class="op">$</span>subfourhour, lesson2a<span class="op">$</span>sex)</span></code></pre></div>
 <pre><code>##    
 ##      0  1
 ##   0 30 21
 ##   1 36 11</code></pre>
 <p>We can compare sub-four hour marathons by sex using a chi-squared test (<code>chisq.test</code> function). The option <code>correct = FALSE</code> indicates that the default continuity correction should not be used.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="week-4.html#cb7-1"></a><span class="co"># Create the table and then perform the chi-squared test</span></span>
-<span id="cb7-2"><a href="week-4.html#cb7-2"></a><span class="kw">table</span>(lesson2a<span class="op">$</span>subfourhour, lesson2a<span class="op">$</span>sex) <span class="op">%&gt;%</span></span>
-<span id="cb7-3"><a href="week-4.html#cb7-3"></a><span class="st">  </span><span class="kw">chisq.test</span>(<span class="dt">correct =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="week-4.html#cb8-1"></a><span class="co"># Create the table and then perform the chi-squared test</span></span>
+<span id="cb8-2"><a href="week-4.html#cb8-2"></a><span class="kw">table</span>(lesson2a<span class="op">$</span>subfourhour, lesson2a<span class="op">$</span>sex) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="week-4.html#cb8-3"></a><span class="st">  </span><span class="kw">chisq.test</span>(<span class="dt">correct =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  .
 ## X-squared = 3.513, df = 1, p-value = 0.06089</code></pre>
-<p>As a note, we can also use <code>tbl_summary</code> and the <code>add_p</code> function (also from <code>gtsummary</code>) to get the chi-squared pvalue. In the <code>add_p</code> function, we specify that for the variable “subfourhour” we want to use a chi-squared test (“chisq.test.no.correct”). Specifying “chisq.test.no.correct” uses no continuity correction, and so gives the same result as the <code>chisq.test</code> function with the option <code>correct = FALSE</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="week-4.html#cb9-1"></a><span class="co"># Create two-way table including chi-squared p value</span></span>
-<span id="cb9-2"><a href="week-4.html#cb9-2"></a><span class="kw">tbl_summary</span>(</span>
-<span id="cb9-3"><a href="week-4.html#cb9-3"></a>  lesson2a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(subfourhour, sex),</span>
-<span id="cb9-4"><a href="week-4.html#cb9-4"></a>  <span class="dt">by =</span> sex,</span>
-<span id="cb9-5"><a href="week-4.html#cb9-5"></a>  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;subfourhour&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</span>
-<span id="cb9-6"><a href="week-4.html#cb9-6"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb9-7"><a href="week-4.html#cb9-7"></a><span class="st">  </span><span class="kw">add_p</span>(<span class="dt">test =</span> <span class="kw">list</span>(<span class="st">&quot;subfourhour&quot;</span> <span class="op">~</span><span class="st"> &quot;chisq.test.no.correct&quot;</span>))</span></code></pre></div>
+<p>As a note, we can also use <code>tbl_summary</code> and the <code>add_p</code> function (also from <code>gtsummary</code>) to get the chi-squared p-value. In the <code>add_p</code> function, we specify that for the variable “subfourhour” we want to use a chi-squared test (“chisq.test.no.correct”). Specifying “chisq.test.no.correct” uses no continuity correction, and so gives the same result as the <code>chisq.test</code> function with the option <code>correct = FALSE</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="week-4.html#cb10-1"></a><span class="co"># Create two-way table including chi-squared p-value</span></span>
+<span id="cb10-2"><a href="week-4.html#cb10-2"></a><span class="kw">tbl_summary</span>(</span>
+<span id="cb10-3"><a href="week-4.html#cb10-3"></a>  lesson2a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(subfourhour, sex),</span>
+<span id="cb10-4"><a href="week-4.html#cb10-4"></a>  <span class="dt">by =</span> sex,</span>
+<span id="cb10-5"><a href="week-4.html#cb10-5"></a>  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;subfourhour&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</span>
+<span id="cb10-6"><a href="week-4.html#cb10-6"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb10-7"><a href="week-4.html#cb10-7"></a><span class="st">  </span><span class="kw">add_p</span>(<span class="dt">test =</span> <span class="kw">list</span>(<span class="st">&quot;subfourhour&quot;</span> <span class="op">~</span><span class="st"> &quot;chisq.test.no.correct&quot;</span>))</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1136,6 +1143,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1294,10 +1303,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #kqtxbhydst .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1375,6 +1380,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #kqtxbhydst .gt_table_body {
@@ -1498,7 +1507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
         <p class="gt_footnote">
@@ -1506,7 +1515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>2</em>
           </sup>
            
-          Statistical tests performed: chi-square test of independence
+          Pearson's Chi-squared test
           <br />
         </p>
       </td>
@@ -1514,18 +1523,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p><br></p>
-<p>So whereas 55% of men completed the race in less than four hours, only 34% of women did so. The p value here is 0.061.</p>
+<p>So whereas 55% of men completed the race in less than four hours, only 34% of women did so. The p-value here is 0.061.</p>
 <p><strong>Should you categorize a continuous variable?</strong></p>
 <p>If you are interested only:</p>
-<p>Remember that the p value when we did a t-test (<code>t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)</code>) was 0.032. That is, the p value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.</p>
+<p>Remember that the p-value when we did a t-test (<code>t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)</code>) was 0.032. That is, the p-value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.</p>
 </div>
 <div id="getting-estimates-risk-difference-risk-ratio-odds-ratio" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Getting estimates: risk difference, risk ratio, odds ratio</h3>
-<p>This table gives you a pvalue, but not an estimate. For this, we need the <code>epi.2by2</code> function from the <code>epiR</code> package. This function works for “cohort studies” and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the <code>epi.2by2</code> function the endpoint and the cohort (see below for more details). “Endpoint” will be something like cancer, response, progression, or running a marathon in under four hours. “Cohort” is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.</p>
+<p>This table gives you a p-value, but not an estimate. For this, we need the <code>epi.2by2</code> function from the <code>epiR</code> package. This function works for “cohort studies” and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the <code>epi.2by2</code> function the endpoint and the cohort (see below for more details). “Endpoint” will be something like cancer, response, progression, or running a marathon in under four hours. “Cohort” is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.</p>
 <p>The language we’ve been using is a little unusual for this example. A “case” is running a marathon in under four hours (i.e., subfourhour == 1). “Exposed” means that you are a woman (i.e. sex == 1). “Risk” means the proportion of patients who were a “case”.</p>
 <p><strong>Odds, odds ratios, risk and relative risk</strong></p>
 <p>The <code>epi.2by2</code> function will give you a number of different estimates, including the odds, odds ratio, risk and relative risk. Note that in the <code>epi.2by2</code> output, the risk is in the column "Inc risk *" and the relative risk is listed as “Inc risk ratio” under “Point estimates and 95% CIs.”</p>
-<p>The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a child passing an exam are therefore 250 ÷ 750 = 1 ÷ 3 = 33.33%. Here are some examples of probabilities and odds:</p>
+<p>The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a complication are therefore 250 ÷ 750 = 1 ÷ 3 = 0.33. Here are some examples of probabilities and odds:</p>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1537,6 +1546,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -1695,10 +1706,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#qzjvxzfwte .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #qzjvxzfwte .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -1776,6 +1783,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#qzjvxzfwte .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #qzjvxzfwte .gt_table_body {
@@ -1912,8 +1923,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One thing you might notice is that when something doesn’t happen very often, the odds and the probability are very similar. So, for example, something with a probability of 5% (0.05) has an odds of 0.0526. This has important implications for interpreting odds ratios. You will often see in the literature something like “the odds ratio for stage was 1.26, so patients with high stage disease had a 26% higher risk of complications”. This statement is wrong because if the odds ratio is 1.26 then the odds are 26% higher, not the risk. The odds ratio and relative risk will only be similar if the probability of an event is low. A doubling of risk from 1% to 2% is an increase in odds from 0.0101 to 0.0204, so very close to an odds ratio of 2. But a doubling of risk from 25% to 50% is an odds ratio of 3 (odds of 0.3333 to odds of 1.000).</p>
 <p><strong>Coding <code>epi.2by2</code> function</strong></p>
 <p>The <code>epi.2by2</code> function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the <code>table</code> function with the “cohort” variable first (as rows), and the “case” variable second (as columns).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="week-4.html#cb10-1"></a><span class="co"># Create a two-way table</span></span>
-<span id="cb10-2"><a href="week-4.html#cb10-2"></a><span class="kw">table</span>(lesson2a<span class="op">$</span>sex, lesson2a<span class="op">$</span>subfourhour)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="week-4.html#cb11-1"></a><span class="co"># Create a two-way table</span></span>
+<span id="cb11-2"><a href="week-4.html#cb11-2"></a><span class="kw">table</span>(lesson2a<span class="op">$</span>sex, lesson2a<span class="op">$</span>subfourhour)</span></code></pre></div>
 <pre><code>##    
 ##      0  1
 ##   0 30 36
@@ -1921,18 +1932,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>However, for the <code>epi.2by2</code> function, we need the first row to be the “exposed” group (in this case, sex == 1) and the first column be the “case” group (subfourhour == 1), so that we are comparing “exposed” to “non-exposed”, rather than comparing “non-exposed” to “exposed.”</p>
 <p>By default, R will sort the table numerically, so by default the first table row will be the “non-exposed” group (sex == 0) and the first column will be the “control” group (subfourhour == 0).</p>
 <p>Since the rows and columns are out of order, we will first convert the table to the correct format. You do not need to remember this code - you can simply copy and paste, and replace the dataset name (“lesson2a”) and variable names (“sex”, “subfourhour”) as necessary.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="week-4.html#cb12-1"></a><span class="co"># This code creates the table with the correct format</span></span>
-<span id="cb12-2"><a href="week-4.html#cb12-2"></a><span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(lesson2a<span class="op">$</span>sex, lesson2a<span class="op">$</span>subfourhour)), <span class="dt">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="week-4.html#cb13-1"></a><span class="co"># This code creates the table with the correct format</span></span>
+<span id="cb13-2"><a href="week-4.html#cb13-2"></a><span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(lesson2a<span class="op">$</span>sex, lesson2a<span class="op">$</span>subfourhour)), <span class="dt">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]   11   21
 ## [2,]   36   30</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="week-4.html#cb14-1"></a><span class="co"># For those who are curious, here is a description of the functions above:</span></span>
-<span id="cb14-2"><a href="week-4.html#cb14-2"></a><span class="co"># &quot;table&quot; - creates the two-way table above</span></span>
-<span id="cb14-3"><a href="week-4.html#cb14-3"></a><span class="co"># &quot;rev&quot; - reverses the order of the table</span></span>
-<span id="cb14-4"><a href="week-4.html#cb14-4"></a><span class="co"># &quot;matrix(..., nrow = 2)&quot; converts the reversed data back into a two-by-two table</span></span></code></pre></div>
-<p>You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the <code>epi.2by2</code> function. By default, the <code>epi.2by2</code> function gives the pvalue without any continuity correction.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="week-4.html#cb15-1"></a><span class="co"># Apply the epi.2by2 function to the table in the correct format</span></span>
-<span id="cb15-2"><a href="week-4.html#cb15-2"></a><span class="kw">epi.2by2</span>(<span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(lesson2a<span class="op">$</span>sex, lesson2a<span class="op">$</span>subfourhour)), <span class="dt">nrow =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="week-4.html#cb15-1"></a><span class="co"># For those who are curious, here is a description of the functions above:</span></span>
+<span id="cb15-2"><a href="week-4.html#cb15-2"></a><span class="co"># &quot;table&quot; - creates the two-way table above</span></span>
+<span id="cb15-3"><a href="week-4.html#cb15-3"></a><span class="co"># &quot;rev&quot; - reverses the order of the table</span></span>
+<span id="cb15-4"><a href="week-4.html#cb15-4"></a><span class="co"># &quot;matrix(..., nrow = 2)&quot; converts the reversed data back into a two-by-two table</span></span></code></pre></div>
+<p>You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the <code>epi.2by2</code> function. By default, the <code>epi.2by2</code> function gives the p-value without any continuity correction.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="week-4.html#cb16-1"></a><span class="co"># Apply the epi.2by2 function to the table in the correct format</span></span>
+<span id="cb16-2"><a href="week-4.html#cb16-2"></a><span class="kw">epi.2by2</span>(<span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(lesson2a<span class="op">$</span>sex, lesson2a<span class="op">$</span>subfourhour)), <span class="dt">nrow =</span> <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##              Outcome +    Outcome -      Total        Inc risk *        Odds
 ## Exposed +           11           21         32              34.4       0.524
 ## Exposed -           36           30         66              54.5       1.200
@@ -1967,8 +1978,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Be aware that when interpreting a relative difference in risks, it is useful to know the absolute risk as well. A study may report that a drug reduces the risk of heart attack by 50%, but whether you choose to use the drug would depend on whether risk was reduced from 20% to 10% (a 50% relative difference and a 10% absolute difference) or whether risk was reduced from 2% to 1% (still a 50% relative difference but only a 1% absolute difference).</p>
 <p>Here is another one to look through:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="week-4.html#cb17-1"></a><span class="co"># Another example using &quot;epi.2by2&quot; function</span></span>
-<span id="cb17-2"><a href="week-4.html#cb17-2"></a><span class="kw">epi.2by2</span>(<span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(example4a<span class="op">$</span>toxin, example4a<span class="op">$</span>cancer)), <span class="dt">nrow =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="week-4.html#cb18-1"></a><span class="co"># Another example using &quot;epi.2by2&quot; function</span></span>
+<span id="cb18-2"><a href="week-4.html#cb18-2"></a><span class="kw">epi.2by2</span>(<span class="kw">matrix</span>(<span class="kw">rev</span>(<span class="kw">table</span>(example4a<span class="op">$</span>toxin, example4a<span class="op">$</span>cancer)), <span class="dt">nrow =</span> <span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##              Outcome +    Outcome -      Total        Inc risk *        Odds
 ## Exposed +            5            3          8              62.5       1.667
 ## Exposed -            1            7          8              12.5       0.143
@@ -1989,9 +2000,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  * Outcomes per 100 population units</code></pre>
 <p>Here it is easier to see that the “toxin” is the exposure and “cancer” is whether you are a case.</p>
 <p><strong>Exact statistics</strong></p>
-<p>Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the “cells” in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The <code>epi.2by2</code> function gives the chi-squared p value. However, using the <code>fisher.test</code> function gives the exact pvalue. You do not need to reverse the table for the <code>fisher.test</code> function.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="week-4.html#cb19-1"></a><span class="co"># Calculate p value from fisher&#39;s exact test</span></span>
-<span id="cb19-2"><a href="week-4.html#cb19-2"></a><span class="kw">fisher.test</span>(<span class="kw">table</span>(example4a<span class="op">$</span>toxin, example4a<span class="op">$</span>cancer))</span></code></pre></div>
+<p>Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the “cells” in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The <code>epi.2by2</code> function gives the chi-squared p-value. However, using the <code>fisher.test</code> function gives the exact p-value. You do not need to reverse the table for the <code>fisher.test</code> function.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="week-4.html#cb20-1"></a><span class="co"># Calculate p-value from fisher&#39;s exact test</span></span>
+<span id="cb20-2"><a href="week-4.html#cb20-2"></a><span class="kw">fisher.test</span>(<span class="kw">table</span>(example4a<span class="op">$</span>toxin, example4a<span class="op">$</span>cancer))</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
@@ -2003,14 +2014,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## odds ratio 
 ##   9.760631</code></pre>
-<p>Similar to the chi-squared test, you can also get the Fisher’s exact pvalue using the <code>tbl_summary</code> and <code>add_p</code> functions, by specifying <code>test = "fisher.test"</code> for the variable of interest.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="week-4.html#cb21-1"></a><span class="co"># Create formatted table with p value from fisher&#39;s exact test</span></span>
-<span id="cb21-2"><a href="week-4.html#cb21-2"></a><span class="kw">tbl_summary</span>(</span>
-<span id="cb21-3"><a href="week-4.html#cb21-3"></a>  example4a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(toxin, cancer),</span>
-<span id="cb21-4"><a href="week-4.html#cb21-4"></a>  <span class="dt">by =</span> cancer,</span>
-<span id="cb21-5"><a href="week-4.html#cb21-5"></a>  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;toxin&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</span>
-<span id="cb21-6"><a href="week-4.html#cb21-6"></a>) <span class="op">%&gt;%</span></span>
-<span id="cb21-7"><a href="week-4.html#cb21-7"></a><span class="st">  </span><span class="kw">add_p</span>(<span class="dt">test =</span> <span class="kw">list</span>(<span class="st">&quot;toxin&quot;</span> <span class="op">~</span><span class="st"> &quot;fisher.test&quot;</span>))</span></code></pre></div>
+<p>Similar to the chi-squared test, you can also get the Fisher’s exact p-value using the <code>tbl_summary</code> and <code>add_p</code> functions, by specifying <code>test = "fisher.test"</code> for the variable of interest.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="week-4.html#cb22-1"></a><span class="co"># Create formatted table with p-value from fisher&#39;s exact test</span></span>
+<span id="cb22-2"><a href="week-4.html#cb22-2"></a><span class="kw">tbl_summary</span>(</span>
+<span id="cb22-3"><a href="week-4.html#cb22-3"></a>  example4a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(toxin, cancer),</span>
+<span id="cb22-4"><a href="week-4.html#cb22-4"></a>  <span class="dt">by =</span> cancer,</span>
+<span id="cb22-5"><a href="week-4.html#cb22-5"></a>  <span class="dt">type =</span> <span class="kw">list</span>(<span class="st">&quot;toxin&quot;</span> <span class="op">~</span><span class="st"> &quot;categorical&quot;</span>)</span>
+<span id="cb22-6"><a href="week-4.html#cb22-6"></a>) <span class="op">%&gt;%</span></span>
+<span id="cb22-7"><a href="week-4.html#cb22-7"></a><span class="st">  </span><span class="kw">add_p</span>(<span class="dt">test =</span> <span class="kw">list</span>(<span class="st">&quot;toxin&quot;</span> <span class="op">~</span><span class="st"> &quot;fisher.test&quot;</span>))</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -2022,6 +2033,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   margin-right: auto;
   color: #333333;
   font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
   background-color: #FFFFFF;
   width: auto;
   border-top-style: solid;
@@ -2180,10 +2193,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#pqsnuprvju .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
 #pqsnuprvju .gt_from_md > :first-child {
   margin-top: 0;
 }
@@ -2261,6 +2270,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
+}
+
+#pqsnuprvju .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 #pqsnuprvju .gt_table_body {
@@ -2384,7 +2397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>1</em>
           </sup>
            
-          Statistics presented: n (%)
+          n (%)
           <br />
         </p>
         <p class="gt_footnote">
@@ -2392,7 +2405,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <em>2</em>
           </sup>
            
-          Statistical tests performed: Fisher's exact test
+          Fisher's exact test
           <br />
         </p>
       </td>
@@ -2401,12 +2414,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table></div>
 <p><br></p>
 <p><em>For keen students only:</em></p>
-<p>Let’s imagine that you and I each throw two coins. I throw two heads and you throw two tails. The p value you get from a chi squared is 0.046, which seems strange as what we threw doesn’t seem that unusual. The problem is that in chi squared analysis you compare the expected and observed values, add them up, get a value for chi, and then look this up on a table. Now this table is derived from a distribution based on large samples. It is an approximation that breaks down when numbers are very small (such as less than 5 in at least one cell). “Exact” statistics works out the probability of a certain result in a different way, without reference to distributions or approximations.</p>
-<p>The exact approach to the coin throwing problem would be to write out all the possible tables you could have with four observations, and then work out the probability of each under the null hypothesis. Then count what proportion of tables are as unlikely or more unlikely than the observed results and you get your p value. It turns out that there are 9 possible outcomes for the coin throwing problem: 0 vs. 0; 0 vs 1; 0 vs. 2; 1 vs. 0; 1 vs. 1; 1 vs. 2; 2 vs. 0; 2 vs 1; 2 vs. 2. Two of these (0 vs. 2 and 2 vs. 0), are at least as extreme as the result we got, so that gives a p value of 0.33.</p>
+<p>Let’s imagine that you and I each throw two coins. I throw two heads and you throw two tails. The p-value you get from a chi squared is 0.046, which seems strange as what we threw doesn’t seem that unusual. The problem is that in chi squared analysis you compare the expected and observed values, add them up, get a value for chi, and then look this up on a table. Now this table is derived from a distribution based on large samples. It is an approximation that breaks down when numbers are very small (such as less than 5 in at least one cell). “Exact” statistics works out the probability of a certain result in a different way, without reference to distributions or approximations.</p>
+<p>The exact approach to the coin throwing problem would be to write out all the possible tables you could have with four observations, and then work out the probability of each under the null hypothesis. Then count what proportion of tables are as unlikely or more unlikely than the observed results and you get your p-value. It turns out that there are 9 possible outcomes for the coin throwing problem: 0 vs. 0; 0 vs 1; 0 vs. 2; 1 vs. 0; 1 vs. 1; 1 vs. 2; 2 vs. 0; 2 vs 1; 2 vs. 2. Two of these (0 vs. 2 and 2 vs. 0), are at least as extreme as the result we got, so that gives a p-value of 0.33.</p>
 <p><strong>Other Commands</strong></p>
 <p>You can use the <code>filter</code> command to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="week-4.html#cb22-1"></a><span class="co"># Perform a t-test only among patients with prior chemotherapy</span></span>
-<span id="cb22-2"><a href="week-4.html#cb22-2"></a><span class="kw">t.test</span>(nv <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> lesson3a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pc <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="week-4.html#cb23-1"></a><span class="co"># Perform a t-test only among patients with prior chemotherapy</span></span>
+<span id="cb23-2"><a href="week-4.html#cb23-2"></a><span class="kw">t.test</span>(nv <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> lesson3a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pc <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -2419,8 +2432,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean in group 0 mean in group 1 
 ##        5.270161        5.290076</code></pre>
 <p>To perform the t-test on those without prior chemotherapy, switch the group you are filtering on:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="week-4.html#cb24-1"></a><span class="co"># t-test for patients without prior chemotherapy</span></span>
-<span id="cb24-2"><a href="week-4.html#cb24-2"></a><span class="kw">t.test</span>(nv <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> lesson3a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pc <span class="op">==</span><span class="st"> </span><span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="week-4.html#cb25-1"></a><span class="co"># t-test for patients without prior chemotherapy</span></span>
+<span id="cb25-2"><a href="week-4.html#cb25-2"></a><span class="kw">t.test</span>(nv <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> lesson3a <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pc <span class="op">==</span><span class="st"> </span><span class="dv">0</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -2436,12 +2449,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-3" class="section level2">
 <h2><span class="header-section-number">4.3</span> Assignments</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="week-4.html#cb26-1"></a><span class="co"># Copy and paste this code to load the data for week 4 assignments</span></span>
-<span id="cb26-2"><a href="week-4.html#cb26-2"></a>lesson4a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4a.rds&quot;</span>))</span>
-<span id="cb26-3"><a href="week-4.html#cb26-3"></a>lesson4b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4b.rds&quot;</span>))</span>
-<span id="cb26-4"><a href="week-4.html#cb26-4"></a>lesson4c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4c.rds&quot;</span>))</span>
-<span id="cb26-5"><a href="week-4.html#cb26-5"></a>lesson4d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4d.rds&quot;</span>))</span>
-<span id="cb26-6"><a href="week-4.html#cb26-6"></a>lesson4e &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4e.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="week-4.html#cb27-1"></a><span class="co"># Copy and paste this code to load the data for week 4 assignments</span></span>
+<span id="cb27-2"><a href="week-4.html#cb27-2"></a>lesson4a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4a.rds&quot;</span>))</span>
+<span id="cb27-3"><a href="week-4.html#cb27-3"></a>lesson4b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4b.rds&quot;</span>))</span>
+<span id="cb27-4"><a href="week-4.html#cb27-4"></a>lesson4c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4c.rds&quot;</span>))</span>
+<span id="cb27-5"><a href="week-4.html#cb27-5"></a>lesson4d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4d.rds&quot;</span>))</span>
+<span id="cb27-6"><a href="week-4.html#cb27-6"></a>lesson4e &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4e.rds&quot;</span>))</span></code></pre></div>
 <p>This week’s assignment concerns techniques developed to assess epidemiologic data. But remember that a number is just a number: the techniques for working out the relative risk of getting breast cancer if you has a silicone breast implant is exactly the same as working out the relative risk of death in transgenic mice exposed to a carcinogen.</p>
 <p>Try to do the ones in bold, get to the non-bolded ones if you can.</p>
 <ul>

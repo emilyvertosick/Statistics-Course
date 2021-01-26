@@ -144,7 +144,7 @@ t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
 
 This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (am == 0) vs manual transmission (am == 1).
 
-The `t.test` function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.
+The `t.test` function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.
 
 While for an unpaired test, the `t.test` command prints the group means in each group, you may want to report the difference between means. The group means are stored in the `t.test` results under `estimate`.
 
@@ -192,7 +192,7 @@ mean_group1 - mean_group0
 ## [1] -33.417
 ```
 
-You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p value, the group means, and the 95% confidence interval.
+You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.
 
 Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is 33.4 higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between 16.3 lower or 83.1 higher in the automatic group vs the manual group.
 
@@ -257,7 +257,7 @@ Note here that you don’t get any parameters for the groups such as means, medi
 
 #### **The binomial test**
 
-The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p value). 
+The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p-value). 
 
 The first argument of `binom.test` is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the `p =` option - the default is 0.5 (50%).
 
@@ -331,7 +331,7 @@ In this dataset, there are no missing values for "sex", but it is a good habit t
 
 
 
-This tells you that you had 386 observations, and there were 205 where sex was coded as 1, an observation proportion of 0.53. Now the "assumed" proportion was 0.5, giving an expected number of 193 women. These two values are quite close and the p value is 0.2. 
+This tells you that you had 386 observations, and there were 205 where sex was coded as 1, an observation proportion of 0.53. Now the "assumed" proportion was 0.5, giving an expected number of 193 women. These two values are quite close and the p-value is 0.2. 
 
 ## Assignments
 

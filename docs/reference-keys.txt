@@ -130,3 +130,5 @@ tab:week5f
 tab:week510
 tab:week7b
 tab:week7e
+tab:week7c
+tab:week7k

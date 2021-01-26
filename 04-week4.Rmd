@@ -136,6 +136,8 @@ tbl_summary(
   percent = "row"
 ) %>%
   add_overall(last = TRUE)
+# Setting the "last" option to TRUE puts the column with statistics for the overall cohort in the last column of the table
+# The defaults etting, "last = FALSE", would put this column first in the table
 
 ```
 
@@ -175,11 +177,11 @@ table(lesson2a$subfourhour, lesson2a$sex) %>%
 
 ```
 
-As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared pvalue. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
+As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared p-value. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
 
 ```{r section4g, results = "asis"}
 
-# Create two-way table including chi-squared p value
+# Create two-way table including chi-squared p-value
 tbl_summary(
   lesson2a %>% select(subfourhour, sex),
   by = sex,
@@ -203,17 +205,17 @@ tbl_subfour_p <-
 
 ```
 
-So whereas `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "0")` of men completed the race in less than four hours, only `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "1")` of women did so. The p value here is `r style_pvalue(chisq.test(table(lesson2a$subfourhour, lesson2a$sex), correct = FALSE)$p.value)`.
+So whereas `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "0")` of men completed the race in less than four hours, only `r inline_text(tbl_subfour_p, variable = "subfourhour", level = "1", column = "1")` of women did so. The p-value here is `r style_pvalue(chisq.test(table(lesson2a$subfourhour, lesson2a$sex), correct = FALSE)$p.value)`.
 
 **Should you categorize a continuous variable?**
 
 If you are interested only:
 
-Remember that the p value when we did a t-test (`t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)`) was `r style_pvalue(t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)$p.value)`. That is, the p value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.
+Remember that the p-value when we did a t-test (`t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)`) was `r style_pvalue(t.test(rt ~ sex, data = lesson2a, var.equal = TRUE)$p.value)`. That is, the p-value was lower when we kept race time as a continuous variable, than when we categorized it. The reason is that we are losing information: we are treating someone who ran the race in 2.5 hours the same as someone who ran it in 3.9 hours. So in general, you should avoid turning continuous variables into categorical variables for the purposes of statistical analysis.
 
 ### Getting estimates: risk difference, risk ratio, odds ratio
 
-This table gives you a pvalue, but not an estimate. For this, we need the `epi.2by2` function from the `epiR` package. This function works for "cohort studies" and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the `epi.2by2` function the endpoint and the cohort (see below for more details). "Endpoint" will be something like cancer, response, progression, or running a marathon in under four hours. "Cohort" is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.
+This table gives you a p-value, but not an estimate. For this, we need the `epi.2by2` function from the `epiR` package. This function works for "cohort studies" and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the `epi.2by2` function the endpoint and the cohort (see below for more details). "Endpoint" will be something like cancer, response, progression, or running a marathon in under four hours. "Cohort" is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.
 
 The language we've been using is a little unusual for this example. A "case" is running a marathon in under four hours (i.e., subfourhour == 1). "Exposed" means that you are a woman (i.e. sex == 1). "Risk" means the proportion of patients who were a "case".
 
@@ -221,7 +223,7 @@ The language we've been using is a little unusual for this example. A "case" is 
 
 The `epi.2by2` function will give you a number of different estimates, including the odds, odds ratio, risk and relative risk. Note that in the `epi.2by2` output, the risk is in the column "Inc risk *" and the relative risk is listed as "Inc risk ratio" under "Point estimates and 95% CIs."
 
-The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a child passing an exam are therefore 250 ÷ 750 = 1 ÷ 3 = 33.33%. Here are some examples of probabilities and odds:
+The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a complication are therefore 250 ÷ 750 = 1 ÷ 3 = 0.33. Here are some examples of probabilities and odds:
 
 ```{r section4h1, echo = FALSE, results = "asis", purl = FALSE}
 
@@ -279,7 +281,7 @@ matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2)
 
 ```
 
-You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the `epi.2by2` function. By default, the `epi.2by2` function gives the pvalue without any continuity correction.
+You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the `epi.2by2` function. By default, the `epi.2by2` function gives the p-value without any continuity correction.
 
 ```{r section4k, warning = FALSE}
 
@@ -327,20 +329,20 @@ Here it is easier to see that the "toxin" is the exposure and "cancer" is whethe
 
 **Exact statistics**
 
-Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p value. However, using the `fisher.test` function gives the exact pvalue. You do not need to reverse the table for the `fisher.test` function.
+Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p-value. However, using the `fisher.test` function gives the exact p-value. You do not need to reverse the table for the `fisher.test` function.
 
 ```{r section4n, warning = FALSE}
 
-# Calculate p value from fisher's exact test
+# Calculate p-value from fisher's exact test
 fisher.test(table(example4a$toxin, example4a$cancer))
 
 ```
 
-Similar to the chi-squared test, you can also get the Fisher's exact pvalue using the `tbl_summary` and `add_p` functions, by specifying `test = "fisher.test"` for the variable of interest. 
+Similar to the chi-squared test, you can also get the Fisher's exact p-value using the `tbl_summary` and `add_p` functions, by specifying `test = "fisher.test"` for the variable of interest. 
 
 ```{r section4o, warning = FALSE}
 
-# Create formatted table with p value from fisher's exact test
+# Create formatted table with p-value from fisher's exact test
 tbl_summary(
   example4a %>% select(toxin, cancer),
   by = cancer,
@@ -354,9 +356,9 @@ tbl_summary(
 
 _For keen students only:_
 
-Let’s imagine that you and I each throw two coins. I throw two heads and you throw two tails. The p value you get from a chi squared is 0.046, which seems strange as what we threw doesn’t seem that unusual. The problem is that in chi squared analysis you compare the expected and observed values, add them up, get a value for chi, and then look this up on a table. Now this table is derived from a distribution based on large samples. It is an approximation that breaks down when numbers are very small (such as less than 5 in at least one cell). "Exact" statistics works out the probability of a certain result in a different way, without reference to distributions or approximations. 
+Let’s imagine that you and I each throw two coins. I throw two heads and you throw two tails. The p-value you get from a chi squared is 0.046, which seems strange as what we threw doesn’t seem that unusual. The problem is that in chi squared analysis you compare the expected and observed values, add them up, get a value for chi, and then look this up on a table. Now this table is derived from a distribution based on large samples. It is an approximation that breaks down when numbers are very small (such as less than 5 in at least one cell). "Exact" statistics works out the probability of a certain result in a different way, without reference to distributions or approximations. 
 
-The exact approach to the coin throwing problem would be to write out all the possible tables you could have with four observations, and then work out the probability of each under the null hypothesis. Then count what proportion of tables are as unlikely or more unlikely than the observed results and you get your p value. It turns out that there are 9 possible outcomes for the coin throwing problem: 0 vs. 0; 0 vs 1; 0 vs. 2; 1 vs. 0; 1 vs. 1; 1 vs. 2; 2 vs. 0; 2 vs 1; 2 vs. 2. Two of these (0 vs. 2 and 2 vs. 0), are at least as extreme as the result we got, so that gives a p value of 0.33. 
+The exact approach to the coin throwing problem would be to write out all the possible tables you could have with four observations, and then work out the probability of each under the null hypothesis. Then count what proportion of tables are as unlikely or more unlikely than the observed results and you get your p-value. It turns out that there are 9 possible outcomes for the coin throwing problem: 0 vs. 0; 0 vs 1; 0 vs. 2; 1 vs. 0; 1 vs. 1; 1 vs. 2; 2 vs. 0; 2 vs 1; 2 vs. 2. Two of these (0 vs. 2 and 2 vs. 0), are at least as extreme as the result we got, so that gives a p-value of 0.33. 
 
 **Other Commands**
 

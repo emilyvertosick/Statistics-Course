@@ -63,7 +63,7 @@ lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
 
 **This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.**
 
-Age is continuous and normally distributed (look at a graph or look at the centiles) and so it wouldn’t be unreasonable to describe age in terms of mean and standard deviation (SD) by using `lesson2a %>% skim(age)`: mean (42 years), SD of 10.2. By the way, don’t just copy the readout from R: this would give mean age as 42.43 and implies we are interested in age within a few days. 
+Age is continuous and normally distributed (look at a graph or look at the centiles) and so it wouldn’t be unreasonable to describe age in terms of mean and standard deviation (SD) by using `lesson2a %>% skim(age)`: mean of 42 years, SD of 10.2. By the way, don’t just copy the readout from R: this would give mean age as 42.43 and implies we are interested in age within a few days. 
 
 Sex is binary: use `tbl_summary(lesson2a %>% select(sex))` to get percentages. But note that the person who prepared the data didn’t state how the variable was coded (someone with sex=1 is a woman or a man?). Now what you should do in this situation is ask, but here is another alternative:
 
@@ -1372,6 +1372,23 @@ lesson2c <-
         TRUE ~ stage
       )
   )
+
+# You can use the "count" function to confirm that your variable was created correctly
+lesson2c %>% count(stage_category, stage)
+```
+
+```
+## # A tibble: 8 x 3
+##   stage_category stage     n
+##   <chr>          <chr> <int>
+## 1 T1             T1A       3
+## 2 T1             T1B       2
+## 3 T1             T1C     164
+## 4 T2A            T2A      36
+## 5 T2B            T2B      22
+## 6 T2C            T2C       8
+## 7 T3/4           T3        4
+## 8 T3/4           T4        2
 ```
 
 There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9. Now a key point is that what you decide to do in situations like this will often need to take into account your medical understanding. It might seems sensible to categorize grade as ≤6 or ≥7, or perhaps 4/5, 6, 7, 8/9. But as it turns out in prostate cancer, pathologists can’t reliably grade a cancer as 4 or 5 and these cancers should really be grouped with grade 6. Grade 8, on the other hand, signifies very aggressive disease and really needs to be reported separately even if there are only a few patients with grade 8. So grade would probably be summarized as per the following table:
@@ -2283,7 +2300,7 @@ Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equ
 
 <div class="quote-container">
 
-> Details of prior chemotherapy were available for 512 of the 1098 patients with nausea scores. Mean nausea scores were approximately 20% higher in the 255 patients with prior experience of chemotherapy (5.3; SD 2.03) than in the 257 chemotherapy-naive patients  (4.5; SD 1.99). The difference between groups was small (0.8, 95% C.I. 0.5, 1.2 but highly statistically significant (p<0.001 by t-test), suggesting that prior chemotherapy increases nausea scores. Nausea scores were slightly lower in women (n=444; mean 4.7; SD 1.98) than men (n=434; mean 4.8; SD 2.1) but there were no statistically significant differences between the sexes (difference between means 0.1, 95% C.I. -0.2, 0.3); p=0.7 by t-test). However, far more women (131 / 575, 60%) than men (89 / 523, 40%) failed provide a nausea score (p=0.017 by chi squared), perhaps suggesting bias in reporting.
+> Details of prior chemotherapy were available for 512 of the 1098 patients with nausea scores. Mean nausea scores were approximately 20% higher in the 255 patients with prior experience of chemotherapy (5.3; SD 2.03) than in the 257 chemotherapy-naive patients  (4.5; SD 1.99). The difference between groups was small (0.8, 95% C.I. 0.5, 1.2) but highly statistically significant (p<0.001 by t-test), suggesting that prior chemotherapy increases nausea scores. Nausea scores were slightly lower in women (n=444; mean 4.7; SD 1.98) than men (n=434; mean 4.8; SD 2.1) but there were no statistically significant differences between the sexes (difference between means 0.1, 95% C.I. -0.2, 0.3; p=0.7 by t-test). However, far more women (131 / 575, 60%) than men (89 / 523, 40%) failed provide a nausea score (p=0.017 by chi squared), perhaps suggesting bias in reporting.
 
 </div>
 
@@ -2798,15 +2815,15 @@ tbl_summary(
 
 If you got that far: wow! (also, forget the course, you don’t need it). If you didn’t get that far, don’t feel bad about it, but try to get a handle on the thought process.
 
-One other issue: the p value for the first t-test (previous chemotherapy) is given as "p value = 4.709e-06". While this number is very close to 0, we cannot round to 0 - there is no such thing as a p value of 0 for any hypothesis worth testing (there is a small but finite chance of every possible result, even throwing 100,000 tails in a row on an unbiased coin.) So do not report "p=0.0000"! You can round p values for reporting - for example, "4.709e-06" can be rounded to "<0.0005".
+One other issue: the p-value for the first t-test (previous chemotherapy) is given as "p-value = 4.709e-06". While this number is very close to 0, we cannot round to 0 - there is no such thing as a p-value of 0 for any hypothesis worth testing (there is a small but finite chance of every possible result, even throwing 100,000 tails in a row on an unbiased coin.) So do not report "p=0.0000"! You can round p-values for reporting - for example, "4.709e-06" can be rounded to "<0.0005".
 
 _For more advanced students:_
 
-The other thing you can do is to find out the precise p value from the t value (which is given above the p value: -4.6275). The function you need is `pt(t value, degrees of freedom)`. This will give you the p value for a one-sided test, so you must multiply by 2 to get the two-sided test p value.
+The other thing you can do is to find out the precise p-value from the t value (which is given above the p-value: -4.6275). The function you need is `pt(t value, degrees of freedom)`. This will give you the p-value for a one-sided test, so you must multiply by 2 to get the two-sided test p-value.
 
 
 ```r
-# Find out p value from t value
+# Find out p-value from t value
 pt(-4.6275, 510)*2
 ```
 
@@ -2814,9 +2831,9 @@ pt(-4.6275, 510)*2
 ## [1] 4.699746e-06
 ```
 
-This p value can also be read as 4.7 x 10^-6^. An interesting question though: is it important whether p is <0.0005 or 4.7 x 10^-6^?
+This p-value can also be read as 4.7 x 10^-6^. An interesting question though: is it important whether p is <0.0005 or 4.7 x 10^-6^?
 
-What is "degrees of freedom" and how come it is 510? Think about it this way: You have a line of ten people outside your door. You know the mean age of this group. Each person comes in one-by-one, you try to guess their age and they tell you how old they actually are. As each person comes in, your guesses will get better and better (for example, if the first three people have ages less than the mean, you will guess the age of the fourth person as something above the mean). However, only when you have the ages of the first nine people will you be able to guess for sure the age of the next (and last) person. In other words, the ages of the first nine people are "free", the age of the last person is "constrained". So "degrees of freedom" is the sample size minus one. Little catch though: for an unpaired test (such a straight drug v. placebo trial), you have two different groups and two different means. You would therefore be able to predict the scores of two observations (the last patient in each group). Degrees of freedom in an unpaired test is therefore the total sample size minus two (or, put another way, the sample size in group a minus one plus the sample size in group b minus one.)
+What is "degrees of freedom" and how come it is 510? Think about it this way: You have a line of ten people outside your door. You know the mean age of this group. Each person comes in one-by-one, you try to guess their age and they tell you how old they actually are. As each person comes in, your guesses will get better and better (for example, if the first three people have ages less than the mean, you will guess the age of the fourth person as something above the mean). However, only when you have the ages of the first nine people will you be able to guess for sure the age of the next (and last) person. In other words, the ages of the first nine people are "free", the age of the last person is "constrained". So "degrees of freedom" is the sample size minus one. Little catch though: for an unpaired test (such a straight drug v. placebo trial), you have two different groups and two different means. You would therefore be able to predict the scores of two observations (the last patient in each group). Degrees of freedom in an unpaired test is therefore the total sample size minus two (or, put another way, the sample size in group a minus one plus the sample size in group b minus one).
 
 ### lesson3b.rds
 
@@ -2844,7 +2861,7 @@ t.test(p ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ##      0.55555555     -0.08888889
 ```
 
-This gives a p value of 0.057 and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, the t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
+This gives a p-value of 0.057 and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, the t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
 
 However, if you are really keen, you could try the following:
 
@@ -2934,9 +2951,9 @@ wilcox.test(lesson3c$t1, lesson3c$t2, paired = TRUE)
 ## alternative hypothesis: true location shift is not equal to 0
 ```
 
-If you run this code, you will notice you get a warning in yellow text that states that the "exact p value" cannot be calculated. In R, "warnings" are notes that indicate you may want to look more closely at your code, but won't stop the code from running - as you can see, this code still gives a p value - but R is also flagging this result to tell you that this is not an "exact" p value (you will learn more about exact p values later). You should always take note of warnings when they occur, but sometimes you may not need to make any changes to the code.
+If you run this code, you will notice you get a warning in yellow text that states that the "exact p-value" cannot be calculated. In R, "warnings" are notes that indicate you may want to look more closely at your code, but won't stop the code from running - as you can see, this code still gives a p-value - but R is also flagging this result to tell you that this is not an "exact" p-value (you will learn more about exact p-values later). You should always take note of warnings when they occur, but sometimes you may not need to make any changes to the code.
 
-(By the way: I know this because that is what it says on the read out. If you had asked me yesterday, I doubt I would have remembered the name of a non-parametric paired test, another reason to think in concepts rather than remembering statistical techniques). The p value you get is p=0.14. We cannot conclude that pain scores are different. But is that all we want to say? The number of patients is small, maybe we failed to spot a difference. So let’s try a t-test:
+(By the way: I know this because that is what it says on the read out. If you had asked me yesterday, I doubt I would have remembered the name of a non-parametric paired test, another reason to think in concepts rather than remembering statistical techniques). The p-value you get is p=0.14. We cannot conclude that pain scores are different. But is that all we want to say? The number of patients is small, maybe we failed to spot a difference. So let’s try a t-test:
 
 
 ```r
@@ -2958,7 +2975,7 @@ t.test(lesson3c$t1, lesson3c$t2, paired = TRUE, var.equal = TRUE)
 ##               0.2727273
 ```
 
-The p value you get (p=0.14) is very similar to the non-parametric method and you get a confidence interval for the difference between means of -0.09, 0.64. What I would conclude from this is that pain is unlikely to be worse on day 2 than day 1 but any decrease in pain is probably not important. 
+The p-value you get (p=0.14) is very similar to the non-parametric method and you get a confidence interval for the difference between means of -0.09, 0.64. What I would conclude from this is that pain is unlikely to be worse on day 2 than day 1 but any decrease in pain is probably not important. 
 
 What about normality of the data? Doesn’t that figure into whether you assess by t-test or non-parametric? Well if you type look at the distribution of t1 and t2, you find that neither are normally distributed. But a paired t-test does not depend on the assumption that each set of data in a pair is distributed but that the differences between pairs are normally distributed. So you would have to create a new variable and look at that:
 
@@ -3050,7 +3067,7 @@ t.test(lesson3d$d, mu = 0)
 ##  24.20588
 ```
 
-Both methods give you an identical p value of <0.001. But note, I didn’t ask for the p value. I asked "Does acupuncture increase range of motion?" Given that this is an uncontrolled trial, it may be that range of motion has improved naturally over time. So in fact you can’t answer the question about whether acupuncture increases range of motion from these data!
+Both methods give you an identical p-value of <0.001. But note, I didn’t ask for the p-value. I asked "Does acupuncture increase range of motion?" Given that this is an uncontrolled trial, it may be that range of motion has improved naturally over time. So in fact you can’t answer the question about whether acupuncture increases range of motion from these data!
 
 BTW: for those who are interested, acupuncture has been shown to improve neck pain and range of motion in a controlled trial, see: [Irnich, Behrens et al., Immediate effects of dry needling and acupuncture at distant points in chronic neck pain: results of a randomized, double-blind, sham-controlled crossover trial.](https://www.ncbi.nlm.nih.gov/pubmed/12237186)
 
@@ -3074,7 +3091,7 @@ binom.test(sum(lesson3d$sex), nrow(lesson3d %>% filter(!is.na(sex))), p = 0.5)
 ##              0.2647059
 ```
 
-Only about a quarter of the patients are women, and the binomial test gives a p value of 0.009, suggesting that men are over-represented in this trial. But is this important?
+Only about a quarter of the patients are women, and the binomial test gives a p-value of 0.009, suggesting that men are over-represented in this trial. But is this important?
 
 
 ```r
@@ -3096,7 +3113,7 @@ t.test(lesson3d$age, mu = 58.2)
 ##  51.94118
 ```
 
-Similarly, this t-test for age gives a p value of 0.030, but I doubt anyone would call a mean age of 52 much different from a mean age of 58, so you’d probably want to say that, ok, the trial patients are younger than we might expect, but not by much.
+Similarly, this t-test for age gives a p-value of 0.030, but I doubt anyone would call a mean age of 52 much different from a mean age of 58, so you’d probably want to say that, ok, the trial patients are younger than we might expect, but not by much.
 
 ### lesson3e.rds
 
@@ -3172,7 +3189,7 @@ t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
 
 
 
-The p value is similar to the untransformed analyses. Now, look at the difference between means -0.02 and confidence interval (-0.16, 0.12).
+The p-value is similar to the untransformed analyses. Now, look at the difference between means -0.02 and 95% confidence interval (-0.16, 0.12).
 
 To backtransform these values, you have to remember that addition on a log scale is the same as multiplication on an untransformed scale. Backtransform -0.02 using ``exp(-0.02)`` and you get 1.0. In other words, length of stay in hospital a is 98% more (or 2.0% less) compared to hospital b. Do the same things with the upper and lower bounds of the confidence interval and you might conclude that the difference in length of stay is between 15% less in hospital a to 13% less in hospital b. If you wanted to convert these numbers to actual days, just multiply by the mean hospital stay in group b by 1.0, 0.85 and 1.13.
 
@@ -3204,7 +3221,7 @@ t.test(delta ~ physio, data = lesson3f, paired = FALSE, var.equal = TRUE)
 
 
 
-This gives a p value of 0.14 (incidentally, don't say "p > 0.05" or "p=0.1399", which are under- and over-precise, respectively). Given a p value greater than 5%, we would say that we found no evidence that the treatment was effective. But is this really the case? Look at the read out from the t-test again, particularly the means for each group and the difference. The improvements in the treatment group was about 50% greater than in controls. The 95% confidence interval for the difference includes a possible 17 point improvement on physiotherapy, more than twice that of controls. So physiotherapy might well be a clinically important treatment in this population, even if we failed to prove it was better than control in this trial. Whatever your conclusion, don’t just report the p value: report the means and standard deviations in each group separately plus the difference between means and a 95% confidence interval. If I was writing this up for a journal, I might say:
+This gives a p-value of 0.14 (incidentally, don't say "p > 0.05" or "p=0.1399", which are under- and over-precise, respectively). Given a p-value greater than 5%, we would say that we found no evidence that the treatment was effective. But is this really the case? Look at the read out from the t-test again, particularly the means for each group and the difference. The improvements in the treatment group was about 50% greater than in controls. The 95% confidence interval for the difference includes a possible 17 point improvement on physiotherapy, more than twice that of controls. So physiotherapy might well be a clinically important treatment in this population, even if we failed to prove it was better than control in this trial. Whatever your conclusion, don’t just report the p-value: report the means and standard deviations in each group separately plus the difference between means and a 95% confidence interval. If I was writing this up for a journal, I might say:
 
 <div class="quote-container">
 
@@ -3637,7 +3654,7 @@ tbl_summary(
 
 
 
-This shows, for example, 56% of those who get car sick reported problematic nausea compared to only 33% of those who aren't prone to car sickness. To find out whether this is statistically significant (it certainly seems clinically significant), you can use the `chisq.test` or the `fisher.test` function. For the `chisq.test` function, remember to use the `correct = FALSE` option to get the pvalue without continuity correction.
+This shows, for example, 56% of those who get car sick reported problematic nausea compared to only 33% of those who aren't prone to car sickness. To find out whether this is statistically significant (it certainly seems clinically significant), you can use the `chisq.test` or the `fisher.test` function. For the `chisq.test` function, remember to use the `correct = FALSE` option to get the p-value without continuity correction.
 
 
 ```r
@@ -3672,7 +3689,7 @@ fisher.test(table(lesson4a$nv, lesson4a$cs))
 ##   2.348722
 ```
 
-`chisq.test` gives the p value from a chi-squared test, `fisher.test` is a special form of this test when any of the numbers in the table are small, say 10 or below in any cell. The p value is about 0.6. You now have 3 options:
+`chisq.test` gives the p-value from a chi-squared test, `fisher.test` is a special form of this test when any of the numbers in the table are small, say 10 or below in any cell. The p-value is about 0.6. You now have 3 options:
 
 1. Declare the result non-statistically significant, and conclude that you have failed to reject the null hypothesis of no difference between groups.
 2.	Say that, though differences between groups were not statistically significant, sample size was too small.
@@ -3723,7 +3740,7 @@ This gives a "risk ratio" (same as relative risk) of 1.67 with a 95% CI 0.47, 5.
 
 
 
-There are three levels of meat consumption. The outcome (hypertension) is binary either 1 or 0. So we will have a 3 by 2 table. Let’s start with a quick look:
+There are three levels of meat consumption. The outcome (hypertension) is binary, either 1 or 0. So we will have a 3 by 2 table. Let’s start with a quick look:
 
 
 ```r
@@ -4538,7 +4555,7 @@ chisq.test(table(lesson4b$hbp, lesson4b$meat), correct = FALSE)
 ## X-squared = 10.759, df = 2, p-value = 0.004611
 ```
 
-The p value is p=0.005. How to interpret this? The formal statistical interpretation is that we can reject the null hypothesis that rates of hypertension are the same in each group. To demonstrate this, try renumbering the labels for the variable meat:
+The p-value is p=0.005. How to interpret this? The formal statistical interpretation is that we can reject the null hypothesis that rates of hypertension are the same in each group. To demonstrate this, try renumbering the labels for the variable meat:
 
 
 ```r
@@ -4566,7 +4583,7 @@ chisq.test(table(lesson4b_changed$hbp, lesson4b_changed$meat), correct = FALSE)
 ## X-squared = 10.759, df = 2, p-value = 0.004611
 ```
 
-You get exactly the same result. This demonstrates that: a) the numbers you use for meat consumption act only as labels; b) the order is unimportant: you get the same p value if you arrange the columns "low med hi" as "hi low med".
+You get exactly the same result. This demonstrates that: a) the numbers you use for meat consumption act only as labels; b) the order is unimportant: you get the same p-value if you arrange the columns "low med hi" as "hi low med".
 
 So it might be useful to do what are called "pairwise" comparisons: what difference is there in the rate of hypertension between low and medium meat eaters? What about high and low? Though there are three possible comparisons (hi v. lo; hi v. med; med v. lo), it is more usual to chose either the highest or lowest category and compare everything to that. The way to do these analyses is to create new variables. The code is given below (the #s are comments that are ignored by R).
 
@@ -5886,23 +5903,20 @@ The first thing we want to do is compare response by group. But using `epi.2by2`
 
 
 
-This gives response rates of 48% on regimen "a" and 40% on regimen "b", a relative risk of 0.84 and a p value of 0.11. Should we conclude that there is no difference between groups and that you should feel free to use either regimen? Imagine you are a patient. You are told that you have a 50:50 chance of response on one regimen but only a 40% chance on the other. Unless there are good reasons to choose between the regimes (e.g. toxicity), which would you choose? The point here is that statistical significance does not really inform choices between similar alternatives. Assuming that toxicity, cost and inconvenience are similar between the regimes, I would recommend regimen a, even though the difference is not statistically significant. The confidence interval here is absolutely critical: the 95% C.I. for the risk difference is -18%, 1.7%. In other words, the response rate could be 18% higher on regimen a (e.g. 55% vs. 37%) or 2% lower (e.g. 50% vs. 52%). So you might do a lot better with regimen a, you are unlikely to do much worse. 
+This gives response rates of 48% on regimen "a" and 40% on regimen "b", a relative risk of 0.84 and a p-value of 0.11. Should we conclude that there is no difference between groups and that you should feel free to use either regimen? Imagine you are a patient. You are told that you have a 50:50 chance of response on one regimen but only a 40% chance on the other. Unless there are good reasons to choose between the regimes (e.g. toxicity), which would you choose? The point here is that statistical significance does not really inform choices between similar alternatives. Assuming that toxicity, cost and inconvenience are similar between the regimes, I would recommend regimen a, even though the difference is not statistically significant. The confidence interval here is absolutely critical: the 95% C.I. for the risk difference is -18%, 1.7%. In other words, the response rate could be 18% higher on regimen a (e.g. 55% vs. 37%) or 2% lower (e.g. 50% vs. 52%). So you might do a lot better with regimen a, you are unlikely to do much worse. 
 
 **The sub-group analyses**
 
 A common mistake would be to use `epi.2by2` with `response` and `sex`. However, this would examine whether, regardless of chemotherapy regimen used, men and women had different tumor outcome. What we want to see if the difference between treatment a and b changes depending on whether male or female patients are being treated.
 
-To do this analysis, we first need to split the dataset up into two groups, one dataset including only men and the other including only women. The `group_split` function can be used to do this, and will store out two datasets labelled as `[[1]]` and `[[2]]`. R decides which dataset is `[[1]]` and `[[2]]` based on the ordering of the variable values for "sex". Here, the variable "sex" is categorized as 0 for males and 1 for females, so the first dataset `[[1]]` is for males and the second dataset `[[2]]` is for females.
+To do this analysis, we first need to split the dataset up into two groups, one dataset including only men and the other including only women. You can use the `filter` function that you've previously seen to separate out males and females into different data sets. Here, sex is categorized as 0 for male and 1 for female.
 
 
 ```r
-# You can use the "group_split" function to split your dataset into two groups
-lesson4d_sex <-
+# Use "filter" to select only male patients
+lesson4d_males <-
   lesson4d %>%
-  group_split(sex)
-
-# The first dataset, indicated by lesson4d_sex[[1]], is males
-lesson4d_males <- lesson4d_sex[[1]]
+  filter(sex == 0)
 
 # To confirm:
 table(lesson4d_males$sex)
@@ -5915,8 +5929,10 @@ table(lesson4d_males$sex)
 ```
 
 ```r
-# The second dataset, indicated by lesson4d_sex[[2]], is females
-lesson4d_females <- lesson4d_sex[[2]]
+# Use "filter" to select only female patients
+lesson4d_females <-
+  lesson4d %>%
+  filter(sex == 1)
 
 # To confirm:
 table(lesson4d_females$sex)
@@ -5986,15 +6002,16 @@ Testing age is a little more difficult as it is a continuous variable. One typic
 
 
 ```r
-# Use "group_split" again
-lesson4d_age <-
+# Use "filter" again to select age
+lesson4d_younger <-
   lesson4d %>%
-  # Create variable to indicate how to split data
-  mutate(hiage = if_else(age > 42, 1, 0)) %>%
-  group_split(hiage)
+  filter(age <= 42)
 
-# Younger patients (lesson4d_age[[1]])
-lesson4d_younger <- lesson4d_age[[1]]
+lesson4d_older <-
+  lesson4d %>%
+  filter(age > 42)
+
+# Younger patients 
 epi.2by2(matrix(rev(table(lesson4d_younger$group, lesson4d_younger$response)), nrow = 2))
 ```
 
@@ -6020,8 +6037,7 @@ epi.2by2(matrix(rev(table(lesson4d_younger$group, lesson4d_younger$response)), n
 ```
 
 ```r
-# Older patients (lesson4d_age[[2]])
-lesson4d_older <- lesson4d_age[[2]]
+# Older patients
 epi.2by2(matrix(rev(table(lesson4d_older$group, lesson4d_older$response)), nrow = 2))
 ```
 
@@ -6050,11 +6066,11 @@ You get no difference between groups for either older or younger patients. As it
 
 **Interaction or sub-group analysis?**
 
-There is a further problem here: we have one question ("do effects differ between men and women?") and two p values (one for men and one for women). What you really want is one p value to answer one question. The correct statistical technique for looking at whether the effects of treatment differ between sub-groups is called interaction. We will look at this later in the course. In the meantime, if you are interested, you can read some brief articles at: 
+There is a further problem here: we have one question ("do effects differ between men and women?") and two p-values (one for men and one for women). What you really want is one p-value to answer one question. The correct statistical technique for looking at whether the effects of treatment differ between sub-groups is called interaction. We will look at this later in the course. In the meantime, if you are interested, you can read some brief articles at: 
 
 [Statistics Notes: Interaction 1: heterogeneity of effects](http://bmj.bmjjournals.com/cgi/content/full/313/7055/486?ijkey=f0d0304067151ab3c6490b209ca3e954acb60a29&keytype2=tf_ipsecsha)
 
-[Statistics Notes: Interaction 2: compare effect sizes not P values](http://bmj.bmjjournals.com/cgi/content/full/313/7060/808?ijkey=7172a78ea07bf92702ec4a33c6804b3ea439c46c&keytype2=tf_ipsecsha)
+[Statistics Notes: Interaction 2: compare effect sizes not p-values](http://bmj.bmjjournals.com/cgi/content/full/313/7060/808?ijkey=7172a78ea07bf92702ec4a33c6804b3ea439c46c&keytype2=tf_ipsecsha)
 
 [Statistics Notes: Interaction 3: How to examine heterogeneity](http://bmj.bmjjournals.com/cgi/content/full/313/7061/862?ijkey=c1181f258aa1146139604ac7d463ec93caa4d623&keytype2=tf_ipsecsha)
 
@@ -6062,7 +6078,7 @@ There is a further problem here: we have one question ("do effects differ betwee
 
 **This is a lab study of two candidate tumor-suppressor genes (gene1 and gene2). Wild-type mice are compared with mice that have gene1 knocked-out, gene2 knocked-out or both. The presence of tumors is measured after 30 days. Do the genes suppress cancer?**
 
-The obvious thing to do would be to use `epi.2by2` with "cancer" and "gene1", and then with "cancer" and "gene2". Superficially this would suggest that gene1 is a tumor suppressor gene and gene2 is not. However, don't get too fixated on p values. The proportion of cancer in mice with gene2 knocked out is over twice that of controls. Remember that animal experiments tend to use a very small number of observations (a typical clinical trial has hundreds of patients, a typical lab study has maybe a dozen mice). So you might want to say that there is good evidence that gene1 is a tumor suppressor gene but that whilst evidence is suggestive for gene2, more research is needed.
+The obvious thing to do would be to use `epi.2by2` with "cancer" and "gene1", and then with "cancer" and "gene2". Superficially this would suggest that gene1 is a tumor suppressor gene and gene2 is not. However, don't get too fixated on p-values. The proportion of cancer in mice with gene2 knocked out is over twice that of controls. Remember that animal experiments tend to use a very small number of observations (a typical clinical trial has hundreds of patients, a typical lab study has maybe a dozen mice). So you might want to say that there is good evidence that gene1 is a tumor suppressor gene but that whilst evidence is suggestive for gene2, more research is needed.
 
 A BIG HOWEVER - have a look at the data or this table:
 
@@ -6531,7 +6547,7 @@ summary(rt_model)
 
 
 
-The p values for all the predictor variables apart from weight are very low. A model answer might be:
+The p-values for all the predictor variables apart from weight are very low. A model answer might be:
 
 <div class="quote-container">
 
@@ -6884,17 +6900,13 @@ The p values for all the predictor variables apart from weight are very low. A m
   <thead class="gt_col_headings">
     <tr>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 219</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 217</strong><sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr>
       <td class="gt_row gt_left">Age (years)</td>
       <td class="gt_row gt_center">42 (11)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Unknown</td>
-      <td class="gt_row gt_center">1</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">Female</td>
@@ -6907,10 +6919,6 @@ The p values for all the predictor variables apart from weight are very low. A m
     <tr>
       <td class="gt_row gt_left">Race time (minutes)</td>
       <td class="gt_row gt_center">246 (45)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Unknown</td>
-      <td class="gt_row gt_center">1</td>
     </tr>
     <tr>
       <td class="gt_row gt_left">Weight (kg)</td>
@@ -7331,7 +7339,7 @@ The p values for all the predictor variables apart from weight are very low. A m
 
 A real-life decision you could take away from this is that every additional mile you run in training would be predicted to cut about 1.5 minutes from your marathon time: add a couple of extra five mile runs per week and you’ll shave a quarter of an hour off your time. 
 
-A couple of thoughts. First, you will note that I didn’t remove weight from the model (that is, use a step wise approach) then report the coefficients and p values for the new model (by typing `lm(rt ~ age + sex + tr, data = lesson5a)`).
+A couple of thoughts. First, you will note that I didn’t remove weight from the model (that is, use a step wise approach) then report the coefficients and p-values for the new model (by typing `lm(rt ~ age + sex + tr, data = lesson5a)`).
 
 Second, race time is not normally distributed and the textbooks would have us believe that this invalidates a regression analysis. Let’s try:
 
@@ -7376,7 +7384,7 @@ summary(rtlog_model)
 ## F-statistic: 21.58 on 4 and 212 DF,  p-value: 5.978e-15
 ```
 
-This creates a new variable called "lt" that is the log of race time. You can use the `skim` function to see that it is normally distributed. Now let’s look at the results of the regression analysis: the p values are almost exactly the same. This suggests that the non-normality of race time is not important in this setting.
+This creates a new variable called "lt" that is the log of race time. You can use the `skim` function to see that it is normally distributed. Now let’s look at the results of the regression analysis: the p-values are almost exactly the same. This suggests that the non-normality of race time is not important in this setting.
 
 _For advanced students only_
 
@@ -7803,7 +7811,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 </table></div>
 ```
 
-If you get a p value of around 0.7, you haven't been inspecting your data. One patient has apparently had the disease for 154 years. Either this is a freak of nature or the study assistant meant to type 14 or 15. You need to delete this observation from the dataset and try the model again:
+If you get a p-value of around 0.7, you haven't been inspecting your data. One patient has apparently had the disease for 154 years. Either this is a freak of nature or the study assistant meant to type 14 or 15. You need to delete this observation from the dataset and try the model again:
 
 
 ```r
@@ -10239,7 +10247,7 @@ tbl_regression(flife_model)
 
 The coefficients you get (-0.10 for men and -0.08 for women) suggest that a 5% drop in unemployment is associated with about a 6 month increase in life expectancy, in other words, a small effect.
 
-Interesting question: should you also report a p value and 95% confidence interval for the coefficients? The answer is no. This is because Canadian provinces are not some random sample from a large theoretical population of Canadian provinces. You have all the data. So questions of inference (i.e. p values) and uncertainty (i.e. 95% confidence intervals) don’t come into it.
+Interesting question: should you also report a p-value and 95% confidence interval for the coefficients? The answer is no. This is because Canadian provinces are not some random sample from a large theoretical population of Canadian provinces. You have all the data. So questions of inference (i.e. p-values) and uncertainty (i.e. 95% confidence intervals) don’t come into it.
 
 Even more interesting question: the conclusion of a 5% drop in unemployment being associated with a 6 month increase in life expectancy is based on a causal relationship, that is, we believe that changes in unemployment _cause_ changes in life expectancy. This is not implausible: unemployment leads to poverty and depression, both of which reduce life expectancy. However, a causal relationship cannot be assumed. For example, it may be that life expectancy is lower in certain areas of the country (due to eating patterns or ethnic differences) that also happen to suffer higher unemployment. 
 
@@ -10277,7 +10285,7 @@ summary(tumorsize_model)
 ## F-statistic: 8.916 on 1 and 14 DF,  p-value: 0.00982
 ```
 
-A couple of thoughts. Firstly, this rather obvious analysis is not often conducted in lab research. Typically, researchers present pairwise comparisons between each dose and control. For example, see the following typical diagram. Each of the p values compares the dose to control. The problem with such an approach is that you end up with multiple p values (instead of just one) and that each test takes place in a vacuum: the p value of a comparison between no treatment and, say, dose level 3, is the same regardless of whether there were 2 dose levels in the experiment, or 100, and whether all other dose levels showed an effect or did not. A regression analysis gives you a single p value and uses all data in one analysis.
+A couple of thoughts. Firstly, this rather obvious analysis is not often conducted in lab research. Typically, researchers present pairwise comparisons between each dose and control. For example, see the following typical diagram. Each of the p-values compares the dose to control. The problem with such an approach is that you end up with multiple p-values (instead of just one) and that each test takes place in a vacuum: the p-value of a comparison between no treatment and, say, dose level 3, is the same regardless of whether there were 2 dose levels in the experiment, or 100, and whether all other dose levels showed an effect or did not. A regression analysis gives you a single p-value and uses all data in one analysis.
 
 <img src="09-answers_files/figure-html/week5u-1.png" width="384" />
 
@@ -12396,7 +12404,7 @@ ggplot(data = lesson5f,
 
 <img src="09-answers_files/figure-html/week53-1.png" width="672" />
 
-In other words, there is not a linear relationship between your age and the distance you can throw a Frisbee. There are two options. You can either do two linear regressions, one for age up to 30 and one for age >30. But this is a little sloppy: better, you could try including non-linear terms (see below). In either case, remember not to report p values or 95% confidence intervals: these are meaningless because there is only one record per distance.
+In other words, there is not a linear relationship between your age and the distance you can throw a Frisbee. There are two options. You can either do two linear regressions, one for age up to 30 and one for age >30. But this is a little sloppy: better, you could try including non-linear terms (see below). In either case, remember not to report p-values or 95% confidence intervals: these are meaningless because there is only one record per distance.
 
 _For advanced students only:_
 
@@ -13243,7 +13251,7 @@ tbl_summary(
 ```
 
 ```r
-# Here, the "summarize" function stores out the p values for the chi-squared test by sex
+# Here, the "summarize" function stores out the p-values for the chi-squared test by sex
 lesson5g %>%
   group_by(sex) %>%
   summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
@@ -14888,7 +14896,7 @@ tbl_summary(
 ```
 
 ```r
-# Calculate p value for each comparison
+# Calculate p-value for each comparison
 lesson5g %>%
   filter(!is.na(age)) %>% # Exclude 2 patients missing age
   group_by(hiage) %>%
@@ -18537,7 +18545,7 @@ Now when you regress the change score using the variables "treat" and "therapy" 
 
 <div class="quote-container">
 
-> Mood scores improved in the therapist group (2.1 points, SD 0.88) and volunteer groups (1.0, SD 0.89) but not in the no treatment group (0.1 point worsening in score, 1.1). Interaction with a considerate individual appears to improve mood by 0.83 points (95% CI 0.54, 1.1, p<0.001) with active behavior therapy further improving scores an additional 1.0 points (95% CI 0.73, 1.3, p<0.001).
+> Mood scores improved in the therapist group (2.1 points, SD 0.88) and volunteer groups (1.0, SD 0.89) but not in the no treatment group (0.1 point worsening in score, SD 1.1). Interaction with a considerate individual appears to improve mood by 0.83 points (95% CI 0.54, 1.1, p<0.001) with active behavior therapy further improving scores an additional 1.0 points (95% CI 0.73, 1.3, p<0.001).
 
 </div>
 
@@ -18570,7 +18578,7 @@ lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
 
 
 
-The thing to take away from this is that sensitivity and specificity don’t change, but the positive and negative predictive value do. The prevalence of myocardial infarct is obviously much lower in the general hospital population compared to the coronary care population. So negative predictive value is higher in general patients (you are unlikely to have an MI anyway, so if the test says you’re negative, it is almost definite) and positive predictive value higher in coronary care patients (you at high risk of having an MI, so a positive test just about confirms it).
+The thing to take away from this is that sensitivity and specificity don’t change, but the positive and negative predictive value do. The prevalence of myocardial infarct is obviously much lower in the general hospital population compared to the coronary care population. So negative predictive value is higher in general patients (you are unlikely to have an MI anyway, so if the test says you’re negative, it is almost definite) and positive predictive value higher in coronary care patients (you are at high risk of having an MI, so a positive test just about confirms it).
 
 ### lesson6c.rds
 
@@ -21903,13 +21911,8 @@ tbl_summary(
 ```
 
 
-```
-## Warning: NAs introduced by coercion
 
-## Warning: NAs introduced by coercion
-```
-
-You'll see that only NA patients are reclassified. It is questionable whether we'd want to do scans on ~6600 patients to reclassify NA of them.
+You'll see that only 172 patients are reclassified. It is questionable whether we'd want to do scans on ~6600 patients to reclassify 172 of them.
 
 And here are the answers to the questions without data!
 
@@ -22441,7 +22444,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesi
 </table></div>
 ```
 
-This suggests that the presence of obstruction or adhesion influences survival, as well as the number of nodes. Neither age (surprisingly) nor sex are likely to have a large impact (the confidence interval does not include any large differences between groups). The p value for perforation is non-significant, but the confidence intervals are wide. Why is this? Try this:
+This suggests that the presence of obstruction or adhesion influences survival, as well as the number of nodes. Neither age (surprisingly) nor sex are likely to have a large impact (the confidence interval does not include any large differences between groups). The p-value for perforation is non-significant, but the confidence intervals are wide. Why is this? Try this:
 
 
 ```r
@@ -23323,7 +23326,7 @@ A model answer for this dataset might be:
 
 <div class="quote-container">
 
->Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, and >10. In a Cox regression of the 599 patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
+>Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4 years. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, and >10. In a Cox regression of the 599 patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
 
 </div>
 
@@ -24184,7 +24187,7 @@ survdiff(Surv(time, recurrence) ~ hivolume, data = lesson7b)
 
 
 
-We get a p value of 0.11.
+We get a p-value of 0.11.
 
 This is not sufficient evidence to conclude that high volume hospitals and more experienced surgeons lower recurrence rates. However, could there be a difference and the trial was not large enough to detect it? The key point here is not sample size, but the number of "events" (typically recurrences or deaths). Even if you had a trial of 100,000 patients, if only one or two people died you would not have any data on length of survival to test. In this dataset, though there were 40 patients, there were only ten events. You can see that if you use the `survfit` function:
 
@@ -24592,7 +24595,7 @@ A model answer:
 
 <div class="quote-container">
 
->At a median follow-up for survivors of 44 months, 3 patients in the high volume hospital had recurred compared to 7 in the low volume hospital (Figure 1, p=0.11 by log-rank test). Median has not been reached in either group. The hazard ratio of 0.35 (95% CI 0.09, 1.35) suggests that a large difference between groups may not have been detected at this stage of follow-up.
+>At a median follow-up for survivors of 44 months, 3 patients in the high volume hospital had recurred compared to 7 in the low volume hospital (Figure 1, p=0.11 by log-rank test). Median survival has not been reached in either group. The hazard ratio of 0.35 (95% CI 0.09, 1.35) suggests that a large difference between groups may not have been detected at this stage of follow-up.
 
 </div>
 
@@ -24637,7 +24640,7 @@ Let's jump straight to the model answer.
 
 <div class="quote-container">
 
->The study consisted of 929 patients, of whom 452 died during the study. Median duration of follow-up for survivors was 6.4 years. Median survival in the control and 5FU groups was 5.7 and 5.9, respectively; median survival for the combination group has not been reached (see figure). The overall log-rank test was significant (p=0.003), suggesting that the survival is different between groups. In a multivariable Cox regression with group coded as two dummy variables (5FU and Levamisole), 5FU was found to have little effect on survival (HR 0.97 (95% CI 0.78, 1.21; p=0.8)). Levamisole, however, led to significantly increased survival (hazard ratio 0.69 (95% CI 0.55, 0.87; p=0.002)).
+>The study consisted of 929 patients, of whom 452 died during the study. Median duration of follow-up for survivors was 6.4 years. Median survival in the control and 5FU groups was 5.7 and 5.9 years, respectively; median survival for the combination group has not been reached (see figure). The overall log-rank test was significant (p=0.003), suggesting that the survival is different between groups. In a multivariable Cox regression with group coded as two dummy variables (5FU and Levamisole), 5FU was found to have little effect on survival (HR 0.97 (95% CI 0.78, 1.21; p=0.8)). Levamisole, however, led to significantly increased survival (hazard ratio 0.69 (95% CI 0.55, 0.87; p=0.002)).
 
 **Figure**
 
@@ -25071,7 +25074,7 @@ lesson7c <-
   )
 ```
 
-Then it was straightforward to create the cox model and get the overall p value from the `survdiff` function.
+Then it was straightforward to create the cox model and get the overall p-value from the `survdiff` function.
 
 
 ```r
@@ -25092,7 +25095,7 @@ coxph(Surv(survival_time, died) ~ fu + lev, data = lesson7c)
 ```
 
 ```r
-# Overall p value for all 3 groups
+# Overall p-value for all 3 groups
 survdiff(Surv(survival_time, died) ~ group, data = lesson7c)
 ```
 

@@ -33,7 +33,7 @@ all_data_names <-
         unlist() %>%
         pluck(3) %>%
         str_replace(".rds", "")
-      )
+  )
 names(all_data) <- all_data_names
 
 # Load all data to environment
@@ -145,7 +145,7 @@ lesson3d_pred
 
 ```
 
-To get the number of observations, coefficients, 95% confidence interval and p values printed in a table for all covariates, you can use the `tbl_regression` function from the `gtsummary` package:
+To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the `tbl_regression` function from the `gtsummary` package:
 
 ```{r section5g, message = FALSE}
 
@@ -160,7 +160,23 @@ tbl_rom <- tbl_regression(rom_model)
 
 ```
 
-For example, for sex, the 95% CI is `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.low} to {conf.high}")`, meaning that women might plausibly have a range of motion anywhere from `r style_sigfig(abs(tbl_rom$table_body$conf.low[1]))` degrees less than men to `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.high}")` degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p value, `r inline_text(tbl_rom, variable = "sex", pattern = "{p.value}")`. There are `r inline_text(tbl_rom, variable = "sex", pattern = "{N}")` patients included in this model.
+For example, for sex, the 95% CI is `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.low} to {conf.high}")`, meaning that women might plausibly have a range of motion anywhere from `r style_sigfig(abs(tbl_rom$table_body$conf.low[1]))` degrees less than men to `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.high}")` degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p-value, `r inline_text(tbl_rom, variable = "sex", pattern = "{p.value}")`. There are `r inline_text(tbl_rom, variable = "sex", pattern = "{N}")` patients included in this model. You can determine the number of observations included in the model using the `nobs()` function, or you can update the table to include this number in the header.
+
+```{r section5h2}
+
+# To get the number of observations in the model
+nobs(rom_model)
+
+# By default, the number of observations is not shown in "tbl_regression"
+# You can use the code below to print the number of observations in the table header
+tbl_regression(rom_model) %>%
+  modify_header(
+    label ~ "**Characteristic (N = {N})**"
+  )
+
+```
+
+<br>
 
 ```{r section5i}
 
@@ -171,7 +187,7 @@ summary(rom_model)
 
 At the bottom of the `summary` readout there are a few miscellaneous tidbits:
 
-- The "p value" next to the "F-statistic" on the last line tells you whether, as a whole, your model, including the constant and three variables, is a statistically significant predictor.
+- The "p-value" next to the "F-statistic" on the last line tells you whether, as a whole, your model, including the constant and three variables, is a statistically significant predictor.
 
 - The "Multiple R-squared" value (often referred to as just "r squared") tells you how good a predictor it is on a scale from 0 to 1. We’ll discuss the meaning of r squared in more detail, but it is defined as the proportion of variation that you can explain using your model. 
 
@@ -216,7 +232,6 @@ tbl_response <-
   response_model %>%
   tbl_regression(exponentiate = TRUE)
 
-
 tbl_response_logit <-
   summary(response_model)
 
@@ -233,7 +248,7 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
 
 ```
 
-The key things here are the odds ratios: you can say that the odds of response is multiplied by `r style_ratio(tbl_response$table_body$estimate[1], digits = 2)` for a one year increase in age; that women have an odds of response `r style_ratio(tbl_response$table_body$estimate[2], digits = 2)` of that for the men, though this is not statistically significant, and that response is lower in group 1, with an odds of `r style_ratio(tbl_response$table_body$estimate[3], digits = 2)` (you would also cite the p value and 95% CIs).
+The key things here are the odds ratios: you can say that the odds of response is multiplied by `r style_ratio(tbl_response$table_body$estimate[1], digits = 2)` for a one year increase in age; that women have an odds of response `r style_ratio(tbl_response$table_body$estimate[2], digits = 2)` of that for the men, though this is not statistically significant, and that response is lower in group 1, with an odds of `r style_ratio(tbl_response$table_body$estimate[3], digits = 2)` (you would also cite the p-value and 95% CIs).
 
 The problem here is that you can’t use any of these data to work out an individual patient’s chance of response. Now you can get R to do this for you using the `augment` function. For a binary outcome, you need to specify `type.predict = "response"` as an option so that you will get predicted probabilities (not log odds).
 
@@ -267,7 +282,7 @@ summary(recurrence_model)
 
 ```
 
-```{r section5p, results = "asis"}
+```{r section5p, results = "asis", warning = FALSE}
 
 # Formatted to show odds ratios
 recurrence_model %>%
@@ -302,10 +317,10 @@ summary(response_model)
 xb <- tbl_response_logit$coefficients[1]+tbl_response_logit$coefficients[2]*53+tbl_response_logit$coefficients[4]
 
 pr <- (exp(xb) / (exp(xb) + 1)*100)
-  
+
 ```
 
-Firstly, note that the p values are the same, what differs is the coefficients. Now if you are really smart, you’ll notice that the coefficient is the natural log of the odds ratios above. You can use the coefficients to work out an individual’s probability of response. We start with the constant, and subtract `r style_sigfig(abs(tbl_response_logit$coefficients[2]), digits = 4)` for each year of age and then subtract an additional `r style_sigfig(abs(tbl_response_logit$coefficients[3]), digits = 2)` if a woman and `r style_sigfig(abs(tbl_response_logit$coefficients[4]), digits = 3)` if in group 1. Call this number "l" for the log of the odds. The probability is e^l^ / (1 + e^l^). Take a 53 year old man on regimen b (group 1): l = `r style_sigfig(tbl_response_logit$coefficients[1], digits = 4)` + `r style_sigfig(tbl_response_logit$coefficients[2], digits = 4)`\*53 + `r style_sigfig(tbl_response_logit$coefficients[4], digits = 3)`, gives `r style_sigfig(xb, digits = 4)`.
+Firstly, note that the p-values are the same, what differs is the coefficients. Now if you are really smart, you’ll notice that the coefficient is the natural log of the odds ratios above. You can use the coefficients to work out an individual’s probability of response. We start with the constant, and subtract `r style_sigfig(abs(tbl_response_logit$coefficients[2]), digits = 4)` for each year of age and then subtract an additional `r style_sigfig(abs(tbl_response_logit$coefficients[3]), digits = 2)` if a woman and `r style_sigfig(abs(tbl_response_logit$coefficients[4]), digits = 3)` if in group 1. Call this number "l" for the log of the odds. The probability is e^l^ / (1 + e^l^). Take a 53 year old man on regimen b (group 1): l = `r style_sigfig(tbl_response_logit$coefficients[1], digits = 4)` + `r style_sigfig(tbl_response_logit$coefficients[2], digits = 4)`\*53 + `r style_sigfig(tbl_response_logit$coefficients[4], digits = 3)`, gives `r style_sigfig(xb, digits = 4)`.
 
 To convert, type ``exp(`r style_sigfig(xb, digits = 4)`) / (exp(`r style_sigfig(xb, digits = 4)`)+1)`` to get a probability of `r style_sigfig(pr, digits = 3)`%.
 

@@ -134,7 +134,7 @@ t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
 
 This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (am == 0) vs manual transmission (am == 1).
 
-The `t.test` function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.
+The `t.test` function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means.
 
 While for an unpaired test, the `t.test` command prints the group means in each group, you may want to report the difference between means. The group means are stored in the `t.test` results under `estimate`.
 
@@ -169,7 +169,7 @@ mean_group1 - mean_group0
 
 ```
 
-You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p value, the group means, and the 95% confidence interval.
+You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.
 
 Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is `r round(hp_test$estimate[[1]] - hp_test$estimate[[2]], 1)` higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between `r round(abs(hp_test$conf.int[[1]]), 1)` lower or `r round(abs(hp_test$conf.int[[2]]), 1)` higher in the automatic group vs the manual group.
 
@@ -210,7 +210,7 @@ Note here that you don’t get any parameters for the groups such as means, medi
 
 #### **The binomial test**
 
-The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p value). 
+The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p-value). 
 
 The first argument of `binom.test` is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the `p =` option - the default is 0.5 (50%).
 
@@ -250,7 +250,7 @@ sex_test <- binom.test(sum(lesson1a$sex), nrow(lesson1a), p = 0.5)
 
 ```
 
-This tells you that you had `r sex_test$parameter` observations, and there were `r sex_test$statistic` where sex was coded as 1, an observation proportion of `r round(sex_test$estimate, 2)`. Now the "assumed" proportion was `r sex_test$null.value`, giving an expected number of `r sex_test$parameter*sex_test$null.value` women. These two values are quite close and the p value is `r style_pvalue(sex_test$p.value)`. 
+This tells you that you had `r sex_test$parameter` observations, and there were `r sex_test$statistic` where sex was coded as 1, an observation proportion of `r round(sex_test$estimate, 2)`. Now the "assumed" proportion was `r sex_test$null.value`, giving an expected number of `r sex_test$parameter*sex_test$null.value` women. These two values are quite close and the p-value is `r style_pvalue(sex_test$p.value)`. 
 
 ## Assignments
 
