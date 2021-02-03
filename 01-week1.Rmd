@@ -425,7 +425,7 @@ The `tbl_summary` function can create one-way and two-way tables for binary and 
 
 Here is an example of a one-way table created using the `tbl_summary` function:
 
-```{r section1f}
+```{r section1f, warning = FALSE}
 
 # Create a formatted table for the "sex" variable
 tbl_summary(
@@ -581,6 +581,34 @@ You can give check for more than one condition by using the "&" sign. This code 
 lesson1a <-
   lesson1a %>%
   mutate(a = if_else(sex == 1 & age > 50, 1, 0))
+
+```
+
+#### Renaming and Labeling Variables
+
+To rename a variable, you can use the `rename` function. We have to make sure that the new variable name overwrites the old variable name, so we have to use the assignment operator (`<-`).
+
+```{r section1r}
+
+# Rename variable y
+lesson1a <-
+  lesson1a %>%
+  rename(location = y)
+
+```
+
+To label a variable, use `attr`. This automatically overwrites the old label.
+
+```{r section1s}
+
+# Print the variable with the old label
+str(trial$response)
+
+# Label the response variable
+attr(trial$response, "label") <- "0: No Tumor Response, 1: Tumor Response"
+
+# Confirm new label is correct
+str(trial$response)
 
 ```
 

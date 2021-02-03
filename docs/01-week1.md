@@ -1880,6 +1880,44 @@ lesson1a <-
   mutate(a = if_else(sex == 1 & age > 50, 1, 0))
 ```
 
+#### Renaming and Labeling Variables
+
+To rename a variable, you can use the `rename` function. We have to make sure that the new variable name overwrites the old variable name, so we have to use the assignment operator (`<-`).
+
+
+```r
+# Rename variable y
+lesson1a <-
+  lesson1a %>%
+  rename(location = y)
+```
+
+To label a variable, use `attr`. This automatically overwrites the old label.
+
+
+```r
+# Print the variable with the old label
+str(trial$response)
+```
+
+```
+##  int [1:200] 0 1 0 1 1 0 0 0 0 0 ...
+##  - attr(*, "label")= chr "Tumor Response"
+```
+
+```r
+# Label the response variable
+attr(trial$response, "label") <- "0: No Tumor Response, 1: Tumor Response"
+
+# Confirm new label is correct
+str(trial$response)
+```
+
+```
+##  int [1:200] 0 1 0 1 1 0 0 0 0 0 ...
+##  - attr(*, "label")= chr "0: No Tumor Response, 1: Tumor Response"
+```
+
 ### Using Help
 
 The help feature in R can be useful if you know the name of the function that you need assistance with. Sometimes, the help file for a function can be very technical at the top, but if you scroll to the bottom, there is an "examples" section which will show different examples of the code. You can copy and paste these examples and run them on your own machine which can help you better understand how to use the functions. To access the help file for a function, you can type `?functionname` (e.g., `?skim`) or `?packagename::functionname` if you have not loaded the package using the `library` command.

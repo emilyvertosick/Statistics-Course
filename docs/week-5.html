@@ -284,25 +284,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">5</span> Week 5</h1>
 <div id="setting-up-4" class="section level2">
 <h2><span class="header-section-number">5.1</span> Setting Up</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="week-5.html#cb1-1"></a><span class="co"># Load packages</span></span>
-<span id="cb1-2"><a href="week-5.html#cb1-2"></a><span class="kw">library</span>(skimr)</span>
-<span id="cb1-3"><a href="week-5.html#cb1-3"></a><span class="kw">library</span>(gt)</span>
-<span id="cb1-4"><a href="week-5.html#cb1-4"></a><span class="kw">library</span>(gtsummary)</span>
-<span id="cb1-5"><a href="week-5.html#cb1-5"></a><span class="kw">library</span>(epiR)</span>
-<span id="cb1-6"><a href="week-5.html#cb1-6"></a><span class="kw">library</span>(broom)</span>
-<span id="cb1-7"><a href="week-5.html#cb1-7"></a><span class="kw">library</span>(pROC)</span>
-<span id="cb1-8"><a href="week-5.html#cb1-8"></a><span class="kw">library</span>(gmodels)</span>
-<span id="cb1-9"><a href="week-5.html#cb1-9"></a><span class="kw">library</span>(survival)</span>
-<span id="cb1-10"><a href="week-5.html#cb1-10"></a><span class="kw">library</span>(here)</span>
-<span id="cb1-11"><a href="week-5.html#cb1-11"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb1-12"><a href="week-5.html#cb1-12"></a></span>
-<span id="cb1-13"><a href="week-5.html#cb1-13"></a><span class="co"># Load data necessary to run Week 5 examples</span></span>
-<span id="cb1-14"><a href="week-5.html#cb1-14"></a>lesson2b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 2&quot;</span>, <span class="st">&quot;lesson2b.rds&quot;</span>))</span>
-<span id="cb1-15"><a href="week-5.html#cb1-15"></a>lesson3d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3d.rds&quot;</span>))</span>
-<span id="cb1-16"><a href="week-5.html#cb1-16"></a>lesson4d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4d.rds&quot;</span>))</span>
-<span id="cb1-17"><a href="week-5.html#cb1-17"></a>lesson5a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5a.rds&quot;</span>))</span>
-<span id="cb1-18"><a href="week-5.html#cb1-18"></a>example5a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;example5a.rds&quot;</span>))</span>
-<span id="cb1-19"><a href="week-5.html#cb1-19"></a>example5b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;example5b.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="week-5.html#cb157-1"></a><span class="co"># Load packages</span></span>
+<span id="cb157-2"><a href="week-5.html#cb157-2"></a><span class="kw">library</span>(skimr)</span>
+<span id="cb157-3"><a href="week-5.html#cb157-3"></a><span class="kw">library</span>(gt)</span>
+<span id="cb157-4"><a href="week-5.html#cb157-4"></a><span class="kw">library</span>(gtsummary)</span>
+<span id="cb157-5"><a href="week-5.html#cb157-5"></a><span class="kw">library</span>(epiR)</span>
+<span id="cb157-6"><a href="week-5.html#cb157-6"></a><span class="kw">library</span>(broom)</span>
+<span id="cb157-7"><a href="week-5.html#cb157-7"></a><span class="kw">library</span>(pROC)</span>
+<span id="cb157-8"><a href="week-5.html#cb157-8"></a><span class="kw">library</span>(gmodels)</span>
+<span id="cb157-9"><a href="week-5.html#cb157-9"></a><span class="kw">library</span>(survival)</span>
+<span id="cb157-10"><a href="week-5.html#cb157-10"></a><span class="kw">library</span>(here)</span>
+<span id="cb157-11"><a href="week-5.html#cb157-11"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb157-12"><a href="week-5.html#cb157-12"></a></span>
+<span id="cb157-13"><a href="week-5.html#cb157-13"></a><span class="co"># Load data necessary to run Week 5 examples</span></span>
+<span id="cb157-14"><a href="week-5.html#cb157-14"></a>lesson2b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 2&quot;</span>, <span class="st">&quot;lesson2b.rds&quot;</span>))</span>
+<span id="cb157-15"><a href="week-5.html#cb157-15"></a>lesson3d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3d.rds&quot;</span>))</span>
+<span id="cb157-16"><a href="week-5.html#cb157-16"></a>lesson4d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4d.rds&quot;</span>))</span>
+<span id="cb157-17"><a href="week-5.html#cb157-17"></a>lesson5a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5a.rds&quot;</span>))</span>
+<span id="cb157-18"><a href="week-5.html#cb157-18"></a>example5a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;example5a.rds&quot;</span>))</span>
+<span id="cb157-19"><a href="week-5.html#cb157-19"></a>example5b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;example5b.rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="r-instructions-4" class="section level2">
 <h2><span class="header-section-number">5.2</span> R Instructions</h2>
@@ -310,8 +310,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.1</span> Correlation</h3>
 <p>Correlating two or more variables is very easy: just use the <code>cor</code> function and then the dataset and selected variables.</p>
 <p>For example, if you use the “lesson2b.rds” dataset and correlate the first four pain scores, you get the following table:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="week-5.html#cb2-1"></a><span class="co"># Display the correlation between variables l01, l02, l03 and l04</span></span>
-<span id="cb2-2"><a href="week-5.html#cb2-2"></a><span class="kw">cor</span>(lesson2b <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(l01, l02, l03, l04))</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="week-5.html#cb158-1"></a><span class="co"># Display the correlation between variables l01, l02, l03 and l04</span></span>
+<span id="cb158-2"><a href="week-5.html#cb158-2"></a><span class="kw">cor</span>(lesson2b <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(l01, l02, l03, l04))</span></code></pre></div>
 <pre><code>##           l01       l02       l03       l04
 ## l01 1.0000000 0.7900984 0.6270860 0.5395075
 ## l02 0.7900984 1.0000000 0.8145025 0.7148299
@@ -319,8 +319,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## l04 0.5395075 0.7148299 0.8383224 1.0000000</code></pre>
 <p>This shows, for example, that the correlation between l01 and l02 is 0.79 and the correlation between l02 and l04 is 0.71. From the table you can easily see that pain scores taken on consecutive days are more strongly correlated than those taken two or three days apart.</p>
 <p>If the data are skewed, you can try a regression based on ranks, what is known as Spearman’s rank correlation. What you’d type is the same as above, but adding the option <code>method = "spearman"</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="week-5.html#cb4-1"></a><span class="co"># Calculate the Spearman correlation for skewed data</span></span>
-<span id="cb4-2"><a href="week-5.html#cb4-2"></a><span class="kw">cor</span>(lesson2b <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(l01, l02, l03, l04), <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="week-5.html#cb160-1"></a><span class="co"># Calculate the Spearman correlation for skewed data</span></span>
+<span id="cb160-2"><a href="week-5.html#cb160-2"></a><span class="kw">cor</span>(lesson2b <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(l01, l02, l03, l04), <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
 <pre><code>##           l01       l02       l03       l04
 ## l01 1.0000000 0.7799856 0.6220233 0.5443327
 ## l02 0.7799856 1.0000000 0.8126008 0.7220277
@@ -332,8 +332,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Linear regression is when you try to predict a continuous variable. The function to use is <code>lm</code>.</p>
 <p>The first variable is the dependent variable (e.g. blood pressure) and must be continuous. The other variables are the predictor variables and can be binary or continuous: in some cases you can use ordinal variables but you have to be careful. We’ll deal with categorical variables later in the course. The dependent and predictor variables are separated by a “~”, and multiple predictor variables are separated by “+”.</p>
 <p>Let’s use the data from “lesson3d.rds” as an example dataset. We want to see if we can predict a patient’s range of motion after treatment (variable a) in terms of their age, sex and pre-treatment range of motion (variable b).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="week-5.html#cb6-1"></a><span class="co"># Linear regression model for a, predictors are sex, age and b</span></span>
-<span id="cb6-2"><a href="week-5.html#cb6-2"></a><span class="kw">lm</span>(a <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>b, <span class="dt">data =</span> lesson3d)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="week-5.html#cb162-1"></a><span class="co"># Linear regression model for a, predictors are sex, age and b</span></span>
+<span id="cb162-2"><a href="week-5.html#cb162-2"></a><span class="kw">lm</span>(a <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>b, <span class="dt">data =</span> lesson3d)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = a ~ sex + age + b, data = lesson3d)
@@ -342,11 +342,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)          sex          age            b  
 ##    138.7336       2.8524      -0.4359       0.6692</code></pre>
 <p>This gives you the very basic information from the regression, but you can get more information using the <code>summary</code> function:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="week-5.html#cb8-1"></a><span class="co"># Save out linear regression model</span></span>
-<span id="cb8-2"><a href="week-5.html#cb8-2"></a>rom_model &lt;-<span class="st"> </span><span class="kw">lm</span>(a <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>b, <span class="dt">data =</span> lesson3d)</span>
-<span id="cb8-3"><a href="week-5.html#cb8-3"></a></span>
-<span id="cb8-4"><a href="week-5.html#cb8-4"></a><span class="co"># Show additional model results</span></span>
-<span id="cb8-5"><a href="week-5.html#cb8-5"></a><span class="kw">summary</span>(rom_model)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="week-5.html#cb164-1"></a><span class="co"># Save out linear regression model</span></span>
+<span id="cb164-2"><a href="week-5.html#cb164-2"></a>rom_model &lt;-<span class="st"> </span><span class="kw">lm</span>(a <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>b, <span class="dt">data =</span> lesson3d)</span>
+<span id="cb164-3"><a href="week-5.html#cb164-3"></a></span>
+<span id="cb164-4"><a href="week-5.html#cb164-4"></a><span class="co"># Show additional model results</span></span>
+<span id="cb164-5"><a href="week-5.html#cb164-5"></a><span class="kw">summary</span>(rom_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = a ~ sex + age + b, data = lesson3d)
@@ -369,14 +369,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## F-statistic:  29.6 on 3 and 30 DF,  p-value: 4.241e-09</code></pre>
 <p>The first column of numbers listed under “Coefficients” are the coefficients. You can interpret this as follows: start with 138.7 degrees of range of motion (the intercept or constant). Then add 2.85 if the patient is a woman, and take away 0.436 degrees for every year of age. Finally, add 0.669 degrees for every degree of range of motion the patient had before the trial.</p>
 <p>Let’s take a single patient: a 54 year old woman with a range of motion of 301 before treatment. Her predicted range of motion afterwards is 138.7 + 2.85 - 0.436*54 + 0.669*301 = 319.5. Her actual figure was 325, so we predicted quite well for this patient. You can get R to do this automatically using the <code>augment</code> function from the <code>broom</code> package.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="week-5.html#cb10-1"></a><span class="co"># The &quot;augment&quot; function creates a dataset of all patients included in the model</span></span>
-<span id="cb10-2"><a href="week-5.html#cb10-2"></a><span class="co"># and all variables included in the model, as well as the predictions</span></span>
-<span id="cb10-3"><a href="week-5.html#cb10-3"></a>lesson3d_pred &lt;-<span class="st"> </span><span class="kw">augment</span>(rom_model)</span>
-<span id="cb10-4"><a href="week-5.html#cb10-4"></a></span>
-<span id="cb10-5"><a href="week-5.html#cb10-5"></a><span class="co"># Print out new dataset to show output from &quot;augment&quot;</span></span>
-<span id="cb10-6"><a href="week-5.html#cb10-6"></a><span class="co"># The &quot;.fitted&quot; column is your prediction</span></span>
-<span id="cb10-7"><a href="week-5.html#cb10-7"></a><span class="co"># You can ignore all columns to the right of &quot;.fitted&quot;</span></span>
-<span id="cb10-8"><a href="week-5.html#cb10-8"></a>lesson3d_pred</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="week-5.html#cb166-1"></a><span class="co"># The &quot;augment&quot; function creates a dataset of all patients included in the model</span></span>
+<span id="cb166-2"><a href="week-5.html#cb166-2"></a><span class="co"># and all variables included in the model, as well as the predictions</span></span>
+<span id="cb166-3"><a href="week-5.html#cb166-3"></a>lesson3d_pred &lt;-<span class="st"> </span><span class="kw">augment</span>(rom_model)</span>
+<span id="cb166-4"><a href="week-5.html#cb166-4"></a></span>
+<span id="cb166-5"><a href="week-5.html#cb166-5"></a><span class="co"># Print out new dataset to show output from &quot;augment&quot;</span></span>
+<span id="cb166-6"><a href="week-5.html#cb166-6"></a><span class="co"># The &quot;.fitted&quot; column is your prediction</span></span>
+<span id="cb166-7"><a href="week-5.html#cb166-7"></a><span class="co"># You can ignore all columns to the right of &quot;.fitted&quot;</span></span>
+<span id="cb166-8"><a href="week-5.html#cb166-8"></a>lesson3d_pred</span></code></pre></div>
 <pre><code>## # A tibble: 34 x 10
 ##        a   sex   age     b .fitted  .resid .std.resid   .hat .sigma   .cooksd
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
@@ -392,8 +392,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10   252     0    81   246    268. -16.1      -0.686  0.144    25.5 0.0197   
 ## # ... with 24 more rows</code></pre>
 <p>To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the <code>tbl_regression</code> function from the <code>gtsummary</code> package:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="week-5.html#cb12-1"></a><span class="co"># Print formatted table of regression results</span></span>
-<span id="cb12-2"><a href="week-5.html#cb12-2"></a><span class="kw">tbl_regression</span>(rom_model)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="week-5.html#cb168-1"></a><span class="co"># Print formatted table of regression results</span></span>
+<span id="cb168-2"><a href="week-5.html#cb168-2"></a><span class="kw">tbl_regression</span>(rom_model)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -777,15 +777,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>For example, for sex, the 95% CI is -18 to 24, meaning that women might plausibly have a range of motion anywhere from 18 degrees less than men to 24 degrees more. In short, we don’t have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p-value, p=0.8. There are 34 patients included in this model. You can determine the number of observations included in the model using the <code>nobs()</code> function, or you can update the table to include this number in the header.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="week-5.html#cb13-1"></a><span class="co"># To get the number of observations in the model</span></span>
-<span id="cb13-2"><a href="week-5.html#cb13-2"></a><span class="kw">nobs</span>(rom_model)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="week-5.html#cb169-1"></a><span class="co"># To get the number of observations in the model</span></span>
+<span id="cb169-2"><a href="week-5.html#cb169-2"></a><span class="kw">nobs</span>(rom_model)</span></code></pre></div>
 <pre><code>## [1] 34</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="week-5.html#cb15-1"></a><span class="co"># By default, the number of observations is not shown in &quot;tbl_regression&quot;</span></span>
-<span id="cb15-2"><a href="week-5.html#cb15-2"></a><span class="co"># You can use the code below to print the number of observations in the table header</span></span>
-<span id="cb15-3"><a href="week-5.html#cb15-3"></a><span class="kw">tbl_regression</span>(rom_model) <span class="op">%&gt;%</span></span>
-<span id="cb15-4"><a href="week-5.html#cb15-4"></a><span class="st">  </span><span class="kw">modify_header</span>(</span>
-<span id="cb15-5"><a href="week-5.html#cb15-5"></a>    label <span class="op">~</span><span class="st"> &quot;**Characteristic (N = {N})**&quot;</span></span>
-<span id="cb15-6"><a href="week-5.html#cb15-6"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="week-5.html#cb171-1"></a><span class="co"># By default, the number of observations is not shown in &quot;tbl_regression&quot;</span></span>
+<span id="cb171-2"><a href="week-5.html#cb171-2"></a><span class="co"># You can use the code below to print the number of observations in the table header</span></span>
+<span id="cb171-3"><a href="week-5.html#cb171-3"></a><span class="kw">tbl_regression</span>(rom_model) <span class="op">%&gt;%</span></span>
+<span id="cb171-4"><a href="week-5.html#cb171-4"></a><span class="st">  </span><span class="kw">modify_header</span>(</span>
+<span id="cb171-5"><a href="week-5.html#cb171-5"></a>    label <span class="op">~</span><span class="st"> &quot;**Characteristic (N = {N})**&quot;</span></span>
+<span id="cb171-6"><a href="week-5.html#cb171-6"></a>  )</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1169,8 +1169,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p><br></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="week-5.html#cb16-1"></a><span class="co"># Summary of linear regression results</span></span>
-<span id="cb16-2"><a href="week-5.html#cb16-2"></a><span class="kw">summary</span>(rom_model)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="week-5.html#cb172-1"></a><span class="co"># Summary of linear regression results</span></span>
+<span id="cb172-2"><a href="week-5.html#cb172-2"></a><span class="kw">summary</span>(rom_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = a ~ sex + age + b, data = lesson3d)
@@ -1201,10 +1201,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.3</span> Graphing the data</h3>
 <p>Graphing the data is done using the <code>ggplot</code> function from the <code>ggplot2</code> package. In short, the main inputs for the <code>ggplot</code> function are your dataset, the x variable and the y variable. You can then create a number of different plots using this data.</p>
 <p>To create a scatterplot, the <code>geom_point</code> function is added to the <code>ggplot</code> function:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="week-5.html#cb18-1"></a><span class="co"># Create a scatterplot of race time by age</span></span>
-<span id="cb18-2"><a href="week-5.html#cb18-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> lesson5a,</span>
-<span id="cb18-3"><a href="week-5.html#cb18-3"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> rt)) <span class="op">+</span></span>
-<span id="cb18-4"><a href="week-5.html#cb18-4"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="week-5.html#cb174-1"></a><span class="co"># Create a scatterplot of race time by age</span></span>
+<span id="cb174-2"><a href="week-5.html#cb174-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> lesson5a,</span>
+<span id="cb174-3"><a href="week-5.html#cb174-3"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> age, <span class="dt">y =</span> rt)) <span class="op">+</span></span>
+<span id="cb174-4"><a href="week-5.html#cb174-4"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="05-week5_files/figure-html/section5j-1.png" width="672" /></p>
 <p>This scatterplot from the “lesson5a.rds” data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.</p>
 </div>
@@ -1213,11 +1213,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Logistic regression is used when the variable you wish to predict is binary (e.g. relapsed or not). The function to use is <code>glm</code>, with the option <code>family = "binomial"</code> to indicate that our outcome variable is binary.</p>
 <p>Again, the first variable is the dependent variable (e.g. hypertension) and must be binary. The other variables are the predictor variables and can be binary or continuous: again, in some cases you can use ordinal variables but you have to be careful. The variables are entered into the <code>glm</code> function the same way as the <code>lm</code> function (dependent ~ predictor1 + predictor2 + …).</p>
 <p>We’ll use the dataset “lesson4d.rds” as an example.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="week-5.html#cb19-1"></a><span class="co"># Create a logistic regression model for response, predictors are age, sex and group</span></span>
-<span id="cb19-2"><a href="week-5.html#cb19-2"></a>response_model &lt;-<span class="st"> </span><span class="kw">glm</span>(response <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>group, <span class="dt">data =</span> lesson4d, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb19-3"><a href="week-5.html#cb19-3"></a></span>
-<span id="cb19-4"><a href="week-5.html#cb19-4"></a><span class="co"># Look at additional model results</span></span>
-<span id="cb19-5"><a href="week-5.html#cb19-5"></a><span class="kw">summary</span>(response_model)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="week-5.html#cb175-1"></a><span class="co"># Create a logistic regression model for response, predictors are age, sex and group</span></span>
+<span id="cb175-2"><a href="week-5.html#cb175-2"></a>response_model &lt;-<span class="st"> </span><span class="kw">glm</span>(response <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>group, <span class="dt">data =</span> lesson4d, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb175-3"><a href="week-5.html#cb175-3"></a></span>
+<span id="cb175-4"><a href="week-5.html#cb175-4"></a><span class="co"># Look at additional model results</span></span>
+<span id="cb175-5"><a href="week-5.html#cb175-5"></a><span class="kw">summary</span>(response_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = response ~ age + sex + group, family = &quot;binomial&quot;, 
@@ -1245,10 +1245,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>By default, R gives the coefficients in logits for logistic regression models. To easily see the coefficients and 95% confidence intervals for all covariates as odds ratio, we can again use the <code>tbl_regression</code> function. In this case, we use the option <code>exponentiate = TRUE</code>, which indicates that odds ratios (not logits) should be presented. (You can also use this function to see the formatted logit results by using the <code>exponentiate = FALSE</code> option.)</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="week-5.html#cb21-1"></a><span class="co"># Create logistic regression model</span></span>
-<span id="cb21-2"><a href="week-5.html#cb21-2"></a><span class="kw">glm</span>(response <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>group, <span class="dt">data =</span> lesson4d, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb21-3"><a href="week-5.html#cb21-3"></a><span class="st">  </span><span class="co"># Pass to tbl_regression to show formatted table with odds ratios</span></span>
-<span id="cb21-4"><a href="week-5.html#cb21-4"></a><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="week-5.html#cb177-1"></a><span class="co"># Create logistic regression model</span></span>
+<span id="cb177-2"><a href="week-5.html#cb177-2"></a><span class="kw">glm</span>(response <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>group, <span class="dt">data =</span> lesson4d, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb177-3"><a href="week-5.html#cb177-3"></a><span class="st">  </span><span class="co"># Pass to tbl_regression to show formatted table with odds ratios</span></span>
+<span id="cb177-4"><a href="week-5.html#cb177-4"></a><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1633,14 +1633,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table></div>
 <p>The key things here are the odds ratios: you can say that the odds of response is multiplied by 0.98 for a one year increase in age; that women have an odds of response 0.84 of that for the men, though this is not statistically significant, and that response is lower in group 1, with an odds of 0.73 (you would also cite the p-value and 95% CIs).</p>
 <p>The problem here is that you can’t use any of these data to work out an individual patient’s chance of response. Now you can get R to do this for you using the <code>augment</code> function. For a binary outcome, you need to specify <code>type.predict = "response"</code> as an option so that you will get predicted probabilities (not log odds).</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="week-5.html#cb22-1"></a><span class="co"># Get predictions from logistic regression model</span></span>
-<span id="cb22-2"><a href="week-5.html#cb22-2"></a><span class="co"># type.predict = &quot;response&quot; gives predicted probabilities</span></span>
-<span id="cb22-3"><a href="week-5.html#cb22-3"></a>lesson4d_pred &lt;-</span>
-<span id="cb22-4"><a href="week-5.html#cb22-4"></a><span class="st">  </span><span class="kw">augment</span>(response_model, <span class="dt">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb22-5"><a href="week-5.html#cb22-5"></a></span>
-<span id="cb22-6"><a href="week-5.html#cb22-6"></a><span class="co"># Look at the dataset containing predicted probabilities (.fitted variable)</span></span>
-<span id="cb22-7"><a href="week-5.html#cb22-7"></a><span class="co"># You can ignore all columns to the right of &quot;.fitted&quot;</span></span>
-<span id="cb22-8"><a href="week-5.html#cb22-8"></a>lesson4d_pred</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="week-5.html#cb178-1"></a><span class="co"># Get predictions from logistic regression model</span></span>
+<span id="cb178-2"><a href="week-5.html#cb178-2"></a><span class="co"># type.predict = &quot;response&quot; gives predicted probabilities</span></span>
+<span id="cb178-3"><a href="week-5.html#cb178-3"></a>lesson4d_pred &lt;-</span>
+<span id="cb178-4"><a href="week-5.html#cb178-4"></a><span class="st">  </span><span class="kw">augment</span>(response_model, <span class="dt">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb178-5"><a href="week-5.html#cb178-5"></a></span>
+<span id="cb178-6"><a href="week-5.html#cb178-6"></a><span class="co"># Look at the dataset containing predicted probabilities (.fitted variable)</span></span>
+<span id="cb178-7"><a href="week-5.html#cb178-7"></a><span class="co"># You can ignore all columns to the right of &quot;.fitted&quot;</span></span>
+<span id="cb178-8"><a href="week-5.html#cb178-8"></a>lesson4d_pred</span></code></pre></div>
 <pre><code>## # A tibble: 398 x 11
 ##    .rownames response   age   sex group .fitted .resid .std.resid    .hat .sigma
 ##    &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
@@ -1658,12 +1658,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>NOTE: The “lesson4d_pred” dataset only includes 398 patients. If you look at the table above, you will see at the top that only 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.</p>
 <p>If you want to look at calculating predictions from logistic regression in more detail, you’ll need logit (see below).</p>
 <p>One thing to be careful about is categorical variables. Imagine that you had the patients age and cancer stage (1, 2, 3 or 4) and wanted to know whether they recurred. If you tried <code>glm(recurrence ~ age + stage, ...)</code>, then stage would be treated as if the increase in risk going from stage 1 to 2 was exactly the same as that going from 2 to 3 and 3 to 4. To tell R that it is a categorical variable, you need to use the <code>factor</code> function with the categorical variable:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="week-5.html#cb24-1"></a><span class="co"># Create a model for recurrence using the categorical variable &quot;stage&quot;</span></span>
-<span id="cb24-2"><a href="week-5.html#cb24-2"></a>recurrence_model &lt;-</span>
-<span id="cb24-3"><a href="week-5.html#cb24-3"></a><span class="st">  </span><span class="kw">glm</span>(recurrence <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(stage), <span class="dt">data =</span> example5a, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb24-4"><a href="week-5.html#cb24-4"></a></span>
-<span id="cb24-5"><a href="week-5.html#cb24-5"></a><span class="co"># Show the results of this model</span></span>
-<span id="cb24-6"><a href="week-5.html#cb24-6"></a><span class="kw">summary</span>(recurrence_model)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="week-5.html#cb180-1"></a><span class="co"># Create a model for recurrence using the categorical variable &quot;stage&quot;</span></span>
+<span id="cb180-2"><a href="week-5.html#cb180-2"></a>recurrence_model &lt;-</span>
+<span id="cb180-3"><a href="week-5.html#cb180-3"></a><span class="st">  </span><span class="kw">glm</span>(recurrence <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(stage), <span class="dt">data =</span> example5a, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb180-4"><a href="week-5.html#cb180-4"></a></span>
+<span id="cb180-5"><a href="week-5.html#cb180-5"></a><span class="co"># Show the results of this model</span></span>
+<span id="cb180-6"><a href="week-5.html#cb180-6"></a><span class="kw">summary</span>(recurrence_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = recurrence ~ age + factor(stage), family = &quot;binomial&quot;, 
@@ -1690,9 +1690,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1222.9
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="week-5.html#cb26-1"></a><span class="co"># Formatted to show odds ratios</span></span>
-<span id="cb26-2"><a href="week-5.html#cb26-2"></a>recurrence_model <span class="op">%&gt;%</span></span>
-<span id="cb26-3"><a href="week-5.html#cb26-3"></a><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="week-5.html#cb182-1"></a><span class="co"># Formatted to show odds ratios</span></span>
+<span id="cb182-2"><a href="week-5.html#cb182-2"></a>recurrence_model <span class="op">%&gt;%</span></span>
+<span id="cb182-3"><a href="week-5.html#cb182-3"></a><span class="st">  </span><span class="kw">tbl_regression</span>(<span class="dt">exponentiate =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -2096,8 +2096,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>What you can see here is that stage is broken into categories. The odds ratio is given comparing each stage to stage 1 (the reference). So the odds of recurrence is 2.71 higher for stage 2 compared to stage 1, 5.23 for stage 3 compared to stage 1 and 5.88 for stage 4 compared to stage 1.</p>
 <p><strong>For keen students only!</strong></p>
 <p>Here we look at our “response” model on the logit scale.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="week-5.html#cb27-1"></a><span class="co"># Look at details of &quot;response&quot; logistic regression model</span></span>
-<span id="cb27-2"><a href="week-5.html#cb27-2"></a><span class="kw">summary</span>(response_model)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="week-5.html#cb183-1"></a><span class="co"># Look at details of &quot;response&quot; logistic regression model</span></span>
+<span id="cb183-2"><a href="week-5.html#cb183-2"></a><span class="kw">summary</span>(response_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = response ~ age + sex + group, family = &quot;binomial&quot;, 
@@ -2131,8 +2131,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.5</span> Getting the area-under-the-curve</h3>
 <p>Using regression models is a way to try to predict outcome based on the data we have. After we’ve created a model, we want to know - is the prediction from this model any good? One way to do this is by assessing the discrimination. For logistic regression, where we have a binary endpoint, discrimination tells us how well the model distinguishes between patients who have the event and patients who do not have the event. Discrimination is measured using the area-under-the-curve (AUC) and varies between 0.5 (a coin flip) and 1 (perfect discrimination).</p>
 <p>Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), it doesn’t matter for our purposes.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="week-5.html#cb29-1"></a><span class="co"># Calculate the AUC using the &quot;roc&quot; function</span></span>
-<span id="cb29-2"><a href="week-5.html#cb29-2"></a><span class="kw">roc</span>(cancer <span class="op">~</span><span class="st"> </span>marker, <span class="dt">data =</span> example5b)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="week-5.html#cb185-1"></a><span class="co"># Calculate the AUC using the &quot;roc&quot; function</span></span>
+<span id="cb185-2"><a href="week-5.html#cb185-2"></a><span class="kw">roc</span>(cancer <span class="op">~</span><span class="st"> </span>marker, <span class="dt">data =</span> example5b)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## roc.formula(formula = cancer ~ marker, data = example5b)
@@ -2142,8 +2142,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So the marker has an area under the curve of 0.814. The <code>roc</code> function is particularly useful if you want to know the area-under-the-curve with and without a marker.</p>
 <p>For instance, the code below could tell you how much the area-under-the-curve increases when you add a new marker to a model to predict cancer that already includes age.</p>
 <p>First, get the AUC for the model with age only:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="week-5.html#cb31-1"></a><span class="co"># Calculate AUC of original model with age</span></span>
-<span id="cb31-2"><a href="week-5.html#cb31-2"></a><span class="kw">roc</span>(cancer <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> example5b)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="week-5.html#cb187-1"></a><span class="co"># Calculate AUC of original model with age</span></span>
+<span id="cb187-2"><a href="week-5.html#cb187-2"></a><span class="kw">roc</span>(cancer <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> example5b)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## roc.formula(formula = cancer ~ age, data = example5b)
@@ -2151,14 +2151,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Data: age in 1865 controls (cancer 0) &lt; 635 cases (cancer 1).
 ## Area under the curve: 0.6354</code></pre>
 <p>The <code>roc</code> function can only take one predictor variable. For a univariate model, such as the model assessing age above, you can put “age” directly into the <code>roc</code> function. If you want to assess a model with multiple variables, you can use the predicted value:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="week-5.html#cb33-1"></a><span class="co"># Create the multivariable model</span></span>
-<span id="cb33-2"><a href="week-5.html#cb33-2"></a>marker_model &lt;-<span class="st"> </span><span class="kw">glm</span>(cancer <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>marker, <span class="dt">data =</span> example5b, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb33-3"><a href="week-5.html#cb33-3"></a></span>
-<span id="cb33-4"><a href="week-5.html#cb33-4"></a><span class="co"># Use &quot;augment&quot; to get predicted probability</span></span>
-<span id="cb33-5"><a href="week-5.html#cb33-5"></a>marker_pred &lt;-<span class="st"> </span><span class="kw">augment</span>(marker_model, <span class="dt">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="week-5.html#cb189-1"></a><span class="co"># Create the multivariable model</span></span>
+<span id="cb189-2"><a href="week-5.html#cb189-2"></a>marker_model &lt;-<span class="st"> </span><span class="kw">glm</span>(cancer <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>marker, <span class="dt">data =</span> example5b, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb189-3"><a href="week-5.html#cb189-3"></a></span>
+<span id="cb189-4"><a href="week-5.html#cb189-4"></a><span class="co"># Use &quot;augment&quot; to get predicted probability</span></span>
+<span id="cb189-5"><a href="week-5.html#cb189-5"></a>marker_pred &lt;-<span class="st"> </span><span class="kw">augment</span>(marker_model, <span class="dt">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <p>Now, calculate the AUC for the model with age and the marker by using the predicted probability based on the multivariable model:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="week-5.html#cb34-1"></a><span class="co"># Calculate AUC of model with age and marker</span></span>
-<span id="cb34-2"><a href="week-5.html#cb34-2"></a><span class="kw">roc</span>(cancer <span class="op">~</span><span class="st"> </span>.fitted, <span class="dt">data =</span> marker_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="week-5.html#cb190-1"></a><span class="co"># Calculate AUC of model with age and marker</span></span>
+<span id="cb190-2"><a href="week-5.html#cb190-2"></a><span class="kw">roc</span>(cancer <span class="op">~</span><span class="st"> </span>.fitted, <span class="dt">data =</span> marker_pred)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## roc.formula(formula = cancer ~ .fitted, data = marker_pred)
@@ -2170,16 +2170,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-4" class="section level2">
 <h2><span class="header-section-number">5.3</span> Assignments</h2>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="week-5.html#cb36-1"></a><span class="co"># Copy and paste this code to load the data for week 5 assignments</span></span>
-<span id="cb36-2"><a href="week-5.html#cb36-2"></a>lesson5a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5a.rds&quot;</span>))</span>
-<span id="cb36-3"><a href="week-5.html#cb36-3"></a>lesson5b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5b.rds&quot;</span>))</span>
-<span id="cb36-4"><a href="week-5.html#cb36-4"></a>lesson5c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5c.rds&quot;</span>))</span>
-<span id="cb36-5"><a href="week-5.html#cb36-5"></a>lesson5d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5d.rds&quot;</span>))</span>
-<span id="cb36-6"><a href="week-5.html#cb36-6"></a>lesson5e &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5e.rds&quot;</span>))</span>
-<span id="cb36-7"><a href="week-5.html#cb36-7"></a>lesson5f &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5f.rds&quot;</span>))</span>
-<span id="cb36-8"><a href="week-5.html#cb36-8"></a>lesson5g &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5g.rds&quot;</span>))</span>
-<span id="cb36-9"><a href="week-5.html#cb36-9"></a>lesson5h &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5h.rds&quot;</span>))</span>
-<span id="cb36-10"><a href="week-5.html#cb36-10"></a>lesson5i &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5i.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="week-5.html#cb192-1"></a><span class="co"># Copy and paste this code to load the data for week 5 assignments</span></span>
+<span id="cb192-2"><a href="week-5.html#cb192-2"></a>lesson5a &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5a.rds&quot;</span>))</span>
+<span id="cb192-3"><a href="week-5.html#cb192-3"></a>lesson5b &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5b.rds&quot;</span>))</span>
+<span id="cb192-4"><a href="week-5.html#cb192-4"></a>lesson5c &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5c.rds&quot;</span>))</span>
+<span id="cb192-5"><a href="week-5.html#cb192-5"></a>lesson5d &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5d.rds&quot;</span>))</span>
+<span id="cb192-6"><a href="week-5.html#cb192-6"></a>lesson5e &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5e.rds&quot;</span>))</span>
+<span id="cb192-7"><a href="week-5.html#cb192-7"></a>lesson5f &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5f.rds&quot;</span>))</span>
+<span id="cb192-8"><a href="week-5.html#cb192-8"></a>lesson5g &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5g.rds&quot;</span>))</span>
+<span id="cb192-9"><a href="week-5.html#cb192-9"></a>lesson5h &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5h.rds&quot;</span>))</span>
+<span id="cb192-10"><a href="week-5.html#cb192-10"></a>lesson5i &lt;-<span class="st"> </span><span class="kw">readRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5i.rds&quot;</span>))</span></code></pre></div>
 <p>Regression is a very important part of statistics: I probably do more regressions that any other type of analysis, apart from than calculating basic summary data such as medians, means and proportions. So, I’ve given you lots of possibilities here. I’ve coded them: you really should try to do the bold ones, do those in italics if you can, and if you get to the rest, well, the more the merrier. The reason I have included all this is so I can go over it in class.</p>
 <ul>
 <li><p><strong>lesson5a.rds: These are data from marathon runners (again). Which of the following is associated with how fast runners complete the marathon: age, sex, training miles, weight?</strong></p></li>
@@ -2252,6 +2252,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
