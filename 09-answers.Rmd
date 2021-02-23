@@ -605,13 +605,38 @@ t.test(pleft ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 
 ```
 
+You could also analyze the data by taking the average of the two wrists. You can create a new value for the average using the `mean` function. The `distinct` function from **dplyr** allows you to drop duplicate observations. Since there are two observations per patient (one for the left wrist and one for the right wrist), we will take the average and then drop the duplicate observation so that each patient is included only once.
+
+```{r week3h}
+
+lesson3b_avg <-
+  lesson3b %>%
+  # Grouping by patient id so that each patient ends up with the average of their own two wrist scores
+  group_by(id) %>%
+  # Calculate the mean pain score between wrists for each patient
+  mutate(
+    meanpain = mean(p, na.rm = TRUE)
+  ) %>%
+  # Only keep the patient ID, group variable and mean pain score
+  select(id, g, meanpain) %>%
+  # Drop duplicates so you don't count each patient twice
+  # Here we only want one observation per patient since we are assessing the average pain between the two wrists
+  distinct() %>%
+  # Ungroup the data
+  ungroup()
+
+# t-test for average pain between both wrists
+t.test(meanpain ~ g, data = lesson3b_avg, paired = FALSE, var.equal = TRUE)
+
+```
+
 ### lesson3c.rds
 
 **Some postoperative pain data again. Is pain on day 2 different than pain on day 1? Is pain on day 3 different from pain on day 2?**
 
 The most obvious issue here is that you are measuring the same patients on two occasions, so you are going to want a paired test. Should you do a paired t-test? Many statisticians would prefer a non-parametric method given that the data take only five different values and that the number of observations is small. The following command gives you the "Wilcoxon signed rank test":
 
-```{r week3h}
+```{r week3i}
 
 # Non-parametric test comparing day 1 and day 2 pain
 wilcox.test(lesson3c$t1, lesson3c$t2, paired = TRUE)
@@ -622,7 +647,7 @@ If you run this code, you will notice you get a warning in yellow text that stat
 
 (By the way: I know this because that is what it says on the read out. If you had asked me yesterday, I doubt I would have remembered the name of a non-parametric paired test, another reason to think in concepts rather than remembering statistical techniques). The p-value you get is p=`r style_pvalue(wilcox.test(lesson3c$t1, lesson3c$t2, exact = FALSE, paired = TRUE)$p.value)`. We cannot conclude that pain scores are different. But is that all we want to say? The number of patients is small, maybe we failed to spot a difference. So let’s try a t-test:
 
-```{r week3i}
+```{r week3j}
 
 # paired t-test comparing day 1 and day 2 pain
 t.test(lesson3c$t1, lesson3c$t2, paired = TRUE, var.equal = TRUE)
@@ -633,7 +658,7 @@ The p-value you get (p=`r style_pvalue(t.test(lesson3c$t1, lesson3c$t2, var.equa
 
 What about normality of the data? Doesn’t that figure into whether you assess by t-test or non-parametric? Well if you type look at the distribution of t1 and t2, you find that neither are normally distributed. But a paired t-test does not depend on the assumption that each set of data in a pair is distributed but that the differences between pairs are normally distributed. So you would have to create a new variable and look at that:
 
-```{r week3j}
+```{r week3k}
 
 # Create a variable containing the difference in pain scores between days 1 and 2
 lesson3c <-
@@ -659,7 +684,7 @@ There are two ways of doing the t-test:
 
 1) Test whether the baseline scores are different from the post-treatment scores:
 
-```{r week3k}
+```{r week3l}
 
 # paired t-test for before and after pain scores
 t.test(lesson3d$b, lesson3d$a, paired = TRUE, var.equal = TRUE)
@@ -668,7 +693,7 @@ t.test(lesson3d$b, lesson3d$a, paired = TRUE, var.equal = TRUE)
 
 2) Test whether the difference between scores is different from zero:
 
-```{r week3l}
+```{r week3m}
 
 # t-test for whether difference between before and after scores is different than zero
 t.test(lesson3d$d, mu = 0)
@@ -679,7 +704,7 @@ Both methods give you an identical p-value of `r style_pvalue(t.test(lesson3d$d,
 
 BTW: for those who are interested, acupuncture has been shown to improve neck pain and range of motion in a controlled trial, see: [Irnich, Behrens et al., Immediate effects of dry needling and acupuncture at distant points in chronic neck pain: results of a randomized, double-blind, sham-controlled crossover trial.](https://www.ncbi.nlm.nih.gov/pubmed/12237186)
 
-```{r week3m}
+```{r week3n}
 
 # Test whether proportion of women is different from 50%
 binom.test(sum(lesson3d$sex), nrow(lesson3d %>% filter(!is.na(sex))), p = 0.5)
@@ -688,7 +713,7 @@ binom.test(sum(lesson3d$sex), nrow(lesson3d %>% filter(!is.na(sex))), p = 0.5)
 
 Only about a quarter of the patients are women, and the binomial test gives a p-value of `r style_pvalue(binom.test(sum(lesson3d$sex), nrow(lesson3d), p = 0.5)$p.value)`, suggesting that men are over-represented in this trial. But is this important?
 
-```{r week3n}
+```{r week3o}
 
 # t-test for whether age is significantly different from 58.2
 t.test(lesson3d$age, mu = 58.2)
@@ -703,7 +728,7 @@ Similarly, this t-test for age gives a p-value of `r style_pvalue(t.test(lesson3
 
 Well, before running off and doing t-tests, let’s have a look at the data: 
 
-```{r week3o, warning = FALSE}
+```{r week3p, warning = FALSE}
 
 # Summarize data by hospital
 lesson3e %>%
@@ -718,7 +743,7 @@ For advanced students only:
 
 The data are non-normally distributed so you could try a log transform: 
 
-```{r week3p}
+```{r week3q}
 
 # Create variable for log of length of stay
 lesson3e <-
@@ -729,14 +754,14 @@ lesson3e <-
 
 The distribution of this new variable for both groups combined is normal, therefore data in each group will be normal. Try a t-test:
 
-```{r week3q}
+```{r week3r}
 
 # paired t-test using log of length of stay as outcome
 t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
 
 ```
 
-```{r week3r, include = FALSE, purl = FALSE}
+```{r week3s, include = FALSE, purl = FALSE}
 
 log_test <- t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
 
@@ -754,14 +779,14 @@ To backtransform these values, you have to remember that addition on a log scale
 
 You will want to do an unpaired t-test or non-parametric test on these data. 
 
-```{r week3s}
+```{r week3t}
 
 # unpaired t-test for change in pain by physiotherapy group
 t.test(delta ~ physio, data = lesson3f, paired = FALSE, var.equal = TRUE)
 
 ```
 
-```{r week3t, echo = FALSE, purl = FALSE}
+```{r week3u, echo = FALSE, purl = FALSE}
 
 physio_test <- t.test(delta ~ physio, data = lesson3f, paired = FALSE, var.equal = TRUE)
 

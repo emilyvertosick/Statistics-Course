@@ -2920,6 +2920,44 @@ t.test(pleft ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ##      0.45555555     -0.04444445
 ```
 
+You could also analyze the data by taking the average of the two wrists. You can create a new value for the average using the `mean` function. The `distinct` function from **dplyr** allows you to drop duplicate observations. Since there are two observations per patient (one for the left wrist and one for the right wrist), we will take the average and then drop the duplicate observation so that each patient is included only once.
+
+
+```r
+lesson3b_avg <-
+  lesson3b %>%
+  # Grouping by patient id so that each patient ends up with the average of their own two wrist scores
+  group_by(id) %>%
+  # Calculate the mean pain score between wrists for each patient
+  mutate(
+    meanpain = mean(p, na.rm = TRUE)
+  ) %>%
+  # Only keep the patient ID, group variable and mean pain score
+  select(id, g, meanpain) %>%
+  # Drop duplicates so you don't count each patient twice
+  # Here we only want one observation per patient since we are assessing the average pain between the two wrists
+  distinct() %>%
+  # Ungroup the data
+  ungroup()
+
+# t-test for average pain between both wrists
+t.test(meanpain ~ g, data = lesson3b_avg, paired = FALSE, var.equal = TRUE)
+```
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  meanpain by g
+## t = 1.4286, df = 16, p-value = 0.1723
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.3118365  1.6007254
+## sample estimates:
+## mean in group 0 mean in group 1 
+##      0.55555555     -0.08888889
+```
+
 ### lesson3c.rds
 
 **Some postoperative pain data again. Is pain on day 2 different than pain on day 1? Is pain on day 3 different from pain on day 2?**
@@ -2991,7 +3029,7 @@ skim(lesson3c$delta12)
 ```
 
 
-Table: (\#tab:week3j)Data summary
+Table: (\#tab:week3k)Data summary
 
 |                         |                 |
 |:------------------------|:----------------|
@@ -3130,7 +3168,7 @@ lesson3e %>%
 ```
 
 
-Table: (\#tab:week3o)Data summary
+Table: (\#tab:week3p)Data summary
 
 |                         |           |
 |:------------------------|:----------|
