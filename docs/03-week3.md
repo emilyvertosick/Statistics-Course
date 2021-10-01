@@ -62,7 +62,7 @@ t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  marker by trt
 ## t = 1.5816, df = 188, p-value = 0.1154
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group Drug A and group Drug B is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.04858916  0.44161134
 ## sample estimates:
@@ -134,7 +134,7 @@ t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  hp by am
 ## t = 1.3733, df = 30, p-value = 0.1798
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -16.27768  83.11169
 ## sample estimates:

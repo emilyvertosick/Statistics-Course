@@ -2318,7 +2318,7 @@ t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  nv by pc
 ## t = -4.6275, df = 510, p-value = 4.7e-06
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -1.1699123 -0.4725841
 ## sample estimates:
@@ -2337,7 +2337,7 @@ t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  nv by sex
 ## t = 0.43835, df = 876, p-value = 0.6612
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.2100764  0.3308988
 ## sample estimates:
@@ -2853,7 +2853,7 @@ t.test(p ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  p by g
 ## t = 1.9731, df = 34, p-value = 0.05665
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.01930642  1.30819531
 ## sample estimates:
@@ -2894,7 +2894,7 @@ t.test(pright ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  pright by g
 ## t = 1.6818, df = 16, p-value = 0.112
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.2055046  1.7832823
 ## sample estimates:
@@ -2912,7 +2912,7 @@ t.test(pleft ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  pleft by g
 ## t = 1.0418, df = 16, p-value = 0.313
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.5174209  1.5174209
 ## sample estimates:
@@ -2950,7 +2950,7 @@ t.test(meanpain ~ g, data = lesson3b_avg, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  meanpain by g
 ## t = 1.4286, df = 16, p-value = 0.1723
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.3118365  1.6007254
 ## sample estimates:
@@ -3217,7 +3217,7 @@ t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  loglos by hospital
 ## t = -0.29426, df = 55, p-value = 0.7697
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group a and group b is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.1594693  0.1186343
 ## sample estimates:
@@ -3249,7 +3249,7 @@ t.test(delta ~ physio, data = lesson3f, paired = FALSE, var.equal = TRUE)
 ## 
 ## data:  delta by physio
 ## t = -1.4868, df = 110, p-value = 0.1399
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -16.668572   2.378662
 ## sample estimates:

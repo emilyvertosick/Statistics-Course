@@ -2294,7 +2294,7 @@ t.test(nv ~ sex, data = lesson3a %>% filter(pc == 1))
 ## 
 ## data:  nv by sex
 ## t = -0.078122, df = 251.57, p-value = 0.9378
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.5219692  0.4821391
 ## sample estimates:
@@ -2316,7 +2316,7 @@ t.test(nv ~ sex, data = lesson3a %>% filter(pc == 0))
 ## 
 ## data:  nv by sex
 ## t = 0.2822, df = 254.8, p-value = 0.778
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.4171295  0.5566757
 ## sample estimates:
