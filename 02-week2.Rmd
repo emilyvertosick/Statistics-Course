@@ -160,7 +160,7 @@ tbl_summary(
 
 ```
 
-```{r section2g, echo = FALSE, results = "hide", purl = FALSE}
+```{r section2g, echo = FALSE, results = "hide", purl = FALSE, warning = FALSE}
 
 tbl_sex <-
   tbl_summary(

@@ -436,7 +436,7 @@ tbl_summary(
 
 As you can see, there is currently only one row in the table. If a variable has values of 0 and 1 only, the `tbl_summary` function gives the percentage of values that are equal to 1 by default. If you would like to see the percentage of both 0 and 1 values, you can use the "type" option and specify that the variable is categorical.
 
-```{r section1g}
+```{r section1g, warning = FALSE}
 
 # Create a formatted table for the "sex" variable, showing both "0" and "1" values
 tbl_summary(

@@ -953,12 +953,6 @@ tbl_summary(
 )
 ```
 
-```
-## Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.
-```
-
 ```{=html}
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;

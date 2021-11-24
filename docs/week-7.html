@@ -308,20 +308,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">7</span> Week 7</h1>
 <div id="setting-up-6" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Setting Up</h2>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="week-7.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
-<span id="cb199-2"><a href="week-7.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb199-3"><a href="week-7.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb199-4"><a href="week-7.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb199-5"><a href="week-7.html#cb199-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
-<span id="cb199-6"><a href="week-7.html#cb199-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb199-7"><a href="week-7.html#cb199-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
-<span id="cb199-8"><a href="week-7.html#cb199-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
-<span id="cb199-9"><a href="week-7.html#cb199-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
-<span id="cb199-10"><a href="week-7.html#cb199-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb199-11"><a href="week-7.html#cb199-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb199-12"><a href="week-7.html#cb199-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-13"><a href="week-7.html#cb199-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data necessary to run Week 7 examples</span></span>
-<span id="cb199-14"><a href="week-7.html#cb199-14" aria-hidden="true" tabindex="-1"></a>example7a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;example7a.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="week-7.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb198-2"><a href="week-7.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb198-3"><a href="week-7.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb198-4"><a href="week-7.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb198-5"><a href="week-7.html#cb198-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb198-6"><a href="week-7.html#cb198-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb198-7"><a href="week-7.html#cb198-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb198-8"><a href="week-7.html#cb198-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb198-9"><a href="week-7.html#cb198-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb198-10"><a href="week-7.html#cb198-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb198-11"><a href="week-7.html#cb198-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb198-12"><a href="week-7.html#cb198-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb198-13"><a href="week-7.html#cb198-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data necessary to run Week 7 examples</span></span>
+<span id="cb198-14"><a href="week-7.html#cb198-14" aria-hidden="true" tabindex="-1"></a>example7a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;example7a.rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="r-instructions-6" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> R Instructions</h2>
@@ -344,18 +344,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You need at least two variables to describe a time to event dataset: how long the patients were followed (the time variable), and whether they had the event (e.g. were alive or dead) at last observation (the failure variable). The failure variable is coded 1 if the patient had the event (e.g. died, had a recurrence) and 0 otherwise. You can have any other variables (patient codes, stage of cancer, treatment, hair color, etc.) but these are not essential.</p>
 <p>For survival analyses, you need to indicate that your outcome is a time-to-event outcome by providing both the event status, such as death, and time to event, for example time from surgery to death or last followup. The function used to do this is the <code>Surv</code> function from the <code>survival</code> package. The function is of the form <code>Surv(t, d)</code> where “t” is the time variable and “d” is the “failure” variable (e.g. died if 1, alive at last follow-up if 0).</p>
 <p>The <code>survfit</code> function (also from the <code>survival</code>) package describes the survival data. It is common to report the median survival.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="week-7.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate descriptive statistics on time to event data</span></span>
-<span id="cb200-2"><a href="week-7.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;~ 1&quot; indicates that we want survival estimates for the entire group</span></span>
-<span id="cb200-3"><a href="week-7.html#cb200-3" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="week-7.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate descriptive statistics on time to event data</span></span>
+<span id="cb199-2"><a href="week-7.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;~ 1&quot; indicates that we want survival estimates for the entire group</span></span>
+<span id="cb199-3"><a href="week-7.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a)</span></code></pre></div>
 <pre><code>## Call: survfit(formula = Surv(t, d) ~ 1, data = example7a)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
 ##      23      18      27      18      45</code></pre>
 <p>You often also report the median time of follow-up for survivors, which can easily be calculated manually.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="week-7.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate median followup for survivors only</span></span>
-<span id="cb202-2"><a href="week-7.html#cb202-2" aria-hidden="true" tabindex="-1"></a>example7a <span class="sc">%&gt;%</span></span>
-<span id="cb202-3"><a href="week-7.html#cb202-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(d <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co"># Keep only the surviving patients</span></span>
-<span id="cb202-4"><a href="week-7.html#cb202-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>(t) <span class="co"># Remember, &quot;p50&quot; indicates the median</span></span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="week-7.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate median followup for survivors only</span></span>
+<span id="cb201-2"><a href="week-7.html#cb201-2" aria-hidden="true" tabindex="-1"></a>example7a <span class="sc">%&gt;%</span></span>
+<span id="cb201-3"><a href="week-7.html#cb201-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(d <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="co"># Keep only the surviving patients</span></span>
+<span id="cb201-4"><a href="week-7.html#cb201-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>(t) <span class="co"># Remember, &quot;p50&quot; indicates the median</span></span></code></pre></div>
 <table>
 <caption><span id="tab:week7c">Table 7.1: </span>Data summary</caption>
 <tbody>
@@ -427,22 +427,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>You can also plot the survival curve by adding the <code>plot</code> function around your <code>survfit</code> function:</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="week-7.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot survival curve</span></span>
-<span id="cb203-2"><a href="week-7.html#cb203-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a))</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="week-7.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot survival curve</span></span>
+<span id="cb202-2"><a href="week-7.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a))</span></code></pre></div>
 <p><img src="07-week7_files/figure-html/week7d-1.png" width="672" /></p>
 <p>Use “~ covariate” instead of “~ 1” to plot survival curves by group:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="week-7.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot survival curve by group (drug vs no drug)</span></span>
-<span id="cb204-2"><a href="week-7.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;~ drug&quot; indicates to plot by &quot;drug&quot;, vs &quot;~ 1&quot; which plots for all patients</span></span>
-<span id="cb204-3"><a href="week-7.html#cb204-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a))</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="week-7.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot survival curve by group (drug vs no drug)</span></span>
+<span id="cb203-2"><a href="week-7.html#cb203-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;~ drug&quot; indicates to plot by &quot;drug&quot;, vs &quot;~ 1&quot; which plots for all patients</span></span>
+<span id="cb203-3"><a href="week-7.html#cb203-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a))</span></code></pre></div>
 <p><img src="07-week7_files/figure-html/week7e-1.png" width="672" /></p>
 <p>As you may notice, this graph shows both lines in black, which makes it difficult to determine which line corresponds to which group. However, you can add color to the lines to differentiate them. The order of the colors corresponds to the order of the variable values - in this case, drug is “0” and “1,” so the following code creates a graph where the placebo group (drug = 0) is plotted in blue and the drug group (drug = 1) is plotted in red.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="week-7.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot survival curve by group (drug vs no drug) with colors</span></span>
-<span id="cb205-2"><a href="week-7.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="week-7.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot survival curve by group (drug vs no drug) with colors</span></span>
+<span id="cb204-2"><a href="week-7.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
 <p><img src="07-week7_files/figure-html/week7e1-1.png" width="672" /></p>
 <p>Graphs can be saved out by using the “Export” option at the top of the “Plots” tab.</p>
 <p>The <code>survdiff</code> function compares survival for different groups. For example, the following code compares survival for each value of the variable “drug” (generally 0 and 1).</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="week-7.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare survival between drug groups</span></span>
-<span id="cb206-2"><a href="week-7.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="week-7.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare survival between drug groups</span></span>
+<span id="cb205-2"><a href="week-7.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a)</span></code></pre></div>
 <pre><code>## Call:
 ## survdiff(formula = Surv(t, d) ~ drug, data = example7a)
 ## 
@@ -452,8 +452,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ##  Chisq= 3.4  on 1 degrees of freedom, p= 0.07</code></pre>
 <p>Using the <code>summary</code> function with <code>survfit</code> lists all available followup times along with survival probabilities (you get a 95% C.I. as well):</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="week-7.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Survival probabilities for the entire cohort</span></span>
-<span id="cb208-2"><a href="week-7.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a))</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="week-7.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Survival probabilities for the entire cohort</span></span>
+<span id="cb207-2"><a href="week-7.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a))</span></code></pre></div>
 <pre><code>## Call: survfit(formula = Surv(t, d) ~ 1, data = example7a)
 ## 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
@@ -472,8 +472,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    43      5       1   0.2208  0.0954       0.0947        0.515
 ##    45      4       1   0.1656  0.0860       0.0598        0.458
 ##    48      2       1   0.0828  0.0727       0.0148        0.462</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="week-7.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also summarize the survival by group:</span></span>
-<span id="cb210-2"><a href="week-7.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="week-7.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also summarize the survival by group:</span></span>
+<span id="cb209-2"><a href="week-7.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a))</span></code></pre></div>
 <pre><code>## Call: survfit(formula = Surv(t, d) ~ drug, data = example7a)
 ## 
 ##                 drug=0 
@@ -498,10 +498,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    34      4       1    0.368  0.1627       0.1549        0.875
 ##    48      2       1    0.184  0.1535       0.0359        0.944</code></pre>
 <p>The <code>times</code> option allows you to get survival probabilities for specific timepoints. For example, at 1 year, 2 years and 5 years:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="week-7.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get survival probabilities for specific time points in full dataset</span></span>
-<span id="cb212-2"><a href="week-7.html#cb212-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;~ 1&quot; indicates all patients</span></span>
-<span id="cb212-3"><a href="week-7.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;t&quot; variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years</span></span>
-<span id="cb212-4"><a href="week-7.html#cb212-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">60</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="week-7.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get survival probabilities for specific time points in full dataset</span></span>
+<span id="cb211-2"><a href="week-7.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;~ 1&quot; indicates all patients</span></span>
+<span id="cb211-3"><a href="week-7.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;t&quot; variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years</span></span>
+<span id="cb211-4"><a href="week-7.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">60</span>))</span></code></pre></div>
 <pre><code>## Call: survfit(formula = Surv(t, d) ~ 1, data = example7a)
 ## 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
@@ -509,8 +509,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    24     11       4   0.5466  0.1073       0.3721        0.803
 ##    60      1       8   0.0828  0.0727       0.0148        0.462</code></pre>
 <p>The <code>coxph</code> function (from <code>survival</code>) is for regression analyses. For example, a univariate regression for the effects of “drug” on survival:</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="week-7.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Cox regression model</span></span>
-<span id="cb214-2"><a href="week-7.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coxph</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="week-7.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Cox regression model</span></span>
+<span id="cb213-2"><a href="week-7.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coxph</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a)</span></code></pre></div>
 <pre><code>## Call:
 ## coxph(formula = Surv(t, d) ~ drug, data = example7a)
 ## 
@@ -519,9 +519,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Likelihood ratio test=3.38  on 1 df, p=0.06581
 ## n= 23, number of events= 18</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="week-7.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the tbl_regression function with Cox models to see the hazard ratios</span></span>
-<span id="cb216-2"><a href="week-7.html#cb216-2" aria-hidden="true" tabindex="-1"></a>example7a_cox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a)</span>
-<span id="cb216-3"><a href="week-7.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(example7a_cox, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="week-7.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the tbl_regression function with Cox models to see the hazard ratios</span></span>
+<span id="cb215-2"><a href="week-7.html#cb215-2" aria-hidden="true" tabindex="-1"></a>example7a_cox <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug, <span class="at">data =</span> example7a)</span>
+<span id="cb215-3"><a href="week-7.html#cb215-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(example7a_cox, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -893,11 +893,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>The following multivariable model also includes some demographic and medical characteristics:</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="week-7.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create multivariable Cox regression model</span></span>
-<span id="cb217-2"><a href="week-7.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the pipe operator (%&gt;%) to show the tbl_regression table directly</span></span>
-<span id="cb217-3"><a href="week-7.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="co"># without storing the Cox model</span></span>
-<span id="cb217-4"><a href="week-7.html#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coxph</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug <span class="sc">+</span> age <span class="sc">+</span> sex <span class="sc">+</span> marker, <span class="at">data =</span> example7a) <span class="sc">%&gt;%</span></span>
-<span id="cb217-5"><a href="week-7.html#cb217-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="week-7.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create multivariable Cox regression model</span></span>
+<span id="cb216-2"><a href="week-7.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the pipe operator (%&gt;%) to show the tbl_regression table directly</span></span>
+<span id="cb216-3"><a href="week-7.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="co"># without storing the Cox model</span></span>
+<span id="cb216-4"><a href="week-7.html#cb216-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coxph</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug <span class="sc">+</span> age <span class="sc">+</span> sex <span class="sc">+</span> marker, <span class="at">data =</span> example7a) <span class="sc">%&gt;%</span></span>
+<span id="cb216-5"><a href="week-7.html#cb216-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1287,17 +1287,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table></div>
 <p>So, some typical code to analyze a dataset:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="week-7.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get median survival and number of events for group</span></span>
-<span id="cb218-2"><a href="week-7.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the &quot;surv&quot; function to indicate the event status and time to event</span></span>
-<span id="cb218-3"><a href="week-7.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="week-7.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get median survival and number of events for group</span></span>
+<span id="cb217-2"><a href="week-7.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the &quot;surv&quot; function to indicate the event status and time to event</span></span>
+<span id="cb217-3"><a href="week-7.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a)</span></code></pre></div>
 <pre><code>## Call: survfit(formula = Surv(t, d) ~ 1, data = example7a)
 ## 
 ##       n  events  median 0.95LCL 0.95UCL 
 ##      23      18      27      18      45</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="week-7.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get median followup for survivors</span></span>
-<span id="cb220-2"><a href="week-7.html#cb220-2" aria-hidden="true" tabindex="-1"></a>example7a <span class="sc">%&gt;%</span></span>
-<span id="cb220-3"><a href="week-7.html#cb220-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(d <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb220-4"><a href="week-7.html#cb220-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>(t)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="week-7.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get median followup for survivors</span></span>
+<span id="cb219-2"><a href="week-7.html#cb219-2" aria-hidden="true" tabindex="-1"></a>example7a <span class="sc">%&gt;%</span></span>
+<span id="cb219-3"><a href="week-7.html#cb219-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(d <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb219-4"><a href="week-7.html#cb219-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">skim</span>(t)</span></code></pre></div>
 <table>
 <caption><span id="tab:week7k">Table 7.2: </span>Data summary</caption>
 <tbody>
@@ -1368,12 +1368,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="week-7.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show a graph</span></span>
-<span id="cb221-2"><a href="week-7.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a))</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="week-7.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show a graph</span></span>
+<span id="cb220-2"><a href="week-7.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> example7a))</span></code></pre></div>
 <p><img src="07-week7_files/figure-html/week7k-1.png" width="672" /></p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="week-7.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at predictors of survival</span></span>
-<span id="cb222-2"><a href="week-7.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coxph</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug <span class="sc">+</span> age <span class="sc">+</span> sex <span class="sc">+</span> marker, <span class="at">data =</span> example7a) <span class="sc">%&gt;%</span></span>
-<span id="cb222-3"><a href="week-7.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="week-7.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at predictors of survival</span></span>
+<span id="cb221-2"><a href="week-7.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coxph</span>(<span class="fu">Surv</span>(t, d) <span class="sc">~</span> drug <span class="sc">+</span> age <span class="sc">+</span> sex <span class="sc">+</span> marker, <span class="at">data =</span> example7a) <span class="sc">%&gt;%</span></span>
+<span id="cb221-3"><a href="week-7.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1766,11 +1766,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-6" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Assignments</h2>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="week-7.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 7 assignments</span></span>
-<span id="cb223-2"><a href="week-7.html#cb223-2" aria-hidden="true" tabindex="-1"></a>lesson7a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7a.rds&quot;</span>))</span>
-<span id="cb223-3"><a href="week-7.html#cb223-3" aria-hidden="true" tabindex="-1"></a>lesson7b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7b.rds&quot;</span>))</span>
-<span id="cb223-4"><a href="week-7.html#cb223-4" aria-hidden="true" tabindex="-1"></a>lesson7c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7c.rds&quot;</span>))</span>
-<span id="cb223-5"><a href="week-7.html#cb223-5" aria-hidden="true" tabindex="-1"></a>lesson7d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7d.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="week-7.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 7 assignments</span></span>
+<span id="cb222-2"><a href="week-7.html#cb222-2" aria-hidden="true" tabindex="-1"></a>lesson7a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7a.rds&quot;</span>))</span>
+<span id="cb222-3"><a href="week-7.html#cb222-3" aria-hidden="true" tabindex="-1"></a>lesson7b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7b.rds&quot;</span>))</span>
+<span id="cb222-4"><a href="week-7.html#cb222-4" aria-hidden="true" tabindex="-1"></a>lesson7c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7c.rds&quot;</span>))</span>
+<span id="cb222-5"><a href="week-7.html#cb222-5" aria-hidden="true" tabindex="-1"></a>lesson7d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 7&quot;</span>, <span class="st">&quot;lesson7d.rds&quot;</span>))</span></code></pre></div>
 <p>Try to do at least lesson7a and lesson7b.</p>
 <ul>
 <li><p>lesson7a.rds: This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this dataset and determine which, if any, variables are prognostic in this patient group.</p></li>

@@ -137,7 +137,7 @@ tbl_summary(
 ) %>%
   add_overall(last = TRUE)
 # Setting the "last" option to TRUE puts the column with statistics for the overall cohort in the last column of the table
-# The defaults etting, "last = FALSE", would put this column first in the table
+# The default setting, "last = FALSE", would put this column first in the table
 
 ```
 
@@ -179,7 +179,7 @@ table(lesson2a$subfourhour, lesson2a$sex) %>%
 
 As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared p-value. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
 
-```{r section4g, results = "asis"}
+```{r section4g, results = "asis", warning = FALSE}
 
 # Create two-way table including chi-squared p-value
 tbl_summary(

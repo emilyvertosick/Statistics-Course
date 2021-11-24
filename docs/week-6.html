@@ -308,20 +308,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">6</span> Week 6</h1>
 <div id="setting-up-5" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Setting Up</h2>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="week-6.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
-<span id="cb193-2"><a href="week-6.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb193-3"><a href="week-6.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb193-4"><a href="week-6.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb193-5"><a href="week-6.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
-<span id="cb193-6"><a href="week-6.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb193-7"><a href="week-6.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
-<span id="cb193-8"><a href="week-6.html#cb193-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
-<span id="cb193-9"><a href="week-6.html#cb193-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
-<span id="cb193-10"><a href="week-6.html#cb193-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb193-11"><a href="week-6.html#cb193-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb193-12"><a href="week-6.html#cb193-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-13"><a href="week-6.html#cb193-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data necessary to run Week 6 examples</span></span>
-<span id="cb193-14"><a href="week-6.html#cb193-14" aria-hidden="true" tabindex="-1"></a>example6a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;example6a.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="week-6.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb192-2"><a href="week-6.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb192-3"><a href="week-6.html#cb192-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb192-4"><a href="week-6.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb192-5"><a href="week-6.html#cb192-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb192-6"><a href="week-6.html#cb192-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb192-7"><a href="week-6.html#cb192-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb192-8"><a href="week-6.html#cb192-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb192-9"><a href="week-6.html#cb192-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb192-10"><a href="week-6.html#cb192-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb192-11"><a href="week-6.html#cb192-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb192-12"><a href="week-6.html#cb192-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-13"><a href="week-6.html#cb192-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data necessary to run Week 6 examples</span></span>
+<span id="cb192-14"><a href="week-6.html#cb192-14" aria-hidden="true" tabindex="-1"></a>example6a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;example6a.rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="r-instructions-5" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> R Instructions</h2>
@@ -329,20 +329,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.2.1</span> Diagnostic Tests</h3>
 <p>For this, we will use the <code>epi.tests</code> function from the <code>epiR</code> package.</p>
 <p>Imagine you want to calculate the sensitivity. If you already know the counts for disease-positive and disease-negative, and test-positive and test-negative, you can easily create a table and use the <code>epi.tests</code> function.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="week-6.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter the data in the following order to create the 2x2 table</span></span>
-<span id="cb194-2"><a href="week-6.html#cb194-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Disease-positive, test-positive</span></span>
-<span id="cb194-3"><a href="week-6.html#cb194-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Disease-negative, test-positive</span></span>
-<span id="cb194-4"><a href="week-6.html#cb194-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Disease-positive, test-negative</span></span>
-<span id="cb194-5"><a href="week-6.html#cb194-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Disease-negative, test-negative</span></span>
-<span id="cb194-6"><a href="week-6.html#cb194-6" aria-hidden="true" tabindex="-1"></a>tbl_disease_test <span class="ot">&lt;-</span></span>
-<span id="cb194-7"><a href="week-6.html#cb194-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.table</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">670</span>, <span class="dv">202</span>, <span class="dv">74</span>, <span class="dv">640</span>),</span>
-<span id="cb194-8"><a href="week-6.html#cb194-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb194-9"><a href="week-6.html#cb194-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The matrix function allows you to enter in the numbers and convert to a table</span></span>
-<span id="cb194-10"><a href="week-6.html#cb194-10" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;nrow = 2&quot; indicates that there should be 2 rows in the table (test-positive and test-negative)</span></span>
-<span id="cb194-11"><a href="week-6.html#cb194-11" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;byrow = TRUE&quot; correctly assigns the columns as &quot;disease-positive&quot; first and &quot;disease-negative&quot; second</span></span>
-<span id="cb194-12"><a href="week-6.html#cb194-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-13"><a href="week-6.html#cb194-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the &quot;epi.tests&quot; function with the new 2x2 table</span></span>
-<span id="cb194-14"><a href="week-6.html#cb194-14" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.tests</span>(tbl_disease_test)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="week-6.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter the data in the following order to create the 2x2 table</span></span>
+<span id="cb193-2"><a href="week-6.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Disease-positive, test-positive</span></span>
+<span id="cb193-3"><a href="week-6.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Disease-negative, test-positive</span></span>
+<span id="cb193-4"><a href="week-6.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Disease-positive, test-negative</span></span>
+<span id="cb193-5"><a href="week-6.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Disease-negative, test-negative</span></span>
+<span id="cb193-6"><a href="week-6.html#cb193-6" aria-hidden="true" tabindex="-1"></a>tbl_disease_test <span class="ot">&lt;-</span></span>
+<span id="cb193-7"><a href="week-6.html#cb193-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.table</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">670</span>, <span class="dv">202</span>, <span class="dv">74</span>, <span class="dv">640</span>),</span>
+<span id="cb193-8"><a href="week-6.html#cb193-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb193-9"><a href="week-6.html#cb193-9" aria-hidden="true" tabindex="-1"></a><span class="co"># The matrix function allows you to enter in the numbers and convert to a table</span></span>
+<span id="cb193-10"><a href="week-6.html#cb193-10" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;nrow = 2&quot; indicates that there should be 2 rows in the table (test-positive and test-negative)</span></span>
+<span id="cb193-11"><a href="week-6.html#cb193-11" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;byrow = TRUE&quot; correctly assigns the columns as &quot;disease-positive&quot; first and &quot;disease-negative&quot; second</span></span>
+<span id="cb193-12"><a href="week-6.html#cb193-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-13"><a href="week-6.html#cb193-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the &quot;epi.tests&quot; function with the new 2x2 table</span></span>
+<span id="cb193-14"><a href="week-6.html#cb193-14" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.tests</span>(tbl_disease_test)</span></code></pre></div>
 <pre><code>##           Outcome +    Outcome -      Total
 ## Test +          670          202        872
 ## Test -           74          640        714
@@ -361,12 +361,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---------------------------------------------------------</code></pre>
 <p>Your result in this case is that sensitivity is 90%, with a 95% CI 88%, 92%. For reasons that I am not quite sure, most investigators do not cite 95% CI with sensitivity, specificity, etc. so stating just 90% is probably fine.</p>
 <p>You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the <code>epi.2by2</code> function from week 4 (also from the <code>epiR</code> package), the table needs to be flipped so the columns and rows are correctly ordered. You can simply copy the code below and replace the inputs to the <code>table</code> function with your dataset, test variable, and disease (outcome) variable.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="week-6.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same code for week 4 that reverses the order of columns and rows</span></span>
-<span id="cb196-2"><a href="week-6.html#cb196-2" aria-hidden="true" tabindex="-1"></a>tbl_example6a <span class="ot">&lt;-</span></span>
-<span id="cb196-3"><a href="week-6.html#cb196-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">table</span>(example6a<span class="sc">$</span>test, example6a<span class="sc">$</span>disease)), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb196-4"><a href="week-6.html#cb196-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb196-5"><a href="week-6.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sensitivity and specificity from table above</span></span>
-<span id="cb196-6"><a href="week-6.html#cb196-6" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.tests</span>(tbl_example6a)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="week-6.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same code for week 4 that reverses the order of columns and rows</span></span>
+<span id="cb195-2"><a href="week-6.html#cb195-2" aria-hidden="true" tabindex="-1"></a>tbl_example6a <span class="ot">&lt;-</span></span>
+<span id="cb195-3"><a href="week-6.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">rev</span>(<span class="fu">table</span>(example6a<span class="sc">$</span>test, example6a<span class="sc">$</span>disease)), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb195-4"><a href="week-6.html#cb195-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-5"><a href="week-6.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sensitivity and specificity from table above</span></span>
+<span id="cb195-6"><a href="week-6.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.tests</span>(tbl_example6a)</span></code></pre></div>
 <pre><code>##           Outcome +    Outcome -      Total
 ## Test +           20          180        200
 ## Test -           10         1820       1830
@@ -389,11 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-5" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Assignments</h2>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="week-6.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 6 assignments</span></span>
-<span id="cb198-2"><a href="week-6.html#cb198-2" aria-hidden="true" tabindex="-1"></a>lesson6a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6a.rds&quot;</span>))</span>
-<span id="cb198-3"><a href="week-6.html#cb198-3" aria-hidden="true" tabindex="-1"></a>lesson6b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6b.rds&quot;</span>))</span>
-<span id="cb198-4"><a href="week-6.html#cb198-4" aria-hidden="true" tabindex="-1"></a>lesson6c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6c.rds&quot;</span>))</span>
-<span id="cb198-5"><a href="week-6.html#cb198-5" aria-hidden="true" tabindex="-1"></a>lesson6d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6d.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="week-6.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 6 assignments</span></span>
+<span id="cb197-2"><a href="week-6.html#cb197-2" aria-hidden="true" tabindex="-1"></a>lesson6a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6a.rds&quot;</span>))</span>
+<span id="cb197-3"><a href="week-6.html#cb197-3" aria-hidden="true" tabindex="-1"></a>lesson6b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6b.rds&quot;</span>))</span>
+<span id="cb197-4"><a href="week-6.html#cb197-4" aria-hidden="true" tabindex="-1"></a>lesson6c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6c.rds&quot;</span>))</span>
+<span id="cb197-5"><a href="week-6.html#cb197-5" aria-hidden="true" tabindex="-1"></a>lesson6d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 6&quot;</span>, <span class="st">&quot;lesson6d.rds&quot;</span>))</span></code></pre></div>
 <ul>
 <li><p>lesson6a.rds and lesson6b.rds: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?</p></li>
 <li><p>lesson6c.rds: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy?</p></li>

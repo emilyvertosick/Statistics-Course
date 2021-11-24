@@ -845,7 +845,7 @@ tbl_summary(
 
 ```r
 # Setting the "last" option to TRUE puts the column with statistics for the overall cohort in the last column of the table
-# The defaults etting, "last = FALSE", would put this column first in the table
+# The default setting, "last = FALSE", would put this column first in the table
 ```
 
 <br>
