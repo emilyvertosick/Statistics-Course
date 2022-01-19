@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: November 24, 2021"
+date: "Last Updated: January 19, 2022"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -27,11 +27,13 @@ Course Schedule for CRMC Biostatistics Seminar
 Course Leader: Andrew Vickers
 
 All classes are on Wednesday evenings from **05:30pm - 07:00pm**.<br>
-5:30 - 6:10: I will go over the R assignments.<br>
+5:30 - 6:10: Dr. Vickers will go over the R assignments.<br>
 6:10 - 7:00: Open office hours
 
-**All sessions will be held in the Rockefeller Research Building, Room 101.**
-(As of now we are hoping to hold the sessions in person - we will notify you if there is a virtual option.)
+**Room assignments will be forwarded weekly.**
+(Zoom link: https://meetmsk.zoom.us/j/96504627786) 
+
+The course website is https://emilyvertosick.github.io/Statistics-Course/  
 
 Reading is from "What is a p-value anyway?" unless otherwise stated.
 Readings below are to be done **before** the class.
@@ -41,36 +43,36 @@ R assignments are done **after** the class.
 Date / Location     Topic and Assignments
 ---------------     ---------------------------------
 **1/5/2022**\       **Class I:** What is statistics?\
-                    **Reading:** "How To Read This Book", Chapter 1\
+**RRL-104**\         **Reading:** "How To Read This Book", Chapter 1\
                     **Assignment:** Questions 1 and 4
 
 **1/12/2022**\      **Class II:** Describing Data\
-                    **Reading:** Chapters 2-6 and chapter 20\
+**RRL-116**\        **Reading:** Chapters 2-6 and chapter 20\
                     **Assignment:** All questions for chapters 2, 3, 4 and 6; questions 1 and 3 for chapter 5; question 1 for chapter 20
                     
-**1/19/2022**\      **Class III:** Data Distributions\
-                    **Reading:** Chapters 7-9\
+**1/26/2022**\      **Class III:** Data Distributions\
+**RRL-116**\        **Reading:** Chapters 7-9\
                     **Assignment:** Chapter 7, question 2; chapter 8, question 1; chapter 9, questions 1 and 3
                     
 **2/2/2022**\       **Class IV:** Confidence Intervals\
-                    **Reading:** Chapters 10-12\
+**RRL-116**\        **Reading:** Chapters 10-12\
                     **Assignment:** All questions for chapters 10 and 11; question 1 in chapter 12\
                     **Extra for those doing R assignment:** [Statistics Notes: Diagnostic tests 3: receiver operating characteristic plots](https://www.bmj.com/content/309/6948/188.full)
                     
 **2/9/2022**\       **Class V:** Hypothesis Testing\
-                    **Reading:** Chapters 13-17\
+**RRL-116**\        **Reading:** Chapters 13-17\
                     **Assignment:** Chapters 13, 15 and 16, all questions; chapter 14, question 1; chapter 17, questions 1-3
                     
 **2/16/2022**\      **Class VI:** Regression\
-                    **Reading:** Chapters 18-19\
+**TBD**\            **Reading:** Chapters 18-19\
                     **Assignment:** Chapter 18, questions 1-4; chapter 19, questions 1-2
                     
 **3/2/2022**\       **Class VII:** Survival Data\
-                    **Reading:** Chapters 21-24 and chapter 28\
+**TBD**\            **Reading:** Chapters 21-24 and chapter 28\
                     **Assignments:** Chapter 21, question 1; chapter 23, question 1; chapter 24, questions 1, 2 and 4
                     
 **3/9/2022**\       **Class VIII:** Errors in Statistics (all class meets)\
-                    **Reading:** Chapters 30-34\
+**TBD**\            **Reading:** Chapters 30-34\
                     **Optional extra reading:**
                     [The scandal of poor medical research](https://www.bmj.com/content/308/6924/283.full), 
                     [Math as Mass Hypnosis: On Mortgage-Backed Securities, Maritime Warfare, and Medical Research](https://www.medscape.com/viewarticle/714772)\
