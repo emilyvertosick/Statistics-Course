@@ -133,3 +133,4 @@ lesson7a.rds
 lesson7b.rds
 lesson7c.rds
 lesson7d.rds
+exam

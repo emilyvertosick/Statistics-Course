@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: January 19, 2022"
+date: "Last Updated: March 11, 2022"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -9,7 +9,7 @@ output:
         facebook: false
         twitter: false
 documentclass: book
-rmd_files: ["index.Rmd", "01-week1.Rmd", "02-week2.Rmd", "03-week3.Rmd", "04-week4.Rmd", "05-week5.Rmd", "06-week6.Rmd", "07-week7.Rmd", "08-week8.Rmd", "09-answers.Rmd"]
+rmd_files: ["index.Rmd", "01-week1.Rmd", "02-week2.Rmd", "03-week3.Rmd", "04-week4.Rmd", "05-week5.Rmd", "06-week6.Rmd", "07-week7.Rmd", "08-week8.Rmd", "09-answers.Rmd", "10-exam.Rmd"]
 bibliography: [packages.bib]
 biblio-style: apalike
 link-citations: yes
