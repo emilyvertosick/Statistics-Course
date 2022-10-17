@@ -22,9 +22,6 @@ library(tidyverse)
 # Set seed
 set.seed(34634986)
 
-# To display histograms from "skim"
-Sys.setlocale("LC_CTYPE", "Chinese")
-
 # Load data
 
 # Save out list of all files
@@ -44,6 +41,8 @@ names(all_data) <- all_data_names
 
 # Load all data to environment
 list2env(map(all_data, readRDS), envir = .GlobalEnv)
+
+# TODO: copycode.png needs to be updated??
 
 ```
 
@@ -113,7 +112,7 @@ install.packages("broom")
 install.packages("pROC")
 install.packages("gmodels")
 install.packages("survival")
-install.packages("survminer")
+install.packages("ggsurvfit")
 install.packages("gt")
 
 ```
@@ -129,7 +128,7 @@ If you are using a Windows computer and get an error message that states <span s
 3. After installation is complete, close RStudio and re-open by clicking on the "Statistics Course.RProj" file.
 4. Re-run the above code in the console to install the packages.
 
-We will also be installing a package called `gtsummary` written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.
+We will also be installing a package called {gtsummary} written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table which can be exported in many formats, including html, pdf and Word documents. The code below will install this package.
 
 ```{r install3, echo = TRUE, eval = FALSE, warning = FALSE, message = FALSE, purl = TRUE}
 
@@ -168,7 +167,7 @@ The packages you have installed contain a number of functions. There are two way
 
 If you attempt to use a function from a package without loading that package or specifying the package name, you will get an error.
 
-As an example, the `skim` function comes from the `skimr` package. Using `skim` without loading or specifying the `skimr` package will give an error:
+As an example, the `skim` function comes from the {skimr} package. Using `skim` without loading or specifying the {skimr} package will give an error:
 
 ```{r loadpkgs1, echo = TRUE, eval = TRUE, error = TRUE}
 
@@ -186,7 +185,7 @@ skimr::skim(lesson1a$age)
 
 ```
 
-However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the `skimr` package, type or copy and paste the following line of code into the console window, and press enter.
+However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the {skimr} package, type or copy and paste the following line of code into the console window, and press enter.
 
 ```{r loadpkgs3, echo = TRUE, eval = TRUE, purl = FALSE, warning = FALSE, message = FALSE}
 
@@ -194,7 +193,7 @@ library(skimr)
 
 ```
 
-Now you will be able to use all functions in the `skimr` package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
+Now you will be able to use all functions in the {skimr} package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
 
 ```{r loadpkgs4, echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE}
 
@@ -207,14 +206,14 @@ library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(ggsurvfit)
 library(tidyverse)
 
 ```
 
 ### Looking at the data
 
-R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset "lesson1a" by typing the following into the console window and hitting enter (a new window will pop up):
+R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset **lesson1a** by typing the following into the console window and hitting enter (a new window will pop up):
 
 ```{r section1a, echo = TRUE, eval = FALSE, results = "hide"}
 
@@ -233,7 +232,7 @@ A typical command is of the form: `packagename::function(options)`. If a package
 
 Since you can have multiple datasets in R at the same time, your command must indicate which dataset you are referring to. This is usually done by including the dataset name inside the parentheses of the function.
 
-For example, this will summarize the data for the full `lesson1a` dataset.
+For example, this will summarize the data for the full **lesson1a** dataset.
 
 ```{r section1b_1, echo = TRUE, include = TRUE, results = "hide"}
 
@@ -257,7 +256,7 @@ skim(lesson1a)
 
 To refer to one variable in your dataset, you can use the notation `dataset$variable` to indicate which dataset you are referencing, and which variable within that dataset.
 
-For example, this will summarize just the variable `age` from the `lesson1a` dataset.
+For example, this will summarize just the variable "age" from the **lesson1a** dataset.
 
 ```{r section1c}
 
@@ -272,7 +271,7 @@ One of the most useful commands is known as the pipe operator (%>%). The pipe op
 
 Here is an example of piping using the `skim` function.
 
-This piece of code can be read as, "Use the `skim` function on the lesson1a dataset".
+This piece of code can be read as, "Use the `skim` function on the **lesson1a** dataset".
 
 ```{r section1d_1, eval = TRUE, results = "hide"}
 
@@ -281,7 +280,7 @@ skim(lesson1a)
 
 ```
 
-This piece of code can be read as, "Take the lesson1a dataset, **and then** give this data to the `skim` function to use."
+This piece of code can be read as, "Take the **lesson1a** dataset, **and then** give this data to the `skim` function to use."
 
 ```{r section1d_2, eval = TRUE, results = "hide"}
 
@@ -331,7 +330,9 @@ new_data_pipe
 
 The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.
 
-Below is an example of how to create a dataset that contains only patients in the "Drug A" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
+Below is an example of how to create a dataset that contains only patients in the "Drug A" group and how to save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future.
+
+**Note:** the **trial** dataset is automatically loaded when you load the {gtsummary} package, which we've done above, so this dataset does not have to be manually loaded like the **lesson1a** dataset.
 
 ```{r section1d1}
 
@@ -363,7 +364,7 @@ trial_drug
   
 ```
 
-Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug A" group.
+Here, we've called this dataset **trial_drug**, and you can see that this dataset only includes the patients in the "Drug A" group.
 
 #### `head` function
 
@@ -380,7 +381,7 @@ lesson1a %>% head()
 
 The `table` function is the basic function for creating one-way and two-way tables. However, these tables often do not provide much information and are not formatted nicely or in a way that can easily be copied to a Word document.
 
-**Note:** the "trial" dataset is automatically loaded when you load the `gtsummary` package, which we've done above, so this dataset does not have to be manually loaded like the "lesson1a" dataset.
+
 
 Here is an example of a one-way table using the `table` function:
 
@@ -415,7 +416,7 @@ trial$response
 
 #### `tbl_summary` function
 
-The `tbl_summary` function (from the `gtsummary` package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.
+The `tbl_summary` function (from the {gtsummary} package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.
 
 In this course, we will be using the `tbl_summary` function instead of the `table` function for all tables that will be displayed. There are some cases where the `table` function will be used in conjunction with another function to perform an analysis, but these tables will not be displayed.
 
@@ -441,7 +442,7 @@ As you can see, there is currently only one row in the table. If a variable has 
 # Create a formatted table for the "sex" variable, showing both "0" and "1" values
 tbl_summary(
   lesson1a %>% select(sex),
-  type = list("sex" ~ "categorical")
+  type = list(sex = "categorical")
 )
 
 ```
@@ -450,7 +451,7 @@ tbl_summary(
 
 This tells you that the "sex" variable has no missing data because the table only shows values of "0" and "1", with no "NA" values. It also shows that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
 
-Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list("sex" ~ "categorical"), statistic = list("sex" ~ "{n}")), variable = "sex", level = "0")` men in the `r nrow(lesson1a)` patients and that they constituted `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list("sex" ~ "categorical"), statistic = list("sex" ~ "{p}%")), variable = "sex", level = "0")` of the population.
+Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(sex = "categorical"), statistic = list(sex = "{n}")), variable = "sex", level = "0")` men in the `r nrow(lesson1a)` patients and that they constituted `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(sex = "categorical"), statistic = list(sex = "{p}%")), variable = "sex", level = "0")` of the population.
 
 The `tbl_summary` function can also be used for two-way tables. The `select` function is used to select both variables of interest, and the name of the column variable is specified in the `by` statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the `table` function. It also includes information on the missing (NA) values, which are excluded when using the `table` function.
 
@@ -463,14 +464,14 @@ table(trial$response, trial$death)
 tbl_summary(
   trial %>% select(response, death),
   by = death,
-  type = list("response" ~ "categorical")
+  type = list(response = "categorical")
 )
 
 ```
 
 #### `skim` function
 
-The `skim` function (from the `skimr` package) gives basic summary data.
+The `skim` function (from the {skimr} package) gives basic summary data.
 
 ```{r section1i}
 
@@ -479,7 +480,7 @@ skim(lesson1a$age)
 
 ```
 
-So of the `r nrow(lesson1a)` patients (column "n"), the mean age (a type of average, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.mean), digits = 4)` (column "mean"), the standard deviation (again, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.sd), digits = 4)` (column "sd"). The youngest patient was `r skim(lesson1a$age) %>% pull(numeric.p0)` (column "p0") and the oldest is `r skim(lesson1a$age) %>% pull(numeric.p100)` (column "p100"). 
+So of the `r nrow(lesson1a)` patients, there are no patients who are missing the "age" variable (the "n_missing" column = 0), the mean age (a type of average, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.mean), digits = 4)` (column "mean"), the standard deviation (again, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.sd), digits = 4)` (column "sd"). The youngest patient was `r skim(lesson1a$age) %>% pull(numeric.p0)` (column "p0") and the oldest is `r skim(lesson1a$age) %>% pull(numeric.p100)` (column "p100"). 
 
 This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.mean), digits = 4)`, you’d probably just say `r round(skim(lesson1a$age) %>% pull(numeric.mean), 0)`.
 
@@ -489,7 +490,7 @@ This simple command gives us our first lesson about the dangers of statistical s
 
 The `mutate` function is used to create new variables, or replace variable values.
 
-The code below means: create a new variable called "a" and set it equal to 1 in all observations. The "<-" indicator means to then save out this new dataset including the "a" variable as "lesson1a", replacing the old "lesson1a" dataset that does not include "a".
+The code below means: create a new variable called "a" and set it equal to 1 in all observations. The "<-" indicator means to then save out this new dataset including the "a" variable as **lesson1a**, replacing the old **lesson1a** dataset that does not include "a".
 
 ```{r section1j}
 
@@ -550,7 +551,7 @@ lesson1a <-
 
 ```
 
-In this case, we are only replacing for females. Note that when you use equals sign after an "if" you have to use two of them in a row to signify "is equal to" rather than "make equal to".
+In this case, we are only replacing for females. Note that when you use an equal sign after an "if" statement you have to use two of them in a row to signify "is equal to" (==) rather than "make equal to" (=).
 
 ```{r section1o}
 
@@ -572,7 +573,7 @@ lesson1a <-
 
 ```
 
-You can give check for more than one condition by using the "&" sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age > 50). This creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
+You can give check for more than one condition by using the `&` sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age > 50). This creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
 
 ```{r section1q}
 
@@ -620,17 +621,17 @@ Unfortunately, the R help function is not very useful if you don't know the func
 
 #### Data Manipulation
 
-Most of the data manipulation we will be doing in this course, such as creating variables and selecting specific variables and observations to keep, is done using functions from the `dplyr` package (part of the `tidyverse`) package. This includes the `select` and `mutate` functions that you've seen in this lesson, as well as other functions you will see in future lessons, like `filter`. Click [here](https://dplyr.tidyverse.org/) if you need help remembering which function to use, or need code examples for these functions.
+Most of the data manipulation we will be doing in this course, such as creating variables and selecting specific variables and observations to keep, is done using functions from the {dplyr} package (part of the {tidyverse} package). This includes the `select` and `mutate` functions that you've seen in this lesson, as well as other functions you will see in future lessons, like `filter`. Click [here](https://dplyr.tidyverse.org/) if you need help remembering which function to use, or need code examples for these functions.
 
 #### Statistical Functions
 
-Most of the statistical functions that will be used in this course are included in the `stats` package, which is pre-loaded when you install R. These include the following functions, among others: `quantile`, `binom.test`, `t.test`, `wilcox.test`, `fisher.test`, `lm` and `glm`. You can access the help files for these using the `?functionname` notation, for example, `?quantile`.
+Most of the statistical functions that will be used in this course are included in the {stats} package, which is pre-loaded when you install R. These include the following functions, among others: `quantile`, `binom.test`, `t.test`, `wilcox.test`, `fisher.test`, `lm` and `glm`. You can access the help files for these using the `?functionname` notation, for example, `?quantile`.
 
 If you need help deciding which statistical functions to use, the best place to start would be searching through the statistics course online book, using the magnifying glass option at the top left. For example, if you search "logistic regression", you can find section 5.2.4 "Logistic regression", which will take you to the section of the course on this topic.
 
 #### Tables
 
-For more information on the `gtsummary` package, which creates formatted tables, click [here](http://www.danieldsjoberg.com/gtsummary/).
+For more information on the {gtsummary} package, which creates formatted tables, click [here](http://www.danieldsjoberg.com/gtsummary/).
 
 ## Assignments
 
@@ -641,6 +642,6 @@ lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
 
 ```
 
-The data for you to look at are in the attached file lesson1a.rds.
+The data for you to look at are in the attached file `lesson1a.rds`.
 
 This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?

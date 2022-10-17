@@ -37,7 +37,7 @@ Click on the blue circle with an arrow next to the name of your dataset in the "
 
 Underneath, you can see the variable name, the variable type, the values from the first several observations, and variable labels (if they exist). In some datasets, variables are labeled with information on what data is stored in the variable and/or what the variable values mean.
 
-For example, look below at the variable "sex" under "lesson1a". To the right of the variable name, it shows that this is a numeric variable ("num") and displays the first ten values. What we would expect to find in the "sex" variable is self-explanatory, based on the variable name. However, we don't know how to interpret the values. Luckily, this information is included in the variable label on the following line.
+For example, look below at the variable "sex" under **lesson1a**. To the right of the variable name, it shows that this is a numeric variable ("num") and displays the first ten values. What we would expect to find in the "sex" variable is self-explanatory, based on the variable name. However, we don't know how to interpret the values. Luckily, this information is included in the variable label on the following line.
 
 Other variables have names that are not self-explanatory, for example, "p1". This variable has a label that indicates that this is "pain at time 1 postop". You will also notice that sometimes there are variables that are not labeled. In this dataset, "age" does not have a label - the variable name is self-explanatory, and by looking at the values we can see that this is age in years.
 
@@ -52,7 +52,7 @@ str(lesson1a)
 ```
 
 ```
-## tibble [386 x 11] (S3: tbl_df/tbl/data.frame)
+## tibble [386 × 11] (S3: tbl_df/tbl/data.frame)
 ##  $ id : num [1:386] 541836 285383 332777 566828 193254 ...
 ##  $ sex: num [1:386] 0 1 0 1 1 1 0 0 1 0 ...
 ##   ..- attr(*, "label")= chr "1 if woman, 0 if man"
@@ -74,7 +74,7 @@ str(lesson1a)
 
 The "environment" tab and the `str` function are useful for getting an overview of the variables available in your dataset, they are not as useful for getting an overview of the data values available.
 
-The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
+The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from `lesson1a.rds`, the data I sent after lecture 1.
 
 ### Summarizing continuous variables
 
@@ -107,7 +107,7 @@ Table: (\#tab:section2b)Data summary
 |:-------------|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
 |age           |         0|             1| 49.48| 13.75| 19|  40|  49|  59|   86|▃▇▇▅▁ |
 
-So you can tell you have data on age for 386 patients ("number of rows" is the number of observations), the mean age was about 49 years, and the standard deviation of the mean was about 13.8.
+So you can tell you have data on age for 386 patients ("number of rows" is the number of observations and "n_missing" = 0 indicates no missing values for age), the mean age was about 49 years, and the standard deviation of the mean was about 13.8.
 
 The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was 19 and the oldest was 86. "p50" is the median (49 years), and the interquartile range is reported under "p25" and "p75" (40, 59).
 
@@ -175,18 +175,19 @@ quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
 
 ### One-way tables
 
-As mentioned in the first lesson, the `tbl_summary` function (from the `gtsummary` package) can be used to create a frequency table, in this case, the number of men and women.
+As mentioned in the first lesson, the `tbl_summary` function (from the {gtsummary} package) can be used to create a frequency table, in this case, the number of men and women.
 
 
 ```r
 # Get formatted one-way frequency table
 tbl_summary(
   lesson1a %>% select(sex), # Specify data to use and variables to include
-  type = list("sex" ~ "categorical") # Show all levels of binary variables
+  type = list(sex = "categorical") # Show all levels of binary variables
 )
 ```
 
 ```{=html}
+<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -234,6 +235,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -243,7 +246,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -315,14 +320,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #iwrgxmosvm .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -394,7 +402,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwrgxmosvm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iwrgxmosvm .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #iwrgxmosvm .gt_summary_row {
@@ -408,13 +435,22 @@ tbl_summary(
 }
 
 #iwrgxmosvm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iwrgxmosvm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
@@ -467,7 +503,10 @@ tbl_summary(
 #iwrgxmosvm .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_sourcenotes {
@@ -486,7 +525,10 @@ tbl_summary(
 
 #iwrgxmosvm .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_left {
@@ -520,47 +562,60 @@ tbl_summary(
 
 #iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#iwrgxmosvm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iwrgxmosvm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iwrgxmosvm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iwrgxmosvm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iwrgxmosvm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iwrgxmosvm .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>N = 386</strong><sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">1 if woman, 0 if man</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">181 (47%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">205 (53%)</td>
-    </tr>
+    <tr><td class="gt_row gt_left">1 if woman, 0 if man</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">181 (47%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">205 (53%)</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="2">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 
@@ -579,11 +634,12 @@ The `tbl_summary` function can also give a two-way table, for example, a table t
 tbl_summary(
   lesson1a %>% select(sex, y), # Select both variables
   by = y, # The "by" option specifies which will be the column variable
-  type = list("sex" ~ "categorical")
+  type = list(sex = "categorical")
 )
 ```
 
 ```{=html}
+<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -631,6 +687,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -640,7 +698,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -712,14 +772,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #hlleqxdave .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -791,7 +854,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hlleqxdave .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hlleqxdave .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #hlleqxdave .gt_summary_row {
@@ -805,13 +887,22 @@ tbl_summary(
 }
 
 #hlleqxdave .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hlleqxdave .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_grand_summary_row {
@@ -864,7 +955,10 @@ tbl_summary(
 #hlleqxdave .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hlleqxdave .gt_sourcenotes {
@@ -883,7 +977,10 @@ tbl_summary(
 
 #hlleqxdave .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hlleqxdave .gt_left {
@@ -917,59 +1014,72 @@ tbl_summary(
 
 #hlleqxdave .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hlleqxdave .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hlleqxdave .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hlleqxdave .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hlleqxdave .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hlleqxdave .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hlleqxdave .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>satellite</strong>, N = 67<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>campus</strong>, N = 240<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>harding</strong>, N = 39<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>peds</strong>, N = 40<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>satellite</strong>, N = 67<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">1 if woman, 0 if man</td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">115 (48%)</td>
-      <td class="gt_row gt_center">15 (38%)</td>
-      <td class="gt_row gt_center">19 (48%)</td>
-      <td class="gt_row gt_center">32 (48%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">125 (52%)</td>
-      <td class="gt_row gt_center">24 (62%)</td>
-      <td class="gt_row gt_center">21 (52%)</td>
-      <td class="gt_row gt_center">35 (52%)</td>
-    </tr>
+    <tr><td class="gt_row gt_left">1 if woman, 0 if man</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">115 (48%)</td>
+<td class="gt_row gt_center">15 (38%)</td>
+<td class="gt_row gt_center">19 (48%)</td>
+<td class="gt_row gt_center">32 (48%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">125 (52%)</td>
+<td class="gt_row gt_center">24 (62%)</td>
+<td class="gt_row gt_center">21 (52%)</td>
+<td class="gt_row gt_center">35 (52%)</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="5">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 <br>
@@ -984,7 +1094,7 @@ You can use the `add_overall` function to add a column which shows the total acr
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = y,
-  type = list("sex" ~ "categorical")
+  type = list(sex = "categorical")
 ) %>%
   # Add a column with totals across all locations
   # "last = TRUE" puts the column on the right side of the table
@@ -992,6 +1102,7 @@ tbl_summary(
 ```
 
 ```{=html}
+<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1039,6 +1150,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -1048,7 +1161,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -1120,14 +1235,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #kqtxbhydst .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1199,7 +1317,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kqtxbhydst .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kqtxbhydst .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #kqtxbhydst .gt_summary_row {
@@ -1213,13 +1350,22 @@ tbl_summary(
 }
 
 #kqtxbhydst .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kqtxbhydst .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_grand_summary_row {
@@ -1272,7 +1418,10 @@ tbl_summary(
 #kqtxbhydst .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #kqtxbhydst .gt_sourcenotes {
@@ -1291,7 +1440,10 @@ tbl_summary(
 
 #kqtxbhydst .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #kqtxbhydst .gt_left {
@@ -1325,63 +1477,76 @@ tbl_summary(
 
 #kqtxbhydst .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#kqtxbhydst .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kqtxbhydst .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kqtxbhydst .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kqtxbhydst .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kqtxbhydst .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kqtxbhydst .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>satellite</strong>, N = 67<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 386<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>campus</strong>, N = 240<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>harding</strong>, N = 39<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>peds</strong>, N = 40<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>satellite</strong>, N = 67<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Overall</strong>, N = 386<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">1 if woman, 0 if man</td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">115 (48%)</td>
-      <td class="gt_row gt_center">15 (38%)</td>
-      <td class="gt_row gt_center">19 (48%)</td>
-      <td class="gt_row gt_center">32 (48%)</td>
-      <td class="gt_row gt_center">181 (47%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">125 (52%)</td>
-      <td class="gt_row gt_center">24 (62%)</td>
-      <td class="gt_row gt_center">21 (52%)</td>
-      <td class="gt_row gt_center">35 (52%)</td>
-      <td class="gt_row gt_center">205 (53%)</td>
-    </tr>
+    <tr><td class="gt_row gt_left">1 if woman, 0 if man</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">115 (48%)</td>
+<td class="gt_row gt_center">15 (38%)</td>
+<td class="gt_row gt_center">19 (48%)</td>
+<td class="gt_row gt_center">32 (48%)</td>
+<td class="gt_row gt_center">181 (47%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">125 (52%)</td>
+<td class="gt_row gt_center">24 (62%)</td>
+<td class="gt_row gt_center">21 (52%)</td>
+<td class="gt_row gt_center">35 (52%)</td>
+<td class="gt_row gt_center">205 (53%)</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="6">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="6"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 <br>
@@ -1396,12 +1561,13 @@ By default `tbl_summary` gives column percents (here, the percentage of patients
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = y,
-  type = list("sex" ~ "categorical"),
+  type = list(sex = "categorical"),
   percent = "row" # get the row percent instead of column percent
 )
 ```
 
 ```{=html}
+<div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1449,6 +1615,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -1458,7 +1626,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -1530,14 +1700,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #qzjvxzfwte .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1609,7 +1782,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzjvxzfwte .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qzjvxzfwte .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #qzjvxzfwte .gt_summary_row {
@@ -1623,13 +1815,22 @@ tbl_summary(
 }
 
 #qzjvxzfwte .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qzjvxzfwte .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qzjvxzfwte .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #qzjvxzfwte .gt_grand_summary_row {
@@ -1682,7 +1883,10 @@ tbl_summary(
 #qzjvxzfwte .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #qzjvxzfwte .gt_sourcenotes {
@@ -1701,7 +1905,10 @@ tbl_summary(
 
 #qzjvxzfwte .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #qzjvxzfwte .gt_left {
@@ -1735,59 +1942,72 @@ tbl_summary(
 
 #qzjvxzfwte .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#qzjvxzfwte .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qzjvxzfwte .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qzjvxzfwte .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qzjvxzfwte .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qzjvxzfwte .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qzjvxzfwte .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>campus</strong>, N = 240<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>harding</strong>, N = 39<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>peds</strong>, N = 40<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>satellite</strong>, N = 67<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>campus</strong>, N = 240<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>harding</strong>, N = 39<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>peds</strong>, N = 40<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>satellite</strong>, N = 67<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">1 if woman, 0 if man</td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">115 (64%)</td>
-      <td class="gt_row gt_center">15 (8.3%)</td>
-      <td class="gt_row gt_center">19 (10%)</td>
-      <td class="gt_row gt_center">32 (18%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">125 (61%)</td>
-      <td class="gt_row gt_center">24 (12%)</td>
-      <td class="gt_row gt_center">21 (10%)</td>
-      <td class="gt_row gt_center">35 (17%)</td>
-    </tr>
+    <tr><td class="gt_row gt_left">1 if woman, 0 if man</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">115 (64%)</td>
+<td class="gt_row gt_center">15 (8.3%)</td>
+<td class="gt_row gt_center">19 (10%)</td>
+<td class="gt_row gt_center">32 (18%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">125 (61%)</td>
+<td class="gt_row gt_center">24 (12%)</td>
+<td class="gt_row gt_center">21 (10%)</td>
+<td class="gt_row gt_center">35 (17%)</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="5">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 <br>
@@ -1807,7 +2027,7 @@ lesson1a %>% count()
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##       n
 ##   <int>
 ## 1   386
@@ -1824,7 +2044,7 @@ lesson1a %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##       n
 ##   <int>
 ## 1   205
@@ -1838,13 +2058,13 @@ lesson1a %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##       n
 ##   <int>
 ## 1   125
 ```
 
-Note that because we did not use the assignment operator (`<-`) to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that `lesson1a` still contains all observations.
+Note that because we did not use the assignment operator (`<-`) to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that **lesson1a** still contains all observations.
 
 ### Graphing
 
@@ -1868,7 +2088,7 @@ ggplot(data = lesson1a,
 
 <img src="02-week2_files/figure-html/section2m-1.png" width="672" />
 
-`ggplot` indicates that you want to create a graph. The dataset "lesson1a" is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
+`ggplot` indicates that you want to create a graph. The dataset **lesson1a** is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
 
 One of the things that R does is to choose the number of bars for you. Notice how the graph looks "lumpy". The output also displays a message that tells you that the default number of bars (also called "bins") is 30 and suggests to "pick a better value". This is because you are breaking the data up into too many small pieces.
 
@@ -1926,7 +2146,7 @@ ci.binom(lesson1a$sex, na.rm = TRUE)
 ## [1,] 0.5310881 0.4799345 0.5817614 0.02540009
 ```
 
-For a binary variable, the function `ci.binom` from the `gmodels` package is used. This gives the proportion of women along with 95% confidence intervals (95% is the default, meaning if you don’t specify a level, it assumes you want the 95% confidence interval.)
+For a binary variable, the function `ci.binom` from the {gmodels} package is used. This gives the proportion of women along with 95% confidence intervals (95% is the default, meaning if you don’t specify a level, it assumes you want the 95% confidence interval.)
 
 ### Using R as a calculator
 
@@ -2058,15 +2278,15 @@ lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
 
 It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
 
-I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable `rt` by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.
+I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable "rt" by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.
 
 All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
 
-- lesson2a.rds: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
-- lesson2b.rds: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
-- lesson2c.rds: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
-- lesson2d.rds: Cost of a minor medical procedure. Summarize cost.
-- lesson2e.rds: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
+- **lesson2a**: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
+- **lesson2b**: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
+- **lesson2c**: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
+- **lesson2d**: Cost of a minor medical procedure. Summarize cost.
+- **lesson2e**: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
 
 
 

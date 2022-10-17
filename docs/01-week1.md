@@ -72,7 +72,7 @@ install.packages("broom")
 install.packages("pROC")
 install.packages("gmodels")
 install.packages("survival")
-install.packages("survminer")
+install.packages("ggsurvfit")
 install.packages("gt")
 ```
 
@@ -87,7 +87,7 @@ If you are using a Windows computer and get an error message that states <span s
 3. After installation is complete, close RStudio and re-open by clicking on the "Statistics Course.RProj" file.
 4. Re-run the above code in the console to install the packages.
 
-We will also be installing a package called `gtsummary` written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table. These tables can be copied and pasted from R into a Word document as well. The code below will install this package.
+We will also be installing a package called {gtsummary} written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table which can be exported in many formats, including html, pdf and Word documents. The code below will install this package.
 
 
 ```r
@@ -124,7 +124,7 @@ The packages you have installed contain a number of functions. There are two way
 
 If you attempt to use a function from a package without loading that package or specifying the package name, you will get an error.
 
-As an example, the `skim` function comes from the `skimr` package. Using `skim` without loading or specifying the `skimr` package will give an error:
+As an example, the `skim` function comes from the {skimr} package. Using `skim` without loading or specifying the {skimr} package will give an error:
 
 
 ```r
@@ -165,14 +165,14 @@ Table: (\#tab:loadpkgs2)Data summary
 |:-------------|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
 |data          |         0|             1| 49.48| 13.75| 19|  40|  49|  59|   86|▃▇▇▅▁ |
 
-However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the `skimr` package, type or copy and paste the following line of code into the console window, and press enter.
+However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the {skimr} package, type or copy and paste the following line of code into the console window, and press enter.
 
 
 ```r
 library(skimr)
 ```
 
-Now you will be able to use all functions in the `skimr` package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
+Now you will be able to use all functions in the {skimr} package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
 
 
 ```r
@@ -185,13 +185,13 @@ library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
+library(ggsurvfit)
 library(tidyverse)
 ```
 
 ### Looking at the data
 
-R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset "lesson1a" by typing the following into the console window and hitting enter (a new window will pop up):
+R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset **lesson1a** by typing the following into the console window and hitting enter (a new window will pop up):
 
 
 ```r
@@ -209,7 +209,7 @@ A typical command is of the form: `packagename::function(options)`. If a package
 
 Since you can have multiple datasets in R at the same time, your command must indicate which dataset you are referring to. This is usually done by including the dataset name inside the parentheses of the function.
 
-For example, this will summarize the data for the full `lesson1a` dataset.
+For example, this will summarize the data for the full **lesson1a** dataset.
 
 
 ```r
@@ -263,7 +263,7 @@ Table: (\#tab:section1b_1a)Data summary
 
 To refer to one variable in your dataset, you can use the notation `dataset$variable` to indicate which dataset you are referencing, and which variable within that dataset.
 
-For example, this will summarize just the variable `age` from the `lesson1a` dataset.
+For example, this will summarize just the variable "age" from the **lesson1a** dataset.
 
 
 ```r
@@ -298,7 +298,7 @@ One of the most useful commands is known as the pipe operator (%>%). The pipe op
 
 Here is an example of piping using the `skim` function.
 
-This piece of code can be read as, "Use the `skim` function on the lesson1a dataset".
+This piece of code can be read as, "Use the `skim` function on the **lesson1a** dataset".
 
 
 ```r
@@ -306,7 +306,7 @@ This piece of code can be read as, "Use the `skim` function on the lesson1a data
 skim(lesson1a)
 ```
 
-This piece of code can be read as, "Take the lesson1a dataset, **and then** give this data to the `skim` function to use."
+This piece of code can be read as, "Take the **lesson1a** dataset, **and then** give this data to the `skim` function to use."
 
 
 ```r
@@ -337,7 +337,7 @@ new_data
 ```
 
 ```
-## # A tibble: 37 x 5
+## # A tibble: 37 × 5
 ##    trt     age marker stage grade
 ##    <fct> <dbl>  <dbl> <fct> <fct>
 ##  1 DRUG     63  0.06  T3    I    
@@ -350,7 +350,7 @@ new_data
 ##  8 DRUG     61  0.177 T4    III  
 ##  9 DRUG     71  0.737 T1    I    
 ## 10 DRUG     83  0.475 T1    III  
-## # ... with 27 more rows
+## # … with 27 more rows
 ```
 
 ```r
@@ -369,7 +369,7 @@ new_data_pipe
 ```
 
 ```
-## # A tibble: 37 x 5
+## # A tibble: 37 × 5
 ##    trt     age marker stage grade
 ##    <fct> <dbl>  <dbl> <fct> <fct>
 ##  1 DRUG     63  0.06  T3    I    
@@ -382,14 +382,16 @@ new_data_pipe
 ##  8 DRUG     61  0.177 T4    III  
 ##  9 DRUG     71  0.737 T1    I    
 ## 10 DRUG     83  0.475 T1    III  
-## # ... with 27 more rows
+## # … with 27 more rows
 ```
 
 #### Assignment Operator (<-)
 
 The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.
 
-Below is an example of how to create a dataset that contains only patients in the "Drug A" group and save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future. 
+Below is an example of how to create a dataset that contains only patients in the "Drug A" group and how to save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future.
+
+**Note:** the **trial** dataset is automatically loaded when you load the {gtsummary} package, which we've done above, so this dataset does not have to be manually loaded like the **lesson1a** dataset.
 
 
 ```r
@@ -399,7 +401,7 @@ trial %>%
 ```
 
 ```
-## # A tibble: 98 x 8
+## # A tibble: 98 × 8
 ##    trt      age marker stage grade response death ttdeath
 ##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
 ##  1 Drug A    23  0.16  T1    II           0     0    24  
@@ -412,7 +414,7 @@ trial %>%
 ##  8 Drug A    38  2.08  T4    III          1     0    24  
 ##  9 Drug A    57  0.066 T1    III          0     0    24  
 ## 10 Drug A    46  0.325 T1    II           0     0    24  
-## # ... with 88 more rows
+## # … with 88 more rows
 ```
 
 You can see that the data that prints out only includes observations where "trt" is "Drug A". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
@@ -424,7 +426,7 @@ trial
 ```
 
 ```
-## # A tibble: 200 x 8
+## # A tibble: 200 × 8
 ##    trt      age marker stage grade response death ttdeath
 ##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
 ##  1 Drug A    23  0.16  T1    II           0     0    24  
@@ -437,7 +439,7 @@ trial
 ##  8 Drug A    32  1.74  T1    I            0     1    18.4
 ##  9 Drug A    31  0.144 T1    II           0     0    24  
 ## 10 Drug B    34  0.205 T3    I            0     1    10.5
-## # ... with 190 more rows
+## # … with 190 more rows
 ```
 
 Sometimes, this is fine - for example, if you simply want to take a look at the data. If you need to use this data again, give the dataset a name and use the assignment operator.
@@ -453,7 +455,7 @@ trial_drug
 ```
 
 ```
-## # A tibble: 98 x 8
+## # A tibble: 98 × 8
 ##    trt      age marker stage grade response death ttdeath
 ##    <chr>  <dbl>  <dbl> <fct> <fct>    <int> <int>   <dbl>
 ##  1 Drug A    23  0.16  T1    II           0     0    24  
@@ -466,10 +468,10 @@ trial_drug
 ##  8 Drug A    38  2.08  T4    III          1     0    24  
 ##  9 Drug A    57  0.066 T1    III          0     0    24  
 ## 10 Drug A    46  0.325 T1    II           0     0    24  
-## # ... with 88 more rows
+## # … with 88 more rows
 ```
 
-Here, we've called this dataset "trial_drug", and you can see that this dataset only includes the patients in the "Drug A" group.
+Here, we've called this dataset **trial_drug**, and you can see that this dataset only includes the patients in the "Drug A" group.
 
 #### `head` function
 
@@ -482,7 +484,7 @@ lesson1a %>% head()
 ```
 
 ```
-## # A tibble: 6 x 11
+## # A tibble: 6 × 11
 ##       id   sex   age    p1    p2    p3    p4     t     x y             z
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <chr>     <dbl>
 ## 1 541836     0    33     0     0     0     0     0     2 campus        1
@@ -497,7 +499,7 @@ lesson1a %>% head()
 
 The `table` function is the basic function for creating one-way and two-way tables. However, these tables often do not provide much information and are not formatted nicely or in a way that can easily be copied to a Word document.
 
-**Note:** the "trial" dataset is automatically loaded when you load the `gtsummary` package, which we've done above, so this dataset does not have to be manually loaded like the "lesson1a" dataset.
+
 
 Here is an example of a one-way table using the `table` function:
 
@@ -555,7 +557,7 @@ trial$response
 
 #### `tbl_summary` function
 
-The `tbl_summary` function (from the `gtsummary` package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.
+The `tbl_summary` function (from the {gtsummary} package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.
 
 In this course, we will be using the `tbl_summary` function instead of the `table` function for all tables that will be displayed. There are some cases where the `table` function will be used in conjunction with another function to perform an analysis, but these tables will not be displayed.
 
@@ -574,6 +576,7 @@ tbl_summary(
 ```
 
 ```{=html}
+<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -621,6 +624,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -630,7 +635,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -702,14 +709,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #iwrgxmosvm .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -781,7 +791,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwrgxmosvm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iwrgxmosvm .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #iwrgxmosvm .gt_summary_row {
@@ -795,13 +824,22 @@ tbl_summary(
 }
 
 #iwrgxmosvm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iwrgxmosvm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
@@ -854,7 +892,10 @@ tbl_summary(
 #iwrgxmosvm .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_sourcenotes {
@@ -873,7 +914,10 @@ tbl_summary(
 
 #iwrgxmosvm .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_left {
@@ -907,39 +951,56 @@ tbl_summary(
 
 #iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#iwrgxmosvm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iwrgxmosvm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iwrgxmosvm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iwrgxmosvm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iwrgxmosvm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iwrgxmosvm .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>N = 386</strong><sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">1 if woman, 0 if man</td>
-      <td class="gt_row gt_center">205 (53%)</td>
-    </tr>
+    <tr><td class="gt_row gt_left">1 if woman, 0 if man</td>
+<td class="gt_row gt_center">205 (53%)</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="2">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 As you can see, there is currently only one row in the table. If a variable has values of 0 and 1 only, the `tbl_summary` function gives the percentage of values that are equal to 1 by default. If you would like to see the percentage of both 0 and 1 values, you can use the "type" option and specify that the variable is categorical.
@@ -949,11 +1010,12 @@ As you can see, there is currently only one row in the table. If a variable has 
 # Create a formatted table for the "sex" variable, showing both "0" and "1" values
 tbl_summary(
   lesson1a %>% select(sex),
-  type = list("sex" ~ "categorical")
+  type = list(sex = "categorical")
 )
 ```
 
 ```{=html}
+<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1001,6 +1063,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -1010,7 +1074,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -1082,14 +1148,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #hlleqxdave .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1161,7 +1230,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hlleqxdave .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hlleqxdave .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #hlleqxdave .gt_summary_row {
@@ -1175,13 +1263,22 @@ tbl_summary(
 }
 
 #hlleqxdave .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hlleqxdave .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_grand_summary_row {
@@ -1234,7 +1331,10 @@ tbl_summary(
 #hlleqxdave .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hlleqxdave .gt_sourcenotes {
@@ -1253,7 +1353,10 @@ tbl_summary(
 
 #hlleqxdave .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hlleqxdave .gt_left {
@@ -1287,47 +1390,60 @@ tbl_summary(
 
 #hlleqxdave .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hlleqxdave .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hlleqxdave .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hlleqxdave .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hlleqxdave .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hlleqxdave .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hlleqxdave .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 386</strong><sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>N = 386</strong><sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">1 if woman, 0 if man</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">181 (47%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">205 (53%)</td>
-    </tr>
+    <tr><td class="gt_row gt_left">1 if woman, 0 if man</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">181 (47%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">205 (53%)</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="2">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 <br>
@@ -1356,11 +1472,12 @@ table(trial$response, trial$death)
 tbl_summary(
   trial %>% select(response, death),
   by = death,
-  type = list("response" ~ "categorical")
+  type = list(response = "categorical")
 )
 ```
 
 ```{=html}
+<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1408,6 +1525,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -1417,7 +1536,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -1489,14 +1610,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #kqtxbhydst .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1568,7 +1692,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kqtxbhydst .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kqtxbhydst .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #kqtxbhydst .gt_summary_row {
@@ -1582,13 +1725,22 @@ tbl_summary(
 }
 
 #kqtxbhydst .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kqtxbhydst .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_grand_summary_row {
@@ -1641,7 +1793,10 @@ tbl_summary(
 #kqtxbhydst .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #kqtxbhydst .gt_sourcenotes {
@@ -1660,7 +1815,10 @@ tbl_summary(
 
 #kqtxbhydst .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #kqtxbhydst .gt_left {
@@ -1694,61 +1852,72 @@ tbl_summary(
 
 #kqtxbhydst .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#kqtxbhydst .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kqtxbhydst .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kqtxbhydst .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kqtxbhydst .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kqtxbhydst .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kqtxbhydst .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 88<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 112<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 88<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 112<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Tumor Response</td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">49 (57%)</td>
-      <td class="gt_row gt_center">83 (78%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">37 (43%)</td>
-      <td class="gt_row gt_center">24 (22%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Unknown</td>
-      <td class="gt_row gt_center">2</td>
-      <td class="gt_row gt_center">5</td>
-    </tr>
+    <tr><td class="gt_row gt_left">Tumor Response</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">49 (57%)</td>
+<td class="gt_row gt_center">83 (78%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">37 (43%)</td>
+<td class="gt_row gt_center">24 (22%)</td></tr>
+    <tr><td class="gt_row gt_left">    Unknown</td>
+<td class="gt_row gt_center">2</td>
+<td class="gt_row gt_center">5</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="3">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="3"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 #### `skim` function
 
-The `skim` function (from the `skimr` package) gives basic summary data.
+The `skim` function (from the {skimr} package) gives basic summary data.
 
 
 ```r
@@ -1777,7 +1946,7 @@ Table: (\#tab:section1i)Data summary
 |:-------------|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
 |data          |         0|             1| 49.48| 13.75| 19|  40|  49|  59|   86|▃▇▇▅▁ |
 
-So of the 386 patients (column "n"), the mean age (a type of average, I’ll explain next week) is 49.48 (column "mean"), the standard deviation (again, I’ll explain next week) is 13.75 (column "sd"). The youngest patient was 19 (column "p0") and the oldest is 86 (column "p100"). 
+So of the 386 patients, there are no patients who are missing the "age" variable (the "n_missing" column = 0), the mean age (a type of average, I’ll explain next week) is 49.48 (column "mean"), the standard deviation (again, I’ll explain next week) is 13.75 (column "sd"). The youngest patient was 19 (column "p0") and the oldest is 86 (column "p100"). 
 
 This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was 49.48, you’d probably just say 49.
 
@@ -1787,7 +1956,7 @@ This simple command gives us our first lesson about the dangers of statistical s
 
 The `mutate` function is used to create new variables, or replace variable values.
 
-The code below means: create a new variable called "a" and set it equal to 1 in all observations. The "<-" indicator means to then save out this new dataset including the "a" variable as "lesson1a", replacing the old "lesson1a" dataset that does not include "a".
+The code below means: create a new variable called "a" and set it equal to 1 in all observations. The "<-" indicator means to then save out this new dataset including the "a" variable as **lesson1a**, replacing the old **lesson1a** dataset that does not include "a".
 
 
 ```r
@@ -1843,7 +2012,7 @@ lesson1a <-
   mutate(a = if_else(p1 > 4, p1, a))
 ```
 
-In this case, we are only replacing for females. Note that when you use equals sign after an "if" you have to use two of them in a row to signify "is equal to" rather than "make equal to".
+In this case, we are only replacing for females. Note that when you use an equal sign after an "if" statement you have to use two of them in a row to signify "is equal to" (==) rather than "make equal to" (=).
 
 
 ```r
@@ -1863,7 +2032,7 @@ lesson1a <-
   mutate(a = if_else(y == "campus" | y == "peds", 1, a))
 ```
 
-You can give check for more than one condition by using the "&" sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age > 50). This creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
+You can give check for more than one condition by using the `&` sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age > 50). This creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
 
 
 ```r
@@ -1920,17 +2089,17 @@ Unfortunately, the R help function is not very useful if you don't know the func
 
 #### Data Manipulation
 
-Most of the data manipulation we will be doing in this course, such as creating variables and selecting specific variables and observations to keep, is done using functions from the `dplyr` package (part of the `tidyverse`) package. This includes the `select` and `mutate` functions that you've seen in this lesson, as well as other functions you will see in future lessons, like `filter`. Click [here](https://dplyr.tidyverse.org/) if you need help remembering which function to use, or need code examples for these functions.
+Most of the data manipulation we will be doing in this course, such as creating variables and selecting specific variables and observations to keep, is done using functions from the {dplyr} package (part of the {tidyverse} package). This includes the `select` and `mutate` functions that you've seen in this lesson, as well as other functions you will see in future lessons, like `filter`. Click [here](https://dplyr.tidyverse.org/) if you need help remembering which function to use, or need code examples for these functions.
 
 #### Statistical Functions
 
-Most of the statistical functions that will be used in this course are included in the `stats` package, which is pre-loaded when you install R. These include the following functions, among others: `quantile`, `binom.test`, `t.test`, `wilcox.test`, `fisher.test`, `lm` and `glm`. You can access the help files for these using the `?functionname` notation, for example, `?quantile`.
+Most of the statistical functions that will be used in this course are included in the {stats} package, which is pre-loaded when you install R. These include the following functions, among others: `quantile`, `binom.test`, `t.test`, `wilcox.test`, `fisher.test`, `lm` and `glm`. You can access the help files for these using the `?functionname` notation, for example, `?quantile`.
 
 If you need help deciding which statistical functions to use, the best place to start would be searching through the statistics course online book, using the magnifying glass option at the top left. For example, if you search "logistic regression", you can find section 5.2.4 "Logistic regression", which will take you to the section of the course on this topic.
 
 #### Tables
 
-For more information on the `gtsummary` package, which creates formatted tables, click [here](http://www.danieldsjoberg.com/gtsummary/).
+For more information on the {gtsummary} package, which creates formatted tables, click [here](http://www.danieldsjoberg.com/gtsummary/).
 
 ## Assignments
 
@@ -1940,6 +2109,6 @@ For more information on the `gtsummary` package, which creates formatted tables,
 lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
 ```
 
-The data for you to look at are in the attached file lesson1a.rds.
+The data for you to look at are in the attached file `lesson1a.rds`.
 
 This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?

@@ -30,9 +30,9 @@ Here are some of the commands you might use when analyzing epidemiological data 
 
 ### Tables
 
-The first command is the `tbl_summary` function from the `gtsummary` package which makes a table. This was introduced in the week 1 lesson. We are interested in "two-way" tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet.
+The first command is the `tbl_summary` function from the {gtsummary} package which makes a table. This was introduced in the week 1 lesson. We are interested in "two-way" tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet.
 
-I’ll use the dataset for assignment 3a ("lesson3a.rds") to illustrate these points. This dataset includes patients who had prior chemotherapy, patient sex, and whether patients had postoperative nausea and vomiting.
+I’ll use the dataset for assignment 3a (**lesson3a**) to illustrate these points. This dataset includes patients who had prior chemotherapy, patient sex, and whether patients had postoperative nausea and vomiting.
 
 
 ```r
@@ -40,11 +40,12 @@ I’ll use the dataset for assignment 3a ("lesson3a.rds") to illustrate these po
 tbl_summary(
   lesson3a %>% select(pc, sex),
   by = sex,
-  type = list("pc" ~ "categorical")
+  type = list(pc = "categorical")
 )
 ```
 
 ```{=html}
+<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -92,6 +93,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -101,7 +104,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -173,14 +178,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #iwrgxmosvm .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -252,7 +260,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwrgxmosvm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iwrgxmosvm .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #iwrgxmosvm .gt_summary_row {
@@ -266,13 +293,22 @@ tbl_summary(
 }
 
 #iwrgxmosvm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iwrgxmosvm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
@@ -325,7 +361,10 @@ tbl_summary(
 #iwrgxmosvm .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_sourcenotes {
@@ -344,7 +383,10 @@ tbl_summary(
 
 #iwrgxmosvm .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_left {
@@ -378,56 +420,67 @@ tbl_summary(
 
 #iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#iwrgxmosvm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iwrgxmosvm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iwrgxmosvm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iwrgxmosvm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iwrgxmosvm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iwrgxmosvm .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 523<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 575<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 523<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 575<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">previous chemo:1 if yes</td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">160 (51%)</td>
-      <td class="gt_row gt_center">161 (50%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">156 (49%)</td>
-      <td class="gt_row gt_center">162 (50%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Unknown</td>
-      <td class="gt_row gt_center">207</td>
-      <td class="gt_row gt_center">252</td>
-    </tr>
+    <tr><td class="gt_row gt_left">previous chemo:1 if yes</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">160 (51%)</td>
+<td class="gt_row gt_center">161 (50%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">156 (49%)</td>
+<td class="gt_row gt_center">162 (50%)</td></tr>
+    <tr><td class="gt_row gt_left">    Unknown</td>
+<td class="gt_row gt_center">207</td>
+<td class="gt_row gt_center">252</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="3">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="3"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 
@@ -446,13 +499,17 @@ As mentioned in lesson 2, the `tbl_summary` command gives column percentages by 
 tbl_summary(
   lesson3a %>% select(pc, sex),
   by = sex,
-  type = list("pc" ~ "categorical"),
+  type = list(pc = "categorical"),
   percent = "row"
 ) %>%
+  # Setting the "last" option to TRUE puts the column with
+  # statistics for the overall cohort in the last column of the table
+  # The default setting, "last = FALSE", would put this column first in the table
   add_overall(last = TRUE)
 ```
 
 ```{=html}
+<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -500,6 +557,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -509,7 +568,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -581,14 +642,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #hlleqxdave .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -660,7 +724,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hlleqxdave .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hlleqxdave .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #hlleqxdave .gt_summary_row {
@@ -674,13 +757,22 @@ tbl_summary(
 }
 
 #hlleqxdave .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#hlleqxdave .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hlleqxdave .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #hlleqxdave .gt_grand_summary_row {
@@ -733,7 +825,10 @@ tbl_summary(
 #hlleqxdave .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hlleqxdave .gt_sourcenotes {
@@ -752,7 +847,10 @@ tbl_summary(
 
 #hlleqxdave .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #hlleqxdave .gt_left {
@@ -786,73 +884,79 @@ tbl_summary(
 
 #hlleqxdave .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hlleqxdave .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hlleqxdave .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hlleqxdave .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hlleqxdave .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hlleqxdave .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hlleqxdave .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 523<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 575<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>Overall</strong>, N = 1,098<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 523<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 575<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Overall</strong>, N = 1,098<sup class="gt_footnote_marks">1</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">previous chemo:1 if yes</td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">160 (50%)</td>
-      <td class="gt_row gt_center">161 (50%)</td>
-      <td class="gt_row gt_center">321 (100%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">156 (49%)</td>
-      <td class="gt_row gt_center">162 (51%)</td>
-      <td class="gt_row gt_center">318 (100%)</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Unknown</td>
-      <td class="gt_row gt_center">207</td>
-      <td class="gt_row gt_center">252</td>
-      <td class="gt_row gt_center">459</td>
-    </tr>
+    <tr><td class="gt_row gt_left">previous chemo:1 if yes</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">160 (50%)</td>
+<td class="gt_row gt_center">161 (50%)</td>
+<td class="gt_row gt_center">321 (100%)</td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">156 (49%)</td>
+<td class="gt_row gt_center">162 (51%)</td>
+<td class="gt_row gt_center">318 (100%)</td></tr>
+    <tr><td class="gt_row gt_left">    Unknown</td>
+<td class="gt_row gt_center">207</td>
+<td class="gt_row gt_center">252</td>
+<td class="gt_row gt_center">459</td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="4">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> n (%)</td>
     </tr>
   </tfoot>
-</table></div>
-```
-
-```r
-# Setting the "last" option to TRUE puts the column with statistics for the overall cohort in the last column of the table
-# The default setting, "last = FALSE", would put this column first in the table
+</table>
+</div>
 ```
 
 <br>
 
 So of the 318 patients who had previous chemo, 51% were women and 49% were men.
 
-Now let’s use the marathon data ("lesson2a.rds") to do something more interesting. First, I created a new category called "subfourhour" for those runners who completed the marathon in less than four hours.
+Now let’s use the marathon data (**lesson2a**) to do something more interesting. First, I created a new category called "subfourhour" for those runners who completed the marathon in less than four hours.
 
 
 ```r
@@ -896,7 +1000,7 @@ table(lesson2a$subfourhour, lesson2a$sex) %>%
 ## X-squared = 3.513, df = 1, p-value = 0.06089
 ```
 
-As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared p-value. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
+As a note, we can also use `tbl_summary` and the `add_p` function (also from {gtsummary}) to get the chi-squared p-value. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
 
 
 ```r
@@ -904,12 +1008,13 @@ As a note, we can also use `tbl_summary` and the `add_p` function (also from `gt
 tbl_summary(
   lesson2a %>% select(subfourhour, sex),
   by = sex,
-  type = list("subfourhour" ~ "categorical")
+  type = list(subfourhour = "categorical")
 ) %>%
-  add_p(test = list("subfourhour" ~ "chisq.test.no.correct"))
+  add_p(test = list(subfourhour = "chisq.test.no.correct"))
 ```
 
 ```{=html}
+<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -957,6 +1062,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -966,7 +1073,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -1038,14 +1147,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #kqtxbhydst .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1117,7 +1229,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kqtxbhydst .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kqtxbhydst .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #kqtxbhydst .gt_summary_row {
@@ -1131,13 +1262,22 @@ tbl_summary(
 }
 
 #kqtxbhydst .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kqtxbhydst .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kqtxbhydst .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #kqtxbhydst .gt_grand_summary_row {
@@ -1190,7 +1330,10 @@ tbl_summary(
 #kqtxbhydst .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #kqtxbhydst .gt_sourcenotes {
@@ -1209,7 +1352,10 @@ tbl_summary(
 
 #kqtxbhydst .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #kqtxbhydst .gt_left {
@@ -1243,63 +1389,71 @@ tbl_summary(
 
 #kqtxbhydst .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#kqtxbhydst .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kqtxbhydst .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kqtxbhydst .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kqtxbhydst .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kqtxbhydst .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kqtxbhydst .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 66<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 32<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 66<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 32<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">subfourhour</td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center">0.061</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">30 (45%)</td>
-      <td class="gt_row gt_center">21 (66%)</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">36 (55%)</td>
-      <td class="gt_row gt_center">11 (34%)</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
+    <tr><td class="gt_row gt_left">subfourhour</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">0.061</td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">30 (45%)</td>
+<td class="gt_row gt_center">21 (66%)</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">36 (55%)</td>
+<td class="gt_row gt_center">11 (34%)</td>
+<td class="gt_row gt_center"></td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="4">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>2</em>
-          </sup>
-           
-          Pearson's Chi-squared test
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> n (%)</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">2</sup> Pearson's Chi-squared test</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 <br>
@@ -1316,7 +1470,7 @@ Remember that the p-value when we did a t-test (`t.test(rt ~ sex, data = lesson2
 
 ### Getting estimates: risk difference, risk ratio, odds ratio
 
-This table gives you a p-value, but not an estimate. For this, we need the `epi.2by2` function from the `epiR` package. This function works for "cohort studies" and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the `epi.2by2` function the endpoint and the cohort (see below for more details). "Endpoint" will be something like cancer, response, progression, or running a marathon in under four hours. "Cohort" is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.
+This table gives you a p-value, but not an estimate. For this, we need the `epi.2by2` function from the {epiR} package. This function works for "cohort studies" and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the `epi.2by2` function the endpoint and the cohort (see below for more details). "Endpoint" will be something like cancer, response, progression, or running a marathon in under four hours. "Cohort" is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.
 
 The language we've been using is a little unusual for this example. A "case" is running a marathon in under four hours (i.e., subfourhour == 1). "Exposed" means that you are a woman (i.e. sex == 1). "Risk" means the proportion of patients who were a "case".
 
@@ -1328,6 +1482,7 @@ The probability of something is defined as the number of times it occurs divided
 
 
 ```{=html}
+<div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1375,6 +1530,8 @@ The probability of something is defined as the number of times it occurs divided
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -1384,7 +1541,9 @@ The probability of something is defined as the number of times it occurs divided
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -1456,14 +1615,17 @@ The probability of something is defined as the number of times it occurs divided
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #qzjvxzfwte .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1535,7 +1697,26 @@ The probability of something is defined as the number of times it occurs divided
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzjvxzfwte .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qzjvxzfwte .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #qzjvxzfwte .gt_summary_row {
@@ -1549,13 +1730,22 @@ The probability of something is defined as the number of times it occurs divided
 }
 
 #qzjvxzfwte .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qzjvxzfwte .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qzjvxzfwte .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #qzjvxzfwte .gt_grand_summary_row {
@@ -1608,7 +1798,10 @@ The probability of something is defined as the number of times it occurs divided
 #qzjvxzfwte .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #qzjvxzfwte .gt_sourcenotes {
@@ -1627,7 +1820,10 @@ The probability of something is defined as the number of times it occurs divided
 
 #qzjvxzfwte .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #qzjvxzfwte .gt_left {
@@ -1661,65 +1857,79 @@ The probability of something is defined as the number of times it occurs divided
 
 #qzjvxzfwte .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#qzjvxzfwte .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qzjvxzfwte .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qzjvxzfwte .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qzjvxzfwte .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qzjvxzfwte .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qzjvxzfwte .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Probability of the event (e.g. surgical complication)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Probability of no event (e.g. no complication)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Odds of the event</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Probability of the event (e.g. surgical complication)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Probability of no event (e.g. no complication)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Odds of the event</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">50%</td>
-      <td class="gt_row gt_left">50%</td>
-      <td class="gt_row gt_left">1.000</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">25%</td>
-      <td class="gt_row gt_left">75%</td>
-      <td class="gt_row gt_left">0.3333</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">10%</td>
-      <td class="gt_row gt_left">90%</td>
-      <td class="gt_row gt_left">0.1111</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">90%</td>
-      <td class="gt_row gt_left">10%</td>
-      <td class="gt_row gt_left">9.000</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">5%</td>
-      <td class="gt_row gt_left">95%</td>
-      <td class="gt_row gt_left">0.0526</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">2%</td>
-      <td class="gt_row gt_left">98%</td>
-      <td class="gt_row gt_left">0.0204</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">1%</td>
-      <td class="gt_row gt_left">99%</td>
-      <td class="gt_row gt_left">0.0101</td>
-    </tr>
+    <tr><td class="gt_row gt_left">50%</td>
+<td class="gt_row gt_left">50%</td>
+<td class="gt_row gt_left">1.000</td></tr>
+    <tr><td class="gt_row gt_left">25%</td>
+<td class="gt_row gt_left">75%</td>
+<td class="gt_row gt_left">0.3333</td></tr>
+    <tr><td class="gt_row gt_left">10%</td>
+<td class="gt_row gt_left">90%</td>
+<td class="gt_row gt_left">0.1111</td></tr>
+    <tr><td class="gt_row gt_left">90%</td>
+<td class="gt_row gt_left">10%</td>
+<td class="gt_row gt_left">9.000</td></tr>
+    <tr><td class="gt_row gt_left">5%</td>
+<td class="gt_row gt_left">95%</td>
+<td class="gt_row gt_left">0.0526</td></tr>
+    <tr><td class="gt_row gt_left">2%</td>
+<td class="gt_row gt_left">98%</td>
+<td class="gt_row gt_left">0.0204</td></tr>
+    <tr><td class="gt_row gt_left">1%</td>
+<td class="gt_row gt_left">99%</td>
+<td class="gt_row gt_left">0.0101</td></tr>
   </tbody>
   
   
-</table></div>
+</table>
+</div>
 ```
 
 One thing you might notice is that when something doesn’t happen very often, the odds and the probability are very similar. So, for example, something with a probability of 5% (0.05) has an odds of 0.0526. This has important implications for interpreting odds ratios. You will often see in the literature something like “the odds ratio for stage was 1.26, so patients with high stage disease had a 26% higher risk of complications”. This statement is wrong because if the odds ratio is 1.26 then the odds are 26% higher, not the risk. The odds ratio and relative risk will only be similar if the probability of an event is low. A doubling of risk from 1% to 2% is an increase in odds from 0.0101 to 0.0204, so very close to an odds ratio of 2. But a doubling of risk from 25% to 50% is an odds ratio of 3 (odds of 0.3333 to odds of 1.000).
 
 **Coding `epi.2by2` function**
 
-The `epi.2by2` function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the `table` function with the "cohort" variable first (as rows), and the "case" variable second (as columns).
+The `epi.2by2` function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the `table` function.
 
 
 ```r
@@ -1734,29 +1944,29 @@ table(lesson2a$sex, lesson2a$subfourhour)
 ##   1 21 11
 ```
 
-However, for the `epi.2by2` function, we need the first row to be the "exposed" group (in this case, sex == 1) and the first column be the "case" group (subfourhour == 1), so that we are comparing "exposed" to "non-exposed", rather than comparing "non-exposed" to "exposed."
+By default, `table` sorts the data numerically, so the first table row will be the "non-exposed" group (`sex == 0`) and the first column will be the "control" group (`subfourhour == 0`). However, for the `epi.2by2` function, we need the first row to be the "exposed" group (in this case, `sex == 1`) and the first column be the "case" group (`subfourhour == 1`), so that we are comparing "exposed" to "non-exposed", rather than comparing "non-exposed" to "exposed."
 
-By default, R will sort the table numerically, so by default the first table row will be the "non-exposed" group (sex == 0) and the first column will be the "control" group (subfourhour == 0).
-
-Since the rows and columns are out of order, we will first convert the table to the correct format. You do not need to remember this code - you can simply copy and paste, and replace the dataset name ("lesson2a") and variable names ("sex", "subfourhour") as necessary.
+Since the rows and columns are out of order, we will use the `factor` function to convert these variables to categorical variables, which will allow us to reverse the sort order for this analysis.
 
 
 ```r
-# This code creates the table with the correct format
-matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2)
+# Create the table using data where we have reversed the order of the columns and rows
+table2a <-
+  table(
+    # the "factor" function converts to categorical
+    # the "levels" option tells the order in which the levels should be sorted
+    factor(lesson2a$sex, levels = c(1, 0)),
+    factor(lesson2a$subfourhour, levels = c(1, 0))
+  )
+
+table2a
 ```
 
 ```
-##      [,1] [,2]
-## [1,]   11   21
-## [2,]   36   30
-```
-
-```r
-# For those who are curious, here is a description of the functions above:
-# "table" - creates the two-way table above
-# "rev" - reverses the order of the table
-# "matrix(..., nrow = 2)" converts the reversed data back into a two-by-two table
+##    
+##      1  0
+##   1 11 21
+##   0 36 30
 ```
 
 You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the `epi.2by2` function. By default, the `epi.2by2` function gives the p-value without any continuity correction.
@@ -1764,7 +1974,7 @@ You will see here that now both the rows and the columns are reversed in this ta
 
 ```r
 # Apply the epi.2by2 function to the table in the correct format
-epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
+epi.2by2(table2a)
 ```
 
 ```
@@ -1775,22 +1985,19 @@ epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
-## Inc risk ratio                               0.63 (0.37, 1.07)
-## Odds ratio                                   0.44 (0.18, 1.05)
-## Attrib risk *                                -20.17 (-40.54, 0.20)
-## Attrib risk in population *                  -6.59 (-22.15, 8.97)
-## Attrib fraction in exposed (%)               -58.68 (-168.76, 6.32)
-## Attrib fraction in population (%)            -13.73 (-29.44, 0.07)
+## Inc risk ratio                                 0.63 (0.37, 1.07)
+## Odds ratio                                     0.44 (0.18, 1.05)
+## Attrib risk in the exposed *                   -20.17 (-40.54, 0.20)
+## Attrib fraction in the exposed (%)            -58.68 (-168.76, 6.32)
+## Attrib risk in the population *                -6.59 (-22.15, 8.97)
+## Attrib fraction in the population (%)         -13.73 (-29.44, 0.07)
 ## -------------------------------------------------------------------
-##  Test that OR = 1: chi2(1) = 3.513 Pr>chi2 = 0.06
+## Uncorrected chi2 test that OR = 1: chi2(1) = 3.513 Pr>chi2 = 0.061
+## Fisher exact test that OR = 1: Pr>chi2 = 0.084
 ##  Wald confidence limits
 ##  CI: confidence interval
 ##  * Outcomes per 100 population units
 ```
-
-<!-- This code works to flip tables: matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2) -->
-
-<!-- This code also works (for tabyls): as.matrix(select(rev(arrange(tabyl(lesson2a, sex, subfourhour), desc(sex))), 1:2)) -->
 
 
 
@@ -1813,8 +2020,15 @@ Here is another one to look through:
 
 
 ```r
+# Create the table using data where we have reversed the order of the columns and rows
+table4a <-
+  table(
+    factor(example4a$toxin, levels = c(1, 0)),
+    factor(example4a$cancer, levels = c(1, 0))
+  )
+
 # Another example using "epi.2by2" function
-epi.2by2(matrix(rev(table(example4a$toxin, example4a$cancer)), nrow = 2))
+epi.2by2(table4a)
 ```
 
 ```
@@ -1825,14 +2039,15 @@ epi.2by2(matrix(rev(table(example4a$toxin, example4a$cancer)), nrow = 2))
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
-## Inc risk ratio                               5.00 (0.74, 33.78)
-## Odds ratio                                   11.67 (0.92, 147.56)
-## Attrib risk *                                50.00 (9.37, 90.63)
-## Attrib risk in population *                  25.00 (-7.98, 57.98)
-## Attrib fraction in exposed (%)               80.00 (-35.11, 97.04)
-## Attrib fraction in population (%)            66.67 (-69.30, 93.44)
+## Inc risk ratio                                 5.00 (0.74, 33.78)
+## Odds ratio                                     11.67 (0.92, 147.56)
+## Attrib risk in the exposed *                   50.00 (9.37, 90.63)
+## Attrib fraction in the exposed (%)            80.00 (-35.11, 97.04)
+## Attrib risk in the population *                25.00 (-7.98, 57.98)
+## Attrib fraction in the population (%)         66.67 (-69.30, 93.44)
 ## -------------------------------------------------------------------
-##  Test that OR = 1: chi2(1) = 4.267 Pr>chi2 = 0.04
+## Yates corrected chi2 test that OR = 1: chi2(1) = 2.400 Pr>chi2 = 0.121
+## Fisher exact test that OR = 1: Pr>chi2 = 0.119
 ##  Wald confidence limits
 ##  CI: confidence interval
 ##  * Outcomes per 100 population units
@@ -1872,12 +2087,13 @@ Similar to the chi-squared test, you can also get the Fisher's exact p-value usi
 tbl_summary(
   example4a %>% select(toxin, cancer),
   by = cancer,
-  type = list("toxin" ~ "categorical")
+  type = list(toxin = "categorical")
 ) %>%
-  add_p(test = list("toxin" ~ "fisher.test"))
+  add_p(test = list(toxin = "fisher.test"))
 ```
 
 ```{=html}
+<div id="pqsnuprvju" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -1925,6 +2141,8 @@ tbl_summary(
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -1934,7 +2152,9 @@ tbl_summary(
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -2006,14 +2226,17 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #pqsnuprvju .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2085,7 +2308,26 @@ tbl_summary(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pqsnuprvju .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pqsnuprvju .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #pqsnuprvju .gt_summary_row {
@@ -2099,13 +2341,22 @@ tbl_summary(
 }
 
 #pqsnuprvju .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pqsnuprvju .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pqsnuprvju .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #pqsnuprvju .gt_grand_summary_row {
@@ -2158,7 +2409,10 @@ tbl_summary(
 #pqsnuprvju .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #pqsnuprvju .gt_sourcenotes {
@@ -2177,7 +2431,10 @@ tbl_summary(
 
 #pqsnuprvju .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #pqsnuprvju .gt_left {
@@ -2211,63 +2468,71 @@ tbl_summary(
 
 #pqsnuprvju .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#pqsnuprvju .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pqsnuprvju .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pqsnuprvju .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pqsnuprvju .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pqsnuprvju .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pqsnuprvju .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="pqsnuprvju" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 10<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 6<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 10<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 6<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Toxin exposure</td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center"></td>
-      <td class="gt_row gt_center">0.12</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">0</td>
-      <td class="gt_row gt_center">7 (70%)</td>
-      <td class="gt_row gt_center">1 (17%)</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">1</td>
-      <td class="gt_row gt_center">3 (30%)</td>
-      <td class="gt_row gt_center">5 (83%)</td>
-      <td class="gt_row gt_center"></td>
-    </tr>
+    <tr><td class="gt_row gt_left">Toxin exposure</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">0.12</td></tr>
+    <tr><td class="gt_row gt_left">    0</td>
+<td class="gt_row gt_center">7 (70%)</td>
+<td class="gt_row gt_center">1 (17%)</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">    1</td>
+<td class="gt_row gt_center">3 (30%)</td>
+<td class="gt_row gt_center">5 (83%)</td>
+<td class="gt_row gt_center"></td></tr>
   </tbody>
   
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="4">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          n (%)
-          <br />
-        </p>
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>2</em>
-          </sup>
-           
-          Fisher's exact test
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> n (%)</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">2</sup> Fisher's exact test</td>
     </tr>
   </tfoot>
-</table></div>
+</table>
+</div>
 ```
 
 <br>
@@ -2280,7 +2545,7 @@ The exact approach to the coin throwing problem would be to write out all the po
 
 **Other Commands**
 
-You can use the `filter` command to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:
+You can use the `filter` function to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:
 
 
 ```r
@@ -2340,9 +2605,9 @@ This week’s assignment concerns techniques developed to assess epidemiologic d
 
 Try to do the ones in bold, get to the non-bolded ones if you can.
 
-- **lesson4a.rds: This is a dataset on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
-- lesson4b.rds: An epidemiological study of meat consumption and hypertension in older Americans. Meat consumption was defined as low, medium or high depending on whether subjects ate less than 3, 3 to 7 or 7 + meals with meat in per week. Does meat consumption lead to hypertension?
-- lesson4c.rds: This is a dataset from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up? 
-- **lesson4d.rds:  Patients with lung cancer are randomized to receive either chemotherapy regimen a or b and assessed for tumor response. Which regimen would you recommend to a patient? Do the treatments work differently depending on age or sex?**
-- lesson4e.rds: This is a lab study of two candidate tumor-suppressor genes (gene1 and gene2). Wild-type mice are compared with mice that have gene1 knocked-out, gene2 knocked-out or both. The presence of tumors is measured after 30 days. Do the genes suppress cancer?
+- **lesson4a: This is a dataset on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
+- **lesson4b**: An epidemiological study of meat consumption and hypertension in older Americans. Meat consumption was defined as low, medium or high depending on whether subjects ate less than 3, 3 to 7 or 7 + meals with meat in per week. Does meat consumption lead to hypertension?
+- **lesson4c**: This is a dataset from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up? 
+- **lesson4d:  Patients with lung cancer are randomized to receive either chemotherapy regimen a or b and assessed for tumor response. Which regimen would you recommend to a patient? Do the treatments work differently depending on age or sex?**
+- **lesson4e**: This is a lab study of two candidate tumor-suppressor genes (gene1 and gene2). Wild-type mice are compared with mice that have gene1 knocked-out, gene2 knocked-out or both. The presence of tumors is measured after 30 days. Do the genes suppress cancer?
 

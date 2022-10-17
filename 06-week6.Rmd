@@ -16,9 +16,6 @@ library(tidyverse)
 # Set seed
 set.seed(34634986)
 
-# To display histograms from "skim"
-Sys.setlocale("LC_CTYPE", "Chinese")
-
 # Load data
 
 # Save out list of all files
@@ -33,7 +30,7 @@ all_data_names <-
         unlist() %>%
         pluck(3) %>%
         str_replace(".rds", "")
-      )
+  )
 names(all_data) <- all_data_names
 
 # Load all data to environment
@@ -68,17 +65,17 @@ example6a <- readRDS(here::here("Data", "Week 6", "example6a.rds"))
 
 ### Diagnostic Tests
 
-For this, we will use the `epi.tests` function from the `epiR` package.
+For this, we will use the `epi.tests` function from the {epiR} package.
 
 Imagine you want to calculate the sensitivity. If you already know the counts for disease-positive and disease-negative, and test-positive and test-negative, you can easily create a table and use the `epi.tests` function.
 
 ```{r week6a}
 
 # Enter the data in the following order to create the 2x2 table
-  # Disease-positive, test-positive
-  # Disease-negative, test-positive
-  # Disease-positive, test-negative
-  # Disease-negative, test-negative
+# Disease-positive, test-positive
+# Disease-negative, test-positive
+# Disease-positive, test-negative
+# Disease-negative, test-negative
 tbl_disease_test <-
   as.table(matrix(c(670, 202, 74, 640),
                   nrow = 2, byrow = TRUE))
@@ -91,15 +88,24 @@ epi.tests(tbl_disease_test)
 
 ```
 
-Your result in this case is that sensitivity is `r style_sigfig(epi.tests(tbl_disease_test)$elements$se*100)`%, with a 95% CI `r style_sigfig(epi.tests(tbl_disease_test)$elements$se.low*100)`%, `r style_sigfig(epi.tests(tbl_disease_test)$elements$se.up*100)`%. For reasons that I am not quite sure, most investigators do not cite 95% CI with sensitivity, specificity, etc. so stating just `r style_sigfig(epi.tests(tbl_disease_test)$elements$se*100)`% is probably fine.
+```{r week6b, echo = FALSE}
 
-You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the `epi.2by2` function from week 4 (also from the `epiR` package), the table needs to be flipped so the columns and rows are correctly ordered. You can simply copy the code below and replace the inputs to the `table` function with your dataset, test variable, and disease (outcome) variable. 
+epi_disease_test <- epi.tests(tbl_disease_test)$detail
 
-```{r week6b}
+```
+
+Your result in this case is that sensitivity is `r style_percent(epi_disease_test$est[epi_disease_test$statistic == "se"])`%, with a 95% CI `r style_percent(epi_disease_test$lower[epi_disease_test$statistic == "se"])`%, `r style_percent(epi_disease_test$upper[epi_disease_test$statistic == "se"])`%. For reasons that I am not quite sure, most investigators do not cite 95% CI with sensitivity, specificity, etc. so stating just `r style_percent(epi_disease_test$est[epi_disease_test$statistic == "se"])`% is probably fine.
+
+You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the `epi.2by2` function from week 4 (also from the {epiR} package), the table needs to be flipped so the columns and rows are correctly ordered. As a reminder, you can do this by converting the variables to factors using the `factor` function and using the `levels` option to assign the sort order.
+
+```{r week6c}
 
 # This is the same code for week 4 that reverses the order of columns and rows
 tbl_example6a <-
-  matrix(rev(table(example6a$test, example6a$disease)), nrow = 2)
+  table(
+    factor(example6a$test, levels = c(1, 0)),
+    factor(example6a$disease, levels = c(1, 0))
+  )
 
 # Calculate sensitivity and specificity from table above
 epi.tests(tbl_example6a)
@@ -122,16 +128,16 @@ lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
 
 ```
 
-- lesson6a.rds and lesson6b.rds: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
+- **lesson6a** and **lesson6b**: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
 
-- lesson6c.rds: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy? 
+- **lesson6c**: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy? 
 
-- lesson6d.rds: This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high-grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:
-    - How good is the current method for determining whether patients should be referred to adjuvant therapy?
-    - It has been suggested that a statistical model using stage and grade would be better than the current risk grouping. How good do you think this model would be?
-    - Does the marker add information to the model of stage and grade?
-    - Does imaging add information to the model including stage, grade and the marker?
-    
+- **lesson6d**: This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high-grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:
+  - How good is the current method for determining whether patients should be referred to adjuvant therapy?
+  - It has been suggested that a statistical model using stage and grade would be better than the current risk grouping. How good do you think this model would be?
+  - Does the marker add information to the model of stage and grade?
+  - Does imaging add information to the model including stage, grade and the marker?
+
 **And now, a complete different type of question...**
 
 In this question, I give you an experimental set up _but no data._ What you have to do is give me an answer. Now obviously you can’t give me any numbers because I didn’t give you any. However, you can write an answer with some blanks.
@@ -144,7 +150,7 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 
 </div>
 
-```{r week6c, echo = FALSE, results = "asis", purl = FALSE}
+```{r week6d, echo = FALSE, results = "asis", purl = FALSE}
 
 tbl_week6 <-
   tribble(
@@ -160,8 +166,8 @@ tbl_week6
 
 So, I want you to give similar answers to the following research questions:
 
-- lesson6e: Hospitalized neutropenic patients were randomized to receive drug a or placebo. Bloods were taken every day. The time until patients were no longer neutropenic was measured (all patients eventually did get better).
+- **lesson6e**: Hospitalized neutropenic patients were randomized to receive drug a or placebo. Bloods were taken every day. The time until patients were no longer neutropenic was measured (all patients eventually did get better).
 
-- lesson6f: A new lab machine sometimes fails to give a readout with the result that the sample is wasted. To try and get a handle on this problem, a researcher carefully documents the number of failures for the 516 samples that she analyzes in the month of September. 
+- **lesson6f**: A new lab machine sometimes fails to give a readout with the result that the sample is wasted. To try and get a handle on this problem, a researcher carefully documents the number of failures for the 516 samples that she analyzes in the month of September. 
 
-- lesson6g: Drug a appears to be effective against cancer cells _in vitro._ Researchers create two new drugs, b and c, by making slight molecular rearrangements of drug a. The three drugs are then added to tumor cells in the test tube and the degree of cell growth measured. 
+- **lesson6g**: Drug a appears to be effective against cancer cells _in vitro._ Researchers create two new drugs, b and c, by making slight molecular rearrangements of drug a. The three drugs are then added to tumor cells in the test tube and the degree of cell growth measured. 

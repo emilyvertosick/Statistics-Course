@@ -26,17 +26,17 @@ example6a <- readRDS(here::here("Data", "Week 6", "example6a.rds"))
 
 ### Diagnostic Tests
 
-For this, we will use the `epi.tests` function from the `epiR` package.
+For this, we will use the `epi.tests` function from the {epiR} package.
 
 Imagine you want to calculate the sensitivity. If you already know the counts for disease-positive and disease-negative, and test-positive and test-negative, you can easily create a table and use the `epi.tests` function.
 
 
 ```r
 # Enter the data in the following order to create the 2x2 table
-  # Disease-positive, test-positive
-  # Disease-negative, test-positive
-  # Disease-positive, test-negative
-  # Disease-negative, test-negative
+# Disease-positive, test-positive
+# Disease-negative, test-positive
+# Disease-positive, test-negative
+# Disease-negative, test-negative
 tbl_disease_test <-
   as.table(matrix(c(670, 202, 74, 640),
                   nrow = 2, byrow = TRUE))
@@ -54,28 +54,39 @@ epi.tests(tbl_disease_test)
 ## Test -           74          640        714
 ## Total           744          842       1586
 ## 
-## Point estimates and 95 % CIs:
-## ---------------------------------------------------------
-## Apparent prevalence                    0.55 (0.52, 0.57)
-## True prevalence                        0.47 (0.44, 0.49)
-## Sensitivity                            0.90 (0.88, 0.92)
-## Specificity                            0.76 (0.73, 0.79)
-## Positive predictive value              0.77 (0.74, 0.80)
-## Negative predictive value              0.90 (0.87, 0.92)
+## Point estimates and 95% CIs:
+## --------------------------------------------------------------
+## Apparent prevalence *                  0.55 (0.52, 0.57)
+## True prevalence *                      0.47 (0.44, 0.49)
+## Sensitivity *                          0.90 (0.88, 0.92)
+## Specificity *                          0.76 (0.73, 0.79)
+## Positive predictive value *            0.77 (0.74, 0.80)
+## Negative predictive value *            0.90 (0.87, 0.92)
 ## Positive likelihood ratio              3.75 (3.32, 4.24)
 ## Negative likelihood ratio              0.13 (0.11, 0.16)
-## ---------------------------------------------------------
+## False T+ proportion for true D- *      0.24 (0.21, 0.27)
+## False T- proportion for true D+ *      0.10 (0.08, 0.12)
+## False T+ proportion for T+ *           0.23 (0.20, 0.26)
+## False T- proportion for T- *           0.10 (0.08, 0.13)
+## Correctly classified proportion *      0.83 (0.81, 0.84)
+## --------------------------------------------------------------
+## * Exact CIs
 ```
+
+
 
 Your result in this case is that sensitivity is 90%, with a 95% CI 88%, 92%. For reasons that I am not quite sure, most investigators do not cite 95% CI with sensitivity, specificity, etc. so stating just 90% is probably fine.
 
-You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the `epi.2by2` function from week 4 (also from the `epiR` package), the table needs to be flipped so the columns and rows are correctly ordered. You can simply copy the code below and replace the inputs to the `table` function with your dataset, test variable, and disease (outcome) variable. 
+You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the `epi.2by2` function from week 4 (also from the {epiR} package), the table needs to be flipped so the columns and rows are correctly ordered. As a reminder, you can do this by converting the variables to factors using the `factor` function and using the `levels` option to assign the sort order.
 
 
 ```r
 # This is the same code for week 4 that reverses the order of columns and rows
 tbl_example6a <-
-  matrix(rev(table(example6a$test, example6a$disease)), nrow = 2)
+  table(
+    factor(example6a$test, levels = c(1, 0)),
+    factor(example6a$disease, levels = c(1, 0))
+  )
 
 # Calculate sensitivity and specificity from table above
 epi.tests(tbl_example6a)
@@ -87,17 +98,23 @@ epi.tests(tbl_example6a)
 ## Test -           10         1820       1830
 ## Total            30         2000       2030
 ## 
-## Point estimates and 95 % CIs:
-## ---------------------------------------------------------
-## Apparent prevalence                    0.10 (0.09, 0.11)
-## True prevalence                        0.01 (0.01, 0.02)
-## Sensitivity                            0.67 (0.47, 0.83)
-## Specificity                            0.91 (0.90, 0.92)
-## Positive predictive value              0.10 (0.06, 0.15)
-## Negative predictive value              0.99 (0.99, 1.00)
+## Point estimates and 95% CIs:
+## --------------------------------------------------------------
+## Apparent prevalence *                  0.10 (0.09, 0.11)
+## True prevalence *                      0.01 (0.01, 0.02)
+## Sensitivity *                          0.67 (0.47, 0.83)
+## Specificity *                          0.91 (0.90, 0.92)
+## Positive predictive value *            0.10 (0.06, 0.15)
+## Negative predictive value *            0.99 (0.99, 1.00)
 ## Positive likelihood ratio              7.41 (5.55, 9.89)
 ## Negative likelihood ratio              0.37 (0.22, 0.61)
-## ---------------------------------------------------------
+## False T+ proportion for true D- *      0.09 (0.08, 0.10)
+## False T- proportion for true D+ *      0.33 (0.17, 0.53)
+## False T+ proportion for T+ *           0.90 (0.85, 0.94)
+## False T- proportion for T- *           0.01 (0.00, 0.01)
+## Correctly classified proportion *      0.91 (0.89, 0.92)
+## --------------------------------------------------------------
+## * Exact CIs
 ```
 
 As you can see, `epi.tests` also provides other information. Specificity and positive and negative predictive value you should know (remember that sensitivity is the probability of a positive result if you have the disease; specificity is the probability of a negative result if you don't have the disease; positive predictive value is the probability you have the disease if you test positive; negative predictive value is the probability that you don't have the disease if you test negative). True prevalence is the proportion of patients with disease in the data set. Apparent prevalence is a pretty misleading term and is the proportion of patients who test positive. You can generally ignore that, it isn't a commonly used statistic. Positive and negative likelihood ratios are used in Bayesian approaches to diagnostic tests and aren't taught on this course, so don't worry about those for now. 
@@ -115,16 +132,16 @@ lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
 lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
 ```
 
-- lesson6a.rds and lesson6b.rds: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
+- **lesson6a** and **lesson6b**: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
 
-- lesson6c.rds: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy? 
+- **lesson6c**: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy? 
 
-- lesson6d.rds: This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high-grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:
-    - How good is the current method for determining whether patients should be referred to adjuvant therapy?
-    - It has been suggested that a statistical model using stage and grade would be better than the current risk grouping. How good do you think this model would be?
-    - Does the marker add information to the model of stage and grade?
-    - Does imaging add information to the model including stage, grade and the marker?
-    
+- **lesson6d**: This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high-grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:
+  - How good is the current method for determining whether patients should be referred to adjuvant therapy?
+  - It has been suggested that a statistical model using stage and grade would be better than the current risk grouping. How good do you think this model would be?
+  - Does the marker add information to the model of stage and grade?
+  - Does imaging add information to the model including stage, grade and the marker?
+
 **And now, a complete different type of question...**
 
 In this question, I give you an experimental set up _but no data._ What you have to do is give me an answer. Now obviously you can’t give me any numbers because I didn’t give you any. However, you can write an answer with some blanks.
@@ -139,6 +156,7 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 
 
 ```{=html}
+<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
@@ -186,6 +204,8 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
@@ -195,7 +215,9 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
@@ -267,14 +289,17 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
 #iwrgxmosvm .gt_group_heading {
-  padding: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -346,7 +371,26 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwrgxmosvm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iwrgxmosvm .gt_row_group_first td {
+  border-top-width: 2px;
 }
 
 #iwrgxmosvm .gt_summary_row {
@@ -360,13 +404,22 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 }
 
 #iwrgxmosvm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iwrgxmosvm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iwrgxmosvm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_grand_summary_row {
@@ -419,7 +472,10 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 #iwrgxmosvm .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_sourcenotes {
@@ -438,7 +494,10 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 
 #iwrgxmosvm .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #iwrgxmosvm .gt_left {
@@ -472,39 +531,63 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 
 #iwrgxmosvm .gt_footnote_marks {
   font-style: italic;
-  font-size: 65%;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#iwrgxmosvm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iwrgxmosvm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iwrgxmosvm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iwrgxmosvm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iwrgxmosvm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iwrgxmosvm .gt_indent_5 {
+  text-indent: 25px;
 }
 </style>
-<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Chemotherapy</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Male</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Female</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Chemotherapy</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Male</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Female</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_left">Regime a</td>
-      <td class="gt_row gt_left">? of ? (?%) responded</td>
-      <td class="gt_row gt_left">? of ? (?%) responded</td>
-    </tr>
-    <tr>
-      <td class="gt_row gt_left">Regime b</td>
-      <td class="gt_row gt_left">? of ? (?%) responded</td>
-      <td class="gt_row gt_left">? of ? (?%) responded</td>
-    </tr>
+    <tr><td class="gt_row gt_left">Regime a</td>
+<td class="gt_row gt_left">? of ? (?%) responded</td>
+<td class="gt_row gt_left">? of ? (?%) responded</td></tr>
+    <tr><td class="gt_row gt_left">Regime b</td>
+<td class="gt_row gt_left">? of ? (?%) responded</td>
+<td class="gt_row gt_left">? of ? (?%) responded</td></tr>
   </tbody>
   
   
-</table></div>
+</table>
+</div>
 ```
 
 So, I want you to give similar answers to the following research questions:
 
-- lesson6e: Hospitalized neutropenic patients were randomized to receive drug a or placebo. Bloods were taken every day. The time until patients were no longer neutropenic was measured (all patients eventually did get better).
+- **lesson6e**: Hospitalized neutropenic patients were randomized to receive drug a or placebo. Bloods were taken every day. The time until patients were no longer neutropenic was measured (all patients eventually did get better).
 
-- lesson6f: A new lab machine sometimes fails to give a readout with the result that the sample is wasted. To try and get a handle on this problem, a researcher carefully documents the number of failures for the 516 samples that she analyzes in the month of September. 
+- **lesson6f**: A new lab machine sometimes fails to give a readout with the result that the sample is wasted. To try and get a handle on this problem, a researcher carefully documents the number of failures for the 516 samples that she analyzes in the month of September. 
 
-- lesson6g: Drug a appears to be effective against cancer cells _in vitro._ Researchers create two new drugs, b and c, by making slight molecular rearrangements of drug a. The three drugs are then added to tumor cells in the test tube and the degree of cell growth measured. 
+- **lesson6g**: Drug a appears to be effective against cancer cells _in vitro._ Researchers create two new drugs, b and c, by making slight molecular rearrangements of drug a. The three drugs are then added to tumor cells in the test tube and the degree of cell growth measured. 

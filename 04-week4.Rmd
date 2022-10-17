@@ -16,9 +16,6 @@ library(tidyverse)
 # Set seed
 set.seed(34634986)
 
-# To display histograms from "skim"
-Sys.setlocale("LC_CTYPE", "Chinese")
-
 # Load data
 
 # Save out list of all files
@@ -33,7 +30,7 @@ all_data_names <-
         unlist() %>%
         pluck(3) %>%
         str_replace(".rds", "")
-      )
+  )
 names(all_data) <- all_data_names
 
 # Load all data to environment
@@ -72,9 +69,9 @@ Here are some of the commands you might use when analyzing epidemiological data 
 
 ### Tables
 
-The first command is the `tbl_summary` function from the `gtsummary` package which makes a table. This was introduced in the week 1 lesson. We are interested in "two-way" tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet.
+The first command is the `tbl_summary` function from the {gtsummary} package which makes a table. This was introduced in the week 1 lesson. We are interested in "two-way" tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet.
 
-I’ll use the dataset for assignment 3a ("lesson3a.rds") to illustrate these points. This dataset includes patients who had prior chemotherapy, patient sex, and whether patients had postoperative nausea and vomiting.
+I’ll use the dataset for assignment 3a (**lesson3a**) to illustrate these points. This dataset includes patients who had prior chemotherapy, patient sex, and whether patients had postoperative nausea and vomiting.
 
 ```{r section4a, warning = FALSE}
 
@@ -82,7 +79,7 @@ I’ll use the dataset for assignment 3a ("lesson3a.rds") to illustrate these po
 tbl_summary(
   lesson3a %>% select(pc, sex),
   by = sex,
-  type = list("pc" ~ "categorical")
+  type = list(pc = "categorical")
 )
 
 ```
@@ -93,8 +90,8 @@ tbl_sex <-
   tbl_summary(
     lesson3a %>% select(pc, sex),
     by = sex,
-    type = list("pc" ~ "categorical"),
-    statistic = list("pc" ~ "{n}")
+    type = list(pc = "categorical"),
+    statistic = list(pc = "{n}")
   ) %>%
   add_overall(last = TRUE)
 
@@ -102,16 +99,16 @@ tbl_sex_p <-
   tbl_summary(
     lesson3a %>% select(pc, sex),
     by = sex,
-    type = list("pc" ~ "categorical"),
-    statistic = list("pc" ~ "{p}%")
+    type = list(pc = "categorical"),
+    statistic = list(pc = "{p}%")
   )
 
 tbl_sex_row <-
   tbl_summary(
     lesson3a %>% select(pc, sex),
     by = sex,
-    type = list("pc" ~ "categorical"),
-    statistic = list("pc" ~ "{p}%"),
+    type = list(pc = "categorical"),
+    statistic = list(pc = "{p}%"),
     percent = "row"
   ) %>%
   add_overall(last = TRUE)
@@ -132,12 +129,13 @@ As mentioned in lesson 2, the `tbl_summary` command gives column percentages by 
 tbl_summary(
   lesson3a %>% select(pc, sex),
   by = sex,
-  type = list("pc" ~ "categorical"),
+  type = list(pc = "categorical"),
   percent = "row"
 ) %>%
+  # Setting the "last" option to TRUE puts the column with
+  # statistics for the overall cohort in the last column of the table
+  # The default setting, "last = FALSE", would put this column first in the table
   add_overall(last = TRUE)
-# Setting the "last" option to TRUE puts the column with statistics for the overall cohort in the last column of the table
-# The default setting, "last = FALSE", would put this column first in the table
 
 ```
 
@@ -145,7 +143,7 @@ tbl_summary(
 
 So of the `r inline_text(tbl_sex, variable = "pc", level = "1", column = "stat_0")` patients who had previous chemo, `r inline_text(tbl_sex_row, variable = "pc", level = "1", column = "1")` were women and `r inline_text(tbl_sex_row, variable = "pc", level = "1", column = "0")` were men.
 
-Now let’s use the marathon data ("lesson2a.rds") to do something more interesting. First, I created a new category called "subfourhour" for those runners who completed the marathon in less than four hours.
+Now let’s use the marathon data (**lesson2a**) to do something more interesting. First, I created a new category called "subfourhour" for those runners who completed the marathon in less than four hours.
 
 ```{r section4d}
 
@@ -177,7 +175,7 @@ table(lesson2a$subfourhour, lesson2a$sex) %>%
 
 ```
 
-As a note, we can also use `tbl_summary` and the `add_p` function (also from `gtsummary`) to get the chi-squared p-value. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
+As a note, we can also use `tbl_summary` and the `add_p` function (also from {gtsummary}) to get the chi-squared p-value. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
 
 ```{r section4g, results = "asis", warning = FALSE}
 
@@ -185,9 +183,9 @@ As a note, we can also use `tbl_summary` and the `add_p` function (also from `gt
 tbl_summary(
   lesson2a %>% select(subfourhour, sex),
   by = sex,
-  type = list("subfourhour" ~ "categorical")
+  type = list(subfourhour = "categorical")
 ) %>%
-  add_p(test = list("subfourhour" ~ "chisq.test.no.correct"))
+  add_p(test = list(subfourhour = "chisq.test.no.correct"))
 
 ```
 
@@ -199,8 +197,8 @@ tbl_subfour_p <-
   tbl_summary(
     lesson2a %>% select(subfourhour, sex),
     by = sex,
-    type = list("subfourhour" ~ "categorical"),
-    statistic = list("subfourhour" ~ "{p}%")
+    type = list(subfourhour = "categorical"),
+    statistic = list(subfourhour = "{p}%")
   )
 
 ```
@@ -215,7 +213,7 @@ Remember that the p-value when we did a t-test (`t.test(rt ~ sex, data = lesson2
 
 ### Getting estimates: risk difference, risk ratio, odds ratio
 
-This table gives you a p-value, but not an estimate. For this, we need the `epi.2by2` function from the `epiR` package. This function works for "cohort studies" and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the `epi.2by2` function the endpoint and the cohort (see below for more details). "Endpoint" will be something like cancer, response, progression, or running a marathon in under four hours. "Cohort" is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.
+This table gives you a p-value, but not an estimate. For this, we need the `epi.2by2` function from the {epiR} package. This function works for "cohort studies" and applies equally well to formal epidemiologic studies, retrospective analysis of datasets (such as in this marathon running example) or for randomized trials. You will give the `epi.2by2` function the endpoint and the cohort (see below for more details). "Endpoint" will be something like cancer, response, progression, or running a marathon in under four hours. "Cohort" is what you think might make a difference, like a toxin, chemotherapy, a genetic mutation, or gender.
 
 The language we've been using is a little unusual for this example. A "case" is running a marathon in under four hours (i.e., subfourhour == 1). "Exposed" means that you are a woman (i.e. sex == 1). "Risk" means the proportion of patients who were a "case".
 
@@ -241,7 +239,7 @@ tbl_probodds <-
     prob_noevent = "Probability of no event (e.g. no complication)",
     odds = "Odds of the event"
   ) %>%
-  fmt(columns = vars(odds), fns = function(x) style_sigfig(x, digits = 4)) %>%
+  fmt(columns = c(odds), fns = function(x) style_sigfig(x, digits = 4)) %>%
   cols_align(align = "left")
 
 tbl_probodds
@@ -254,7 +252,7 @@ One thing you might notice is that when something doesn’t happen very often, t
 
 **Coding `epi.2by2` function**
 
-The `epi.2by2` function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the `table` function with the "cohort" variable first (as rows), and the "case" variable second (as columns).
+The `epi.2by2` function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the `table` function.
 
 ```{r section4i, warning = FALSE}
 
@@ -263,21 +261,22 @@ table(lesson2a$sex, lesson2a$subfourhour)
 
 ```
 
-However, for the `epi.2by2` function, we need the first row to be the "exposed" group (in this case, sex == 1) and the first column be the "case" group (subfourhour == 1), so that we are comparing "exposed" to "non-exposed", rather than comparing "non-exposed" to "exposed."
+By default, `table` sorts the data numerically, so the first table row will be the "non-exposed" group (`sex == 0`) and the first column will be the "control" group (`subfourhour == 0`). However, for the `epi.2by2` function, we need the first row to be the "exposed" group (in this case, `sex == 1`) and the first column be the "case" group (`subfourhour == 1`), so that we are comparing "exposed" to "non-exposed", rather than comparing "non-exposed" to "exposed."
 
-By default, R will sort the table numerically, so by default the first table row will be the "non-exposed" group (sex == 0) and the first column will be the "control" group (subfourhour == 0).
-
-Since the rows and columns are out of order, we will first convert the table to the correct format. You do not need to remember this code - you can simply copy and paste, and replace the dataset name ("lesson2a") and variable names ("sex", "subfourhour") as necessary.
+Since the rows and columns are out of order, we will use the `factor` function to convert these variables to categorical variables, which will allow us to reverse the sort order for this analysis.
 
 ```{r section4j, warning = FALSE}
 
-# This code creates the table with the correct format
-matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2)
+# Create the table using data where we have reversed the order of the columns and rows
+table2a <-
+  table(
+    # the "factor" function converts to categorical
+    # the "levels" option tells the order in which the levels should be sorted
+    factor(lesson2a$sex, levels = c(1, 0)),
+    factor(lesson2a$subfourhour, levels = c(1, 0))
+  )
 
-# For those who are curious, here is a description of the functions above:
-# "table" - creates the two-way table above
-# "rev" - reverses the order of the table
-# "matrix(..., nrow = 2)" converts the reversed data back into a two-by-two table
+table2a
 
 ```
 
@@ -286,18 +285,16 @@ You will see here that now both the rows and the columns are reversed in this ta
 ```{r section4k, warning = FALSE}
 
 # Apply the epi.2by2 function to the table in the correct format
-epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
+epi.2by2(table2a)
 
 ```
 
-<!-- This code works to flip tables: matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2) -->
-
-<!-- This code also works (for tabyls): as.matrix(select(rev(arrange(tabyl(lesson2a, sex, subfourhour), desc(sex))), 1:2)) -->
-
 ```{r section4l, warning = FALSE, include = FALSE, purl = FALSE}
 
-tbl_marathon <-
-  epi.2by2(matrix(rev(table(lesson2a$sex, lesson2a$subfourhour)), nrow = 2))
+tbl_marathon <- epi.2by2(table2a)
+
+tbl_marathon_tab <- tbl_marathon$tab %>% tibble() %>% janitor::clean_names()
+tbl_marathon_raw <- broom::tidy(tbl_marathon)
 
 ```
 
@@ -305,13 +302,13 @@ tbl_marathon <-
 
 So reading this table we get the following information:
 
-- There were `r tbl_marathon$tab[1, 3]` women ("Exposed +" row, "Total" column) and `r tbl_marathon$tab[2, 3]` men ("Exposed -" row, "Total" column), a total of `r tbl_marathon$tab[3, 3]` patients ("Total" row and column)
-- `r tbl_marathon$tab[1, 1]` of the women finished the race in under four hours ("Exposed +" row, "Outcome +" column), `r tbl_marathon$tab[1, 2]` did not ("Exposed +" row, "Outcome -" column).
-- `r tbl_marathon$tab[2, 1]` of the men finished the race in under four hours ("Exposed -" row, "Outcome +" column), `r tbl_marathon$tab[2, 2]` did not ("Exposed -" row, "Outcome -" column)
-- `r tbl_marathon$tab[1, 4]`% of the women ("Exposed +" column, "Inc risk \*" row) and `r tbl_marathon$tab[2, 4]`% of the men ("Exposed -" column, "Inc risk \*" row) finished in under four hours.
-- `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[1]]))`% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the absolute difference in rates of sub-four hour marathon in men and women.
-- After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[2]]))`% more to `r style_sigfig(abs(tbl_marathon$res$ARisk.strata.wald[[3]]))`% less.
-- The chance that a woman finishes the race in under four hours is `r style_ratio(tbl_marathon$res$RR.strata.wald[[1]])` of that for a man ("Inc risk ratio" under "Point estimates and 95% CIs"). The 95% CI is `r style_ratio(tbl_marathon$res$RR.strata.wald[[2]])` to `r style_ratio(tbl_marathon$res$RR.strata.wald[[3]])` (i.e about one third as likely to 7% more likely).
+- There were `r tbl_marathon_tab$total[1]` women ("Exposed +" row, "Total" column) and `r tbl_marathon_tab$total[2]` men ("Exposed -" row, "Total" column), a total of `r tbl_marathon_tab$total[3]` patients ("Total" row and column)
+- `r tbl_marathon_tab$outcome[1]` of the women finished the race in under four hours ("Exposed +" row, "Outcome +" column), `r tbl_marathon_tab$outcome_2[1]` did not ("Exposed +" row, "Outcome -" column).
+- `r tbl_marathon_tab$outcome[2]` of the men finished the race in under four hours ("Exposed -" row, "Outcome +" column), `r tbl_marathon_tab$outcome_2[2]` did not ("Exposed -" row, "Outcome -" column)
+- `r tbl_marathon_tab$inc_risk[1]`% of the women ("Exposed +" column, "Inc risk \*" row) and `r tbl_marathon_tab$inc_risk[2]`% of the men ("Exposed -" column, "Inc risk \*" row) finished in under four hours.
+- `r style_sigfig(tbl_marathon_raw$estimate[tbl_marathon_raw$term == "ARisk.strata.wald"]*-1)`% more men finished the race in under four hours ("Attrib risk \*" under "Point estimates and 95% CIs"). This is the absolute difference in rates of sub-four hour marathon in men and women.
+- After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from `r style_sigfig(tbl_marathon_raw$conf.low[tbl_marathon_raw$term == "ARisk.strata.wald"]*-1)`% more to `r style_sigfig(tbl_marathon_raw$conf.high[tbl_marathon_raw$term == "ARisk.strata.wald"])`% less.
+- The chance that a woman finishes the race in under four hours is `r style_ratio(tbl_marathon_raw$estimate[tbl_marathon_raw$term == "RR.strata.wald"])` of that for a man ("Inc risk ratio" under "Point estimates and 95% CIs"). The 95% CI is `r style_ratio(tbl_marathon_raw$conf.low[tbl_marathon_raw$term == "RR.strata.wald"])` to `r style_ratio(tbl_marathon_raw$conf.high[tbl_marathon_raw$term == "RR.strata.wald"])` (i.e about one third as likely to 7% more likely).
 - The odds ratio is reported in the second row under "Point estimates and 95% CIs" and indicates the relative difference in odds.
 
 Be aware that when interpreting a relative difference in risks, it is useful to know the absolute risk as well. A study may report that a drug reduces the risk of heart attack by 50%, but whether you choose to use the drug would depend on whether risk was reduced from 20% to 10% (a 50% relative difference and a 10% absolute difference) or whether risk was reduced from 2% to 1% (still a 50% relative difference but only a 1% absolute difference).
@@ -320,8 +317,15 @@ Here is another one to look through:
 
 ```{r section4m, warning = FALSE}
 
+# Create the table using data where we have reversed the order of the columns and rows
+table4a <-
+  table(
+    factor(example4a$toxin, levels = c(1, 0)),
+    factor(example4a$cancer, levels = c(1, 0))
+  )
+
 # Another example using "epi.2by2" function
-epi.2by2(matrix(rev(table(example4a$toxin, example4a$cancer)), nrow = 2))
+epi.2by2(table4a)
 
 ```
 
@@ -346,9 +350,9 @@ Similar to the chi-squared test, you can also get the Fisher's exact p-value usi
 tbl_summary(
   example4a %>% select(toxin, cancer),
   by = cancer,
-  type = list("toxin" ~ "categorical")
+  type = list(toxin = "categorical")
 ) %>%
-  add_p(test = list("toxin" ~ "fisher.test"))
+  add_p(test = list(toxin = "fisher.test"))
 
 ```
 
@@ -362,7 +366,7 @@ The exact approach to the coin throwing problem would be to write out all the po
 
 **Other Commands**
 
-You can use the `filter` command to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:
+You can use the `filter` function to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:
 
 ```{r section4p}
 
@@ -397,9 +401,9 @@ This week’s assignment concerns techniques developed to assess epidemiologic d
 
 Try to do the ones in bold, get to the non-bolded ones if you can.
 
-- **lesson4a.rds: This is a dataset on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
-- lesson4b.rds: An epidemiological study of meat consumption and hypertension in older Americans. Meat consumption was defined as low, medium or high depending on whether subjects ate less than 3, 3 to 7 or 7 + meals with meat in per week. Does meat consumption lead to hypertension?
-- lesson4c.rds: This is a dataset from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up? 
-- **lesson4d.rds:  Patients with lung cancer are randomized to receive either chemotherapy regimen a or b and assessed for tumor response. Which regimen would you recommend to a patient? Do the treatments work differently depending on age or sex?**
-- lesson4e.rds: This is a lab study of two candidate tumor-suppressor genes (gene1 and gene2). Wild-type mice are compared with mice that have gene1 knocked-out, gene2 knocked-out or both. The presence of tumors is measured after 30 days. Do the genes suppress cancer?
+- **lesson4a: This is a dataset on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
+- **lesson4b**: An epidemiological study of meat consumption and hypertension in older Americans. Meat consumption was defined as low, medium or high depending on whether subjects ate less than 3, 3 to 7 or 7 + meals with meat in per week. Does meat consumption lead to hypertension?
+- **lesson4c**: This is a dataset from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up? 
+- **lesson4d:  Patients with lung cancer are randomized to receive either chemotherapy regimen a or b and assessed for tumor response. Which regimen would you recommend to a patient? Do the treatments work differently depending on age or sex?**
+- **lesson4e**: This is a lab study of two candidate tumor-suppressor genes (gene1 and gene2). Wild-type mice are compared with mice that have gene1 knocked-out, gene2 knocked-out or both. The presence of tumors is measured after 30 days. Do the genes suppress cancer?
 

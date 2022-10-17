@@ -16,9 +16,6 @@ library(tidyverse)
 # Set seed
 set.seed(34634986)
 
-# To display histograms from "skim"
-Sys.setlocale("LC_CTYPE", "Chinese")
-
 # Load data
 
 # Save out list of all files
@@ -75,7 +72,7 @@ example5b <- readRDS(here::here("Data", "Week 5", "example5b.rds"))
 
 Correlating two or more variables is very easy: just use the `cor` function and then the dataset and selected variables.
 
-For example, if you use the "lesson2b.rds" dataset and correlate the first four pain scores, you get the following table:
+For example, if you use the **lesson2b** dataset and correlate the first four pain scores, you get the following table:
 
 ```{r section5a}
 
@@ -107,7 +104,7 @@ Linear regression is when you try to predict a continuous variable. The function
 
 The first variable is the dependent variable (e.g. blood pressure) and must be continuous. The other variables are the predictor variables and can be binary or continuous: in some cases you can use ordinal variables but you have to be careful. We’ll deal with categorical variables later in the course. The dependent and predictor variables are separated by a "~", and multiple predictor variables are separated by "+".
 
-Let's use the data from "lesson3d.rds" as an example dataset. We want to see if we can predict a patient's range of motion after treatment (variable a) in terms of their age, sex and pre-treatment range of motion (variable b).
+Let's use the data from **lesson3d** as an example dataset. We want to see if we can predict a patient's range of motion after treatment (variable a) in terms of their age, sex and pre-treatment range of motion (variable b).
 
 ```{r section5d}
 
@@ -130,7 +127,7 @@ summary(rom_model)
 
 The first column of numbers listed under "Coefficients" are the coefficients. You can interpret this as follows: start with `r style_sigfig(rom_model$coefficients[[1]], digits = 4)` degrees of range of motion (the intercept or constant). Then add `r style_sigfig(rom_model$coefficients[[2]], digits = 3)` if the patient is a woman, and take away `r style_sigfig(abs(rom_model$coefficients[[3]]), digits = 3)` degrees for every year of age. Finally, add `r style_sigfig(rom_model$coefficients[[4]], digits = 3)` degrees for every degree of range of motion the patient had before the trial.
 
-Let's take a single patient: a 54 year old woman with a range of motion of 301 before treatment. Her predicted range of motion afterwards is `r style_sigfig(rom_model$coefficients[[1]], digits = 4)` + `r style_sigfig(rom_model$coefficients[[2]], digits = 3)` - `r style_sigfig(abs(rom_model$coefficients[[3]]), digits = 3)`\*54 + `r style_sigfig(rom_model$coefficients[[4]], digits = 3)`\*301 = `r style_sigfig(rom_model$coefficients[[1]]+rom_model$coefficients[[2]]+rom_model$coefficients[[3]]*54+rom_model$coefficients[[4]]*301, digits = 4)`. Her actual figure was 325, so we predicted quite well for this patient. You can get R to do this automatically using the `augment` function from the `broom` package.
+Let's take a single patient: a 54 year old woman with a range of motion of 301 before treatment. Her predicted range of motion afterwards is `r style_sigfig(rom_model$coefficients[[1]], digits = 4)` + `r style_sigfig(rom_model$coefficients[[2]], digits = 3)` - `r style_sigfig(abs(rom_model$coefficients[[3]]), digits = 3)`\*54 + `r style_sigfig(rom_model$coefficients[[4]], digits = 3)`\*301 = `r style_sigfig(rom_model$coefficients[[1]]+rom_model$coefficients[[2]]+rom_model$coefficients[[3]]*54+rom_model$coefficients[[4]]*301, digits = 4)`. Her actual figure was 325, so we predicted quite well for this patient. You can get R to do this automatically using the `augment` function from the {broom} package.
 
 ```{r section5f}
 
@@ -145,7 +142,7 @@ lesson3d_pred
 
 ```
 
-To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the `tbl_regression` function from the `gtsummary` package:
+To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the `tbl_regression` function from the {gtsummary} package:
 
 ```{r section5g, message = FALSE}
 
@@ -171,7 +168,7 @@ nobs(rom_model)
 # You can use the code below to print the number of observations in the table header
 tbl_regression(rom_model) %>%
   modify_header(
-    label ~ "**Characteristic (N = {N})**"
+    label = "**Characteristic (N = {N})**"
   )
 
 ```
@@ -193,7 +190,7 @@ At the bottom of the `summary` readout there are a few miscellaneous tidbits:
 
 ### Graphing the data
 
-Graphing the data is done using the `ggplot` function from the `ggplot2` package. In short, the main inputs for the `ggplot` function are your dataset, the x variable and the y variable. You can then create a number of different plots using this data.
+Graphing the data is done using the `ggplot` function from the {ggplot2} package. In short, the main inputs for the `ggplot` function are your dataset, the x variable and the y variable. You can then create a number of different plots using this data.
 
 To create a scatterplot, the `geom_point` function is added to the `ggplot` function:
 
@@ -206,7 +203,7 @@ ggplot(data = lesson5a,
 
 ```
 
-This scatterplot from the "lesson5a.rds" data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.
+This scatterplot from the **lesson5a** data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.
 
 ### Logistic regression
 
@@ -214,7 +211,7 @@ Logistic regression is used when the variable you wish to predict is binary (e.g
 
 Again, the first variable is the dependent variable (e.g. hypertension) and must be binary. The other variables are the predictor variables and can be binary or continuous: again, in some cases you can use ordinal variables but you have to be careful. The variables are entered into the `glm` function the same way as the `lm` function (dependent ~ predictor1 + predictor2 + ...).
 
-We'll use the dataset "lesson4d.rds" as an example.
+We'll use the dataset **lesson4d** as an example.
 
 ```{r section5k}
 
@@ -265,7 +262,7 @@ lesson4d_pred
 
 ```
 
-NOTE: The "lesson4d_pred" dataset only includes 398 patients. If you look at the table above, you will see at the top that only 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.
+**Note:** The **lesson4d_pred** dataset includes 398 patients. If you look at the table above, you will see at the top that all 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.
 
 If you want to look at calculating predictions from logistic regression in more detail, you’ll need logit (see below). 
 
@@ -337,7 +334,7 @@ roc(cancer ~ marker, data = example5b)
 
 ```
 
-So the marker has an area under the curve of `r style_sigfig(roc(example5b$cancer, example5b$marker)[[9]], digits = 3)`. The `roc` function is particularly useful if you want to know the area-under-the-curve with and without a marker.
+So the marker has an area under the curve of `r style_sigfig(roc(example5b$cancer, example5b$marker)[[9]], digits = 3)`. The `roc` function from the {pROC} package is particularly useful if you want to know the area-under-the-curve with and without a marker.
 
 For instance, the code below could tell you how much the area-under-the-curve increases when you add a new marker to a model to predict cancer that already includes age.
 
@@ -370,6 +367,7 @@ Now, calculate the AUC for the model with age and the marker by using the predic
 roc(cancer ~ .fitted, data = marker_pred)
 
 ```
+
 The AUC for the model including both age and the marker value is higher than for age alone, so we can conclude that the marker adds important predictiveness to age. 
 
 ## Assignments
@@ -391,20 +389,20 @@ lesson5i <- readRDS(here::here("Data", "Week 5", "lesson5i.rds"))
 
 Regression is a very important part of statistics: I probably do more regressions that any other type of analysis, apart from than calculating basic summary data such as medians, means and proportions. So, I’ve given you lots of possibilities here. I’ve coded them: you really should try to do the bold ones, do those in italics if you can, and if you get to the rest, well, the more the merrier. The reason I have included all this is so I can go over it in class.
 
-- __lesson5a.rds: These are data from marathon runners (again). Which of the following is associated with how fast runners complete the marathon: age, sex, training miles, weight?__
+- __lesson5a: These are data from marathon runners (again). Which of the following is associated with how fast runners complete the marathon: age, sex, training miles, weight?__
 
-- __lesson5b.rds: These are data on patients with a disease that predisposes them to cancer. The disease causes precancerous lesions that can be surgically removed. A group of recently removed lesions are analyzed for a specific mutation. Does how long a patient has had the disease affect the chance that a new lesion will have a mutation?__
+- __lesson5b: These are data on patients with a disease that predisposes them to cancer. The disease causes precancerous lesions that can be surgically removed. A group of recently removed lesions are analyzed for a specific mutation. Does how long a patient has had the disease affect the chance that a new lesion will have a mutation?__
 
-- lesson5c.rds: These are data from Canadian provinces giving population, unemployment rates and male and female life expectancy. Which of these variables are associated?
+- **lesson5c**: These are data from Canadian provinces giving population, unemployment rates and male and female life expectancy. Which of these variables are associated?
 
-- _lesson5d.rds: These are data from mice inoculated with tumor cells and then treated with different doses of a drug. The growth rate of each animal’s tumor is then calculated. Is this drug effective?_
+- _**lesson5d**: These are data from mice inoculated with tumor cells and then treated with different doses of a drug. The growth rate of each animal’s tumor is then calculated. Is this drug effective?_
 
-- lesson5e.rds: These are data from a study of the use of complementary medicine (e.g. massage) by UK breast cancer patients. There are data for the women’s age, time since diagnosis, presence of distant metastases, use of complementary medicine before diagnosis, whether they received a qualification after high school, the age they left education, whether usual employment is a manual trade, socioeconomic status. What predicts use of complementary medicine by women with breast cancer?
+- **lesson5e**: These are data from a study of the use of complementary medicine (e.g. massage) by UK breast cancer patients. There are data for the women’s age, time since diagnosis, presence of distant metastases, use of complementary medicine before diagnosis, whether they received a qualification after high school, the age they left education, whether usual employment is a manual trade, socioeconomic status. What predicts use of complementary medicine by women with breast cancer?
 
-- _lesson5f.rds: These are the distance records for Frisbee for various ages in males. What is the relationship between age and how far a man can throw a Frisbee?_
+- _**lesson5f**: These are the distance records for Frisbee for various ages in males. What is the relationship between age and how far a man can throw a Frisbee?_
 
-- __lesson5g.rds: You’ve seen this dataset before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no statistically significant difference between regimens (you can test this if you like).  However, do the treatments work differently depending on sex? Do they work differently by age?__
+- __lesson5g: You’ve seen this dataset before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no statistically significant difference between regimens (you can test this if you like).  However, do the treatments work differently depending on sex? Do they work differently by age?__
 
-- __lesson5h.rds: PSA is used to screen for prostate cancer. In this dataset, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict cancer? How accurate would this test be? (NOTE: these data were taken from a real dataset, but I played around with them a bit, so please don’t draw any conclusions about PSA testing from this assignment).__
+- __lesson5h: PSA is used to screen for prostate cancer. In this dataset, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict cancer? How accurate would this test be? (NOTE: these data were taken from a real dataset, but I played around with them a bit, so please don’t draw any conclusions about PSA testing from this assignment).__
 
-- lesson5i.rds: This is a randomized trial of behavioral therapy in cancer patients with depressed mood (note that higher score means better mood). Patients are randomized to no treatment (group 1), informal contact with a volunteer (group 2) or behavior therapy with a trained therapist (group 3). What would you conclude about the effectiveness of these treatments?
+- **lesson5i**: This is a randomized trial of behavioral therapy in cancer patients with depressed mood (note that higher score means better mood). Patients are randomized to no treatment (group 1), informal contact with a volunteer (group 2) or behavior therapy with a trained therapist (group 3). What would you conclude about the effectiveness of these treatments?

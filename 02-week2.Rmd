@@ -21,9 +21,6 @@ library(tidyverse)
 # Set seed
 set.seed(34634986)
 
-# To display histograms from "skim"
-Sys.setlocale("LC_CTYPE", "Chinese")
-
 # Load data
 
 # Save out list of all files
@@ -79,7 +76,7 @@ Click on the blue circle with an arrow next to the name of your dataset in the "
 
 Underneath, you can see the variable name, the variable type, the values from the first several observations, and variable labels (if they exist). In some datasets, variables are labeled with information on what data is stored in the variable and/or what the variable values mean.
 
-For example, look below at the variable "sex" under "lesson1a". To the right of the variable name, it shows that this is a numeric variable ("num") and displays the first ten values. What we would expect to find in the "sex" variable is self-explanatory, based on the variable name. However, we don't know how to interpret the values. Luckily, this information is included in the variable label on the following line.
+For example, look below at the variable "sex" under **lesson1a**. To the right of the variable name, it shows that this is a numeric variable ("num") and displays the first ten values. What we would expect to find in the "sex" variable is self-explanatory, based on the variable name. However, we don't know how to interpret the values. Luckily, this information is included in the variable label on the following line.
 
 Other variables have names that are not self-explanatory, for example, "p1". This variable has a label that indicates that this is "pain at time 1 postop". You will also notice that sometimes there are variables that are not labeled. In this dataset, "age" does not have a label - the variable name is self-explanatory, and by looking at the values we can see that this is age in years.
 
@@ -96,7 +93,7 @@ str(lesson1a)
 
 The "environment" tab and the `str` function are useful for getting an overview of the variables available in your dataset, they are not as useful for getting an overview of the data values available.
 
-The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from lesson1a.rds, the data I sent after lecture 1.
+The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from `lesson1a.rds`, the data I sent after lecture 1.
 
 ### Summarizing continuous variables
 
@@ -109,7 +106,7 @@ lesson1a %>% skim(age)
 
 ```
 
-So you can tell you have data on age for `r nrow(lesson1a)` patients ("number of rows" is the number of observations), the mean age was about `r round(skim(lesson1a$age) %>% pull(numeric.mean), 0)` years, and the standard deviation of the mean was about `r round(skim(lesson1a$age) %>% pull(numeric.sd), 1)`.
+So you can tell you have data on age for `r nrow(lesson1a)` patients ("number of rows" is the number of observations and "n_missing" = 0 indicates no missing values for age), the mean age was about `r round(skim(lesson1a$age) %>% pull(numeric.mean), 0)` years, and the standard deviation of the mean was about `r round(skim(lesson1a$age) %>% pull(numeric.sd), 1)`.
 
 The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was `r skim(lesson1a$age) %>% pull(numeric.p0)` and the oldest was `r skim(lesson1a$age) %>% pull(numeric.p100)`. "p50" is the median (`r skim(lesson1a$age) %>% pull(numeric.p50)` years), and the interquartile range is reported under "p25" and "p75" (`r skim(lesson1a$age) %>% pull(numeric.p25)`, `r skim(lesson1a$age) %>% pull(numeric.p75)`).
 
@@ -148,14 +145,14 @@ quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
 
 ### One-way tables
 
-As mentioned in the first lesson, the `tbl_summary` function (from the `gtsummary` package) can be used to create a frequency table, in this case, the number of men and women.
+As mentioned in the first lesson, the `tbl_summary` function (from the {gtsummary} package) can be used to create a frequency table, in this case, the number of men and women.
 
 ```{r section2f, warning = FALSE}
 
 # Get formatted one-way frequency table
 tbl_summary(
   lesson1a %>% select(sex), # Specify data to use and variables to include
-  type = list("sex" ~ "categorical") # Show all levels of binary variables
+  type = list(sex = "categorical") # Show all levels of binary variables
 )
 
 ```
@@ -165,24 +162,24 @@ tbl_summary(
 tbl_sex <-
   tbl_summary(
     lesson1a %>% select(sex),
-    type = list("sex" ~ "categorical")
+    type = list(sex = "categorical")
   )
 
 tbl_sex_y1 <-
   tbl_summary(
     lesson1a %>% select(sex, y),
     by = y,
-    type = list("sex" ~ "categorical"),
+    type = list(sex = "categorical"),
     percent = "row",
-    statistic = list("sex" ~ "{n}")
+    statistic = list(sex = "{n}")
   )
 
 tbl_sex_y2 <-
   tbl_summary(
     lesson1a %>% select(sex, y),
     by = y,
-    type = list("sex" ~ "categorical"),
-    statistic = list("sex" ~ "{p}%")
+    type = list(sex = "categorical"),
+    statistic = list(sex = "{p}%")
   ) %>%
   add_overall(last = TRUE)
 
@@ -190,9 +187,9 @@ tbl_sex_y3 <-
   tbl_summary(
     lesson1a %>% select(sex, y),
     by = y,
-    type = list("sex" ~ "categorical"),
+    type = list(sex = "categorical"),
     percent = "row",
-    statistic = list("sex" ~ "{p}%")
+    statistic = list(sex = "{p}%")
   )
 
 siteN <-
@@ -216,7 +213,7 @@ The `tbl_summary` function can also give a two-way table, for example, a table t
 tbl_summary(
   lesson1a %>% select(sex, y), # Select both variables
   by = y, # The "by" option specifies which will be the column variable
-  type = list("sex" ~ "categorical")
+  type = list(sex = "categorical")
 )
 
 ```
@@ -233,7 +230,7 @@ You can use the `add_overall` function to add a column which shows the total acr
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = y,
-  type = list("sex" ~ "categorical")
+  type = list(sex = "categorical")
 ) %>%
   # Add a column with totals across all locations
   # "last = TRUE" puts the column on the right side of the table
@@ -253,7 +250,7 @@ By default `tbl_summary` gives column percents (here, the percentage of patients
 tbl_summary(
   lesson1a %>% select(sex, y),
   by = y,
-  type = list("sex" ~ "categorical"),
+  type = list(sex = "categorical"),
   percent = "row" # get the row percent instead of column percent
 )
 
@@ -292,7 +289,7 @@ lesson1a %>%
 
 ```
 
-Note that because we did not use the assignment operator (`<-`) to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that `lesson1a` still contains all observations.
+Note that because we did not use the assignment operator (`<-`) to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that **lesson1a** still contains all observations.
 
 ### Graphing
 
@@ -311,7 +308,7 @@ ggplot(data = lesson1a,
 
 ```
 
-`ggplot` indicates that you want to create a graph. The dataset "lesson1a" is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
+`ggplot` indicates that you want to create a graph. The dataset **lesson1a** is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
 
 One of the things that R does is to choose the number of bars for you. Notice how the graph looks "lumpy". The output also displays a message that tells you that the default number of bars (also called "bins") is 30 and suggests to "pick a better value". This is because you are breaking the data up into too many small pieces.
 
@@ -359,7 +356,7 @@ ci.binom(lesson1a$sex, na.rm = TRUE)
 
 ```
 
-For a binary variable, the function `ci.binom` from the `gmodels` package is used. This gives the proportion of women along with 95% confidence intervals (95% is the default, meaning if you don’t specify a level, it assumes you want the 95% confidence interval.)
+For a binary variable, the function `ci.binom` from the {gmodels} package is used. This gives the proportion of women along with 95% confidence intervals (95% is the default, meaning if you don’t specify a level, it assumes you want the 95% confidence interval.)
 
 ### Using R as a calculator
 
@@ -459,15 +456,15 @@ lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
 
 It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
 
-I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable `rt` by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.
+I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable "rt" by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.
 
 All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
 
-- lesson2a.rds: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
-- lesson2b.rds: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
-- lesson2c.rds: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
-- lesson2d.rds: Cost of a minor medical procedure. Summarize cost.
-- lesson2e.rds: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
+- **lesson2a**: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
+- **lesson2b**: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
+- **lesson2c**: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
+- **lesson2d**: Cost of a minor medical procedure. Summarize cost.
+- **lesson2e**: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
 
 
 
