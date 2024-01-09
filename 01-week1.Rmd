@@ -50,7 +50,7 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 As a note about this book - you can copy and paste code referenced in this book by hovering over the gray box containing the code, and clicking on the icon that appears in the top right corner.
 
-![ ](Images/copycode.png)
+![ ](Images/copycode.PNG)
 
 ### Software Installation
 
@@ -95,7 +95,7 @@ When you open the "Statistics Course.Rproj" file, RStudio will open, and you wil
 
 For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, open the "Install Packages Code.R" file. Run each line in this file by highlighting the line of code and clicking the "Run" button in the top right hand corner, or using the keyboard shortcut "ctrl-enter". If you get the following popup message, please click "yes". If after clicking "yes" once, the pop-up reappears, you can click "no" the second time.
 
-![ ](Images/rinstallmsg.png)
+![ ](Images/rinstallmsg.PNG)
 
 Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
 
