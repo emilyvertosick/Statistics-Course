@@ -95,7 +95,7 @@ When you open the "Statistics Course.Rproj" file, RStudio will open, and you wil
 
 For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, open the "Install Packages Code.R" file. Run each line in this file by highlighting the line of code and clicking the "Run" button in the top right hand corner, or using the keyboard shortcut "ctrl-enter". If you get the following popup message, please click "yes". If after clicking "yes" once, the pop-up reappears, you can click "no" the second time.
 
-![ ](Images/rinstallmsg.PNG)
+![ ](Images/rinstallmsg.png)
 
 Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
 
@@ -117,7 +117,7 @@ install.packages("gt")
 
 If you get a message that says "These packages have more recent versions available. Which would you like to update?", you can enter "1" in the console window and press enter. This will update all necessary packages and complete the installation.
 
-![ ](Images/updatepackages.PNG)
+![ ](Images/updatepackage.PNG)
 
 If you are using a Windows computer and get an error message that states <span style="color:red">Error: Could not find tools necessary to compile a package</span>, you will need to download and install the Rtools program before proceeding. The instructions are below:
 
