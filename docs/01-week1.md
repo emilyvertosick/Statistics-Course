@@ -51,7 +51,7 @@ When you open the "Statistics Course.Rproj" file, RStudio will open, and you wil
 
 4. The bottom right panel also includes several tabs. The "files" tab shows all files in your current directory. The "plots" tab is where plots will be shown if a plot is created. The "packages" tab shows all R packages that are available on your machine. The "help" tab will show help files, and help files can be searched from this tab. The "viewer" tab will show any other files that are created, for example, formatted tables.
 
-![ ](Images/rstudio_window.JPG)
+![ ](Images/rstudio_window.jpg)
 
 ### Installing packages
 
