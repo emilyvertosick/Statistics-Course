@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Week 4 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Week 4 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -117,6 +117,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 </head>
 
@@ -311,22 +315,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">4</span> Week 4<a href="week-4.html#week-4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="setting-up-3" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Setting Up<a href="week-4.html#setting-up-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="week-4.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
-<span id="cb124-2"><a href="week-4.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb124-3"><a href="week-4.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb124-4"><a href="week-4.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb124-5"><a href="week-4.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
-<span id="cb124-6"><a href="week-4.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb124-7"><a href="week-4.html#cb124-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
-<span id="cb124-8"><a href="week-4.html#cb124-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
-<span id="cb124-9"><a href="week-4.html#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
-<span id="cb124-10"><a href="week-4.html#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb124-11"><a href="week-4.html#cb124-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb124-12"><a href="week-4.html#cb124-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb124-13"><a href="week-4.html#cb124-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data necessary to run Week 4 examples</span></span>
-<span id="cb124-14"><a href="week-4.html#cb124-14" aria-hidden="true" tabindex="-1"></a>lesson2a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 2&quot;</span>, <span class="st">&quot;lesson2a.rds&quot;</span>))</span>
-<span id="cb124-15"><a href="week-4.html#cb124-15" aria-hidden="true" tabindex="-1"></a>lesson3a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3a.rds&quot;</span>))</span>
-<span id="cb124-16"><a href="week-4.html#cb124-16" aria-hidden="true" tabindex="-1"></a>example4a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;example4a.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="week-4.html#cb124-1" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb124-2"><a href="week-4.html#cb124-2" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb124-3"><a href="week-4.html#cb124-3" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb124-4"><a href="week-4.html#cb124-4" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb124-5"><a href="week-4.html#cb124-5" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb124-6"><a href="week-4.html#cb124-6" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb124-7"><a href="week-4.html#cb124-7" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb124-8"><a href="week-4.html#cb124-8" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb124-9"><a href="week-4.html#cb124-9" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb124-10"><a href="week-4.html#cb124-10" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb124-11"><a href="week-4.html#cb124-11" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb124-12"><a href="week-4.html#cb124-12" tabindex="-1"></a></span>
+<span id="cb124-13"><a href="week-4.html#cb124-13" tabindex="-1"></a><span class="co"># Load data necessary to run Week 4 examples</span></span>
+<span id="cb124-14"><a href="week-4.html#cb124-14" tabindex="-1"></a>lesson2a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 2&quot;</span>, <span class="st">&quot;lesson2a.rds&quot;</span>))</span>
+<span id="cb124-15"><a href="week-4.html#cb124-15" tabindex="-1"></a>lesson3a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3a.rds&quot;</span>))</span>
+<span id="cb124-16"><a href="week-4.html#cb124-16" tabindex="-1"></a>example4a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;example4a.rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="r-instructions-3" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> R Instructions<a href="week-4.html#r-instructions-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -335,20 +339,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.2.1</span> Tables<a href="week-4.html#tables-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first command is the <code>tbl_summary</code> function from the {gtsummary} package which makes a table. This was introduced in the week 1 lesson. We are interested in “two-way” tables. In other words, we are not interested in just how many people had hypertension, but in the number of people who had hypertension in each different category of diet.</p>
 <p>I’ll use the dataset for assignment 3a (<strong>lesson3a</strong>) to illustrate these points. This dataset includes patients who had prior chemotherapy, patient sex, and whether patients had postoperative nausea and vomiting.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="week-4.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create twoway table of prior chemotherapy by sex</span></span>
-<span id="cb125-2"><a href="week-4.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
-<span id="cb125-3"><a href="week-4.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  lesson3a <span class="sc">%&gt;%</span> <span class="fu">select</span>(pc, sex),</span>
-<span id="cb125-4"><a href="week-4.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> sex,</span>
-<span id="cb125-5"><a href="week-4.html#cb125-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">list</span>(<span class="at">pc =</span> <span class="st">&quot;categorical&quot;</span>)</span>
-<span id="cb125-6"><a href="week-4.html#cb125-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="week-4.html#cb125-1" tabindex="-1"></a><span class="co"># Create twoway table of prior chemotherapy by sex</span></span>
+<span id="cb125-2"><a href="week-4.html#cb125-2" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb125-3"><a href="week-4.html#cb125-3" tabindex="-1"></a>  lesson3a <span class="sc">%&gt;%</span> <span class="fu">select</span>(pc, sex),</span>
+<span id="cb125-4"><a href="week-4.html#cb125-4" tabindex="-1"></a>  <span class="at">by =</span> sex,</span>
+<span id="cb125-5"><a href="week-4.html#cb125-5" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">list</span>(<span class="at">pc =</span> <span class="st">&quot;categorical&quot;</span>)</span>
+<span id="cb125-6"><a href="week-4.html#cb125-6" tabindex="-1"></a>)</span></code></pre></div>
+<div id="iwrgxmosvm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iwrgxmosvm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#iwrgxmosvm thead, #iwrgxmosvm tbody, #iwrgxmosvm tfoot, #iwrgxmosvm tr, #iwrgxmosvm td, #iwrgxmosvm th {
+  border-style: none;
+}
+
+#iwrgxmosvm p {
+  margin: 0;
+  padding: 0;
 }
 
 #iwrgxmosvm .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -371,16 +387,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#iwrgxmosvm .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#iwrgxmosvm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #iwrgxmosvm .gt_title {
@@ -399,12 +408,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#iwrgxmosvm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_bottom_border {
@@ -480,6 +501,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
+#iwrgxmosvm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #iwrgxmosvm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -503,6 +528,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #iwrgxmosvm .gt_empty_group_heading {
@@ -578,6 +604,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 2px;
 }
 
+#iwrgxmosvm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #iwrgxmosvm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -627,6 +657,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
+#iwrgxmosvm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #iwrgxmosvm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -657,8 +697,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -715,10 +755,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #iwrgxmosvm .gt_asterisk {
@@ -746,33 +785,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 523<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 575<sup class="gt_footnote_marks">1</sup></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 523&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 523<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 575&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 575<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">previous chemo:1 if yes</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left">    0</td>
-<td class="gt_row gt_center">160 (51%)</td>
-<td class="gt_row gt_center">161 (50%)</td></tr>
-    <tr><td class="gt_row gt_left">    1</td>
-<td class="gt_row gt_center">156 (49%)</td>
-<td class="gt_row gt_center">162 (50%)</td></tr>
-    <tr><td class="gt_row gt_left">    Unknown</td>
-<td class="gt_row gt_center">207</td>
-<td class="gt_row gt_center">252</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">previous chemo:1 if yes</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="stat_1" class="gt_row gt_center">160 (51%)</td>
+<td headers="stat_2" class="gt_row gt_center">161 (50%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="stat_1" class="gt_row gt_center">156 (49%)</td>
+<td headers="stat_2" class="gt_row gt_center">162 (50%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Unknown</td>
+<td headers="stat_1" class="gt_row gt_center">207</td>
+<td headers="stat_2" class="gt_row gt_center">252</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><sup class="gt_footnote_marks">1</sup> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
     </tr>
   </tfoot>
 </table>
@@ -781,25 +820,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So, for example, we can see that there were 575 women, 162 had prior chemo and 161 had no prior chemo. You can see that 252 women were missing data on prior chemotherapy use. By default, the table shows the percent among all observations with non-missing data.</p>
 <p>This table also tells us that among men with prior chemotherapy data available, 51% had no prior chemo, and 49% had prior chemo.</p>
 <p>As mentioned in lesson 2, the <code>tbl_summary</code> command gives column percentages by default, but can also give row percents using the <code>percent = "row"</code> option:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="week-4.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create twoway table with &quot;overall&quot; column and display row percents</span></span>
-<span id="cb126-2"><a href="week-4.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
-<span id="cb126-3"><a href="week-4.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  lesson3a <span class="sc">%&gt;%</span> <span class="fu">select</span>(pc, sex),</span>
-<span id="cb126-4"><a href="week-4.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> sex,</span>
-<span id="cb126-5"><a href="week-4.html#cb126-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">list</span>(<span class="at">pc =</span> <span class="st">&quot;categorical&quot;</span>),</span>
-<span id="cb126-6"><a href="week-4.html#cb126-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent =</span> <span class="st">&quot;row&quot;</span></span>
-<span id="cb126-7"><a href="week-4.html#cb126-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb126-8"><a href="week-4.html#cb126-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Setting the &quot;last&quot; option to TRUE puts the column with</span></span>
-<span id="cb126-9"><a href="week-4.html#cb126-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># statistics for the overall cohort in the last column of the table</span></span>
-<span id="cb126-10"><a href="week-4.html#cb126-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The default setting, &quot;last = FALSE&quot;, would put this column first in the table</span></span>
-<span id="cb126-11"><a href="week-4.html#cb126-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_overall</span>(<span class="at">last =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="week-4.html#cb126-1" tabindex="-1"></a><span class="co"># Create twoway table with &quot;overall&quot; column and display row percents</span></span>
+<span id="cb126-2"><a href="week-4.html#cb126-2" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb126-3"><a href="week-4.html#cb126-3" tabindex="-1"></a>  lesson3a <span class="sc">%&gt;%</span> <span class="fu">select</span>(pc, sex),</span>
+<span id="cb126-4"><a href="week-4.html#cb126-4" tabindex="-1"></a>  <span class="at">by =</span> sex,</span>
+<span id="cb126-5"><a href="week-4.html#cb126-5" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">list</span>(<span class="at">pc =</span> <span class="st">&quot;categorical&quot;</span>),</span>
+<span id="cb126-6"><a href="week-4.html#cb126-6" tabindex="-1"></a>  <span class="at">percent =</span> <span class="st">&quot;row&quot;</span></span>
+<span id="cb126-7"><a href="week-4.html#cb126-7" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb126-8"><a href="week-4.html#cb126-8" tabindex="-1"></a>  <span class="co"># Setting the &quot;last&quot; option to TRUE puts the column with</span></span>
+<span id="cb126-9"><a href="week-4.html#cb126-9" tabindex="-1"></a>  <span class="co"># statistics for the overall cohort in the last column of the table</span></span>
+<span id="cb126-10"><a href="week-4.html#cb126-10" tabindex="-1"></a>  <span class="co"># The default setting, &quot;last = FALSE&quot;, would put this column first in the table</span></span>
+<span id="cb126-11"><a href="week-4.html#cb126-11" tabindex="-1"></a>  <span class="fu">add_overall</span>(<span class="at">last =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="qsnuprvjuo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qsnuprvjuo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#hlleqxdave .gt_table {
+#qsnuprvjuo thead, #qsnuprvjuo tbody, #qsnuprvjuo tfoot, #qsnuprvjuo tr, #qsnuprvjuo td, #qsnuprvjuo th {
+  border-style: none;
+}
+
+#qsnuprvjuo p {
+  margin: 0;
+  padding: 0;
+}
+
+#qsnuprvjuo .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -822,19 +873,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#qsnuprvjuo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-#hlleqxdave .gt_title {
+#qsnuprvjuo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -846,25 +890,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#hlleqxdave .gt_subtitle {
+#qsnuprvjuo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#hlleqxdave .gt_bottom_border {
+#qsnuprvjuo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qsnuprvjuo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_col_headings {
+#qsnuprvjuo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -879,7 +935,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_col_heading {
+#qsnuprvjuo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -899,7 +955,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#hlleqxdave .gt_column_spanner_outer {
+#qsnuprvjuo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -911,15 +967,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#hlleqxdave .gt_column_spanner_outer:first-child {
+#qsnuprvjuo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hlleqxdave .gt_column_spanner_outer:last-child {
+#qsnuprvjuo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hlleqxdave .gt_column_spanner {
+#qsnuprvjuo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -931,7 +987,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#hlleqxdave .gt_group_heading {
+#qsnuprvjuo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qsnuprvjuo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -954,9 +1014,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#hlleqxdave .gt_empty_group_heading {
+#qsnuprvjuo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -971,15 +1032,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_from_md > :first-child {
+#qsnuprvjuo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hlleqxdave .gt_from_md > :last-child {
+#qsnuprvjuo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hlleqxdave .gt_row {
+#qsnuprvjuo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -998,7 +1059,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#hlleqxdave .gt_stub {
+#qsnuprvjuo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1011,7 +1072,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#hlleqxdave .gt_stub_row_group {
+#qsnuprvjuo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1025,11 +1086,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#hlleqxdave .gt_row_group_first td {
+#qsnuprvjuo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hlleqxdave .gt_summary_row {
+#qsnuprvjuo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qsnuprvjuo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1039,16 +1104,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#hlleqxdave .gt_first_summary_row {
+#qsnuprvjuo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_first_summary_row.thick {
+#qsnuprvjuo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hlleqxdave .gt_last_summary_row {
+#qsnuprvjuo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1058,7 +1123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_grand_summary_row {
+#qsnuprvjuo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1068,7 +1133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#hlleqxdave .gt_first_grand_summary_row {
+#qsnuprvjuo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1078,11 +1143,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_striped {
+#qsnuprvjuo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qsnuprvjuo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hlleqxdave .gt_table_body {
+#qsnuprvjuo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1091,7 +1166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_footnotes {
+#qsnuprvjuo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1105,30 +1180,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_footnote {
+#qsnuprvjuo .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#hlleqxdave .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#hlleqxdave .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1136,99 +1189,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#hlleqxdave .gt_left {
+#qsnuprvjuo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qsnuprvjuo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qsnuprvjuo .gt_left {
   text-align: left;
 }
 
-#hlleqxdave .gt_center {
+#qsnuprvjuo .gt_center {
   text-align: center;
 }
 
-#hlleqxdave .gt_right {
+#qsnuprvjuo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hlleqxdave .gt_font_normal {
+#qsnuprvjuo .gt_font_normal {
   font-weight: normal;
 }
 
-#hlleqxdave .gt_font_bold {
+#qsnuprvjuo .gt_font_bold {
   font-weight: bold;
 }
 
-#hlleqxdave .gt_font_italic {
+#qsnuprvjuo .gt_font_italic {
   font-style: italic;
 }
 
-#hlleqxdave .gt_super {
+#qsnuprvjuo .gt_super {
   font-size: 65%;
 }
 
-#hlleqxdave .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#qsnuprvjuo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#hlleqxdave .gt_asterisk {
+#qsnuprvjuo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hlleqxdave .gt_indent_1 {
+#qsnuprvjuo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hlleqxdave .gt_indent_2 {
+#qsnuprvjuo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hlleqxdave .gt_indent_3 {
+#qsnuprvjuo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hlleqxdave .gt_indent_4 {
+#qsnuprvjuo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hlleqxdave .gt_indent_5 {
+#qsnuprvjuo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 523<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 575<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Overall</strong>, N = 1,098<sup class="gt_footnote_marks">1</sup></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 523&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 523<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 575&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 575<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Overall&lt;/strong&gt;, N = 1,098&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>Overall</strong>, N = 1,098<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">previous chemo:1 if yes</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left">    0</td>
-<td class="gt_row gt_center">160 (50%)</td>
-<td class="gt_row gt_center">161 (50%)</td>
-<td class="gt_row gt_center">321 (100%)</td></tr>
-    <tr><td class="gt_row gt_left">    1</td>
-<td class="gt_row gt_center">156 (49%)</td>
-<td class="gt_row gt_center">162 (51%)</td>
-<td class="gt_row gt_center">318 (100%)</td></tr>
-    <tr><td class="gt_row gt_left">    Unknown</td>
-<td class="gt_row gt_center">207</td>
-<td class="gt_row gt_center">252</td>
-<td class="gt_row gt_center">459</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">previous chemo:1 if yes</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="stat_1" class="gt_row gt_center">160 (50%)</td>
+<td headers="stat_2" class="gt_row gt_center">161 (50%)</td>
+<td headers="stat_0" class="gt_row gt_center">321 (100%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="stat_1" class="gt_row gt_center">156 (49%)</td>
+<td headers="stat_2" class="gt_row gt_center">162 (51%)</td>
+<td headers="stat_0" class="gt_row gt_center">318 (100%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Unknown</td>
+<td headers="stat_1" class="gt_row gt_center">207</td>
+<td headers="stat_2" class="gt_row gt_center">252</td>
+<td headers="stat_0" class="gt_row gt_center">459</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
     </tr>
   </tfoot>
 </table>
@@ -1236,44 +1310,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p>So of the 318 patients who had previous chemo, 51% were women and 49% were men.</p>
 <p>Now let’s use the marathon data (<strong>lesson2a</strong>) to do something more interesting. First, I created a new category called “subfourhour” for those runners who completed the marathon in less than four hours.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="week-4.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new variable that indicates whether patients had marathon time &lt;= 240 minutes</span></span>
-<span id="cb127-2"><a href="week-4.html#cb127-2" aria-hidden="true" tabindex="-1"></a>lesson2a <span class="ot">&lt;-</span></span>
-<span id="cb127-3"><a href="week-4.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  lesson2a <span class="sc">%&gt;%</span></span>
-<span id="cb127-4"><a href="week-4.html#cb127-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">subfourhour =</span></span>
-<span id="cb127-5"><a href="week-4.html#cb127-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">if_else</span>(rt <span class="sc">&lt;=</span> <span class="dv">240</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="week-4.html#cb127-1" tabindex="-1"></a><span class="co"># Create a new variable that indicates whether patients had marathon time &lt;= 240 minutes</span></span>
+<span id="cb127-2"><a href="week-4.html#cb127-2" tabindex="-1"></a>lesson2a <span class="ot">&lt;-</span></span>
+<span id="cb127-3"><a href="week-4.html#cb127-3" tabindex="-1"></a>  lesson2a <span class="sc">%&gt;%</span></span>
+<span id="cb127-4"><a href="week-4.html#cb127-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">subfourhour =</span></span>
+<span id="cb127-5"><a href="week-4.html#cb127-5" tabindex="-1"></a>           <span class="fu">if_else</span>(rt <span class="sc">&lt;=</span> <span class="dv">240</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
 <p>The <code>table</code> function is a way to make very simple tables, which is useful for doing statistical tests, although these tables do not provide as much information (variable names, totals, percentages, etc.) as <code>tbl_summary</code>.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="week-4.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The first variable is the row variable</span></span>
-<span id="cb128-2"><a href="week-4.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The second variable is the column variable</span></span>
-<span id="cb128-3"><a href="week-4.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(lesson2a<span class="sc">$</span>subfourhour, lesson2a<span class="sc">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="week-4.html#cb128-1" tabindex="-1"></a><span class="co"># The first variable is the row variable</span></span>
+<span id="cb128-2"><a href="week-4.html#cb128-2" tabindex="-1"></a><span class="co"># The second variable is the column variable</span></span>
+<span id="cb128-3"><a href="week-4.html#cb128-3" tabindex="-1"></a><span class="fu">table</span>(lesson2a<span class="sc">$</span>subfourhour, lesson2a<span class="sc">$</span>sex)</span></code></pre></div>
 <pre><code>##    
 ##      0  1
 ##   0 30 21
 ##   1 36 11</code></pre>
 <p>We can compare sub-four hour marathons by sex using a chi-squared test (<code>chisq.test</code> function). The option <code>correct = FALSE</code> indicates that the default continuity correction should not be used.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="week-4.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the table and then perform the chi-squared test</span></span>
-<span id="cb130-2"><a href="week-4.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(lesson2a<span class="sc">$</span>subfourhour, lesson2a<span class="sc">$</span>sex) <span class="sc">%&gt;%</span></span>
-<span id="cb130-3"><a href="week-4.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chisq.test</span>(<span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="week-4.html#cb130-1" tabindex="-1"></a><span class="co"># Create the table and then perform the chi-squared test</span></span>
+<span id="cb130-2"><a href="week-4.html#cb130-2" tabindex="-1"></a><span class="fu">table</span>(lesson2a<span class="sc">$</span>subfourhour, lesson2a<span class="sc">$</span>sex) <span class="sc">%&gt;%</span></span>
+<span id="cb130-3"><a href="week-4.html#cb130-3" tabindex="-1"></a>  <span class="fu">chisq.test</span>(<span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  .
 ## X-squared = 3.513, df = 1, p-value = 0.06089</code></pre>
 <p>As a note, we can also use <code>tbl_summary</code> and the <code>add_p</code> function (also from {gtsummary}) to get the chi-squared p-value. In the <code>add_p</code> function, we specify that for the variable “subfourhour” we want to use a chi-squared test (“chisq.test.no.correct”). Specifying “chisq.test.no.correct” uses no continuity correction, and so gives the same result as the <code>chisq.test</code> function with the option <code>correct = FALSE</code>.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="week-4.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create two-way table including chi-squared p-value</span></span>
-<span id="cb132-2"><a href="week-4.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
-<span id="cb132-3"><a href="week-4.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  lesson2a <span class="sc">%&gt;%</span> <span class="fu">select</span>(subfourhour, sex),</span>
-<span id="cb132-4"><a href="week-4.html#cb132-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> sex,</span>
-<span id="cb132-5"><a href="week-4.html#cb132-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">list</span>(<span class="at">subfourhour =</span> <span class="st">&quot;categorical&quot;</span>)</span>
-<span id="cb132-6"><a href="week-4.html#cb132-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb132-7"><a href="week-4.html#cb132-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test =</span> <span class="fu">list</span>(<span class="at">subfourhour =</span> <span class="st">&quot;chisq.test.no.correct&quot;</span>))</span></code></pre></div>
-<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="week-4.html#cb132-1" tabindex="-1"></a><span class="co"># Create two-way table including chi-squared p-value</span></span>
+<span id="cb132-2"><a href="week-4.html#cb132-2" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb132-3"><a href="week-4.html#cb132-3" tabindex="-1"></a>  lesson2a <span class="sc">%&gt;%</span> <span class="fu">select</span>(subfourhour, sex),</span>
+<span id="cb132-4"><a href="week-4.html#cb132-4" tabindex="-1"></a>  <span class="at">by =</span> sex,</span>
+<span id="cb132-5"><a href="week-4.html#cb132-5" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">list</span>(<span class="at">subfourhour =</span> <span class="st">&quot;categorical&quot;</span>)</span>
+<span id="cb132-6"><a href="week-4.html#cb132-6" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb132-7"><a href="week-4.html#cb132-7" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test =</span> <span class="fu">list</span>(<span class="at">subfourhour =</span> <span class="st">&quot;chisq.test.no.correct&quot;</span>))</span></code></pre></div>
+<div id="mkgngwavns" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mkgngwavns table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#kqtxbhydst .gt_table {
+#mkgngwavns thead, #mkgngwavns tbody, #mkgngwavns tfoot, #mkgngwavns tr, #mkgngwavns td, #mkgngwavns th {
+  border-style: none;
+}
+
+#mkgngwavns p {
+  margin: 0;
+  padding: 0;
+}
+
+#mkgngwavns .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1296,19 +1382,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#mkgngwavns .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-#kqtxbhydst .gt_title {
+#mkgngwavns .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1320,25 +1399,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#kqtxbhydst .gt_subtitle {
+#mkgngwavns .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#kqtxbhydst .gt_bottom_border {
+#mkgngwavns .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mkgngwavns .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_col_headings {
+#mkgngwavns .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1353,7 +1444,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_col_heading {
+#mkgngwavns .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1373,7 +1464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#kqtxbhydst .gt_column_spanner_outer {
+#mkgngwavns .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1385,15 +1476,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#kqtxbhydst .gt_column_spanner_outer:first-child {
+#mkgngwavns .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kqtxbhydst .gt_column_spanner_outer:last-child {
+#mkgngwavns .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kqtxbhydst .gt_column_spanner {
+#mkgngwavns .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1405,7 +1496,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#kqtxbhydst .gt_group_heading {
+#mkgngwavns .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mkgngwavns .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1428,9 +1523,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#kqtxbhydst .gt_empty_group_heading {
+#mkgngwavns .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1445,15 +1541,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_from_md > :first-child {
+#mkgngwavns .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kqtxbhydst .gt_from_md > :last-child {
+#mkgngwavns .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kqtxbhydst .gt_row {
+#mkgngwavns .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1472,7 +1568,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#kqtxbhydst .gt_stub {
+#mkgngwavns .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1485,7 +1581,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#kqtxbhydst .gt_stub_row_group {
+#mkgngwavns .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1499,11 +1595,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#kqtxbhydst .gt_row_group_first td {
+#mkgngwavns .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kqtxbhydst .gt_summary_row {
+#mkgngwavns .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mkgngwavns .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1513,16 +1613,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#kqtxbhydst .gt_first_summary_row {
+#mkgngwavns .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_first_summary_row.thick {
+#mkgngwavns .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kqtxbhydst .gt_last_summary_row {
+#mkgngwavns .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1532,7 +1632,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_grand_summary_row {
+#mkgngwavns .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1542,7 +1642,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#kqtxbhydst .gt_first_grand_summary_row {
+#mkgngwavns .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1552,11 +1652,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_striped {
+#mkgngwavns .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mkgngwavns .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kqtxbhydst .gt_table_body {
+#mkgngwavns .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1565,7 +1675,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_footnotes {
+#mkgngwavns .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1579,30 +1689,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_footnote {
+#mkgngwavns .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#kqtxbhydst .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#kqtxbhydst .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1610,98 +1698,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#kqtxbhydst .gt_left {
+#mkgngwavns .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mkgngwavns .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mkgngwavns .gt_left {
   text-align: left;
 }
 
-#kqtxbhydst .gt_center {
+#mkgngwavns .gt_center {
   text-align: center;
 }
 
-#kqtxbhydst .gt_right {
+#mkgngwavns .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kqtxbhydst .gt_font_normal {
+#mkgngwavns .gt_font_normal {
   font-weight: normal;
 }
 
-#kqtxbhydst .gt_font_bold {
+#mkgngwavns .gt_font_bold {
   font-weight: bold;
 }
 
-#kqtxbhydst .gt_font_italic {
+#mkgngwavns .gt_font_italic {
   font-style: italic;
 }
 
-#kqtxbhydst .gt_super {
+#mkgngwavns .gt_super {
   font-size: 65%;
 }
 
-#kqtxbhydst .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#mkgngwavns .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#kqtxbhydst .gt_asterisk {
+#mkgngwavns .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kqtxbhydst .gt_indent_1 {
+#mkgngwavns .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kqtxbhydst .gt_indent_2 {
+#mkgngwavns .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kqtxbhydst .gt_indent_3 {
+#mkgngwavns .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kqtxbhydst .gt_indent_4 {
+#mkgngwavns .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kqtxbhydst .gt_indent_5 {
+#mkgngwavns .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 66<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 32<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 66&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 66<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 32&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 32<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">subfourhour</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center">0.061</td></tr>
-    <tr><td class="gt_row gt_left">    0</td>
-<td class="gt_row gt_center">30 (45%)</td>
-<td class="gt_row gt_center">21 (66%)</td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left">    1</td>
-<td class="gt_row gt_center">36 (55%)</td>
-<td class="gt_row gt_center">11 (34%)</td>
-<td class="gt_row gt_center"></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">subfourhour</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center">0.061</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="stat_1" class="gt_row gt_center">30 (45%)</td>
+<td headers="stat_2" class="gt_row gt_center">21 (66%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="stat_1" class="gt_row gt_center">36 (55%)</td>
+<td headers="stat_2" class="gt_row gt_center">11 (34%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">2</sup> Pearson's Chi-squared test</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Pearson’s Chi-squared test</td>
     </tr>
   </tfoot>
 </table>
@@ -1719,14 +1828,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Odds, odds ratios, risk and relative risk</strong></p>
 <p>The <code>epi.2by2</code> function will give you a number of different estimates, including the odds, odds ratio, risk and relative risk. Note that in the <code>epi.2by2</code> output, the risk is in the column “Inc risk *” and the relative risk is listed as “Inc risk ratio” under “Point estimates and 95% CIs.”</p>
 <p>The probability of something is defined as the number of times it occurs divided by the total number of observations. If you do a study of 1000 patients, of whom 250 experience a surgical complication, you’d say that the probability of a complication was 250 ÷ 1000 = 25%. The odds of something is defined as the number of times it occurs divided by the number of times it doesn’t occur. The odds of a complication are therefore 250 ÷ 750 = 1 ÷ 3 = 0.33. Here are some examples of probabilities and odds:</p>
-<div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div id="rfpnysbvmj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rfpnysbvmj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#qzjvxzfwte .gt_table {
+#rfpnysbvmj thead, #rfpnysbvmj tbody, #rfpnysbvmj tfoot, #rfpnysbvmj tr, #rfpnysbvmj td, #rfpnysbvmj th {
+  border-style: none;
+}
+
+#rfpnysbvmj p {
+  margin: 0;
+  padding: 0;
+}
+
+#rfpnysbvmj .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1749,19 +1870,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#rfpnysbvmj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-#qzjvxzfwte .gt_title {
+#rfpnysbvmj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1773,25 +1887,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#qzjvxzfwte .gt_subtitle {
+#rfpnysbvmj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#qzjvxzfwte .gt_bottom_border {
+#rfpnysbvmj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rfpnysbvmj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_col_headings {
+#rfpnysbvmj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1806,7 +1932,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_col_heading {
+#rfpnysbvmj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1826,7 +1952,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#qzjvxzfwte .gt_column_spanner_outer {
+#rfpnysbvmj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1838,15 +1964,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#qzjvxzfwte .gt_column_spanner_outer:first-child {
+#rfpnysbvmj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qzjvxzfwte .gt_column_spanner_outer:last-child {
+#rfpnysbvmj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qzjvxzfwte .gt_column_spanner {
+#rfpnysbvmj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1858,7 +1984,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#qzjvxzfwte .gt_group_heading {
+#rfpnysbvmj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rfpnysbvmj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1881,9 +2011,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#qzjvxzfwte .gt_empty_group_heading {
+#rfpnysbvmj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1898,15 +2029,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#qzjvxzfwte .gt_from_md > :first-child {
+#rfpnysbvmj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qzjvxzfwte .gt_from_md > :last-child {
+#rfpnysbvmj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qzjvxzfwte .gt_row {
+#rfpnysbvmj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1925,7 +2056,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#qzjvxzfwte .gt_stub {
+#rfpnysbvmj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1938,7 +2069,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#qzjvxzfwte .gt_stub_row_group {
+#rfpnysbvmj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1952,11 +2083,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#qzjvxzfwte .gt_row_group_first td {
+#rfpnysbvmj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qzjvxzfwte .gt_summary_row {
+#rfpnysbvmj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rfpnysbvmj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1966,16 +2101,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#qzjvxzfwte .gt_first_summary_row {
+#rfpnysbvmj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_first_summary_row.thick {
+#rfpnysbvmj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qzjvxzfwte .gt_last_summary_row {
+#rfpnysbvmj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1985,7 +2120,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_grand_summary_row {
+#rfpnysbvmj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1995,7 +2130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#qzjvxzfwte .gt_first_grand_summary_row {
+#rfpnysbvmj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2005,11 +2140,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_striped {
+#rfpnysbvmj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rfpnysbvmj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qzjvxzfwte .gt_table_body {
+#rfpnysbvmj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2018,7 +2163,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_footnotes {
+#rfpnysbvmj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2032,30 +2177,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_footnote {
+#rfpnysbvmj .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#qzjvxzfwte .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#qzjvxzfwte .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2063,98 +2186,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#qzjvxzfwte .gt_left {
+#rfpnysbvmj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rfpnysbvmj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rfpnysbvmj .gt_left {
   text-align: left;
 }
 
-#qzjvxzfwte .gt_center {
+#rfpnysbvmj .gt_center {
   text-align: center;
 }
 
-#qzjvxzfwte .gt_right {
+#rfpnysbvmj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qzjvxzfwte .gt_font_normal {
+#rfpnysbvmj .gt_font_normal {
   font-weight: normal;
 }
 
-#qzjvxzfwte .gt_font_bold {
+#rfpnysbvmj .gt_font_bold {
   font-weight: bold;
 }
 
-#qzjvxzfwte .gt_font_italic {
+#rfpnysbvmj .gt_font_italic {
   font-style: italic;
 }
 
-#qzjvxzfwte .gt_super {
+#rfpnysbvmj .gt_super {
   font-size: 65%;
 }
 
-#qzjvxzfwte .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#rfpnysbvmj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#qzjvxzfwte .gt_asterisk {
+#rfpnysbvmj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qzjvxzfwte .gt_indent_1 {
+#rfpnysbvmj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qzjvxzfwte .gt_indent_2 {
+#rfpnysbvmj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qzjvxzfwte .gt_indent_3 {
+#rfpnysbvmj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qzjvxzfwte .gt_indent_4 {
+#rfpnysbvmj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qzjvxzfwte .gt_indent_5 {
+#rfpnysbvmj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Probability of the event (e.g. surgical complication)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Probability of no event (e.g. no complication)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">Odds of the event</th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Probability of the event (e.g. surgical complication)">Probability of the event (e.g. surgical complication)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Probability of no event (e.g. no complication)">Probability of no event (e.g. no complication)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Odds of the event">Odds of the event</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">50%</td>
-<td class="gt_row gt_left">50%</td>
-<td class="gt_row gt_left">1.000</td></tr>
-    <tr><td class="gt_row gt_left">25%</td>
-<td class="gt_row gt_left">75%</td>
-<td class="gt_row gt_left">0.3333</td></tr>
-    <tr><td class="gt_row gt_left">10%</td>
-<td class="gt_row gt_left">90%</td>
-<td class="gt_row gt_left">0.1111</td></tr>
-    <tr><td class="gt_row gt_left">90%</td>
-<td class="gt_row gt_left">10%</td>
-<td class="gt_row gt_left">9.000</td></tr>
-    <tr><td class="gt_row gt_left">5%</td>
-<td class="gt_row gt_left">95%</td>
-<td class="gt_row gt_left">0.0526</td></tr>
-    <tr><td class="gt_row gt_left">2%</td>
-<td class="gt_row gt_left">98%</td>
-<td class="gt_row gt_left">0.0204</td></tr>
-    <tr><td class="gt_row gt_left">1%</td>
-<td class="gt_row gt_left">99%</td>
-<td class="gt_row gt_left">0.0101</td></tr>
+    <tr><td headers="prob_event" class="gt_row gt_left">50%</td>
+<td headers="prob_noevent" class="gt_row gt_left">50%</td>
+<td headers="odds" class="gt_row gt_left">1.000</td></tr>
+    <tr><td headers="prob_event" class="gt_row gt_left">25%</td>
+<td headers="prob_noevent" class="gt_row gt_left">75%</td>
+<td headers="odds" class="gt_row gt_left">0.3333</td></tr>
+    <tr><td headers="prob_event" class="gt_row gt_left">10%</td>
+<td headers="prob_noevent" class="gt_row gt_left">90%</td>
+<td headers="odds" class="gt_row gt_left">0.1111</td></tr>
+    <tr><td headers="prob_event" class="gt_row gt_left">90%</td>
+<td headers="prob_noevent" class="gt_row gt_left">10%</td>
+<td headers="odds" class="gt_row gt_left">9.000</td></tr>
+    <tr><td headers="prob_event" class="gt_row gt_left">5%</td>
+<td headers="prob_noevent" class="gt_row gt_left">95%</td>
+<td headers="odds" class="gt_row gt_left">0.0526</td></tr>
+    <tr><td headers="prob_event" class="gt_row gt_left">2%</td>
+<td headers="prob_noevent" class="gt_row gt_left">98%</td>
+<td headers="odds" class="gt_row gt_left">0.0204</td></tr>
+    <tr><td headers="prob_event" class="gt_row gt_left">1%</td>
+<td headers="prob_noevent" class="gt_row gt_left">99%</td>
+<td headers="odds" class="gt_row gt_left">0.0101</td></tr>
   </tbody>
   
   
@@ -2163,40 +2307,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One thing you might notice is that when something doesn’t happen very often, the odds and the probability are very similar. So, for example, something with a probability of 5% (0.05) has an odds of 0.0526. This has important implications for interpreting odds ratios. You will often see in the literature something like “the odds ratio for stage was 1.26, so patients with high stage disease had a 26% higher risk of complications”. This statement is wrong because if the odds ratio is 1.26 then the odds are 26% higher, not the risk. The odds ratio and relative risk will only be similar if the probability of an event is low. A doubling of risk from 1% to 2% is an increase in odds from 0.0101 to 0.0204, so very close to an odds ratio of 2. But a doubling of risk from 25% to 50% is an odds ratio of 3 (odds of 0.3333 to odds of 1.000).</p>
 <p><strong>Coding <code>epi.2by2</code> function</strong></p>
 <p>The <code>epi.2by2</code> function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the <code>table</code> function.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="week-4.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a two-way table</span></span>
-<span id="cb133-2"><a href="week-4.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(lesson2a<span class="sc">$</span>sex, lesson2a<span class="sc">$</span>subfourhour)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="week-4.html#cb133-1" tabindex="-1"></a><span class="co"># Create a two-way table</span></span>
+<span id="cb133-2"><a href="week-4.html#cb133-2" tabindex="-1"></a><span class="fu">table</span>(lesson2a<span class="sc">$</span>sex, lesson2a<span class="sc">$</span>subfourhour)</span></code></pre></div>
 <pre><code>##    
 ##      0  1
 ##   0 30 36
 ##   1 21 11</code></pre>
 <p>By default, <code>table</code> sorts the data numerically, so the first table row will be the “non-exposed” group (<code>sex == 0</code>) and the first column will be the “control” group (<code>subfourhour == 0</code>). However, for the <code>epi.2by2</code> function, we need the first row to be the “exposed” group (in this case, <code>sex == 1</code>) and the first column be the “case” group (<code>subfourhour == 1</code>), so that we are comparing “exposed” to “non-exposed”, rather than comparing “non-exposed” to “exposed.”</p>
 <p>Since the rows and columns are out of order, we will use the <code>factor</code> function to convert these variables to categorical variables, which will allow us to reverse the sort order for this analysis.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="week-4.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the table using data where we have reversed the order of the columns and rows</span></span>
-<span id="cb135-2"><a href="week-4.html#cb135-2" aria-hidden="true" tabindex="-1"></a>table2a <span class="ot">&lt;-</span></span>
-<span id="cb135-3"><a href="week-4.html#cb135-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(</span>
-<span id="cb135-4"><a href="week-4.html#cb135-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the &quot;factor&quot; function converts to categorical</span></span>
-<span id="cb135-5"><a href="week-4.html#cb135-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the &quot;levels&quot; option tells the order in which the levels should be sorted</span></span>
-<span id="cb135-6"><a href="week-4.html#cb135-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">factor</span>(lesson2a<span class="sc">$</span>sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)),</span>
-<span id="cb135-7"><a href="week-4.html#cb135-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">factor</span>(lesson2a<span class="sc">$</span>subfourhour, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb135-8"><a href="week-4.html#cb135-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb135-9"><a href="week-4.html#cb135-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-10"><a href="week-4.html#cb135-10" aria-hidden="true" tabindex="-1"></a>table2a</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="week-4.html#cb135-1" tabindex="-1"></a><span class="co"># Create the table using data where we have reversed the order of the columns and rows</span></span>
+<span id="cb135-2"><a href="week-4.html#cb135-2" tabindex="-1"></a>table2a <span class="ot">&lt;-</span></span>
+<span id="cb135-3"><a href="week-4.html#cb135-3" tabindex="-1"></a>  <span class="fu">table</span>(</span>
+<span id="cb135-4"><a href="week-4.html#cb135-4" tabindex="-1"></a>    <span class="co"># the &quot;factor&quot; function converts to categorical</span></span>
+<span id="cb135-5"><a href="week-4.html#cb135-5" tabindex="-1"></a>    <span class="co"># the &quot;levels&quot; option tells the order in which the levels should be sorted</span></span>
+<span id="cb135-6"><a href="week-4.html#cb135-6" tabindex="-1"></a>    <span class="fu">factor</span>(lesson2a<span class="sc">$</span>sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)),</span>
+<span id="cb135-7"><a href="week-4.html#cb135-7" tabindex="-1"></a>    <span class="fu">factor</span>(lesson2a<span class="sc">$</span>subfourhour, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb135-8"><a href="week-4.html#cb135-8" tabindex="-1"></a>  )</span>
+<span id="cb135-9"><a href="week-4.html#cb135-9" tabindex="-1"></a></span>
+<span id="cb135-10"><a href="week-4.html#cb135-10" tabindex="-1"></a>table2a</span></code></pre></div>
 <pre><code>##    
 ##      1  0
 ##   1 11 21
 ##   0 36 30</code></pre>
 <p>You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the <code>epi.2by2</code> function. By default, the <code>epi.2by2</code> function gives the p-value without any continuity correction.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="week-4.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the epi.2by2 function to the table in the correct format</span></span>
-<span id="cb137-2"><a href="week-4.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.2by2</span>(table2a)</span></code></pre></div>
-<pre><code>##              Outcome +    Outcome -      Total        Inc risk *        Odds
-## Exposed +           11           21         32              34.4       0.524
-## Exposed -           36           30         66              54.5       1.200
-## Total               47           51         98              48.0       0.922
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="week-4.html#cb137-1" tabindex="-1"></a><span class="co"># Apply the epi.2by2 function to the table in the correct format</span></span>
+<span id="cb137-2"><a href="week-4.html#cb137-2" tabindex="-1"></a><span class="fu">epi.2by2</span>(table2a)</span></code></pre></div>
+<pre><code>##              Outcome +    Outcome -      Total                 Inc risk *
+## Exposed +           11           21         32     34.38 (18.57 to 53.19)
+## Exposed -           36           30         66     54.55 (41.81 to 66.86)
+## Total               47           51         98     47.96 (37.76 to 58.29)
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 0.63 (0.37, 1.07)
-## Odds ratio                                     0.44 (0.18, 1.05)
+## Inc odds ratio                                 0.44 (0.18, 1.05)
 ## Attrib risk in the exposed *                   -20.17 (-40.54, 0.20)
 ## Attrib fraction in the exposed (%)            -58.68 (-168.76, 6.32)
 ## Attrib risk in the population *                -6.59 (-22.15, 8.97)
@@ -2213,7 +2357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>There were 32 women (“Exposed +” row, “Total” column) and 66 men (“Exposed -” row, “Total” column), a total of 98 patients (“Total” row and column)</li>
 <li>11 of the women finished the race in under four hours (“Exposed +” row, “Outcome +” column), 21 did not (“Exposed +” row, “Outcome -” column).</li>
 <li>36 of the men finished the race in under four hours (“Exposed -” row, “Outcome +” column), 30 did not (“Exposed -” row, “Outcome -” column)</li>
-<li>34.4% of the women (“Exposed +” column, “Inc risk *” row) and 54.5% of the men (“Exposed -” column, “Inc risk *” row) finished in under four hours.</li>
+<li>34.38 (18.57 to 53.19)% of the women (“Exposed +” column, “Inc risk *” row) and 54.55 (41.81 to 66.86)% of the men (“Exposed -” column, “Inc risk *” row) finished in under four hours.</li>
 <li>20% more men finished the race in under four hours (“Attrib risk *” under “Point estimates and 95% CIs”). This is the absolute difference in rates of sub-four hour marathon in men and women.</li>
 <li>After the estimate of the difference in rates is shown the 95% confidence interval around this difference: from 41% more to 0.20% less.</li>
 <li>The chance that a woman finishes the race in under four hours is 0.63 of that for a man (“Inc risk ratio” under “Point estimates and 95% CIs”). The 95% CI is 0.37 to 1.07 (i.e about one third as likely to 7% more likely).</li>
@@ -2221,24 +2365,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Be aware that when interpreting a relative difference in risks, it is useful to know the absolute risk as well. A study may report that a drug reduces the risk of heart attack by 50%, but whether you choose to use the drug would depend on whether risk was reduced from 20% to 10% (a 50% relative difference and a 10% absolute difference) or whether risk was reduced from 2% to 1% (still a 50% relative difference but only a 1% absolute difference).</p>
 <p>Here is another one to look through:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="week-4.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the table using data where we have reversed the order of the columns and rows</span></span>
-<span id="cb139-2"><a href="week-4.html#cb139-2" aria-hidden="true" tabindex="-1"></a>table4a <span class="ot">&lt;-</span></span>
-<span id="cb139-3"><a href="week-4.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>(</span>
-<span id="cb139-4"><a href="week-4.html#cb139-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">factor</span>(example4a<span class="sc">$</span>toxin, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)),</span>
-<span id="cb139-5"><a href="week-4.html#cb139-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">factor</span>(example4a<span class="sc">$</span>cancer, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb139-6"><a href="week-4.html#cb139-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb139-7"><a href="week-4.html#cb139-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-8"><a href="week-4.html#cb139-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Another example using &quot;epi.2by2&quot; function</span></span>
-<span id="cb139-9"><a href="week-4.html#cb139-9" aria-hidden="true" tabindex="-1"></a><span class="fu">epi.2by2</span>(table4a)</span></code></pre></div>
-<pre><code>##              Outcome +    Outcome -      Total        Inc risk *        Odds
-## Exposed +            5            3          8              62.5       1.667
-## Exposed -            1            7          8              12.5       0.143
-## Total                6           10         16              37.5       0.600
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="week-4.html#cb139-1" tabindex="-1"></a><span class="co"># Create the table using data where we have reversed the order of the columns and rows</span></span>
+<span id="cb139-2"><a href="week-4.html#cb139-2" tabindex="-1"></a>table4a <span class="ot">&lt;-</span></span>
+<span id="cb139-3"><a href="week-4.html#cb139-3" tabindex="-1"></a>  <span class="fu">table</span>(</span>
+<span id="cb139-4"><a href="week-4.html#cb139-4" tabindex="-1"></a>    <span class="fu">factor</span>(example4a<span class="sc">$</span>toxin, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)),</span>
+<span id="cb139-5"><a href="week-4.html#cb139-5" tabindex="-1"></a>    <span class="fu">factor</span>(example4a<span class="sc">$</span>cancer, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb139-6"><a href="week-4.html#cb139-6" tabindex="-1"></a>  )</span>
+<span id="cb139-7"><a href="week-4.html#cb139-7" tabindex="-1"></a></span>
+<span id="cb139-8"><a href="week-4.html#cb139-8" tabindex="-1"></a><span class="co"># Another example using &quot;epi.2by2&quot; function</span></span>
+<span id="cb139-9"><a href="week-4.html#cb139-9" tabindex="-1"></a><span class="fu">epi.2by2</span>(table4a)</span></code></pre></div>
+<pre><code>##              Outcome +    Outcome -      Total                 Inc risk *
+## Exposed +            5            3          8     62.50 (24.49 to 91.48)
+## Exposed -            1            7          8      12.50 (0.32 to 52.65)
+## Total                6           10         16     37.50 (15.20 to 64.57)
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 5.00 (0.74, 33.78)
-## Odds ratio                                     11.67 (0.92, 147.56)
+## Inc odds ratio                                 11.67 (0.92, 147.56)
 ## Attrib risk in the exposed *                   50.00 (9.37, 90.63)
 ## Attrib fraction in the exposed (%)            80.00 (-35.11, 97.04)
 ## Attrib risk in the population *                25.00 (-7.98, 57.98)
@@ -2252,8 +2396,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here it is easier to see that the “toxin” is the exposure and “cancer” is whether you are a case.</p>
 <p><strong>Exact statistics</strong></p>
 <p>Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the “cells” in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The <code>epi.2by2</code> function gives the chi-squared p-value. However, using the <code>fisher.test</code> function gives the exact p-value. You do not need to reverse the table for the <code>fisher.test</code> function.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="week-4.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate p-value from fisher&#39;s exact test</span></span>
-<span id="cb141-2"><a href="week-4.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="fu">table</span>(example4a<span class="sc">$</span>toxin, example4a<span class="sc">$</span>cancer))</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="week-4.html#cb141-1" tabindex="-1"></a><span class="co"># Calculate p-value from fisher&#39;s exact test</span></span>
+<span id="cb141-2"><a href="week-4.html#cb141-2" tabindex="-1"></a><span class="fu">fisher.test</span>(<span class="fu">table</span>(example4a<span class="sc">$</span>toxin, example4a<span class="sc">$</span>cancer))</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
@@ -2266,21 +2410,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## odds ratio 
 ##   9.760631</code></pre>
 <p>Similar to the chi-squared test, you can also get the Fisher’s exact p-value using the <code>tbl_summary</code> and <code>add_p</code> functions, by specifying <code>test = "fisher.test"</code> for the variable of interest.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="week-4.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create formatted table with p-value from fisher&#39;s exact test</span></span>
-<span id="cb143-2"><a href="week-4.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
-<span id="cb143-3"><a href="week-4.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  example4a <span class="sc">%&gt;%</span> <span class="fu">select</span>(toxin, cancer),</span>
-<span id="cb143-4"><a href="week-4.html#cb143-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> cancer,</span>
-<span id="cb143-5"><a href="week-4.html#cb143-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">list</span>(<span class="at">toxin =</span> <span class="st">&quot;categorical&quot;</span>)</span>
-<span id="cb143-6"><a href="week-4.html#cb143-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb143-7"><a href="week-4.html#cb143-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test =</span> <span class="fu">list</span>(<span class="at">toxin =</span> <span class="st">&quot;fisher.test&quot;</span>))</span></code></pre></div>
-<div id="pqsnuprvju" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="week-4.html#cb143-1" tabindex="-1"></a><span class="co"># Create formatted table with p-value from fisher&#39;s exact test</span></span>
+<span id="cb143-2"><a href="week-4.html#cb143-2" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb143-3"><a href="week-4.html#cb143-3" tabindex="-1"></a>  example4a <span class="sc">%&gt;%</span> <span class="fu">select</span>(toxin, cancer),</span>
+<span id="cb143-4"><a href="week-4.html#cb143-4" tabindex="-1"></a>  <span class="at">by =</span> cancer,</span>
+<span id="cb143-5"><a href="week-4.html#cb143-5" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">list</span>(<span class="at">toxin =</span> <span class="st">&quot;categorical&quot;</span>)</span>
+<span id="cb143-6"><a href="week-4.html#cb143-6" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb143-7"><a href="week-4.html#cb143-7" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test =</span> <span class="fu">list</span>(<span class="at">toxin =</span> <span class="st">&quot;fisher.test&quot;</span>))</span></code></pre></div>
+<div id="goecrbkrgm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#goecrbkrgm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#pqsnuprvju .gt_table {
+#goecrbkrgm thead, #goecrbkrgm tbody, #goecrbkrgm tfoot, #goecrbkrgm tr, #goecrbkrgm td, #goecrbkrgm th {
+  border-style: none;
+}
+
+#goecrbkrgm p {
+  margin: 0;
+  padding: 0;
+}
+
+#goecrbkrgm .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -2303,19 +2459,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#pqsnuprvju .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#goecrbkrgm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-#pqsnuprvju .gt_title {
+#goecrbkrgm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2327,25 +2476,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#pqsnuprvju .gt_subtitle {
+#goecrbkrgm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#pqsnuprvju .gt_bottom_border {
+#goecrbkrgm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#goecrbkrgm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pqsnuprvju .gt_col_headings {
+#goecrbkrgm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2360,7 +2521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#pqsnuprvju .gt_col_heading {
+#goecrbkrgm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2380,7 +2541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#pqsnuprvju .gt_column_spanner_outer {
+#goecrbkrgm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2392,15 +2553,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#pqsnuprvju .gt_column_spanner_outer:first-child {
+#goecrbkrgm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pqsnuprvju .gt_column_spanner_outer:last-child {
+#goecrbkrgm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pqsnuprvju .gt_column_spanner {
+#goecrbkrgm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2412,7 +2573,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#pqsnuprvju .gt_group_heading {
+#goecrbkrgm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#goecrbkrgm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2435,9 +2600,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#pqsnuprvju .gt_empty_group_heading {
+#goecrbkrgm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2452,15 +2618,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#pqsnuprvju .gt_from_md > :first-child {
+#goecrbkrgm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pqsnuprvju .gt_from_md > :last-child {
+#goecrbkrgm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pqsnuprvju .gt_row {
+#goecrbkrgm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2479,7 +2645,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#pqsnuprvju .gt_stub {
+#goecrbkrgm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2492,7 +2658,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pqsnuprvju .gt_stub_row_group {
+#goecrbkrgm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2506,11 +2672,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#pqsnuprvju .gt_row_group_first td {
+#goecrbkrgm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pqsnuprvju .gt_summary_row {
+#goecrbkrgm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#goecrbkrgm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2520,16 +2690,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pqsnuprvju .gt_first_summary_row {
+#goecrbkrgm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pqsnuprvju .gt_first_summary_row.thick {
+#goecrbkrgm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pqsnuprvju .gt_last_summary_row {
+#goecrbkrgm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2539,7 +2709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#pqsnuprvju .gt_grand_summary_row {
+#goecrbkrgm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2549,7 +2719,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pqsnuprvju .gt_first_grand_summary_row {
+#goecrbkrgm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2559,11 +2729,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#pqsnuprvju .gt_striped {
+#goecrbkrgm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#goecrbkrgm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pqsnuprvju .gt_table_body {
+#goecrbkrgm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2572,7 +2752,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#pqsnuprvju .gt_footnotes {
+#goecrbkrgm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2586,30 +2766,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#pqsnuprvju .gt_footnote {
+#goecrbkrgm .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#pqsnuprvju .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#pqsnuprvju .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2617,98 +2775,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pqsnuprvju .gt_left {
+#goecrbkrgm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#goecrbkrgm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#goecrbkrgm .gt_left {
   text-align: left;
 }
 
-#pqsnuprvju .gt_center {
+#goecrbkrgm .gt_center {
   text-align: center;
 }
 
-#pqsnuprvju .gt_right {
+#goecrbkrgm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pqsnuprvju .gt_font_normal {
+#goecrbkrgm .gt_font_normal {
   font-weight: normal;
 }
 
-#pqsnuprvju .gt_font_bold {
+#goecrbkrgm .gt_font_bold {
   font-weight: bold;
 }
 
-#pqsnuprvju .gt_font_italic {
+#goecrbkrgm .gt_font_italic {
   font-style: italic;
 }
 
-#pqsnuprvju .gt_super {
+#goecrbkrgm .gt_super {
   font-size: 65%;
 }
 
-#pqsnuprvju .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#goecrbkrgm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#pqsnuprvju .gt_asterisk {
+#goecrbkrgm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pqsnuprvju .gt_indent_1 {
+#goecrbkrgm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pqsnuprvju .gt_indent_2 {
+#goecrbkrgm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pqsnuprvju .gt_indent_3 {
+#goecrbkrgm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pqsnuprvju .gt_indent_4 {
+#goecrbkrgm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pqsnuprvju .gt_indent_5 {
+#goecrbkrgm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 10<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 6<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 10&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 10<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 6&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 6<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">Toxin exposure</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center">0.12</td></tr>
-    <tr><td class="gt_row gt_left">    0</td>
-<td class="gt_row gt_center">7 (70%)</td>
-<td class="gt_row gt_center">1 (17%)</td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left">    1</td>
-<td class="gt_row gt_center">3 (30%)</td>
-<td class="gt_row gt_center">5 (83%)</td>
-<td class="gt_row gt_center"></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Toxin exposure</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center">0.12</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="stat_1" class="gt_row gt_center">7 (70%)</td>
+<td headers="stat_2" class="gt_row gt_center">1 (17%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="stat_1" class="gt_row gt_center">3 (30%)</td>
+<td headers="stat_2" class="gt_row gt_center">5 (83%)</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">2</sup> Fisher's exact test</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Fisher’s exact test</td>
     </tr>
   </tfoot>
 </table>
@@ -2719,8 +2898,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The exact approach to the coin throwing problem would be to write out all the possible tables you could have with four observations, and then work out the probability of each under the null hypothesis. Then count what proportion of tables are as unlikely or more unlikely than the observed results and you get your p-value. It turns out that there are 9 possible outcomes for the coin throwing problem: 0 vs. 0; 0 vs 1; 0 vs. 2; 1 vs. 0; 1 vs. 1; 1 vs. 2; 2 vs. 0; 2 vs 1; 2 vs. 2. Two of these (0 vs. 2 and 2 vs. 0), are at least as extreme as the result we got, so that gives a p-value of 0.33.</p>
 <p><strong>Other Commands</strong></p>
 <p>You can use the <code>filter</code> function to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="week-4.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a t-test only among patients with prior chemotherapy</span></span>
-<span id="cb144-2"><a href="week-4.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(nv <span class="sc">~</span> sex, <span class="at">data =</span> lesson3a <span class="sc">%&gt;%</span> <span class="fu">filter</span>(pc <span class="sc">==</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="week-4.html#cb144-1" tabindex="-1"></a><span class="co"># Perform a t-test only among patients with prior chemotherapy</span></span>
+<span id="cb144-2"><a href="week-4.html#cb144-2" tabindex="-1"></a><span class="fu">t.test</span>(nv <span class="sc">~</span> sex, <span class="at">data =</span> lesson3a <span class="sc">%&gt;%</span> <span class="fu">filter</span>(pc <span class="sc">==</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -2733,8 +2912,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean in group 0 mean in group 1 
 ##        5.270161        5.290076</code></pre>
 <p>To perform the t-test on those without prior chemotherapy, switch the group you are filtering on:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="week-4.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-test for patients without prior chemotherapy</span></span>
-<span id="cb146-2"><a href="week-4.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(nv <span class="sc">~</span> sex, <span class="at">data =</span> lesson3a <span class="sc">%&gt;%</span> <span class="fu">filter</span>(pc <span class="sc">==</span> <span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="week-4.html#cb146-1" tabindex="-1"></a><span class="co"># t-test for patients without prior chemotherapy</span></span>
+<span id="cb146-2"><a href="week-4.html#cb146-2" tabindex="-1"></a><span class="fu">t.test</span>(nv <span class="sc">~</span> sex, <span class="at">data =</span> lesson3a <span class="sc">%&gt;%</span> <span class="fu">filter</span>(pc <span class="sc">==</span> <span class="dv">0</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -2750,12 +2929,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-3" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Assignments<a href="week-4.html#assignments-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="week-4.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 4 assignments</span></span>
-<span id="cb148-2"><a href="week-4.html#cb148-2" aria-hidden="true" tabindex="-1"></a>lesson4a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4a.rds&quot;</span>))</span>
-<span id="cb148-3"><a href="week-4.html#cb148-3" aria-hidden="true" tabindex="-1"></a>lesson4b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4b.rds&quot;</span>))</span>
-<span id="cb148-4"><a href="week-4.html#cb148-4" aria-hidden="true" tabindex="-1"></a>lesson4c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4c.rds&quot;</span>))</span>
-<span id="cb148-5"><a href="week-4.html#cb148-5" aria-hidden="true" tabindex="-1"></a>lesson4d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4d.rds&quot;</span>))</span>
-<span id="cb148-6"><a href="week-4.html#cb148-6" aria-hidden="true" tabindex="-1"></a>lesson4e <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4e.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="week-4.html#cb148-1" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 4 assignments</span></span>
+<span id="cb148-2"><a href="week-4.html#cb148-2" tabindex="-1"></a>lesson4a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4a.rds&quot;</span>))</span>
+<span id="cb148-3"><a href="week-4.html#cb148-3" tabindex="-1"></a>lesson4b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4b.rds&quot;</span>))</span>
+<span id="cb148-4"><a href="week-4.html#cb148-4" tabindex="-1"></a>lesson4c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4c.rds&quot;</span>))</span>
+<span id="cb148-5"><a href="week-4.html#cb148-5" tabindex="-1"></a>lesson4d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4d.rds&quot;</span>))</span>
+<span id="cb148-6"><a href="week-4.html#cb148-6" tabindex="-1"></a>lesson4e <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4e.rds&quot;</span>))</span></code></pre></div>
 <p>This week’s assignment concerns techniques developed to assess epidemiologic data. But remember that a number is just a number: the techniques for working out the relative risk of getting breast cancer if you has a silicone breast implant is exactly the same as working out the relative risk of death in transgenic mice exposed to a carcinogen.</p>
 <p>Try to do the ones in bold, get to the non-bolded ones if you can.</p>
 <ul>

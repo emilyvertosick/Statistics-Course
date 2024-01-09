@@ -330,7 +330,7 @@ The following code will superimpose a curve for the normal distribution.
 # Here is the histogram with 20 bins and density curve overlay
 ggplot(data = lesson1a,
        aes(x = age)) +
-  geom_histogram(aes(y = ..density..), bins = 20) +
+  geom_histogram(aes(y = after_stat(density)), bins = 20) +
   geom_density()
 
 ```

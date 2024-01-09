@@ -42,8 +42,6 @@ names(all_data) <- all_data_names
 # Load all data to environment
 list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
-# TODO: copycode.png needs to be updated??
-
 ```
 
 # Week 1

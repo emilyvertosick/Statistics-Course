@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Week 5 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Week 5 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -117,6 +117,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 </head>
 
@@ -311,25 +315,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">5</span> Week 5<a href="week-5.html#week-5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="setting-up-4" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Setting Up<a href="week-5.html#setting-up-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="week-5.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
-<span id="cb149-2"><a href="week-5.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb149-3"><a href="week-5.html#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb149-4"><a href="week-5.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb149-5"><a href="week-5.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
-<span id="cb149-6"><a href="week-5.html#cb149-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb149-7"><a href="week-5.html#cb149-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
-<span id="cb149-8"><a href="week-5.html#cb149-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
-<span id="cb149-9"><a href="week-5.html#cb149-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
-<span id="cb149-10"><a href="week-5.html#cb149-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb149-11"><a href="week-5.html#cb149-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb149-12"><a href="week-5.html#cb149-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-13"><a href="week-5.html#cb149-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data necessary to run Week 5 examples</span></span>
-<span id="cb149-14"><a href="week-5.html#cb149-14" aria-hidden="true" tabindex="-1"></a>lesson2b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 2&quot;</span>, <span class="st">&quot;lesson2b.rds&quot;</span>))</span>
-<span id="cb149-15"><a href="week-5.html#cb149-15" aria-hidden="true" tabindex="-1"></a>lesson3d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3d.rds&quot;</span>))</span>
-<span id="cb149-16"><a href="week-5.html#cb149-16" aria-hidden="true" tabindex="-1"></a>lesson4d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4d.rds&quot;</span>))</span>
-<span id="cb149-17"><a href="week-5.html#cb149-17" aria-hidden="true" tabindex="-1"></a>lesson5a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5a.rds&quot;</span>))</span>
-<span id="cb149-18"><a href="week-5.html#cb149-18" aria-hidden="true" tabindex="-1"></a>example5a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;example5a.rds&quot;</span>))</span>
-<span id="cb149-19"><a href="week-5.html#cb149-19" aria-hidden="true" tabindex="-1"></a>example5b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;example5b.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="week-5.html#cb149-1" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb149-2"><a href="week-5.html#cb149-2" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb149-3"><a href="week-5.html#cb149-3" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb149-4"><a href="week-5.html#cb149-4" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb149-5"><a href="week-5.html#cb149-5" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb149-6"><a href="week-5.html#cb149-6" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb149-7"><a href="week-5.html#cb149-7" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb149-8"><a href="week-5.html#cb149-8" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb149-9"><a href="week-5.html#cb149-9" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb149-10"><a href="week-5.html#cb149-10" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb149-11"><a href="week-5.html#cb149-11" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb149-12"><a href="week-5.html#cb149-12" tabindex="-1"></a></span>
+<span id="cb149-13"><a href="week-5.html#cb149-13" tabindex="-1"></a><span class="co"># Load data necessary to run Week 5 examples</span></span>
+<span id="cb149-14"><a href="week-5.html#cb149-14" tabindex="-1"></a>lesson2b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 2&quot;</span>, <span class="st">&quot;lesson2b.rds&quot;</span>))</span>
+<span id="cb149-15"><a href="week-5.html#cb149-15" tabindex="-1"></a>lesson3d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3d.rds&quot;</span>))</span>
+<span id="cb149-16"><a href="week-5.html#cb149-16" tabindex="-1"></a>lesson4d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 4&quot;</span>, <span class="st">&quot;lesson4d.rds&quot;</span>))</span>
+<span id="cb149-17"><a href="week-5.html#cb149-17" tabindex="-1"></a>lesson5a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5a.rds&quot;</span>))</span>
+<span id="cb149-18"><a href="week-5.html#cb149-18" tabindex="-1"></a>example5a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;example5a.rds&quot;</span>))</span>
+<span id="cb149-19"><a href="week-5.html#cb149-19" tabindex="-1"></a>example5b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;example5b.rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="r-instructions-4" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> R Instructions<a href="week-5.html#r-instructions-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -337,8 +341,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.1</span> Correlation<a href="week-5.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Correlating two or more variables is very easy: just use the <code>cor</code> function and then the dataset and selected variables.</p>
 <p>For example, if you use the <strong>lesson2b</strong> dataset and correlate the first four pain scores, you get the following table:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="week-5.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the correlation between variables l01, l02, l03 and l04</span></span>
-<span id="cb150-2"><a href="week-5.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(lesson2b <span class="sc">%&gt;%</span> <span class="fu">select</span>(l01, l02, l03, l04))</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="week-5.html#cb150-1" tabindex="-1"></a><span class="co"># Display the correlation between variables l01, l02, l03 and l04</span></span>
+<span id="cb150-2"><a href="week-5.html#cb150-2" tabindex="-1"></a><span class="fu">cor</span>(lesson2b <span class="sc">%&gt;%</span> <span class="fu">select</span>(l01, l02, l03, l04))</span></code></pre></div>
 <pre><code>##           l01       l02       l03       l04
 ## l01 1.0000000 0.7900984 0.6270860 0.5395075
 ## l02 0.7900984 1.0000000 0.8145025 0.7148299
@@ -346,8 +350,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## l04 0.5395075 0.7148299 0.8383224 1.0000000</code></pre>
 <p>This shows, for example, that the correlation between l01 and l02 is 0.79 and the correlation between l02 and l04 is 0.71. From the table you can easily see that pain scores taken on consecutive days are more strongly correlated than those taken two or three days apart.</p>
 <p>If the data are skewed, you can try a regression based on ranks, what is known as Spearman’s rank correlation. What you’d type is the same as above, but adding the option <code>method = "spearman"</code>.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="week-5.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the Spearman correlation for skewed data</span></span>
-<span id="cb152-2"><a href="week-5.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(lesson2b <span class="sc">%&gt;%</span> <span class="fu">select</span>(l01, l02, l03, l04), <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="week-5.html#cb152-1" tabindex="-1"></a><span class="co"># Calculate the Spearman correlation for skewed data</span></span>
+<span id="cb152-2"><a href="week-5.html#cb152-2" tabindex="-1"></a><span class="fu">cor</span>(lesson2b <span class="sc">%&gt;%</span> <span class="fu">select</span>(l01, l02, l03, l04), <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
 <pre><code>##           l01       l02       l03       l04
 ## l01 1.0000000 0.7799856 0.6220233 0.5443327
 ## l02 0.7799856 1.0000000 0.8126008 0.7220277
@@ -359,8 +363,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Linear regression is when you try to predict a continuous variable. The function to use is <code>lm</code>.</p>
 <p>The first variable is the dependent variable (e.g. blood pressure) and must be continuous. The other variables are the predictor variables and can be binary or continuous: in some cases you can use ordinal variables but you have to be careful. We’ll deal with categorical variables later in the course. The dependent and predictor variables are separated by a “~”, and multiple predictor variables are separated by “+”.</p>
 <p>Let’s use the data from <strong>lesson3d</strong> as an example dataset. We want to see if we can predict a patient’s range of motion after treatment (variable a) in terms of their age, sex and pre-treatment range of motion (variable b).</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="week-5.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear regression model for a, predictors are sex, age and b</span></span>
-<span id="cb154-2"><a href="week-5.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(a <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> b, <span class="at">data =</span> lesson3d)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="week-5.html#cb154-1" tabindex="-1"></a><span class="co"># Linear regression model for a, predictors are sex, age and b</span></span>
+<span id="cb154-2"><a href="week-5.html#cb154-2" tabindex="-1"></a><span class="fu">lm</span>(a <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> b, <span class="at">data =</span> lesson3d)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = a ~ sex + age + b, data = lesson3d)
@@ -369,11 +373,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)          sex          age            b  
 ##    138.7336       2.8524      -0.4359       0.6692</code></pre>
 <p>This gives you the very basic information from the regression, but you can get more information using the <code>summary</code> function:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="week-5.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save out linear regression model</span></span>
-<span id="cb156-2"><a href="week-5.html#cb156-2" aria-hidden="true" tabindex="-1"></a>rom_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(a <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> b, <span class="at">data =</span> lesson3d)</span>
-<span id="cb156-3"><a href="week-5.html#cb156-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-4"><a href="week-5.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show additional model results</span></span>
-<span id="cb156-5"><a href="week-5.html#cb156-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rom_model)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="week-5.html#cb156-1" tabindex="-1"></a><span class="co"># Save out linear regression model</span></span>
+<span id="cb156-2"><a href="week-5.html#cb156-2" tabindex="-1"></a>rom_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(a <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> b, <span class="at">data =</span> lesson3d)</span>
+<span id="cb156-3"><a href="week-5.html#cb156-3" tabindex="-1"></a></span>
+<span id="cb156-4"><a href="week-5.html#cb156-4" tabindex="-1"></a><span class="co"># Show additional model results</span></span>
+<span id="cb156-5"><a href="week-5.html#cb156-5" tabindex="-1"></a><span class="fu">summary</span>(rom_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = a ~ sex + age + b, data = lesson3d)
@@ -396,14 +400,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## F-statistic:  29.6 on 3 and 30 DF,  p-value: 4.241e-09</code></pre>
 <p>The first column of numbers listed under “Coefficients” are the coefficients. You can interpret this as follows: start with 138.7 degrees of range of motion (the intercept or constant). Then add 2.85 if the patient is a woman, and take away 0.436 degrees for every year of age. Finally, add 0.669 degrees for every degree of range of motion the patient had before the trial.</p>
 <p>Let’s take a single patient: a 54 year old woman with a range of motion of 301 before treatment. Her predicted range of motion afterwards is 138.7 + 2.85 - 0.436*54 + 0.669*301 = 319.5. Her actual figure was 325, so we predicted quite well for this patient. You can get R to do this automatically using the <code>augment</code> function from the {broom} package.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="week-5.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;augment&quot; function creates a dataset of all patients included in the model</span></span>
-<span id="cb158-2"><a href="week-5.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and all variables included in the model, as well as the predictions</span></span>
-<span id="cb158-3"><a href="week-5.html#cb158-3" aria-hidden="true" tabindex="-1"></a>lesson3d_pred <span class="ot">&lt;-</span> <span class="fu">augment</span>(rom_model)</span>
-<span id="cb158-4"><a href="week-5.html#cb158-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-5"><a href="week-5.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out new dataset to show output from &quot;augment&quot;</span></span>
-<span id="cb158-6"><a href="week-5.html#cb158-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;.fitted&quot; column is your prediction</span></span>
-<span id="cb158-7"><a href="week-5.html#cb158-7" aria-hidden="true" tabindex="-1"></a><span class="co"># You can ignore all columns to the right of &quot;.fitted&quot;</span></span>
-<span id="cb158-8"><a href="week-5.html#cb158-8" aria-hidden="true" tabindex="-1"></a>lesson3d_pred</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="week-5.html#cb158-1" tabindex="-1"></a><span class="co"># The &quot;augment&quot; function creates a dataset of all patients included in the model</span></span>
+<span id="cb158-2"><a href="week-5.html#cb158-2" tabindex="-1"></a><span class="co"># and all variables included in the model, as well as the predictions</span></span>
+<span id="cb158-3"><a href="week-5.html#cb158-3" tabindex="-1"></a>lesson3d_pred <span class="ot">&lt;-</span> <span class="fu">augment</span>(rom_model)</span>
+<span id="cb158-4"><a href="week-5.html#cb158-4" tabindex="-1"></a></span>
+<span id="cb158-5"><a href="week-5.html#cb158-5" tabindex="-1"></a><span class="co"># Print out new dataset to show output from &quot;augment&quot;</span></span>
+<span id="cb158-6"><a href="week-5.html#cb158-6" tabindex="-1"></a><span class="co"># The &quot;.fitted&quot; column is your prediction</span></span>
+<span id="cb158-7"><a href="week-5.html#cb158-7" tabindex="-1"></a><span class="co"># You can ignore all columns to the right of &quot;.fitted&quot;</span></span>
+<span id="cb158-8"><a href="week-5.html#cb158-8" tabindex="-1"></a>lesson3d_pred</span></code></pre></div>
 <pre><code>## # A tibble: 34 × 10
 ##        a   sex   age     b .fitted  .resid   .hat .sigma   .cooksd .std.resid
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
@@ -417,18 +421,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8   254     0    39   249    288. -34.4   0.0832   24.8 0.0457       -1.42  
 ##  9   250     1    65   244    277. -26.5   0.131    25.2 0.0480       -1.13  
 ## 10   252     0    81   246    268. -16.1   0.144    25.5 0.0197       -0.686 
-## # … with 24 more rows</code></pre>
+## # ℹ 24 more rows</code></pre>
 <p>To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the <code>tbl_regression</code> function from the {gtsummary} package:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="week-5.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print formatted table of regression results</span></span>
-<span id="cb160-2"><a href="week-5.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(rom_model)</span></code></pre></div>
-<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="week-5.html#cb160-1" tabindex="-1"></a><span class="co"># Print formatted table of regression results</span></span>
+<span id="cb160-2"><a href="week-5.html#cb160-2" tabindex="-1"></a><span class="fu">tbl_regression</span>(rom_model)</span></code></pre></div>
+<div id="iwrgxmosvm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iwrgxmosvm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#iwrgxmosvm thead, #iwrgxmosvm tbody, #iwrgxmosvm tfoot, #iwrgxmosvm tr, #iwrgxmosvm td, #iwrgxmosvm th {
+  border-style: none;
+}
+
+#iwrgxmosvm p {
+  margin: 0;
+  padding: 0;
 }
 
 #iwrgxmosvm .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -451,16 +467,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#iwrgxmosvm .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#iwrgxmosvm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #iwrgxmosvm .gt_title {
@@ -479,12 +488,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#iwrgxmosvm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_bottom_border {
@@ -560,6 +581,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
+#iwrgxmosvm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #iwrgxmosvm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -583,6 +608,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #iwrgxmosvm .gt_empty_group_heading {
@@ -658,6 +684,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 2px;
 }
 
+#iwrgxmosvm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #iwrgxmosvm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -707,6 +737,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
+#iwrgxmosvm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #iwrgxmosvm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -737,8 +777,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -795,10 +835,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #iwrgxmosvm .gt_asterisk {
@@ -826,56 +865,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">1=female</td>
-<td class="gt_row gt_center">2.9</td>
-<td class="gt_row gt_center">-18, 24</td>
-<td class="gt_row gt_center">0.8</td></tr>
-    <tr><td class="gt_row gt_left">age</td>
-<td class="gt_row gt_center">-0.44</td>
-<td class="gt_row gt_center">-1.0, 0.13</td>
-<td class="gt_row gt_center">0.13</td></tr>
-    <tr><td class="gt_row gt_left">range of motion before acupuncture</td>
-<td class="gt_row gt_center">0.67</td>
-<td class="gt_row gt_center">0.51, 0.83</td>
-<td class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">1=female</td>
+<td headers="estimate" class="gt_row gt_center">2.9</td>
+<td headers="ci" class="gt_row gt_center">-18, 24</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="estimate" class="gt_row gt_center">-0.44</td>
+<td headers="ci" class="gt_row gt_center">-1.0, 0.13</td>
+<td headers="p.value" class="gt_row gt_center">0.13</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">range of motion before acupuncture</td>
+<td headers="estimate" class="gt_row gt_center">0.67</td>
+<td headers="ci" class="gt_row gt_center">0.51, 0.83</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
     </tr>
   </tfoot>
 </table>
 </div>
 <p>For example, for sex, the 95% CI is -18 to 24, meaning that women might plausibly have a range of motion anywhere from 18 degrees less than men to 24 degrees more. In short, we don’t have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p-value, p=0.8. There are 34 patients included in this model. You can determine the number of observations included in the model using the <code>nobs()</code> function, or you can update the table to include this number in the header.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="week-5.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To get the number of observations in the model</span></span>
-<span id="cb161-2"><a href="week-5.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nobs</span>(rom_model)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="week-5.html#cb161-1" tabindex="-1"></a><span class="co"># To get the number of observations in the model</span></span>
+<span id="cb161-2"><a href="week-5.html#cb161-2" tabindex="-1"></a><span class="fu">nobs</span>(rom_model)</span></code></pre></div>
 <pre><code>## [1] 34</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="week-5.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># By default, the number of observations is not shown in &quot;tbl_regression&quot;</span></span>
-<span id="cb163-2"><a href="week-5.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You can use the code below to print the number of observations in the table header</span></span>
-<span id="cb163-3"><a href="week-5.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(rom_model) <span class="sc">%&gt;%</span></span>
-<span id="cb163-4"><a href="week-5.html#cb163-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(</span>
-<span id="cb163-5"><a href="week-5.html#cb163-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">&quot;**Characteristic (N = {N})**&quot;</span></span>
-<span id="cb163-6"><a href="week-5.html#cb163-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<div id="hlleqxdave" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="week-5.html#cb163-1" tabindex="-1"></a><span class="co"># By default, the number of observations is not shown in &quot;tbl_regression&quot;</span></span>
+<span id="cb163-2"><a href="week-5.html#cb163-2" tabindex="-1"></a><span class="co"># You can use the code below to print the number of observations in the table header</span></span>
+<span id="cb163-3"><a href="week-5.html#cb163-3" tabindex="-1"></a><span class="fu">tbl_regression</span>(rom_model) <span class="sc">%&gt;%</span></span>
+<span id="cb163-4"><a href="week-5.html#cb163-4" tabindex="-1"></a>  <span class="fu">modify_header</span>(</span>
+<span id="cb163-5"><a href="week-5.html#cb163-5" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">&quot;**Characteristic (N = {N})**&quot;</span></span>
+<span id="cb163-6"><a href="week-5.html#cb163-6" tabindex="-1"></a>  )</span></code></pre></div>
+<div id="rbvsgfhbrx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rbvsgfhbrx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#hlleqxdave .gt_table {
+#rbvsgfhbrx thead, #rbvsgfhbrx tbody, #rbvsgfhbrx tfoot, #rbvsgfhbrx tr, #rbvsgfhbrx td, #rbvsgfhbrx th {
+  border-style: none;
+}
+
+#rbvsgfhbrx p {
+  margin: 0;
+  padding: 0;
+}
+
+#rbvsgfhbrx .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -898,19 +949,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#rbvsgfhbrx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-#hlleqxdave .gt_title {
+#rbvsgfhbrx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -922,25 +966,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#hlleqxdave .gt_subtitle {
+#rbvsgfhbrx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#hlleqxdave .gt_bottom_border {
+#rbvsgfhbrx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rbvsgfhbrx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_col_headings {
+#rbvsgfhbrx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -955,7 +1011,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_col_heading {
+#rbvsgfhbrx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -975,7 +1031,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#hlleqxdave .gt_column_spanner_outer {
+#rbvsgfhbrx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -987,15 +1043,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#hlleqxdave .gt_column_spanner_outer:first-child {
+#rbvsgfhbrx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hlleqxdave .gt_column_spanner_outer:last-child {
+#rbvsgfhbrx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hlleqxdave .gt_column_spanner {
+#rbvsgfhbrx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1007,7 +1063,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#hlleqxdave .gt_group_heading {
+#rbvsgfhbrx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rbvsgfhbrx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1030,9 +1090,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#hlleqxdave .gt_empty_group_heading {
+#rbvsgfhbrx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1047,15 +1108,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#hlleqxdave .gt_from_md > :first-child {
+#rbvsgfhbrx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hlleqxdave .gt_from_md > :last-child {
+#rbvsgfhbrx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hlleqxdave .gt_row {
+#rbvsgfhbrx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1074,7 +1135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#hlleqxdave .gt_stub {
+#rbvsgfhbrx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1087,7 +1148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#hlleqxdave .gt_stub_row_group {
+#rbvsgfhbrx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1101,11 +1162,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#hlleqxdave .gt_row_group_first td {
+#rbvsgfhbrx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hlleqxdave .gt_summary_row {
+#rbvsgfhbrx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rbvsgfhbrx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1115,16 +1180,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#hlleqxdave .gt_first_summary_row {
+#rbvsgfhbrx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_first_summary_row.thick {
+#rbvsgfhbrx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hlleqxdave .gt_last_summary_row {
+#rbvsgfhbrx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1134,7 +1199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_grand_summary_row {
+#rbvsgfhbrx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1144,7 +1209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#hlleqxdave .gt_first_grand_summary_row {
+#rbvsgfhbrx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1154,11 +1219,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_striped {
+#rbvsgfhbrx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rbvsgfhbrx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hlleqxdave .gt_table_body {
+#rbvsgfhbrx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1167,7 +1242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_footnotes {
+#rbvsgfhbrx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1181,30 +1256,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#hlleqxdave .gt_footnote {
+#rbvsgfhbrx .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#hlleqxdave .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#hlleqxdave .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1212,102 +1265,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#hlleqxdave .gt_left {
+#rbvsgfhbrx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rbvsgfhbrx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rbvsgfhbrx .gt_left {
   text-align: left;
 }
 
-#hlleqxdave .gt_center {
+#rbvsgfhbrx .gt_center {
   text-align: center;
 }
 
-#hlleqxdave .gt_right {
+#rbvsgfhbrx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hlleqxdave .gt_font_normal {
+#rbvsgfhbrx .gt_font_normal {
   font-weight: normal;
 }
 
-#hlleqxdave .gt_font_bold {
+#rbvsgfhbrx .gt_font_bold {
   font-weight: bold;
 }
 
-#hlleqxdave .gt_font_italic {
+#rbvsgfhbrx .gt_font_italic {
   font-style: italic;
 }
 
-#hlleqxdave .gt_super {
+#rbvsgfhbrx .gt_super {
   font-size: 65%;
 }
 
-#hlleqxdave .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#rbvsgfhbrx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#hlleqxdave .gt_asterisk {
+#rbvsgfhbrx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hlleqxdave .gt_indent_1 {
+#rbvsgfhbrx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hlleqxdave .gt_indent_2 {
+#rbvsgfhbrx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hlleqxdave .gt_indent_3 {
+#rbvsgfhbrx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hlleqxdave .gt_indent_4 {
+#rbvsgfhbrx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hlleqxdave .gt_indent_5 {
+#rbvsgfhbrx .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic (N = 34)</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic (N = 34)&lt;/strong&gt;"><strong>Characteristic (N = 34)</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">1=female</td>
-<td class="gt_row gt_center">2.9</td>
-<td class="gt_row gt_center">-18, 24</td>
-<td class="gt_row gt_center">0.8</td></tr>
-    <tr><td class="gt_row gt_left">age</td>
-<td class="gt_row gt_center">-0.44</td>
-<td class="gt_row gt_center">-1.0, 0.13</td>
-<td class="gt_row gt_center">0.13</td></tr>
-    <tr><td class="gt_row gt_left">range of motion before acupuncture</td>
-<td class="gt_row gt_center">0.67</td>
-<td class="gt_row gt_center">0.51, 0.83</td>
-<td class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">1=female</td>
+<td headers="estimate" class="gt_row gt_center">2.9</td>
+<td headers="ci" class="gt_row gt_center">-18, 24</td>
+<td headers="p.value" class="gt_row gt_center">0.8</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="estimate" class="gt_row gt_center">-0.44</td>
+<td headers="ci" class="gt_row gt_center">-1.0, 0.13</td>
+<td headers="p.value" class="gt_row gt_center">0.13</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">range of motion before acupuncture</td>
+<td headers="estimate" class="gt_row gt_center">0.67</td>
+<td headers="ci" class="gt_row gt_center">0.51, 0.83</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
     </tr>
   </tfoot>
 </table>
 </div>
 <p><br></p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="week-5.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of linear regression results</span></span>
-<span id="cb164-2"><a href="week-5.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rom_model)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="week-5.html#cb164-1" tabindex="-1"></a><span class="co"># Summary of linear regression results</span></span>
+<span id="cb164-2"><a href="week-5.html#cb164-2" tabindex="-1"></a><span class="fu">summary</span>(rom_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = a ~ sex + age + b, data = lesson3d)
@@ -1338,10 +1412,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.3</span> Graphing the data<a href="week-5.html#graphing-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Graphing the data is done using the <code>ggplot</code> function from the {ggplot2} package. In short, the main inputs for the <code>ggplot</code> function are your dataset, the x variable and the y variable. You can then create a number of different plots using this data.</p>
 <p>To create a scatterplot, the <code>geom_point</code> function is added to the <code>ggplot</code> function:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="week-5.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot of race time by age</span></span>
-<span id="cb166-2"><a href="week-5.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> lesson5a,</span>
-<span id="cb166-3"><a href="week-5.html#cb166-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> rt)) <span class="sc">+</span></span>
-<span id="cb166-4"><a href="week-5.html#cb166-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="week-5.html#cb166-1" tabindex="-1"></a><span class="co"># Create a scatterplot of race time by age</span></span>
+<span id="cb166-2"><a href="week-5.html#cb166-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> lesson5a,</span>
+<span id="cb166-3"><a href="week-5.html#cb166-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> rt)) <span class="sc">+</span></span>
+<span id="cb166-4"><a href="week-5.html#cb166-4" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="05-week5_files/figure-html/section5j-1.png" width="672" /></p>
 <p>This scatterplot from the <strong>lesson5a</strong> data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.</p>
 </div>
@@ -1350,19 +1424,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Logistic regression is used when the variable you wish to predict is binary (e.g. relapsed or not). The function to use is <code>glm</code>, with the option <code>family = "binomial"</code> to indicate that our outcome variable is binary.</p>
 <p>Again, the first variable is the dependent variable (e.g. hypertension) and must be binary. The other variables are the predictor variables and can be binary or continuous: again, in some cases you can use ordinal variables but you have to be careful. The variables are entered into the <code>glm</code> function the same way as the <code>lm</code> function (dependent ~ predictor1 + predictor2 + …).</p>
 <p>We’ll use the dataset <strong>lesson4d</strong> as an example.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="week-5.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a logistic regression model for response, predictors are age, sex and group</span></span>
-<span id="cb167-2"><a href="week-5.html#cb167-2" aria-hidden="true" tabindex="-1"></a>response_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(response <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> group, <span class="at">data =</span> lesson4d, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb167-3"><a href="week-5.html#cb167-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb167-4"><a href="week-5.html#cb167-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at additional model results</span></span>
-<span id="cb167-5"><a href="week-5.html#cb167-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(response_model)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="week-5.html#cb167-1" tabindex="-1"></a><span class="co"># Create a logistic regression model for response, predictors are age, sex and group</span></span>
+<span id="cb167-2"><a href="week-5.html#cb167-2" tabindex="-1"></a>response_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(response <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> group, <span class="at">data =</span> lesson4d, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb167-3"><a href="week-5.html#cb167-3" tabindex="-1"></a></span>
+<span id="cb167-4"><a href="week-5.html#cb167-4" tabindex="-1"></a><span class="co"># Look at additional model results</span></span>
+<span id="cb167-5"><a href="week-5.html#cb167-5" tabindex="-1"></a><span class="fu">summary</span>(response_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = response ~ age + sex + group, family = &quot;binomial&quot;, 
 ##     data = lesson4d)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.3760  -1.0954  -0.9119   1.2366   1.5590  
 ## 
 ## Coefficients:
 ##              Estimate Std. Error z value Pr(&gt;|z|)  
@@ -1382,18 +1452,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>By default, R gives the coefficients in logits for logistic regression models. To easily see the coefficients and 95% confidence intervals for all covariates as odds ratio, we can again use the <code>tbl_regression</code> function. In this case, we use the option <code>exponentiate = TRUE</code>, which indicates that odds ratios (not logits) should be presented. (You can also use this function to see the formatted logit results by using the <code>exponentiate = FALSE</code> option.)</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="week-5.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create logistic regression model</span></span>
-<span id="cb169-2"><a href="week-5.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(response <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> group, <span class="at">data =</span> lesson4d, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb169-3"><a href="week-5.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pass to tbl_regression to show formatted table with odds ratios</span></span>
-<span id="cb169-4"><a href="week-5.html#cb169-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div id="kqtxbhydst" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="week-5.html#cb169-1" tabindex="-1"></a><span class="co"># Create logistic regression model</span></span>
+<span id="cb169-2"><a href="week-5.html#cb169-2" tabindex="-1"></a><span class="fu">glm</span>(response <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> group, <span class="at">data =</span> lesson4d, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb169-3"><a href="week-5.html#cb169-3" tabindex="-1"></a>  <span class="co"># Pass to tbl_regression to show formatted table with odds ratios</span></span>
+<span id="cb169-4"><a href="week-5.html#cb169-4" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="usbkbxopkm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#usbkbxopkm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#kqtxbhydst .gt_table {
+#usbkbxopkm thead, #usbkbxopkm tbody, #usbkbxopkm tfoot, #usbkbxopkm tr, #usbkbxopkm td, #usbkbxopkm th {
+  border-style: none;
+}
+
+#usbkbxopkm p {
+  margin: 0;
+  padding: 0;
+}
+
+#usbkbxopkm .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1416,19 +1498,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#usbkbxopkm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-#kqtxbhydst .gt_title {
+#usbkbxopkm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1440,25 +1515,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#kqtxbhydst .gt_subtitle {
+#usbkbxopkm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#kqtxbhydst .gt_bottom_border {
+#usbkbxopkm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#usbkbxopkm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_col_headings {
+#usbkbxopkm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1473,7 +1560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_col_heading {
+#usbkbxopkm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1493,7 +1580,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#kqtxbhydst .gt_column_spanner_outer {
+#usbkbxopkm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1505,15 +1592,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#kqtxbhydst .gt_column_spanner_outer:first-child {
+#usbkbxopkm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kqtxbhydst .gt_column_spanner_outer:last-child {
+#usbkbxopkm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kqtxbhydst .gt_column_spanner {
+#usbkbxopkm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1525,7 +1612,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#kqtxbhydst .gt_group_heading {
+#usbkbxopkm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#usbkbxopkm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1548,9 +1639,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#kqtxbhydst .gt_empty_group_heading {
+#usbkbxopkm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1565,15 +1657,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#kqtxbhydst .gt_from_md > :first-child {
+#usbkbxopkm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kqtxbhydst .gt_from_md > :last-child {
+#usbkbxopkm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kqtxbhydst .gt_row {
+#usbkbxopkm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1592,7 +1684,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#kqtxbhydst .gt_stub {
+#usbkbxopkm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1605,7 +1697,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#kqtxbhydst .gt_stub_row_group {
+#usbkbxopkm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1619,11 +1711,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#kqtxbhydst .gt_row_group_first td {
+#usbkbxopkm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kqtxbhydst .gt_summary_row {
+#usbkbxopkm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#usbkbxopkm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1633,16 +1729,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#kqtxbhydst .gt_first_summary_row {
+#usbkbxopkm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_first_summary_row.thick {
+#usbkbxopkm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kqtxbhydst .gt_last_summary_row {
+#usbkbxopkm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1652,7 +1748,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_grand_summary_row {
+#usbkbxopkm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1662,7 +1758,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#kqtxbhydst .gt_first_grand_summary_row {
+#usbkbxopkm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1672,11 +1768,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_striped {
+#usbkbxopkm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#usbkbxopkm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kqtxbhydst .gt_table_body {
+#usbkbxopkm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1685,7 +1791,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_footnotes {
+#usbkbxopkm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1699,30 +1805,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#kqtxbhydst .gt_footnote {
+#usbkbxopkm .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#kqtxbhydst .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#kqtxbhydst .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1730,140 +1814,158 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#kqtxbhydst .gt_left {
+#usbkbxopkm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#usbkbxopkm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#usbkbxopkm .gt_left {
   text-align: left;
 }
 
-#kqtxbhydst .gt_center {
+#usbkbxopkm .gt_center {
   text-align: center;
 }
 
-#kqtxbhydst .gt_right {
+#usbkbxopkm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kqtxbhydst .gt_font_normal {
+#usbkbxopkm .gt_font_normal {
   font-weight: normal;
 }
 
-#kqtxbhydst .gt_font_bold {
+#usbkbxopkm .gt_font_bold {
   font-weight: bold;
 }
 
-#kqtxbhydst .gt_font_italic {
+#usbkbxopkm .gt_font_italic {
   font-style: italic;
 }
 
-#kqtxbhydst .gt_super {
+#usbkbxopkm .gt_super {
   font-size: 65%;
 }
 
-#kqtxbhydst .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#usbkbxopkm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#kqtxbhydst .gt_asterisk {
+#usbkbxopkm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kqtxbhydst .gt_indent_1 {
+#usbkbxopkm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kqtxbhydst .gt_indent_2 {
+#usbkbxopkm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kqtxbhydst .gt_indent_3 {
+#usbkbxopkm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kqtxbhydst .gt_indent_4 {
+#usbkbxopkm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kqtxbhydst .gt_indent_5 {
+#usbkbxopkm .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">age</td>
-<td class="gt_row gt_center">0.98</td>
-<td class="gt_row gt_center">0.96, 1.00</td>
-<td class="gt_row gt_center">0.018</td></tr>
-    <tr><td class="gt_row gt_left">1 if woman, 0 if man</td>
-<td class="gt_row gt_center">0.84</td>
-<td class="gt_row gt_center">0.53, 1.32</td>
-<td class="gt_row gt_center">0.4</td></tr>
-    <tr><td class="gt_row gt_left">1 if b, 0 if a</td>
-<td class="gt_row gt_center">0.73</td>
-<td class="gt_row gt_center">0.49, 1.09</td>
-<td class="gt_row gt_center">0.12</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="estimate" class="gt_row gt_center">0.98</td>
+<td headers="ci" class="gt_row gt_center">0.96, 1.00</td>
+<td headers="p.value" class="gt_row gt_center">0.018</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">1 if woman, 0 if man</td>
+<td headers="estimate" class="gt_row gt_center">0.84</td>
+<td headers="ci" class="gt_row gt_center">0.53, 1.32</td>
+<td headers="p.value" class="gt_row gt_center">0.4</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">1 if b, 0 if a</td>
+<td headers="estimate" class="gt_row gt_center">0.73</td>
+<td headers="ci" class="gt_row gt_center">0.49, 1.09</td>
+<td headers="p.value" class="gt_row gt_center">0.12</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
     </tr>
   </tfoot>
 </table>
 </div>
 <p>The key things here are the odds ratios: you can say that the odds of response is multiplied by 0.98 for a one year increase in age; that women have an odds of response 0.84 of that for the men, though this is not statistically significant, and that response is lower in group 1, with an odds of 0.73 (you would also cite the p-value and 95% CIs).</p>
 <p>The problem here is that you can’t use any of these data to work out an individual patient’s chance of response. Now you can get R to do this for you using the <code>augment</code> function. For a binary outcome, you need to specify <code>type.predict = "response"</code> as an option so that you will get predicted probabilities (not log odds).</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="week-5.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get predictions from logistic regression model</span></span>
-<span id="cb170-2"><a href="week-5.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="co"># type.predict = &quot;response&quot; gives predicted probabilities</span></span>
-<span id="cb170-3"><a href="week-5.html#cb170-3" aria-hidden="true" tabindex="-1"></a>lesson4d_pred <span class="ot">&lt;-</span></span>
-<span id="cb170-4"><a href="week-5.html#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>(response_model, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb170-5"><a href="week-5.html#cb170-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-6"><a href="week-5.html#cb170-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the dataset containing predicted probabilities (.fitted variable)</span></span>
-<span id="cb170-7"><a href="week-5.html#cb170-7" aria-hidden="true" tabindex="-1"></a><span class="co"># You can ignore all columns to the right of &quot;.fitted&quot;</span></span>
-<span id="cb170-8"><a href="week-5.html#cb170-8" aria-hidden="true" tabindex="-1"></a>lesson4d_pred</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="week-5.html#cb170-1" tabindex="-1"></a><span class="co"># Get predictions from logistic regression model</span></span>
+<span id="cb170-2"><a href="week-5.html#cb170-2" tabindex="-1"></a><span class="co"># type.predict = &quot;response&quot; gives predicted probabilities</span></span>
+<span id="cb170-3"><a href="week-5.html#cb170-3" tabindex="-1"></a>lesson4d_pred <span class="ot">&lt;-</span></span>
+<span id="cb170-4"><a href="week-5.html#cb170-4" tabindex="-1"></a>  <span class="fu">augment</span>(response_model, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb170-5"><a href="week-5.html#cb170-5" tabindex="-1"></a></span>
+<span id="cb170-6"><a href="week-5.html#cb170-6" tabindex="-1"></a><span class="co"># Look at the dataset containing predicted probabilities (.fitted variable)</span></span>
+<span id="cb170-7"><a href="week-5.html#cb170-7" tabindex="-1"></a><span class="co"># You can ignore all columns to the right of &quot;.fitted&quot;</span></span>
+<span id="cb170-8"><a href="week-5.html#cb170-8" tabindex="-1"></a>lesson4d_pred</span></code></pre></div>
 <pre><code>## # A tibble: 398 × 11
-##    .rownames response   age   sex group .fitted .resid .std.resid    .hat .sigma
-##    &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-##  1 1                1    47     0     0   0.469  1.23       1.24  0.00612   1.17
-##  2 2                0    47     0     0   0.469 -1.12      -1.13  0.00612   1.17
-##  3 3                1    25     0     0   0.595  1.02       1.03  0.0129    1.17
-##  4 4                0    53     0     1   0.358 -0.941     -0.945 0.00841   1.17
-##  5 5                1    64     0     0   0.372  1.41       1.42  0.0154    1.17
-##  6 6                0    50     0     1   0.374 -0.968     -0.972 0.00738   1.17
-##  7 7                1    34     0     1   0.465  1.24       1.24  0.00838   1.17
-##  8 8                0    68     0     1   0.282 -0.814     -0.822 0.0178    1.17
-##  9 9                0    49     0     0   0.457 -1.11      -1.11  0.00659   1.17
-## 10 10               0    44     0     1   0.407 -1.02      -1.03  0.00641   1.17
-## # … with 388 more rows, and 1 more variable: .cooksd &lt;dbl&gt;</code></pre>
+##    .rownames response   age   sex group .fitted .resid    .hat .sigma .cooksd
+##    &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1                1    47     0     0   0.469  1.23  0.00612   1.17 0.00176
+##  2 2                0    47     0     0   0.469 -1.12  0.00612   1.17 0.00137
+##  3 3                1    25     0     0   0.595  1.02  0.0129    1.17 0.00226
+##  4 4                0    53     0     1   0.358 -0.941 0.00841   1.17 0.00119
+##  5 5                1    64     0     0   0.372  1.41  0.0154    1.17 0.00669
+##  6 6                0    50     0     1   0.374 -0.968 0.00738   1.17 0.00112
+##  7 7                1    34     0     1   0.465  1.24  0.00838   1.17 0.00245
+##  8 8                0    68     0     1   0.282 -0.814 0.0178    1.17 0.00182
+##  9 9                0    49     0     0   0.457 -1.11  0.00659   1.17 0.00140
+## 10 10               0    44     0     1   0.407 -1.02  0.00641   1.17 0.00112
+## # ℹ 388 more rows
+## # ℹ 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
 <p><strong>Note:</strong> The <strong>lesson4d_pred</strong> dataset includes 398 patients. If you look at the table above, you will see at the top that all 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.</p>
 <p>If you want to look at calculating predictions from logistic regression in more detail, you’ll need logit (see below).</p>
 <p>One thing to be careful about is categorical variables. Imagine that you had the patients age and cancer stage (1, 2, 3 or 4) and wanted to know whether they recurred. If you tried <code>glm(recurrence ~ age + stage, ...)</code>, then stage would be treated as if the increase in risk going from stage 1 to 2 was exactly the same as that going from 2 to 3 and 3 to 4. To tell R that it is a categorical variable, you need to use the <code>factor</code> function with the categorical variable:</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="week-5.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a model for recurrence using the categorical variable &quot;stage&quot;</span></span>
-<span id="cb172-2"><a href="week-5.html#cb172-2" aria-hidden="true" tabindex="-1"></a>recurrence_model <span class="ot">&lt;-</span></span>
-<span id="cb172-3"><a href="week-5.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(recurrence <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">factor</span>(stage), <span class="at">data =</span> example5a, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb172-4"><a href="week-5.html#cb172-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-5"><a href="week-5.html#cb172-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the results of this model</span></span>
-<span id="cb172-6"><a href="week-5.html#cb172-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(recurrence_model)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="week-5.html#cb172-1" tabindex="-1"></a><span class="co"># Create a model for recurrence using the categorical variable &quot;stage&quot;</span></span>
+<span id="cb172-2"><a href="week-5.html#cb172-2" tabindex="-1"></a>recurrence_model <span class="ot">&lt;-</span></span>
+<span id="cb172-3"><a href="week-5.html#cb172-3" tabindex="-1"></a>  <span class="fu">glm</span>(recurrence <span class="sc">~</span> age <span class="sc">+</span> <span class="fu">factor</span>(stage), <span class="at">data =</span> example5a, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb172-4"><a href="week-5.html#cb172-4" tabindex="-1"></a></span>
+<span id="cb172-5"><a href="week-5.html#cb172-5" tabindex="-1"></a><span class="co"># Show the results of this model</span></span>
+<span id="cb172-6"><a href="week-5.html#cb172-6" tabindex="-1"></a><span class="fu">summary</span>(recurrence_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = recurrence ~ age + factor(stage), family = &quot;binomial&quot;, 
 ##     data = example5a)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.8330  -0.8557  -0.5887   1.0807   2.1078  
 ## 
 ## Coefficients:
 ##                 Estimate Std. Error z value Pr(&gt;|z|)    
@@ -1882,17 +1984,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1222.9
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="week-5.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatted to show odds ratios</span></span>
-<span id="cb174-2"><a href="week-5.html#cb174-2" aria-hidden="true" tabindex="-1"></a>recurrence_model <span class="sc">%&gt;%</span></span>
-<span id="cb174-3"><a href="week-5.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div id="qzjvxzfwte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="week-5.html#cb174-1" tabindex="-1"></a><span class="co"># Formatted to show odds ratios</span></span>
+<span id="cb174-2"><a href="week-5.html#cb174-2" tabindex="-1"></a>recurrence_model <span class="sc">%&gt;%</span></span>
+<span id="cb174-3"><a href="week-5.html#cb174-3" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="urdayvtajf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#urdayvtajf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#qzjvxzfwte .gt_table {
+#urdayvtajf thead, #urdayvtajf tbody, #urdayvtajf tfoot, #urdayvtajf tr, #urdayvtajf td, #urdayvtajf th {
+  border-style: none;
+}
+
+#urdayvtajf p {
+  margin: 0;
+  padding: 0;
+}
+
+#urdayvtajf .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1915,19 +2029,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#urdayvtajf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-#qzjvxzfwte .gt_title {
+#urdayvtajf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1939,25 +2046,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#qzjvxzfwte .gt_subtitle {
+#urdayvtajf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#qzjvxzfwte .gt_bottom_border {
+#urdayvtajf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#urdayvtajf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_col_headings {
+#urdayvtajf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1972,7 +2091,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_col_heading {
+#urdayvtajf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1992,7 +2111,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#qzjvxzfwte .gt_column_spanner_outer {
+#urdayvtajf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2004,15 +2123,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#qzjvxzfwte .gt_column_spanner_outer:first-child {
+#urdayvtajf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qzjvxzfwte .gt_column_spanner_outer:last-child {
+#urdayvtajf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qzjvxzfwte .gt_column_spanner {
+#urdayvtajf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2024,7 +2143,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#qzjvxzfwte .gt_group_heading {
+#urdayvtajf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#urdayvtajf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2047,9 +2170,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#qzjvxzfwte .gt_empty_group_heading {
+#urdayvtajf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2064,15 +2188,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#qzjvxzfwte .gt_from_md > :first-child {
+#urdayvtajf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qzjvxzfwte .gt_from_md > :last-child {
+#urdayvtajf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qzjvxzfwte .gt_row {
+#urdayvtajf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2091,7 +2215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#qzjvxzfwte .gt_stub {
+#urdayvtajf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2104,7 +2228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#qzjvxzfwte .gt_stub_row_group {
+#urdayvtajf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2118,11 +2242,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#qzjvxzfwte .gt_row_group_first td {
+#urdayvtajf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qzjvxzfwte .gt_summary_row {
+#urdayvtajf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#urdayvtajf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2132,16 +2260,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#qzjvxzfwte .gt_first_summary_row {
+#urdayvtajf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_first_summary_row.thick {
+#urdayvtajf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qzjvxzfwte .gt_last_summary_row {
+#urdayvtajf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2151,7 +2279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_grand_summary_row {
+#urdayvtajf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2161,7 +2289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#qzjvxzfwte .gt_first_grand_summary_row {
+#urdayvtajf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2171,11 +2299,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_striped {
+#urdayvtajf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#urdayvtajf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qzjvxzfwte .gt_table_body {
+#urdayvtajf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2184,7 +2322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_footnotes {
+#urdayvtajf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2198,30 +2336,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#qzjvxzfwte .gt_footnote {
+#urdayvtajf .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#qzjvxzfwte .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#qzjvxzfwte .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2229,107 +2345,128 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#qzjvxzfwte .gt_left {
+#urdayvtajf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#urdayvtajf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#urdayvtajf .gt_left {
   text-align: left;
 }
 
-#qzjvxzfwte .gt_center {
+#urdayvtajf .gt_center {
   text-align: center;
 }
 
-#qzjvxzfwte .gt_right {
+#urdayvtajf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qzjvxzfwte .gt_font_normal {
+#urdayvtajf .gt_font_normal {
   font-weight: normal;
 }
 
-#qzjvxzfwte .gt_font_bold {
+#urdayvtajf .gt_font_bold {
   font-weight: bold;
 }
 
-#qzjvxzfwte .gt_font_italic {
+#urdayvtajf .gt_font_italic {
   font-style: italic;
 }
 
-#qzjvxzfwte .gt_super {
+#urdayvtajf .gt_super {
   font-size: 65%;
 }
 
-#qzjvxzfwte .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#urdayvtajf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-#qzjvxzfwte .gt_asterisk {
+#urdayvtajf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qzjvxzfwte .gt_indent_1 {
+#urdayvtajf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qzjvxzfwte .gt_indent_2 {
+#urdayvtajf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qzjvxzfwte .gt_indent_3 {
+#urdayvtajf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qzjvxzfwte .gt_indent_4 {
+#urdayvtajf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qzjvxzfwte .gt_indent_5 {
+#urdayvtajf .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>OR</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">age</td>
-<td class="gt_row gt_center">1.04</td>
-<td class="gt_row gt_center">1.03, 1.05</td>
-<td class="gt_row gt_center"><0.001</td></tr>
-    <tr><td class="gt_row gt_left">factor(stage)</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left">    1</td>
-<td class="gt_row gt_center">—</td>
-<td class="gt_row gt_center">—</td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left">    2</td>
-<td class="gt_row gt_center">2.71</td>
-<td class="gt_row gt_center">2.01, 3.66</td>
-<td class="gt_row gt_center"><0.001</td></tr>
-    <tr><td class="gt_row gt_left">    3</td>
-<td class="gt_row gt_center">5.23</td>
-<td class="gt_row gt_center">3.16, 8.79</td>
-<td class="gt_row gt_center"><0.001</td></tr>
-    <tr><td class="gt_row gt_left">    4</td>
-<td class="gt_row gt_center">5.88</td>
-<td class="gt_row gt_center">3.34, 10.6</td>
-<td class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="estimate" class="gt_row gt_center">1.04</td>
+<td headers="ci" class="gt_row gt_center">1.03, 1.05</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">factor(stage)</td>
+<td headers="estimate" class="gt_row gt_center"><br /></td>
+<td headers="ci" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2</td>
+<td headers="estimate" class="gt_row gt_center">2.71</td>
+<td headers="ci" class="gt_row gt_center">2.01, 3.66</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    3</td>
+<td headers="estimate" class="gt_row gt_center">5.23</td>
+<td headers="ci" class="gt_row gt_center">3.16, 8.79</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    4</td>
+<td headers="estimate" class="gt_row gt_center">5.88</td>
+<td headers="ci" class="gt_row gt_center">3.34, 10.6</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><sup class="gt_footnote_marks">1</sup> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
     </tr>
   </tfoot>
 </table>
@@ -2337,16 +2474,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>What you can see here is that stage is broken into categories. The odds ratio is given comparing each stage to stage 1 (the reference). So the odds of recurrence is 2.71 higher for stage 2 compared to stage 1, 5.23 for stage 3 compared to stage 1 and 5.88 for stage 4 compared to stage 1.</p>
 <p><strong>For keen students only!</strong></p>
 <p>Here we look at our “response” model on the logit scale.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="week-5.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at details of &quot;response&quot; logistic regression model</span></span>
-<span id="cb175-2"><a href="week-5.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(response_model)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="week-5.html#cb175-1" tabindex="-1"></a><span class="co"># Look at details of &quot;response&quot; logistic regression model</span></span>
+<span id="cb175-2"><a href="week-5.html#cb175-2" tabindex="-1"></a><span class="fu">summary</span>(response_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = response ~ age + sex + group, family = &quot;binomial&quot;, 
 ##     data = lesson4d)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.3760  -1.0954  -0.9119   1.2366   1.5590  
 ## 
 ## Coefficients:
 ##              Estimate Std. Error z value Pr(&gt;|z|)  
@@ -2372,8 +2505,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.5</span> Getting the area-under-the-curve<a href="week-5.html#getting-the-area-under-the-curve" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Using regression models is a way to try to predict outcome based on the data we have. After we’ve created a model, we want to know - is the prediction from this model any good? One way to do this is by assessing the discrimination. For logistic regression, where we have a binary endpoint, discrimination tells us how well the model distinguishes between patients who have the event and patients who do not have the event. Discrimination is measured using the area-under-the-curve (AUC) and varies between 0.5 (a coin flip) and 1 (perfect discrimination).</p>
 <p>Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), it doesn’t matter for our purposes.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="week-5.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the AUC using the &quot;roc&quot; function</span></span>
-<span id="cb177-2"><a href="week-5.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">roc</span>(cancer <span class="sc">~</span> marker, <span class="at">data =</span> example5b)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="week-5.html#cb177-1" tabindex="-1"></a><span class="co"># Calculate the AUC using the &quot;roc&quot; function</span></span>
+<span id="cb177-2"><a href="week-5.html#cb177-2" tabindex="-1"></a><span class="fu">roc</span>(cancer <span class="sc">~</span> marker, <span class="at">data =</span> example5b)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## roc.formula(formula = cancer ~ marker, data = example5b)
@@ -2383,8 +2516,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So the marker has an area under the curve of 0.814. The <code>roc</code> function from the {pROC} package is particularly useful if you want to know the area-under-the-curve with and without a marker.</p>
 <p>For instance, the code below could tell you how much the area-under-the-curve increases when you add a new marker to a model to predict cancer that already includes age.</p>
 <p>First, get the AUC for the model with age only:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="week-5.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate AUC of original model with age</span></span>
-<span id="cb179-2"><a href="week-5.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">roc</span>(cancer <span class="sc">~</span> age, <span class="at">data =</span> example5b)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="week-5.html#cb179-1" tabindex="-1"></a><span class="co"># Calculate AUC of original model with age</span></span>
+<span id="cb179-2"><a href="week-5.html#cb179-2" tabindex="-1"></a><span class="fu">roc</span>(cancer <span class="sc">~</span> age, <span class="at">data =</span> example5b)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## roc.formula(formula = cancer ~ age, data = example5b)
@@ -2392,14 +2525,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Data: age in 1865 controls (cancer 0) &lt; 635 cases (cancer 1).
 ## Area under the curve: 0.6354</code></pre>
 <p>The <code>roc</code> function can only take one predictor variable. For a univariate model, such as the model assessing age above, you can put “age” directly into the <code>roc</code> function. If you want to assess a model with multiple variables, you can use the predicted value:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="week-5.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the multivariable model</span></span>
-<span id="cb181-2"><a href="week-5.html#cb181-2" aria-hidden="true" tabindex="-1"></a>marker_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(cancer <span class="sc">~</span> age <span class="sc">+</span> marker, <span class="at">data =</span> example5b, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb181-3"><a href="week-5.html#cb181-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-4"><a href="week-5.html#cb181-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use &quot;augment&quot; to get predicted probability</span></span>
-<span id="cb181-5"><a href="week-5.html#cb181-5" aria-hidden="true" tabindex="-1"></a>marker_pred <span class="ot">&lt;-</span> <span class="fu">augment</span>(marker_model, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="week-5.html#cb181-1" tabindex="-1"></a><span class="co"># Create the multivariable model</span></span>
+<span id="cb181-2"><a href="week-5.html#cb181-2" tabindex="-1"></a>marker_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(cancer <span class="sc">~</span> age <span class="sc">+</span> marker, <span class="at">data =</span> example5b, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb181-3"><a href="week-5.html#cb181-3" tabindex="-1"></a></span>
+<span id="cb181-4"><a href="week-5.html#cb181-4" tabindex="-1"></a><span class="co"># Use &quot;augment&quot; to get predicted probability</span></span>
+<span id="cb181-5"><a href="week-5.html#cb181-5" tabindex="-1"></a>marker_pred <span class="ot">&lt;-</span> <span class="fu">augment</span>(marker_model, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <p>Now, calculate the AUC for the model with age and the marker by using the predicted probability based on the multivariable model:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="week-5.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate AUC of model with age and marker</span></span>
-<span id="cb182-2"><a href="week-5.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">roc</span>(cancer <span class="sc">~</span> .fitted, <span class="at">data =</span> marker_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="week-5.html#cb182-1" tabindex="-1"></a><span class="co"># Calculate AUC of model with age and marker</span></span>
+<span id="cb182-2"><a href="week-5.html#cb182-2" tabindex="-1"></a><span class="fu">roc</span>(cancer <span class="sc">~</span> .fitted, <span class="at">data =</span> marker_pred)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## roc.formula(formula = cancer ~ .fitted, data = marker_pred)
@@ -2411,16 +2544,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-4" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Assignments<a href="week-5.html#assignments-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="week-5.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 5 assignments</span></span>
-<span id="cb184-2"><a href="week-5.html#cb184-2" aria-hidden="true" tabindex="-1"></a>lesson5a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5a.rds&quot;</span>))</span>
-<span id="cb184-3"><a href="week-5.html#cb184-3" aria-hidden="true" tabindex="-1"></a>lesson5b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5b.rds&quot;</span>))</span>
-<span id="cb184-4"><a href="week-5.html#cb184-4" aria-hidden="true" tabindex="-1"></a>lesson5c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5c.rds&quot;</span>))</span>
-<span id="cb184-5"><a href="week-5.html#cb184-5" aria-hidden="true" tabindex="-1"></a>lesson5d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5d.rds&quot;</span>))</span>
-<span id="cb184-6"><a href="week-5.html#cb184-6" aria-hidden="true" tabindex="-1"></a>lesson5e <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5e.rds&quot;</span>))</span>
-<span id="cb184-7"><a href="week-5.html#cb184-7" aria-hidden="true" tabindex="-1"></a>lesson5f <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5f.rds&quot;</span>))</span>
-<span id="cb184-8"><a href="week-5.html#cb184-8" aria-hidden="true" tabindex="-1"></a>lesson5g <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5g.rds&quot;</span>))</span>
-<span id="cb184-9"><a href="week-5.html#cb184-9" aria-hidden="true" tabindex="-1"></a>lesson5h <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5h.rds&quot;</span>))</span>
-<span id="cb184-10"><a href="week-5.html#cb184-10" aria-hidden="true" tabindex="-1"></a>lesson5i <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5i.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="week-5.html#cb184-1" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 5 assignments</span></span>
+<span id="cb184-2"><a href="week-5.html#cb184-2" tabindex="-1"></a>lesson5a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5a.rds&quot;</span>))</span>
+<span id="cb184-3"><a href="week-5.html#cb184-3" tabindex="-1"></a>lesson5b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5b.rds&quot;</span>))</span>
+<span id="cb184-4"><a href="week-5.html#cb184-4" tabindex="-1"></a>lesson5c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5c.rds&quot;</span>))</span>
+<span id="cb184-5"><a href="week-5.html#cb184-5" tabindex="-1"></a>lesson5d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5d.rds&quot;</span>))</span>
+<span id="cb184-6"><a href="week-5.html#cb184-6" tabindex="-1"></a>lesson5e <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5e.rds&quot;</span>))</span>
+<span id="cb184-7"><a href="week-5.html#cb184-7" tabindex="-1"></a>lesson5f <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5f.rds&quot;</span>))</span>
+<span id="cb184-8"><a href="week-5.html#cb184-8" tabindex="-1"></a>lesson5g <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5g.rds&quot;</span>))</span>
+<span id="cb184-9"><a href="week-5.html#cb184-9" tabindex="-1"></a>lesson5h <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5h.rds&quot;</span>))</span>
+<span id="cb184-10"><a href="week-5.html#cb184-10" tabindex="-1"></a>lesson5i <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 5&quot;</span>, <span class="st">&quot;lesson5i.rds&quot;</span>))</span></code></pre></div>
 <p>Regression is a very important part of statistics: I probably do more regressions that any other type of analysis, apart from than calculating basic summary data such as medians, means and proportions. So, I’ve given you lots of possibilities here. I’ve coded them: you really should try to do the bold ones, do those in italics if you can, and if you get to the rest, well, the more the merrier. The reason I have included all this is so I can go over it in class.</p>
 <ul>
 <li><p><strong>lesson5a: These are data from marathon runners (again). Which of the following is associated with how fast runners complete the marathon: age, sex, training miles, weight?</strong></p></li>

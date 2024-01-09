@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Week 3 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Week 3 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -117,6 +117,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 </head>
 
@@ -311,23 +315,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">3</span> Week 3<a href="week-3.html#week-3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="setting-up-2" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Setting up<a href="week-3.html#setting-up-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="week-3.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
-<span id="cb99-2"><a href="week-3.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb99-3"><a href="week-3.html#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb99-4"><a href="week-3.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb99-5"><a href="week-3.html#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
-<span id="cb99-6"><a href="week-3.html#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb99-7"><a href="week-3.html#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
-<span id="cb99-8"><a href="week-3.html#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
-<span id="cb99-9"><a href="week-3.html#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
-<span id="cb99-10"><a href="week-3.html#cb99-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb99-11"><a href="week-3.html#cb99-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb99-12"><a href="week-3.html#cb99-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-13"><a href="week-3.html#cb99-13" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;trial&quot; and &quot;midwest&quot; datasets are available automatically after you load the packages above</span></span>
-<span id="cb99-14"><a href="week-3.html#cb99-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-15"><a href="week-3.html#cb99-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Load other data necessary to run Week 3 examples</span></span>
-<span id="cb99-16"><a href="week-3.html#cb99-16" aria-hidden="true" tabindex="-1"></a>lesson1a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</span>
-<span id="cb99-17"><a href="week-3.html#cb99-17" aria-hidden="true" tabindex="-1"></a>example3a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;example3a.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="week-3.html#cb99-1" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb99-2"><a href="week-3.html#cb99-2" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb99-3"><a href="week-3.html#cb99-3" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb99-4"><a href="week-3.html#cb99-4" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb99-5"><a href="week-3.html#cb99-5" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb99-6"><a href="week-3.html#cb99-6" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb99-7"><a href="week-3.html#cb99-7" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb99-8"><a href="week-3.html#cb99-8" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb99-9"><a href="week-3.html#cb99-9" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb99-10"><a href="week-3.html#cb99-10" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb99-11"><a href="week-3.html#cb99-11" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb99-12"><a href="week-3.html#cb99-12" tabindex="-1"></a></span>
+<span id="cb99-13"><a href="week-3.html#cb99-13" tabindex="-1"></a><span class="co"># The &quot;trial&quot; and &quot;midwest&quot; datasets are available automatically after you load the packages above</span></span>
+<span id="cb99-14"><a href="week-3.html#cb99-14" tabindex="-1"></a></span>
+<span id="cb99-15"><a href="week-3.html#cb99-15" tabindex="-1"></a><span class="co"># Load other data necessary to run Week 3 examples</span></span>
+<span id="cb99-16"><a href="week-3.html#cb99-16" tabindex="-1"></a>lesson1a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 1&quot;</span>, <span class="st">&quot;lesson1a.rds&quot;</span>))</span>
+<span id="cb99-17"><a href="week-3.html#cb99-17" tabindex="-1"></a>example3a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;example3a.rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="r-instructions-2" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> R Instructions<a href="week-3.html#r-instructions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -349,8 +353,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Different forms of the t-test</strong></p>
 <p>The two main forms of the t-test are “paired” and “unpaired”.</p>
 <p>“Unpaired” is used when, for example, testing marker levels between two groups taking different drugs, as there are different patients in each group:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="week-3.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-test for marker levels between treatment arms</span></span>
-<span id="cb100-2"><a href="week-3.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(marker <span class="sc">~</span> trt, <span class="at">data =</span> trial, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="week-3.html#cb100-1" tabindex="-1"></a><span class="co"># t-test for marker levels between treatment arms</span></span>
+<span id="cb100-2"><a href="week-3.html#cb100-2" tabindex="-1"></a><span class="fu">t.test</span>(marker <span class="sc">~</span> trt, <span class="at">data =</span> trial, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -365,8 +369,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The first variable, “marker”, is the continuous endpoint that you are comparing by the two groups of the second variable, “trt” (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called <strong>trial</strong>. <code>paired = FALSE</code> indicates that you want to perform an “unpaired” test. The last option (<code>var.equal = TRUE</code>) tells the <code>t.test</code> function to treat the two variances as being equal. For this course, you will need to include this option in two-group <code>t.test</code> commands but you do not need to know specific details about this concept.</p>
 <p>A “paired” test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.</p>
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="week-3.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># paired t-test for blood pressure between &quot;before&quot; and &quot;after&quot; groups</span></span>
-<span id="cb102-2"><a href="week-3.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bp <span class="sc">~</span> when, <span class="at">data =</span> example3a, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="week-3.html#cb102-1" tabindex="-1"></a><span class="co"># paired t-test for blood pressure between &quot;before&quot; and &quot;after&quot; groups</span></span>
+<span id="cb102-2"><a href="week-3.html#cb102-2" tabindex="-1"></a><span class="fu">t.test</span>(bp <span class="sc">~</span> when, <span class="at">data =</span> example3a, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -380,8 +384,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##       -5.091667</code></pre>
 <p>Here, the code is the same as the last example, with “bp” as the continuous outcome, and “when” indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option <code>paired = TRUE</code> must be included.</p>
 <p>A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the Midwest different than the national average of 32%?</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="week-3.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-test assessing whether the rate of college education is different than 32%</span></span>
-<span id="cb104-2"><a href="week-3.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(midwest<span class="sc">$</span>percollege, <span class="at">mu =</span> <span class="dv">32</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="week-3.html#cb104-1" tabindex="-1"></a><span class="co"># t-test assessing whether the rate of college education is different than 32%</span></span>
+<span id="cb104-2"><a href="week-3.html#cb104-2" tabindex="-1"></a><span class="fu">t.test</span>(midwest<span class="sc">$</span>percollege, <span class="at">mu =</span> <span class="dv">32</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -394,8 +398,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of x 
 ##  18.27274</code></pre>
 <p>Let’s look at the print out from a t-test in more detail:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="week-3.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-test for difference in horsepower for manual vs automatic transmission</span></span>
-<span id="cb106-2"><a href="week-3.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hp <span class="sc">~</span> am, <span class="at">data =</span> mtcars, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="week-3.html#cb106-1" tabindex="-1"></a><span class="co"># t-test for difference in horsepower for manual vs automatic transmission</span></span>
+<span id="cb106-2"><a href="week-3.html#cb106-2" tabindex="-1"></a><span class="fu">t.test</span>(hp <span class="sc">~</span> am, <span class="at">data =</span> mtcars, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -411,28 +415,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>t.test</code> function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means. You don’t need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.</p>
 <p>While for an unpaired test, the <code>t.test</code> command prints the group means in each group, you may want to report the difference between means.</p>
 <p>To easily calculate and display the mean and standard deviation in each group, the difference in means with 95% confidence interval and the p-value for this difference, you can use the functions <code>tbl_summary</code> and <code>add_difference</code> from the {gtsummary} package.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="week-3.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start off with the tbl_summary function</span></span>
-<span id="cb108-2"><a href="week-3.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
-<span id="cb108-3"><a href="week-3.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># keep the &quot;am&quot; and &quot;hp&quot; variables from the &quot;mtcars&quot; dataset</span></span>
-<span id="cb108-4"><a href="week-3.html#cb108-4" aria-hidden="true" tabindex="-1"></a>  mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb108-5"><a href="week-3.html#cb108-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(am, hp),</span>
-<span id="cb108-6"><a href="week-3.html#cb108-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># group by &quot;am&quot;</span></span>
-<span id="cb108-7"><a href="week-3.html#cb108-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> am,</span>
-<span id="cb108-8"><a href="week-3.html#cb108-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># display mean and SD (rather than default median and IQR)</span></span>
-<span id="cb108-9"><a href="week-3.html#cb108-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">list</span>(<span class="at">hp =</span> <span class="st">&quot;{mean} ({sd})&quot;</span>)</span>
-<span id="cb108-10"><a href="week-3.html#cb108-10" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb108-11"><a href="week-3.html#cb108-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the &quot;add_difference&quot; function adds the difference, 95% confidence interval and p-value</span></span>
-<span id="cb108-12"><a href="week-3.html#cb108-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_difference</span>(</span>
-<span id="cb108-13"><a href="week-3.html#cb108-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">test =</span> <span class="fu">list</span>(<span class="at">hp =</span> <span class="st">&quot;ancova&quot;</span>)</span>
-<span id="cb108-14"><a href="week-3.html#cb108-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<div id="iwrgxmosvm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="week-3.html#cb108-1" tabindex="-1"></a><span class="co"># Start off with the tbl_summary function</span></span>
+<span id="cb108-2"><a href="week-3.html#cb108-2" tabindex="-1"></a><span class="fu">tbl_summary</span>(</span>
+<span id="cb108-3"><a href="week-3.html#cb108-3" tabindex="-1"></a>  <span class="co"># keep the &quot;am&quot; and &quot;hp&quot; variables from the &quot;mtcars&quot; dataset</span></span>
+<span id="cb108-4"><a href="week-3.html#cb108-4" tabindex="-1"></a>  mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb108-5"><a href="week-3.html#cb108-5" tabindex="-1"></a>    <span class="fu">select</span>(am, hp),</span>
+<span id="cb108-6"><a href="week-3.html#cb108-6" tabindex="-1"></a>  <span class="co"># group by &quot;am&quot;</span></span>
+<span id="cb108-7"><a href="week-3.html#cb108-7" tabindex="-1"></a>  <span class="at">by =</span> am,</span>
+<span id="cb108-8"><a href="week-3.html#cb108-8" tabindex="-1"></a>  <span class="co"># display mean and SD (rather than default median and IQR)</span></span>
+<span id="cb108-9"><a href="week-3.html#cb108-9" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">list</span>(<span class="at">hp =</span> <span class="st">&quot;{mean} ({sd})&quot;</span>)</span>
+<span id="cb108-10"><a href="week-3.html#cb108-10" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb108-11"><a href="week-3.html#cb108-11" tabindex="-1"></a>  <span class="co"># the &quot;add_difference&quot; function adds the difference, 95% confidence interval and p-value</span></span>
+<span id="cb108-12"><a href="week-3.html#cb108-12" tabindex="-1"></a>  <span class="fu">add_difference</span>(</span>
+<span id="cb108-13"><a href="week-3.html#cb108-13" tabindex="-1"></a>    <span class="at">test =</span> <span class="fu">list</span>(<span class="at">hp =</span> <span class="st">&quot;ancova&quot;</span>)</span>
+<span id="cb108-14"><a href="week-3.html#cb108-14" tabindex="-1"></a>  )</span></code></pre></div>
+<div id="iwrgxmosvm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iwrgxmosvm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#iwrgxmosvm thead, #iwrgxmosvm tbody, #iwrgxmosvm tfoot, #iwrgxmosvm tr, #iwrgxmosvm td, #iwrgxmosvm th {
+  border-style: none;
+}
+
+#iwrgxmosvm p {
+  margin: 0;
+  padding: 0;
 }
 
 #iwrgxmosvm .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -455,16 +471,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#iwrgxmosvm .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
+#iwrgxmosvm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 #iwrgxmosvm .gt_title {
@@ -483,12 +492,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
+}
+
+#iwrgxmosvm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
 }
 
 #iwrgxmosvm .gt_bottom_border {
@@ -564,6 +585,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
+#iwrgxmosvm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
 #iwrgxmosvm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
@@ -587,6 +612,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
 #iwrgxmosvm .gt_empty_group_heading {
@@ -662,6 +688,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 2px;
 }
 
+#iwrgxmosvm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
 #iwrgxmosvm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
@@ -711,6 +741,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
+#iwrgxmosvm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
 #iwrgxmosvm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
@@ -741,8 +781,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -799,10 +839,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 
 #iwrgxmosvm .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
 #iwrgxmosvm .gt_asterisk {
@@ -830,36 +869,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>0</strong>, N = 19<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>1</strong>, N = 13<sup class="gt_footnote_marks">1</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>Difference</strong><sup class="gt_footnote_marks">2</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>95% CI</strong><sup class="gt_footnote_marks">2,3</sup></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col"><strong>p-value</strong><sup class="gt_footnote_marks">2</sup></th>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 19&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 19<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 13&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 13<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Difference&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>Difference</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2,3&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2,3</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">hp</td>
-<td class="gt_row gt_center">160 (54)</td>
-<td class="gt_row gt_center">127 (84)</td>
-<td class="gt_row gt_center">33</td>
-<td class="gt_row gt_center">-16, 83</td>
-<td class="gt_row gt_center">0.2</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">hp</td>
+<td headers="stat_1" class="gt_row gt_center">160 (54)</td>
+<td headers="stat_2" class="gt_row gt_center">127 (84)</td>
+<td headers="estimate" class="gt_row gt_center">33</td>
+<td headers="ci" class="gt_row gt_center">-16, 83</td>
+<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="6"><sup class="gt_footnote_marks">1</sup> Mean (SD)</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="6"><sup class="gt_footnote_marks">2</sup> One-way ANOVA</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> One-way ANOVA</td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="6"><sup class="gt_footnote_marks">3</sup> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>3</sup></span> CI = Confidence Interval</td>
     </tr>
   </tfoot>
 </table>
@@ -871,8 +910,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.2.2.2</span> Non-parametric methods<a href="week-3.html#non-parametric-methods" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance.</p>
 <p>Unpaired case, for example, do marker levels differ between the drug and placebo groups?</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="week-3.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># non-parametric test for difference in marker levels by treatment group</span></span>
-<span id="cb109-2"><a href="week-3.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(marker <span class="sc">~</span> trt, <span class="at">data =</span> trial, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="week-3.html#cb109-1" tabindex="-1"></a><span class="co"># non-parametric test for difference in marker levels by treatment group</span></span>
+<span id="cb109-2"><a href="week-3.html#cb109-2" tabindex="-1"></a><span class="fu">wilcox.test</span>(marker <span class="sc">~</span> trt, <span class="at">data =</span> trial, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -881,8 +920,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>The inputs for the <code>wilcox.test</code> function are very similar to the inputs for the <code>t.test</code> function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable (“marker”), the group variable (“trt”) and the dataset (<strong>trial</strong>) are all the same. This is still an unpaired test (<code>paired = FALSE</code>).</p>
 <p>Paired case, for example, does an intervention cause a change in a patient’s blood pressure?</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="week-3.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># paired non-parametric test for difference in &quot;before&quot; and &quot;after&quot; blood pressure measurements</span></span>
-<span id="cb111-2"><a href="week-3.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(bp <span class="sc">~</span> when, <span class="at">data =</span> example3a, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="week-3.html#cb111-1" tabindex="-1"></a><span class="co"># paired non-parametric test for difference in &quot;before&quot; and &quot;after&quot; blood pressure measurements</span></span>
+<span id="cb111-2"><a href="week-3.html#cb111-2" tabindex="-1"></a><span class="fu">wilcox.test</span>(bp <span class="sc">~</span> when, <span class="at">data =</span> example3a, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank test with continuity correction
 ## 
@@ -890,8 +929,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## V = 2234.5, p-value = 0.001417
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="week-3.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># non-parametric test - is rate of college education different from 32%?</span></span>
-<span id="cb113-2"><a href="week-3.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(midwest<span class="sc">$</span>percollege, <span class="at">mu =</span> <span class="dv">32</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="week-3.html#cb113-1" tabindex="-1"></a><span class="co"># non-parametric test - is rate of college education different from 32%?</span></span>
+<span id="cb113-2"><a href="week-3.html#cb113-2" tabindex="-1"></a><span class="fu">wilcox.test</span>(midwest<span class="sc">$</span>percollege, <span class="at">mu =</span> <span class="dv">32</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank test with continuity correction
 ## 
@@ -904,8 +943,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.2.2.3</span> Binomial test<a href="week-3.html#binomial-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p-value).</p>
 <p>The first argument of <code>binom.test</code> is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the <code>p =</code> option - the default is 0.5 (50%).</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="week-3.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare a proportion to a hypothesized value &quot;p&quot;</span></span>
-<span id="cb115-2"><a href="week-3.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">60</span>, <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="week-3.html#cb115-1" tabindex="-1"></a><span class="co"># Compare a proportion to a hypothesized value &quot;p&quot;</span></span>
+<span id="cb115-2"><a href="week-3.html#cb115-2" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">60</span>, <span class="dv">100</span>, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Exact binomial test
 ## 
@@ -918,18 +957,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## probability of success 
 ##                    0.6</code></pre>
 <p>You can also use <code>binom.test</code> on data from a dataset. For example, if we want to test whether the proportion of women (sex = 1) is different from 50%:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="week-3.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;sum&quot; function adds up the number of observations where sex == 1 (women)</span></span>
-<span id="cb117-2"><a href="week-3.html#cb117-2" aria-hidden="true" tabindex="-1"></a>nwomen <span class="ot">&lt;-</span> <span class="fu">sum</span>(lesson1a<span class="sc">$</span>sex)</span>
-<span id="cb117-3"><a href="week-3.html#cb117-3" aria-hidden="true" tabindex="-1"></a>nwomen</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="week-3.html#cb117-1" tabindex="-1"></a><span class="co"># The &quot;sum&quot; function adds up the number of observations where sex == 1 (women)</span></span>
+<span id="cb117-2"><a href="week-3.html#cb117-2" tabindex="-1"></a>nwomen <span class="ot">&lt;-</span> <span class="fu">sum</span>(lesson1a<span class="sc">$</span>sex)</span>
+<span id="cb117-3"><a href="week-3.html#cb117-3" tabindex="-1"></a>nwomen</span></code></pre></div>
 <pre><code>## [1] 205</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="week-3.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;nrow&quot; function (for &quot;number of rows&quot;) counts the total number of observations</span></span>
-<span id="cb119-2"><a href="week-3.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The &quot;filter&quot; function is used to count only the number of observations where</span></span>
-<span id="cb119-3"><a href="week-3.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;sex&quot; is not missing (NA)</span></span>
-<span id="cb119-4"><a href="week-3.html#cb119-4" aria-hidden="true" tabindex="-1"></a>ntotal <span class="ot">&lt;-</span> <span class="fu">nrow</span>(lesson1a <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)))</span>
-<span id="cb119-5"><a href="week-3.html#cb119-5" aria-hidden="true" tabindex="-1"></a>ntotal</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="week-3.html#cb119-1" tabindex="-1"></a><span class="co"># The &quot;nrow&quot; function (for &quot;number of rows&quot;) counts the total number of observations</span></span>
+<span id="cb119-2"><a href="week-3.html#cb119-2" tabindex="-1"></a><span class="co"># The &quot;filter&quot; function is used to count only the number of observations where</span></span>
+<span id="cb119-3"><a href="week-3.html#cb119-3" tabindex="-1"></a><span class="co"># &quot;sex&quot; is not missing (NA)</span></span>
+<span id="cb119-4"><a href="week-3.html#cb119-4" tabindex="-1"></a>ntotal <span class="ot">&lt;-</span> <span class="fu">nrow</span>(lesson1a <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)))</span>
+<span id="cb119-5"><a href="week-3.html#cb119-5" tabindex="-1"></a>ntotal</span></code></pre></div>
 <pre><code>## [1] 386</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="week-3.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare a proportion of patients in a dataset to a hypothesized value &quot;p&quot;</span></span>
-<span id="cb121-2"><a href="week-3.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(nwomen, ntotal, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="week-3.html#cb121-1" tabindex="-1"></a><span class="co"># Compare a proportion of patients in a dataset to a hypothesized value &quot;p&quot;</span></span>
+<span id="cb121-2"><a href="week-3.html#cb121-2" tabindex="-1"></a><span class="fu">binom.test</span>(nwomen, ntotal, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Exact binomial test
 ## 
@@ -949,13 +988,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assignments-2" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Assignments<a href="week-3.html#assignments-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="week-3.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 3 assignments</span></span>
-<span id="cb123-2"><a href="week-3.html#cb123-2" aria-hidden="true" tabindex="-1"></a>lesson3a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3a.rds&quot;</span>))</span>
-<span id="cb123-3"><a href="week-3.html#cb123-3" aria-hidden="true" tabindex="-1"></a>lesson3b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3b.rds&quot;</span>))</span>
-<span id="cb123-4"><a href="week-3.html#cb123-4" aria-hidden="true" tabindex="-1"></a>lesson3c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3c.rds&quot;</span>))</span>
-<span id="cb123-5"><a href="week-3.html#cb123-5" aria-hidden="true" tabindex="-1"></a>lesson3d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3d.rds&quot;</span>))</span>
-<span id="cb123-6"><a href="week-3.html#cb123-6" aria-hidden="true" tabindex="-1"></a>lesson3e <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3e.rds&quot;</span>))</span>
-<span id="cb123-7"><a href="week-3.html#cb123-7" aria-hidden="true" tabindex="-1"></a>lesson3f <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3f.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="week-3.html#cb123-1" tabindex="-1"></a><span class="co"># Copy and paste this code to load the data for week 3 assignments</span></span>
+<span id="cb123-2"><a href="week-3.html#cb123-2" tabindex="-1"></a>lesson3a <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3a.rds&quot;</span>))</span>
+<span id="cb123-3"><a href="week-3.html#cb123-3" tabindex="-1"></a>lesson3b <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3b.rds&quot;</span>))</span>
+<span id="cb123-4"><a href="week-3.html#cb123-4" tabindex="-1"></a>lesson3c <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3c.rds&quot;</span>))</span>
+<span id="cb123-5"><a href="week-3.html#cb123-5" tabindex="-1"></a>lesson3d <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3d.rds&quot;</span>))</span>
+<span id="cb123-6"><a href="week-3.html#cb123-6" tabindex="-1"></a>lesson3e <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3e.rds&quot;</span>))</span>
+<span id="cb123-7"><a href="week-3.html#cb123-7" tabindex="-1"></a>lesson3f <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Week 3&quot;</span>, <span class="st">&quot;lesson3f.rds&quot;</span>))</span></code></pre></div>
 <p>Again, more questions than you need to do, unless you’re keen (also, most won’t take long). Try to do at least the first three.</p>
 <ul>
 <li><strong>lesson3a</strong>: These are data from over 1000 patients undergoing chemotherapy reporting a nausea and vomiting score from 0 to 10 on the day of treatment. Does previous chemotherapy increase nausea scores? What about sex?</li>
