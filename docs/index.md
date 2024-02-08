@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: January 10, 2024"
+date: "Last Updated: February 08, 2024"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -60,11 +60,11 @@ Date / Location     Topic and Assignments
 **RRL-101**\        **Reading:** Chapters 13-17\
                     **Assignment:** Chapters 13, 15 and 16, all questions; chapter 14, question 1; chapter 17, questions 1-3
                     
-**2/21/2024**\      **Class VI:** Regression\
+**2/14/2024**\      **Class VI:** Regression\
 **RRL-101**\            **Reading:** Chapters 18-19\
                     **Assignment:** Chapter 18, questions 1-4; chapter 19, questions 1-2
                     
-**3/6/2024**\       **Class VII:** Survival Data\
+**2/21/2024**\       **Class VII:** Survival Data\
 **RRL-101**\            **Reading:** Chapters 21-24 and chapter 28\
                     **Assignments:** Chapter 21, question 1; chapter 23, question 1; chapter 24, questions 1, 2 and 4
                     
