@@ -7,9 +7,8 @@ install.packages("broom")
 install.packages("pROC")
 install.packages("gmodels")
 install.packages("survival")
-install.packages("survminer")
 install.packages("remotes")
-remotes::install_github("rstudio/gt")
+install.packages("gt")
 install.packages("gtsummary")
 
 # You can copy and paste this code into the console window and press "enter"
@@ -31,7 +30,6 @@ library(broom)
 library(pROC)
 library(gmodels)
 library(survival)
-library(survminer)
 library(tidyverse)
 
 # View the data as a spreadsheet
