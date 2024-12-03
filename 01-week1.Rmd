@@ -61,6 +61,8 @@ Note: you'll need to put aside 20 - 30 minutes to install the software on your c
 Install a pre-compiled binary of R for your OS from here by clicking on "Download R for [your operating system]":
 https://cloud.r-project.org
 
+Please install R version 4.4.0 or higher, as this will ensure that given code examples will run correctly.
+
 **RStudio**
 
 Install RStudio Desktop by selecting the installer for your operating system under "Desktop Version":
