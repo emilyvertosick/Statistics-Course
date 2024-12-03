@@ -98,13 +98,13 @@ lesson3e <- readRDS(here::here("Data", "Week 3", "lesson3e.rds"))
 lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
 
 # t-test for nausea/vomiting by prior chemotherapy
-t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
+t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 
 # t-test for nausea/vomiting by sex
-t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)
+t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
 
 # Save out the t-test to get the estimate
-ttest_nv_pc <- t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
+ttest_nv_pc <- t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 ttest_nv_pc$estimate
 
 # The first value is mean in group 0
@@ -145,7 +145,7 @@ tbl_summary(
 pt(-4.6275, 510)*2
 
 # t-test for pain after treatment, by group
-t.test(p ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
+t.test(lesson3b$p, lesson3b$g, paired = TRUE, var.equal = TRUE)
 
 # Analyze data separately by wrist
 lesson3b <-
@@ -163,8 +163,27 @@ lesson3b <-
   )
 
 # t-test for pain in right and left wrists separately
-t.test(pright ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
-t.test(pleft ~ g, data = lesson3b, paired = FALSE, var.equal = TRUE)
+t.test(lesson3b$pright, lesson3b$g, paired = TRUE, var.equal = TRUE)
+t.test(lesson3b$pleft, lesson3b$g, paired = TRUE, var.equal = TRUE)
+
+lesson3b_avg <-
+  lesson3b %>%
+  # Grouping by "id" so that each patient ends up with the average of their own two wrist scores
+  group_by(id) %>%
+  # Calculate the mean pain score between wrists for each patient
+  mutate(
+    meanpain = mean(p, na.rm = TRUE)
+  ) %>%
+  # Only keep the patient ID, group variable and mean pain score
+  select(id, g, meanpain) %>%
+  # Drop duplicates so you don't count each patient twice
+  # Here we only want one observation per patient since we are assessing the average pain between the two wrists
+  distinct() %>%
+  # Ungroup the data
+  ungroup()
+
+# t-test for average pain between both wrists
+t.test(lesson3b_avg$meanpain, lesson3b_avg$g, paired = TRUE, var.equal = TRUE)
 
 # Non-parametric test comparing day 1 and day 2 pain
 wilcox.test(lesson3c$t1, lesson3c$t2, paired = TRUE)
@@ -935,8 +954,12 @@ tbl_summary(
 )
 
 # Create Kaplan-Meier plot by treatment group
-survminer::ggsurvplot(survfit(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c),
-                      legend = "bottom")
+ggsurvfit::survfit2(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c) %>%
+  ggsurvfit::ggsurvfit() +
+  labs(
+    x = "Survival Time (Years)"
+  ) +
+  scale_y_continuous(label = scales::percent)
 
 # Create dummy variable for treatment
 lesson7c <-

@@ -18,19 +18,19 @@ lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
 example3a <- readRDS(here::here("Data", "Week 3", "example3a.rds"))
 
 # t-test for marker levels between treatment arms
-t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
+t.test(marker ~ trt, data = trial, var.equal = TRUE)
 
 # paired t-test for blood pressure between "before" and "after" groups
-t.test(bp ~ when, data = example3a, paired = TRUE, var.equal = TRUE)
+t.test(example3a$bp_after, example3a$bp_before, paired = TRUE, var.equal = TRUE)
 
 # t-test assessing whether the rate of college education is different than 32%
 t.test(midwest$percollege, mu = 32)
 
 # t-test for difference in horsepower for manual vs automatic transmission
-t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
+t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 # perform t-test and save out results as "hp_test"
-hp_test <- t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
+hp_test <- t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 # show the group means from "hp_test"
 hp_test$estimate
@@ -51,10 +51,10 @@ mean_group0 - mean_group1
 mean_group1 - mean_group0
 
 # non-parametric test for difference in marker levels by treatment group
-wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE)
+wilcox.test(marker ~ trt, data = trial, exact = FALSE)
 
 # paired non-parametric test for difference in "before" and "after" blood pressure measurements
-wilcox.test(bp ~ when, data = example3a, paired = FALSE)
+wilcox.test(example3a$bp_after, example3a$bp_before, paired = TRUE)
 
 # non-parametric test - is rate of college education different from 32%?
 wilcox.test(midwest$percollege, mu = 32)

@@ -434,7 +434,7 @@ meanpct <-
      meannochemo %>% pull(mean))*100
 
 chemo_test <-
-  t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
+  t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 
 meanwomen <-
   lesson3a %>%
@@ -458,14 +458,14 @@ meanmen <-
   summarize(n = nrow(.), mean = mean(nv, na.rm = TRUE), sd = sd(nv, na.rm = TRUE))
 
 women_test <-
-  t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)
+  t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
 
 chi_test <-
   chisq.test(table(lesson3a$sex, !is.na(lesson3a$nv)), correct = FALSE)
 
 ```
 
-Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)` without looking at the data? There are lots of missing data. There is a question as to whether you would actually analyze these data at all: could data be missing because patients were too ill to complete questionnaires?  Could there have been bias in ascertaining who had prior chemotherapy?  If you do decide to analyze, a t-test would be appropriate (`t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)` and `t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)`). A model answer might be:
+Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)` without looking at the data? There are lots of missing data. There is a question as to whether you would actually analyze these data at all: could data be missing because patients were too ill to complete questionnaires?  Could there have been bias in ascertaining who had prior chemotherapy?  If you do decide to analyze, a t-test would be appropriate (`t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)` and `t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)`). A model answer might be:
 
 <div class="quote-container">
 
@@ -478,10 +478,10 @@ Now, I'll explain what I did. First, I did the two t-tests:
 ```{r week3b}
 
 # t-test for nausea/vomiting by prior chemotherapy
-t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
+t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 
 # t-test for nausea/vomiting by sex
-t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)
+t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
 
 ```
 
@@ -561,11 +561,11 @@ The most obvious thing to do would be to do:
 ```{r week3f}
 
 # t-test for pain after treatment, by group
-t.test(p ~ g, data = lesson3b, paired = TRUE, var.equal = TRUE)
+t.test(lesson3b$p, lesson3b$g, paired = TRUE, var.equal = TRUE)
 
 ```
 
-This gives a p-value of `r style_pvalue(t.test(p ~ g, data = lesson3b, var.equal = TRUE)$p.value)` and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
+This gives a p-value of `r style_pvalue(t.test(lesson3b$p, lesson3b$g, paired = TRUE, var.equal = TRUE)$p.value)` and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
 
 However, if you are really keen, you could try the following:
 
@@ -589,8 +589,8 @@ lesson3b <-
   )
 
 # t-test for pain in right and left wrists separately
-t.test(pright ~ g, data = lesson3b, paired = TRUE, var.equal = TRUE)
-t.test(pleft ~ g, data = lesson3b, paired = TRUE, var.equal = TRUE)
+t.test(lesson3b$pright, lesson3b$g, paired = TRUE, var.equal = TRUE)
+t.test(lesson3b$pleft, lesson3b$g, paired = TRUE, var.equal = TRUE)
 
 ```
 
@@ -615,7 +615,7 @@ lesson3b_avg <-
   ungroup()
 
 # t-test for average pain between both wrists
-t.test(meanpain ~ g, data = lesson3b_avg, paired = TRUE, var.equal = TRUE)
+t.test(lesson3b_avg$meanpain, lesson3b_avg$g, paired = TRUE, var.equal = TRUE)
 
 ```
 
@@ -647,7 +647,7 @@ The p-value you get (p=`r style_pvalue(t.test(lesson3c$t1, lesson3c$t2, var.equa
 
 What about normality of the data? Doesn’t that figure into whether you assess by t-test or non-parametric? Well if you type look at the distribution of t1 and t2, you find that neither are normally distributed. But a paired t-test does not depend on the assumption that each set of data in a pair is distributed but that the differences between pairs are normally distributed. So you would have to create a new variable and look at that:
 
-```{r week3k}
+```{r week3k1}
 
 # Create a variable containing the difference in pain scores between days 1 and 2
 lesson3c <-
@@ -661,7 +661,15 @@ skim(lesson3c$delta12)
 
 As it turns out, the distribution of differences between pain scores are normally distributed even though pain at time 2 does not have a normal distribution. In fact, this is almost always the case. 
 
-Now let's compare t2 and t3. Again, no significant difference. Does this mean that pain does not decrease after an operation? Of course, we know that pain does indeed get better. This illustrates two points: first, don't ask questions you know the answer to; second, asking lots of questions (is pain on day 2 better than on day 1?; is pain on day 3 better on day 2?) is not as good as just asking one question: does pain decrease over time? We'll discuss how to answer this question later on in the course.
+Now let's compare t2 and t3.
+
+```{r week3k2}
+
+t.test(lesson3c$t2, lesson3c$t3, paired = TRUE, var.equal = TRUE)
+
+```
+
+Again, no significant difference. Does this mean that pain does not decrease after an operation? Of course, we know that pain does indeed get better. This illustrates two points: first, don't ask questions you know the answer to; second, asking lots of questions (is pain on day 2 better than on day 1?; is pain on day 3 better on day 2?) is not as good as just asking one question: does pain decrease over time? We'll discuss how to answer this question later on in the course.
 
 ### lesson3d
 
@@ -726,7 +734,7 @@ lesson3e %>%
 
 ```
 
-This shows us the mean, median, etc. for length of stay by hospital. The two sets of data look very similar. Regardless of whether we do a t-test or non-parametric test, we do not see a difference between groups, p is `r style_pvalue(t.test(los ~ hospital, data = lesson3e, var.equal = TRUE, paired = FALSE)$p.value)` or `r style_pvalue(wilcox.test(los ~ hospital, data = lesson3e, exact = FALSE, paired = FALSE)$p.value)`. Interesting question: should you report a 95% confidence interval for the difference between groups? This shows, for example, that the new regimen could reduce length of stay by up to six days, surely important in cost terms. On the other hand, this is not a randomized trial. There might be all sorts of differences between the hospitals other than the different chemotherapy regime, such as the mix of patients, discharge policies etc. So you would have to be careful in stating that the chemotherapy regime "could reduce hospital stay by as much as six days" or some such. 
+This shows us the mean, median, etc. for length of stay by hospital. The two sets of data look very similar. Regardless of whether we do a t-test or non-parametric test, we do not see a difference between groups, p is `r style_pvalue(t.test(los ~ hospital, data = lesson3e, var.equal = TRUE)$p.value)` or `r style_pvalue(wilcox.test(los ~ hospital, data = lesson3e, exact = FALSE)$p.value)`. Interesting question: should you report a 95% confidence interval for the difference between groups? This shows, for example, that the new regimen could reduce length of stay by up to six days, surely important in cost terms. On the other hand, this is not a randomized trial. There might be all sorts of differences between the hospitals other than the different chemotherapy regime, such as the mix of patients, discharge policies etc. So you would have to be careful in stating that the chemotherapy regime "could reduce hospital stay by as much as six days" or some such. 
 
 For advanced students only:
 
@@ -746,13 +754,13 @@ The distribution of this new variable for both groups combined is normal, theref
 ```{r week3r}
 
 # paired t-test using log of length of stay as outcome
-t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
+t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE)
 
 ```
 
 ```{r week3s, include = FALSE, purl = FALSE}
 
-log_test <- t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
+log_test <- t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE)
 
 log_diff <- log_test$estimate[[1]] - log_test$estimate[[2]]
 
@@ -771,13 +779,13 @@ You will want to do an unpaired t-test or non-parametric test on these data.
 ```{r week3t}
 
 # unpaired t-test for change in pain by physiotherapy group
-t.test(delta ~ physio, data = lesson3f, paired = FALSE, var.equal = TRUE)
+t.test(delta ~ physio, data = lesson3f, var.equal = TRUE)
 
 ```
 
 ```{r week3u, echo = FALSE, purl = FALSE}
 
-physio_test <- t.test(delta ~ physio, data = lesson3f, paired = FALSE, var.equal = TRUE)
+physio_test <- t.test(delta ~ physio, data = lesson3f, var.equal = TRUE)
 
 meansd1 <- lesson3f %>% filter(physio == 1) %>% summarize(mean = mean(delta, na.rm = TRUE), sd = sd(delta, na.rm = TRUE))
 
@@ -924,7 +932,7 @@ tbl_meatcol <-
     lesson4b %>% select(meat, hbp),
     by = hbp,
     statistic = list(meat = "{p}%"),
-    percent = "col"
+    percent = "column"
   )
 
 ```

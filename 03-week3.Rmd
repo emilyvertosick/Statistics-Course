@@ -84,31 +84,31 @@ This is used to compare a continuous outcome (such as hemoglobin) in two groups 
 
 **Different forms of the t-test**
 
-The two main forms of the t-test are "paired" and "unpaired".
+The two main forms of the t-test are "paired" and "unpaired". "Unpaired" is the default.
 
 "Unpaired" is used when, for example, testing marker levels between two groups taking different drugs, as there are different patients in each group:
 
 ```{r section3a}
 
 # t-test for marker levels between treatment arms
-t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
+t.test(marker ~ trt, data = trial, var.equal = TRUE)
 
 ```
 
-The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called **trial**. `paired = FALSE` indicates that you want to perform an "unpaired" test. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
+The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called **trial**. By default an "unpaired" test is performed. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
 
 A "paired" test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.
 
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
+Since these are two measurements taken on the same patient, a paired t-test is necessary. To perform a paired t-test, you use the `t.test` function including the outcome variable, the predictor variable, and the option `paired = TRUE`.
+
 ```{r section3b}
 
 # paired t-test for blood pressure between "before" and "after" groups
-t.test(bp ~ when, data = example3a, paired = TRUE, var.equal = TRUE)
+t.test(example3a$bp_after, example3a$bp_before, paired = TRUE, var.equal = TRUE)
 
 ```
-
-Here, the code is the same as the last example, with "bp" as the continuous outcome, and "when" indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option `paired = TRUE` must be included.
 
 A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the Midwest different than the national average of 32%?
 
@@ -124,7 +124,7 @@ Let’s look at the print out from a t-test in more detail:
 ```{r section3e}
 
 # t-test for difference in horsepower for manual vs automatic transmission
-t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
+t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 ```
 
@@ -138,7 +138,7 @@ To easily calculate and display the mean and standard deviation in each group, t
 
 ```{r section3f1, echo = FALSE, results = "hide", purl = FALSE, warning = FALSE}
 
-hp_test <- t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
+hp_test <- t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 ```
 
@@ -174,18 +174,18 @@ Unpaired case, for example, do marker levels differ between the drug and placebo
 ```{r section3g2}
 
 # non-parametric test for difference in marker levels by treatment group
-wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE)
+wilcox.test(marker ~ trt, data = trial, exact = FALSE)
 
 ```
 
-The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset (**trial**) are all the same. This is still an unpaired test (`paired = FALSE`).
+The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset (**trial**) are all the same. As with the `t.test` function, this is an unpaired test by default.
 
 Paired case, for example, does an intervention cause a change in a patient's blood pressure?
 
 ```{r section3h}
 
 # paired non-parametric test for difference in "before" and "after" blood pressure measurements
-wilcox.test(bp ~ when, data = example3a, paired = TRUE)
+wilcox.test(example3a$bp_after, example3a$bp_before, paired = TRUE)
 
 ```
 
