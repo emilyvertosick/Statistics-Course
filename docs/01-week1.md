@@ -23,6 +23,8 @@ Note: you'll need to put aside 20 - 30 minutes to install the software on your c
 Install a pre-compiled binary of R for your OS from here by clicking on "Download R for [your operating system]":
 https://cloud.r-project.org
 
+Please install R version 4.4.0 or higher, as this will ensure that given code examples will run correctly.
+
 **RStudio**
 
 Install RStudio Desktop by selecting the installer for your operating system under "Desktop Version":
@@ -62,7 +64,7 @@ For this course, you will need to install several packages which will allow you 
 Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
 
 
-```r
+``` r
 # Installing packages
 install.packages("tidyverse")
 install.packages("here")
@@ -90,7 +92,7 @@ If you are using a Windows computer and get an error message that states <span s
 We will also be installing a package called {gtsummary} written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table which can be exported in many formats, including html, pdf and Word documents. The code below will install this package.
 
 
-```r
+``` r
 install.packages("gtsummary")
 ```
 
@@ -107,7 +109,7 @@ This is mainly what you will be doing during this course. You will be loading da
 1. You can load files by typing or copying the following code into the console window and pressing enter. Each lesson will have code in the "Setting Up" section that will load all data necessary to run the examples in the lesson. You can copy and paste that code into your console window and press "enter" to load the files. In the "Assignments" section, there will also be code to load the files necessary for the assignment.
 
 
-```r
+``` r
 # You can copy and paste this code into the console window and press "enter"
 # to load the data needed for the week 1 examples
 lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
@@ -127,7 +129,7 @@ If you attempt to use a function from a package without loading that package or 
 As an example, the `skim` function comes from the {skimr} package. Using `skim` without loading or specifying the {skimr} package will give an error:
 
 
-```r
+``` r
 # This will give an error - the "skimr" package isn't loaded yet
 skim(lesson1a$age)
 ```
@@ -139,7 +141,7 @@ skim(lesson1a$age)
 You can give both the package name and function name to avoid this error:
 
 
-```r
+``` r
 # You can use the function "skim" by specifying package "skimr"
 skimr::skim(lesson1a$age)
 ```
@@ -168,14 +170,14 @@ Table: (\#tab:loadpkgs2)Data summary
 However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the {skimr} package, type or copy and paste the following line of code into the console window, and press enter.
 
 
-```r
+``` r
 library(skimr)
 ```
 
 Now you will be able to use all functions in the {skimr} package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
 
 
-```r
+``` r
 # Here is the code to load all necessary packages
 library(skimr)
 library(gt)
@@ -194,7 +196,7 @@ library(tidyverse)
 R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset **lesson1a** by typing the following into the console window and hitting enter (a new window will pop up):
 
 
-```r
+``` r
 # View the data as a spreadsheet
 View(lesson1a)
 ```
@@ -212,7 +214,7 @@ Since you can have multiple datasets in R at the same time, your command must in
 For example, this will summarize the data for the full **lesson1a** dataset.
 
 
-```r
+``` r
 # View a summary of the dataset
 skim(lesson1a)
 ```
@@ -266,7 +268,7 @@ To refer to one variable in your dataset, you can use the notation `dataset$vari
 For example, this will summarize just the variable "age" from the **lesson1a** dataset.
 
 
-```r
+``` r
 # View a summary of the "age" variable only
 skim(lesson1a$age)
 ```
@@ -301,7 +303,7 @@ Here is an example of piping using the `skim` function.
 This piece of code can be read as, "Use the `skim` function on the **lesson1a** dataset".
 
 
-```r
+``` r
 # You can put the dataset into the function
 skim(lesson1a)
 ```
@@ -309,7 +311,7 @@ skim(lesson1a)
 This piece of code can be read as, "Take the **lesson1a** dataset, **and then** give this data to the `skim` function to use."
 
 
-```r
+``` r
 # You can also use the "pipe" operator
 lesson1a %>% skim()
 ```
@@ -317,7 +319,7 @@ lesson1a %>% skim()
 You can see that both of these lines of code are doing the same thing, although the order of the function and the dataset are different. Both will give the same results - try copying both lines of code into your console window to check that this is true.
 
 
-```r
+``` r
 # These two pieces of code will also give the same results
 skim(lesson1a$age)
 lesson1a %>% skim(age)
@@ -328,7 +330,7 @@ In this example, the pipe operator is not particularly useful - it actually invo
 However, the pipe operator is very helpful in more complex code. Here is an example of two pieces of code that do the same thing, with the second example using the pipe notation. You don't need to understand what this code does, but you can see that the pipe notation makes the code shorter and easier to read. It allows you to see what is happening in the code in order from left to right and top to bottom, while the code without pipes has to be read from the inside (the innermost set of parentheses) to the outside (the outermost set of parentheses).
 
 
-```r
+``` r
 # Without piping
 new_data <- 
   select(filter(mutate(trial, trt = as_factor(str_sub(str_to_upper(trt), 1, 4))), age > 60), trt, age, marker, stage, grade)
@@ -353,7 +355,7 @@ new_data
 ## # ℹ 27 more rows
 ```
 
-```r
+``` r
 # With piping
 new_data_pipe <-
   trial %>%
@@ -394,7 +396,7 @@ Below is an example of how to create a dataset that contains only patients in th
 **Note:** the **trial** dataset is automatically loaded when you load the {gtsummary} package, which we've done above, so this dataset does not have to be manually loaded like the **lesson1a** dataset.
 
 
-```r
+``` r
 # Here we are only keeping patients from the "Drug A" group
 trial %>%
   filter(trt == "Drug A")
@@ -420,7 +422,7 @@ trial %>%
 You can see that the data that prints out only includes observations where "trt" is "Drug A". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
 
 
-```r
+``` r
 # Print original dataset to confirm no changes
 trial
 ```
@@ -445,7 +447,7 @@ trial
 Sometimes, this is fine - for example, if you simply want to take a look at the data. If you need to use this data again, give the dataset a name and use the assignment operator.
 
 
-```r
+``` r
 # Save out dataset including only patients in drug group
 trial_drug <-
   trial %>%
@@ -478,7 +480,7 @@ Here, we've called this dataset **trial_drug**, and you can see that this datase
 The `head` function allows you to see the first few rows of your dataset in the console window, including the variable names and variable types at the top of the table. (Using the code `head(lesson1a)` will also give you the same results.)
 
 
-```r
+``` r
 # Look at the first few rows of your data
 lesson1a %>% head()
 ```
@@ -504,7 +506,7 @@ The `table` function is the basic function for creating one-way and two-way tabl
 Here is an example of a one-way table using the `table` function:
 
 
-```r
+``` r
 # Create one-way table for death
 table(trial$death)
 ```
@@ -520,7 +522,7 @@ While this table does not give column names and is not formatted, you can see th
 Here is an example of a two-way table:
 
 
-```r
+``` r
 # Create two-way table for response and death
 table(trial$response, trial$death)
 ```
@@ -537,7 +539,7 @@ Unlike the one-way table, these results are not easily interpretable. If you are
 If you print the "response" variable, you can also see that there are "NA" values in the response variable, which the table doesn't include at all.
 
 
-```r
+``` r
 # Print response variable values
 trial$response
 ```
@@ -568,7 +570,7 @@ The `tbl_summary` function can create one-way and two-way tables for binary and 
 Here is an example of a one-way table created using the `tbl_summary` function:
 
 
-```r
+``` r
 # Create a formatted table for the "sex" variable
 tbl_summary(
   lesson1a %>% select(sex) 
@@ -1015,13 +1017,21 @@ tbl_summary(
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 386&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 386</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 386</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1031,7 +1041,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1041,7 +1051,7 @@ tbl_summary(
 As you can see, there is currently only one row in the table. If a variable has values of 0 and 1 only, the `tbl_summary` function gives the percentage of values that are equal to 1 by default. If you would like to see the percentage of both 0 and 1 values, you can use the "type" option and specify that the variable is categorical.
 
 
-```r
+``` r
 # Create a formatted table for the "sex" variable, showing both "0" and "1" values
 tbl_summary(
   lesson1a %>% select(sex),
@@ -1489,13 +1499,21 @@ tbl_summary(
 #epqsnuprvj .gt_indent_5 {
   text-indent: 25px;
 }
+
+#epqsnuprvj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#epqsnuprvj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 386&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 386</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 386</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1509,7 +1527,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1525,7 +1543,7 @@ Since 0 = man and 1 = woman based on the variable label (see the first row of th
 The `tbl_summary` function can also be used for two-way tables. The `select` function is used to select both variables of interest, and the name of the column variable is specified in the `by` statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the `table` function. It also includes information on the missing (NA) values, which are excluded when using the `table` function.
 
 
-```r
+``` r
 # Create two-way table for response and death using "table" function
 table(trial$response, trial$death)
 ```
@@ -1537,7 +1555,7 @@ table(trial$response, trial$death)
 ##   1 37 24
 ```
 
-```r
+``` r
 # Create two-way table for response and death using "tbl_summary" function
 tbl_summary(
   trial %>% select(response, death),
@@ -1986,14 +2004,24 @@ tbl_summary(
 #ptgxhgemkg .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ptgxhgemkg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ptgxhgemkg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 88&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 88<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 112&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 112<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 88</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 112</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2013,7 +2041,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -2025,7 +2053,7 @@ tbl_summary(
 The `skim` function (from the {skimr} package) gives basic summary data.
 
 
-```r
+``` r
 # Show summary statistics for "age"
 skim(lesson1a$age)
 ```
@@ -2064,7 +2092,7 @@ The `mutate` function is used to create new variables, or replace variable value
 The code below means: create a new variable called "a" and set it equal to 1 in all observations. The "<-" indicator means to then save out this new dataset including the "a" variable as **lesson1a**, replacing the old **lesson1a** dataset that does not include "a".
 
 
-```r
+``` r
 # Save the data out as "lesson1a"
 lesson1a <-
   lesson1a %>% # Take the current "lesson1a" dataset
@@ -2074,7 +2102,7 @@ lesson1a <-
 Since we have already created the variable "a" above, the code below means: replace the variable "a" with the value of 2 in all observations.
 
 
-```r
+``` r
 # Replace the value of "a" with "2" for all observations
 lesson1a <-
   lesson1a %>%
@@ -2084,7 +2112,7 @@ lesson1a <-
 You can also replace one variable with the value of another variable. The code below means: replace the variable "a" with whatever the value of "p1" is in each observation.
 
 
-```r
+``` r
 # Replace the value of "a" with the value of "p1" for all observations
 lesson1a <-
   lesson1a %>%
@@ -2094,7 +2122,7 @@ lesson1a <-
 You can also calculate values inside a `mutate` statement. For example, you can create an average of the four variables "p1" - "p4".
 
 
-```r
+``` r
 # Replace "a" with the average of "p1", "p2", "p3" and "p4"
 lesson1a <-
   lesson1a %>%
@@ -2110,7 +2138,7 @@ The first argument in the `if_else` function is the "if" condition. The second a
 For example, the code below says: replace the value of "a" with "p1" if "p1" is greater than 4. Otherwise, keep the original value "a".
 
 
-```r
+``` r
 # Replace the value of "a" with "p1" if the value of "p1" is greater than 4
 lesson1a <-
   lesson1a %>%
@@ -2120,7 +2148,7 @@ lesson1a <-
 In this case, we are only replacing for females. Note that when you use an equal sign after an "if" statement you have to use two of them in a row to signify "is equal to" (==) rather than "make equal to" (=).
 
 
-```r
+``` r
 # Replace the value of "a" with "p1" if "sex" equals 1 (female)
 lesson1a <-
   lesson1a %>%
@@ -2130,7 +2158,7 @@ lesson1a <-
 The `|` sign means "or", such that the code below means: set "a" equal to 1 if "y" is equal to either "campus" or "peds". Otherwise, keep the original value of "a".
 
 
-```r
+``` r
 # Replace the value of "a" with "1" if "y" is equal to either "campus" or "peds"
 lesson1a <-
   lesson1a %>%
@@ -2140,7 +2168,7 @@ lesson1a <-
 You can give check for more than one condition by using the `&` sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age > 50). This creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
 
 
-```r
+``` r
 # Replace the value of "a" with 1 if sex equals 1 (female) and age > 50
 # For all other observations, replace "a" with 0
 lesson1a <-
@@ -2153,7 +2181,7 @@ lesson1a <-
 To rename a variable, you can use the `rename` function. We have to make sure that the new variable name overwrites the old variable name, so we have to use the assignment operator (`<-`).
 
 
-```r
+``` r
 # Rename variable y
 lesson1a <-
   lesson1a %>%
@@ -2163,7 +2191,7 @@ lesson1a <-
 To label a variable, use `attr`. This automatically overwrites the old label.
 
 
-```r
+``` r
 # Print the variable with the old label
 str(trial$response)
 ```
@@ -2173,7 +2201,7 @@ str(trial$response)
 ##  - attr(*, "label")= chr "Tumor Response"
 ```
 
-```r
+``` r
 # Label the response variable
 attr(trial$response, "label") <- "0: No Tumor Response, 1: Tumor Response"
 
@@ -2209,7 +2237,7 @@ For more information on the {gtsummary} package, which creates formatted tables,
 ## Assignments
 
 
-```r
+``` r
 # Copy and paste this code to load the data for week 1 assignments
 lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
 ```

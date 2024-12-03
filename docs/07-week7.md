@@ -5,7 +5,7 @@
 ## Setting Up
 
 
-```r
+``` r
 # Load packages
 library(skimr)
 library(gt)
@@ -51,7 +51,7 @@ For survival analyses, you need to indicate that your outcome is a time-to-event
 The `survfit` function (also from the {survival} package) describes the survival data. It is common to report the median survival.
 
 
-```r
+``` r
 # Calculate descriptive statistics on time to event data
 # The "~ 1" indicates that we want survival estimates for the entire group
 survfit(Surv(t, d) ~ 1, data = example7a)
@@ -67,7 +67,7 @@ survfit(Surv(t, d) ~ 1, data = example7a)
 You often also report the median time of follow-up for survivors, which can easily be calculated manually.
 
 
-```r
+``` r
 # Calculate median followup for survivors only
 example7a %>%
   filter(d == 0) %>% # Keep only the surviving patients
@@ -98,7 +98,7 @@ Table: (\#tab:week7c)Data summary
 You can also plot the survival curve by adding the `plot` function around your `survfit` function:
 
 
-```r
+``` r
 # Plot survival curve
 plot(survfit(Surv(t, d) ~ 1, data = example7a))
 ```
@@ -108,7 +108,7 @@ plot(survfit(Surv(t, d) ~ 1, data = example7a))
 Use "~ covariate" instead of "~ 1" to plot survival curves by group:
 
 
-```r
+``` r
 # Plot survival curve by group (drug vs no drug)
 # "~ drug" indicates to plot by "drug", vs "~ 1" which plots for all patients
 plot(survfit(Surv(t, d) ~ drug, data = example7a))
@@ -119,7 +119,7 @@ plot(survfit(Surv(t, d) ~ drug, data = example7a))
 As you may notice, this graph shows both lines in black, which makes it difficult to determine which line corresponds to which group. However, you can add color to the lines to differentiate them. The order of the colors corresponds to the order of the variable values - in this case, drug is "0" and "1", so the following code creates a graph where the placebo group (drug = 0) is plotted in blue and the drug group (drug = 1) is plotted in red.
 
 
-```r
+``` r
 # Plot survival curve by group (drug vs no drug) with colors
 plot(survfit(Surv(t, d) ~ drug, data = example7a), col = c("blue", "red"))
 ```
@@ -131,7 +131,7 @@ Graphs can be saved out by using the "Export" option at the top of the "Plots" t
 The `survdiff` function compares survival for different groups. For example, the following code compares survival for each value of the variable "drug" (generally 0 and 1).
 
 
-```r
+``` r
 # Compare survival between drug groups
 survdiff(Surv(t, d) ~ drug, data = example7a)
 ```
@@ -150,7 +150,7 @@ survdiff(Surv(t, d) ~ drug, data = example7a)
 Using the `summary` function with `survfit` lists all available followup times along with survival probabilities (you get a 95% C.I. as well):
 
 
-```r
+``` r
 # Survival probabilities for the entire cohort
 summary(survfit(Surv(t, d) ~ 1, data = example7a))
 ```
@@ -176,7 +176,7 @@ summary(survfit(Surv(t, d) ~ 1, data = example7a))
 ##    48      2       1   0.0828  0.0727       0.0148        0.462
 ```
 
-```r
+``` r
 # You can also summarize the survival by group:
 summary(survfit(Surv(t, d) ~ drug, data = example7a))
 ```
@@ -210,7 +210,7 @@ summary(survfit(Surv(t, d) ~ drug, data = example7a))
 The `times` option allows you to get survival probabilities for specific timepoints. For example, at 1 year, 2 years and 5 years:
 
 
-```r
+``` r
 # Get survival probabilities for specific time points in full dataset
 # "~ 1" indicates all patients
 # "t" variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years
@@ -229,7 +229,7 @@ summary(survfit(Surv(t, d) ~ 1, data = example7a), times = c(12, 24, 60))
 If you'd like this information formatted in a table, you can use the function `tbl_survfit` from {gtsummary}. You can use the exact same code as above and simply substitute `tbl_survfit` for the `summary` function:
 
 
-```r
+``` r
 tbl_survfit(survfit(Surv(t, d) ~ 1, data = example7a), times = c(12, 24, 60))
 ```
 
@@ -673,15 +673,23 @@ tbl_survfit(survfit(Surv(t, d) ~ 1, data = example7a), times = c(12, 24, 60))
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Time 12&lt;/strong&gt;"><strong>Time 12</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Time 24&lt;/strong&gt;"><strong>Time 24</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Time 60&lt;/strong&gt;"><strong>Time 60</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>Time 12</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>Time 24</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>Time 60</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -699,7 +707,7 @@ tbl_survfit(survfit(Surv(t, d) ~ 1, data = example7a), times = c(12, 24, 60))
 The `coxph` function (from {survival}) is for regression analyses. For example, a univariate regression for the effects of "drug" on survival:
 
 
-```r
+``` r
 # Create Cox regression model
 coxph(Surv(t, d) ~ drug, data = example7a)
 ```
@@ -715,30 +723,30 @@ coxph(Surv(t, d) ~ drug, data = example7a)
 ## n= 23, number of events= 18
 ```
 
-```r
+``` r
 # You can use the tbl_regression function with Cox models to see the hazard ratios
 example7a_cox <- coxph(Surv(t, d) ~ drug, data = example7a)
 tbl_regression(example7a_cox, exponentiate = TRUE)
 ```
 
 ```{=html}
-<div id="qsnuprvjuo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qsnuprvjuo table {
+<div id="epqsnuprvj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#epqsnuprvj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qsnuprvjuo thead, #qsnuprvjuo tbody, #qsnuprvjuo tfoot, #qsnuprvjuo tr, #qsnuprvjuo td, #qsnuprvjuo th {
+#epqsnuprvj thead, #epqsnuprvj tbody, #epqsnuprvj tfoot, #epqsnuprvj tr, #epqsnuprvj td, #epqsnuprvj th {
   border-style: none;
 }
 
-#qsnuprvjuo p {
+#epqsnuprvj p {
   margin: 0;
   padding: 0;
 }
 
-#qsnuprvjuo .gt_table {
+#epqsnuprvj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -764,12 +772,12 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-left-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_caption {
+#epqsnuprvj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qsnuprvjuo .gt_title {
+#epqsnuprvj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -781,7 +789,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-bottom-width: 0;
 }
 
-#qsnuprvjuo .gt_subtitle {
+#epqsnuprvj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -793,7 +801,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-top-width: 0;
 }
 
-#qsnuprvjuo .gt_heading {
+#epqsnuprvj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -805,13 +813,13 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_bottom_border {
+#epqsnuprvj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_col_headings {
+#epqsnuprvj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -826,7 +834,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_col_heading {
+#epqsnuprvj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -846,7 +854,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   overflow-x: hidden;
 }
 
-#qsnuprvjuo .gt_column_spanner_outer {
+#epqsnuprvj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -858,15 +866,15 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 4px;
 }
 
-#qsnuprvjuo .gt_column_spanner_outer:first-child {
+#epqsnuprvj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qsnuprvjuo .gt_column_spanner_outer:last-child {
+#epqsnuprvj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qsnuprvjuo .gt_column_spanner {
+#epqsnuprvj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -878,11 +886,11 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   width: 100%;
 }
 
-#qsnuprvjuo .gt_spanner_row {
+#epqsnuprvj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qsnuprvjuo .gt_group_heading {
+#epqsnuprvj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -908,7 +916,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   text-align: left;
 }
 
-#qsnuprvjuo .gt_empty_group_heading {
+#epqsnuprvj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -923,15 +931,15 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#qsnuprvjuo .gt_from_md > :first-child {
+#epqsnuprvj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qsnuprvjuo .gt_from_md > :last-child {
+#epqsnuprvj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qsnuprvjuo .gt_row {
+#epqsnuprvj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -950,7 +958,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   overflow-x: hidden;
 }
 
-#qsnuprvjuo .gt_stub {
+#epqsnuprvj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -963,7 +971,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qsnuprvjuo .gt_stub_row_group {
+#epqsnuprvj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -977,15 +985,15 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   vertical-align: top;
 }
 
-#qsnuprvjuo .gt_row_group_first td {
+#epqsnuprvj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qsnuprvjuo .gt_row_group_first th {
+#epqsnuprvj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qsnuprvjuo .gt_summary_row {
+#epqsnuprvj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -995,16 +1003,16 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qsnuprvjuo .gt_first_summary_row {
+#epqsnuprvj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_first_summary_row.thick {
+#epqsnuprvj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qsnuprvjuo .gt_last_summary_row {
+#epqsnuprvj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1014,7 +1022,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_grand_summary_row {
+#epqsnuprvj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1024,7 +1032,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qsnuprvjuo .gt_first_grand_summary_row {
+#epqsnuprvj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1034,7 +1042,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-top-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_last_grand_summary_row_top {
+#epqsnuprvj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1044,11 +1052,11 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_striped {
+#epqsnuprvj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qsnuprvjuo .gt_table_body {
+#epqsnuprvj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1057,7 +1065,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_footnotes {
+#epqsnuprvj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1071,7 +1079,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_footnote {
+#epqsnuprvj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1080,7 +1088,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qsnuprvjuo .gt_sourcenotes {
+#epqsnuprvj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1094,7 +1102,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#qsnuprvjuo .gt_sourcenote {
+#epqsnuprvj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1102,86 +1110,94 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qsnuprvjuo .gt_left {
+#epqsnuprvj .gt_left {
   text-align: left;
 }
 
-#qsnuprvjuo .gt_center {
+#epqsnuprvj .gt_center {
   text-align: center;
 }
 
-#qsnuprvjuo .gt_right {
+#epqsnuprvj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qsnuprvjuo .gt_font_normal {
+#epqsnuprvj .gt_font_normal {
   font-weight: normal;
 }
 
-#qsnuprvjuo .gt_font_bold {
+#epqsnuprvj .gt_font_bold {
   font-weight: bold;
 }
 
-#qsnuprvjuo .gt_font_italic {
+#epqsnuprvj .gt_font_italic {
   font-style: italic;
 }
 
-#qsnuprvjuo .gt_super {
+#epqsnuprvj .gt_super {
   font-size: 65%;
 }
 
-#qsnuprvjuo .gt_footnote_marks {
+#epqsnuprvj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qsnuprvjuo .gt_asterisk {
+#epqsnuprvj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qsnuprvjuo .gt_indent_1 {
+#epqsnuprvj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qsnuprvjuo .gt_indent_2 {
+#epqsnuprvj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qsnuprvjuo .gt_indent_3 {
+#epqsnuprvj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qsnuprvjuo .gt_indent_4 {
+#epqsnuprvj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qsnuprvjuo .gt_indent_5 {
+#epqsnuprvj .gt_indent_5 {
   text-indent: 25px;
+}
+
+#epqsnuprvj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#epqsnuprvj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;HR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>HR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">drug</td>
 <td headers="estimate" class="gt_row gt_center">0.40</td>
-<td headers="ci" class="gt_row gt_center">0.15, 1.09</td>
+<td headers="conf.low" class="gt_row gt_center">0.15, 1.09</td>
 <td headers="p.value" class="gt_row gt_center">0.074</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> HR = Hazard Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1191,7 +1207,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
 The following multivariable model also includes some demographic and medical characteristics:
 
 
-```r
+``` r
 # Create multivariable Cox regression model
 # You can use the pipe operator (%>%) to show the tbl_regression table directly
 # without storing the Cox model
@@ -1639,39 +1655,47 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
 #jgoecrbkrg .gt_indent_5 {
   text-indent: 25px;
 }
+
+#jgoecrbkrg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jgoecrbkrg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;HR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>HR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">drug</td>
 <td headers="estimate" class="gt_row gt_center">0.17</td>
-<td headers="ci" class="gt_row gt_center">0.05, 0.65</td>
+<td headers="conf.low" class="gt_row gt_center">0.05, 0.65</td>
 <td headers="p.value" class="gt_row gt_center">0.010</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">1.01</td>
-<td headers="ci" class="gt_row gt_center">0.97, 1.06</td>
+<td headers="conf.low" class="gt_row gt_center">0.97, 1.06</td>
 <td headers="p.value" class="gt_row gt_center">0.6</td></tr>
     <tr><td headers="label" class="gt_row gt_left">sex</td>
 <td headers="estimate" class="gt_row gt_center">2.76</td>
-<td headers="ci" class="gt_row gt_center">0.88, 8.65</td>
+<td headers="conf.low" class="gt_row gt_center">0.88, 8.65</td>
 <td headers="p.value" class="gt_row gt_center">0.081</td></tr>
     <tr><td headers="label" class="gt_row gt_left">marker</td>
 <td headers="estimate" class="gt_row gt_center">0.45</td>
-<td headers="ci" class="gt_row gt_center">0.19, 1.03</td>
+<td headers="conf.low" class="gt_row gt_center">0.19, 1.03</td>
 <td headers="p.value" class="gt_row gt_center">0.059</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> HR = Hazard Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1681,7 +1705,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
 So, some typical code to analyze a dataset:
 
 
-```r
+``` r
 # Get median survival and number of events for group
 # Use the "Surv" function to indicate the event status and time to event
 survfit(Surv(t, d) ~ 1, data = example7a)
@@ -1694,7 +1718,7 @@ survfit(Surv(t, d) ~ 1, data = example7a)
 ## [1,] 23     18     27      18      45
 ```
 
-```r
+``` r
 # Get median followup for survivors
 example7a %>%
   filter(d == 0) %>%
@@ -1722,37 +1746,37 @@ Table: (\#tab:week7k)Data summary
 |:-------------|---------:|-------------:|----:|-----:|--:|---:|---:|---:|----:|:-----|
 |t             |         0|             1| 52.6| 61.89| 13|  16|  28|  45|  161|▇▂▁▁▂ |
 
-```r
+``` r
 # Show a graph
 plot(survfit(Surv(t, d) ~ 1, data = example7a))
 ```
 
 <img src="07-week7_files/figure-html/week7k-1.png" width="672" />
 
-```r
+``` r
 # Look at predictors of survival
 coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
 ```{=html}
-<div id="aujwtraoed" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aujwtraoed table {
+<div id="traoedswpd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#traoedswpd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aujwtraoed thead, #aujwtraoed tbody, #aujwtraoed tfoot, #aujwtraoed tr, #aujwtraoed td, #aujwtraoed th {
+#traoedswpd thead, #traoedswpd tbody, #traoedswpd tfoot, #traoedswpd tr, #traoedswpd td, #traoedswpd th {
   border-style: none;
 }
 
-#aujwtraoed p {
+#traoedswpd p {
   margin: 0;
   padding: 0;
 }
 
-#aujwtraoed .gt_table {
+#traoedswpd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1778,12 +1802,12 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-left-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_caption {
+#traoedswpd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aujwtraoed .gt_title {
+#traoedswpd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1795,7 +1819,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-width: 0;
 }
 
-#aujwtraoed .gt_subtitle {
+#traoedswpd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1807,7 +1831,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-top-width: 0;
 }
 
-#aujwtraoed .gt_heading {
+#traoedswpd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1819,13 +1843,13 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_bottom_border {
+#traoedswpd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_col_headings {
+#traoedswpd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1840,7 +1864,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_col_heading {
+#traoedswpd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1860,7 +1884,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   overflow-x: hidden;
 }
 
-#aujwtraoed .gt_column_spanner_outer {
+#traoedswpd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1872,15 +1896,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 4px;
 }
 
-#aujwtraoed .gt_column_spanner_outer:first-child {
+#traoedswpd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aujwtraoed .gt_column_spanner_outer:last-child {
+#traoedswpd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aujwtraoed .gt_column_spanner {
+#traoedswpd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1892,11 +1916,11 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   width: 100%;
 }
 
-#aujwtraoed .gt_spanner_row {
+#traoedswpd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aujwtraoed .gt_group_heading {
+#traoedswpd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1922,7 +1946,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   text-align: left;
 }
 
-#aujwtraoed .gt_empty_group_heading {
+#traoedswpd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1937,15 +1961,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   vertical-align: middle;
 }
 
-#aujwtraoed .gt_from_md > :first-child {
+#traoedswpd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aujwtraoed .gt_from_md > :last-child {
+#traoedswpd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aujwtraoed .gt_row {
+#traoedswpd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1964,7 +1988,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   overflow-x: hidden;
 }
 
-#aujwtraoed .gt_stub {
+#traoedswpd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1977,7 +2001,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_stub_row_group {
+#traoedswpd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1991,15 +2015,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   vertical-align: top;
 }
 
-#aujwtraoed .gt_row_group_first td {
+#traoedswpd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aujwtraoed .gt_row_group_first th {
+#traoedswpd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aujwtraoed .gt_summary_row {
+#traoedswpd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2009,16 +2033,16 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_first_summary_row {
+#traoedswpd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_first_summary_row.thick {
+#traoedswpd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aujwtraoed .gt_last_summary_row {
+#traoedswpd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2028,7 +2052,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_grand_summary_row {
+#traoedswpd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2038,7 +2062,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_first_grand_summary_row {
+#traoedswpd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2048,7 +2072,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-top-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_last_grand_summary_row_top {
+#traoedswpd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2058,11 +2082,11 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_striped {
+#traoedswpd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aujwtraoed .gt_table_body {
+#traoedswpd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2071,7 +2095,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_footnotes {
+#traoedswpd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2085,7 +2109,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_footnote {
+#traoedswpd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2094,7 +2118,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_sourcenotes {
+#traoedswpd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2108,7 +2132,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_sourcenote {
+#traoedswpd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2116,98 +2140,106 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_left {
+#traoedswpd .gt_left {
   text-align: left;
 }
 
-#aujwtraoed .gt_center {
+#traoedswpd .gt_center {
   text-align: center;
 }
 
-#aujwtraoed .gt_right {
+#traoedswpd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aujwtraoed .gt_font_normal {
+#traoedswpd .gt_font_normal {
   font-weight: normal;
 }
 
-#aujwtraoed .gt_font_bold {
+#traoedswpd .gt_font_bold {
   font-weight: bold;
 }
 
-#aujwtraoed .gt_font_italic {
+#traoedswpd .gt_font_italic {
   font-style: italic;
 }
 
-#aujwtraoed .gt_super {
+#traoedswpd .gt_super {
   font-size: 65%;
 }
 
-#aujwtraoed .gt_footnote_marks {
+#traoedswpd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aujwtraoed .gt_asterisk {
+#traoedswpd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aujwtraoed .gt_indent_1 {
+#traoedswpd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aujwtraoed .gt_indent_2 {
+#traoedswpd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aujwtraoed .gt_indent_3 {
+#traoedswpd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aujwtraoed .gt_indent_4 {
+#traoedswpd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aujwtraoed .gt_indent_5 {
+#traoedswpd .gt_indent_5 {
   text-indent: 25px;
+}
+
+#traoedswpd .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#traoedswpd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;HR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>HR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">drug</td>
 <td headers="estimate" class="gt_row gt_center">0.17</td>
-<td headers="ci" class="gt_row gt_center">0.05, 0.65</td>
+<td headers="conf.low" class="gt_row gt_center">0.05, 0.65</td>
 <td headers="p.value" class="gt_row gt_center">0.010</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">1.01</td>
-<td headers="ci" class="gt_row gt_center">0.97, 1.06</td>
+<td headers="conf.low" class="gt_row gt_center">0.97, 1.06</td>
 <td headers="p.value" class="gt_row gt_center">0.6</td></tr>
     <tr><td headers="label" class="gt_row gt_left">sex</td>
 <td headers="estimate" class="gt_row gt_center">2.76</td>
-<td headers="ci" class="gt_row gt_center">0.88, 8.65</td>
+<td headers="conf.low" class="gt_row gt_center">0.88, 8.65</td>
 <td headers="p.value" class="gt_row gt_center">0.081</td></tr>
     <tr><td headers="label" class="gt_row gt_left">marker</td>
 <td headers="estimate" class="gt_row gt_center">0.45</td>
-<td headers="ci" class="gt_row gt_center">0.19, 1.03</td>
+<td headers="conf.low" class="gt_row gt_center">0.19, 1.03</td>
 <td headers="p.value" class="gt_row gt_center">0.059</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> HR = Hazard Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -2217,7 +2249,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
 ## Assignments
 
 
-```r
+``` r
 # Copy and paste this code to load the data for week 7 assignments
 lesson7a <- readRDS(here::here("Data", "Week 7", "lesson7a.rds"))
 lesson7b <- readRDS(here::here("Data", "Week 7", "lesson7b.rds"))

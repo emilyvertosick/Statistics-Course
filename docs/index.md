@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: March 15, 2024"
+date: "Last Updated: December 03, 2024"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -39,45 +39,45 @@ R assignments are done **after** the class.
 -----------------------------------------------------
 Date / Location     Topic and Assignments
 ---------------     ---------------------------------
-**1/10/2024**\       **Class I:** What is statistics?\
+**1/8/2025**\       **Class I:** What is statistics?\
 **RRL-101**\         **Reading:** "How To Read This Book", Chapter 1\
                     **Assignment:** Questions 1 and 4
 
-**1/17/2024**\      **Class II:** Describing Data\
+**1/15/2025**\      **Class II:** Describing Data\
 **RRL-101**\        **Reading:** Chapters 2-6 and chapter 20\
                     **Assignment:** All questions for chapters 2, 3, 4 and 6; questions 1 and 3 for chapter 5; question 1 for chapter 20
                     
-**1/24/2024**\      **Class III:** Data Distributions\
+**1/22/2025**\      **Class III:** Data Distributions\
 **RRL-101**\        **Reading:** Chapters 7-9\
                     **Assignment:** Chapter 7, question 2; chapter 8, question 1; chapter 9, questions 1 and 3
                     
-**1/31/2024**\       **Class IV:** Confidence Intervals\
+**1/29/2025**\       **Class IV:** Confidence Intervals\
 **RRL-101**\        **Reading:** Chapters 10-12\
                     **Assignment:** All questions for chapters 10 and 11; question 1 in chapter 12\
                     **Extra for those doing R assignment:** [Statistics Notes: Diagnostic tests 3: receiver operating characteristic plots](https://www.bmj.com/content/309/6948/188.full)
                     
-**2/7/2024**\       **Class V:** Hypothesis Testing\
+**2/5/2025**\       **Class V:** Hypothesis Testing\
 **RRL-101**\        **Reading:** Chapters 13-17\
                     **Assignment:** Chapters 13, 15 and 16, all questions; chapter 14, question 1; chapter 17, questions 1-3
                     
-**2/14/2024**\      **Class VI:** Regression\
+**2/12/2025**\      **Class VI:** Regression\
 **RRL-101**\            **Reading:** Chapters 18-19\
                     **Assignment:** Chapter 18, questions 1-4; chapter 19, questions 1-2
                     
-**2/21/2024**\       **Class VII:** Survival Data\
+**2/19/2025**\       **Class VII:** Survival Data\
 **RRL-101**\            **Reading:** Chapters 21-24 and chapter 28\
                     **Assignments:** Chapter 21, question 1; chapter 23, question 1; chapter 24, questions 1, 2 and 4
                     
-**3/13/2024**\       **Class VIII:** Errors in Statistics (all class meets)\
+**2/26/2025**\       **Class VIII:** Errors in Statistics (all class meets)\
 **RRL-101**\            **Reading:** Chapters 30-34\
                     **Optional extra reading:**
                     [The scandal of poor medical research](https://www.bmj.com/content/308/6924/283.full), 
                     [Math as Mass Hypnosis: On Mortgage-Backed Securities, Maritime Warfare, and Medical Research](https://www.medscape.com/viewarticle/714772)\
                     **Assignments:** All questions for chapters 30 and 33
                     
-**3/20/2024**\      Make-up day, if needed
+**3/5/2025**\      Make-up day, if needed
 
-**3/27/2024**\      Make-up day, if needed
+**3/12/2025**\      Make-up day, if needed
                     
 -----------------------------------------------------
 
@@ -136,22 +136,22 @@ This process should be performed when both the statistician and primary contact 
 
 1) Check every number in the text and in every table against software printout from running R code files.
 
-2)	Check every figure (e.g. graph) against software printout from running R code files.
+2) Check every figure (e.g. graph) against software printout from running R code files.
 
-3)	Where appropriate (e.g. for key analyses or for any paper with a large impact on clinical practice), run analyses by hand by creating additional R code files titled “check analyses [descriptor].R”. In particular, re-calculate time variables for survival analysis.
+3) Where appropriate (e.g. for key analyses or for any paper with a large impact on clinical practice), run analyses by hand by creating additional R code files titled “check analyses [descriptor].R”. In particular, re-calculate time variables for survival analysis.
 
-4)	Check each number in manuscript against checked tables, figures, or software printout.
+4) Check each number in manuscript against checked tables, figures, or software printout.
 
-5)	Read through statistical methods section for accuracy and completeness.
-    a.	Is every analysis stated clearly?  
-    b.	If the analysis is not straight forward, is the rationale behind the analysis clearly stated?
-    c.	Is survival time data (when clock starts, when clock ends, what is the event, rules for censoring [e.g. for cancer-specific survival]) described clearly?
+5) Read through statistical methods section for accuracy and completeness.
+    a. Is every analysis stated clearly?  
+    b. If the analysis is not straight forward, is the rationale behind the analysis clearly stated?
+    c. Is survival time data (when clock starts, when clock ends, what is the event, rules for censoring [e.g. for cancer-specific survival]) described clearly?
 
-6)	Read through entire paper.
-    a.	Are all of the statements in the results section backed up?
-    b.	Is the conclusion reasonable?
+6) Read through entire paper.
+    a. Are all of the statements in the results section backed up?
+    b. Is the conclusion reasonable?
 
-7)	Check abstract (methods, numbers, conclusion) against paper.
+7) Check abstract (methods, numbers, conclusion) against paper.
 
 ## Guidelines for presentation of statistics {-}
 
@@ -160,3 +160,5 @@ Please review these guidelines on the course website.
 [Guidelines for Reporting of Statistics for Clinical Research in Urology](https://github.com/emilyvertosick/Statistics-Course/blob/master/Guidelines%20for%20Reporting%20of%20Statistics%20for%20Clinical%20Research%20in%20Urology.pdf?raw=true)
 
 [Guidelines for Reporting of Figures and Tables for Clinical Research in Urology](https://github.com/emilyvertosick/Statistics-Course/blob/master/Guidelines%20for%20Reporting%20of%20Figures%20and%20Tables.pdf?raw=true)
+
+[Guidelines for Reporting Observational Research in Urology: The Importance of Clear Reference to Causality](https://github.com/emilyvertosick/Statistics-Course/blob/master/Guidelines%20for%20Reporting%20Observational%20Research%20in%20Urology.pdf?raw=true)

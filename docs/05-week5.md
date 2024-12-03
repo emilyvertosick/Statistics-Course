@@ -5,7 +5,7 @@
 ## Setting Up
 
 
-```r
+``` r
 # Load packages
 library(skimr)
 library(gt)
@@ -36,7 +36,7 @@ Correlating two or more variables is very easy: just use the `cor` function and 
 For example, if you use the **lesson2b** dataset and correlate the first four pain scores, you get the following table:
 
 
-```r
+``` r
 # Display the correlation between variables l01, l02, l03 and l04
 cor(lesson2b %>% select(l01, l02, l03, l04))
 ```
@@ -56,7 +56,7 @@ This shows, for example, that the correlation between l01 and l02 is 0.79 and th
 If the data are skewed, you can try a regression based on ranks, what is known as Spearman's rank correlation. What you'd type is the same as above, but adding the option `method = "spearman"`.
 
 
-```r
+``` r
 # Calculate the Spearman correlation for skewed data
 cor(lesson2b %>% select(l01, l02, l03, l04), method = "spearman")
 ```
@@ -78,7 +78,7 @@ The first variable is the dependent variable (e.g. blood pressure) and must be c
 Let's use the data from **lesson3d** as an example dataset. We want to see if we can predict a patient's range of motion after treatment (variable a) in terms of their age, sex and pre-treatment range of motion (variable b).
 
 
-```r
+``` r
 # Linear regression model for a, predictors are sex, age and b
 lm(a ~ sex + age + b, data = lesson3d)
 ```
@@ -96,7 +96,7 @@ lm(a ~ sex + age + b, data = lesson3d)
 This gives you the very basic information from the regression, but you can get more information using the `summary` function:
 
 
-```r
+``` r
 # Save out linear regression model
 rom_model <- lm(a ~ sex + age + b, data = lesson3d)
 
@@ -132,7 +132,7 @@ The first column of numbers listed under "Coefficients" are the coefficients. Yo
 Let's take a single patient: a 54 year old woman with a range of motion of 301 before treatment. Her predicted range of motion afterwards is 138.7 + 2.85 - 0.436\*54 + 0.669\*301 = 319.5. Her actual figure was 325, so we predicted quite well for this patient. You can get R to do this automatically using the `augment` function from the {broom} package.
 
 
-```r
+``` r
 # The "augment" function creates a dataset of all patients included in the model
 # and all variables included in the model, as well as the predictions
 lesson3d_pred <- augment(rom_model)
@@ -163,7 +163,7 @@ lesson3d_pred
 To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the `tbl_regression` function from the {gtsummary} package:
 
 
-```r
+``` r
 # Print formatted table of regression results
 tbl_regression(rom_model)
 ```
@@ -608,35 +608,43 @@ tbl_regression(rom_model)
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Beta</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">1=female</td>
 <td headers="estimate" class="gt_row gt_center">2.9</td>
-<td headers="ci" class="gt_row gt_center">-18, 24</td>
+<td headers="conf.low" class="gt_row gt_center">-18, 24</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">-0.44</td>
-<td headers="ci" class="gt_row gt_center">-1.0, 0.13</td>
+<td headers="conf.low" class="gt_row gt_center">-1.0, 0.13</td>
 <td headers="p.value" class="gt_row gt_center">0.13</td></tr>
     <tr><td headers="label" class="gt_row gt_left">range of motion before acupuncture</td>
 <td headers="estimate" class="gt_row gt_center">0.67</td>
-<td headers="ci" class="gt_row gt_center">0.51, 0.83</td>
+<td headers="conf.low" class="gt_row gt_center">0.51, 0.83</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -648,7 +656,7 @@ tbl_regression(rom_model)
 For example, for sex, the 95% CI is -18 to 24, meaning that women might plausibly have a range of motion anywhere from 18 degrees less than men to 24 degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p-value, p=0.8. There are 34 patients included in this model. You can determine the number of observations included in the model using the `nobs()` function, or you can update the table to include this number in the header.
 
 
-```r
+``` r
 # To get the number of observations in the model
 nobs(rom_model)
 ```
@@ -657,7 +665,7 @@ nobs(rom_model)
 ## [1] 34
 ```
 
-```r
+``` r
 # By default, the number of observations is not shown in "tbl_regression"
 # You can use the code below to print the number of observations in the table header
 tbl_regression(rom_model) %>%
@@ -1106,35 +1114,43 @@ tbl_regression(rom_model) %>%
 #rbvsgfhbrx .gt_indent_5 {
   text-indent: 25px;
 }
+
+#rbvsgfhbrx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rbvsgfhbrx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic (N = 34)&lt;/strong&gt;"><strong>Characteristic (N = 34)</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic (N = 34)</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Beta</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">1=female</td>
 <td headers="estimate" class="gt_row gt_center">2.9</td>
-<td headers="ci" class="gt_row gt_center">-18, 24</td>
+<td headers="conf.low" class="gt_row gt_center">-18, 24</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">-0.44</td>
-<td headers="ci" class="gt_row gt_center">-1.0, 0.13</td>
+<td headers="conf.low" class="gt_row gt_center">-1.0, 0.13</td>
 <td headers="p.value" class="gt_row gt_center">0.13</td></tr>
     <tr><td headers="label" class="gt_row gt_left">range of motion before acupuncture</td>
 <td headers="estimate" class="gt_row gt_center">0.67</td>
-<td headers="ci" class="gt_row gt_center">0.51, 0.83</td>
+<td headers="conf.low" class="gt_row gt_center">0.51, 0.83</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1144,7 +1160,7 @@ tbl_regression(rom_model) %>%
 <br>
 
 
-```r
+``` r
 # Summary of linear regression results
 summary(rom_model)
 ```
@@ -1185,7 +1201,7 @@ Graphing the data is done using the `ggplot` function from the {ggplot2} package
 To create a scatterplot, the `geom_point` function is added to the `ggplot` function:
 
 
-```r
+``` r
 # Create a scatterplot of race time by age
 ggplot(data = lesson5a,
        aes(x = age, y = rt)) +
@@ -1205,7 +1221,7 @@ Again, the first variable is the dependent variable (e.g. hypertension) and must
 We'll use the dataset **lesson4d** as an example.
 
 
-```r
+``` r
 # Create a logistic regression model for response, predictors are age, sex and group
 response_model <- glm(response ~ age + sex + group, data = lesson4d, family = "binomial")
 
@@ -1243,7 +1259,7 @@ summary(response_model)
 By default, R gives the coefficients in logits for logistic regression models. To easily see the coefficients and 95% confidence intervals for all covariates as odds ratio, we can again use the `tbl_regression` function. In this case, we use the option `exponentiate = TRUE`, which indicates that odds ratios (not logits) should be presented. (You can also use this function to see the formatted logit results by using the `exponentiate = FALSE` option.)
 
 
-```r
+``` r
 # Create logistic regression model
 glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
   # Pass to tbl_regression to show formatted table with odds ratios
@@ -1690,35 +1706,43 @@ glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
 #usbkbxopkm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#usbkbxopkm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#usbkbxopkm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">0.98</td>
-<td headers="ci" class="gt_row gt_center">0.96, 1.00</td>
+<td headers="conf.low" class="gt_row gt_center">0.96, 1.00</td>
 <td headers="p.value" class="gt_row gt_center">0.018</td></tr>
     <tr><td headers="label" class="gt_row gt_left">1 if woman, 0 if man</td>
 <td headers="estimate" class="gt_row gt_center">0.84</td>
-<td headers="ci" class="gt_row gt_center">0.53, 1.32</td>
+<td headers="conf.low" class="gt_row gt_center">0.53, 1.32</td>
 <td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">1 if b, 0 if a</td>
 <td headers="estimate" class="gt_row gt_center">0.73</td>
-<td headers="ci" class="gt_row gt_center">0.49, 1.09</td>
+<td headers="conf.low" class="gt_row gt_center">0.49, 1.09</td>
 <td headers="p.value" class="gt_row gt_center">0.12</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1730,7 +1754,7 @@ The key things here are the odds ratios: you can say that the odds of response i
 The problem here is that you can’t use any of these data to work out an individual patient’s chance of response. Now you can get R to do this for you using the `augment` function. For a binary outcome, you need to specify `type.predict = "response"` as an option so that you will get predicted probabilities (not log odds).
 
 
-```r
+``` r
 # Get predictions from logistic regression model
 # type.predict = "response" gives predicted probabilities
 lesson4d_pred <-
@@ -1766,7 +1790,7 @@ If you want to look at calculating predictions from logistic regression in more 
 One thing to be careful about is categorical variables. Imagine that you had the patients age and cancer stage (1, 2, 3 or 4) and wanted to know whether they recurred. If you tried `glm(recurrence ~ age + stage, ...)`, then stage would be treated as if the increase in risk going from stage 1 to 2 was exactly the same as that going from 2 to 3 and 3 to 4. To tell R that it is a categorical variable, you need to use the `factor` function with the categorical variable:
 
 
-```r
+``` r
 # Create a model for recurrence using the categorical variable "stage"
 recurrence_model <-
   glm(recurrence ~ age + factor(stage), data = example5a, family = "binomial")
@@ -1801,7 +1825,7 @@ summary(recurrence_model)
 ```
 
 
-```r
+``` r
 # Formatted to show odds ratios
 recurrence_model %>%
   tbl_regression(exponentiate = TRUE)
@@ -2247,47 +2271,55 @@ recurrence_model %>%
 #urdayvtajf .gt_indent_5 {
   text-indent: 25px;
 }
+
+#urdayvtajf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#urdayvtajf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">1.04</td>
-<td headers="ci" class="gt_row gt_center">1.03, 1.05</td>
+<td headers="conf.low" class="gt_row gt_center">1.03, 1.05</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">factor(stage)</td>
 <td headers="estimate" class="gt_row gt_center"><br /></td>
-<td headers="ci" class="gt_row gt_center"><br /></td>
+<td headers="conf.low" class="gt_row gt_center"><br /></td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    1</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="conf.low" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    2</td>
 <td headers="estimate" class="gt_row gt_center">2.71</td>
-<td headers="ci" class="gt_row gt_center">2.01, 3.66</td>
+<td headers="conf.low" class="gt_row gt_center">2.01, 3.66</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    3</td>
 <td headers="estimate" class="gt_row gt_center">5.23</td>
-<td headers="ci" class="gt_row gt_center">3.16, 8.79</td>
+<td headers="conf.low" class="gt_row gt_center">3.16, 8.79</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    4</td>
 <td headers="estimate" class="gt_row gt_center">5.88</td>
-<td headers="ci" class="gt_row gt_center">3.34, 10.6</td>
+<td headers="conf.low" class="gt_row gt_center">3.34, 10.6</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -2303,7 +2335,7 @@ What you can see here is that stage is broken into categories. The odds ratio is
 Here we look at our "response" model on the logit scale.
 
 
-```r
+``` r
 # Look at details of "response" logistic regression model
 summary(response_model)
 ```
@@ -2347,7 +2379,7 @@ Using regression models is a way to try to predict outcome based on the data we 
 Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), it doesn’t matter for our purposes.
 
 
-```r
+``` r
 # Calculate the AUC using the "roc" function
 roc(cancer ~ marker, data = example5b)
 ```
@@ -2368,7 +2400,7 @@ For instance, the code below could tell you how much the area-under-the-curve in
 First, get the AUC for the model with age only:
 
 
-```r
+``` r
 # Calculate AUC of original model with age
 roc(cancer ~ age, data = example5b)
 ```
@@ -2385,7 +2417,7 @@ roc(cancer ~ age, data = example5b)
 The `roc` function can only take one predictor variable. For a univariate model, such as the model assessing age above, you can put "age" directly into the `roc` function. If you want to assess a model with multiple variables, you can use the predicted value:
 
 
-```r
+``` r
 # Create the multivariable model
 marker_model <- glm(cancer ~ age + marker, data = example5b, family = "binomial")
 
@@ -2396,7 +2428,7 @@ marker_pred <- augment(marker_model, type.predict = "response")
 Now, calculate the AUC for the model with age and the marker by using the predicted probability based on the multivariable model:
 
 
-```r
+``` r
 # Calculate AUC of model with age and marker
 roc(cancer ~ .fitted, data = marker_pred)
 ```
@@ -2415,7 +2447,7 @@ The AUC for the model including both age and the marker value is higher than for
 ## Assignments
 
 
-```r
+``` r
 # Copy and paste this code to load the data for week 5 assignments
 lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
 lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))

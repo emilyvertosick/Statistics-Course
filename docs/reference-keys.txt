@@ -6,7 +6,7 @@ tab:section2c
 tab:week7c
 tab:week7k
 tab:week2a
-tab:week3k
+tab:week3k1
 tab:week3p
 tab:week5f
 tab:week510

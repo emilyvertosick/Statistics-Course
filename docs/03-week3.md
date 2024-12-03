@@ -5,7 +5,7 @@
 ## Setting up
 
 
-```r
+``` r
 # Load packages
 library(skimr)
 library(gt)
@@ -45,14 +45,14 @@ This is used to compare a continuous outcome (such as hemoglobin) in two groups 
 
 **Different forms of the t-test**
 
-The two main forms of the t-test are "paired" and "unpaired".
+The two main forms of the t-test are "paired" and "unpaired". "Unpaired" is the default.
 
 "Unpaired" is used when, for example, testing marker levels between two groups taking different drugs, as there are different patients in each group:
 
 
-```r
+``` r
 # t-test for marker levels between treatment arms
-t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
+t.test(marker ~ trt, data = trial, var.equal = TRUE)
 ```
 
 ```
@@ -69,23 +69,25 @@ t.test(marker ~ trt, data = trial, paired = FALSE, var.equal = TRUE)
 ##            1.0173478            0.8208367
 ```
 
-The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called **trial**. `paired = FALSE` indicates that you want to perform an "unpaired" test. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
+The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called **trial**. By default an "unpaired" test is performed. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
 
 A "paired" test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.
 
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
+Since these are two measurements taken on the same patient, a paired t-test is necessary. To perform a paired t-test, you use the `t.test` function including the outcome variable, the predictor variable, and the option `paired = TRUE`.
 
-```r
+
+``` r
 # paired t-test for blood pressure between "before" and "after" groups
-t.test(bp ~ when, data = example3a, paired = TRUE, var.equal = TRUE)
+t.test(example3a$bp_after, example3a$bp_before, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  bp by when
+## data:  example3a$bp_after and example3a$bp_before
 ## t = -3.3372, df = 119, p-value = 0.00113
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
@@ -95,12 +97,10 @@ t.test(bp ~ when, data = example3a, paired = TRUE, var.equal = TRUE)
 ##       -5.091667
 ```
 
-Here, the code is the same as the last example, with "bp" as the continuous outcome, and "when" indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option `paired = TRUE` must be included.
-
 A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the Midwest different than the national average of 32%?
 
 
-```r
+``` r
 # t-test assessing whether the rate of college education is different than 32%
 t.test(midwest$percollege, mu = 32)
 ```
@@ -122,9 +122,9 @@ t.test(midwest$percollege, mu = 32)
 Let’s look at the print out from a t-test in more detail:
 
 
-```r
+``` r
 # t-test for difference in horsepower for manual vs automatic transmission
-t.test(hp ~ am, data = mtcars, paired = FALSE, var.equal = TRUE)
+t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 ```
 
 ```
@@ -152,7 +152,7 @@ To easily calculate and display the mean and standard deviation in each group, t
 
 
 
-```r
+``` r
 # Start off with the tbl_summary function
 tbl_summary(
   # keep the "am" and "hp" variables from the "mtcars" dataset
@@ -609,17 +609,27 @@ tbl_summary(
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 19&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 19<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 13&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 13<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Difference&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>Difference</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2,3&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2,3</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 19</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 13</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Difference</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2,3</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -627,19 +637,19 @@ tbl_summary(
 <td headers="stat_1" class="gt_row gt_center">160 (54)</td>
 <td headers="stat_2" class="gt_row gt_center">127 (84)</td>
 <td headers="estimate" class="gt_row gt_center">33</td>
-<td headers="ci" class="gt_row gt_center">-16, 83</td>
+<td headers="conf.low" class="gt_row gt_center">-16, 83</td>
 <td headers="p.value" class="gt_row gt_center">0.2</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Mean (SD)</span></td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> One-way ANOVA</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> <span class='gt_from_md'>One-way ANOVA</span></td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>3</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>3</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -657,9 +667,9 @@ These are used to compare continuous outcomes in two groups. There are no assump
 Unpaired case, for example, do marker levels differ between the drug and placebo groups?
 
 
-```r
+``` r
 # non-parametric test for difference in marker levels by treatment group
-wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE)
+wilcox.test(marker ~ trt, data = trial, exact = FALSE)
 ```
 
 ```
@@ -671,21 +681,21 @@ wilcox.test(marker ~ trt, data = trial, paired = FALSE, exact = FALSE)
 ## alternative hypothesis: true location shift is not equal to 0
 ```
 
-The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset (**trial**) are all the same. This is still an unpaired test (`paired = FALSE`).
+The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset (**trial**) are all the same. As with the `t.test` function, this is an unpaired test by default.
 
 Paired case, for example, does an intervention cause a change in a patient's blood pressure?
 
 
-```r
+``` r
 # paired non-parametric test for difference in "before" and "after" blood pressure measurements
-wilcox.test(bp ~ when, data = example3a, paired = TRUE)
+wilcox.test(example3a$bp_after, example3a$bp_before, paired = TRUE)
 ```
 
 ```
 ## 
 ## 	Wilcoxon signed rank test with continuity correction
 ## 
-## data:  bp by when
+## data:  example3a$bp_after and example3a$bp_before
 ## V = 2234.5, p-value = 0.001417
 ## alternative hypothesis: true location shift is not equal to 0
 ```
@@ -693,7 +703,7 @@ wilcox.test(bp ~ when, data = example3a, paired = TRUE)
 Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?
 
 
-```r
+``` r
 # non-parametric test - is rate of college education different from 32%?
 wilcox.test(midwest$percollege, mu = 32)
 ```
@@ -716,7 +726,7 @@ The binomial test compares a proportion to a hypothesized value. For example, wh
 The first argument of `binom.test` is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the `p =` option - the default is 0.5 (50%).
 
 
-```r
+``` r
 # Compare a proportion to a hypothesized value "p"
 binom.test(60, 100, p = 0.5)
 ```
@@ -738,7 +748,7 @@ binom.test(60, 100, p = 0.5)
 You can also use `binom.test` on data from a dataset. For example, if we want to test whether the proportion of women (sex = 1) is different from 50%:
 
 
-```r
+``` r
 # The "sum" function adds up the number of observations where sex == 1 (women)
 nwomen <- sum(lesson1a$sex)
 nwomen
@@ -748,7 +758,7 @@ nwomen
 ## [1] 205
 ```
 
-```r
+``` r
 # The "nrow" function (for "number of rows") counts the total number of observations
 # The "filter" function is used to count only the number of observations where
 # "sex" is not missing (NA)
@@ -760,7 +770,7 @@ ntotal
 ## [1] 386
 ```
 
-```r
+``` r
 # Compare a proportion of patients in a dataset to a hypothesized value "p"
 binom.test(nwomen, ntotal, p = 0.5)
 ```
@@ -790,7 +800,7 @@ This tells you that you had 386 observations, and there were 205 where sex was c
 ## Assignments
 
 
-```r
+``` r
 # Copy and paste this code to load the data for week 3 assignments
 lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
 lesson3b <- readRDS(here::here("Data", "Week 3", "lesson3b.rds"))

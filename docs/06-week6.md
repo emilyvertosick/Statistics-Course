@@ -5,7 +5,7 @@
 ## Setting Up
 
 
-```r
+``` r
 # Load packages
 library(skimr)
 library(gt)
@@ -31,7 +31,7 @@ For this, we will use the `epi.tests` function from the {epiR} package.
 Imagine you want to calculate the sensitivity. If you already know the counts for disease-positive and disease-negative, and test-positive and test-negative, you can easily create a table and use the `epi.tests` function.
 
 
-```r
+``` r
 # Enter the data in the following order to create the 2x2 table
 # Disease-positive, test-positive
 # Disease-negative, test-positive
@@ -80,7 +80,7 @@ Your result in this case is that sensitivity is 90%, with a 95% CI 88%, 92%. For
 You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the `epi.2by2` function from week 4 (also from the {epiR} package), the table needs to be flipped so the columns and rows are correctly ordered. As a reminder, you can do this by converting the variables to factors using the `factor` function and using the `levels` option to assign the sort order.
 
 
-```r
+``` r
 # This is the same code for week 4 that reverses the order of columns and rows
 tbl_example6a <-
   table(
@@ -124,7 +124,7 @@ See instructions from lecture 5 on how to get an area-under-the-curve.
 ## Assignments
 
 
-```r
+``` r
 # Copy and paste this code to load the data for week 6 assignments
 lesson6a <- readRDS(here::here("Data", "Week 6", "lesson6a.rds"))
 lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
@@ -595,10 +595,18 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Chemotherapy">Chemotherapy</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Male">Male</th>

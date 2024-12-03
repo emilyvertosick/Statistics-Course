@@ -5,7 +5,7 @@
 ## Setting Up
 
 
-```r
+``` r
 # Load packages
 library(skimr)
 library(gt)
@@ -35,7 +35,7 @@ The first command is the `tbl_summary` function from the {gtsummary} package whi
 I’ll use the dataset for assignment 3a (**lesson3a**) to illustrate these points. This dataset includes patients who had prior chemotherapy, patient sex, and whether patients had postoperative nausea and vomiting.
 
 
-```r
+``` r
 # Create twoway table of prior chemotherapy by sex
 tbl_summary(
   lesson3a %>% select(pc, sex),
@@ -484,14 +484,24 @@ tbl_summary(
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 523&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 523<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 575&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 575<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 523</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 575</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -511,7 +521,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -529,7 +539,7 @@ This table also tells us that among men with prior chemotherapy data available, 
 As mentioned in lesson 2, the `tbl_summary` command gives column percentages by default, but can also give row percents using the `percent = "row"` option:
 
 
-```r
+``` r
 # Create twoway table with "overall" column and display row percents
 tbl_summary(
   lesson3a %>% select(pc, sex),
@@ -983,15 +993,26 @@ tbl_summary(
 #qsnuprvjuo .gt_indent_5 {
   text-indent: 25px;
 }
+
+#qsnuprvjuo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qsnuprvjuo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 523&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 523<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 575&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 575<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Overall&lt;/strong&gt;, N = 1,098&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>Overall</strong>, N = 1,098<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 523</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 575</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>Overall</strong><br />
+N = 1,098</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1015,7 +1036,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1029,7 +1050,7 @@ So of the 318 patients who had previous chemo, 51% were women and 49% were men.
 Now let’s use the marathon data (**lesson2a**) to do something more interesting. First, I created a new category called "subfourhour" for those runners who completed the marathon in less than four hours.
 
 
-```r
+``` r
 # Create a new variable that indicates whether patients had marathon time <= 240 minutes
 lesson2a <-
   lesson2a %>%
@@ -1040,7 +1061,7 @@ lesson2a <-
 The `table` function is a way to make very simple tables, which is useful for doing statistical tests, although these tables do not provide as much information (variable names, totals, percentages, etc.) as `tbl_summary`.
 
 
-```r
+``` r
 # The first variable is the row variable
 # The second variable is the column variable
 table(lesson2a$subfourhour, lesson2a$sex)
@@ -1056,7 +1077,7 @@ table(lesson2a$subfourhour, lesson2a$sex)
 We can compare sub-four hour marathons by sex using a chi-squared test (`chisq.test` function). The option `correct = FALSE` indicates that the default continuity correction should not be used.
 
 
-```r
+``` r
 # Create the table and then perform the chi-squared test
 table(lesson2a$subfourhour, lesson2a$sex) %>%
   chisq.test(correct = FALSE)
@@ -1073,7 +1094,7 @@ table(lesson2a$subfourhour, lesson2a$sex) %>%
 As a note, we can also use `tbl_summary` and the `add_p` function (also from {gtsummary}) to get the chi-squared p-value. In the `add_p` function, we specify that for the variable "subfourhour" we want to use a chi-squared test ("chisq.test.no.correct"). Specifying "chisq.test.no.correct" uses no continuity correction, and so gives the same result as the `chisq.test` function with the option `correct = FALSE`.
 
 
-```r
+``` r
 # Create two-way table including chi-squared p-value
 tbl_summary(
   lesson2a %>% select(subfourhour, sex),
@@ -1523,15 +1544,25 @@ tbl_summary(
 #mkgngwavns .gt_indent_5 {
   text-indent: 25px;
 }
+
+#mkgngwavns .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mkgngwavns div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 66&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 66<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 32&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 32<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 66</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 32</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1551,10 +1582,10 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Pearson’s Chi-squared test</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> <span class='gt_from_md'>Pearson’s Chi-squared test</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1587,23 +1618,23 @@ The probability of something is defined as the number of times it occurs divided
 
 
 ```{=html}
-<div id="rfpnysbvmj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rfpnysbvmj table {
+<div id="fcjrfpnysb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fcjrfpnysb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rfpnysbvmj thead, #rfpnysbvmj tbody, #rfpnysbvmj tfoot, #rfpnysbvmj tr, #rfpnysbvmj td, #rfpnysbvmj th {
+#fcjrfpnysb thead, #fcjrfpnysb tbody, #fcjrfpnysb tfoot, #fcjrfpnysb tr, #fcjrfpnysb td, #fcjrfpnysb th {
   border-style: none;
 }
 
-#rfpnysbvmj p {
+#fcjrfpnysb p {
   margin: 0;
   padding: 0;
 }
 
-#rfpnysbvmj .gt_table {
+#fcjrfpnysb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1629,12 +1660,12 @@ The probability of something is defined as the number of times it occurs divided
   border-left-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_caption {
+#fcjrfpnysb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rfpnysbvmj .gt_title {
+#fcjrfpnysb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1646,7 +1677,7 @@ The probability of something is defined as the number of times it occurs divided
   border-bottom-width: 0;
 }
 
-#rfpnysbvmj .gt_subtitle {
+#fcjrfpnysb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1658,7 +1689,7 @@ The probability of something is defined as the number of times it occurs divided
   border-top-width: 0;
 }
 
-#rfpnysbvmj .gt_heading {
+#fcjrfpnysb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1670,13 +1701,13 @@ The probability of something is defined as the number of times it occurs divided
   border-right-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_bottom_border {
+#fcjrfpnysb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_col_headings {
+#fcjrfpnysb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1691,7 +1722,7 @@ The probability of something is defined as the number of times it occurs divided
   border-right-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_col_heading {
+#fcjrfpnysb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1711,7 +1742,7 @@ The probability of something is defined as the number of times it occurs divided
   overflow-x: hidden;
 }
 
-#rfpnysbvmj .gt_column_spanner_outer {
+#fcjrfpnysb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1723,15 +1754,15 @@ The probability of something is defined as the number of times it occurs divided
   padding-right: 4px;
 }
 
-#rfpnysbvmj .gt_column_spanner_outer:first-child {
+#fcjrfpnysb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rfpnysbvmj .gt_column_spanner_outer:last-child {
+#fcjrfpnysb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rfpnysbvmj .gt_column_spanner {
+#fcjrfpnysb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1743,11 +1774,11 @@ The probability of something is defined as the number of times it occurs divided
   width: 100%;
 }
 
-#rfpnysbvmj .gt_spanner_row {
+#fcjrfpnysb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rfpnysbvmj .gt_group_heading {
+#fcjrfpnysb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1773,7 +1804,7 @@ The probability of something is defined as the number of times it occurs divided
   text-align: left;
 }
 
-#rfpnysbvmj .gt_empty_group_heading {
+#fcjrfpnysb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1788,15 +1819,15 @@ The probability of something is defined as the number of times it occurs divided
   vertical-align: middle;
 }
 
-#rfpnysbvmj .gt_from_md > :first-child {
+#fcjrfpnysb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rfpnysbvmj .gt_from_md > :last-child {
+#fcjrfpnysb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rfpnysbvmj .gt_row {
+#fcjrfpnysb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1815,7 +1846,7 @@ The probability of something is defined as the number of times it occurs divided
   overflow-x: hidden;
 }
 
-#rfpnysbvmj .gt_stub {
+#fcjrfpnysb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1828,7 +1859,7 @@ The probability of something is defined as the number of times it occurs divided
   padding-right: 5px;
 }
 
-#rfpnysbvmj .gt_stub_row_group {
+#fcjrfpnysb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1842,15 +1873,15 @@ The probability of something is defined as the number of times it occurs divided
   vertical-align: top;
 }
 
-#rfpnysbvmj .gt_row_group_first td {
+#fcjrfpnysb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rfpnysbvmj .gt_row_group_first th {
+#fcjrfpnysb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rfpnysbvmj .gt_summary_row {
+#fcjrfpnysb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1860,16 +1891,16 @@ The probability of something is defined as the number of times it occurs divided
   padding-right: 5px;
 }
 
-#rfpnysbvmj .gt_first_summary_row {
+#fcjrfpnysb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_first_summary_row.thick {
+#fcjrfpnysb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rfpnysbvmj .gt_last_summary_row {
+#fcjrfpnysb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1879,7 +1910,7 @@ The probability of something is defined as the number of times it occurs divided
   border-bottom-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_grand_summary_row {
+#fcjrfpnysb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1889,7 +1920,7 @@ The probability of something is defined as the number of times it occurs divided
   padding-right: 5px;
 }
 
-#rfpnysbvmj .gt_first_grand_summary_row {
+#fcjrfpnysb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1899,7 +1930,7 @@ The probability of something is defined as the number of times it occurs divided
   border-top-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_last_grand_summary_row_top {
+#fcjrfpnysb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1909,11 +1940,11 @@ The probability of something is defined as the number of times it occurs divided
   border-bottom-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_striped {
+#fcjrfpnysb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rfpnysbvmj .gt_table_body {
+#fcjrfpnysb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1922,7 +1953,7 @@ The probability of something is defined as the number of times it occurs divided
   border-bottom-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_footnotes {
+#fcjrfpnysb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1936,7 +1967,7 @@ The probability of something is defined as the number of times it occurs divided
   border-right-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_footnote {
+#fcjrfpnysb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1945,7 +1976,7 @@ The probability of something is defined as the number of times it occurs divided
   padding-right: 5px;
 }
 
-#rfpnysbvmj .gt_sourcenotes {
+#fcjrfpnysb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1959,7 +1990,7 @@ The probability of something is defined as the number of times it occurs divided
   border-right-color: #D3D3D3;
 }
 
-#rfpnysbvmj .gt_sourcenote {
+#fcjrfpnysb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1967,73 +1998,81 @@ The probability of something is defined as the number of times it occurs divided
   padding-right: 5px;
 }
 
-#rfpnysbvmj .gt_left {
+#fcjrfpnysb .gt_left {
   text-align: left;
 }
 
-#rfpnysbvmj .gt_center {
+#fcjrfpnysb .gt_center {
   text-align: center;
 }
 
-#rfpnysbvmj .gt_right {
+#fcjrfpnysb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rfpnysbvmj .gt_font_normal {
+#fcjrfpnysb .gt_font_normal {
   font-weight: normal;
 }
 
-#rfpnysbvmj .gt_font_bold {
+#fcjrfpnysb .gt_font_bold {
   font-weight: bold;
 }
 
-#rfpnysbvmj .gt_font_italic {
+#fcjrfpnysb .gt_font_italic {
   font-style: italic;
 }
 
-#rfpnysbvmj .gt_super {
+#fcjrfpnysb .gt_super {
   font-size: 65%;
 }
 
-#rfpnysbvmj .gt_footnote_marks {
+#fcjrfpnysb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rfpnysbvmj .gt_asterisk {
+#fcjrfpnysb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rfpnysbvmj .gt_indent_1 {
+#fcjrfpnysb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rfpnysbvmj .gt_indent_2 {
+#fcjrfpnysb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rfpnysbvmj .gt_indent_3 {
+#fcjrfpnysb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rfpnysbvmj .gt_indent_4 {
+#fcjrfpnysb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rfpnysbvmj .gt_indent_5 {
+#fcjrfpnysb .gt_indent_5 {
   text-indent: 25px;
+}
+
+#fcjrfpnysb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#fcjrfpnysb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Probability of the event (e.g. surgical complication)">Probability of the event (e.g. surgical complication)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Probability of no event (e.g. no complication)">Probability of no event (e.g. no complication)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Odds of the event">Odds of the event</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="prob_event">Probability of the event (e.g. surgical complication)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="prob_noevent">Probability of no event (e.g. no complication)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="odds">Odds of the event</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2072,7 +2111,7 @@ One thing you might notice is that when something doesn’t happen very often, t
 The `epi.2by2` function takes a two-way table with the endpoint and the cohort. We can create a very simple table using the `table` function.
 
 
-```r
+``` r
 # Create a two-way table
 table(lesson2a$sex, lesson2a$subfourhour)
 ```
@@ -2089,7 +2128,7 @@ By default, `table` sorts the data numerically, so the first table row will be t
 Since the rows and columns are out of order, we will use the `factor` function to convert these variables to categorical variables, which will allow us to reverse the sort order for this analysis.
 
 
-```r
+``` r
 # Create the table using data where we have reversed the order of the columns and rows
 table2a <-
   table(
@@ -2112,7 +2151,7 @@ table2a
 You will see here that now both the rows and the columns are reversed in this table. You can put this code directly into the `epi.2by2` function. By default, the `epi.2by2` function gives the p-value without any continuity correction.
 
 
-```r
+``` r
 # Apply the epi.2by2 function to the table in the correct format
 epi.2by2(table2a)
 ```
@@ -2159,7 +2198,7 @@ Be aware that when interpreting a relative difference in risks, it is useful to 
 Here is another one to look through:
 
 
-```r
+``` r
 # Create the table using data where we have reversed the order of the columns and rows
 table4a <-
   table(
@@ -2200,7 +2239,7 @@ Here it is easier to see that the "toxin" is the exposure and "cancer" is whethe
 Now I’ll explain what these are in more detail in the box below for whoever is interested. But for now, what everyone needs to now is that many statisticians, myself included, prefer exact statistics and if any of the "cells" in your table have five or fewer observations, all statisticians agree that you should use exact methods. A cell is one box in your table, such as the number of cancer patients who were not exposed to the toxin, or the number of non-cancer patients who were exposed to the toxin. The `epi.2by2` function gives the chi-squared p-value. However, using the `fisher.test` function gives the exact p-value. You do not need to reverse the table for the `fisher.test` function.
 
 
-```r
+``` r
 # Calculate p-value from fisher's exact test
 fisher.test(table(example4a$toxin, example4a$cancer))
 ```
@@ -2222,7 +2261,7 @@ fisher.test(table(example4a$toxin, example4a$cancer))
 Similar to the chi-squared test, you can also get the Fisher's exact p-value using the `tbl_summary` and `add_p` functions, by specifying `test = "fisher.test"` for the variable of interest. 
 
 
-```r
+``` r
 # Create formatted table with p-value from fisher's exact test
 tbl_summary(
   example4a %>% select(toxin, cancer),
@@ -2233,23 +2272,23 @@ tbl_summary(
 ```
 
 ```{=html}
-<div id="goecrbkrgm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#goecrbkrgm table {
+<div id="vmjgoecrbk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vmjgoecrbk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#goecrbkrgm thead, #goecrbkrgm tbody, #goecrbkrgm tfoot, #goecrbkrgm tr, #goecrbkrgm td, #goecrbkrgm th {
+#vmjgoecrbk thead, #vmjgoecrbk tbody, #vmjgoecrbk tfoot, #vmjgoecrbk tr, #vmjgoecrbk td, #vmjgoecrbk th {
   border-style: none;
 }
 
-#goecrbkrgm p {
+#vmjgoecrbk p {
   margin: 0;
   padding: 0;
 }
 
-#goecrbkrgm .gt_table {
+#vmjgoecrbk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2275,12 +2314,12 @@ tbl_summary(
   border-left-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_caption {
+#vmjgoecrbk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#goecrbkrgm .gt_title {
+#vmjgoecrbk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2292,7 +2331,7 @@ tbl_summary(
   border-bottom-width: 0;
 }
 
-#goecrbkrgm .gt_subtitle {
+#vmjgoecrbk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2304,7 +2343,7 @@ tbl_summary(
   border-top-width: 0;
 }
 
-#goecrbkrgm .gt_heading {
+#vmjgoecrbk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2316,13 +2355,13 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_bottom_border {
+#vmjgoecrbk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_col_headings {
+#vmjgoecrbk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2337,7 +2376,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_col_heading {
+#vmjgoecrbk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2357,7 +2396,7 @@ tbl_summary(
   overflow-x: hidden;
 }
 
-#goecrbkrgm .gt_column_spanner_outer {
+#vmjgoecrbk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2369,15 +2408,15 @@ tbl_summary(
   padding-right: 4px;
 }
 
-#goecrbkrgm .gt_column_spanner_outer:first-child {
+#vmjgoecrbk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#goecrbkrgm .gt_column_spanner_outer:last-child {
+#vmjgoecrbk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#goecrbkrgm .gt_column_spanner {
+#vmjgoecrbk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2389,11 +2428,11 @@ tbl_summary(
   width: 100%;
 }
 
-#goecrbkrgm .gt_spanner_row {
+#vmjgoecrbk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#goecrbkrgm .gt_group_heading {
+#vmjgoecrbk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2419,7 +2458,7 @@ tbl_summary(
   text-align: left;
 }
 
-#goecrbkrgm .gt_empty_group_heading {
+#vmjgoecrbk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2434,15 +2473,15 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#goecrbkrgm .gt_from_md > :first-child {
+#vmjgoecrbk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#goecrbkrgm .gt_from_md > :last-child {
+#vmjgoecrbk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#goecrbkrgm .gt_row {
+#vmjgoecrbk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2461,7 +2500,7 @@ tbl_summary(
   overflow-x: hidden;
 }
 
-#goecrbkrgm .gt_stub {
+#vmjgoecrbk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2474,7 +2513,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#goecrbkrgm .gt_stub_row_group {
+#vmjgoecrbk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2488,15 +2527,15 @@ tbl_summary(
   vertical-align: top;
 }
 
-#goecrbkrgm .gt_row_group_first td {
+#vmjgoecrbk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#goecrbkrgm .gt_row_group_first th {
+#vmjgoecrbk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#goecrbkrgm .gt_summary_row {
+#vmjgoecrbk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2506,16 +2545,16 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#goecrbkrgm .gt_first_summary_row {
+#vmjgoecrbk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_first_summary_row.thick {
+#vmjgoecrbk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#goecrbkrgm .gt_last_summary_row {
+#vmjgoecrbk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2525,7 +2564,7 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_grand_summary_row {
+#vmjgoecrbk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2535,7 +2574,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#goecrbkrgm .gt_first_grand_summary_row {
+#vmjgoecrbk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2545,7 +2584,7 @@ tbl_summary(
   border-top-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_last_grand_summary_row_top {
+#vmjgoecrbk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2555,11 +2594,11 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_striped {
+#vmjgoecrbk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#goecrbkrgm .gt_table_body {
+#vmjgoecrbk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2568,7 +2607,7 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_footnotes {
+#vmjgoecrbk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2582,7 +2621,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_footnote {
+#vmjgoecrbk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2591,7 +2630,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#goecrbkrgm .gt_sourcenotes {
+#vmjgoecrbk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2605,7 +2644,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#goecrbkrgm .gt_sourcenote {
+#vmjgoecrbk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2613,74 +2652,84 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#goecrbkrgm .gt_left {
+#vmjgoecrbk .gt_left {
   text-align: left;
 }
 
-#goecrbkrgm .gt_center {
+#vmjgoecrbk .gt_center {
   text-align: center;
 }
 
-#goecrbkrgm .gt_right {
+#vmjgoecrbk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#goecrbkrgm .gt_font_normal {
+#vmjgoecrbk .gt_font_normal {
   font-weight: normal;
 }
 
-#goecrbkrgm .gt_font_bold {
+#vmjgoecrbk .gt_font_bold {
   font-weight: bold;
 }
 
-#goecrbkrgm .gt_font_italic {
+#vmjgoecrbk .gt_font_italic {
   font-style: italic;
 }
 
-#goecrbkrgm .gt_super {
+#vmjgoecrbk .gt_super {
   font-size: 65%;
 }
 
-#goecrbkrgm .gt_footnote_marks {
+#vmjgoecrbk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#goecrbkrgm .gt_asterisk {
+#vmjgoecrbk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#goecrbkrgm .gt_indent_1 {
+#vmjgoecrbk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#goecrbkrgm .gt_indent_2 {
+#vmjgoecrbk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#goecrbkrgm .gt_indent_3 {
+#vmjgoecrbk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#goecrbkrgm .gt_indent_4 {
+#vmjgoecrbk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#goecrbkrgm .gt_indent_5 {
+#vmjgoecrbk .gt_indent_5 {
   text-indent: 25px;
+}
+
+#vmjgoecrbk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vmjgoecrbk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 10&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 10<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 6&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 6<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 10</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 6</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2700,10 +2749,10 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Fisher’s exact test</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> <span class='gt_from_md'>Fisher’s exact test</span></td>
     </tr>
   </tfoot>
 </table>
@@ -2723,7 +2772,7 @@ The exact approach to the coin throwing problem would be to write out all the po
 You can use the `filter` function to select rows to perform t-tests on subgroups of your data. For example, to assess the association between nausea/vomiting and sex only among those patients who had a history of prior chemotherapy, you can use the following code:
 
 
-```r
+``` r
 # Perform a t-test only among patients with prior chemotherapy
 t.test(nv ~ sex, data = lesson3a %>% filter(pc == 1))
 ```
@@ -2745,7 +2794,7 @@ t.test(nv ~ sex, data = lesson3a %>% filter(pc == 1))
 To perform the t-test on those without prior chemotherapy, switch the group you are filtering on:
 
 
-```r
+``` r
 # t-test for patients without prior chemotherapy
 t.test(nv ~ sex, data = lesson3a %>% filter(pc == 0))
 ```
@@ -2767,7 +2816,7 @@ t.test(nv ~ sex, data = lesson3a %>% filter(pc == 0))
 ## Assignments
 
 
-```r
+``` r
 # Copy and paste this code to load the data for week 4 assignments
 lesson4a <- readRDS(here::here("Data", "Week 4", "lesson4a.rds"))
 lesson4b <- readRDS(here::here("Data", "Week 4", "lesson4b.rds"))

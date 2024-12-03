@@ -5,7 +5,7 @@
 ## Week 1
 
 
-```r
+``` r
 # Week 1: load packages
 library(skimr)
 library(gt)
@@ -38,7 +38,7 @@ The dataset has 11 variables:
 ## Week 2
 
 
-```r
+``` r
 # Week 2: load packages
 library(skimr)
 library(gt)
@@ -68,7 +68,7 @@ Age is continuous and normally distributed (look at a graph or look at the centi
 Sex is binary: use `tbl_summary(lesson2a %>% select(sex))` to get percentages. But note that the person who prepared the data didn’t state how the variable was coded (someone with sex=1 is a woman or a man?). Now what you should do in this situation is ask, but here is another alternative:
 
 
-```r
+``` r
 # Summary statistics for race time, separately by sex
 lesson2a %>%
   group_by(sex) %>%
@@ -548,13 +548,21 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 98&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 98</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 98</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -580,7 +588,7 @@ So here is a model answer, suitable for publication (assuming that sex==1 is cod
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD); n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Mean (SD); n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1030,13 +1038,21 @@ However, look at this.
 #epqsnuprvj .gt_indent_5 {
   text-indent: 25px;
 }
+
+#epqsnuprvj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#epqsnuprvj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 98&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 98</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 98</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1045,7 +1061,7 @@ However, look at this.
     <tr><td headers="label" class="gt_row gt_left">Women</td>
 <td headers="stat_0" class="gt_row gt_center">32 (33%)</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Race time in minutes</td>
-<td headers="stat_0" class="gt_row gt_center">242 (222, 273)</td></tr>
+<td headers="stat_0" class="gt_row gt_center">242 (222, 274)</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Favorite Running Shoe</td>
 <td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Asics</td>
@@ -1062,7 +1078,7 @@ However, look at this.
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR); n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Median (Q1, Q3); n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1078,7 +1094,7 @@ This really isn't much to distinguish between these tables. On the one hand usin
 This is data on postoperative pain. You were asked to summarize average pain after the operation. This is continuous, so by looking at the histogram, you can see that the data look skewed. I would be tempted to use the median (1.8) and quartiles (1.1, 2.6).
 
 
-```r
+``` r
 # Create histogram to assess whether data look skewed
 ggplot(data = lesson2b,
        aes(x = t)) +
@@ -1554,13 +1570,21 @@ A second issue is how to characterize the categorical variables. There are 8 dif
 #ptgxhgemkg .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ptgxhgemkg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ptgxhgemkg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 241&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 241</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 241</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1580,7 +1604,7 @@ A second issue is how to characterize the categorical variables. There are 8 dif
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1600,7 +1624,7 @@ In this case, the `case_when` function does the following:
 3) In `case_when`, TRUE means "every observation that didn't fall into any of the previous categories". Here, this means: for all observations that didn't fit into the previously specified "T1" or "T3/4" categories, use the value of the variable "stage". In this case, these are the "T2A", "T2B" and "T2C" values, which remain the same in both the "stage" and "stage_category" variables.
 
 
-```r
+``` r
 # Create new variable for stage and save into "lesson2c" dataset
 lesson2c <-
   lesson2c %>%
@@ -2074,13 +2098,21 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
 #sctlnsbgwb .gt_indent_5 {
   text-indent: 25px;
 }
+
+#sctlnsbgwb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#sctlnsbgwb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 241&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 241</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 241</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2116,7 +2148,7 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%); Median (IQR)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%); Median (Q1, Q3)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -2139,7 +2171,7 @@ As for summarizing the number of days in pain, almost everyone has 31 days of pa
 
 
 
-```r
+``` r
 # Create variable to categorize number of days in pain
 lesson2e <-
   lesson2e %>%
@@ -2157,7 +2189,7 @@ lesson2e <-
 In other words, create a new variable called "days", and set it to 0 for anyone with 15 or less days of pain. Call anyone who has pain more than half the time (i.e. more than 15 days) a 1. Call anyone who has pain more than three quarter of the time (i.e. more than 23 days) a 2. Call anyone who has pain all the time a 3.
 
 
-```r
+``` r
 # Print formatted table summarizing number of days in pain
 tbl_summary(
   lesson2e %>% select(days)
@@ -2604,13 +2636,21 @@ tbl_summary(
 #sbvmjgoecr .gt_indent_5 {
   text-indent: 25px;
 }
+
+#sbvmjgoecr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#sbvmjgoecr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 100&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 100</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 100</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2630,7 +2670,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -2646,7 +2686,7 @@ _For keen students only!_
 You could also try a log transformation of the pain scores. Create a new variable using `log(pain)`.
 
 
-```r
+``` r
 # Create a variable for log of the pain score
 lesson2e <-
   lesson2e %>%
@@ -2660,7 +2700,7 @@ The mean of log is 5.42. You can transform the log back by calculating e^5.42^ (
 ## Week 3
 
 
-```r
+``` r
 # Week 3: load packages
 library(skimr)
 library(gt)
@@ -2688,7 +2728,7 @@ lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
 
 
 
-Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)` without looking at the data? There are lots of missing data. There is a question as to whether you would actually analyze these data at all: could data be missing because patients were too ill to complete questionnaires?  Could there have been bias in ascertaining who had prior chemotherapy?  If you do decide to analyze, a t-test would be appropriate (`t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)` and `t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)`). A model answer might be:
+Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)` without looking at the data? There are lots of missing data. There is a question as to whether you would actually analyze these data at all: could data be missing because patients were too ill to complete questionnaires?  Could there have been bias in ascertaining who had prior chemotherapy?  If you do decide to analyze, a t-test would be appropriate (`t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)` and `t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)`). A model answer might be:
 
 <div class="quote-container">
 
@@ -2699,9 +2739,9 @@ Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equ
 Now, I'll explain what I did. First, I did the two t-tests:
 
 
-```r
+``` r
 # t-test for nausea/vomiting by prior chemotherapy
-t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
+t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 ```
 
 ```
@@ -2718,9 +2758,9 @@ t.test(nv ~ pc, data = lesson3a, paired = FALSE, var.equal = TRUE)
 ##        4.459144        5.280392
 ```
 
-```r
+``` r
 # t-test for nausea/vomiting by sex
-t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)
+t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
 ```
 
 ```
@@ -2740,7 +2780,7 @@ t.test(nv ~ sex, data = lesson3a, paired = FALSE, var.equal = TRUE)
 While the `t.test` function gives the confidence interval around the difference in means, it does not calculate the difference in means for you. While you can cut and paste to calculate this manually, you can do it by using the `tbl_summary` and `add_difference` functions from the {gtsummary} package.
 
 
-```r
+``` r
 tbl_summary(
   # Keep 2 variables of interest
   lesson3a %>%
@@ -3195,17 +3235,27 @@ tbl_summary(
 #pclztusbkb .gt_indent_5 {
   text-indent: 25px;
 }
+
+#pclztusbkb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pclztusbkb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 321&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 321<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 318&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 318<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Difference&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>Difference</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2,3&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2,3</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 321</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 318</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Difference</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2,3</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -3213,25 +3263,25 @@ tbl_summary(
 <td headers="stat_1" class="gt_row gt_center">4.46 (1.99)</td>
 <td headers="stat_2" class="gt_row gt_center">5.28 (2.03)</td>
 <td headers="estimate" class="gt_row gt_center">-0.82</td>
-<td headers="ci" class="gt_row gt_center">-1.2, -0.47</td>
+<td headers="conf.low" class="gt_row gt_center">-1.2, -0.47</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    Unknown</td>
 <td headers="stat_1" class="gt_row gt_center">64</td>
 <td headers="stat_2" class="gt_row gt_center">63</td>
 <td headers="estimate" class="gt_row gt_center"><br /></td>
-<td headers="ci" class="gt_row gt_center"><br /></td>
+<td headers="conf.low" class="gt_row gt_center"><br /></td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Mean (SD)</span></td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> One-way ANOVA</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> <span class='gt_from_md'>One-way ANOVA</span></td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>3</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>3</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -3243,7 +3293,7 @@ As you can see, the table above gives the same estimates as the `t.test` functio
 Next I created a new variable for missing data on nausea and vomiting:
 
 
-```r
+``` r
 # Create new variable to indicate whether "nv" variable is missing
 lesson3a <-
   lesson3a %>%
@@ -3256,7 +3306,7 @@ lesson3a <-
 And then created a table to look at the missingness for this variable:
 
 
-```r
+``` r
 # Formatted table to look at rates of missingness in "nv" variable by sex
 tbl_summary(
   lesson3a %>% select(missing, sex),
@@ -3266,23 +3316,23 @@ tbl_summary(
 ```
 
 ```{=html}
-<div id="aujwtraoed" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aujwtraoed table {
+<div id="vxaujwtrao" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vxaujwtrao table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aujwtraoed thead, #aujwtraoed tbody, #aujwtraoed tfoot, #aujwtraoed tr, #aujwtraoed td, #aujwtraoed th {
+#vxaujwtrao thead, #vxaujwtrao tbody, #vxaujwtrao tfoot, #vxaujwtrao tr, #vxaujwtrao td, #vxaujwtrao th {
   border-style: none;
 }
 
-#aujwtraoed p {
+#vxaujwtrao p {
   margin: 0;
   padding: 0;
 }
 
-#aujwtraoed .gt_table {
+#vxaujwtrao .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3308,12 +3358,12 @@ tbl_summary(
   border-left-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_caption {
+#vxaujwtrao .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aujwtraoed .gt_title {
+#vxaujwtrao .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3325,7 +3375,7 @@ tbl_summary(
   border-bottom-width: 0;
 }
 
-#aujwtraoed .gt_subtitle {
+#vxaujwtrao .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3337,7 +3387,7 @@ tbl_summary(
   border-top-width: 0;
 }
 
-#aujwtraoed .gt_heading {
+#vxaujwtrao .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3349,13 +3399,13 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_bottom_border {
+#vxaujwtrao .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_col_headings {
+#vxaujwtrao .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3370,7 +3420,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_col_heading {
+#vxaujwtrao .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3390,7 +3440,7 @@ tbl_summary(
   overflow-x: hidden;
 }
 
-#aujwtraoed .gt_column_spanner_outer {
+#vxaujwtrao .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3402,15 +3452,15 @@ tbl_summary(
   padding-right: 4px;
 }
 
-#aujwtraoed .gt_column_spanner_outer:first-child {
+#vxaujwtrao .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aujwtraoed .gt_column_spanner_outer:last-child {
+#vxaujwtrao .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aujwtraoed .gt_column_spanner {
+#vxaujwtrao .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3422,11 +3472,11 @@ tbl_summary(
   width: 100%;
 }
 
-#aujwtraoed .gt_spanner_row {
+#vxaujwtrao .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aujwtraoed .gt_group_heading {
+#vxaujwtrao .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3452,7 +3502,7 @@ tbl_summary(
   text-align: left;
 }
 
-#aujwtraoed .gt_empty_group_heading {
+#vxaujwtrao .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3467,15 +3517,15 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#aujwtraoed .gt_from_md > :first-child {
+#vxaujwtrao .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aujwtraoed .gt_from_md > :last-child {
+#vxaujwtrao .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aujwtraoed .gt_row {
+#vxaujwtrao .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3494,7 +3544,7 @@ tbl_summary(
   overflow-x: hidden;
 }
 
-#aujwtraoed .gt_stub {
+#vxaujwtrao .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3507,7 +3557,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_stub_row_group {
+#vxaujwtrao .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3521,15 +3571,15 @@ tbl_summary(
   vertical-align: top;
 }
 
-#aujwtraoed .gt_row_group_first td {
+#vxaujwtrao .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aujwtraoed .gt_row_group_first th {
+#vxaujwtrao .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aujwtraoed .gt_summary_row {
+#vxaujwtrao .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3539,16 +3589,16 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_first_summary_row {
+#vxaujwtrao .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_first_summary_row.thick {
+#vxaujwtrao .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aujwtraoed .gt_last_summary_row {
+#vxaujwtrao .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3558,7 +3608,7 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_grand_summary_row {
+#vxaujwtrao .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3568,7 +3618,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_first_grand_summary_row {
+#vxaujwtrao .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3578,7 +3628,7 @@ tbl_summary(
   border-top-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_last_grand_summary_row_top {
+#vxaujwtrao .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3588,11 +3638,11 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_striped {
+#vxaujwtrao .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aujwtraoed .gt_table_body {
+#vxaujwtrao .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3601,7 +3651,7 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_footnotes {
+#vxaujwtrao .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3615,7 +3665,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_footnote {
+#vxaujwtrao .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3624,7 +3674,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_sourcenotes {
+#vxaujwtrao .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3638,7 +3688,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#aujwtraoed .gt_sourcenote {
+#vxaujwtrao .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3646,73 +3696,83 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#aujwtraoed .gt_left {
+#vxaujwtrao .gt_left {
   text-align: left;
 }
 
-#aujwtraoed .gt_center {
+#vxaujwtrao .gt_center {
   text-align: center;
 }
 
-#aujwtraoed .gt_right {
+#vxaujwtrao .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aujwtraoed .gt_font_normal {
+#vxaujwtrao .gt_font_normal {
   font-weight: normal;
 }
 
-#aujwtraoed .gt_font_bold {
+#vxaujwtrao .gt_font_bold {
   font-weight: bold;
 }
 
-#aujwtraoed .gt_font_italic {
+#vxaujwtrao .gt_font_italic {
   font-style: italic;
 }
 
-#aujwtraoed .gt_super {
+#vxaujwtrao .gt_super {
   font-size: 65%;
 }
 
-#aujwtraoed .gt_footnote_marks {
+#vxaujwtrao .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aujwtraoed .gt_asterisk {
+#vxaujwtrao .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aujwtraoed .gt_indent_1 {
+#vxaujwtrao .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aujwtraoed .gt_indent_2 {
+#vxaujwtrao .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aujwtraoed .gt_indent_3 {
+#vxaujwtrao .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aujwtraoed .gt_indent_4 {
+#vxaujwtrao .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aujwtraoed .gt_indent_5 {
+#vxaujwtrao .gt_indent_5 {
   text-indent: 25px;
+}
+
+#vxaujwtrao .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vxaujwtrao div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 523&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 523<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 575&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 575<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 523</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 575</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -3729,7 +3789,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -3745,7 +3805,7 @@ _For more advanced students:_
 The other thing you can do is to find out the precise p-value from the t value (which is given above the p-value: -4.6275). The function you need is `pt(t value, degrees of freedom)`. This will give you the p-value for a one-sided test, so you must multiply by 2 to get the two-sided test p-value.
 
 
-```r
+``` r
 # Find out p-value from t value
 pt(-4.6275, 510)*2
 ```
@@ -3765,33 +3825,33 @@ What is "degrees of freedom" and how come it is 510? Think about it this way: Yo
 The most obvious thing to do would be to do:
 
 
-```r
+``` r
 # t-test for pain after treatment, by group
-t.test(p ~ g, data = lesson3b, paired = TRUE, var.equal = TRUE)
+t.test(lesson3b$p, lesson3b$g, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  p by g
-## t = 2.9848, df = 17, p-value = 0.008319
+## data:  lesson3b$p and lesson3b$g
+## t = -1.254, df = 35, p-value = 0.2182
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  0.1889205 1.0999684
+##  -0.6983796  0.1650463
 ## sample estimates:
 ## mean difference 
-##       0.6444444
+##      -0.2666667
 ```
 
-This gives a p-value of 0.057 and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
+This gives a p-value of 0.2 and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
 
 However, if you are really keen, you could try the following:
 
 You could analyze the data from each wrist separately by creating new variables as shown below (lines with # are comments). Since the "before" and "after" measurements are coming from the same patient, we will need to use a paired t-test here.
 
 
-```r
+``` r
 # Analyze data separately by wrist
 lesson3b <-
   lesson3b %>%
@@ -3808,45 +3868,45 @@ lesson3b <-
   )
 
 # t-test for pain in right and left wrists separately
-t.test(pright ~ g, data = lesson3b, paired = TRUE, var.equal = TRUE)
+t.test(lesson3b$pright, lesson3b$g, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  pright by g
-## t = 2.6908, df = 8, p-value = 0.02746
+## data:  lesson3b$pright and lesson3b$g
+## t = -0.75988, df = 17, p-value = 0.4577
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  0.1128056 1.4649721
+##  -0.9021654  0.4243876
 ## sample estimates:
 ## mean difference 
-##       0.7888889
+##      -0.2388889
 ```
 
-```r
-t.test(pleft ~ g, data = lesson3b, paired = TRUE, var.equal = TRUE)
+``` r
+t.test(lesson3b$pleft, lesson3b$g, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  pleft by g
-## t = 1.5289, df = 8, p-value = 0.1648
+## data:  lesson3b$pleft and lesson3b$g
+## t = -0.99662, df = 17, p-value = 0.3329
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  -0.2541178  1.2541178
+##  -0.9177718  0.3288829
 ## sample estimates:
 ## mean difference 
-##             0.5
+##      -0.2944444
 ```
 
 You could also analyze the data by taking the average of the two wrists. You can create a new value for the average using the `mean` function. The `distinct` function from the {dplyr} package allows you to drop duplicate observations. Since there are two observations per patient (one for the left wrist and one for the right wrist), we will take the average and then drop the duplicate observation so that each patient is included only once.
 
 
-```r
+``` r
 lesson3b_avg <-
   lesson3b %>%
   # Grouping by "id" so that each patient ends up with the average of their own two wrist scores
@@ -3864,21 +3924,21 @@ lesson3b_avg <-
   ungroup()
 
 # t-test for average pain between both wrists
-t.test(meanpain ~ g, data = lesson3b_avg, paired = TRUE, var.equal = TRUE)
+t.test(lesson3b_avg$meanpain, lesson3b_avg$g, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  meanpain by g
-## t = 2.284, df = 8, p-value = 0.05175
+## data:  lesson3b_avg$meanpain and lesson3b_avg$g
+## t = -0.90074, df = 17, p-value = 0.3803
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  -0.006217389  1.295106272
+##  -0.8912828  0.3579494
 ## sample estimates:
 ## mean difference 
-##       0.6444444
+##      -0.2666667
 ```
 
 ### lesson3c
@@ -3888,7 +3948,7 @@ t.test(meanpain ~ g, data = lesson3b_avg, paired = TRUE, var.equal = TRUE)
 The most obvious issue here is that you are measuring the same patients on two occasions, so you are going to want a paired test. Should you do a paired t-test? Many statisticians would prefer a non-parametric method given that the data take only five different values and that the number of observations is small. The following command gives you the "Wilcoxon signed rank test":
 
 
-```r
+``` r
 # Non-parametric test comparing day 1 and day 2 pain
 wilcox.test(lesson3c$t1, lesson3c$t2, paired = TRUE)
 ```
@@ -3917,7 +3977,7 @@ If you run this code, you will notice you get a warning in yellow text that stat
 (By the way: I know this because that is what it says on the read out. If you had asked me yesterday, I doubt I would have remembered the name of a non-parametric paired test, another reason to think in concepts rather than remembering statistical techniques). The p-value you get is p=0.14. We cannot conclude that pain scores are different. But is that all we want to say? The number of patients is small, maybe we failed to spot a difference. So let’s try a t-test:
 
 
-```r
+``` r
 # paired t-test comparing day 1 and day 2 pain
 t.test(lesson3c$t1, lesson3c$t2, paired = TRUE, var.equal = TRUE)
 ```
@@ -3941,7 +4001,7 @@ The p-value you get (p=0.14) is very similar to the non-parametric method and yo
 What about normality of the data? Doesn’t that figure into whether you assess by t-test or non-parametric? Well if you type look at the distribution of t1 and t2, you find that neither are normally distributed. But a paired t-test does not depend on the assumption that each set of data in a pair is distributed but that the differences between pairs are normally distributed. So you would have to create a new variable and look at that:
 
 
-```r
+``` r
 # Create a variable containing the difference in pain scores between days 1 and 2
 lesson3c <-
   lesson3c %>%
@@ -3952,7 +4012,7 @@ skim(lesson3c$delta12)
 ```
 
 
-Table: (\#tab:week3k)Data summary
+Table: (\#tab:week3k1)Data summary
 
 |                         |                 |
 |:------------------------|:----------------|
@@ -3974,7 +4034,28 @@ Table: (\#tab:week3k)Data summary
 
 As it turns out, the distribution of differences between pain scores are normally distributed even though pain at time 2 does not have a normal distribution. In fact, this is almost always the case. 
 
-Now let's compare t2 and t3. Again, no significant difference. Does this mean that pain does not decrease after an operation? Of course, we know that pain does indeed get better. This illustrates two points: first, don't ask questions you know the answer to; second, asking lots of questions (is pain on day 2 better than on day 1?; is pain on day 3 better on day 2?) is not as good as just asking one question: does pain decrease over time? We'll discuss how to answer this question later on in the course.
+Now let's compare t2 and t3.
+
+
+``` r
+t.test(lesson3c$t2, lesson3c$t3, paired = TRUE, var.equal = TRUE)
+```
+
+```
+## 
+## 	Paired t-test
+## 
+## data:  lesson3c$t2 and lesson3c$t3
+## t = 1.2501, df = 21, p-value = 0.225
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -0.2412859  0.9685587
+## sample estimates:
+## mean difference 
+##       0.3636364
+```
+
+Again, no significant difference. Does this mean that pain does not decrease after an operation? Of course, we know that pain does indeed get better. This illustrates two points: first, don't ask questions you know the answer to; second, asking lots of questions (is pain on day 2 better than on day 1?; is pain on day 3 better on day 2?) is not as good as just asking one question: does pain decrease over time? We'll discuss how to answer this question later on in the course.
 
 ### lesson3d
 
@@ -3987,7 +4068,7 @@ There are two ways of doing the t-test:
 1) Test whether the baseline scores are different from the post-treatment scores:
 
 
-```r
+``` r
 # paired t-test for before and after pain scores
 t.test(lesson3d$b, lesson3d$a, paired = TRUE, var.equal = TRUE)
 ```
@@ -4009,7 +4090,7 @@ t.test(lesson3d$b, lesson3d$a, paired = TRUE, var.equal = TRUE)
 2) Test whether the difference between scores is different from zero:
 
 
-```r
+``` r
 # t-test for whether difference between before and after scores is different than zero
 t.test(lesson3d$d, mu = 0)
 ```
@@ -4033,7 +4114,7 @@ Both methods give you an identical p-value of <0.001. But note, I didn’t ask f
 BTW: for those who are interested, acupuncture has been shown to improve neck pain and range of motion in a controlled trial, see: [Irnich, Behrens et al., Immediate effects of dry needling and acupuncture at distant points in chronic neck pain: results of a randomized, double-blind, sham-controlled crossover trial.](https://www.ncbi.nlm.nih.gov/pubmed/12237186)
 
 
-```r
+``` r
 # Test whether proportion of women is different from 50%
 binom.test(sum(lesson3d$sex), nrow(lesson3d %>% filter(!is.na(sex))), p = 0.5)
 ```
@@ -4055,7 +4136,7 @@ binom.test(sum(lesson3d$sex), nrow(lesson3d %>% filter(!is.na(sex))), p = 0.5)
 Only about a quarter of the patients are women, and the binomial test gives a p-value of 0.009, suggesting that men are over-represented in this trial. But is this important?
 
 
-```r
+``` r
 # t-test for whether age is significantly different from 58.2
 t.test(lesson3d$age, mu = 58.2)
 ```
@@ -4083,7 +4164,7 @@ Similarly, this t-test for age gives a p-value of 0.030, but I doubt anyone woul
 Well, before running off and doing t-tests, let’s have a look at the data: 
 
 
-```r
+``` r
 # Summarize data by hospital
 lesson3e %>%
   group_by(hospital) %>%
@@ -4119,7 +4200,7 @@ For advanced students only:
 The data are non-normally distributed so you could try a log transform: 
 
 
-```r
+``` r
 # Create variable for log of length of stay
 lesson3e <-
   lesson3e %>%
@@ -4129,9 +4210,9 @@ lesson3e <-
 The distribution of this new variable for both groups combined is normal, therefore data in each group will be normal. Try a t-test:
 
 
-```r
+``` r
 # paired t-test using log of length of stay as outcome
-t.test(loglos ~ hospital, data = lesson3e, paired = FALSE, var.equal = TRUE)
+t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE)
 ```
 
 ```
@@ -4161,9 +4242,9 @@ To backtransform these values, you have to remember that addition on a log scale
 You will want to do an unpaired t-test or non-parametric test on these data. 
 
 
-```r
+``` r
 # unpaired t-test for change in pain by physiotherapy group
-t.test(delta ~ physio, data = lesson3f, paired = FALSE, var.equal = TRUE)
+t.test(delta ~ physio, data = lesson3f, var.equal = TRUE)
 ```
 
 ```
@@ -4195,7 +4276,7 @@ An alternative conclusion, which I think I actually prefer, would be to focus on
 ## Week 4
 
 
-```r
+``` r
 # Week 4: load packages
 library(skimr)
 library(gt)
@@ -4223,7 +4304,7 @@ lesson4e <- readRDS(here::here("Data", "Week 4", "lesson4e.rds"))
 To have a quick look at the data, create a two-by-two table:
 
 
-```r
+``` r
 # Create formatted table of nausea/vomiting by car sickness history
 tbl_summary(
   lesson4a %>% select(nv, cs),
@@ -4672,14 +4753,24 @@ tbl_summary(
 #urdayvtajf .gt_indent_5 {
   text-indent: 25px;
 }
+
+#urdayvtajf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#urdayvtajf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 6&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 6<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 9&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 9<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 6</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 9</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -4696,7 +4787,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -4708,7 +4799,7 @@ tbl_summary(
 This shows, for example, 56% of those who get car sick reported problematic nausea compared to only 33% of those who aren't prone to car sickness. To find out whether this is statistically significant (it certainly seems clinically significant), you can use the `chisq.test` or the `fisher.test` function. For the `chisq.test` function, remember to use the `correct = FALSE` option to get the p-value without continuity correction.
 
 
-```r
+``` r
 # Chi squared test
 chisq.test(table(lesson4a$nv, lesson4a$cs), correct = FALSE)
 ```
@@ -4721,7 +4812,7 @@ chisq.test(table(lesson4a$nv, lesson4a$cs), correct = FALSE)
 ## X-squared = 0.71429, df = 1, p-value = 0.398
 ```
 
-```r
+``` r
 # Fisher's exact test
 fisher.test(table(lesson4a$nv, lesson4a$cs))
 ```
@@ -4749,7 +4840,7 @@ fisher.test(table(lesson4a$nv, lesson4a$cs))
 For point 3, you need the confidence interval. You get this by using the `epi.2by2` command. Remember that if you want to compare the "exposed" to the "non-exposed" group, you will need to use the `factor` function and reverse the sort order for the two variables.
 
 
-```r
+``` r
 # Confidence interval for difference between groups
 epi.2by2(
   table(
@@ -4800,7 +4891,7 @@ This gives a "risk ratio" (same as relative risk) of 1.67 with a 95% CI 0.47, 5.
 There are three levels of meat consumption. The outcome (hypertension) is binary, either 1 or 0. So we will have a 3 by 2 table. Let’s start with a quick look:
 
 
-```r
+``` r
 # Formatted table of meat consumption by hypertension status
 tbl_summary(
   lesson4b %>% select(meat, hbp),
@@ -5248,14 +5339,24 @@ tbl_summary(
 #lwczjxtfnq .gt_indent_5 {
   text-indent: 25px;
 }
+
+#lwczjxtfnq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lwczjxtfnq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 35&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 35<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 71&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 71<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 35</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 71</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -5275,7 +5376,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -5287,7 +5388,7 @@ This would tell you, for example, that of the patients with hypertension, 59% at
 You also could have created this table:
 
 
-```r
+``` r
 # Formatted table of meat consumption by hypertension status (row percents)
 tbl_summary(
   lesson4b %>% select(meat, hbp),
@@ -5736,14 +5837,24 @@ tbl_summary(
 #wvoyvwijke .gt_indent_5 {
   text-indent: 25px;
 }
+
+#wvoyvwijke .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wvoyvwijke div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 35&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 35<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 71&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 71<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 35</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 71</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -5763,7 +5874,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -5775,7 +5886,7 @@ These tables show the number and percentages of patients with hypertension in ea
 To assess statistical significance, use the `chisq.test` function with the hypertension by meat consumption table as the input.
 
 
-```r
+``` r
 # Chi squared test for association between meat consumption and hypertension
 chisq.test(table(lesson4b$hbp, lesson4b$meat), correct = FALSE)
 ```
@@ -5791,7 +5902,7 @@ chisq.test(table(lesson4b$hbp, lesson4b$meat), correct = FALSE)
 The p-value is p=0.005. How to interpret this? The formal statistical interpretation is that we can reject the null hypothesis that rates of hypertension are the same in each group. To demonstrate this, try renumbering the labels for the variable meat:
 
 
-```r
+``` r
 # Change values of meat consumption variable
 lesson4b_changed <-
   lesson4b %>%
@@ -5821,7 +5932,7 @@ You get exactly the same result. This demonstrates that: a) the numbers you use 
 So it might be useful to do what are called "pairwise" comparisons: what difference is there in the rate of hypertension between low and medium meat eaters? What about high and low? Though there are three possible comparisons (hi v. lo; hi v. med; med v. lo), it is more usual to chose either the highest or lowest category and compare everything to that. The way to do these analyses is to create new variables. The code is given below (the #s are comments that are ignored by R).
 
 
-```r
+``` r
 # Create a new variable "c1" which is "1" if meat consumption is high and "0" if it is medium
 # "c1" is missing for low meat consumption: these patients are left out of the analysis
 lesson4b <-
@@ -5868,7 +5979,7 @@ epi.2by2(
 
 
 
-```r
+``` r
 # Compare high vs low consumption
 # "c2" is "1" if meat consumption is high and "0" if it is low
 # "c2" is missing for medium meat consumption: these patients are left out of the analysis
@@ -6364,15 +6475,26 @@ What these commands do is to create new variables (c1 and c2) that are used inst
 #ijstdxkaal .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ijstdxkaal .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ijstdxkaal div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;No Hypertension&lt;/strong&gt;, N = 35&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>No Hypertension</strong>, N = 35<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Hypertension&lt;/strong&gt;, N = 71&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>Hypertension</strong>, N = 71<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Overall&lt;/strong&gt;, N = 106&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>Overall</strong>, N = 106<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>No Hypertension</strong><br />
+N = 35</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>Hypertension</strong><br />
+N = 71</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>Overall</strong><br />
+N = 106</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -6396,7 +6518,7 @@ What these commands do is to create new variables (c1 and c2) that are used inst
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -6416,7 +6538,7 @@ You may have noticed that my model answer did not actually answer the question. 
 It is immediately obvious from this table that there are very few patients who are homozygous mutant type.
 
 
-```r
+``` r
 # Formatted two-way table of genes by toxicity outcome
 tbl_summary(
   lesson4c %>% select(gene, toxicity),
@@ -6864,14 +6986,24 @@ tbl_summary(
 #xvkjrdadrg .gt_indent_5 {
   text-indent: 25px;
 }
+
+#xvkjrdadrg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xvkjrdadrg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 204&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 204<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 100&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 100<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 204</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 100</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -6891,7 +7023,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -6901,7 +7033,7 @@ tbl_summary(
 It would seem appropriate to combine heterozygotes and homozygous mutant type into a single category. You might be tempted to type `lesson4c %>% mutate(gene = if_else(gene == 2, 1, gene))`. But you should avoid changing raw data in this way: it would be preferable to create a new variable as follows:
 
 
-```r
+``` r
 # Create binary variable grouping the values of "1" and "2" for gene
 lesson4c <-
   lesson4c %>%
@@ -7361,15 +7493,26 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
 #gqcfdyzmmt .gt_indent_5 {
   text-indent: 25px;
 }
+
+#gqcfdyzmmt .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gqcfdyzmmt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;No Grade III/IV Toxicity&lt;/strong&gt;, N = 204&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>No Grade III/IV Toxicity</strong>, N = 204<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Grade III/IV Toxicity&lt;/strong&gt;, N = 100&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>Grade III/IV Toxicity</strong>, N = 100<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Overall&lt;/strong&gt;, N = 304&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>Overall</strong>, N = 304<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>No Grade III/IV Toxicity</strong><br />
+N = 204</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>Grade III/IV Toxicity</strong><br />
+N = 100</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>Overall</strong><br />
+N = 304</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -7393,7 +7536,7 @@ The results of the study are shown in the table. Very few participants (6 (2.0%)
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -7421,7 +7564,7 @@ A common mistake would be to use `epi.2by2` with "response" and "sex". However, 
 To do this analysis, we first need to split the dataset up into two groups, one dataset including only men and the other including only women. You can use the `filter` function that you've previously seen to separate out males and females into different data sets. Here, sex is categorized as 0 for male and 1 for female.
 
 
-```r
+``` r
 # Use "filter" to select only male patients
 lesson4d_males <-
   lesson4d %>%
@@ -7437,7 +7580,7 @@ table(lesson4d_males$sex)
 ## 294
 ```
 
-```r
+``` r
 # Use "filter" to select only female patients
 lesson4d_females <-
   lesson4d %>%
@@ -7453,7 +7596,7 @@ table(lesson4d_females$sex)
 ## 106
 ```
 
-```r
+``` r
 # Males (sex == 0)
 epi.2by2(
   table(
@@ -7485,7 +7628,7 @@ epi.2by2(
 ##  * Outcomes per 100 population units
 ```
 
-```r
+``` r
 # Females (sex == 1)
 epi.2by2(
   table(
@@ -7522,7 +7665,7 @@ What you get is a statistically significant difference between treatment groups 
 Testing age is a little more difficult as it is a continuous variable. One typical approach might be to create two sub-groups depending on the median. First, `quantile(lesson4d$age, c(0.5), na.rm = TRUE)` gives a median age of 43. So:
 
 
-```r
+``` r
 # Use "filter" again to select age
 lesson4d_younger <-
   lesson4d %>%
@@ -7563,7 +7706,7 @@ epi.2by2(
 ##  * Outcomes per 100 population units
 ```
 
-```r
+``` r
 # Older patients
 epi.2by2(
   table(
@@ -7616,7 +7759,7 @@ The obvious thing to do would be to use `epi.2by2` with "cancer" and "gene1", an
 A BIG HOWEVER - have a look at the data or this table:
 
 
-```r
+``` r
 # Formatted table of gene1 by gene2
 tbl_summary(
   lesson4e %>% select(gene1, gene2),
@@ -8065,14 +8208,24 @@ tbl_summary(
 #vjzetravkv .gt_indent_5 {
   text-indent: 25px;
 }
+
+#vjzetravkv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vjzetravkv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 12&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 12<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 12&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 12<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 12</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 12</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -8089,7 +8242,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -8103,7 +8256,7 @@ The experimental design was to knockout no genes in some animals, gene1 in some 
 ## Week 5
 
 
-```r
+``` r
 # Week 5: load packages
 library(skimr)
 library(gt)
@@ -8135,7 +8288,7 @@ lesson5i <- readRDS(here::here("Data", "Week 5", "lesson5i.rds"))
 My guess here is that we are going to want to do a regression analysis. This would allow us to quantify the association between the various predictor variables and race time. For example, it would be interesting to know not only that number of weekly training miles is correlated with race time, but by how much you can reduce your race time if you increased your training by a certain amount. Our dependent variable is "rt" (race time in minutes), so we could type:
 
 
-```r
+``` r
 # Create linear regression model for race time
 rt_model <- lm(rt ~ age + sex + tr + wt, data = lesson5a)
 
@@ -8621,13 +8774,21 @@ The p-values for all the predictor variables apart from weight are very low. A m
 #fktzocbrqe .gt_indent_5 {
   text-indent: 25px;
 }
+
+#fktzocbrqe .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#fktzocbrqe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 217&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 217</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 217</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -8645,7 +8806,7 @@ The p-values for all the predictor variables apart from weight are very low. A m
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD); n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Mean (SD); n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -9095,39 +9256,47 @@ The p-values for all the predictor variables apart from weight are very low. A m
 #stdsijydij .gt_indent_5 {
   text-indent: 25px;
 }
+
+#stdsijydij .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#stdsijydij div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Beta</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">Age (years)</td>
 <td headers="estimate" class="gt_row gt_center">0.81</td>
-<td headers="ci" class="gt_row gt_center">0.31, 1.3</td>
+<td headers="conf.low" class="gt_row gt_center">0.31, 1.3</td>
 <td headers="p.value" class="gt_row gt_center">0.002</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Female</td>
 <td headers="estimate" class="gt_row gt_center">23</td>
-<td headers="ci" class="gt_row gt_center">11, 35</td>
+<td headers="conf.low" class="gt_row gt_center">11, 35</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Training miles per week</td>
 <td headers="estimate" class="gt_row gt_center">-1.5</td>
-<td headers="ci" class="gt_row gt_center">-1.9, -1.1</td>
+<td headers="conf.low" class="gt_row gt_center">-1.9, -1.1</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Weight (kg)</td>
 <td headers="estimate" class="gt_row gt_center">0.05</td>
-<td headers="ci" class="gt_row gt_center">-0.29, 0.39</td>
+<td headers="conf.low" class="gt_row gt_center">-0.29, 0.39</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -9141,7 +9310,7 @@ A couple of thoughts. First, you will note that I didn’t remove weight from th
 Second, race time is not normally distributed and the textbooks would have us believe that this invalidates a regression analysis. Let’s try:
 
 
-```r
+``` r
 # Create variable for log of race time
 lesson5a <-
   lesson5a %>%
@@ -9188,7 +9357,7 @@ _For advanced students only_
 It might be interesting to compare the coefficients from the untransformed and log transformed models. For example, women are predicted to run about 23 minutes slower on the untransformed model; the coefficient in the log model is 0.098. Backtransform by typing ``exp(0.098)`` and you get 1.10. Remember that backtransforming gives you a proportion. So to work out the difference between men and women in race time, first work out the average men’s time:
 
 
-```r
+``` r
 # Get the average time for men
 lesson5a %>%
   filter(sex == 0) %>% # Select only males
@@ -9227,7 +9396,7 @@ Subtract one from the other to get 24.6 minutes difference in race time between 
 What you are trying to predict here is binary (mutation / no mutation). You are predicting with a continuous variable (length of disease). So a logistic regression would work nicely. Try:
 
 
-```r
+``` r
 # Create logistic regression model
 mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
 
@@ -9675,27 +9844,35 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 #rlwtdwdhoh .gt_indent_5 {
   text-indent: 25px;
 }
+
+#rlwtdwdhoh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rlwtdwdhoh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">c</td>
 <td headers="estimate" class="gt_row gt_center">0.99</td>
-<td headers="ci" class="gt_row gt_center">0.96, 1.02</td>
+<td headers="conf.low" class="gt_row gt_center">0.96, 1.02</td>
 <td headers="p.value" class="gt_row gt_center">0.7</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -9705,7 +9882,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 If you get a p-value of around 0.7, you haven't been inspecting your data. One patient has apparently had the disease for 154 years. Either this is a freak of nature or the study assistant meant to type 14 or 15. You need to delete this observation from the dataset and try the model again:
 
 
-```r
+``` r
 # Use "filter" to exclude patients with outlying disease duration
 lesson5b <-
   lesson5b %>%
@@ -10158,27 +10335,35 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 #gnwvobbuyn .gt_indent_5 {
   text-indent: 25px;
 }
+
+#gnwvobbuyn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gnwvobbuyn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">c</td>
 <td headers="estimate" class="gt_row gt_center">1.14</td>
-<td headers="ci" class="gt_row gt_center">1.03, 1.27</td>
+<td headers="conf.low" class="gt_row gt_center">1.03, 1.27</td>
 <td headers="p.value" class="gt_row gt_center">0.014</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -10186,7 +10371,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 ```
 
 
-```r
+``` r
 # Formatted results in logits
 tbl_regression(mutate_model, exponentiate = FALSE)
 ```
@@ -10631,27 +10816,35 @@ tbl_regression(mutate_model, exponentiate = FALSE)
 #aqjkscolnb .gt_indent_5 {
   text-indent: 25px;
 }
+
+#aqjkscolnb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#aqjkscolnb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;log(OR)&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>log(OR)</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>log(OR)</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">c</td>
 <td headers="estimate" class="gt_row gt_center">0.13</td>
-<td headers="ci" class="gt_row gt_center">0.03, 0.24</td>
+<td headers="conf.low" class="gt_row gt_center">0.03, 0.24</td>
 <td headers="p.value" class="gt_row gt_center">0.014</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -10665,7 +10858,7 @@ After fixing the data, you will now find an association (p=0.014). Using the `tb
 You can get the constant or intercept term from the `tbl_regression` function by using the `intercept = TRUE` option, and the coefficients in logits using the `exponentiate = FALSE` option.
 
 
-```r
+``` r
 # Results in logits
 # The "intercept = TRUE" option includes the constant in the table
 tbl_regression(mutate_model,
@@ -11113,31 +11306,39 @@ tbl_regression(mutate_model,
 #ffoercdbxo .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ffoercdbxo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ffoercdbxo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;log(OR)&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>log(OR)</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>log(OR)</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
 <td headers="estimate" class="gt_row gt_center">-0.94</td>
-<td headers="ci" class="gt_row gt_center">-2.0, 0.08</td>
+<td headers="conf.low" class="gt_row gt_center">-2.0, 0.08</td>
 <td headers="p.value" class="gt_row gt_center">0.076</td></tr>
     <tr><td headers="label" class="gt_row gt_left">c</td>
 <td headers="estimate" class="gt_row gt_center">0.13</td>
-<td headers="ci" class="gt_row gt_center">0.03, 0.24</td>
+<td headers="conf.low" class="gt_row gt_center">0.03, 0.24</td>
 <td headers="p.value" class="gt_row gt_center">0.014</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -11153,7 +11354,7 @@ Take someone who has had the disease for 10 years. Their logit is 10 times the c
 If you wanted to get flashy, you could work out the risk for each year between 2 and 18 and get a graph. But R can do this automatically for you: you can create a variable with the risk of mutation for each observation based on the duration of disease using the `augment` function. The column that contains the risk is called ".fitted". Since this is a logistic regression model, we also need to specify `type.predict = "response"` to get the predicted probabilities.
 
 
-```r
+``` r
 # Create predictions
 lesson5b_pred <-
   augment(mutate_model,
@@ -11180,7 +11381,7 @@ lesson5b_pred
 ## # ℹ 114 more rows
 ```
 
-```r
+``` r
 # Graph over disease duration
 # Tells the plot what data to use, and what variables correspond
 # to the x and y axes
@@ -11203,7 +11404,7 @@ You can also use the `augment` function for linear regression and multivariable 
 Try this:
 
 
-```r
+``` r
 # Reopen lesson5b dataset
 lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
 
@@ -11651,27 +11852,35 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 #fccvjjaiig .gt_indent_5 {
   text-indent: 25px;
 }
+
+#fccvjjaiig .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#fccvjjaiig div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">c</td>
 <td headers="estimate" class="gt_row gt_center">1.14</td>
-<td headers="ci" class="gt_row gt_center">1.03, 1.27</td>
+<td headers="conf.low" class="gt_row gt_center">1.03, 1.27</td>
 <td headers="p.value" class="gt_row gt_center">0.014</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -11679,7 +11888,7 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 ```
 
 
-```r
+``` r
 # Create new values for "c" (disease duration)
 lesson5b_new <-
   lesson5b %>%
@@ -11711,7 +11920,7 @@ ggplot(data = lesson5b_pred_new,
 A key first question: what are we likely to be interested in? For example, total population and unemployment rate will have no illuminating relationship whatsoever and we wouldn’t want to analyze the association between these two. The link between unemployment and life expectancy seems more interesting. Before we start doing the analysis however, we need to look at the data.
 
 
-```r
+``` r
 # Open up dataset to view observations
 View(lesson5c)
 ```
@@ -11719,7 +11928,7 @@ View(lesson5c)
 It seems that there are not only data for each province separately but for Canada as a whole. Clearly we would have to delete this row as it is not an independent observation.
 
 
-```r
+``` r
 # Remove the observation for all of Canada from dataset
 lesson5c_fixed <-
   lesson5c %>%
@@ -11729,7 +11938,7 @@ lesson5c_fixed <-
 Now, we could just correlate the three variables together: 
 
 
-```r
+``` r
 # Calculate correlation between unemployment and male/female life expectancy
 # There are missing values for unemployment,
 # so we need to indicate that we only want to use "complete observations"
@@ -11751,7 +11960,7 @@ We might also want to go on and do some regressions. We probably wouldn’t ever
 Try these regression models:
 
 
-```r
+``` r
 # Create linear regression model for male life expectancy
 mlife_model <- lm(mlife ~ unemp, data = lesson5c_fixed)
 tbl_regression(mlife_model)
@@ -12197,27 +12406,35 @@ tbl_regression(mlife_model)
 #zsjqipmubt .gt_indent_5 {
   text-indent: 25px;
 }
+
+#zsjqipmubt .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zsjqipmubt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Beta</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">% 15+ population unemployed, 1995</td>
 <td headers="estimate" class="gt_row gt_center">-0.10</td>
-<td headers="ci" class="gt_row gt_center">-0.18, -0.03</td>
+<td headers="conf.low" class="gt_row gt_center">-0.18, -0.03</td>
 <td headers="p.value" class="gt_row gt_center">0.014</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -12225,7 +12442,7 @@ tbl_regression(mlife_model)
 ```
 
 
-```r
+``` r
 # Create linear regression model for female life expectancy
 flife_model <- lm(flife ~ unemp, data = lesson5c_fixed)
 tbl_regression(flife_model)
@@ -12671,27 +12888,35 @@ tbl_regression(flife_model)
 #wzmbmwxqki .gt_indent_5 {
   text-indent: 25px;
 }
+
+#wzmbmwxqki .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wzmbmwxqki div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Beta</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">% 15+ population unemployed, 1995</td>
 <td headers="estimate" class="gt_row gt_center">-0.08</td>
-<td headers="ci" class="gt_row gt_center">-0.17, 0.00</td>
+<td headers="conf.low" class="gt_row gt_center">-0.17, 0.00</td>
 <td headers="p.value" class="gt_row gt_center">0.058</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -12711,7 +12936,7 @@ Even more interesting question: the conclusion of a 5% drop in unemployment bein
 This is a straightforward linear regression that shows a significant decrease in log tumor size with increasing dose.
 
 
-```r
+``` r
 # Create linear regression model for tumor size
 tumorsize_model <- lm(s ~ dose, data = lesson5d)
 summary(tumorsize_model)
@@ -13195,13 +13420,21 @@ My model answer would be:
 #eqgvpitsks .gt_indent_5 {
   text-indent: 25px;
 }
+
+#eqgvpitsks .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#eqgvpitsks div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Dose">Dose</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Mean (SD)">Mean (SD)</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="dose">Dose</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">Mean (SD)</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -13227,7 +13460,7 @@ My model answer would be:
 This is a fairly simple analysis: the outcome is binary and as we want to make predictions we are going to want a logistic regression. It would be tempting just to throw all the variables into the analysis:
 
 
-```r
+``` r
 # Create multivariable logistic regression model for CAM
 cam_model1 <- glm(CAM ~ age + t + mets + u + q18 + e + m + ses,
                   data = lesson5e,
@@ -13675,55 +13908,63 @@ tbl_regression(cam_model1, exponentiate = TRUE)
 #znlhemcpia .gt_indent_5 {
   text-indent: 25px;
 }
+
+#znlhemcpia .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#znlhemcpia div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">0.97</td>
-<td headers="ci" class="gt_row gt_center">0.95, 0.99</td>
+<td headers="conf.low" class="gt_row gt_center">0.95, 0.99</td>
 <td headers="p.value" class="gt_row gt_center">0.004</td></tr>
     <tr><td headers="label" class="gt_row gt_left">time since diagnosis</td>
 <td headers="estimate" class="gt_row gt_center">1.02</td>
-<td headers="ci" class="gt_row gt_center">0.91, 1.15</td>
+<td headers="conf.low" class="gt_row gt_center">0.91, 1.15</td>
 <td headers="p.value" class="gt_row gt_center">0.7</td></tr>
     <tr><td headers="label" class="gt_row gt_left">distant metastases?</td>
 <td headers="estimate" class="gt_row gt_center">1.45</td>
-<td headers="ci" class="gt_row gt_center">0.12, 15.3</td>
+<td headers="conf.low" class="gt_row gt_center">0.12, 15.3</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">used CAM before diagnosis?</td>
 <td headers="estimate" class="gt_row gt_center">7.40</td>
-<td headers="ci" class="gt_row gt_center">4.23, 13.5</td>
+<td headers="conf.low" class="gt_row gt_center">4.23, 13.5</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">qualifications after 18?</td>
 <td headers="estimate" class="gt_row gt_center">2.07</td>
-<td headers="ci" class="gt_row gt_center">1.16, 3.73</td>
+<td headers="conf.low" class="gt_row gt_center">1.16, 3.73</td>
 <td headers="p.value" class="gt_row gt_center">0.015</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age left education</td>
 <td headers="estimate" class="gt_row gt_center">0.93</td>
-<td headers="ci" class="gt_row gt_center">0.83, 1.02</td>
+<td headers="conf.low" class="gt_row gt_center">0.83, 1.02</td>
 <td headers="p.value" class="gt_row gt_center">0.2</td></tr>
     <tr><td headers="label" class="gt_row gt_left">manual trade?</td>
 <td headers="estimate" class="gt_row gt_center">1.19</td>
-<td headers="ci" class="gt_row gt_center">0.39, 3.61</td>
+<td headers="conf.low" class="gt_row gt_center">0.39, 3.61</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">socioeconomic status 1 - 5</td>
 <td headers="estimate" class="gt_row gt_center">0.81</td>
-<td headers="ci" class="gt_row gt_center">0.54, 1.22</td>
+<td headers="conf.low" class="gt_row gt_center">0.54, 1.22</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -13755,7 +13996,7 @@ There is no way of telling these apart in terms of regression. Bottom line: care
 So I would start with the full model and then remove the least predictive of socioeconomic status and manual trade, and the least predictive of qualification and age left education. You end up with:
 
 
-```r
+``` r
 # Create logistic regression model for CAM removing "e" and "m"
 cam_model2 <- glm(CAM ~ age + t + mets + u + q18 + ses,
                   data = lesson5e,
@@ -14203,47 +14444,55 @@ tbl_regression(cam_model2, exponentiate = TRUE)
 #natakocqvf .gt_indent_5 {
   text-indent: 25px;
 }
+
+#natakocqvf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#natakocqvf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">0.97</td>
-<td headers="ci" class="gt_row gt_center">0.95, 0.99</td>
+<td headers="conf.low" class="gt_row gt_center">0.95, 0.99</td>
 <td headers="p.value" class="gt_row gt_center">0.004</td></tr>
     <tr><td headers="label" class="gt_row gt_left">time since diagnosis</td>
 <td headers="estimate" class="gt_row gt_center">1.02</td>
-<td headers="ci" class="gt_row gt_center">0.91, 1.15</td>
+<td headers="conf.low" class="gt_row gt_center">0.91, 1.15</td>
 <td headers="p.value" class="gt_row gt_center">0.7</td></tr>
     <tr><td headers="label" class="gt_row gt_left">distant metastases?</td>
 <td headers="estimate" class="gt_row gt_center">1.36</td>
-<td headers="ci" class="gt_row gt_center">0.11, 14.8</td>
+<td headers="conf.low" class="gt_row gt_center">0.11, 14.8</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">used CAM before diagnosis?</td>
 <td headers="estimate" class="gt_row gt_center">7.21</td>
-<td headers="ci" class="gt_row gt_center">4.16, 12.9</td>
+<td headers="conf.low" class="gt_row gt_center">4.16, 12.9</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">qualifications after 18?</td>
 <td headers="estimate" class="gt_row gt_center">1.71</td>
-<td headers="ci" class="gt_row gt_center">1.04, 2.80</td>
+<td headers="conf.low" class="gt_row gt_center">1.04, 2.80</td>
 <td headers="p.value" class="gt_row gt_center">0.033</td></tr>
     <tr><td headers="label" class="gt_row gt_left">socioeconomic status 1 - 5</td>
 <td headers="estimate" class="gt_row gt_center">0.88</td>
-<td headers="ci" class="gt_row gt_center">0.73, 1.07</td>
+<td headers="conf.low" class="gt_row gt_center">0.73, 1.07</td>
 <td headers="p.value" class="gt_row gt_center">0.2</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -14253,7 +14502,7 @@ tbl_regression(cam_model2, exponentiate = TRUE)
 Now it appears that "q18" is predictive but not "ses". So try removing one of these from the model in turn:
 
 
-```r
+``` r
 # Create logistic regression model for CAM removing "q18"
 cam_model3 <- glm(CAM ~ age + t + mets + u + ses,
                   data = lesson5e,
@@ -14701,43 +14950,51 @@ tbl_regression(cam_model3, exponentiate = TRUE)
 #guzisrxorj .gt_indent_5 {
   text-indent: 25px;
 }
+
+#guzisrxorj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#guzisrxorj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">0.97</td>
-<td headers="ci" class="gt_row gt_center">0.95, 0.99</td>
+<td headers="conf.low" class="gt_row gt_center">0.95, 0.99</td>
 <td headers="p.value" class="gt_row gt_center">0.002</td></tr>
     <tr><td headers="label" class="gt_row gt_left">time since diagnosis</td>
 <td headers="estimate" class="gt_row gt_center">1.04</td>
-<td headers="ci" class="gt_row gt_center">0.93, 1.17</td>
+<td headers="conf.low" class="gt_row gt_center">0.93, 1.17</td>
 <td headers="p.value" class="gt_row gt_center">0.5</td></tr>
     <tr><td headers="label" class="gt_row gt_left">distant metastases?</td>
 <td headers="estimate" class="gt_row gt_center">1.23</td>
-<td headers="ci" class="gt_row gt_center">0.10, 13.4</td>
+<td headers="conf.low" class="gt_row gt_center">0.10, 13.4</td>
 <td headers="p.value" class="gt_row gt_center">0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">used CAM before diagnosis?</td>
 <td headers="estimate" class="gt_row gt_center">7.65</td>
-<td headers="ci" class="gt_row gt_center">4.45, 13.6</td>
+<td headers="conf.low" class="gt_row gt_center">4.45, 13.6</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">socioeconomic status 1 - 5</td>
 <td headers="estimate" class="gt_row gt_center">0.78</td>
-<td headers="ci" class="gt_row gt_center">0.66, 0.93</td>
+<td headers="conf.low" class="gt_row gt_center">0.66, 0.93</td>
 <td headers="p.value" class="gt_row gt_center">0.005</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -14745,7 +15002,7 @@ tbl_regression(cam_model3, exponentiate = TRUE)
 ```
 
 
-```r
+``` r
 # Create logistic regression model for CAM removing "ses"
 cam_model4 <- glm(CAM ~ age + t + mets + u + q18,
                   data = lesson5e,
@@ -15193,43 +15450,51 @@ tbl_regression(cam_model4, exponentiate = TRUE)
 #rhjiljgvpv .gt_indent_5 {
   text-indent: 25px;
 }
+
+#rhjiljgvpv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rhjiljgvpv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">0.96</td>
-<td headers="ci" class="gt_row gt_center">0.94, 0.97</td>
+<td headers="conf.low" class="gt_row gt_center">0.94, 0.97</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">time since diagnosis</td>
 <td headers="estimate" class="gt_row gt_center">1.01</td>
-<td headers="ci" class="gt_row gt_center">0.92, 1.12</td>
+<td headers="conf.low" class="gt_row gt_center">0.92, 1.12</td>
 <td headers="p.value" class="gt_row gt_center">0.8</td></tr>
     <tr><td headers="label" class="gt_row gt_left">distant metastases?</td>
 <td headers="estimate" class="gt_row gt_center">0.85</td>
-<td headers="ci" class="gt_row gt_center">0.08, 6.83</td>
+<td headers="conf.low" class="gt_row gt_center">0.08, 6.83</td>
 <td headers="p.value" class="gt_row gt_center">0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">used CAM before diagnosis?</td>
 <td headers="estimate" class="gt_row gt_center">7.32</td>
-<td headers="ci" class="gt_row gt_center">4.48, 12.3</td>
+<td headers="conf.low" class="gt_row gt_center">4.48, 12.3</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">qualifications after 18?</td>
 <td headers="estimate" class="gt_row gt_center">1.90</td>
-<td headers="ci" class="gt_row gt_center">1.28, 2.82</td>
+<td headers="conf.low" class="gt_row gt_center">1.28, 2.82</td>
 <td headers="p.value" class="gt_row gt_center">0.002</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -15251,7 +15516,7 @@ It turns out that both are predictive independently, but not together. When you 
 Well the obvious thing to do would be a linear regression:
 
 
-```r
+``` r
 # Create linear regression model for distance
 frisbee_model <- lm(distance ~ age, data = lesson5f)
 summary(frisbee_model)
@@ -15281,7 +15546,7 @@ summary(frisbee_model)
 You get a coefficient of 1.62, meaning that the furthest a man can throw a Frisbee increases by 1.62 meters every year. But of course this is nonsense: you can’t throw further and further each year, athletic ability starts to decline with age. You can see this on a graph:
 
 
-```r
+``` r
 # Scatterplot of distance by age
 ggplot(data = lesson5f,
        aes(x = age, y = distance)) + 
@@ -15297,7 +15562,7 @@ _For advanced students only:_
 Often the relationship between an $x$ and a $y$ does not follow a straight line. You may remember from high school that one way to get a curve is to have a quadratic equation including both $x$ and $x^2$. So you have to create a new variable called age2 using `mutate(age2 = age^2)` and regress:
 
 
-```r
+``` r
 # Create new variable for age squared
 lesson5f <-
   lesson5f %>%
@@ -15356,7 +15621,7 @@ The first thing to do here is to do the sub-group analysis, just to get a feel f
 Try this:
 
 
-```r
+``` r
 # For men
 tbl_summary(
   lesson5g %>% filter(sex == 0) %>% select(response, chemo),
@@ -15805,14 +16070,24 @@ tbl_summary(
 #rmbnlfjtsk .gt_indent_5 {
   text-indent: 25px;
 }
+
+#rmbnlfjtsk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rmbnlfjtsk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 138&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 138<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 156&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 156<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 138</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 156</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -15829,14 +16104,14 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
 </div>
 ```
 
-```r
+``` r
 # For women
 tbl_summary(
   lesson5g %>% filter(sex == 1) %>% select(response, chemo),
@@ -16285,14 +16560,24 @@ tbl_summary(
 #fjpfjyeazg .gt_indent_5 {
   text-indent: 25px;
 }
+
+#fjpfjyeazg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#fjpfjyeazg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 62&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 62<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 44&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 44<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 62</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 44</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -16309,14 +16594,14 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
 </div>
 ```
 
-```r
+``` r
 # Here, the "summarize" function stores out the p-values for the chi-squared test by sex
 lesson5g %>%
   group_by(sex) %>%
@@ -16336,7 +16621,7 @@ lesson5g %>%
 This shows that regime b is better for men (51% vs 39% response rate, p=0.037). For women, there doesn't seem to be a difference between groups. The next thing to check is whether sex in general makes a difference to response:
 
 
-```r
+``` r
 # Create two-way table of response by sex
 tbl_summary(
   lesson5g %>% select(response, sex),
@@ -16785,14 +17070,24 @@ tbl_summary(
 #qplrmavzgy .gt_indent_5 {
   text-indent: 25px;
 }
+
+#qplrmavzgy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qplrmavzgy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 294&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 294<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 106&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 106<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 294</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 106</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -16809,14 +17104,14 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
 </div>
 ```
 
-```r
+``` r
 # Test for a difference in response by sex using chi-squared test
 table(lesson5g$response, lesson5g$sex) %>%
   chisq.test(correct = FALSE)
@@ -16835,7 +17130,7 @@ This shows similar response rates (around 40-45%) for men and women.
 Now we want to test for interaction between chemo regime and sex in a multivariable regression. You can put the interaction directly into the multivariable model:
 
 
-```r
+``` r
 # Create logistic regression model for response including interaction between sex and chemo
 sex_int_model <- glm(response ~ sex + chemo + sex*chemo,
                      data = lesson5g,
@@ -17283,35 +17578,43 @@ tbl_regression(sex_int_model, exponentiate = TRUE)
 #xxizcrxuwb .gt_indent_5 {
   text-indent: 25px;
 }
+
+#xxizcrxuwb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xxizcrxuwb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">1 if female</td>
 <td headers="estimate" class="gt_row gt_center">1.20</td>
-<td headers="ci" class="gt_row gt_center">0.65, 2.20</td>
+<td headers="conf.low" class="gt_row gt_center">0.65, 2.20</td>
 <td headers="p.value" class="gt_row gt_center">0.6</td></tr>
     <tr><td headers="label" class="gt_row gt_left">0 for regime a, 1 for regime b</td>
 <td headers="estimate" class="gt_row gt_center">1.64</td>
-<td headers="ci" class="gt_row gt_center">1.03, 2.61</td>
+<td headers="conf.low" class="gt_row gt_center">1.03, 2.61</td>
 <td headers="p.value" class="gt_row gt_center">0.037</td></tr>
     <tr><td headers="label" class="gt_row gt_left">1 if female * 0 for regime a, 1 for regime b</td>
 <td headers="estimate" class="gt_row gt_center">0.50</td>
-<td headers="ci" class="gt_row gt_center">0.20, 1.24</td>
+<td headers="conf.low" class="gt_row gt_center">0.20, 1.24</td>
 <td headers="p.value" class="gt_row gt_center">0.14</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -17323,7 +17626,7 @@ By the way, don't try `glm(response ~ sex*chemo, ...)`, that is, including only 
 You can repeat this for age by creating a new variable based on the median age:
 
 
-```r
+``` r
 # First, get the median age
 skim(lesson5g$age)
 ```
@@ -17349,7 +17652,7 @@ Table: (\#tab:week510)Data summary
 |:-------------|---------:|-------------:|-----:|-----:|--:|-----:|----:|---:|----:|:-----|
 |data          |         2|             1| 42.46| 10.58| 17| 34.25| 42.5|  49|   71|▂▆▇▅▁ |
 
-```r
+``` r
 # Then, create a category variable based on median age
 lesson5g <-
   lesson5g %>%
@@ -17361,7 +17664,7 @@ lesson5g <-
 Then do the subgroup analysis as above:
 
 
-```r
+``` r
 # For younger patients
 tbl_summary(
   lesson5g %>% filter(hiage == 0) %>% select(response, chemo),
@@ -17810,14 +18113,24 @@ tbl_summary(
 #ejthrmauwx .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ejthrmauwx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ejthrmauwx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 96&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 96<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 103&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 103<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 96</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 103</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -17834,14 +18147,14 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
 </div>
 ```
 
-```r
+``` r
 # For older patients
 tbl_summary(
   lesson5g %>% filter(hiage == 1) %>% select(response, chemo),
@@ -18290,14 +18603,24 @@ tbl_summary(
 #xsijksncyf .gt_indent_5 {
   text-indent: 25px;
 }
+
+#xsijksncyf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xsijksncyf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 102&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 102<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 97&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 97<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 102</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 97</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -18314,14 +18637,14 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
 </div>
 ```
 
-```r
+``` r
 # Calculate p-value for each comparison
 lesson5g %>%
   filter(!is.na(age)) %>% # Exclude 2 patients missing age
@@ -18340,7 +18663,7 @@ lesson5g %>%
 There do not appear to be any differences between groups. Now to do the interaction analysis, you can create an interaction term in one of two ways ("chemo\*age" or "chemo\*hiage").
 
 
-```r
+``` r
 # Logistic regression model with interaction between chemo and age (continuous)
 age_int_model1 <-
   glm(response ~ chemo + age + chemo*age,
@@ -18789,35 +19112,43 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
 #rswznxxvhf .gt_indent_5 {
   text-indent: 25px;
 }
+
+#rswznxxvhf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rswznxxvhf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">0 for regime a, 1 for regime b</td>
 <td headers="estimate" class="gt_row gt_center">2.24</td>
-<td headers="ci" class="gt_row gt_center">0.42, 12.1</td>
+<td headers="conf.low" class="gt_row gt_center">0.42, 12.1</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">0.98</td>
-<td headers="ci" class="gt_row gt_center">0.96, 1.01</td>
+<td headers="conf.low" class="gt_row gt_center">0.96, 1.01</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
     <tr><td headers="label" class="gt_row gt_left">0 for regime a, 1 for regime b * age</td>
 <td headers="estimate" class="gt_row gt_center">0.99</td>
-<td headers="ci" class="gt_row gt_center">0.95, 1.03</td>
+<td headers="conf.low" class="gt_row gt_center">0.95, 1.03</td>
 <td headers="p.value" class="gt_row gt_center">0.6</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -18825,7 +19156,7 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
 ```
 
 
-```r
+``` r
 # Logistic regression model with interaction between chemo and hiage (binary)
 age_int_model2 <-
   glm(response ~ chemo + hiage + chemo*hiage,
@@ -19274,35 +19605,43 @@ tbl_regression(age_int_model2, exponentiate = TRUE)
 #ndykiwtvho .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ndykiwtvho .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ndykiwtvho div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">0 for regime a, 1 for regime b</td>
 <td headers="estimate" class="gt_row gt_center">1.41</td>
-<td headers="ci" class="gt_row gt_center">0.81, 2.47</td>
+<td headers="conf.low" class="gt_row gt_center">0.81, 2.47</td>
 <td headers="p.value" class="gt_row gt_center">0.2</td></tr>
     <tr><td headers="label" class="gt_row gt_left">hiage</td>
 <td headers="estimate" class="gt_row gt_center">0.64</td>
-<td headers="ci" class="gt_row gt_center">0.36, 1.14</td>
+<td headers="conf.low" class="gt_row gt_center">0.36, 1.14</td>
 <td headers="p.value" class="gt_row gt_center">0.13</td></tr>
     <tr><td headers="label" class="gt_row gt_left">0 for regime a, 1 for regime b * hiage</td>
 <td headers="estimate" class="gt_row gt_center">0.95</td>
-<td headers="ci" class="gt_row gt_center">0.43, 2.12</td>
+<td headers="conf.low" class="gt_row gt_center">0.43, 2.12</td>
 <td headers="p.value" class="gt_row gt_center">>0.9</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -19330,7 +19669,7 @@ Incidentally, I have often emphasized the importance of including an estimate an
 One approach to selecting which variables to include in a predictive model would be to do a regression. You could start with all the variables.
 
 
-```r
+``` r
 # Model with all variables
 glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
@@ -19776,39 +20115,47 @@ glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>
 #xszrsppyhq .gt_indent_5 {
   text-indent: 25px;
 }
+
+#xszrsppyhq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xszrsppyhq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">total PSA</td>
 <td headers="estimate" class="gt_row gt_center">1.25</td>
-<td headers="ci" class="gt_row gt_center">1.12, 1.40</td>
+<td headers="conf.low" class="gt_row gt_center">1.12, 1.40</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">nicked PSA</td>
 <td headers="estimate" class="gt_row gt_center">0.35</td>
-<td headers="ci" class="gt_row gt_center">0.12, 0.95</td>
+<td headers="conf.low" class="gt_row gt_center">0.12, 0.95</td>
 <td headers="p.value" class="gt_row gt_center">0.058</td></tr>
     <tr><td headers="label" class="gt_row gt_left">intact PSA</td>
 <td headers="estimate" class="gt_row gt_center">0.27</td>
-<td headers="ci" class="gt_row gt_center">0.05, 0.91</td>
+<td headers="conf.low" class="gt_row gt_center">0.05, 0.91</td>
 <td headers="p.value" class="gt_row gt_center">0.058</td></tr>
     <tr><td headers="label" class="gt_row gt_left">ratio of nicked to total psa</td>
 <td headers="estimate" class="gt_row gt_center">0.01</td>
-<td headers="ci" class="gt_row gt_center">0.00, 25.5</td>
+<td headers="conf.low" class="gt_row gt_center">0.00, 25.5</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -19818,7 +20165,7 @@ glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>
 You might notice that "psant" is not a good predictor (p=0.3) and decide to take it out of the model.
 
 
-```r
+``` r
 # Model excluding "psant"
 glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
@@ -20264,35 +20611,43 @@ glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
 #nklaodvmfr .gt_indent_5 {
   text-indent: 25px;
 }
+
+#nklaodvmfr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#nklaodvmfr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">total PSA</td>
 <td headers="estimate" class="gt_row gt_center">1.30</td>
-<td headers="ci" class="gt_row gt_center">1.20, 1.43</td>
+<td headers="conf.low" class="gt_row gt_center">1.20, 1.43</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">nicked PSA</td>
 <td headers="estimate" class="gt_row gt_center">0.22</td>
-<td headers="ci" class="gt_row gt_center">0.10, 0.46</td>
+<td headers="conf.low" class="gt_row gt_center">0.10, 0.46</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">intact PSA</td>
 <td headers="estimate" class="gt_row gt_center">0.41</td>
-<td headers="ci" class="gt_row gt_center">0.13, 1.10</td>
+<td headers="conf.low" class="gt_row gt_center">0.13, 1.10</td>
 <td headers="p.value" class="gt_row gt_center">0.081</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -20302,7 +20657,7 @@ glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
 In a regression using the remaining three variables, "psai" is not statistically significant, and you might then want to remove that variable too.
 
 
-```r
+``` r
 # Model excluding "psant" and "psai"
 glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
@@ -20748,31 +21103,39 @@ glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
 #xsoktoaang .gt_indent_5 {
   text-indent: 25px;
 }
+
+#xsoktoaang .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xsoktoaang div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">total PSA</td>
 <td headers="estimate" class="gt_row gt_center">1.28</td>
-<td headers="ci" class="gt_row gt_center">1.18, 1.40</td>
+<td headers="conf.low" class="gt_row gt_center">1.18, 1.40</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">nicked PSA</td>
 <td headers="estimate" class="gt_row gt_center">0.30</td>
-<td headers="ci" class="gt_row gt_center">0.15, 0.54</td>
+<td headers="conf.low" class="gt_row gt_center">0.15, 0.54</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -20782,7 +21145,7 @@ glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
 Both "psa" and "psan" are highly predictive, so you could leave them in the model and use the `roc` function to get the area-under-the-curve.
 
 
-```r
+``` r
 # Save out final model
 final_model <-
   glm(cancer ~ psa + psan, data = lesson5h, family = "binomial")
@@ -20807,7 +21170,7 @@ roc(cancer ~ .fitted, data = final_model_pred)
 However, I would have my doubts about such an approach. What you are trying to do here is predict the presence of cancer as well as you can: the significance or otherwise of individual variables doesn’t really come into it. How I would go about my analysis would be in terms of the area-under-the-curve of the models.
 
 
-```r
+``` r
 # Full model
 model1 <- glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial")
 model1_pred <- augment(model1, type.predict = "response")
@@ -20823,7 +21186,7 @@ roc(cancer ~ .fitted, data = model1_pred)
 ## Area under the curve: 0.7365
 ```
 
-```r
+``` r
 # Model without "psant"
 model2 <- glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial")
 model2_pred <- augment(model2, type.predict = "response")
@@ -20839,7 +21202,7 @@ roc(cancer ~ .fitted, data = model2_pred)
 ## Area under the curve: 0.7378
 ```
 
-```r
+``` r
 # Model without "psant" or "psai"
 model3 <- glm(cancer ~ psa + psan, data = lesson5h, family = "binomial")
 model3_pred <- augment(model3, type.predict = "response")
@@ -21308,13 +21671,21 @@ So a model answer might be:
 #uihoapdpsy .gt_indent_5 {
   text-indent: 25px;
 }
+
+#uihoapdpsy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#uihoapdpsy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 353&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 353</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 353</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -21330,7 +21701,7 @@ So a model answer might be:
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Median (Q1, Q3)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -21780,35 +22151,43 @@ So a model answer might be:
 #pfycklkvel .gt_indent_5 {
   text-indent: 25px;
 }
+
+#pfycklkvel .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pfycklkvel div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">Total PSA</td>
 <td headers="estimate" class="gt_row gt_center">1.30</td>
-<td headers="ci" class="gt_row gt_center">1.20, 1.43</td>
+<td headers="conf.low" class="gt_row gt_center">1.20, 1.43</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Nicked PSA</td>
 <td headers="estimate" class="gt_row gt_center">0.22</td>
-<td headers="ci" class="gt_row gt_center">0.10, 0.46</td>
+<td headers="conf.low" class="gt_row gt_center">0.10, 0.46</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Intact PSA</td>
 <td headers="estimate" class="gt_row gt_center">0.41</td>
-<td headers="ci" class="gt_row gt_center">0.13, 1.10</td>
+<td headers="conf.low" class="gt_row gt_center">0.13, 1.10</td>
 <td headers="p.value" class="gt_row gt_center">0.081</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -21824,7 +22203,7 @@ One approach to these data is to use a test called ANOVA. This addresses the que
 What I would use is a regression analysis.
 
 
-```r
+``` r
 # Create variables for treatment (yes/no) and therapy (yes/no)
 lesson5i <-
   lesson5i %>%
@@ -22279,35 +22658,43 @@ tbl_regression(treat_model)
 #jeynrclmkb .gt_indent_5 {
   text-indent: 25px;
 }
+
+#jeynrclmkb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jeynrclmkb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Beta</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">baseline mood score</td>
 <td headers="estimate" class="gt_row gt_center">0.58</td>
-<td headers="ci" class="gt_row gt_center">0.52, 0.63</td>
+<td headers="conf.low" class="gt_row gt_center">0.52, 0.63</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">treat</td>
 <td headers="estimate" class="gt_row gt_center">0.83</td>
-<td headers="ci" class="gt_row gt_center">0.54, 1.1</td>
+<td headers="conf.low" class="gt_row gt_center">0.54, 1.1</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">therapy</td>
 <td headers="estimate" class="gt_row gt_center">1.0</td>
-<td headers="ci" class="gt_row gt_center">0.73, 1.3</td>
+<td headers="conf.low" class="gt_row gt_center">0.73, 1.3</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -22757,10 +23144,18 @@ What this does is to create two dummy variables "treat" and "therapy". "treat" m
 #eciiugdwhv .gt_indent_5 {
   text-indent: 25px;
 }
+
+#eciiugdwhv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#eciiugdwhv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Group">Group</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="treat">treat</th>
@@ -22795,7 +23190,7 @@ Now when you regress the change score using the variables "treat" and "therapy" 
 ## Week 6
 
 
-```r
+``` r
 # Week 6: load packages
 library(skimr)
 library(gt)
@@ -23262,14 +23657,22 @@ lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
 #tejvzqoolg .gt_indent_5 {
   text-indent: 25px;
 }
+
+#tejvzqoolg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#tejvzqoolg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Coronary Care Population">Coronary Care Population</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="General Hospital Population">General Hospital Population</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="test"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value_6a">Coronary Care Population</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value_6b">General Hospital Population</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -23301,7 +23704,7 @@ The thing to take away from this is that sensitivity and specificity don’t cha
 You might be tempted just to try:
 
 
-```r
+``` r
 # Calculate AUC for marker predicting cancer using marker
 roc(cancer ~ marker, data = lesson6c)
 ```
@@ -23320,7 +23723,7 @@ You'd get an AUC of 0.700, which is pretty good. But the question isn't "how goo
 Let's try:
 
 
-```r
+``` r
 # Here we will drop observations missing marker data from the table (filter function)
 tbl_summary(
   lesson6c %>% filter(!is.na(marker)) %>% select(cancer, marker),
@@ -23769,14 +24172,24 @@ tbl_summary(
 #lwomokszxb .gt_indent_5 {
   text-indent: 25px;
 }
+
+#lwomokszxb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lwomokszxb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 600&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 600<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 400&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 400<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 600</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 400</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -23793,7 +24206,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -23814,7 +24227,7 @@ So you can see that, if you only biopsied patients who were positive for the mar
 The first question concerns the value of the current method of determining referral for adjuvant therapy. There are two ways of thinking about this. The first is to show a simple table:
 
 
-```r
+``` r
 # Two-way table of recurrence by hi_risk
 tbl_summary(
   lesson6d %>% select(recurrence, hi_risk),
@@ -24263,14 +24676,24 @@ tbl_summary(
 #mtzvizypaj .gt_indent_5 {
   text-indent: 25px;
 }
+
+#mtzvizypaj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mtzvizypaj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 4,375&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 4,375<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 2,200&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 2,200<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 4,375</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 2,200</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -24287,7 +24710,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -24299,7 +24722,7 @@ tbl_summary(
 You can see that 27% of patients who met high risk criteria recurred compared to only 5.7% of those who were not high stage or high grade. Another way to think about "how good" the criterion is would be to look at discriminative accuracy.
 
 
-```r
+``` r
 # Calculate AUC for prediction of recurrence using hi_risk
 roc(recurrence ~ hi_risk, data = lesson6d)
 ```
@@ -24318,7 +24741,7 @@ The area-under-the-curve (AUC) is 0.71. Because high risk is a binary variable, 
 So now let’s look at the statistical model of stage and grade. We'll first create this model and then use the model to give us the predicted probabilities for each patient.
 
 
-```r
+``` r
 # Create the model
 # "grade" is a categorical variable, so use "factor()"
 recur_model <- glm(recurrence ~ stage + factor(grade_numeric),
@@ -24352,7 +24775,7 @@ roc(recurrence ~ clinpred, data = lesson6d_pred)
 So the AUC is better for the model than for simple risk grouping. But would using a model make a clinical difference? The first thing to think about is the sort of risk that would make you consider the use of adjuvant therapy. Clearly a patient with a 1% risk of recurrence should not be referred for adjuvant; a risk of 90% would definitely be an indication for chemotherapy. Somewhere in between 1% and 90%, we’d think that the risk becomes high enough to warrant adjuvant therapy. Let’s imagine that we choose a risk threshold of 10%. We can now do this.
 
 
-```r
+``` r
 # Create a new variable to define patients at high risk from the model
 lesson6d_pred <-
   lesson6d_pred %>%
@@ -24809,14 +25232,24 @@ tbl_summary(
 #jydvrfkjmq .gt_indent_5 {
   text-indent: 25px;
 }
+
+#jydvrfkjmq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jydvrfkjmq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 4,375&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 4,375<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 2,200&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 2,200<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 4,375</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 2,200</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -24833,7 +25266,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -24845,7 +25278,7 @@ You can see that no patient is "reclassified" using the model. All 2200 patients
 How about adding in the marker?
 
 
-```r
+``` r
 # Create the model
 marker_recur_model <- glm(recurrence ~ stage + factor(grade_numeric) + marker,
                           data = lesson6d,
@@ -25293,54 +25726,62 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
 #lkytsjnnbe .gt_indent_5 {
   text-indent: 25px;
 }
+
+#lkytsjnnbe .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lkytsjnnbe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;OR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>OR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>OR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">Stage II or III disease</td>
 <td headers="estimate" class="gt_row gt_center">3.26</td>
-<td headers="ci" class="gt_row gt_center">2.75, 3.86</td>
+<td headers="conf.low" class="gt_row gt_center">2.75, 3.86</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">factor(grade_numeric)</td>
 <td headers="estimate" class="gt_row gt_center"><br /></td>
-<td headers="ci" class="gt_row gt_center"><br /></td>
+<td headers="conf.low" class="gt_row gt_center"><br /></td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    0</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="conf.low" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    1</td>
 <td headers="estimate" class="gt_row gt_center">1.83</td>
-<td headers="ci" class="gt_row gt_center">1.51, 2.22</td>
+<td headers="conf.low" class="gt_row gt_center">1.51, 2.22</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    2</td>
 <td headers="estimate" class="gt_row gt_center">6.77</td>
-<td headers="ci" class="gt_row gt_center">5.26, 8.73</td>
+<td headers="conf.low" class="gt_row gt_center">5.26, 8.73</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Marker level</td>
 <td headers="estimate" class="gt_row gt_center">1.09</td>
-<td headers="ci" class="gt_row gt_center">1.07, 1.10</td>
+<td headers="conf.low" class="gt_row gt_center">1.07, 1.10</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> OR = Odds Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>OR = Odds Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
 </div>
 ```
 
-```r
+``` r
 # Get the predicted probability for each patient
 lesson6d_pred <-
   augment(
@@ -25369,7 +25810,7 @@ roc(recurrence ~ markerpred, data = lesson6d_pred)
 A couple of things to note here. First, the marker is a statistically significant predictor in the model. Typical language is that the marker is "an independent predictor" or that "it is significant after adjusting for stage and grade". Second, it increases AUC quite a bit, from 0.757 for the clinical variables alone to 0.798 for the clinical variables plus the marker. But let's again look at clinical consequences.
 
 
-```r
+``` r
 # Identify patients at >= 10% risk from clinical+marker model
 lesson6d_pred <-
   lesson6d_pred %>%
@@ -25824,14 +26265,24 @@ tbl_summary(
 #ksdyynfryq .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ksdyynfryq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ksdyynfryq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 4,375&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 4,375<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 2,200&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 2,200<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 4,375</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 2,200</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -25848,7 +26299,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -25860,7 +26311,7 @@ tbl_summary(
 You can see now that 133 patients who would otherwise be referred to adjuvant chemotherapy would not using the model, and 345 of those defined at low risk by the clinical criteria are reclassified as high risk from the model (presumably because of a high level of the marker). You could also do this:
 
 
-```r
+``` r
 # Table of recurrences for those at high risk from the marker model but not clinically
 tbl_summary(
   lesson6d_pred %>%
@@ -26310,13 +26761,21 @@ tbl_summary(
 #uzeciqvuoz .gt_indent_5 {
   text-indent: 25px;
 }
+
+#uzeciqvuoz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#uzeciqvuoz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 345&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 345</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 345</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -26330,14 +26789,14 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
 </div>
 ```
 
-```r
+``` r
 # Table of recurrences for those at low risk from the marker model but high risk clinically
 tbl_summary(
   lesson6d_pred %>%
@@ -26787,13 +27246,21 @@ tbl_summary(
 #npydflpdhz .gt_indent_5 {
   text-indent: 25px;
 }
+
+#npydflpdhz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#npydflpdhz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 133&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 133</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 133</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -26807,7 +27274,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -26819,7 +27286,7 @@ You can see that patients reclassified as low risk using the marker really are a
 As for imaging, if you try:
 
 
-```r
+``` r
 # Create model that includes imaging score
 imaging_model <- glm(recurrence ~ stage + factor(grade_numeric) + marker + imaging_score,
                      data = lesson6d,
@@ -26853,7 +27320,7 @@ roc(recurrence ~ imagingpred, data = lesson6d_pred)
 You'll find that imaging is a statistically significant predictor of recurrence, even after adjusting for stage, grade and the marker, but it doesn’t improve AUC by very much (from 0.798 to 0.800). You could go on to see that it also doesn’t reclassify very well.
 
 
-```r
+``` r
 # Create variable indicating whether patient is high risk from imaging model
 lesson6d_pred <-
   lesson6d_pred %>%
@@ -27310,14 +27777,24 @@ tbl_summary(
 #juldncivzr .gt_indent_5 {
   text-indent: 25px;
 }
+
+#juldncivzr .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#juldncivzr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 4,163&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 4,163<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 2,412&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 2,412<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 4,163</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 2,412</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -27334,7 +27811,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="3"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -27393,7 +27870,7 @@ The key thing to think about here is the comparisons you want to make. Drug a al
 ## Week 7
 
 
-```r
+``` r
 # Week 7: load packages
 library(skimr)
 library(gt)
@@ -27422,7 +27899,7 @@ The data list the number of days of follow-up (survival_time), whether the patie
 We can use `survfit` and `skim` to get the median time for all patients and for survivors only. Remember to use the `Surv` function to specify your event status and time to event.
 
 
-```r
+``` r
 # Median followup for all patients
 survfit(Surv(survival_time, died) ~ 1, data = lesson7a)
 ```
@@ -27434,7 +27911,7 @@ survfit(Surv(survival_time, died) ~ 1, data = lesson7a)
 ## [1,] 614    284   2910    2482      NA
 ```
 
-```r
+``` r
 # Median followup for survivors
 lesson7a %>%
   filter(died == 0) %>%
@@ -27465,7 +27942,7 @@ Table: (\#tab:week7b)Data summary
 To look at predictors of survival, we might conduct a multivariable regression:
 
 
-```r
+``` r
 # Multivariable Cox model for time to death
 coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesions + nodes,
       data = lesson7a) %>%
@@ -27912,47 +28389,55 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesi
 #uapbnxwhin .gt_indent_5 {
   text-indent: 25px;
 }
+
+#uapbnxwhin .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#uapbnxwhin div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;HR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>HR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">sex</td>
 <td headers="estimate" class="gt_row gt_center">0.99</td>
-<td headers="ci" class="gt_row gt_center">0.78, 1.25</td>
+<td headers="conf.low" class="gt_row gt_center">0.78, 1.25</td>
 <td headers="p.value" class="gt_row gt_center">>0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">1.00</td>
-<td headers="ci" class="gt_row gt_center">1.0, 1.02</td>
+<td headers="conf.low" class="gt_row gt_center">1.0, 1.02</td>
 <td headers="p.value" class="gt_row gt_center">0.4</td></tr>
     <tr><td headers="label" class="gt_row gt_left">obstruction</td>
 <td headers="estimate" class="gt_row gt_center">1.49</td>
-<td headers="ci" class="gt_row gt_center">1.11, 2.00</td>
+<td headers="conf.low" class="gt_row gt_center">1.11, 2.00</td>
 <td headers="p.value" class="gt_row gt_center">0.009</td></tr>
     <tr><td headers="label" class="gt_row gt_left">perforation</td>
 <td headers="estimate" class="gt_row gt_center">0.76</td>
-<td headers="ci" class="gt_row gt_center">0.37, 1.57</td>
+<td headers="conf.low" class="gt_row gt_center">0.37, 1.57</td>
 <td headers="p.value" class="gt_row gt_center">0.5</td></tr>
     <tr><td headers="label" class="gt_row gt_left">adhesions</td>
 <td headers="estimate" class="gt_row gt_center">1.39</td>
-<td headers="ci" class="gt_row gt_center">1.01, 1.91</td>
+<td headers="conf.low" class="gt_row gt_center">1.01, 1.91</td>
 <td headers="p.value" class="gt_row gt_center">0.041</td></tr>
     <tr><td headers="label" class="gt_row gt_left">nodes</td>
 <td headers="estimate" class="gt_row gt_center">1.09</td>
-<td headers="ci" class="gt_row gt_center">1.07, 1.12</td>
+<td headers="conf.low" class="gt_row gt_center">1.07, 1.12</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> HR = Hazard Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -27962,7 +28447,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesi
 This suggests that the presence of obstruction or adhesion influences survival, as well as the number of nodes. Neither age (surprisingly) nor sex are likely to have a large impact (the confidence interval does not include any large differences between groups). The p-value for perforation is non-significant, but the confidence intervals are wide. Why is this? Try this:
 
 
-```r
+``` r
 # Table of perforation rate
 tbl_summary(
   lesson7a %>% select(perforation)
@@ -27970,23 +28455,23 @@ tbl_summary(
 ```
 
 ```{=html}
-<div id="vvggfnbuuk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vvggfnbuuk table {
+<div id="ggfnbuukkt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ggfnbuukkt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vvggfnbuuk thead, #vvggfnbuuk tbody, #vvggfnbuuk tfoot, #vvggfnbuuk tr, #vvggfnbuuk td, #vvggfnbuuk th {
+#ggfnbuukkt thead, #ggfnbuukkt tbody, #ggfnbuukkt tfoot, #ggfnbuukkt tr, #ggfnbuukkt td, #ggfnbuukkt th {
   border-style: none;
 }
 
-#vvggfnbuuk p {
+#ggfnbuukkt p {
   margin: 0;
   padding: 0;
 }
 
-#vvggfnbuuk .gt_table {
+#ggfnbuukkt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -28012,12 +28497,12 @@ tbl_summary(
   border-left-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_caption {
+#ggfnbuukkt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vvggfnbuuk .gt_title {
+#ggfnbuukkt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -28029,7 +28514,7 @@ tbl_summary(
   border-bottom-width: 0;
 }
 
-#vvggfnbuuk .gt_subtitle {
+#ggfnbuukkt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -28041,7 +28526,7 @@ tbl_summary(
   border-top-width: 0;
 }
 
-#vvggfnbuuk .gt_heading {
+#ggfnbuukkt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -28053,13 +28538,13 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_bottom_border {
+#ggfnbuukkt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_col_headings {
+#ggfnbuukkt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -28074,7 +28559,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_col_heading {
+#ggfnbuukkt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -28094,7 +28579,7 @@ tbl_summary(
   overflow-x: hidden;
 }
 
-#vvggfnbuuk .gt_column_spanner_outer {
+#ggfnbuukkt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -28106,15 +28591,15 @@ tbl_summary(
   padding-right: 4px;
 }
 
-#vvggfnbuuk .gt_column_spanner_outer:first-child {
+#ggfnbuukkt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vvggfnbuuk .gt_column_spanner_outer:last-child {
+#ggfnbuukkt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vvggfnbuuk .gt_column_spanner {
+#ggfnbuukkt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -28126,11 +28611,11 @@ tbl_summary(
   width: 100%;
 }
 
-#vvggfnbuuk .gt_spanner_row {
+#ggfnbuukkt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vvggfnbuuk .gt_group_heading {
+#ggfnbuukkt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28156,7 +28641,7 @@ tbl_summary(
   text-align: left;
 }
 
-#vvggfnbuuk .gt_empty_group_heading {
+#ggfnbuukkt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -28171,15 +28656,15 @@ tbl_summary(
   vertical-align: middle;
 }
 
-#vvggfnbuuk .gt_from_md > :first-child {
+#ggfnbuukkt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vvggfnbuuk .gt_from_md > :last-child {
+#ggfnbuukkt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vvggfnbuuk .gt_row {
+#ggfnbuukkt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28198,7 +28683,7 @@ tbl_summary(
   overflow-x: hidden;
 }
 
-#vvggfnbuuk .gt_stub {
+#ggfnbuukkt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -28211,7 +28696,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#vvggfnbuuk .gt_stub_row_group {
+#ggfnbuukkt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -28225,15 +28710,15 @@ tbl_summary(
   vertical-align: top;
 }
 
-#vvggfnbuuk .gt_row_group_first td {
+#ggfnbuukkt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vvggfnbuuk .gt_row_group_first th {
+#ggfnbuukkt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vvggfnbuuk .gt_summary_row {
+#ggfnbuukkt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -28243,16 +28728,16 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#vvggfnbuuk .gt_first_summary_row {
+#ggfnbuukkt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_first_summary_row.thick {
+#ggfnbuukkt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vvggfnbuuk .gt_last_summary_row {
+#ggfnbuukkt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28262,7 +28747,7 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_grand_summary_row {
+#ggfnbuukkt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -28272,7 +28757,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#vvggfnbuuk .gt_first_grand_summary_row {
+#ggfnbuukkt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28282,7 +28767,7 @@ tbl_summary(
   border-top-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_last_grand_summary_row_top {
+#ggfnbuukkt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28292,11 +28777,11 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_striped {
+#ggfnbuukkt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vvggfnbuuk .gt_table_body {
+#ggfnbuukkt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -28305,7 +28790,7 @@ tbl_summary(
   border-bottom-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_footnotes {
+#ggfnbuukkt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -28319,7 +28804,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_footnote {
+#ggfnbuukkt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -28328,7 +28813,7 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#vvggfnbuuk .gt_sourcenotes {
+#ggfnbuukkt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -28342,7 +28827,7 @@ tbl_summary(
   border-right-color: #D3D3D3;
 }
 
-#vvggfnbuuk .gt_sourcenote {
+#ggfnbuukkt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -28350,72 +28835,80 @@ tbl_summary(
   padding-right: 5px;
 }
 
-#vvggfnbuuk .gt_left {
+#ggfnbuukkt .gt_left {
   text-align: left;
 }
 
-#vvggfnbuuk .gt_center {
+#ggfnbuukkt .gt_center {
   text-align: center;
 }
 
-#vvggfnbuuk .gt_right {
+#ggfnbuukkt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vvggfnbuuk .gt_font_normal {
+#ggfnbuukkt .gt_font_normal {
   font-weight: normal;
 }
 
-#vvggfnbuuk .gt_font_bold {
+#ggfnbuukkt .gt_font_bold {
   font-weight: bold;
 }
 
-#vvggfnbuuk .gt_font_italic {
+#ggfnbuukkt .gt_font_italic {
   font-style: italic;
 }
 
-#vvggfnbuuk .gt_super {
+#ggfnbuukkt .gt_super {
   font-size: 65%;
 }
 
-#vvggfnbuuk .gt_footnote_marks {
+#ggfnbuukkt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vvggfnbuuk .gt_asterisk {
+#ggfnbuukkt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vvggfnbuuk .gt_indent_1 {
+#ggfnbuukkt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vvggfnbuuk .gt_indent_2 {
+#ggfnbuukkt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vvggfnbuuk .gt_indent_3 {
+#ggfnbuukkt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vvggfnbuuk .gt_indent_4 {
+#ggfnbuukkt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vvggfnbuuk .gt_indent_5 {
+#ggfnbuukkt .gt_indent_5 {
   text-indent: 25px;
+}
+
+#ggfnbuukkt .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ggfnbuukkt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 614&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 614</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 614</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -28425,7 +28918,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -28435,7 +28928,7 @@ tbl_summary(
 You will see that less than 3% of patients had perforations, making it almost impossible to assess its predictive value. Another useful thing to do is to try:
 
 
-```r
+``` r
 # Summarize number of nodes
 lesson7a %>%
   skim(nodes)
@@ -28465,7 +28958,7 @@ Table: (\#tab:week7e)Data summary
 You can see that patients had up to 33 nodes affected, yet all but a handful had 10 or fewer nodes. This might make us somewhat suspicious of the coefficient for nodes (which is interpreted as increase in hazard ratio for each additional node). One possibility might be to cap the number of nodes. This creates a new variable that caps the number of nodes at 10. Since fewer than 3% of patients had perforations, we will exclude this variable from our model.
 
 
-```r
+``` r
 # Create new nodes variable, capped at 10 nodes
 lesson7a <-
   lesson7a %>%
@@ -28484,23 +28977,23 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
 ```
 
 ```{=html}
-<div id="wluhfcgsek" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wluhfcgsek table {
+<div id="cgsekodiry" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cgsekodiry table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wluhfcgsek thead, #wluhfcgsek tbody, #wluhfcgsek tfoot, #wluhfcgsek tr, #wluhfcgsek td, #wluhfcgsek th {
+#cgsekodiry thead, #cgsekodiry tbody, #cgsekodiry tfoot, #cgsekodiry tr, #cgsekodiry td, #cgsekodiry th {
   border-style: none;
 }
 
-#wluhfcgsek p {
+#cgsekodiry p {
   margin: 0;
   padding: 0;
 }
 
-#wluhfcgsek .gt_table {
+#cgsekodiry .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -28526,12 +29019,12 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-left-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_caption {
+#cgsekodiry .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wluhfcgsek .gt_title {
+#cgsekodiry .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -28543,7 +29036,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-bottom-width: 0;
 }
 
-#wluhfcgsek .gt_subtitle {
+#cgsekodiry .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -28555,7 +29048,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-top-width: 0;
 }
 
-#wluhfcgsek .gt_heading {
+#cgsekodiry .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -28567,13 +29060,13 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-right-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_bottom_border {
+#cgsekodiry .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_col_headings {
+#cgsekodiry .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -28588,7 +29081,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-right-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_col_heading {
+#cgsekodiry .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -28608,7 +29101,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   overflow-x: hidden;
 }
 
-#wluhfcgsek .gt_column_spanner_outer {
+#cgsekodiry .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -28620,15 +29113,15 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   padding-right: 4px;
 }
 
-#wluhfcgsek .gt_column_spanner_outer:first-child {
+#cgsekodiry .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wluhfcgsek .gt_column_spanner_outer:last-child {
+#cgsekodiry .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wluhfcgsek .gt_column_spanner {
+#cgsekodiry .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -28640,11 +29133,11 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   width: 100%;
 }
 
-#wluhfcgsek .gt_spanner_row {
+#cgsekodiry .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wluhfcgsek .gt_group_heading {
+#cgsekodiry .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28670,7 +29163,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   text-align: left;
 }
 
-#wluhfcgsek .gt_empty_group_heading {
+#cgsekodiry .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -28685,15 +29178,15 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   vertical-align: middle;
 }
 
-#wluhfcgsek .gt_from_md > :first-child {
+#cgsekodiry .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wluhfcgsek .gt_from_md > :last-child {
+#cgsekodiry .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wluhfcgsek .gt_row {
+#cgsekodiry .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28712,7 +29205,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   overflow-x: hidden;
 }
 
-#wluhfcgsek .gt_stub {
+#cgsekodiry .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -28725,7 +29218,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   padding-right: 5px;
 }
 
-#wluhfcgsek .gt_stub_row_group {
+#cgsekodiry .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -28739,15 +29232,15 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   vertical-align: top;
 }
 
-#wluhfcgsek .gt_row_group_first td {
+#cgsekodiry .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wluhfcgsek .gt_row_group_first th {
+#cgsekodiry .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wluhfcgsek .gt_summary_row {
+#cgsekodiry .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -28757,16 +29250,16 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   padding-right: 5px;
 }
 
-#wluhfcgsek .gt_first_summary_row {
+#cgsekodiry .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_first_summary_row.thick {
+#cgsekodiry .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wluhfcgsek .gt_last_summary_row {
+#cgsekodiry .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28776,7 +29269,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-bottom-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_grand_summary_row {
+#cgsekodiry .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -28786,7 +29279,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   padding-right: 5px;
 }
 
-#wluhfcgsek .gt_first_grand_summary_row {
+#cgsekodiry .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28796,7 +29289,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-top-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_last_grand_summary_row_top {
+#cgsekodiry .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -28806,11 +29299,11 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-bottom-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_striped {
+#cgsekodiry .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wluhfcgsek .gt_table_body {
+#cgsekodiry .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -28819,7 +29312,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-bottom-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_footnotes {
+#cgsekodiry .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -28833,7 +29326,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-right-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_footnote {
+#cgsekodiry .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -28842,7 +29335,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   padding-right: 5px;
 }
 
-#wluhfcgsek .gt_sourcenotes {
+#cgsekodiry .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -28856,7 +29349,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   border-right-color: #D3D3D3;
 }
 
-#wluhfcgsek .gt_sourcenote {
+#cgsekodiry .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -28864,102 +29357,110 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
   padding-right: 5px;
 }
 
-#wluhfcgsek .gt_left {
+#cgsekodiry .gt_left {
   text-align: left;
 }
 
-#wluhfcgsek .gt_center {
+#cgsekodiry .gt_center {
   text-align: center;
 }
 
-#wluhfcgsek .gt_right {
+#cgsekodiry .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wluhfcgsek .gt_font_normal {
+#cgsekodiry .gt_font_normal {
   font-weight: normal;
 }
 
-#wluhfcgsek .gt_font_bold {
+#cgsekodiry .gt_font_bold {
   font-weight: bold;
 }
 
-#wluhfcgsek .gt_font_italic {
+#cgsekodiry .gt_font_italic {
   font-style: italic;
 }
 
-#wluhfcgsek .gt_super {
+#cgsekodiry .gt_super {
   font-size: 65%;
 }
 
-#wluhfcgsek .gt_footnote_marks {
+#cgsekodiry .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wluhfcgsek .gt_asterisk {
+#cgsekodiry .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wluhfcgsek .gt_indent_1 {
+#cgsekodiry .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wluhfcgsek .gt_indent_2 {
+#cgsekodiry .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wluhfcgsek .gt_indent_3 {
+#cgsekodiry .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wluhfcgsek .gt_indent_4 {
+#cgsekodiry .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wluhfcgsek .gt_indent_5 {
+#cgsekodiry .gt_indent_5 {
   text-indent: 25px;
+}
+
+#cgsekodiry .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#cgsekodiry div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;HR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>HR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">sex</td>
 <td headers="estimate" class="gt_row gt_center">0.99</td>
-<td headers="ci" class="gt_row gt_center">0.78, 1.26</td>
+<td headers="conf.low" class="gt_row gt_center">0.78, 1.26</td>
 <td headers="p.value" class="gt_row gt_center">>0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">age</td>
 <td headers="estimate" class="gt_row gt_center">1.01</td>
-<td headers="ci" class="gt_row gt_center">1.00, 1.02</td>
+<td headers="conf.low" class="gt_row gt_center">1.00, 1.02</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
     <tr><td headers="label" class="gt_row gt_left">obstruction</td>
 <td headers="estimate" class="gt_row gt_center">1.48</td>
-<td headers="ci" class="gt_row gt_center">1.10, 1.98</td>
+<td headers="conf.low" class="gt_row gt_center">1.10, 1.98</td>
 <td headers="p.value" class="gt_row gt_center">0.009</td></tr>
     <tr><td headers="label" class="gt_row gt_left">adhesions</td>
 <td headers="estimate" class="gt_row gt_center">1.40</td>
-<td headers="ci" class="gt_row gt_center">1.02, 1.92</td>
+<td headers="conf.low" class="gt_row gt_center">1.02, 1.92</td>
 <td headers="p.value" class="gt_row gt_center">0.037</td></tr>
     <tr><td headers="label" class="gt_row gt_left">n2</td>
 <td headers="estimate" class="gt_row gt_center">1.17</td>
-<td headers="ci" class="gt_row gt_center">1.13, 1.22</td>
+<td headers="conf.low" class="gt_row gt_center">1.13, 1.22</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> HR = Hazard Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -28969,7 +29470,7 @@ coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
 However, it might be better to group patients. Here we create a new variable called "node4" that groups patients into four groups: 0 – 2 nodes, 3 – 5 nodes, 5 – 10 nodes, 11 or more nodes.
 
 
-```r
+``` r
 # Categorize values of nodes removed
 lesson7a <-
   lesson7a %>%
@@ -28989,7 +29490,7 @@ The "cut-points" are arbitrary but are not particularly important unless you thi
 The regression code would then be:
 
 
-```r
+``` r
 # Re-run Cox model using categorized variable for nodes
 # Since "node4" is categorical, we must use "factor()" with this variable
 coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + factor(node4),
@@ -29021,7 +29522,7 @@ A model answer for this dataset might be:
 
 <div class="quote-container">
 
->Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4 years. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, and >10. In a Cox regression of the 599 patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
+>Median survival in the 614 patients in the cohort was 8.0 years, with a median duration of follow-up for survivors of 6.4 years. There were 284 deaths during follow-up. Although about 95% of patients had ten nodes or fewer, a small number of patients had a very large number of affected nodes, up to 33 in one case. Nodes were therefore categorized as 0-2, 3-5, 6-10, and >10. In a Cox regression of the  patients with complete data, obstruction, adhesion and number of nodes were predictive of survival. Neither sex, age or perforation appeared to influence survival. Fewer than 3% of patients experienced perforations and this variable was therefore removed from the model. Patient characteristics and results for the final model are given in the table.
 
 </div>
 
@@ -29029,23 +29530,23 @@ A model answer for this dataset might be:
 
 
 ```{=html}
-<div id="bfhyqydvzo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bfhyqydvzo table {
+<div id="hwtrrrysbx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hwtrrrysbx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bfhyqydvzo thead, #bfhyqydvzo tbody, #bfhyqydvzo tfoot, #bfhyqydvzo tr, #bfhyqydvzo td, #bfhyqydvzo th {
+#hwtrrrysbx thead, #hwtrrrysbx tbody, #hwtrrrysbx tfoot, #hwtrrrysbx tr, #hwtrrrysbx td, #hwtrrrysbx th {
   border-style: none;
 }
 
-#bfhyqydvzo p {
+#hwtrrrysbx p {
   margin: 0;
   padding: 0;
 }
 
-#bfhyqydvzo .gt_table {
+#hwtrrrysbx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -29071,12 +29572,12 @@ A model answer for this dataset might be:
   border-left-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_caption {
+#hwtrrrysbx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bfhyqydvzo .gt_title {
+#hwtrrrysbx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -29088,7 +29589,7 @@ A model answer for this dataset might be:
   border-bottom-width: 0;
 }
 
-#bfhyqydvzo .gt_subtitle {
+#hwtrrrysbx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -29100,7 +29601,7 @@ A model answer for this dataset might be:
   border-top-width: 0;
 }
 
-#bfhyqydvzo .gt_heading {
+#hwtrrrysbx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -29112,13 +29613,13 @@ A model answer for this dataset might be:
   border-right-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_bottom_border {
+#hwtrrrysbx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_col_headings {
+#hwtrrrysbx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -29133,7 +29634,7 @@ A model answer for this dataset might be:
   border-right-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_col_heading {
+#hwtrrrysbx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -29153,7 +29654,7 @@ A model answer for this dataset might be:
   overflow-x: hidden;
 }
 
-#bfhyqydvzo .gt_column_spanner_outer {
+#hwtrrrysbx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -29165,15 +29666,15 @@ A model answer for this dataset might be:
   padding-right: 4px;
 }
 
-#bfhyqydvzo .gt_column_spanner_outer:first-child {
+#hwtrrrysbx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bfhyqydvzo .gt_column_spanner_outer:last-child {
+#hwtrrrysbx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bfhyqydvzo .gt_column_spanner {
+#hwtrrrysbx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -29185,11 +29686,11 @@ A model answer for this dataset might be:
   width: 100%;
 }
 
-#bfhyqydvzo .gt_spanner_row {
+#hwtrrrysbx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bfhyqydvzo .gt_group_heading {
+#hwtrrrysbx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29215,7 +29716,7 @@ A model answer for this dataset might be:
   text-align: left;
 }
 
-#bfhyqydvzo .gt_empty_group_heading {
+#hwtrrrysbx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -29230,15 +29731,15 @@ A model answer for this dataset might be:
   vertical-align: middle;
 }
 
-#bfhyqydvzo .gt_from_md > :first-child {
+#hwtrrrysbx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bfhyqydvzo .gt_from_md > :last-child {
+#hwtrrrysbx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bfhyqydvzo .gt_row {
+#hwtrrrysbx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29257,7 +29758,7 @@ A model answer for this dataset might be:
   overflow-x: hidden;
 }
 
-#bfhyqydvzo .gt_stub {
+#hwtrrrysbx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -29270,7 +29771,7 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#bfhyqydvzo .gt_stub_row_group {
+#hwtrrrysbx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -29284,15 +29785,15 @@ A model answer for this dataset might be:
   vertical-align: top;
 }
 
-#bfhyqydvzo .gt_row_group_first td {
+#hwtrrrysbx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bfhyqydvzo .gt_row_group_first th {
+#hwtrrrysbx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bfhyqydvzo .gt_summary_row {
+#hwtrrrysbx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -29302,16 +29803,16 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#bfhyqydvzo .gt_first_summary_row {
+#hwtrrrysbx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_first_summary_row.thick {
+#hwtrrrysbx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bfhyqydvzo .gt_last_summary_row {
+#hwtrrrysbx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29321,7 +29822,7 @@ A model answer for this dataset might be:
   border-bottom-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_grand_summary_row {
+#hwtrrrysbx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -29331,7 +29832,7 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#bfhyqydvzo .gt_first_grand_summary_row {
+#hwtrrrysbx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29341,7 +29842,7 @@ A model answer for this dataset might be:
   border-top-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_last_grand_summary_row_top {
+#hwtrrrysbx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29351,11 +29852,11 @@ A model answer for this dataset might be:
   border-bottom-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_striped {
+#hwtrrrysbx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bfhyqydvzo .gt_table_body {
+#hwtrrrysbx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -29364,7 +29865,7 @@ A model answer for this dataset might be:
   border-bottom-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_footnotes {
+#hwtrrrysbx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -29378,7 +29879,7 @@ A model answer for this dataset might be:
   border-right-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_footnote {
+#hwtrrrysbx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -29387,7 +29888,7 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#bfhyqydvzo .gt_sourcenotes {
+#hwtrrrysbx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -29401,7 +29902,7 @@ A model answer for this dataset might be:
   border-right-color: #D3D3D3;
 }
 
-#bfhyqydvzo .gt_sourcenote {
+#hwtrrrysbx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -29409,72 +29910,80 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#bfhyqydvzo .gt_left {
+#hwtrrrysbx .gt_left {
   text-align: left;
 }
 
-#bfhyqydvzo .gt_center {
+#hwtrrrysbx .gt_center {
   text-align: center;
 }
 
-#bfhyqydvzo .gt_right {
+#hwtrrrysbx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bfhyqydvzo .gt_font_normal {
+#hwtrrrysbx .gt_font_normal {
   font-weight: normal;
 }
 
-#bfhyqydvzo .gt_font_bold {
+#hwtrrrysbx .gt_font_bold {
   font-weight: bold;
 }
 
-#bfhyqydvzo .gt_font_italic {
+#hwtrrrysbx .gt_font_italic {
   font-style: italic;
 }
 
-#bfhyqydvzo .gt_super {
+#hwtrrrysbx .gt_super {
   font-size: 65%;
 }
 
-#bfhyqydvzo .gt_footnote_marks {
+#hwtrrrysbx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bfhyqydvzo .gt_asterisk {
+#hwtrrrysbx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bfhyqydvzo .gt_indent_1 {
+#hwtrrrysbx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bfhyqydvzo .gt_indent_2 {
+#hwtrrrysbx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bfhyqydvzo .gt_indent_3 {
+#hwtrrrysbx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bfhyqydvzo .gt_indent_4 {
+#hwtrrrysbx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bfhyqydvzo .gt_indent_5 {
+#hwtrrrysbx .gt_indent_5 {
   text-indent: 25px;
+}
+
+#hwtrrrysbx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hwtrrrysbx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 614&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 614</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 614</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -29502,7 +30011,7 @@ A model answer for this dataset might be:
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%); Median (IQR)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%); Median (Q1, Q3)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -29513,23 +30022,23 @@ A model answer for this dataset might be:
 
 
 ```{=html}
-<div id="vhutmkqvyu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vhutmkqvyu table {
+<div id="mkqvyubgfg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mkqvyubgfg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vhutmkqvyu thead, #vhutmkqvyu tbody, #vhutmkqvyu tfoot, #vhutmkqvyu tr, #vhutmkqvyu td, #vhutmkqvyu th {
+#mkqvyubgfg thead, #mkqvyubgfg tbody, #mkqvyubgfg tfoot, #mkqvyubgfg tr, #mkqvyubgfg td, #mkqvyubgfg th {
   border-style: none;
 }
 
-#vhutmkqvyu p {
+#mkqvyubgfg p {
   margin: 0;
   padding: 0;
 }
 
-#vhutmkqvyu .gt_table {
+#mkqvyubgfg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -29555,12 +30064,12 @@ A model answer for this dataset might be:
   border-left-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_caption {
+#mkqvyubgfg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vhutmkqvyu .gt_title {
+#mkqvyubgfg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -29572,7 +30081,7 @@ A model answer for this dataset might be:
   border-bottom-width: 0;
 }
 
-#vhutmkqvyu .gt_subtitle {
+#mkqvyubgfg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -29584,7 +30093,7 @@ A model answer for this dataset might be:
   border-top-width: 0;
 }
 
-#vhutmkqvyu .gt_heading {
+#mkqvyubgfg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -29596,13 +30105,13 @@ A model answer for this dataset might be:
   border-right-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_bottom_border {
+#mkqvyubgfg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_col_headings {
+#mkqvyubgfg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -29617,7 +30126,7 @@ A model answer for this dataset might be:
   border-right-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_col_heading {
+#mkqvyubgfg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -29637,7 +30146,7 @@ A model answer for this dataset might be:
   overflow-x: hidden;
 }
 
-#vhutmkqvyu .gt_column_spanner_outer {
+#mkqvyubgfg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -29649,15 +30158,15 @@ A model answer for this dataset might be:
   padding-right: 4px;
 }
 
-#vhutmkqvyu .gt_column_spanner_outer:first-child {
+#mkqvyubgfg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vhutmkqvyu .gt_column_spanner_outer:last-child {
+#mkqvyubgfg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vhutmkqvyu .gt_column_spanner {
+#mkqvyubgfg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -29669,11 +30178,11 @@ A model answer for this dataset might be:
   width: 100%;
 }
 
-#vhutmkqvyu .gt_spanner_row {
+#mkqvyubgfg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vhutmkqvyu .gt_group_heading {
+#mkqvyubgfg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29699,7 +30208,7 @@ A model answer for this dataset might be:
   text-align: left;
 }
 
-#vhutmkqvyu .gt_empty_group_heading {
+#mkqvyubgfg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -29714,15 +30223,15 @@ A model answer for this dataset might be:
   vertical-align: middle;
 }
 
-#vhutmkqvyu .gt_from_md > :first-child {
+#mkqvyubgfg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vhutmkqvyu .gt_from_md > :last-child {
+#mkqvyubgfg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vhutmkqvyu .gt_row {
+#mkqvyubgfg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29741,7 +30250,7 @@ A model answer for this dataset might be:
   overflow-x: hidden;
 }
 
-#vhutmkqvyu .gt_stub {
+#mkqvyubgfg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -29754,7 +30263,7 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#vhutmkqvyu .gt_stub_row_group {
+#mkqvyubgfg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -29768,15 +30277,15 @@ A model answer for this dataset might be:
   vertical-align: top;
 }
 
-#vhutmkqvyu .gt_row_group_first td {
+#mkqvyubgfg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vhutmkqvyu .gt_row_group_first th {
+#mkqvyubgfg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vhutmkqvyu .gt_summary_row {
+#mkqvyubgfg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -29786,16 +30295,16 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#vhutmkqvyu .gt_first_summary_row {
+#mkqvyubgfg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_first_summary_row.thick {
+#mkqvyubgfg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vhutmkqvyu .gt_last_summary_row {
+#mkqvyubgfg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29805,7 +30314,7 @@ A model answer for this dataset might be:
   border-bottom-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_grand_summary_row {
+#mkqvyubgfg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -29815,7 +30324,7 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#vhutmkqvyu .gt_first_grand_summary_row {
+#mkqvyubgfg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29825,7 +30334,7 @@ A model answer for this dataset might be:
   border-top-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_last_grand_summary_row_top {
+#mkqvyubgfg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -29835,11 +30344,11 @@ A model answer for this dataset might be:
   border-bottom-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_striped {
+#mkqvyubgfg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vhutmkqvyu .gt_table_body {
+#mkqvyubgfg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -29848,7 +30357,7 @@ A model answer for this dataset might be:
   border-bottom-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_footnotes {
+#mkqvyubgfg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -29862,7 +30371,7 @@ A model answer for this dataset might be:
   border-right-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_footnote {
+#mkqvyubgfg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -29871,7 +30380,7 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#vhutmkqvyu .gt_sourcenotes {
+#mkqvyubgfg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -29885,7 +30394,7 @@ A model answer for this dataset might be:
   border-right-color: #D3D3D3;
 }
 
-#vhutmkqvyu .gt_sourcenote {
+#mkqvyubgfg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -29893,118 +30402,126 @@ A model answer for this dataset might be:
   padding-right: 5px;
 }
 
-#vhutmkqvyu .gt_left {
+#mkqvyubgfg .gt_left {
   text-align: left;
 }
 
-#vhutmkqvyu .gt_center {
+#mkqvyubgfg .gt_center {
   text-align: center;
 }
 
-#vhutmkqvyu .gt_right {
+#mkqvyubgfg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vhutmkqvyu .gt_font_normal {
+#mkqvyubgfg .gt_font_normal {
   font-weight: normal;
 }
 
-#vhutmkqvyu .gt_font_bold {
+#mkqvyubgfg .gt_font_bold {
   font-weight: bold;
 }
 
-#vhutmkqvyu .gt_font_italic {
+#mkqvyubgfg .gt_font_italic {
   font-style: italic;
 }
 
-#vhutmkqvyu .gt_super {
+#mkqvyubgfg .gt_super {
   font-size: 65%;
 }
 
-#vhutmkqvyu .gt_footnote_marks {
+#mkqvyubgfg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vhutmkqvyu .gt_asterisk {
+#mkqvyubgfg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vhutmkqvyu .gt_indent_1 {
+#mkqvyubgfg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vhutmkqvyu .gt_indent_2 {
+#mkqvyubgfg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vhutmkqvyu .gt_indent_3 {
+#mkqvyubgfg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vhutmkqvyu .gt_indent_4 {
+#mkqvyubgfg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vhutmkqvyu .gt_indent_5 {
+#mkqvyubgfg .gt_indent_5 {
   text-indent: 25px;
+}
+
+#mkqvyubgfg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mkqvyubgfg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;HR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>HR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">Female</td>
 <td headers="estimate" class="gt_row gt_center">0.99</td>
-<td headers="ci" class="gt_row gt_center">0.78, 1.26</td>
+<td headers="conf.low" class="gt_row gt_center">0.78, 1.26</td>
 <td headers="p.value" class="gt_row gt_center">>0.9</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Age (per 1 year)</td>
 <td headers="estimate" class="gt_row gt_center">1.01</td>
-<td headers="ci" class="gt_row gt_center">1.0, 1.02</td>
+<td headers="conf.low" class="gt_row gt_center">1.0, 1.02</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Obstruction</td>
 <td headers="estimate" class="gt_row gt_center">1.44</td>
-<td headers="ci" class="gt_row gt_center">1.07, 1.93</td>
+<td headers="conf.low" class="gt_row gt_center">1.07, 1.93</td>
 <td headers="p.value" class="gt_row gt_center">0.015</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Adhesions</td>
 <td headers="estimate" class="gt_row gt_center">1.41</td>
-<td headers="ci" class="gt_row gt_center">1.03, 1.93</td>
+<td headers="conf.low" class="gt_row gt_center">1.03, 1.93</td>
 <td headers="p.value" class="gt_row gt_center">0.032</td></tr>
     <tr><td headers="label" class="gt_row gt_left">Number of Nodes</td>
 <td headers="estimate" class="gt_row gt_center"><br /></td>
-<td headers="ci" class="gt_row gt_center"><br /></td>
+<td headers="conf.low" class="gt_row gt_center"><br /></td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    0-2</td>
 <td headers="estimate" class="gt_row gt_center">—</td>
-<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="conf.low" class="gt_row gt_center">—</td>
 <td headers="p.value" class="gt_row gt_center"><br /></td></tr>
     <tr><td headers="label" class="gt_row gt_left">    3-5</td>
 <td headers="estimate" class="gt_row gt_center">1.62</td>
-<td headers="ci" class="gt_row gt_center">1.21, 2.16</td>
+<td headers="conf.low" class="gt_row gt_center">1.21, 2.16</td>
 <td headers="p.value" class="gt_row gt_center">0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    5-10</td>
 <td headers="estimate" class="gt_row gt_center">2.93</td>
-<td headers="ci" class="gt_row gt_center">2.14, 4.02</td>
+<td headers="conf.low" class="gt_row gt_center">2.14, 4.02</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
     <tr><td headers="label" class="gt_row gt_left">    &gt;10</td>
 <td headers="estimate" class="gt_row gt_center">3.30</td>
-<td headers="ci" class="gt_row gt_center">2.06, 5.29</td>
+<td headers="conf.low" class="gt_row gt_center">2.06, 5.29</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> HR = Hazard Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -30018,7 +30535,7 @@ A model answer for this dataset might be:
 We can test the difference between groups by using the `survdiff` function:
 
 
-```r
+``` r
 # Test for difference in time to recurrence by hivolume
 survdiff(Surv(time, recurrence) ~ hivolume, data = lesson7b)
 ```
@@ -30041,7 +30558,7 @@ We get a p-value of 0.11.
 This is not sufficient evidence to conclude that high volume hospitals and more experienced surgeons lower recurrence rates. However, could there be a difference and the trial was not large enough to detect it? The key point here is not sample size, but the number of "events" (typically recurrences or deaths). Even if you had a trial of 100,000 patients, if only one or two people died you would not have any data on length of survival to test. In this dataset, though there were 40 patients, there were only ten events. You can see that if you use the `survfit` function:
 
 
-```r
+``` r
 # Look at number of recurrence events in this dataset
 survfit(Surv(time, recurrence) ~ 1, data = lesson7b)
 ```
@@ -30056,7 +30573,7 @@ survfit(Surv(time, recurrence) ~ 1, data = lesson7b)
 You can then look at a Cox model:
 
 
-```r
+``` r
 # Cox model for time to recurrence
 lesson7b_cox <-
   coxph(Surv(time, recurrence) ~ hivolume, data = lesson7b)
@@ -30064,23 +30581,23 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
 ```
 
 ```{=html}
-<div id="qbywgjjbpu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qbywgjjbpu table {
+<div id="wgjjbpubnn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wgjjbpubnn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qbywgjjbpu thead, #qbywgjjbpu tbody, #qbywgjjbpu tfoot, #qbywgjjbpu tr, #qbywgjjbpu td, #qbywgjjbpu th {
+#wgjjbpubnn thead, #wgjjbpubnn tbody, #wgjjbpubnn tfoot, #wgjjbpubnn tr, #wgjjbpubnn td, #wgjjbpubnn th {
   border-style: none;
 }
 
-#qbywgjjbpu p {
+#wgjjbpubnn p {
   margin: 0;
   padding: 0;
 }
 
-#qbywgjjbpu .gt_table {
+#wgjjbpubnn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -30106,12 +30623,12 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-left-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_caption {
+#wgjjbpubnn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qbywgjjbpu .gt_title {
+#wgjjbpubnn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -30123,7 +30640,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-bottom-width: 0;
 }
 
-#qbywgjjbpu .gt_subtitle {
+#wgjjbpubnn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -30135,7 +30652,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-top-width: 0;
 }
 
-#qbywgjjbpu .gt_heading {
+#wgjjbpubnn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -30147,13 +30664,13 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_bottom_border {
+#wgjjbpubnn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_col_headings {
+#wgjjbpubnn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -30168,7 +30685,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_col_heading {
+#wgjjbpubnn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -30188,7 +30705,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   overflow-x: hidden;
 }
 
-#qbywgjjbpu .gt_column_spanner_outer {
+#wgjjbpubnn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -30200,15 +30717,15 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   padding-right: 4px;
 }
 
-#qbywgjjbpu .gt_column_spanner_outer:first-child {
+#wgjjbpubnn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qbywgjjbpu .gt_column_spanner_outer:last-child {
+#wgjjbpubnn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qbywgjjbpu .gt_column_spanner {
+#wgjjbpubnn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -30220,11 +30737,11 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   width: 100%;
 }
 
-#qbywgjjbpu .gt_spanner_row {
+#wgjjbpubnn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qbywgjjbpu .gt_group_heading {
+#wgjjbpubnn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -30250,7 +30767,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   text-align: left;
 }
 
-#qbywgjjbpu .gt_empty_group_heading {
+#wgjjbpubnn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -30265,15 +30782,15 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#qbywgjjbpu .gt_from_md > :first-child {
+#wgjjbpubnn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qbywgjjbpu .gt_from_md > :last-child {
+#wgjjbpubnn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qbywgjjbpu .gt_row {
+#wgjjbpubnn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -30292,7 +30809,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   overflow-x: hidden;
 }
 
-#qbywgjjbpu .gt_stub {
+#wgjjbpubnn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -30305,7 +30822,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qbywgjjbpu .gt_stub_row_group {
+#wgjjbpubnn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -30319,15 +30836,15 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   vertical-align: top;
 }
 
-#qbywgjjbpu .gt_row_group_first td {
+#wgjjbpubnn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qbywgjjbpu .gt_row_group_first th {
+#wgjjbpubnn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qbywgjjbpu .gt_summary_row {
+#wgjjbpubnn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -30337,16 +30854,16 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qbywgjjbpu .gt_first_summary_row {
+#wgjjbpubnn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_first_summary_row.thick {
+#wgjjbpubnn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qbywgjjbpu .gt_last_summary_row {
+#wgjjbpubnn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -30356,7 +30873,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_grand_summary_row {
+#wgjjbpubnn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -30366,7 +30883,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qbywgjjbpu .gt_first_grand_summary_row {
+#wgjjbpubnn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -30376,7 +30893,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-top-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_last_grand_summary_row_top {
+#wgjjbpubnn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -30386,11 +30903,11 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_striped {
+#wgjjbpubnn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qbywgjjbpu .gt_table_body {
+#wgjjbpubnn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -30399,7 +30916,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_footnotes {
+#wgjjbpubnn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -30413,7 +30930,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_footnote {
+#wgjjbpubnn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -30422,7 +30939,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qbywgjjbpu .gt_sourcenotes {
+#wgjjbpubnn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -30436,7 +30953,7 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#qbywgjjbpu .gt_sourcenote {
+#wgjjbpubnn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -30444,86 +30961,94 @@ tbl_regression(lesson7b_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#qbywgjjbpu .gt_left {
+#wgjjbpubnn .gt_left {
   text-align: left;
 }
 
-#qbywgjjbpu .gt_center {
+#wgjjbpubnn .gt_center {
   text-align: center;
 }
 
-#qbywgjjbpu .gt_right {
+#wgjjbpubnn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qbywgjjbpu .gt_font_normal {
+#wgjjbpubnn .gt_font_normal {
   font-weight: normal;
 }
 
-#qbywgjjbpu .gt_font_bold {
+#wgjjbpubnn .gt_font_bold {
   font-weight: bold;
 }
 
-#qbywgjjbpu .gt_font_italic {
+#wgjjbpubnn .gt_font_italic {
   font-style: italic;
 }
 
-#qbywgjjbpu .gt_super {
+#wgjjbpubnn .gt_super {
   font-size: 65%;
 }
 
-#qbywgjjbpu .gt_footnote_marks {
+#wgjjbpubnn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qbywgjjbpu .gt_asterisk {
+#wgjjbpubnn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qbywgjjbpu .gt_indent_1 {
+#wgjjbpubnn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qbywgjjbpu .gt_indent_2 {
+#wgjjbpubnn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qbywgjjbpu .gt_indent_3 {
+#wgjjbpubnn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qbywgjjbpu .gt_indent_4 {
+#wgjjbpubnn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qbywgjjbpu .gt_indent_5 {
+#wgjjbpubnn .gt_indent_5 {
   text-indent: 25px;
+}
+
+#wgjjbpubnn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wgjjbpubnn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;HR&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>HR</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">1 = high volume, 0 = low volume</td>
 <td headers="estimate" class="gt_row gt_center">0.35</td>
-<td headers="ci" class="gt_row gt_center">0.09, 1.35</td>
+<td headers="conf.low" class="gt_row gt_center">0.09, 1.35</td>
 <td headers="p.value" class="gt_row gt_center">0.13</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> HR = Hazard Ratio, CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -30549,7 +31074,7 @@ A model answer:
 Another way of doing this would be to estimate survival at say, 6, 12 and 18 months in each hospital. The command would be:
 
 
-```r
+``` r
 # Estimate survival at 6, 12 and 18 months
 summary(survfit(Surv(time, recurrence) ~ hivolume, data = lesson7b),
         times = c(183, 365, 548))
@@ -30594,7 +31119,7 @@ Let's jump straight to the model answer.
 In case you are wondering how I did all this, one key is to see that in the dataset "group" and "treatment" are equivalent:
 
 
-```r
+``` r
 # Two-way table of group by treatment
 tbl_summary(
   lesson7c %>% select(group, treatment),
@@ -31042,15 +31567,26 @@ tbl_summary(
 #hegqeoooxc .gt_indent_5 {
   text-indent: 25px;
 }
+
+#hegqeoooxc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hegqeoooxc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;5FU&lt;/strong&gt;, N = 310&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>5FU</strong>, N = 310<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;5FU+Levamisole&lt;/strong&gt;, N = 304&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>5FU+Levamisole</strong>, N = 304<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;control&lt;/strong&gt;, N = 315&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>control</strong>, N = 315<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>5FU</strong><br />
+N = 310</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>5FU+Levamisole</strong><br />
+N = 304</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>control</strong><br />
+N = 315</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -31074,7 +31610,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -31084,7 +31620,7 @@ tbl_summary(
 When I did the graph, I used the variable "treatment" to get the names of the treatments (rather than the group number). I used the {ggsurvfit} package, which allows you to create survival plots using the same type of syntax that is used in plots created using the {ggplot2} package. Here, the `survfit2` function from {ggsurvfit} is used to perform the survival analysis calculations and passed to the `ggsurvfit` function. (The code and options for the `survfit2` function is the same as the `survfit` function.) Survival time was specified as "survival_time/365.25" so that the graph is plotted showing survival time in years, rather than days. The `labs` function allows us to specify an x-axis label, and `scale_y_continuous(label = scales::percent)` formats the y-axis on a scale from 0% to 100%, rather than the default scale from 0 to 1.
 
 
-```r
+``` r
 # Create Kaplan-Meier plot by treatment group
 ggsurvfit::survfit2(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c) %>%
   ggsurvfit::ggsurvfit() +
@@ -31099,7 +31635,7 @@ ggsurvfit::survfit2(Surv(survival_time/365.25, died) ~ treatment, data = lesson7
 When I did the Cox regression, I created dummy variables by typing:
 
 
-```r
+``` r
 # Create dummy variable for treatment
 lesson7c <-
   lesson7c %>%
@@ -31112,7 +31648,7 @@ lesson7c <-
 Then it was straightforward to create the cox model and get the overall p-value from the `survdiff` function.
 
 
-```r
+``` r
 # Cox model with dummy variables
 coxph(Surv(survival_time, died) ~ fu + lev, data = lesson7c)
 ```
@@ -31129,7 +31665,7 @@ coxph(Surv(survival_time, died) ~ fu + lev, data = lesson7c)
 ## n= 929, number of events= 452
 ```
 
-```r
+``` r
 # Overall p-value for all 3 groups
 survdiff(Surv(survival_time, died) ~ group, data = lesson7c)
 ```

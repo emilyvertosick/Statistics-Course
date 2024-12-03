@@ -10,7 +10,7 @@ editor_options:
 ## Setting Up
 
 
-```r
+``` r
 # Load packages
 library(skimr)
 library(gt)
@@ -46,7 +46,7 @@ Other variables have names that are not self-explanatory, for example, "p1". Thi
 If you would like to print out this information in the console window, you can also use the `str` function:
 
 
-```r
+``` r
 # Shows a list of variables and labels
 str(lesson1a)
 ```
@@ -81,7 +81,7 @@ The commands you might think about using for the datasets sent after lecture 2 a
 The function `skim` will give summary statistics for specified variables.
 
 
-```r
+``` r
 # Summary of "age" variable from "lesson1a" dataset
 lesson1a %>% skim(age)
 ```
@@ -112,7 +112,7 @@ So you can tell you have data on age for 386 patients ("number of rows" is the n
 The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was 19 and the oldest was 86. "p50" is the median (49 years), and the interquartile range is reported under "p25" and "p75" (40, 59).
 
 
-```r
+``` r
 # Summary of "age" within men and women separately
 lesson1a %>%
   group_by(sex) %>%
@@ -148,7 +148,7 @@ The `group_by` function allows you to group your data and perform analyses separ
 You can get R to give you centiles directly by using the `quantile` function. The option `na.rm = TRUE` tells R to ignore any missing (NA) values when calculating the centiles.
 
 
-```r
+``` r
 # Get centiles for "age" variable
 quantile(lesson1a$age, na.rm = TRUE)
 ```
@@ -163,7 +163,7 @@ The first row of the results says that you are looking at the 0, 25, 50, 75, and
 You aren't restricted to quartiles with the `quantile` function. For example, you can use the code below to give you the 11th, 45th and 78th centile, as well as 91.5 centile, which would be the 915th highest value in a dataset of 1000 observations. 
 
 
-```r
+``` r
 # Get specific centiles (11th, 45th, 78th, 91.5th) for "age" variable
 quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
 ```
@@ -178,7 +178,7 @@ quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
 As mentioned in the first lesson, the `tbl_summary` function (from the {gtsummary} package) can be used to create a frequency table, in this case, the number of men and women.
 
 
-```r
+``` r
 # Get formatted one-way frequency table
 tbl_summary(
   lesson1a %>% select(sex), # Specify data to use and variables to include
@@ -626,13 +626,21 @@ tbl_summary(
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 386&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 386</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 386</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -646,7 +654,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -664,7 +672,7 @@ So there are 205 (53%) women and 181 (47%) men.
 The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable "y" gives the part of the hospital) in men and women separately. In the last lesson, a 2-by-2 table was created, but `tbl_summary` can also create a two-way table with more than 2 rows or more than 2 columns.
 
 
-```r
+``` r
 # Create a formatted two-way summary table
 tbl_summary(
   lesson1a %>% select(sex, y), # Select both variables
@@ -1113,16 +1121,28 @@ tbl_summary(
 #epqsnuprvj .gt_indent_5 {
   text-indent: 25px;
 }
+
+#epqsnuprvj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#epqsnuprvj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;campus&lt;/strong&gt;, N = 240&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>campus</strong>, N = 240<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;harding&lt;/strong&gt;, N = 39&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>harding</strong>, N = 39<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;peds&lt;/strong&gt;, N = 40&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>peds</strong>, N = 40<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;satellite&lt;/strong&gt;, N = 67&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>satellite</strong>, N = 67<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>campus</strong><br />
+N = 240</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>harding</strong><br />
+N = 39</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>peds</strong><br />
+N = 40</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_4"><span class='gt_from_md'><strong>satellite</strong><br />
+N = 67</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1145,7 +1165,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1159,7 +1179,7 @@ This shows that, for example, there were 240 operations done at the main campus,
 You can use the `add_overall` function to add a column which shows the total across all sites. This is not generally advised - for instance, if the median age in the drug group is 65 and in the placebo group is 67, you don't need to be told that the median age in the cohort is somewhere near 66 - but there are sometimes reasons to report on the whole cohort as well.
 
 
-```r
+``` r
 # Create a formatted two-way summary table and add column for all patients
 tbl_summary(
   lesson1a %>% select(sex, y),
@@ -1611,17 +1631,30 @@ tbl_summary(
 #mkgngwavns .gt_indent_5 {
   text-indent: 25px;
 }
+
+#mkgngwavns .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mkgngwavns div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;campus&lt;/strong&gt;, N = 240&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>campus</strong>, N = 240<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;harding&lt;/strong&gt;, N = 39&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>harding</strong>, N = 39<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;peds&lt;/strong&gt;, N = 40&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>peds</strong>, N = 40<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;satellite&lt;/strong&gt;, N = 67&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>satellite</strong>, N = 67<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Overall&lt;/strong&gt;, N = 386&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>Overall</strong>, N = 386<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>campus</strong><br />
+N = 240</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>harding</strong><br />
+N = 39</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>peds</strong><br />
+N = 40</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_4"><span class='gt_from_md'><strong>satellite</strong><br />
+N = 67</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>Overall</strong><br />
+N = 386</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1647,7 +1680,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1661,7 +1694,7 @@ Overall, 47% of the patients treated in the hospital were men and 53% were women
 By default `tbl_summary` gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the `percent` option and specifying "row".
 
 
-```r
+``` r
 # The two-way summary table can give you row percent instead of column percent
 tbl_summary(
   lesson1a %>% select(sex, y),
@@ -2111,16 +2144,28 @@ tbl_summary(
 #bixqbsxufc .gt_indent_5 {
   text-indent: 25px;
 }
+
+#bixqbsxufc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#bixqbsxufc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;campus&lt;/strong&gt;, N = 240&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>campus</strong>, N = 240<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;harding&lt;/strong&gt;, N = 39&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>harding</strong>, N = 39<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;peds&lt;/strong&gt;, N = 40&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>peds</strong>, N = 40<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;satellite&lt;/strong&gt;, N = 67&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>satellite</strong>, N = 67<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>campus</strong><br />
+N = 240</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>harding</strong><br />
+N = 39</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>peds</strong><br />
+N = 40</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_4"><span class='gt_from_md'><strong>satellite</strong><br />
+N = 67</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2143,7 +2188,7 @@ tbl_summary(
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
     </tr>
   </tfoot>
 </table>
@@ -2161,7 +2206,7 @@ Sometimes, you will want to subset your data - for instance, by keeping only the
 To start, we will count the number of observations in the full dataset, so we will be able to confirm whether we have subset correctly. Passing a dataset to the `count` function will count the number of total observations.
 
 
-```r
+``` r
 # Count all patients in the dataset
 lesson1a %>% count()
 ```
@@ -2176,7 +2221,7 @@ lesson1a %>% count()
 In this example, we can use `filter` to count the number of women in the dataset, or the number of operations on women at the main campus. Don't forget that you need to use two equals signs here.
 
 
-```r
+``` r
 # Count the number of women
 lesson1a %>%
   filter(sex == 1) %>%
@@ -2190,7 +2235,7 @@ lesson1a %>%
 ## 1   205
 ```
 
-```r
+``` r
 # Count the number of women treated at the main campus
 lesson1a %>%
   filter(sex == 1 & y == "campus") %>%
@@ -2215,7 +2260,7 @@ The following might sound a little complicated, but just follow it through and e
 First, run the following code.
 
 
-```r
+``` r
 # This code creates a histogram of the "age" variable
 ggplot(data = lesson1a,
        aes(x = age)) +
@@ -2235,7 +2280,7 @@ One of the things that R does is to choose the number of bars for you. Notice ho
 You can pick the number of bars yourself by using the `bins` option. Try setting the number of bins to 20, which will break the data into fewer pieces.
 
 
-```r
+``` r
 # Here is the same histogram, setting the number of bins to 20
 ggplot(data = lesson1a,
        aes(x = age)) +
@@ -2247,7 +2292,7 @@ ggplot(data = lesson1a,
 The following code will superimpose a curve for the normal distribution.
 
 
-```r
+``` r
 # Here is the histogram with 20 bins and density curve overlay
 ggplot(data = lesson1a,
        aes(x = age)) +
@@ -2262,7 +2307,7 @@ ggplot(data = lesson1a,
 Only read this if you are feeling really keen...
 
 
-```r
+``` r
 # The "ci" function is from the "gmodels" package
 # This gives the mean of age and 90% confidence interval
 ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
@@ -2276,7 +2321,7 @@ ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
 This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age, na.rm = TRUE)`).
 
 
-```r
+``` r
 # The "ci.binom" function gives the same information as "ci" but is used for binary variables
 ci.binom(lesson1a$sex, na.rm = TRUE)
 ```
@@ -2293,7 +2338,7 @@ For a binary variable, the function `ci.binom` from the {gmodels} package is use
 R can be used as a calculator:
 
 
-```r
+``` r
 # Multiplication
 7*7
 ```
@@ -2305,7 +2350,7 @@ R can be used as a calculator:
 `log()` is the natural logarithm (to base e)
 
 
-```r
+``` r
 # Natural logarithm
 log(2.71828)
 ```
@@ -2317,7 +2362,7 @@ log(2.71828)
 `exp()` is the inverse natural logarithm, that is, if exp(x)=y, e^y^=x
 
 
-```r
+``` r
 # Inverse natural logarithm
 exp(1)
 ```
@@ -2329,7 +2374,7 @@ exp(1)
 `log10()` gives the log to base 10
 
 
-```r
+``` r
 # Base 10 logarithm
 log10(100)
 ```
@@ -2341,7 +2386,7 @@ log10(100)
 `cos(45)` gives the cosine of 45
 
 
-```r
+``` r
 # Cosine
 cos(45)
 ```
@@ -2355,7 +2400,7 @@ Some of the functions give useful statistical constants.
 `pnorm(x)` gives the probability that an observation will be less than mean + x standard deviations.
 
 
-```r
+``` r
 # Probability that an observation will be less than mean + 1 standard deviations
 pnorm(1)
 ```
@@ -2364,7 +2409,7 @@ pnorm(1)
 ## [1] 0.8413447
 ```
 
-```r
+``` r
 # Probability that an observation will be less than mean - 0.5 standard deviations
 pnorm(-0.5)
 ```
@@ -2380,7 +2425,7 @@ pnorm(-0.5)
 Therefore, if you had a data set where the pain score had a mean of 5 and a standard deviation of 2, you could predict that only 16% of patients would have pain scores of 7 or more (i.e. more than one standard deviation higher than the mean) and that 69% would have pain scores of 4 or more (i.e. more than half a standard deviation below the mean: 31% of observations are half a standard deviation or more less than the mean).
 
 
-```r
+``` r
 # Probability that an observation will be less than mean + 1.96
 pnorm(1.96)
 ```
@@ -2389,7 +2434,7 @@ pnorm(1.96)
 ## [1] 0.9750021
 ```
 
-```r
+``` r
 # Probability that an observation will be less than mean - 1.96
 pnorm(-1.96)
 ```
@@ -2407,7 +2452,7 @@ Almost all observations fall within 3 standard deviations of the mean, as shown 
 ## Assignments
 
 
-```r
+``` r
 # Copy and paste this code to load the data for week 2 assignments
 lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
 lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))

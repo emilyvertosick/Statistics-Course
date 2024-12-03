@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Week 3 | MSKCC Biostatistics Course</title>
   <meta name="description" content="Statistics Course" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Week 3 | MSKCC Biostatistics Course" />
   <meta property="og:type" content="book" />
@@ -351,10 +351,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">3.2.2.1</span> t-test<a href="week-3.html#t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statisticians normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a “theorem”, this is called the “central limit theorem”). Just how large is “large” is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is “robust” to non-normal data, even if sample sizes are low. “Robust” means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for to compare a continuous outcome between two groups even if the data are pretty skewed.</p>
 <p><strong>Different forms of the t-test</strong></p>
-<p>The two main forms of the t-test are “paired” and “unpaired”.</p>
+<p>The two main forms of the t-test are “paired” and “unpaired”. “Unpaired” is the default.</p>
 <p>“Unpaired” is used when, for example, testing marker levels between two groups taking different drugs, as there are different patients in each group:</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="week-3.html#cb100-1" tabindex="-1"></a><span class="co"># t-test for marker levels between treatment arms</span></span>
-<span id="cb100-2"><a href="week-3.html#cb100-2" tabindex="-1"></a><span class="fu">t.test</span>(marker <span class="sc">~</span> trt, <span class="at">data =</span> trial, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb100-2"><a href="week-3.html#cb100-2" tabindex="-1"></a><span class="fu">t.test</span>(marker <span class="sc">~</span> trt, <span class="at">data =</span> trial, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -366,15 +366,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean in group Drug A mean in group Drug B 
 ##            1.0173478            0.8208367</code></pre>
-<p>The first variable, “marker”, is the continuous endpoint that you are comparing by the two groups of the second variable, “trt” (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called <strong>trial</strong>. <code>paired = FALSE</code> indicates that you want to perform an “unpaired” test. The last option (<code>var.equal = TRUE</code>) tells the <code>t.test</code> function to treat the two variances as being equal. For this course, you will need to include this option in two-group <code>t.test</code> commands but you do not need to know specific details about this concept.</p>
+<p>The first variable, “marker”, is the continuous endpoint that you are comparing by the two groups of the second variable, “trt” (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called <strong>trial</strong>. By default an “unpaired” test is performed. The last option (<code>var.equal = TRUE</code>) tells the <code>t.test</code> function to treat the two variances as being equal. For this course, you will need to include this option in two-group <code>t.test</code> commands but you do not need to know specific details about this concept.</p>
 <p>A “paired” test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.</p>
 <!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
+<p>Since these are two measurements taken on the same patient, a paired t-test is necessary. To perform a paired t-test, you use the <code>t.test</code> function including the outcome variable, the predictor variable, and the option <code>paired = TRUE</code>.</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="week-3.html#cb102-1" tabindex="-1"></a><span class="co"># paired t-test for blood pressure between &quot;before&quot; and &quot;after&quot; groups</span></span>
-<span id="cb102-2"><a href="week-3.html#cb102-2" tabindex="-1"></a><span class="fu">t.test</span>(bp <span class="sc">~</span> when, <span class="at">data =</span> example3a, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb102-2"><a href="week-3.html#cb102-2" tabindex="-1"></a><span class="fu">t.test</span>(example3a<span class="sc">$</span>bp_after, example3a<span class="sc">$</span>bp_before, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
-## data:  bp by when
+## data:  example3a$bp_after and example3a$bp_before
 ## t = -3.3372, df = 119, p-value = 0.00113
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
@@ -382,7 +383,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean difference 
 ##       -5.091667</code></pre>
-<p>Here, the code is the same as the last example, with “bp” as the continuous outcome, and “when” indicating the two groups. Since these are two measurements taken on the same patient, a paired t-test is necessary, so the option <code>paired = TRUE</code> must be included.</p>
 <p>A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the Midwest different than the national average of 32%?</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="week-3.html#cb104-1" tabindex="-1"></a><span class="co"># t-test assessing whether the rate of college education is different than 32%</span></span>
 <span id="cb104-2"><a href="week-3.html#cb104-2" tabindex="-1"></a><span class="fu">t.test</span>(midwest<span class="sc">$</span>percollege, <span class="at">mu =</span> <span class="dv">32</span>)</span></code></pre></div>
@@ -399,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  18.27274</code></pre>
 <p>Let’s look at the print out from a t-test in more detail:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="week-3.html#cb106-1" tabindex="-1"></a><span class="co"># t-test for difference in horsepower for manual vs automatic transmission</span></span>
-<span id="cb106-2"><a href="week-3.html#cb106-2" tabindex="-1"></a><span class="fu">t.test</span>(hp <span class="sc">~</span> am, <span class="at">data =</span> mtcars, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb106-2"><a href="week-3.html#cb106-2" tabindex="-1"></a><span class="fu">t.test</span>(hp <span class="sc">~</span> am, <span class="at">data =</span> mtcars, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -868,17 +868,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #iwrgxmosvm .gt_indent_5 {
   text-indent: 25px;
 }
+
+#iwrgxmosvm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwrgxmosvm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
-    
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;0&lt;/strong&gt;, N = 19&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>0</strong>, N = 19<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;1&lt;/strong&gt;, N = 13&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>1</strong>, N = 13<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Difference&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>Difference</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2,3&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2,3</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/span&gt;"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 19</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 13</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Difference</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2,3</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -886,19 +896,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td headers="stat_1" class="gt_row gt_center">160 (54)</td>
 <td headers="stat_2" class="gt_row gt_center">127 (84)</td>
 <td headers="estimate" class="gt_row gt_center">33</td>
-<td headers="ci" class="gt_row gt_center">-16, 83</td>
+<td headers="conf.low" class="gt_row gt_center">-16, 83</td>
 <td headers="p.value" class="gt_row gt_center">0.2</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Mean (SD)</span></td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> One-way ANOVA</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> <span class='gt_from_md'>One-way ANOVA</span></td>
     </tr>
     <tr>
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>3</sup></span> CI = Confidence Interval</td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>3</sup></span> <span class='gt_from_md'>CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
@@ -911,21 +921,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance.</p>
 <p>Unpaired case, for example, do marker levels differ between the drug and placebo groups?</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="week-3.html#cb109-1" tabindex="-1"></a><span class="co"># non-parametric test for difference in marker levels by treatment group</span></span>
-<span id="cb109-2"><a href="week-3.html#cb109-2" tabindex="-1"></a><span class="fu">wilcox.test</span>(marker <span class="sc">~</span> trt, <span class="at">data =</span> trial, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<span id="cb109-2"><a href="week-3.html#cb109-2" tabindex="-1"></a><span class="fu">wilcox.test</span>(marker <span class="sc">~</span> trt, <span class="at">data =</span> trial, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  marker by trt
 ## W = 5161.5, p-value = 0.08475
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
-<p>The inputs for the <code>wilcox.test</code> function are very similar to the inputs for the <code>t.test</code> function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable (“marker”), the group variable (“trt”) and the dataset (<strong>trial</strong>) are all the same. This is still an unpaired test (<code>paired = FALSE</code>).</p>
+<p>The inputs for the <code>wilcox.test</code> function are very similar to the inputs for the <code>t.test</code> function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable (“marker”), the group variable (“trt”) and the dataset (<strong>trial</strong>) are all the same. As with the <code>t.test</code> function, this is an unpaired test by default.</p>
 <p>Paired case, for example, does an intervention cause a change in a patient’s blood pressure?</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="week-3.html#cb111-1" tabindex="-1"></a><span class="co"># paired non-parametric test for difference in &quot;before&quot; and &quot;after&quot; blood pressure measurements</span></span>
-<span id="cb111-2"><a href="week-3.html#cb111-2" tabindex="-1"></a><span class="fu">wilcox.test</span>(bp <span class="sc">~</span> when, <span class="at">data =</span> example3a, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb111-2"><a href="week-3.html#cb111-2" tabindex="-1"></a><span class="fu">wilcox.test</span>(example3a<span class="sc">$</span>bp_after, example3a<span class="sc">$</span>bp_before, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank test with continuity correction
 ## 
-## data:  bp by when
+## data:  example3a$bp_after and example3a$bp_before
 ## V = 2234.5, p-value = 0.001417
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?</p>
