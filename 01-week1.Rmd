@@ -114,6 +114,7 @@ install.packages("gmodels")
 install.packages("survival")
 install.packages("ggsurvfit")
 install.packages("gt")
+install.packages("cardx")
 
 ```
 
