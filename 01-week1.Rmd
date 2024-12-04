@@ -115,6 +115,7 @@ install.packages("survival")
 install.packages("ggsurvfit")
 install.packages("gt")
 install.packages("cardx")
+install.packages("broom.helpers")
 
 ```
 

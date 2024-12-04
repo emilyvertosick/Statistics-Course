@@ -77,6 +77,7 @@ install.packages("survival")
 install.packages("ggsurvfit")
 install.packages("gt")
 install.packages("cardx")
+install.packages("broom.helpers")
 ```
 
 If you get a message that says "These packages have more recent versions available. Which would you like to update?", you can enter "1" in the console window and press enter. This will update all necessary packages and complete the installation.
