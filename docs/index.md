@@ -1,6 +1,6 @@
 --- 
 title: "MSKCC Biostatistics Course"
-date: "Last Updated: January 14, 2025"
+date: "Last Updated: January 16, 2025"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
@@ -39,45 +39,45 @@ R assignments are done **after** the class.
 -----------------------------------------------------
 Date / Location     Topic and Assignments
 ---------------     ---------------------------------
-**1/8/2025**\       **Class I:** What is statistics?\
+**1/15/2025**\       **Class I:** What is statistics?\
 **RRL-101**\         **Reading:** "How To Read This Book", Chapter 1\
                     **Assignment:** Questions 1 and 4
 
-**1/15/2025**\      **Class II:** Describing Data\
+**1/22/2025**\      **Class II:** Describing Data\
 **RRL-101**\        **Reading:** Chapters 2-6 and chapter 20\
                     **Assignment:** All questions for chapters 2, 3, 4 and 6; questions 1 and 3 for chapter 5; question 1 for chapter 20
                     
-**1/22/2025**\      **Class III:** Data Distributions\
+**1/29/2025**\      **Class III:** Data Distributions\
 **RRL-101**\        **Reading:** Chapters 7-9\
                     **Assignment:** Chapter 7, question 2; chapter 8, question 1; chapter 9, questions 1 and 3
                     
-**1/29/2025**\       **Class IV:** Confidence Intervals\
+**2/5/2025**\       **Class IV:** Confidence Intervals\
 **RRL-101**\        **Reading:** Chapters 10-12\
                     **Assignment:** All questions for chapters 10 and 11; question 1 in chapter 12\
                     **Extra for those doing R assignment:** [Statistics Notes: Diagnostic tests 3: receiver operating characteristic plots](https://www.bmj.com/content/309/6948/188.full)
                     
-**2/5/2025**\       **Class V:** Hypothesis Testing\
+**2/12/2025**\       **Class V:** Hypothesis Testing\
 **RRL-101**\        **Reading:** Chapters 13-17\
                     **Assignment:** Chapters 13, 15 and 16, all questions; chapter 14, question 1; chapter 17, questions 1-3
                     
-**2/12/2025**\      **Class VI:** Regression\
+**2/19/2025**\      **Class VI:** Regression\
 **RRL-101**\            **Reading:** Chapters 18-19\
                     **Assignment:** Chapter 18, questions 1-4; chapter 19, questions 1-2
                     
-**2/19/2025**\       **Class VII:** Survival Data\
+**2/26/2025**\       **Class VII:** Survival Data\
 **RRL-101**\            **Reading:** Chapters 21-24 and chapter 28\
                     **Assignments:** Chapter 21, question 1; chapter 23, question 1; chapter 24, questions 1, 2 and 4
                     
-**2/26/2025**\       **Class VIII:** Errors in Statistics (all class meets)\
+**3/5/2025**\       **Class VIII:** Errors in Statistics (all class meets)\
 **RRL-101**\            **Reading:** Chapters 30-34\
                     **Optional extra reading:**
                     [The scandal of poor medical research](https://www.bmj.com/content/308/6924/283.full), 
                     [Math as Mass Hypnosis: On Mortgage-Backed Securities, Maritime Warfare, and Medical Research](https://www.medscape.com/viewarticle/714772)\
                     **Assignments:** All questions for chapters 30 and 33
                     
-**3/5/2025**\      Make-up day, if needed
-
 **3/12/2025**\      Make-up day, if needed
+
+<!-- **3/12/2025**\      Make-up day, if needed -->
                     
 -----------------------------------------------------
 
