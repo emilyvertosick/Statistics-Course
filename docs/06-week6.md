@@ -622,7 +622,6 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 <td headers="Female" class="gt_row gt_left">? of ? (?%) responded</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 ```

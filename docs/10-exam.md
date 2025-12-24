@@ -1,3 +1,2 @@
 # Exam
 
-The exam materials can be found in [this zip file](https://github.com/emilyvertosick/Statistics-Course/blob/master/Exams/2025%20Exam.zip?raw=TRUE)

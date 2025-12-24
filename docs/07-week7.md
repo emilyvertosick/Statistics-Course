@@ -699,7 +699,6 @@ tbl_survfit(survfit(Surv(t, d) ~ 1, data = example7a), times = c(12, 24, 60))
 <td headers="stat_3" class="gt_row gt_center">8.3% (1.5%, 46%)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 ```
@@ -730,23 +729,23 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
 ```
 
 ```{=html}
-<div id="epqsnuprvj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#epqsnuprvj table {
+<div id="eaoptgxhge" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eaoptgxhge table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#epqsnuprvj thead, #epqsnuprvj tbody, #epqsnuprvj tfoot, #epqsnuprvj tr, #epqsnuprvj td, #epqsnuprvj th {
+#eaoptgxhge thead, #eaoptgxhge tbody, #eaoptgxhge tfoot, #eaoptgxhge tr, #eaoptgxhge td, #eaoptgxhge th {
   border-style: none;
 }
 
-#epqsnuprvj p {
+#eaoptgxhge p {
   margin: 0;
   padding: 0;
 }
 
-#epqsnuprvj .gt_table {
+#eaoptgxhge .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -772,12 +771,12 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-left-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_caption {
+#eaoptgxhge .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#epqsnuprvj .gt_title {
+#eaoptgxhge .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -789,7 +788,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-bottom-width: 0;
 }
 
-#epqsnuprvj .gt_subtitle {
+#eaoptgxhge .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -801,7 +800,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-top-width: 0;
 }
 
-#epqsnuprvj .gt_heading {
+#eaoptgxhge .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -813,13 +812,13 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_bottom_border {
+#eaoptgxhge .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_col_headings {
+#eaoptgxhge .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -834,7 +833,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_col_heading {
+#eaoptgxhge .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -854,7 +853,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   overflow-x: hidden;
 }
 
-#epqsnuprvj .gt_column_spanner_outer {
+#eaoptgxhge .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -866,15 +865,15 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 4px;
 }
 
-#epqsnuprvj .gt_column_spanner_outer:first-child {
+#eaoptgxhge .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#epqsnuprvj .gt_column_spanner_outer:last-child {
+#eaoptgxhge .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#epqsnuprvj .gt_column_spanner {
+#eaoptgxhge .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -886,11 +885,11 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   width: 100%;
 }
 
-#epqsnuprvj .gt_spanner_row {
+#eaoptgxhge .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#epqsnuprvj .gt_group_heading {
+#eaoptgxhge .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -916,7 +915,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   text-align: left;
 }
 
-#epqsnuprvj .gt_empty_group_heading {
+#eaoptgxhge .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -931,15 +930,15 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   vertical-align: middle;
 }
 
-#epqsnuprvj .gt_from_md > :first-child {
+#eaoptgxhge .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#epqsnuprvj .gt_from_md > :last-child {
+#eaoptgxhge .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#epqsnuprvj .gt_row {
+#eaoptgxhge .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -958,7 +957,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   overflow-x: hidden;
 }
 
-#epqsnuprvj .gt_stub {
+#eaoptgxhge .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -971,7 +970,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#epqsnuprvj .gt_stub_row_group {
+#eaoptgxhge .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -985,15 +984,15 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   vertical-align: top;
 }
 
-#epqsnuprvj .gt_row_group_first td {
+#eaoptgxhge .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#epqsnuprvj .gt_row_group_first th {
+#eaoptgxhge .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#epqsnuprvj .gt_summary_row {
+#eaoptgxhge .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1003,16 +1002,16 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#epqsnuprvj .gt_first_summary_row {
+#eaoptgxhge .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_first_summary_row.thick {
+#eaoptgxhge .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#epqsnuprvj .gt_last_summary_row {
+#eaoptgxhge .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1022,7 +1021,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_grand_summary_row {
+#eaoptgxhge .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1032,7 +1031,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#epqsnuprvj .gt_first_grand_summary_row {
+#eaoptgxhge .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1042,7 +1041,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-top-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_last_grand_summary_row_top {
+#eaoptgxhge .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1052,11 +1051,11 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_striped {
+#eaoptgxhge .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#epqsnuprvj .gt_table_body {
+#eaoptgxhge .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1065,7 +1064,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-bottom-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_footnotes {
+#eaoptgxhge .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1079,7 +1078,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_footnote {
+#eaoptgxhge .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1088,7 +1087,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#epqsnuprvj .gt_sourcenotes {
+#eaoptgxhge .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1102,7 +1101,7 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   border-right-color: #D3D3D3;
 }
 
-#epqsnuprvj .gt_sourcenote {
+#eaoptgxhge .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1110,72 +1109,72 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   padding-right: 5px;
 }
 
-#epqsnuprvj .gt_left {
+#eaoptgxhge .gt_left {
   text-align: left;
 }
 
-#epqsnuprvj .gt_center {
+#eaoptgxhge .gt_center {
   text-align: center;
 }
 
-#epqsnuprvj .gt_right {
+#eaoptgxhge .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#epqsnuprvj .gt_font_normal {
+#eaoptgxhge .gt_font_normal {
   font-weight: normal;
 }
 
-#epqsnuprvj .gt_font_bold {
+#eaoptgxhge .gt_font_bold {
   font-weight: bold;
 }
 
-#epqsnuprvj .gt_font_italic {
+#eaoptgxhge .gt_font_italic {
   font-style: italic;
 }
 
-#epqsnuprvj .gt_super {
+#eaoptgxhge .gt_super {
   font-size: 65%;
 }
 
-#epqsnuprvj .gt_footnote_marks {
+#eaoptgxhge .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#epqsnuprvj .gt_asterisk {
+#eaoptgxhge .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#epqsnuprvj .gt_indent_1 {
+#eaoptgxhge .gt_indent_1 {
   text-indent: 5px;
 }
 
-#epqsnuprvj .gt_indent_2 {
+#eaoptgxhge .gt_indent_2 {
   text-indent: 10px;
 }
 
-#epqsnuprvj .gt_indent_3 {
+#eaoptgxhge .gt_indent_3 {
   text-indent: 15px;
 }
 
-#epqsnuprvj .gt_indent_4 {
+#eaoptgxhge .gt_indent_4 {
   text-indent: 20px;
 }
 
-#epqsnuprvj .gt_indent_5 {
+#eaoptgxhge .gt_indent_5 {
   text-indent: 25px;
 }
 
-#epqsnuprvj .katex-display {
+#eaoptgxhge .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#epqsnuprvj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#eaoptgxhge div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1183,8 +1182,8 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
   <thead>
     <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
@@ -1194,10 +1193,9 @@ tbl_regression(example7a_cox, exponentiate = TRUE)
 <td headers="conf.low" class="gt_row gt_center">0.15, 1.09</td>
 <td headers="p.value" class="gt_row gt_center">0.074</td></tr>
   </tbody>
-  
-  <tfoot class="gt_footnotes">
-    <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="4"><span class='gt_from_md'>Abbreviations: CI = Confidence Interval, HR = Hazard Ratio</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1216,23 +1214,23 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
 ```
 
 ```{=html}
-<div id="jgoecrbkrg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jgoecrbkrg table {
+<div id="lwczjxtfnq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lwczjxtfnq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jgoecrbkrg thead, #jgoecrbkrg tbody, #jgoecrbkrg tfoot, #jgoecrbkrg tr, #jgoecrbkrg td, #jgoecrbkrg th {
+#lwczjxtfnq thead, #lwczjxtfnq tbody, #lwczjxtfnq tfoot, #lwczjxtfnq tr, #lwczjxtfnq td, #lwczjxtfnq th {
   border-style: none;
 }
 
-#jgoecrbkrg p {
+#lwczjxtfnq p {
   margin: 0;
   padding: 0;
 }
 
-#jgoecrbkrg .gt_table {
+#lwczjxtfnq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1258,12 +1256,12 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-left-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_caption {
+#lwczjxtfnq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jgoecrbkrg .gt_title {
+#lwczjxtfnq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1275,7 +1273,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-width: 0;
 }
 
-#jgoecrbkrg .gt_subtitle {
+#lwczjxtfnq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1287,7 +1285,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-top-width: 0;
 }
 
-#jgoecrbkrg .gt_heading {
+#lwczjxtfnq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1299,13 +1297,13 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_bottom_border {
+#lwczjxtfnq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_col_headings {
+#lwczjxtfnq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1320,7 +1318,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_col_heading {
+#lwczjxtfnq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1340,7 +1338,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   overflow-x: hidden;
 }
 
-#jgoecrbkrg .gt_column_spanner_outer {
+#lwczjxtfnq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1352,15 +1350,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 4px;
 }
 
-#jgoecrbkrg .gt_column_spanner_outer:first-child {
+#lwczjxtfnq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jgoecrbkrg .gt_column_spanner_outer:last-child {
+#lwczjxtfnq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jgoecrbkrg .gt_column_spanner {
+#lwczjxtfnq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1372,11 +1370,11 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   width: 100%;
 }
 
-#jgoecrbkrg .gt_spanner_row {
+#lwczjxtfnq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jgoecrbkrg .gt_group_heading {
+#lwczjxtfnq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1402,7 +1400,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   text-align: left;
 }
 
-#jgoecrbkrg .gt_empty_group_heading {
+#lwczjxtfnq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1417,15 +1415,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   vertical-align: middle;
 }
 
-#jgoecrbkrg .gt_from_md > :first-child {
+#lwczjxtfnq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jgoecrbkrg .gt_from_md > :last-child {
+#lwczjxtfnq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jgoecrbkrg .gt_row {
+#lwczjxtfnq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1444,7 +1442,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   overflow-x: hidden;
 }
 
-#jgoecrbkrg .gt_stub {
+#lwczjxtfnq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1457,7 +1455,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#jgoecrbkrg .gt_stub_row_group {
+#lwczjxtfnq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1471,15 +1469,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   vertical-align: top;
 }
 
-#jgoecrbkrg .gt_row_group_first td {
+#lwczjxtfnq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jgoecrbkrg .gt_row_group_first th {
+#lwczjxtfnq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jgoecrbkrg .gt_summary_row {
+#lwczjxtfnq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1489,16 +1487,16 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#jgoecrbkrg .gt_first_summary_row {
+#lwczjxtfnq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_first_summary_row.thick {
+#lwczjxtfnq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jgoecrbkrg .gt_last_summary_row {
+#lwczjxtfnq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1508,7 +1506,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_grand_summary_row {
+#lwczjxtfnq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1518,7 +1516,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#jgoecrbkrg .gt_first_grand_summary_row {
+#lwczjxtfnq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1528,7 +1526,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-top-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_last_grand_summary_row_top {
+#lwczjxtfnq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1538,11 +1536,11 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_striped {
+#lwczjxtfnq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jgoecrbkrg .gt_table_body {
+#lwczjxtfnq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1551,7 +1549,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_footnotes {
+#lwczjxtfnq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1565,7 +1563,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_footnote {
+#lwczjxtfnq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1574,7 +1572,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#jgoecrbkrg .gt_sourcenotes {
+#lwczjxtfnq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1588,7 +1586,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#jgoecrbkrg .gt_sourcenote {
+#lwczjxtfnq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1596,72 +1594,72 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#jgoecrbkrg .gt_left {
+#lwczjxtfnq .gt_left {
   text-align: left;
 }
 
-#jgoecrbkrg .gt_center {
+#lwczjxtfnq .gt_center {
   text-align: center;
 }
 
-#jgoecrbkrg .gt_right {
+#lwczjxtfnq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jgoecrbkrg .gt_font_normal {
+#lwczjxtfnq .gt_font_normal {
   font-weight: normal;
 }
 
-#jgoecrbkrg .gt_font_bold {
+#lwczjxtfnq .gt_font_bold {
   font-weight: bold;
 }
 
-#jgoecrbkrg .gt_font_italic {
+#lwczjxtfnq .gt_font_italic {
   font-style: italic;
 }
 
-#jgoecrbkrg .gt_super {
+#lwczjxtfnq .gt_super {
   font-size: 65%;
 }
 
-#jgoecrbkrg .gt_footnote_marks {
+#lwczjxtfnq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jgoecrbkrg .gt_asterisk {
+#lwczjxtfnq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jgoecrbkrg .gt_indent_1 {
+#lwczjxtfnq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jgoecrbkrg .gt_indent_2 {
+#lwczjxtfnq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jgoecrbkrg .gt_indent_3 {
+#lwczjxtfnq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jgoecrbkrg .gt_indent_4 {
+#lwczjxtfnq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jgoecrbkrg .gt_indent_5 {
+#lwczjxtfnq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jgoecrbkrg .katex-display {
+#lwczjxtfnq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jgoecrbkrg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lwczjxtfnq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1669,8 +1667,8 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   <thead>
     <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
@@ -1692,10 +1690,9 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
 <td headers="conf.low" class="gt_row gt_center">0.19, 1.03</td>
 <td headers="p.value" class="gt_row gt_center">0.059</td></tr>
   </tbody>
-  
-  <tfoot class="gt_footnotes">
-    <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="4"><span class='gt_from_md'>Abbreviations: CI = Confidence Interval, HR = Hazard Ratio</span></td>
     </tr>
   </tfoot>
 </table>
@@ -1760,23 +1757,23 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
 ```
 
 ```{=html}
-<div id="traoedswpd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#traoedswpd table {
+<div id="sijydijclv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sijydijclv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#traoedswpd thead, #traoedswpd tbody, #traoedswpd tfoot, #traoedswpd tr, #traoedswpd td, #traoedswpd th {
+#sijydijclv thead, #sijydijclv tbody, #sijydijclv tfoot, #sijydijclv tr, #sijydijclv td, #sijydijclv th {
   border-style: none;
 }
 
-#traoedswpd p {
+#sijydijclv p {
   margin: 0;
   padding: 0;
 }
 
-#traoedswpd .gt_table {
+#sijydijclv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1802,12 +1799,12 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-left-color: #D3D3D3;
 }
 
-#traoedswpd .gt_caption {
+#sijydijclv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#traoedswpd .gt_title {
+#sijydijclv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1819,7 +1816,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-width: 0;
 }
 
-#traoedswpd .gt_subtitle {
+#sijydijclv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1831,7 +1828,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-top-width: 0;
 }
 
-#traoedswpd .gt_heading {
+#sijydijclv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1843,13 +1840,13 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#traoedswpd .gt_bottom_border {
+#sijydijclv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#traoedswpd .gt_col_headings {
+#sijydijclv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1864,7 +1861,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#traoedswpd .gt_col_heading {
+#sijydijclv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1884,7 +1881,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   overflow-x: hidden;
 }
 
-#traoedswpd .gt_column_spanner_outer {
+#sijydijclv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1896,15 +1893,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 4px;
 }
 
-#traoedswpd .gt_column_spanner_outer:first-child {
+#sijydijclv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#traoedswpd .gt_column_spanner_outer:last-child {
+#sijydijclv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#traoedswpd .gt_column_spanner {
+#sijydijclv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1916,11 +1913,11 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   width: 100%;
 }
 
-#traoedswpd .gt_spanner_row {
+#sijydijclv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#traoedswpd .gt_group_heading {
+#sijydijclv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1946,7 +1943,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   text-align: left;
 }
 
-#traoedswpd .gt_empty_group_heading {
+#sijydijclv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1961,15 +1958,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   vertical-align: middle;
 }
 
-#traoedswpd .gt_from_md > :first-child {
+#sijydijclv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#traoedswpd .gt_from_md > :last-child {
+#sijydijclv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#traoedswpd .gt_row {
+#sijydijclv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1988,7 +1985,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   overflow-x: hidden;
 }
 
-#traoedswpd .gt_stub {
+#sijydijclv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2001,7 +1998,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#traoedswpd .gt_stub_row_group {
+#sijydijclv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2015,15 +2012,15 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   vertical-align: top;
 }
 
-#traoedswpd .gt_row_group_first td {
+#sijydijclv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#traoedswpd .gt_row_group_first th {
+#sijydijclv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#traoedswpd .gt_summary_row {
+#sijydijclv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2033,16 +2030,16 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#traoedswpd .gt_first_summary_row {
+#sijydijclv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#traoedswpd .gt_first_summary_row.thick {
+#sijydijclv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#traoedswpd .gt_last_summary_row {
+#sijydijclv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2052,7 +2049,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#traoedswpd .gt_grand_summary_row {
+#sijydijclv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2062,7 +2059,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#traoedswpd .gt_first_grand_summary_row {
+#sijydijclv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2072,7 +2069,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-top-color: #D3D3D3;
 }
 
-#traoedswpd .gt_last_grand_summary_row_top {
+#sijydijclv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2082,11 +2079,11 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#traoedswpd .gt_striped {
+#sijydijclv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#traoedswpd .gt_table_body {
+#sijydijclv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2095,7 +2092,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-bottom-color: #D3D3D3;
 }
 
-#traoedswpd .gt_footnotes {
+#sijydijclv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2109,7 +2106,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#traoedswpd .gt_footnote {
+#sijydijclv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2118,7 +2115,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#traoedswpd .gt_sourcenotes {
+#sijydijclv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2132,7 +2129,7 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   border-right-color: #D3D3D3;
 }
 
-#traoedswpd .gt_sourcenote {
+#sijydijclv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2140,72 +2137,72 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   padding-right: 5px;
 }
 
-#traoedswpd .gt_left {
+#sijydijclv .gt_left {
   text-align: left;
 }
 
-#traoedswpd .gt_center {
+#sijydijclv .gt_center {
   text-align: center;
 }
 
-#traoedswpd .gt_right {
+#sijydijclv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#traoedswpd .gt_font_normal {
+#sijydijclv .gt_font_normal {
   font-weight: normal;
 }
 
-#traoedswpd .gt_font_bold {
+#sijydijclv .gt_font_bold {
   font-weight: bold;
 }
 
-#traoedswpd .gt_font_italic {
+#sijydijclv .gt_font_italic {
   font-style: italic;
 }
 
-#traoedswpd .gt_super {
+#sijydijclv .gt_super {
   font-size: 65%;
 }
 
-#traoedswpd .gt_footnote_marks {
+#sijydijclv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#traoedswpd .gt_asterisk {
+#sijydijclv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#traoedswpd .gt_indent_1 {
+#sijydijclv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#traoedswpd .gt_indent_2 {
+#sijydijclv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#traoedswpd .gt_indent_3 {
+#sijydijclv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#traoedswpd .gt_indent_4 {
+#sijydijclv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#traoedswpd .gt_indent_5 {
+#sijydijclv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#traoedswpd .katex-display {
+#sijydijclv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#traoedswpd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#sijydijclv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2213,8 +2210,8 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
   <thead>
     <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
     </tr>
   </thead>
@@ -2236,10 +2233,9 @@ coxph(Surv(t, d) ~ drug + age + sex + marker, data = example7a) %>%
 <td headers="conf.low" class="gt_row gt_center">0.19, 1.03</td>
 <td headers="p.value" class="gt_row gt_center">0.059</td></tr>
   </tbody>
-  
-  <tfoot class="gt_footnotes">
-    <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>HR = Hazard Ratio, CI = Confidence Interval</span></td>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="4"><span class='gt_from_md'>Abbreviations: CI = Confidence Interval, HR = Hazard Ratio</span></td>
     </tr>
   </tfoot>
 </table>
