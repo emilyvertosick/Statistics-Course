@@ -3,8 +3,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Load packages
 library(skimr)
-library(gt)
 library(gtsummary)
+library(gt)
 library(epiR)
 library(broom)
 library(pROC)
@@ -124,7 +124,7 @@ Favorite running shoe: `lesson2a %>% skim(shoe)` gives a mean of `r round(mean(l
 
 AN ADDITIONAL IMPORTANT POINT: you should give the number of observations and the number of missing observations. n is 98 for all observations except for favorite running shoe, where there are 95 observations and 3 missing observations.
 
-So here is a model answer, suitable for publication (assuming that sex==1 is coded as female.)
+So here is a model answer, suitable for publication (assuming that sex==1 is coded as female).
 
 ```{r week2b, echo = FALSE, results = 'asis', warning = FALSE, purl = FALSE}
 
@@ -561,11 +561,11 @@ The most obvious thing to do would be to do:
 ```{r week3f}
 
 # t-test for pain after treatment, by group
-t.test(lesson3b$p, lesson3b$g, paired = TRUE, var.equal = TRUE)
+t.test(p ~ g, data = lesson3b, var.equal = TRUE)
 
 ```
 
-This gives a p-value of `r style_pvalue(t.test(lesson3b$p, lesson3b$g, paired = TRUE, var.equal = TRUE)$p.value)` and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
+This gives a p-value of `r style_pvalue(t.test(p ~ g, data = lesson3b, var.equal = TRUE)$p.value)` and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
 
 However, if you are really keen, you could try the following:
 
@@ -589,8 +589,8 @@ lesson3b <-
   )
 
 # t-test for pain in right and left wrists separately
-t.test(lesson3b$pright, lesson3b$g, paired = TRUE, var.equal = TRUE)
-t.test(lesson3b$pleft, lesson3b$g, paired = TRUE, var.equal = TRUE)
+t.test(pright ~ g, data = lesson3b, var.equal = TRUE)
+t.test(pleft ~ g, data = lesson3b, var.equal = TRUE)
 
 ```
 
@@ -615,7 +615,7 @@ lesson3b_avg <-
   ungroup()
 
 # t-test for average pain between both wrists
-t.test(lesson3b_avg$meanpain, lesson3b_avg$g, paired = TRUE, var.equal = TRUE)
+t.test(meanpain ~ g, data = lesson3b_avg, var.equal = TRUE)
 
 ```
 

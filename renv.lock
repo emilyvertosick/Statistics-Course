@@ -2109,7 +2109,7 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.55",
+      "Version": "0.56",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -2118,7 +2118,7 @@
         "stats",
         "tools"
       ],
-      "Hash": "297272525855031a0dea3e89de8cef35"
+      "Hash": "f1f18d352a39c6252932da4faa029cdd"
     },
     "xml2": {
       "Package": "xml2",

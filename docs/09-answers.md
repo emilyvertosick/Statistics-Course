@@ -105,7 +105,7 @@ Favorite running shoe: `lesson2a %>% skim(shoe)` gives a mean of 3.08 and a medi
 
 AN ADDITIONAL IMPORTANT POINT: you should give the number of observations and the number of missing observations. n is 98 for all observations except for favorite running shoe, where there are 95 observations and 3 missing observations.
 
-So here is a model answer, suitable for publication (assuming that sex==1 is coded as female.)
+So here is a model answer, suitable for publication (assuming that sex==1 is coded as female).
 
 
 ```{=html}
@@ -3820,24 +3820,24 @@ The most obvious thing to do would be to do:
 
 ``` r
 # t-test for pain after treatment, by group
-t.test(lesson3b$p, lesson3b$g, paired = TRUE, var.equal = TRUE)
+t.test(p ~ g, data = lesson3b, var.equal = TRUE)
 ```
 
 ```
 ## 
-## 	Paired t-test
+## 	Two Sample t-test
 ## 
-## data:  lesson3b$p and lesson3b$g
-## t = -1.254, df = 35, p-value = 0.2182
-## alternative hypothesis: true mean difference is not equal to 0
+## data:  p by g
+## t = 1.9731, df = 34, p-value = 0.05665
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.6983796  0.1650463
+##  -0.01930642  1.30819531
 ## sample estimates:
-## mean difference 
-##      -0.2666667
+## mean in group 0 mean in group 1 
+##      0.55555555     -0.08888889
 ```
 
-This gives a p-value of 0.2 and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
+This gives a p-value of 0.057 and you might conclude that although the difference wasn't statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: "These data are not independent, I am not going to analyze them. Call in a statistician."
 
 However, if you are really keen, you could try the following:
 
@@ -3861,39 +3861,39 @@ lesson3b <-
   )
 
 # t-test for pain in right and left wrists separately
-t.test(lesson3b$pright, lesson3b$g, paired = TRUE, var.equal = TRUE)
+t.test(pright ~ g, data = lesson3b, var.equal = TRUE)
 ```
 
 ```
 ## 
-## 	Paired t-test
+## 	Two Sample t-test
 ## 
-## data:  lesson3b$pright and lesson3b$g
-## t = -0.75988, df = 17, p-value = 0.4577
-## alternative hypothesis: true mean difference is not equal to 0
+## data:  pright by g
+## t = 1.6818, df = 16, p-value = 0.112
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9021654  0.4243876
+##  -0.2055046  1.7832823
 ## sample estimates:
-## mean difference 
-##      -0.2388889
+## mean in group 0 mean in group 1 
+##       0.6555555      -0.1333333
 ```
 
 ``` r
-t.test(lesson3b$pleft, lesson3b$g, paired = TRUE, var.equal = TRUE)
+t.test(pleft ~ g, data = lesson3b, var.equal = TRUE)
 ```
 
 ```
 ## 
-## 	Paired t-test
+## 	Two Sample t-test
 ## 
-## data:  lesson3b$pleft and lesson3b$g
-## t = -0.99662, df = 17, p-value = 0.3329
-## alternative hypothesis: true mean difference is not equal to 0
+## data:  pleft by g
+## t = 1.0418, df = 16, p-value = 0.313
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9177718  0.3288829
+##  -0.5174209  1.5174209
 ## sample estimates:
-## mean difference 
-##      -0.2944444
+## mean in group 0 mean in group 1 
+##      0.45555555     -0.04444445
 ```
 
 You could also analyze the data by taking the average of the two wrists. You can create a new value for the average using the `mean` function. The `distinct` function from the {dplyr} package allows you to drop duplicate observations. Since there are two observations per patient (one for the left wrist and one for the right wrist), we will take the average and then drop the duplicate observation so that each patient is included only once.
@@ -3917,21 +3917,21 @@ lesson3b_avg <-
   ungroup()
 
 # t-test for average pain between both wrists
-t.test(lesson3b_avg$meanpain, lesson3b_avg$g, paired = TRUE, var.equal = TRUE)
+t.test(meanpain ~ g, data = lesson3b_avg, var.equal = TRUE)
 ```
 
 ```
 ## 
-## 	Paired t-test
+## 	Two Sample t-test
 ## 
-## data:  lesson3b_avg$meanpain and lesson3b_avg$g
-## t = -0.90074, df = 17, p-value = 0.3803
-## alternative hypothesis: true mean difference is not equal to 0
+## data:  meanpain by g
+## t = 1.4286, df = 16, p-value = 0.1723
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.8912828  0.3579494
+##  -0.3118365  1.6007254
 ## sample estimates:
-## mean difference 
-##      -0.2666667
+## mean in group 0 mean in group 1 
+##      0.55555555     -0.08888889
 ```
 
 ### lesson3c

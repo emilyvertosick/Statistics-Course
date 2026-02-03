@@ -477,7 +477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Race time is continuous and looks pretty normal. Yes the data are skewed by a single outlier (a race time of 414 minutes) but the mean and median are pretty similar (250 v. 242 minutes) and the 5th and 95th centile are very close to the values expected by adding or subtracting 1.64 times the SD from the mean (5th centile is 176, expected value using means and SD is 173; 95th centile actual and expected values are 328 and 328). I would probably feel comfortable reporting a mean and SD if you wanted.</p>
 <p>Favorite running shoe: <code>lesson2a %&gt;% skim(shoe)</code> gives a mean of 3.08 and a median of 3. If you reported these, you need therapy: shoe is a categorical variable and you should report the percentage of runners that favor each shoe.</p>
 <p>AN ADDITIONAL IMPORTANT POINT: you should give the number of observations and the number of missing observations. n is 98 for all observations except for favorite running shoe, where there are 95 observations and 3 missing observations.</p>
-<p>So here is a model answer, suitable for publication (assuming that sex==1 is coded as female.)</p>
+<p>So here is a model answer, suitable for publication (assuming that sex==1 is coded as female).</p>
 <div id="iwrgxmosvm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#iwrgxmosvm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4058,19 +4058,19 @@ N = 575</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 <p><strong>Patients with wrist osteoarthritis are randomized to a new drug or placebo. Pain is measured before and after treatment. Is the drug effective?</strong></p>
 <p>The most obvious thing to do would be to do:</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="assignment-answers.html#cb237-1" tabindex="-1"></a><span class="co"># t-test for pain after treatment, by group</span></span>
-<span id="cb237-2"><a href="assignment-answers.html#cb237-2" tabindex="-1"></a><span class="fu">t.test</span>(lesson3b<span class="sc">$</span>p, lesson3b<span class="sc">$</span>g, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb237-2"><a href="assignment-answers.html#cb237-2" tabindex="-1"></a><span class="fu">t.test</span>(p <span class="sc">~</span> g, <span class="at">data =</span> lesson3b, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
-##  Paired t-test
+##  Two Sample t-test
 ## 
-## data:  lesson3b$p and lesson3b$g
-## t = -1.254, df = 35, p-value = 0.2182
-## alternative hypothesis: true mean difference is not equal to 0
+## data:  p by g
+## t = 1.9731, df = 34, p-value = 0.05665
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.6983796  0.1650463
+##  -0.01930642  1.30819531
 ## sample estimates:
-## mean difference 
-##      -0.2666667</code></pre>
-<p>This gives a p-value of 0.2 and you might conclude that although the difference wasn’t statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: “These data are not independent, I am not going to analyze them. Call in a statistician.”</p>
+## mean in group 0 mean in group 1 
+##      0.55555555     -0.08888889</code></pre>
+<p>This gives a p-value of 0.057 and you might conclude that although the difference wasn’t statistically significant, there was some evidence that the drug works. However, this t-test assumes that the data are independent. In the present case, this assumption does not hold: each patient contributes data from two wrists, and the pain scores from each wrist are correlated. There are several ways around the problem. The most obvious is to say: “These data are not independent, I am not going to analyze them. Call in a statistician.”</p>
 <p>However, if you are really keen, you could try the following:</p>
 <p>You could analyze the data from each wrist separately by creating new variables as shown below (lines with # are comments). Since the “before” and “after” measurements are coming from the same patient, we will need to use a paired t-test here.</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="assignment-answers.html#cb239-1" tabindex="-1"></a><span class="co"># Analyze data separately by wrist</span></span>
@@ -4089,30 +4089,30 @@ N = 575</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 <span id="cb239-14"><a href="assignment-answers.html#cb239-14" tabindex="-1"></a>  )</span>
 <span id="cb239-15"><a href="assignment-answers.html#cb239-15" tabindex="-1"></a></span>
 <span id="cb239-16"><a href="assignment-answers.html#cb239-16" tabindex="-1"></a><span class="co"># t-test for pain in right and left wrists separately</span></span>
-<span id="cb239-17"><a href="assignment-answers.html#cb239-17" tabindex="-1"></a><span class="fu">t.test</span>(lesson3b<span class="sc">$</span>pright, lesson3b<span class="sc">$</span>g, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb239-17"><a href="assignment-answers.html#cb239-17" tabindex="-1"></a><span class="fu">t.test</span>(pright <span class="sc">~</span> g, <span class="at">data =</span> lesson3b, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
-##  Paired t-test
+##  Two Sample t-test
 ## 
-## data:  lesson3b$pright and lesson3b$g
-## t = -0.75988, df = 17, p-value = 0.4577
-## alternative hypothesis: true mean difference is not equal to 0
+## data:  pright by g
+## t = 1.6818, df = 16, p-value = 0.112
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9021654  0.4243876
+##  -0.2055046  1.7832823
 ## sample estimates:
-## mean difference 
-##      -0.2388889</code></pre>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="assignment-answers.html#cb241-1" tabindex="-1"></a><span class="fu">t.test</span>(lesson3b<span class="sc">$</span>pleft, lesson3b<span class="sc">$</span>g, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+## mean in group 0 mean in group 1 
+##       0.6555555      -0.1333333</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="assignment-answers.html#cb241-1" tabindex="-1"></a><span class="fu">t.test</span>(pleft <span class="sc">~</span> g, <span class="at">data =</span> lesson3b, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
-##  Paired t-test
+##  Two Sample t-test
 ## 
-## data:  lesson3b$pleft and lesson3b$g
-## t = -0.99662, df = 17, p-value = 0.3329
-## alternative hypothesis: true mean difference is not equal to 0
+## data:  pleft by g
+## t = 1.0418, df = 16, p-value = 0.313
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.9177718  0.3288829
+##  -0.5174209  1.5174209
 ## sample estimates:
-## mean difference 
-##      -0.2944444</code></pre>
+## mean in group 0 mean in group 1 
+##      0.45555555     -0.04444445</code></pre>
 <p>You could also analyze the data by taking the average of the two wrists. You can create a new value for the average using the <code>mean</code> function. The <code>distinct</code> function from the {dplyr} package allows you to drop duplicate observations. Since there are two observations per patient (one for the left wrist and one for the right wrist), we will take the average and then drop the duplicate observation so that each patient is included only once.</p>
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="assignment-answers.html#cb243-1" tabindex="-1"></a>lesson3b_avg <span class="ot">&lt;-</span></span>
 <span id="cb243-2"><a href="assignment-answers.html#cb243-2" tabindex="-1"></a>  lesson3b <span class="sc">%&gt;%</span></span>
@@ -4131,18 +4131,18 @@ N = 575</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 <span id="cb243-15"><a href="assignment-answers.html#cb243-15" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
 <span id="cb243-16"><a href="assignment-answers.html#cb243-16" tabindex="-1"></a></span>
 <span id="cb243-17"><a href="assignment-answers.html#cb243-17" tabindex="-1"></a><span class="co"># t-test for average pain between both wrists</span></span>
-<span id="cb243-18"><a href="assignment-answers.html#cb243-18" tabindex="-1"></a><span class="fu">t.test</span>(lesson3b_avg<span class="sc">$</span>meanpain, lesson3b_avg<span class="sc">$</span>g, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb243-18"><a href="assignment-answers.html#cb243-18" tabindex="-1"></a><span class="fu">t.test</span>(meanpain <span class="sc">~</span> g, <span class="at">data =</span> lesson3b_avg, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
-##  Paired t-test
+##  Two Sample t-test
 ## 
-## data:  lesson3b_avg$meanpain and lesson3b_avg$g
-## t = -0.90074, df = 17, p-value = 0.3803
-## alternative hypothesis: true mean difference is not equal to 0
+## data:  meanpain by g
+## t = 1.4286, df = 16, p-value = 0.1723
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
-##  -0.8912828  0.3579494
+##  -0.3118365  1.6007254
 ## sample estimates:
-## mean difference 
-##      -0.2666667</code></pre>
+## mean in group 0 mean in group 1 
+##      0.55555555     -0.08888889</code></pre>
 </div>
 <div id="lesson3c" class="section level3 hasAnchor" number="9.3.3">
 <h3><span class="header-section-number">9.3.3</span> lesson3c<a href="assignment-answers.html#lesson3c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
