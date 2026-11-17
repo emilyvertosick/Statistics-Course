@@ -463,7 +463,7 @@ All of these questions ask you to "summarize" data. In other words, how would yo
 
 - **lesson1a**: This is data for 386 patients undergoing surgery. What type of data (e.g. continuous, binary, ordinal, nonsense) are each of the variables?
 - **lesson1b**: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
-- **lesson1c**: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
+- **lesson1c**: Postoperative pain. Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
 - **lesson1d**: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
 - **lesson1e**: Cost of a minor medical procedure. Summarize cost.
 - **lesson1f**: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.

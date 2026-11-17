@@ -37,50 +37,39 @@ Readings below are to be done **before** the class.
 R assignments are done **after** the class.
 
 -----------------------------------------------------
-Date / Location     Topic and Assignments
+Date                Topic and Assignments
 ---------------     ---------------------------------
-**1/7/2026**\       **Class I:** What is statistics?\
-**RRL-101**\         **Reading:** "How To Read This Book", Chapter 1\
-                    **Assignment:** Questions 1 and 4
+**1/6/2027**\       **Class I**\
+\                   **Reading:** "How To Read This Book", Chapter 1-6\
+                    **Assignment:** Chapter 1: questions 1 and 4. All questions for chapters 2, 3, 4 and 6; questions 1 and 3 for chapter 5.
 
-**1/14/2026**\      **Class II:** Describing Data\
-**RRL-101**\        **Reading:** Chapters 2-6 and chapter 20\
-                    **Assignment:** All questions for chapters 2, 3, 4 and 6; questions 1 and 3 for chapter 5; question 1 for chapter 20
+**1/13/2027**\      **Class II**\
+\                   **Reading:** Chapters 7-12\
+                    **Assignment:** Chapter 7 question 2; chapter 8 question 1; chapter 9 questions 1 and 3; all questions for chapters 10 and 11; question 1 in chapter 12.
                     
-**1/21/2026**\      **Class III:** Data Distributions\
-**RRL-101**\        **Reading:** Chapters 7-9\
-                    **Assignment:** Chapter 7, question 2; chapter 8, question 1; chapter 9, questions 1 and 3
+**1/20/2027**\      **Class III**\
+\                   **Reading:** Chapters 13-17\
+                    **Assignment:** Chapters 13, 15 and 16 all questions; chapter 14 question 1; chapter 17 questions 1-3.
                     
-**1/28/2026**\      **Class IV:** Confidence Intervals\
-**RRL-101**\        **Reading:** Chapters 10-12\
-                    **Assignment:** All questions for chapters 10 and 11; question 1 in chapter 12\
-                    **Extra for those doing R assignment:** [Statistics Notes: Diagnostic tests 3: receiver operating characteristic plots](https://www.bmj.com/content/309/6948/188.full)
+**1/27/2027**\      **Class IV**\
+\                   **Reading:** Chapters 18-19\
+                    **Assignment:** Chapter 18 questions 1-4; chapter 19 questions 1-2.
                     
-**2/4/2026**\       **Class V:** Hypothesis Testing\
-**RRL-101**\        **Reading:** Chapters 13-17\
-                    **Assignment:** Chapters 13, 15 and 16, all questions; chapter 14, question 1; chapter 17, questions 1-3
+**2/3/2027**\       **Class V**\
+\                   **Reading:** Chapter 20\
+                    **Assignment:** Chapter 20, all questions.
                     
-**2/11/2026**\      **Class VI:** Regression\
-**RRL-101**\        **Reading:** Chapters 18-19\
-                    **Assignment:** Chapter 18, questions 1-4; chapter 19, questions 1-2
+**2/10/2027**\      **Class VI**\
+\                   **Reading:** Chapters 21-24\
+                    **Assignment:** Chapter 21 question 1; chapter 23 question 1; chapter 24 questions 1, 2, and 4.
                     
-**2/18/2026**\      **Class VII:** Survival Data\
-**RRL-101**\        **Reading:** Chapters 21-24 and chapter 28\
-                    **Assignments:** Chapter 21, question 1; chapter 23, question 1; chapter 24, questions 1, 2 and 4
-                    
-**2/25/2026**\      **Class VIII:** Errors in Statistics (all class meets)\
-**RRL-101**\        **Reading:** Chapters 30-34\
+**2/17/2027**\      **Class VII**\
+\                   **Reading:** Chapters 25-34\
                     **Optional extra reading:**
                     [The scandal of poor medical research](https://www.bmj.com/content/308/6924/283.full), 
                     [Math as Mass Hypnosis: On Mortgage-Backed Securities, Maritime Warfare, and Medical Research](https://www.medscape.com/viewarticle/714772)\
-                    **Assignments:** All questions for chapters 30 and 33
+                    **Assignments:** All questions for chapters 30 and 33.
                     
-**3/4/2026**\       Make-up day, if needed
-**RRL-101**\
-
-**3/11/2026**\      Make-up day, if needed
-**RRL-101**\
-
 -----------------------------------------------------
 
 ## Andrew's Contact Details {-}
