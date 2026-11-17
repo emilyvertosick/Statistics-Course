@@ -1,13 +1,8 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 
 
 # Week 2
 
-## Setting Up
+## Setting up
 
 
 ``` r
@@ -23,167 +18,155 @@ library(survival)
 library(here)
 library(tidyverse)
 
-# Load data necessary to run Week 2 examples
+# The "trial" and "midwest" datasets are available automatically after you load the packages above
+
+# Load other data necessary to run Week 2 examples
 lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+example2a <- readRDS(here::here("Data", "Week 2", "example2a.rds"))
 ```
 
 ## R Instructions
 
-### Looking at your data
+### Example Datasets
 
-There are several ways to see the variables in your dataset.
+Normally, to do an analysis in R, you will have to load in a dataset. However, R and some packages come with built-in example datasets. For example, there is a dataset called **trial** that comes built in with the {gtsummary} package. We will use the **trial** dataset for many examples, but you do not need to load it, as the **trial** dataset will automatically be loaded after you run `library(gtsummary)`.
 
-Click on the blue circle with an arrow next to the name of your dataset in the "environment" tab (top right). You will see the number of observations and the number of variables in your dataset next to the name of your dataset.
+### Hypothesis Testing
 
-Underneath, you can see the variable name, the variable type, the values from the first several observations, and variable labels (if they exist). In some datasets, variables are labeled with information on what data is stored in the variable and/or what the variable values mean.
+For this week's assignment, you will need to learn the following functions:
 
-For example, look below at the variable "sex" under **lesson1a**. To the right of the variable name, it shows that this is a numeric variable ("num") and displays the first ten values. What we would expect to find in the "sex" variable is self-explanatory, based on the variable name. However, we don't know how to interpret the values. Luckily, this information is included in the variable label on the following line.
+- `t.test`
+- `wilcox.test`
+- `binom.test`
 
-Other variables have names that are not self-explanatory, for example, "p1". This variable has a label that indicates that this is "pain at time 1 postop". You will also notice that sometimes there are variables that are not labeled. In this dataset, "age" does not have a label - the variable name is self-explanatory, and by looking at the values we can see that this is age in years.
+#### t-test
 
-![ ](images\environment_window_data.jpg)
+This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statisticians normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for to compare a continuous outcome between two groups even if the data are pretty skewed.
 
-If you would like to print out this information in the console window, you can also use the `str` function:
+**Different forms of the t-test**
 
+The two main forms of the t-test are "paired" and "unpaired". "Unpaired" is the default.
 
-``` r
-# Shows a list of variables and labels
-str(lesson1a)
-```
-
-```
-## tibble [386 × 11] (S3: tbl_df/tbl/data.frame)
-##  $ id : num [1:386] 541836 285383 332777 566828 193254 ...
-##  $ sex: num [1:386] 0 1 0 1 1 1 0 0 1 0 ...
-##   ..- attr(*, "label")= chr "1 if woman, 0 if man"
-##  $ age: num [1:386] 33 55 52 53 57 31 54 26 52 66 ...
-##  $ p1 : num [1:386] 0 0 0 0 0 0 0 0 0 0 ...
-##   ..- attr(*, "label")= chr "pain at time 1 postop"
-##  $ p2 : num [1:386] 0 1 0 0 1 0 1 0 0 1 ...
-##   ..- attr(*, "label")= chr "pain at time 2 postop"
-##  $ p3 : num [1:386] 0 1 3 0 2 2 4 1 0 1 ...
-##   ..- attr(*, "label")= chr "pain at time 3 postop"
-##  $ p4 : num [1:386] 0 1 3 1 3 2 1 0 0 1 ...
-##   ..- attr(*, "label")= chr "pain at time 4 postop"
-##  $ t  : num [1:386] 0 3 6 1 6 4 6 1 0 3 ...
-##   ..- attr(*, "label")= chr "total pain score times 1 - 4"
-##  $ x  : num [1:386] 2 2 1 2 2 1 1 1 2 1 ...
-##  $ y  : chr [1:386] "campus" "campus" "campus" "campus" ...
-##  $ z  : num [1:386] 1 1 NA NA 1 3 1 1 3 1 ...
-```
-
-The "environment" tab and the `str` function are useful for getting an overview of the variables available in your dataset, they are not as useful for getting an overview of the data values available.
-
-The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from `lesson1a.rds`, the data I sent after lecture 1.
-
-### Summarizing continuous variables
-
-The function `skim` will give summary statistics for specified variables.
+"Unpaired" is used when, for example, testing marker levels between two groups taking different drugs, as there are different patients in each group:
 
 
 ``` r
-# Summary of "age" variable from "lesson1a" dataset
-lesson1a %>% skim(age)
+# t-test for marker levels between treatment arms
+t.test(marker ~ trt, data = trial, var.equal = TRUE)
 ```
 
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  marker by trt
+## t = 1.5816, df = 188, p-value = 0.1154
+## alternative hypothesis: true difference in means between group Drug A and group Drug B is not equal to 0
+## 95 percent confidence interval:
+##  -0.04858916  0.44161134
+## sample estimates:
+## mean in group Drug A mean in group Drug B 
+##            1.0173478            0.8208367
+```
 
-Table: (\#tab:section2b)Data summary
+The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called **trial**. By default an "unpaired" test is performed. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
 
-|                         |           |
-|:------------------------|:----------|
-|Name                     |Piped data |
-|Number of rows           |386        |
-|Number of columns        |11         |
-|_______________________  |           |
-|Column type frequency:   |           |
-|numeric                  |1          |
-|________________________ |           |
-|Group variables          |None       |
+A "paired" test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.
 
+<!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
-**Variable type: numeric**
-
-|skim_variable | n_missing| complete_rate|  mean|    sd| p0| p25| p50| p75| p100|hist  |
-|:-------------|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
-|age           |         0|             1| 49.48| 13.75| 19|  40|  49|  59|   86|▃▇▇▅▁ |
-
-So you can tell you have data on age for 386 patients ("number of rows" is the number of observations and "n_missing" = 0 indicates no missing values for age), the mean age was about 49 years, and the standard deviation of the mean was about 13.8.
-
-The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was 19 and the oldest was 86. "p50" is the median (49 years), and the interquartile range is reported under "p25" and "p75" (40, 59).
+Since these are two measurements taken on the same patient, a paired t-test is necessary. To perform a paired t-test, you use the `t.test` function including the outcome variable, the predictor variable, and the option `paired = TRUE`.
 
 
 ``` r
-# Summary of "age" within men and women separately
-lesson1a %>%
-  group_by(sex) %>%
-  skim(age)
+# paired t-test for blood pressure between "before" and "after" groups
+t.test(example2a$bp_after, example2a$bp_before, paired = TRUE, var.equal = TRUE)
 ```
 
+```
+## 
+## 	Paired t-test
+## 
+## data:  example2a$bp_after and example2a$bp_before
+## t = -3.3372, df = 119, p-value = 0.00113
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -8.112776 -2.070557
+## sample estimates:
+## mean difference 
+##       -5.091667
+```
 
-Table: (\#tab:section2c)Data summary
-
-|                         |           |
-|:------------------------|:----------|
-|Name                     |Piped data |
-|Number of rows           |386        |
-|Number of columns        |11         |
-|_______________________  |           |
-|Column type frequency:   |           |
-|numeric                  |1          |
-|________________________ |           |
-|Group variables          |sex        |
-
-
-**Variable type: numeric**
-
-|skim_variable | sex| n_missing| complete_rate|  mean|    sd| p0| p25| p50| p75| p100|hist  |
-|:-------------|---:|---------:|-------------:|-----:|-----:|--:|---:|---:|---:|----:|:-----|
-|age           |   0|         0|             1| 49.07| 13.61| 19|  40|  49|  58|   82|▂▇▇▅▂ |
-|age           |   1|         0|             1| 49.85| 13.90| 21|  40|  49|  60|   86|▃▇▇▅▁ |
-
-The `group_by` function allows you to group your data and perform analyses separately by group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
-
-### Centiles
-
-You can get R to give you centiles directly by using the `quantile` function. The option `na.rm = TRUE` tells R to ignore any missing (NA) values when calculating the centiles.
+A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the Midwest different than the national average of 32%?
 
 
 ``` r
-# Get centiles for "age" variable
-quantile(lesson1a$age, na.rm = TRUE)
+# t-test assessing whether the rate of college education is different than 32%
+t.test(midwest$percollege, mu = 32)
 ```
 
 ```
-##   0%  25%  50%  75% 100% 
-##   19   40   49   59   86
+## 
+## 	One Sample t-test
+## 
+## data:  midwest$percollege
+## t = -45.827, df = 436, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 32
+## 95 percent confidence interval:
+##  17.68400 18.86147
+## sample estimates:
+## mean of x 
+##  18.27274
 ```
 
-The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the median and quartiles. The second row gives you the actual values. So you could report this as “Median age was 49 (quartiles 40, 59)."
-
-You aren't restricted to quartiles with the `quantile` function. For example, you can use the code below to give you the 11th, 45th and 78th centile, as well as 91.5 centile, which would be the 915th highest value in a dataset of 1000 observations. 
+Let’s look at the print out from a t-test in more detail:
 
 
 ``` r
-# Get specific centiles (11th, 45th, 78th, 91.5th) for "age" variable
-quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
+# t-test for difference in horsepower for manual vs automatic transmission
+t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 ```
 
 ```
-##   11%   45%   78% 91.5% 
-##  32.0  47.0  60.3  69.0
+## 
+## 	Two Sample t-test
+## 
+## data:  hp by am
+## t = 1.3733, df = 30, p-value = 0.1798
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+## 95 percent confidence interval:
+##  -16.27768  83.11169
+## sample estimates:
+## mean in group 0 mean in group 1 
+##        160.2632        126.8462
 ```
 
-### One-way tables
+This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (`am == 0`) vs manual transmission (`am == 1`).
 
-As mentioned in the first lesson, the `tbl_summary` function (from the {gtsummary} package) can be used to create a frequency table, in this case, the number of men and women.
+The `t.test` function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means. You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.
+
+While for an unpaired test, the `t.test` command prints the group means in each group, you may want to report the difference between means.
+
+To easily calculate and display the mean and standard deviation in each group, the difference in means with 95% confidence interval and the p-value for this difference, you can use the functions `tbl_summary` and `add_difference` from the {gtsummary} package.
+
+
 
 
 ``` r
-# Get formatted one-way frequency table
+# Start off with the tbl_summary function
 tbl_summary(
-  lesson1a %>% select(sex), # Specify data to use and variables to include
-  type = list(sex = "categorical") # Show all levels of binary variables
-)
+  # keep the "am" and "hp" variables from the "mtcars" dataset
+  mtcars %>%
+    select(am, hp),
+  # group by "am"
+  by = am,
+  # display mean and SD (rather than default median and IQR)
+  statistic = list(hp = "{mean} ({sd})")
+) %>%
+  # the "add_difference" function adds the difference, 95% confidence interval and p-value
+  add_difference(
+    test = list(hp = "ancova")
+  )
 ```
 
 ```{=html}
@@ -640,1810 +623,178 @@ tbl_summary(
   <thead>
     <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>N = 386</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>0</strong><br />
+N = 19</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>1</strong><br />
+N = 13</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Difference</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">1 if woman, 0 if man</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    0</td>
-<td headers="stat_0" class="gt_row gt_center">181 (47%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1</td>
-<td headers="stat_0" class="gt_row gt_center">205 (53%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">hp</td>
+<td headers="stat_1" class="gt_row gt_center">160 (54)</td>
+<td headers="stat_2" class="gt_row gt_center">127 (84)</td>
+<td headers="estimate" class="gt_row gt_center">33</td>
+<td headers="conf.low" class="gt_row gt_center">-16, 83</td>
+<td headers="p.value" class="gt_row gt_center">0.2</td></tr>
   </tbody>
   <tfoot>
     <tr class="gt_footnotes">
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>Mean (SD)</span></td>
+    </tr>
+    <tr class="gt_footnotes">
+      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> <span class='gt_from_md'>One-way ANOVA</span></td>
+    </tr>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="6"><span class='gt_from_md'>Abbreviation: CI = Confidence Interval</span></td>
     </tr>
   </tfoot>
 </table>
 </div>
 ```
 
+As you can see, this table gives the same results as using the `t.test` function, formatted as a clean table. To get the results for a t-test with equal variances (`var.equal = TRUE` in the `t.test` function), specify "ancova" for the `test` option in the `add_difference` function. If you specify "t.test" for the `test` option in the `add_difference` function, this is the same as running the `t.test` function with `var.equal = FALSE`.
 
+Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is 33.4 higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between 16.3 lower or 83.1 higher in the automatic group vs the manual group.
 
-<br>
+#### Non-parametric methods
 
-So there are 205 (53%) women and 181 (47%) men.
+These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance. 
 
-### Two-way tables
-
-The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable "y" gives the part of the hospital) in men and women separately. In the last lesson, a 2-by-2 table was created, but `tbl_summary` can also create a two-way table with more than 2 rows or more than 2 columns.
+Unpaired case, for example, do marker levels differ between the drug and placebo groups?
 
 
 ``` r
-# Create a formatted two-way summary table
-tbl_summary(
-  lesson1a %>% select(sex, y), # Select both variables
-  by = y, # The "by" option specifies which will be the column variable
-  type = list(sex = "categorical")
-)
+# non-parametric test for difference in marker levels by treatment group
+wilcox.test(marker ~ trt, data = trial, exact = FALSE)
 ```
 
-```{=html}
-<div id="eaoptgxhge" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eaoptgxhge table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#eaoptgxhge thead, #eaoptgxhge tbody, #eaoptgxhge tfoot, #eaoptgxhge tr, #eaoptgxhge td, #eaoptgxhge th {
-  border-style: none;
-}
-
-#eaoptgxhge p {
-  margin: 0;
-  padding: 0;
-}
-
-#eaoptgxhge .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#eaoptgxhge .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#eaoptgxhge .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#eaoptgxhge .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#eaoptgxhge .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#eaoptgxhge .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#eaoptgxhge .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#eaoptgxhge .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#eaoptgxhge .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#eaoptgxhge .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#eaoptgxhge .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#eaoptgxhge .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#eaoptgxhge .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#eaoptgxhge .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#eaoptgxhge .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eaoptgxhge .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#eaoptgxhge .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#eaoptgxhge .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#eaoptgxhge .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eaoptgxhge .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#eaoptgxhge .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eaoptgxhge .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#eaoptgxhge .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eaoptgxhge .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#eaoptgxhge .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eaoptgxhge .gt_left {
-  text-align: left;
-}
-
-#eaoptgxhge .gt_center {
-  text-align: center;
-}
-
-#eaoptgxhge .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#eaoptgxhge .gt_font_normal {
-  font-weight: normal;
-}
-
-#eaoptgxhge .gt_font_bold {
-  font-weight: bold;
-}
-
-#eaoptgxhge .gt_font_italic {
-  font-style: italic;
-}
-
-#eaoptgxhge .gt_super {
-  font-size: 65%;
-}
-
-#eaoptgxhge .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#eaoptgxhge .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#eaoptgxhge .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#eaoptgxhge .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#eaoptgxhge .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#eaoptgxhge .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#eaoptgxhge .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#eaoptgxhge .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#eaoptgxhge div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>campus</strong><br />
-N = 240</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>harding</strong><br />
-N = 39</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>peds</strong><br />
-N = 40</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_4"><span class='gt_from_md'><strong>satellite</strong><br />
-N = 67</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">1 if woman, 0 if man</td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="stat_3" class="gt_row gt_center"><br /></td>
-<td headers="stat_4" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    0</td>
-<td headers="stat_1" class="gt_row gt_center">115 (48%)</td>
-<td headers="stat_2" class="gt_row gt_center">15 (38%)</td>
-<td headers="stat_3" class="gt_row gt_center">19 (48%)</td>
-<td headers="stat_4" class="gt_row gt_center">32 (48%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1</td>
-<td headers="stat_1" class="gt_row gt_center">125 (52%)</td>
-<td headers="stat_2" class="gt_row gt_center">24 (62%)</td>
-<td headers="stat_3" class="gt_row gt_center">21 (53%)</td>
-<td headers="stat_4" class="gt_row gt_center">35 (52%)</td></tr>
-  </tbody>
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
-    </tr>
-  </tfoot>
-</table>
-</div>
+```
+## 
+## 	Wilcoxon rank sum test with continuity correction
+## 
+## data:  marker by trt
+## W = 5161.5, p-value = 0.08475
+## alternative hypothesis: true location shift is not equal to 0
 ```
 
-<br>
+The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset (**trial**) are all the same. As with the `t.test` function, this is an unpaired test by default.
 
-This shows that, for example, there were 240 operations done at the main campus, 115 of these were done on men and 125 on women. This shows that 48% of the operations at the satellite were on men and 52% on women.
-
-You can use the `add_overall` function to add a column which shows the total across all sites. This is not generally advised - for instance, if the median age in the drug group is 65 and in the placebo group is 67, you don't need to be told that the median age in the cohort is somewhere near 66 - but there are sometimes reasons to report on the whole cohort as well.
+Paired case, for example, does an intervention cause a change in a patient's blood pressure?
 
 
 ``` r
-# Create a formatted two-way summary table and add column for all patients
-tbl_summary(
-  lesson1a %>% select(sex, y),
-  by = y,
-  type = list(sex = "categorical")
-) %>%
-  # Add a column with totals across all locations
-  # "last = TRUE" puts the column on the right side of the table
-  add_overall(last = TRUE)
+# paired non-parametric test for difference in "before" and "after" blood pressure measurements
+wilcox.test(example2a$bp_after, example2a$bp_before, paired = TRUE)
 ```
 
-```{=html}
-<div id="oyrbpbdnnb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oyrbpbdnnb table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#oyrbpbdnnb thead, #oyrbpbdnnb tbody, #oyrbpbdnnb tfoot, #oyrbpbdnnb tr, #oyrbpbdnnb td, #oyrbpbdnnb th {
-  border-style: none;
-}
-
-#oyrbpbdnnb p {
-  margin: 0;
-  padding: 0;
-}
-
-#oyrbpbdnnb .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#oyrbpbdnnb .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#oyrbpbdnnb .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#oyrbpbdnnb .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#oyrbpbdnnb .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#oyrbpbdnnb .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#oyrbpbdnnb .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#oyrbpbdnnb .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#oyrbpbdnnb .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#oyrbpbdnnb .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#oyrbpbdnnb .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#oyrbpbdnnb .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#oyrbpbdnnb .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#oyrbpbdnnb .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#oyrbpbdnnb .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#oyrbpbdnnb .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#oyrbpbdnnb .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#oyrbpbdnnb .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#oyrbpbdnnb .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#oyrbpbdnnb .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#oyrbpbdnnb .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#oyrbpbdnnb .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#oyrbpbdnnb .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#oyrbpbdnnb .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#oyrbpbdnnb .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#oyrbpbdnnb .gt_left {
-  text-align: left;
-}
-
-#oyrbpbdnnb .gt_center {
-  text-align: center;
-}
-
-#oyrbpbdnnb .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#oyrbpbdnnb .gt_font_normal {
-  font-weight: normal;
-}
-
-#oyrbpbdnnb .gt_font_bold {
-  font-weight: bold;
-}
-
-#oyrbpbdnnb .gt_font_italic {
-  font-style: italic;
-}
-
-#oyrbpbdnnb .gt_super {
-  font-size: 65%;
-}
-
-#oyrbpbdnnb .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#oyrbpbdnnb .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#oyrbpbdnnb .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#oyrbpbdnnb .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#oyrbpbdnnb .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#oyrbpbdnnb .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#oyrbpbdnnb .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#oyrbpbdnnb .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#oyrbpbdnnb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>campus</strong><br />
-N = 240</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>harding</strong><br />
-N = 39</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>peds</strong><br />
-N = 40</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_4"><span class='gt_from_md'><strong>satellite</strong><br />
-N = 67</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>Overall</strong><br />
-N = 386</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">1 if woman, 0 if man</td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="stat_3" class="gt_row gt_center"><br /></td>
-<td headers="stat_4" class="gt_row gt_center"><br /></td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    0</td>
-<td headers="stat_1" class="gt_row gt_center">115 (48%)</td>
-<td headers="stat_2" class="gt_row gt_center">15 (38%)</td>
-<td headers="stat_3" class="gt_row gt_center">19 (48%)</td>
-<td headers="stat_4" class="gt_row gt_center">32 (48%)</td>
-<td headers="stat_0" class="gt_row gt_center">181 (47%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1</td>
-<td headers="stat_1" class="gt_row gt_center">125 (52%)</td>
-<td headers="stat_2" class="gt_row gt_center">24 (62%)</td>
-<td headers="stat_3" class="gt_row gt_center">21 (53%)</td>
-<td headers="stat_4" class="gt_row gt_center">35 (52%)</td>
-<td headers="stat_0" class="gt_row gt_center">205 (53%)</td></tr>
-  </tbody>
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td class="gt_footnote" colspan="6"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
-    </tr>
-  </tfoot>
-</table>
-</div>
+```
+## 
+## 	Wilcoxon signed rank test with continuity correction
+## 
+## data:  example2a$bp_after and example2a$bp_before
+## V = 2234.5, p-value = 0.001417
+## alternative hypothesis: true location shift is not equal to 0
 ```
 
-<br>
-
-Overall, 47% of the patients treated in the hospital were men and 53% were women.
-
-By default `tbl_summary` gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the `percent` option and specifying "row".
+Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?
 
 
 ``` r
-# The two-way summary table can give you row percent instead of column percent
-tbl_summary(
-  lesson1a %>% select(sex, y),
-  by = y,
-  type = list(sex = "categorical"),
-  percent = "row" # get the row percent instead of column percent
-)
+# non-parametric test - is rate of college education different from 32%?
+wilcox.test(midwest$percollege, mu = 32)
 ```
 
-```{=html}
-<div id="dswpdpirtn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dswpdpirtn table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#dswpdpirtn thead, #dswpdpirtn tbody, #dswpdpirtn tfoot, #dswpdpirtn tr, #dswpdpirtn td, #dswpdpirtn th {
-  border-style: none;
-}
-
-#dswpdpirtn p {
-  margin: 0;
-  padding: 0;
-}
-
-#dswpdpirtn .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#dswpdpirtn .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#dswpdpirtn .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#dswpdpirtn .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#dswpdpirtn .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#dswpdpirtn .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#dswpdpirtn .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#dswpdpirtn .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#dswpdpirtn .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#dswpdpirtn .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#dswpdpirtn .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#dswpdpirtn .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#dswpdpirtn .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#dswpdpirtn .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#dswpdpirtn .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dswpdpirtn .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#dswpdpirtn .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#dswpdpirtn .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#dswpdpirtn .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dswpdpirtn .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#dswpdpirtn .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dswpdpirtn .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#dswpdpirtn .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dswpdpirtn .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#dswpdpirtn .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dswpdpirtn .gt_left {
-  text-align: left;
-}
-
-#dswpdpirtn .gt_center {
-  text-align: center;
-}
-
-#dswpdpirtn .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#dswpdpirtn .gt_font_normal {
-  font-weight: normal;
-}
-
-#dswpdpirtn .gt_font_bold {
-  font-weight: bold;
-}
-
-#dswpdpirtn .gt_font_italic {
-  font-style: italic;
-}
-
-#dswpdpirtn .gt_super {
-  font-size: 65%;
-}
-
-#dswpdpirtn .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#dswpdpirtn .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#dswpdpirtn .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#dswpdpirtn .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#dswpdpirtn .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#dswpdpirtn .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#dswpdpirtn .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#dswpdpirtn .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#dswpdpirtn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>campus</strong><br />
-N = 240</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>harding</strong><br />
-N = 39</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>peds</strong><br />
-N = 40</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_4"><span class='gt_from_md'><strong>satellite</strong><br />
-N = 67</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">1 if woman, 0 if man</td>
-<td headers="stat_1" class="gt_row gt_center"><br /></td>
-<td headers="stat_2" class="gt_row gt_center"><br /></td>
-<td headers="stat_3" class="gt_row gt_center"><br /></td>
-<td headers="stat_4" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    0</td>
-<td headers="stat_1" class="gt_row gt_center">115 (64%)</td>
-<td headers="stat_2" class="gt_row gt_center">15 (8.3%)</td>
-<td headers="stat_3" class="gt_row gt_center">19 (10%)</td>
-<td headers="stat_4" class="gt_row gt_center">32 (18%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1</td>
-<td headers="stat_1" class="gt_row gt_center">125 (61%)</td>
-<td headers="stat_2" class="gt_row gt_center">24 (12%)</td>
-<td headers="stat_3" class="gt_row gt_center">21 (10%)</td>
-<td headers="stat_4" class="gt_row gt_center">35 (17%)</td></tr>
-  </tbody>
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class='gt_from_md'>n (%)</span></td>
-    </tr>
-  </tfoot>
-</table>
-</div>
+```
+## 
+## 	Wilcoxon signed rank test with continuity correction
+## 
+## data:  midwest$percollege
+## V = 924, p-value < 2.2e-16
+## alternative hypothesis: true location is not equal to 32
 ```
 
-<br>
+Note here that you don’t get any parameters for the groups such as means, medians or standard deviations. You also don’t get an estimate for the difference between groups.
 
-This shows that, for example, 8.3% of men and 12% of women had operations at the "Harding" site.
+#### Binomial test
 
-### Subsetting Data
+The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p-value). 
 
-Sometimes, you will want to subset your data - for instance, by keeping only the women from the full dataset. This can be done using the `filter` function. The `filter` function takes a condition, similar to an `if_else` statement. However, `filter` only keeps observations in the data that meet that condition.
-
-To start, we will count the number of observations in the full dataset, so we will be able to confirm whether we have subset correctly. Passing a dataset to the `count` function will count the number of total observations.
+The first argument of `binom.test` is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the `p =` option - the default is 0.5 (50%).
 
 
 ``` r
-# Count all patients in the dataset
-lesson1a %>% count()
+# Compare a proportion to a hypothesized value "p"
+binom.test(60, 100, p = 0.5)
 ```
 
 ```
-## # A tibble: 1 × 1
-##       n
-##   <int>
-## 1   386
+## 
+## 	Exact binomial test
+## 
+## data:  60 and 100
+## number of successes = 60, number of trials = 100, p-value = 0.05689
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4972092 0.6967052
+## sample estimates:
+## probability of success 
+##                    0.6
 ```
 
-In this example, we can use `filter` to count the number of women in the dataset, or the number of operations on women at the main campus. Don't forget that you need to use two equals signs here.
+You can also use `binom.test` on data from a dataset. For example, if we want to test whether the proportion of women (sex = 1) is different from 50%:
 
 
 ``` r
-# Count the number of women
-lesson1a %>%
-  filter(sex == 1) %>%
-  count()
+# The "sum" function adds up the number of observations where sex == 1 (women)
+nwomen <- sum(lesson1a$sex)
+nwomen
 ```
 
 ```
-## # A tibble: 1 × 1
-##       n
-##   <int>
-## 1   205
+## [1] 205
 ```
 
 ``` r
-# Count the number of women treated at the main campus
-lesson1a %>%
-  filter(sex == 1 & y == "campus") %>%
-  count()
+# The "nrow" function (for "number of rows") counts the total number of observations
+# The "filter" function is used to count only the number of observations where
+# "sex" is not missing (NA)
+ntotal <- nrow(lesson1a %>% filter(!is.na(sex)))
+ntotal
 ```
 
 ```
-## # A tibble: 1 × 1
-##       n
-##   <int>
-## 1   125
-```
-
-Note that because we did not use the assignment operator (`<-`) to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that **lesson1a** still contains all observations.
-
-### Graphing
-
-We won’t be doing much on the graphical presentation of data in this course (this has been called "graphicacy"). The only reason we are doing it here is to get a visual impression of whether data are normally presented (not something you’d want to publish).
-
-The following might sound a little complicated, but just follow it through and everything will be fine.
-
-First, run the following code.
-
-
-``` r
-# This code creates a histogram of the "age" variable
-ggplot(data = lesson1a,
-       aes(x = age)) +
-  geom_histogram()
-```
-
-```
-## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
-```
-
-<img src="02-week2_files/figure-html/section2m-1.png" width="672" />
-
-`ggplot` indicates that you want to create a graph. The dataset **lesson1a** is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
-
-One of the things that R does is to choose the number of bars for you. Notice how the graph looks "lumpy". The output also displays a message that tells you that the default number of bars (also called "bins") is 30 and suggests to "pick a better value". This is because you are breaking the data up into too many small pieces.
-
-You can pick the number of bars yourself by using the `bins` option. Try setting the number of bins to 20, which will break the data into fewer pieces.
-
-
-``` r
-# Here is the same histogram, setting the number of bins to 20
-ggplot(data = lesson1a,
-       aes(x = age)) +
-  geom_histogram(bins = 20)
-```
-
-<img src="02-week2_files/figure-html/section2n-1.png" width="672" />
-
-The following code will superimpose a curve for the normal distribution.
-
-
-``` r
-# Here is the histogram with 20 bins and density curve overlay
-ggplot(data = lesson1a,
-       aes(x = age)) +
-  geom_histogram(aes(y = after_stat(density)), bins = 20) +
-  geom_density()
-```
-
-<img src="02-week2_files/figure-html/section2o-1.png" width="672" />
-
-### Further Reading
-
-Only read this if you are feeling really keen...
-
-
-``` r
-# The "ci" function is from the "gmodels" package
-# This gives the mean of age and 90% confidence interval
-ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
-```
-
-```
-##   Estimate   CI lower   CI upper Std. Error 
-## 49.4844560 48.3301266 50.6387853  0.7000938
-```
-
-This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age, na.rm = TRUE)`).
-
-
-``` r
-# The "ci.binom" function gives the same information as "ci" but is used for binary variables
-ci.binom(lesson1a$sex, na.rm = TRUE)
-```
-
-```
-##       Estimate  CI lower  CI upper Std. Error
-## [1,] 0.5310881 0.4799345 0.5817614 0.02540009
-```
-
-For a binary variable, the function `ci.binom` from the {gmodels} package is used. This gives the proportion of women along with 95% confidence intervals (95% is the default, meaning if you don’t specify a level, it assumes you want the 95% confidence interval.)
-
-### Using R as a calculator
-
-R can be used as a calculator:
-
-
-``` r
-# Multiplication
-7*7
-```
-
-```
-## [1] 49
-```
-
-`log()` is the natural logarithm (to base e)
-
-
-``` r
-# Natural logarithm
-log(2.71828)
-```
-
-```
-## [1] 0.9999993
-```
-
-`exp()` is the inverse natural logarithm, that is, if exp(x)=y, e^y^=x
-
-
-``` r
-# Inverse natural logarithm
-exp(1)
-```
-
-```
-## [1] 2.718282
-```
-
-`log10()` gives the log to base 10
-
-
-``` r
-# Base 10 logarithm
-log10(100)
-```
-
-```
-## [1] 2
-```
-
-`cos(45)` gives the cosine of 45
-
-
-``` r
-# Cosine
-cos(45)
-```
-
-```
-## [1] 0.525322
-```
-
-Some of the functions give useful statistical constants.
-
-`pnorm(x)` gives the probability that an observation will be less than mean + x standard deviations.
-
-
-``` r
-# Probability that an observation will be less than mean + 1 standard deviations
-pnorm(1)
-```
-
-```
-## [1] 0.8413447
+## [1] 386
 ```
 
 ``` r
-# Probability that an observation will be less than mean - 0.5 standard deviations
-pnorm(-0.5)
+# Compare a proportion of patients in a dataset to a hypothesized value "p"
+binom.test(nwomen, ntotal, p = 0.5)
 ```
 
 ```
-## [1] 0.3085375
+## 
+## 	Exact binomial test
+## 
+## data:  nwomen and ntotal
+## number of successes = 205, number of trials = 386, p-value = 0.2417
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.4799345 0.5817614
+## sample estimates:
+## probability of success 
+##              0.5310881
 ```
 
-`pnorm(1)` gives 0.84 - this means that 84% of a normally distributed set of data will be less than one standard deviation above the mean.
+Note that above, we used the `filter` function to only count those observations where "sex" was not missing (NA). The function `is.na` gives a value of TRUE if the data is missing (NA) and FALSE if the data is non-missing. The `!` means "is not" in R, so that the statement `!is.na(sex)` is indicating that we want to keep the data where sex **is not** missing.
 
-`pnorm(-0.5)` gives 0.31, meaning that 31% of a normally distributed set of data will be less than half a standard deviation below the mean.
-
-Therefore, if you had a data set where the pain score had a mean of 5 and a standard deviation of 2, you could predict that only 16% of patients would have pain scores of 7 or more (i.e. more than one standard deviation higher than the mean) and that 69% would have pain scores of 4 or more (i.e. more than half a standard deviation below the mean: 31% of observations are half a standard deviation or more less than the mean).
+In this dataset, there are no missing values for "sex", but it is a good habit to include this condition so you are using the correct denominator if your dataset does have missing values.
 
 
-``` r
-# Probability that an observation will be less than mean + 1.96
-pnorm(1.96)
-```
 
-```
-## [1] 0.9750021
-```
-
-``` r
-# Probability that an observation will be less than mean - 1.96
-pnorm(-1.96)
-```
-
-```
-## [1] 0.0249979
-```
-
-`pnorm(1.96)` gives 0.975 and `pnorm(-1.96)` gives 0.025. So 97.5% of observations are less than 1.96 standard deviations greater than the mean, and 2.5% are less than 1.96 standard deviations lower than the mean. In other words, 95% of observations are within 1.96 standard deviations of the mean.
-
-`pnorm(0.675)` gives 0.75 and `pnorm(-0.675)` gives 0.25, meaning that 50% of observations fall within approximately 2/3 of a standard deviation on either side of the mean.
-
-Almost all observations fall within 3 standard deviations of the mean, as shown by `pnorm(3)` and `pnorm(-3)`, which give 0.9987 and 0.0013, respectively. This means that 99.7% of all observations fall into this range.
+This tells you that you had 386 observations, and there were 205 where sex was coded as 1, an observation proportion of 0.53. Now the "assumed" proportion was 0.5, giving an expected number of 193 women. These two values are quite close and the p-value is 0.2. 
 
 ## Assignments
 
@@ -2455,19 +806,14 @@ lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
 lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
 lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
 lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
+lesson2f <- readRDS(here::here("Data", "Week 2", "lesson2f.rds"))
 ```
 
-It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
+Again, more questions than you need to do, unless you’re keen (also, most won’t take long). Try to do at least the first three. 
 
-I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable "rt" by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.
-
-All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
-
-- **lesson2a**: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
-- **lesson2b**: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
-- **lesson2c**: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
-- **lesson2d**: Cost of a minor medical procedure. Summarize cost.
-- **lesson2e**: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
-
-
-
+- **lesson2a**: These are data from over 1000 patients undergoing chemotherapy reporting a nausea and vomiting score from 0 to 10 on the day of treatment.  Does previous chemotherapy increase nausea scores? What about sex? 
+- **lesson2b**: Patients with wrist osteoarthritis are randomized to a new drug or placebo. Pain is measured before and two hours after taking a dose of the drug. Is the drug effective?
+- **lesson2c**: Some postoperative pain data again. Is pain on day 2 different than pain on day 1? Is pain on day 3 different from pain on day 2? 
+- **lesson2d**: This is a single-arm, uncontrolled study of acupuncture for patients with neck pain. Does acupuncture increase range of motion?  Just as many men as women get neck pain. Can we say anything about the sample chosen for this trial with respect to gender? The mean age of patients with neck pain is 58.2 years. Is the trial population representative with respect to age?
+- **lesson2e**: These data are length of stay from two different hospitals. One of the hospitals uses a new chemotherapy regimen that is said to reduce adverse events and therefore length of stay. Does the new regimen decrease length of stay? 
+- **lesson2f**: These data are from a randomized trial on the effects of physiotherapy treatment on physical function in pediatric patients recovering from cancer surgery. Function is measured on a 100 point scale. Does physiotherapy help improve physical functioning?

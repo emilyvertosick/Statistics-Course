@@ -20,6 +20,11 @@ library(tidyverse)
 
 # Week 1: load data
 lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+lesson1b <- readRDS(here::here("Data", "Week 1", "lesson1b.rds"))
+lesson1c <- readRDS(here::here("Data", "Week 1", "lesson1c.rds"))
+lesson1d <- readRDS(here::here("Data", "Week 1", "lesson1d.rds"))
+lesson1e <- readRDS(here::here("Data", "Week 1", "lesson1e.rds"))
+lesson1f <- readRDS(here::here("Data", "Week 1", "lesson1f.rds"))
 ```
 
 ### lesson1a
@@ -35,48 +40,24 @@ The dataset has 11 variables:
 - "t": total pain score takes on values between 0 and 24 and can thus be considered continuous
 - "x", "y" and "z": should you attempt to summarize a variable if you don’t know what it is? It is obvious for y, this is some kind of hospital location, and is a categorical variable. But what about x and z? As it happens, z looks ordinal but isn’t: it is blood group coded 1=o, 2=a, 3=b, 4=ab.
 
-## Week 2
-
-
-``` r
-# Week 2: load packages
-library(skimr)
-library(gt)
-library(gtsummary)
-library(epiR)
-library(broom)
-library(pROC)
-library(gmodels)
-library(survival)
-library(here)
-library(tidyverse)
-
-# Week 2: load data
-lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
-lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
-lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
-lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
-lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
-```
-
-### lesson2a
+### lesson1b
 
 **This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.**
 
-Age is continuous and normally distributed (look at a graph or look at the centiles) and so it wouldn’t be unreasonable to describe age in terms of mean and standard deviation (SD) by using `lesson2a %>% skim(age)`: mean of 42 years, SD of 10.2. By the way, don’t just copy the readout from R: this would give mean age as 42.43 and implies we are interested in age within a few days. 
+Age is continuous and normally distributed (look at a graph or look at the centiles) and so it wouldn’t be unreasonable to describe age in terms of mean and standard deviation (SD) by using `lesson1b %>% skim(age)`: mean of 42 years, SD of 10.2. By the way, don’t just copy the readout from R: this would give mean age as 42.43 and implies we are interested in age within a few days. 
 
-Sex is binary: use `tbl_summary(lesson2a %>% select(sex))` to get percentages. But note that the person who prepared the data didn’t state how the variable was coded (someone with sex=1 is a woman or a man?). Now what you should do in this situation is ask, but here is another alternative:
+Sex is binary: use `tbl_summary(lesson1b %>% select(sex))` to get percentages. But note that the person who prepared the data didn’t state how the variable was coded (someone with sex=1 is a woman or a man?). Now what you should do in this situation is ask, but here is another alternative:
 
 
 ``` r
 # Summary statistics for race time, separately by sex
-lesson2a %>%
+lesson1b %>%
   group_by(sex) %>%
   skim(rt)
 ```
 
 
-Table: (\#tab:week2a)Data summary
+Table: (\#tab:week1a)Data summary
 
 |                         |           |
 |:------------------------|:----------|
@@ -101,7 +82,7 @@ So sex==0 are running faster than the sex==1 and it would not be unreasonable to
 
 Race time is continuous and looks pretty normal. Yes the data are skewed by a single outlier (a race time of 414 minutes) but the mean and median are pretty similar (250 v. 242 minutes) and the 5th and 95th centile are very close to the values expected by adding or subtracting 1.64 times the SD from the mean (5th centile is 176, expected value using means and SD is 173; 95th centile actual and expected values are 328 and 328). I would probably feel comfortable reporting a mean and SD if you wanted.
 
-Favorite running shoe: `lesson2a %>% skim(shoe)` gives a mean of 3.08 and a median of 3. If you reported these, you need therapy: shoe is a categorical variable and you should report the percentage of runners that favor each shoe.
+Favorite running shoe: `lesson1b %>% skim(shoe)` gives a mean of 3.08 and a median of 3. If you reported these, you need therapy: shoe is a categorical variable and you should report the percentage of runners that favor each shoe.
 
 AN ADDITIONAL IMPORTANT POINT: you should give the number of observations and the number of missing observations. n is 98 for all observations except for favorite running shoe, where there are 95 observations and 3 missing observations.
 
@@ -1085,7 +1066,7 @@ However, look at this.
 
 This really isn't much to distinguish between these tables. On the one hand using the mean and SD gives you more information (e.g. what proportion of patients are aged over 70?). On the other hand, I can't see anyone using a table 1 to do these types of calculation and the median and interquartile range give you some more immediately usable information (no multiplying by 1.64!).
 
-### lesson2b
+### lesson1c
 
 **Summarize average pain after the operation. Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3, etc.?**
 
@@ -1094,7 +1075,7 @@ This is data on postoperative pain. You were asked to summarize average pain aft
 
 ``` r
 # Create histogram to assess whether data look skewed
-ggplot(data = lesson2b,
+ggplot(data = lesson1c,
        aes(x = t)) +
   geom_histogram()
 ```
@@ -1103,27 +1084,27 @@ ggplot(data = lesson2b,
 ## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 ```
 
-<img src="09-answers_files/figure-html/week2d-1.png" width="672" />
+<img src="09-answers_files/figure-html/week1d-1.png" alt="" width="672" />
 
 However, using the mean and standard deviation doesn’t get you far off. For normal data, 50% of the observations are within two-thirds of a standard deviations of the mean. So the interquartile range predicted from the mean and SD would be 1.9 - 1.1\*0.67 and 1.9 + 1.1\*0.67 which gives you 1.2 and 2.7. This is an interesting point: the data can look skewed (and if you are interested, a statistical test can tell you that the data are definitely non-normal) but it doesn’t make much of a difference in practice. 
 
 You were then asked to imagine that you had to draw a graph of "time course of pain after surgery". What numbers would you use for time 1, time 2 etc? The first thing to note is that to draw the graph, which seems like a useful thing to do, you have to treat the data as continuous: you can’t really graph a table very easily. This is another illustration of how something that seems technically incorrect gives you useful approximations. Now that we have continuous data we have to decide whether to use medians or means. As it turns out, normality of the data isn’t even an issue. Here is what happens if you graph the median pain score at each time point.
 
-<img src="09-answers_files/figure-html/week2e-1.png" width="672" />
+<img src="09-answers_files/figure-html/week1e-1.png" alt="" width="672" />
 
 This makes it seem that postoperative pain doesn’t change for four time points, then drops dramatically. 
 
 A graph using means seems more illustrative of what is really going on.
 
-<img src="09-answers_files/figure-html/week2f-1.png" width="672" />
+<img src="09-answers_files/figure-html/week1f-1.png" alt="" width="672" />
 
-### lesson2c
+### lesson1d
 
 **This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.**
 
-One of the first things to look for here is missing data. If you type `lesson2c %>% skim()`, you’ll see that there is no missing data for age, 9 missing observations for PSA and 41 for grade. You will notice that the "stage" variable is not included here, because it is a character variable, not a numeric variable.
+One of the first things to look for here is missing data. If you type `lesson1d %>% skim()`, you’ll see that there is no missing data for age, 9 missing observations for PSA and 41 for grade. You will notice that the "stage" variable is not included here, because it is a character variable, not a numeric variable.
 
-If you type `tbl_summary(lesson2c %>% select(stage))`, you'll see that all patients have a stage assigned (no "NA" values).
+If you type `tbl_summary(lesson1d %>% select(stage))`, you'll see that all patients have a stage assigned (no "NA" values).
 
 A second issue is how to characterize the categorical variables. There are 8 different stages represented, many with very small numbers (like 2 for T4 and T1B, 4 for T3). It generally isn’t very helpful to slice and dice data into very small categories, so I would consider grouping. For instance, we could group the T1s together, and group the T3 and T4 patients together to get something like:
 
@@ -1623,8 +1604,8 @@ In this case, the `case_when` function does the following:
 
 ``` r
 # Create new variable for stage and save into "lesson2c" dataset
-lesson2c <-
-  lesson2c %>%
+lesson1d <-
+  lesson1d %>%
   mutate(
     stage_category =
       case_when(
@@ -1635,7 +1616,7 @@ lesson2c <-
   )
 
 # You can use the "count" function to confirm that your variable was created correctly
-lesson2c %>% count(stage_category, stage)
+lesson1d %>% count(stage_category, stage)
 ```
 
 ```
@@ -2151,26 +2132,26 @@ There is a similar issue for grade, with few patients having grades 4, 5, 8 or 9
 </div>
 ```
 
-### lesson2d
+### lesson1e
 
 **Summarize cost.**
 
 I asked you to summarize the cost. You can see from a graph that the data are not normally distributed. If we were to follow the rule book slavishly, we would report a median and interquartile range. But what use is a median for cost data? We want to know "average" cost so that we can predict, for example, how much we should budget for next year. This requires a mean.
 
-### lesson2e
+### lesson1f
 
 **Summarize total cancer pain in one month in a group of chronic cancer patients.**
 
 The data are grossly non-normal and you could use the median pain score with interquartile range. 
 
-As for summarizing the number of days in pain, almost everyone has 31 days of pain. So I would give proportions of patients who had pain for 31 days and then the number who, say, had pain at least 3 out of every 4 days and 2 out of 4 days. There are two ways of doing this. You could use `tbl_summary(lesson2e %>% select(f), type = list(f = "categorical"))` and then combine some of the results. Or, and this is a little more complicated, you could create a new variable.
+As for summarizing the number of days in pain, almost everyone has 31 days of pain. So I would give proportions of patients who had pain for 31 days and then the number who, say, had pain at least 3 out of every 4 days and 2 out of 4 days. There are two ways of doing this. You could use `tbl_summary(lesson1f %>% select(f), type = list(f = "categorical"))` and then combine some of the results. Or, and this is a little more complicated, you could create a new variable.
 
 
 
 ``` r
 # Create variable to categorize number of days in pain
-lesson2e <-
-  lesson2e %>%
+lesson1f <-
+  lesson1f %>%
   mutate(
     days =
       case_when(
@@ -2188,7 +2169,7 @@ In other words, create a new variable called "days", and set it to 0 for anyone 
 ``` r
 # Print formatted table summarizing number of days in pain
 tbl_summary(
-  lesson2e %>% select(days)
+  lesson1f %>% select(days)
 )
 ```
 
@@ -2683,8 +2664,8 @@ You could also try a log transformation of the pain scores. Create a new variabl
 
 ``` r
 # Create a variable for log of the pain score
-lesson2e <-
-  lesson2e %>%
+lesson1f <-
+  lesson1f %>%
   mutate(log = log(pain))
 ```
 
@@ -2692,11 +2673,11 @@ Analyze this variable and you’ll see it appears normally distributed.
 
 The mean of log is 5.42. You can transform the log back by calculating e^5.42^ (the function is ``exp(5.42)``) to get 225, close to the median. Backtransforming the standard deviation is more complicated and can’t really be done directly. What you need to do is make any calculations you need on the log transformed scale and then backtransform the results. Imagine you wanted a 95% confidence interval. A 95% confidence interval is the mean ± 1.96 standard deviations. The standard deviation of the log data is close to one. So the confidence interval is 3.45 to 7.39. Transforming this ``exp(3.45)`` and ``exp(7.39)`` gives a confidence interval on the original scale of 31.44 and 1614.07. This is a reasonable approximation to the 5th (50) and 95th centile (1319).
 
-## Week 3
+## Week 2
 
 
 ``` r
-# Week 3: load packages
+# Week 2: load packages
 library(skimr)
 library(gt)
 library(gtsummary)
@@ -2708,22 +2689,22 @@ library(survival)
 library(here)
 library(tidyverse)
 
-# Week 3: load data
-lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
-lesson3b <- readRDS(here::here("Data", "Week 3", "lesson3b.rds"))
-lesson3c <- readRDS(here::here("Data", "Week 3", "lesson3c.rds"))
-lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
-lesson3e <- readRDS(here::here("Data", "Week 3", "lesson3e.rds"))
-lesson3f <- readRDS(here::here("Data", "Week 3", "lesson3f.rds"))
+# Week 2: load data
+lesson2a <- readRDS(here::here("Data", "Week 2", "lesson2a.rds"))
+lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
+lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
+lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
+lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
+lesson2f <- readRDS(here::here("Data", "Week 2", "lesson2f.rds"))
 ```
 
-### lesson3a
+### lesson2a
 
 **These are data from over 1000 patients undergoing chemotherapy reporting a nausea and vomiting score from 0 to 10.  Does previous chemotherapy increase nausea scores? What about sex?**
 
 
 
-Hands up, who typed in `t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)` without looking at the data? There are lots of missing data. There is a question as to whether you would actually analyze these data at all: could data be missing because patients were too ill to complete questionnaires?  Could there have been bias in ascertaining who had prior chemotherapy?  If you do decide to analyze, a t-test would be appropriate (`t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)` and `t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)`). A model answer might be:
+Hands up, who typed in `t.test(nv ~ pc, data = lesson2a, var.equal = TRUE)` without looking at the data? There are lots of missing data. There is a question as to whether you would actually analyze these data at all: could data be missing because patients were too ill to complete questionnaires?  Could there have been bias in ascertaining who had prior chemotherapy?  If you do decide to analyze, a t-test would be appropriate (`t.test(nv ~ pc, data = lesson2a, var.equal = TRUE)` and `t.test(nv ~ sex, data = lesson2a, var.equal = TRUE)`). A model answer might be:
 
 <div class="quote-container">
 
@@ -2736,7 +2717,7 @@ Now, I'll explain what I did. First, I did the two t-tests:
 
 ``` r
 # t-test for nausea/vomiting by prior chemotherapy
-t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
+t.test(nv ~ pc, data = lesson2a, var.equal = TRUE)
 ```
 
 ```
@@ -2755,7 +2736,7 @@ t.test(nv ~ pc, data = lesson3a, var.equal = TRUE)
 
 ``` r
 # t-test for nausea/vomiting by sex
-t.test(nv ~ sex, data = lesson3a, var.equal = TRUE)
+t.test(nv ~ sex, data = lesson2a, var.equal = TRUE)
 ```
 
 ```
@@ -2778,7 +2759,7 @@ While the `t.test` function gives the confidence interval around the difference 
 ``` r
 tbl_summary(
   # Keep 2 variables of interest
-  lesson3a %>%
+  lesson2a %>%
     select(nv, pc),
   by = pc,
   # specify that you want mean (SD) rather than median (IQR)
@@ -3289,8 +3270,8 @@ Next I created a new variable for missing data on nausea and vomiting:
 
 ``` r
 # Create new variable to indicate whether "nv" variable is missing
-lesson3a <-
-  lesson3a %>%
+lesson2a <-
+  lesson2a %>%
   mutate(
     missing =
       if_else(is.na(nv), 1, 0)
@@ -3303,7 +3284,7 @@ And then created a table to look at the missingness for this variable:
 ``` r
 # Formatted table to look at rates of missingness in "nv" variable by sex
 tbl_summary(
-  lesson3a %>% select(missing, sex),
+  lesson2a %>% select(missing, sex),
   by = sex,
   type = list(missing = "categorical")
 )
@@ -3791,7 +3772,7 @@ N = 575</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 
 If you got that far: wow! (also, forget the course, you don’t need it). If you didn’t get that far, don’t feel bad about it, but try to get a handle on the thought process.
 
-One other issue: the p-value for the first t-test (previous chemotherapy) is given as "p-value = 4.7e-06". While this number is very close to 0, we cannot round to 0 - there is no such thing as a p-value of 0 for any hypothesis worth testing (there is a small but finite chance of every possible result, even throwing 100,000 tails in a row on an unbiased coin.) So do not report "p=0.0000"! You can round p-values for reporting - for example, "4.7e-06" can be rounded to "<0.0005". As you can see, if you use the `tbl_summary` and `add_difference` functions from {gtsummary}, the p-value is automatically formatted in the table as "p<0.0001".
+One other issue: the p-value for the first t-test (previous chemotherapy) is given as "p-value = 4.7e-06". While this number is very close to 0, we cannot round to 0 - there is no such thing as a p-value of 0 for any hypothesis worth testing (there is a small but finite chance of every possible result, even throwing 100,000 tails in a row on an unbiased coin.) So do not report "p=0.0000"! You can round p-values for reporting - for example, "4.7e-06" can be rounded to "<0.0005". As you can see, if you use the `tbl_summary` and `add_difference` functions from {gtsummary}, the p-value is automatically formatted in the table as "p<0.001".
 
 _For more advanced students:_
 
@@ -3811,7 +3792,7 @@ This p-value can also be read as 4.7 x 10^-6^. An interesting question though: i
 
 What is "degrees of freedom" and how come it is 510? Think about it this way: You have a line of ten people outside your door. You know the mean age of this group. Each person comes in one-by-one, you try to guess their age and they tell you how old they actually are. As each person comes in, your guesses will get better and better (for example, if the first three people have ages less than the mean, you will guess the age of the fourth person as something above the mean). However, only when you have the ages of the first nine people will you be able to guess for sure the age of the next (and last) person. In other words, the ages of the first nine people are "free", the age of the last person is "constrained". So "degrees of freedom" is the sample size minus one. Little catch though: for an unpaired test (such a straight drug v. placebo trial), you have two different groups and two different means. You would therefore be able to predict the scores of two observations (the last patient in each group). Degrees of freedom in an unpaired test is therefore the total sample size minus two (or, put another way, the sample size in group a minus one plus the sample size in group b minus one).
 
-### lesson3b
+### lesson2b
 
 **Patients with wrist osteoarthritis are randomized to a new drug or placebo. Pain is measured before and after treatment. Is the drug effective?**
 
@@ -3820,7 +3801,7 @@ The most obvious thing to do would be to do:
 
 ``` r
 # t-test for pain after treatment, by group
-t.test(p ~ g, data = lesson3b, var.equal = TRUE)
+t.test(p ~ g, data = lesson2b, var.equal = TRUE)
 ```
 
 ```
@@ -3846,8 +3827,8 @@ You could analyze the data from each wrist separately by creating new variables 
 
 ``` r
 # Analyze data separately by wrist
-lesson3b <-
-  lesson3b %>%
+lesson2b <-
+  lesson2b %>%
   # Create a new variable called "pright" equivalent to "p"
   # (the pain score for the right wrist (site 2) only)
   mutate(
@@ -3861,7 +3842,7 @@ lesson3b <-
   )
 
 # t-test for pain in right and left wrists separately
-t.test(pright ~ g, data = lesson3b, var.equal = TRUE)
+t.test(pright ~ g, data = lesson2b, var.equal = TRUE)
 ```
 
 ```
@@ -3879,7 +3860,7 @@ t.test(pright ~ g, data = lesson3b, var.equal = TRUE)
 ```
 
 ``` r
-t.test(pleft ~ g, data = lesson3b, var.equal = TRUE)
+t.test(pleft ~ g, data = lesson2b, var.equal = TRUE)
 ```
 
 ```
@@ -3900,8 +3881,8 @@ You could also analyze the data by taking the average of the two wrists. You can
 
 
 ``` r
-lesson3b_avg <-
-  lesson3b %>%
+lesson2b_avg <-
+  lesson2b %>%
   # Grouping by "id" so that each patient ends up with the average of their own two wrist scores
   group_by(id) %>%
   # Calculate the mean pain score between wrists for each patient
@@ -3917,7 +3898,7 @@ lesson3b_avg <-
   ungroup()
 
 # t-test for average pain between both wrists
-t.test(meanpain ~ g, data = lesson3b_avg, var.equal = TRUE)
+t.test(meanpain ~ g, data = lesson2b_avg, var.equal = TRUE)
 ```
 
 ```
@@ -3934,7 +3915,7 @@ t.test(meanpain ~ g, data = lesson3b_avg, var.equal = TRUE)
 ##      0.55555555     -0.08888889
 ```
 
-### lesson3c
+### lesson2c
 
 **Some postoperative pain data again. Is pain on day 2 different than pain on day 1? Is pain on day 3 different from pain on day 2?**
 
@@ -3943,16 +3924,16 @@ The most obvious issue here is that you are measuring the same patients on two o
 
 ``` r
 # Non-parametric test comparing day 1 and day 2 pain
-wilcox.test(lesson3c$t1, lesson3c$t2, paired = TRUE)
+wilcox.test(lesson2c$t1, lesson2c$t2, paired = TRUE)
 ```
 
 ```
-## Warning in wilcox.test.default(lesson3c$t1, lesson3c$t2, paired = TRUE): cannot
+## Warning in wilcox.test.default(lesson2c$t1, lesson2c$t2, paired = TRUE): cannot
 ## compute exact p-value with ties
 ```
 
 ```
-## Warning in wilcox.test.default(lesson3c$t1, lesson3c$t2, paired = TRUE): cannot
+## Warning in wilcox.test.default(lesson2c$t1, lesson2c$t2, paired = TRUE): cannot
 ## compute exact p-value with zeroes
 ```
 
@@ -3960,7 +3941,7 @@ wilcox.test(lesson3c$t1, lesson3c$t2, paired = TRUE)
 ## 
 ## 	Wilcoxon signed rank test with continuity correction
 ## 
-## data:  lesson3c$t1 and lesson3c$t2
+## data:  lesson2c$t1 and lesson2c$t2
 ## V = 41.5, p-value = 0.1446
 ## alternative hypothesis: true location shift is not equal to 0
 ```
@@ -3972,14 +3953,14 @@ If you run this code, you will notice you get a warning in yellow text that stat
 
 ``` r
 # paired t-test comparing day 1 and day 2 pain
-t.test(lesson3c$t1, lesson3c$t2, paired = TRUE, var.equal = TRUE)
+t.test(lesson2c$t1, lesson2c$t2, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  lesson3c$t1 and lesson3c$t2
+## data:  lesson2c$t1 and lesson2c$t2
 ## t = 1.5467, df = 21, p-value = 0.1369
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
@@ -3996,20 +3977,20 @@ What about normality of the data? Doesn’t that figure into whether you assess 
 
 ``` r
 # Create a variable containing the difference in pain scores between days 1 and 2
-lesson3c <-
-  lesson3c %>%
+lesson2c <-
+  lesson2c %>%
   mutate(delta12 = t2 - t1)
 
 # Summarize change in pain scores
-skim(lesson3c$delta12)
+skim(lesson2c$delta12)
 ```
 
 
-Table: (\#tab:week3k1)Data summary
+Table: (\#tab:week2k1)Data summary
 
 |                         |                 |
 |:------------------------|:----------------|
-|Name                     |lesson3c$delta12 |
+|Name                     |lesson2c$delta12 |
 |Number of rows           |22               |
 |Number of columns        |1                |
 |_______________________  |                 |
@@ -4031,14 +4012,14 @@ Now let's compare t2 and t3.
 
 
 ``` r
-t.test(lesson3c$t2, lesson3c$t3, paired = TRUE, var.equal = TRUE)
+t.test(lesson2c$t2, lesson2c$t3, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  lesson3c$t2 and lesson3c$t3
+## data:  lesson2c$t2 and lesson2c$t3
 ## t = 1.2501, df = 21, p-value = 0.225
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
@@ -4050,7 +4031,7 @@ t.test(lesson3c$t2, lesson3c$t3, paired = TRUE, var.equal = TRUE)
 
 Again, no significant difference. Does this mean that pain does not decrease after an operation? Of course, we know that pain does indeed get better. This illustrates two points: first, don't ask questions you know the answer to; second, asking lots of questions (is pain on day 2 better than on day 1?; is pain on day 3 better on day 2?) is not as good as just asking one question: does pain decrease over time? We'll discuss how to answer this question later on in the course.
 
-### lesson3d
+### lesson2d
 
 **This is a single-arm, uncontrolled study of acupuncture for patients with neck pain. Does acupuncture increase range of motion?  Just as many men as women get neck pain. Can we say anything about the sample chosen for this trial with respect to gender? The mean age of patients with neck pain is 58.2 years. Is the trial population representative with respect to age?**
 
@@ -4063,14 +4044,14 @@ There are two ways of doing the t-test:
 
 ``` r
 # paired t-test for before and after pain scores
-t.test(lesson3d$b, lesson3d$a, paired = TRUE, var.equal = TRUE)
+t.test(lesson2d$b, lesson2d$a, paired = TRUE, var.equal = TRUE)
 ```
 
 ```
 ## 
 ## 	Paired t-test
 ## 
-## data:  lesson3d$b and lesson3d$a
+## data:  lesson2d$b and lesson2d$a
 ## t = -4.4912, df = 33, p-value = 8.19e-05
 ## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
@@ -4085,14 +4066,14 @@ t.test(lesson3d$b, lesson3d$a, paired = TRUE, var.equal = TRUE)
 
 ``` r
 # t-test for whether difference between before and after scores is different than zero
-t.test(lesson3d$d, mu = 0)
+t.test(lesson2d$d, mu = 0)
 ```
 
 ```
 ## 
 ## 	One Sample t-test
 ## 
-## data:  lesson3d$d
+## data:  lesson2d$d
 ## t = 4.4912, df = 33, p-value = 8.19e-05
 ## alternative hypothesis: true mean is not equal to 0
 ## 95 percent confidence interval:
@@ -4109,14 +4090,14 @@ BTW: for those who are interested, acupuncture has been shown to improve neck pa
 
 ``` r
 # Test whether proportion of women is different from 50%
-binom.test(sum(lesson3d$sex), nrow(lesson3d %>% filter(!is.na(sex))), p = 0.5)
+binom.test(sum(lesson2d$sex), nrow(lesson2d %>% filter(!is.na(sex))), p = 0.5)
 ```
 
 ```
 ## 
 ## 	Exact binomial test
 ## 
-## data:  sum(lesson3d$sex) and nrow(lesson3d %>% filter(!is.na(sex)))
+## data:  sum(lesson2d$sex) and nrow(lesson2d %>% filter(!is.na(sex)))
 ## number of successes = 9, number of trials = 34, p-value = 0.009041
 ## alternative hypothesis: true probability of success is not equal to 0.5
 ## 95 percent confidence interval:
@@ -4131,14 +4112,14 @@ Only about a quarter of the patients are women, and the binomial test gives a p-
 
 ``` r
 # t-test for whether age is significantly different from 58.2
-t.test(lesson3d$age, mu = 58.2)
+t.test(lesson2d$age, mu = 58.2)
 ```
 
 ```
 ## 
 ## 	One Sample t-test
 ## 
-## data:  lesson3d$age
+## data:  lesson2d$age
 ## t = -2.261, df = 33, p-value = 0.03048
 ## alternative hypothesis: true mean is not equal to 58.2
 ## 95 percent confidence interval:
@@ -4150,7 +4131,7 @@ t.test(lesson3d$age, mu = 58.2)
 
 Similarly, this t-test for age gives a p-value of 0.030, but I doubt anyone would call a mean age of 52 much different from a mean age of 58, so you’d probably want to say that, ok, the trial patients are younger than we might expect, but not by much.
 
-### lesson3e
+### lesson2e
 
 **These data are length of stay from two different hospitals. One of the hospitals uses a new chemotherapy regime that is said to reduce adverse events and therefore length of stay. Does the new regime decrease length of stay?**
 
@@ -4159,13 +4140,13 @@ Well, before running off and doing t-tests, let’s have a look at the data:
 
 ``` r
 # Summarize data by hospital
-lesson3e %>%
+lesson2e %>%
   group_by(hospital) %>%
   skim()
 ```
 
 
-Table: (\#tab:week3p)Data summary
+Table: (\#tab:week2p)Data summary
 
 |                         |           |
 |:------------------------|:----------|
@@ -4195,8 +4176,8 @@ The data are non-normally distributed so you could try a log transform:
 
 ``` r
 # Create variable for log of length of stay
-lesson3e <-
-  lesson3e %>%
+lesson2e <-
+  lesson2e %>%
   mutate(loglos = log(los))
 ```
 
@@ -4205,7 +4186,7 @@ The distribution of this new variable for both groups combined is normal, theref
 
 ``` r
 # paired t-test using log of length of stay as outcome
-t.test(loglos ~ hospital, data = lesson3e, var.equal = TRUE)
+t.test(loglos ~ hospital, data = lesson2e, var.equal = TRUE)
 ```
 
 ```
@@ -4228,7 +4209,7 @@ The p-value is similar to the untransformed analyses. Now, look at the differenc
 
 To backtransform these values, you have to remember that addition on a log scale is the same as multiplication on an untransformed scale. Backtransform -0.02 using ``exp(-0.02)`` and you get 0.98. In other words, length of stay in hospital a is 98% more (or 2.0% less) compared to hospital b. Do the same things with the upper and lower bounds of the confidence interval and you might conclude that the difference in length of stay is between 15% less in hospital a to 13% less in hospital b. If you wanted to convert these numbers to actual days, just multiply by the mean hospital stay in group b by 0.98, 0.85 and 1.13.
 
-### lesson3f
+### lesson2f
 
 **These data are from a randomized trial on the effects of physiotherapy treatment on function in pediatric patients recovering from cancer surgery. Function is measured on a 100 point scale. Does physiotherapy help improve function?**
 
@@ -4237,7 +4218,7 @@ You will want to do an unpaired t-test or non-parametric test on these data.
 
 ``` r
 # unpaired t-test for change in pain by physiotherapy group
-t.test(delta ~ physio, data = lesson3f, var.equal = TRUE)
+t.test(delta ~ physio, data = lesson2f, var.equal = TRUE)
 ```
 
 ```
@@ -4266,11 +4247,11 @@ This gives a p-value of 0.14 (incidentally, don't say "p > 0.05" or "p=0.1399", 
 
 An alternative conclusion, which I think I actually prefer, would be to focus on the difference between groups of 7.1, deciding whether this is clinically significant.
 
-## Week 4
+## Week 3
 
 
 ``` r
-# Week 4: load packages
+# Week 3: load packages
 library(skimr)
 library(gt)
 library(gtsummary)
@@ -4282,15 +4263,15 @@ library(survival)
 library(here)
 library(tidyverse)
 
-# Week 4: load data
-lesson4a <- readRDS(here::here("Data", "Week 4", "lesson4a.rds"))
-lesson4b <- readRDS(here::here("Data", "Week 4", "lesson4b.rds"))
-lesson4c <- readRDS(here::here("Data", "Week 4", "lesson4c.rds"))
-lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
-lesson4e <- readRDS(here::here("Data", "Week 4", "lesson4e.rds"))
+# Week 3: load data
+lesson3a <- readRDS(here::here("Data", "Week 3", "lesson3a.rds"))
+lesson3b <- readRDS(here::here("Data", "Week 3", "lesson3b.rds"))
+lesson3c <- readRDS(here::here("Data", "Week 3", "lesson3c.rds"))
+lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
+lesson3e <- readRDS(here::here("Data", "Week 3", "lesson3e.rds"))
 ```
 
-### lesson4a
+### lesson3a
 
 **This is a dataset on fifteen patients recording whether they had problematic nausea or vomiting after chemotherapy (defined as grade 2 or higher for either nausea or vomiting) and whether they reported being prone to travel sickness. Does travel sickness predict chemotherapy nausea and vomiting?**
 
@@ -4300,7 +4281,7 @@ To have a quick look at the data, create a two-by-two table:
 ``` r
 # Create formatted table of nausea/vomiting by car sickness history
 tbl_summary(
-  lesson4a %>% select(nv, cs),
+  lesson3a %>% select(nv, cs),
   by = cs,
   type = list(nv = "categorical")
 )
@@ -4793,27 +4774,27 @@ This shows, for example, 56% of those who get car sick reported problematic naus
 
 ``` r
 # Chi squared test
-chisq.test(table(lesson4a$nv, lesson4a$cs), correct = FALSE)
+chisq.test(table(lesson3a$nv, lesson3a$cs), correct = FALSE)
 ```
 
 ```
 ## 
 ## 	Pearson's Chi-squared test
 ## 
-## data:  table(lesson4a$nv, lesson4a$cs)
+## data:  table(lesson3a$nv, lesson3a$cs)
 ## X-squared = 0.71429, df = 1, p-value = 0.398
 ```
 
 ``` r
 # Fisher's exact test
-fisher.test(table(lesson4a$nv, lesson4a$cs))
+fisher.test(table(lesson3a$nv, lesson3a$cs))
 ```
 
 ```
 ## 
 ## 	Fisher's Exact Test for Count Data
 ## 
-## data:  table(lesson4a$nv, lesson4a$cs)
+## data:  table(lesson3a$nv, lesson3a$cs)
 ## p-value = 0.6084
 ## alternative hypothesis: true odds ratio is not equal to 1
 ## 95 percent confidence interval:
@@ -4836,26 +4817,26 @@ For point 3, you need the confidence interval. You get this by using the `epi.2b
 # Confidence interval for difference between groups
 epi.2by2(
   table(
-    factor(lesson4a$cs, levels = c(1, 0)),
-    factor(lesson4a$nv, levels = c(1, 0))
+    factor(lesson3a$cs, levels = c(1, 0)),
+    factor(lesson3a$nv, levels = c(1, 0))
   )
 )
 ```
 
 ```
-##              Outcome+    Outcome-      Total                 Inc risk *
-## Exposure+           5           4          9     55.56 (21.20 to 86.30)
-## Exposure-           2           4          6      33.33 (4.33 to 77.72)
-## Total               7           8         15     46.67 (21.27 to 73.41)
+##              Outcome +    Outcome -      Total        Inc risk *        Odds
+## Exposed +            5            4          9              55.6       1.250
+## Exposed -            2            4          6              33.3       0.500
+## Total                7            8         15              46.7       0.875
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 1.67 (0.47, 5.96)
-## Inc odds ratio                                 2.50 (0.29, 21.40)
+## Odds ratio                                     2.50 (0.29, 21.40)
 ## Attrib risk in the exposed *                   22.22 (-27.54, 71.99)
-## Attrib fraction in the exposed (%)            40.00 (-82.13, 84.02)
+## Attrib fraction in the exposed (%)            40.00 (-114.41, 83.21)
 ## Attrib risk in the population *                13.33 (-32.06, 58.72)
-## Attrib fraction in the population (%)         28.57 (-5.87, 79.65)
+## Attrib fraction in the population (%)         28.57 (-78.75, 71.46)
 ## -------------------------------------------------------------------
 ## Yates corrected chi2 test that OR = 1: chi2(1) = 0.100 Pr>chi2 = 0.751
 ## Fisher exact test that OR = 1: Pr>chi2 = 0.608
@@ -4870,11 +4851,11 @@ This gives a "risk ratio" (same as relative risk) of 1.67 with a 95% CI 0.47, 5.
 
 <div class="quote-container">
 
->Five of the nine patients (NA%) who reported prior car sickness had grade 2 or higher nausea and vomiting compared to two of the six (NA%) who reported no prior car sickness. Though differences between groups were not statistically significant (p=0.6 by Fisher's exact test), the sample size was small and the 95% confidence interval for the difference between groups includes differences of clinical relevance (relative risk 1.67; 95% CI 0.47, 5.96). It may be, for example, that problematic nausea and vomiting is up to six times more common in patients reporting prior car sickness than in those who do not.
+>Five of the nine patients (56%) who reported prior car sickness had grade 2 or higher nausea and vomiting compared to two of the six (33%) who reported no prior car sickness. Though differences between groups were not statistically significant (p=0.6 by Fisher's exact test), the sample size was small and the 95% confidence interval for the difference between groups includes differences of clinical relevance (relative risk 1.67; 95% CI 0.47, 5.96). It may be, for example, that problematic nausea and vomiting is up to six times more common in patients reporting prior car sickness than in those who do not.
 
 </div>
 
-### lesson4b
+### lesson3b
 
 **An epidemiological study of meat consumption and hypertension. Meat consumption was defined as low, medium or high depending on whether subjects ate less than 3, 3 to 7 or 7 + meals with meat per week. Does meat consumption lead to hypertension?**
 
@@ -4886,7 +4867,7 @@ There are three levels of meat consumption. The outcome (hypertension) is binary
 ``` r
 # Formatted table of meat consumption by hypertension status
 tbl_summary(
-  lesson4b %>% select(meat, hbp),
+  lesson3b %>% select(meat, hbp),
   by = hbp
 )
 ```
@@ -5382,7 +5363,7 @@ You also could have created this table:
 ``` r
 # Formatted table of meat consumption by hypertension status (row percents)
 tbl_summary(
-  lesson4b %>% select(meat, hbp),
+  lesson3b %>% select(meat, hbp),
   by = hbp,
   percent = "row"
 )
@@ -5878,14 +5859,14 @@ To assess statistical significance, use the `chisq.test` function with the hyper
 
 ``` r
 # Chi squared test for association between meat consumption and hypertension
-chisq.test(table(lesson4b$hbp, lesson4b$meat), correct = FALSE)
+chisq.test(table(lesson3b$hbp, lesson3b$meat), correct = FALSE)
 ```
 
 ```
 ## 
 ## 	Pearson's Chi-squared test
 ## 
-## data:  table(lesson4b$hbp, lesson4b$meat)
+## data:  table(lesson3b$hbp, lesson3b$meat)
 ## X-squared = 10.759, df = 2, p-value = 0.004611
 ```
 
@@ -5894,8 +5875,8 @@ The p-value is p=0.005. How to interpret this? The formal statistical interpreta
 
 ``` r
 # Change values of meat consumption variable
-lesson4b_changed <-
-  lesson4b %>%
+lesson3b_changed <-
+  lesson3b %>%
   mutate(
     meat =
       case_when(
@@ -5906,14 +5887,14 @@ lesson4b_changed <-
   )
 
 # Re-run chi squared test
-chisq.test(table(lesson4b_changed$hbp, lesson4b_changed$meat), correct = FALSE)
+chisq.test(table(lesson3b_changed$hbp, lesson3b_changed$meat), correct = FALSE)
 ```
 
 ```
 ## 
 ## 	Pearson's Chi-squared test
 ## 
-## data:  table(lesson4b_changed$hbp, lesson4b_changed$meat)
+## data:  table(lesson3b_changed$hbp, lesson3b_changed$meat)
 ## X-squared = 10.759, df = 2, p-value = 0.004611
 ```
 
@@ -5925,8 +5906,8 @@ So it might be useful to do what are called "pairwise" comparisons: what differe
 ``` r
 # Create a new variable "c1" which is "1" if meat consumption is high and "0" if it is medium
 # "c1" is missing for low meat consumption: these patients are left out of the analysis
-lesson4b <-
-  lesson4b %>%
+lesson3b <-
+  lesson3b %>%
   mutate(
     c1 =
       case_when(
@@ -5938,26 +5919,26 @@ lesson4b <-
 # Test for difference between medium and high meat consumption
 epi.2by2(
   table(
-    factor(lesson4b$c1, levels = c(1, 0)),
-    factor(lesson4b$hbp, levels = c(1, 0))
+    factor(lesson3b$c1, levels = c(1, 0)),
+    factor(lesson3b$hbp, levels = c(1, 0))
   )
 )
 ```
 
 ```
-##              Outcome+    Outcome-      Total                 Inc risk *
-## Exposure+          42           9         51     82.35 (69.13 to 91.60)
-## Exposure-          13          10         23     56.52 (34.49 to 76.81)
-## Total              55          19         74     74.32 (62.84 to 83.78)
+##              Outcome +    Outcome -      Total        Inc risk *        Odds
+## Exposed +           42            9         51              82.4        4.67
+## Exposed -           13           10         23              56.5        1.30
+## Total               55           19         74              74.3        2.89
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 1.46 (1.00, 2.13)
-## Inc odds ratio                                 3.59 (1.20, 10.73)
+## Odds ratio                                     3.59 (1.20, 10.73)
 ## Attrib risk in the exposed *                   25.83 (3.03, 48.63)
-## Attrib fraction in the exposed (%)            31.37 (5.41, 55.94)
+## Attrib fraction in the exposed (%)            31.37 (-0.39, 53.08)
 ## Attrib risk in the population *                17.80 (-4.77, 40.37)
-## Attrib fraction in the population (%)         23.95 (8.32, 45.11)
+## Attrib fraction in the population (%)         23.95 (-1.91, 43.25)
 ## -------------------------------------------------------------------
 ## Uncorrected chi2 test that OR = 1: chi2(1) = 5.542 Pr>chi2 = 0.019
 ## Fisher exact test that OR = 1: Pr>chi2 = 0.024
@@ -5973,8 +5954,8 @@ epi.2by2(
 # Compare high vs low consumption
 # "c2" is "1" if meat consumption is high and "0" if it is low
 # "c2" is missing for medium meat consumption: these patients are left out of the analysis
-lesson4b <-
-  lesson4b %>%
+lesson3b <-
+  lesson3b %>%
   mutate(
     c2 =
       case_when(
@@ -5986,26 +5967,26 @@ lesson4b <-
 # Test for difference between low and high meat consumption
 epi.2by2(
   table(
-    factor(lesson4b$c2, levels = c(1, 0)),
-    factor(lesson4b$hbp, levels = c(1, 0))
+    factor(lesson3b$c2, levels = c(1, 0)),
+    factor(lesson3b$hbp, levels = c(1, 0))
   )
 )
 ```
 
 ```
-##              Outcome+    Outcome-      Total                 Inc risk *
-## Exposure+          42           9         51     82.35 (69.13 to 91.60)
-## Exposure-          16          16         32     50.00 (31.89 to 68.11)
-## Total              58          25         83     69.88 (58.82 to 79.47)
+##              Outcome +    Outcome -      Total        Inc risk *        Odds
+## Exposed +           42            9         51              82.4        4.67
+## Exposed -           16           16         32              50.0        1.00
+## Total               58           25         83              69.9        2.32
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 1.65 (1.14, 2.38)
-## Inc odds ratio                                 4.67 (1.72, 12.68)
+## Odds ratio                                     4.67 (1.72, 12.68)
 ## Attrib risk in the exposed *                   32.35 (12.11, 52.59)
-## Attrib fraction in the exposed (%)            39.29 (15.88, 59.80)
+## Attrib fraction in the exposed (%)            39.29 (12.19, 58.02)
 ## Attrib risk in the population *                19.88 (-0.06, 39.82)
-## Attrib fraction in the population (%)         28.45 (14.29, 45.79)
+## Attrib fraction in the population (%)         28.45 (6.12, 45.47)
 ## -------------------------------------------------------------------
 ## Uncorrected chi2 test that OR = 1: chi2(1) = 9.778 Pr>chi2 = 0.002
 ## Fisher exact test that OR = 1: Pr>chi2 = 0.003
@@ -6520,7 +6501,7 @@ And now, the key point...
 
 You may have noticed that my model answer did not actually answer the question. The question was "does meat consumption lead to hypertension?". I only answered in terms of rates of hypertension rising with increased meat consumption and the like. This is because you cannot use statistics to prove causality without thinking about the research design. If you go out and ask how much meat people eat and then measure their blood pressure, you cannot assume that any associations are causal. It may be, for example, that meat eaters tend to smoke more and it is smoking, not meat, that causes hypertension.
 
-### lesson4c
+### lesson3c
 
 **This is a dataset from a chemotherapy study. The researchers think that a mutation of a certain gene may be associated with chemotherapy toxicity. Should clinicians test for the gene during pre-chemotherapy work up?**
 
@@ -6530,7 +6511,7 @@ It is immediately obvious from this table that there are very few patients who a
 ``` r
 # Formatted two-way table of genes by toxicity outcome
 tbl_summary(
-  lesson4c %>% select(gene, toxicity),
+  lesson3c %>% select(gene, toxicity),
   by = toxicity
 )
 ```
@@ -7018,13 +6999,13 @@ N = 100</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 </div>
 ```
 
-It would seem appropriate to combine heterozygotes and homozygous mutant type into a single category. You might be tempted to type `lesson4c %>% mutate(gene = if_else(gene == 2, 1, gene))`. But you should avoid changing raw data in this way: it would be preferable to create a new variable as follows:
+It would seem appropriate to combine heterozygotes and homozygous mutant type into a single category. You might be tempted to type `lesson3c %>% mutate(gene = if_else(gene == 2, 1, gene))`. But you should avoid changing raw data in this way: it would be preferable to create a new variable as follows:
 
 
 ``` r
 # Create binary variable grouping the values of "1" and "2" for gene
-lesson4c <-
-  lesson4c %>%
+lesson3c <-
+  lesson3c %>%
   mutate(
     mutant =
       case_when(
@@ -7534,7 +7515,7 @@ Genetics type people: note that this gene is in Hardy Weinberg equilibrium!
 
 One thing to note is my conclusion, the answer to the question. It would be a little premature to start changing clinical practice on the basis of a single study with a moderate number of patients and a less than overwhelming strength of evidence. Also, it is questionable whether you should start using a test just because it is predictive: you should use a test if it improves clinical outcome.
 
-### lesson4d
+### lesson3d
 
 **Patients are given chemotherapy regimen a or b and assessed for tumor response. Which regimen would you recommend to a patient? Do the treatments work differently depending on age or sex?**
 
@@ -7553,12 +7534,12 @@ To do this analysis, we first need to split the dataset up into two groups, one 
 
 ``` r
 # Use "filter" to select only male patients
-lesson4d_males <-
-  lesson4d %>%
+lesson3d_males <-
+  lesson3d %>%
   filter(sex == 0)
 
 # To confirm:
-table(lesson4d_males$sex)
+table(lesson3d_males$sex)
 ```
 
 ```
@@ -7569,12 +7550,12 @@ table(lesson4d_males$sex)
 
 ``` r
 # Use "filter" to select only female patients
-lesson4d_females <-
-  lesson4d %>%
+lesson3d_females <-
+  lesson3d %>%
   filter(sex == 1)
 
 # To confirm:
-table(lesson4d_females$sex)
+table(lesson3d_females$sex)
 ```
 
 ```
@@ -7587,26 +7568,26 @@ table(lesson4d_females$sex)
 # Males (sex == 0)
 epi.2by2(
   table(
-    factor(lesson4d_males$group, levels = c(1, 0)),
-    factor(lesson4d_males$response, levels = c(1, 0))
+    factor(lesson3d_males$group, levels = c(1, 0)),
+    factor(lesson3d_males$response, levels = c(1, 0))
   )
 )
 ```
 
 ```
-##              Outcome+    Outcome-      Total                 Inc risk *
-## Exposure+          54          84        138     39.13 (30.94 to 47.80)
-## Exposure-          80          76        156     51.28 (43.16 to 59.35)
-## Total             134         160        294     45.58 (39.79 to 51.46)
+##              Outcome +    Outcome -      Total        Inc risk *        Odds
+## Exposed +           54           84        138              39.1       0.643
+## Exposed -           80           76        156              51.3       1.053
+## Total              134          160        294              45.6       0.838
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 0.76 (0.59, 0.99)
-## Inc odds ratio                                 0.61 (0.38, 0.97)
+## Odds ratio                                     0.61 (0.38, 0.97)
 ## Attrib risk in the exposed *                   -12.15 (-23.46, -0.85)
-## Attrib fraction in the exposed (%)            -31.05 (-70.49, -1.65)
+## Attrib fraction in the exposed (%)            -31.05 (-69.67, -1.23)
 ## Attrib risk in the population *                -5.70 (-15.40, 3.99)
-## Attrib fraction in the population (%)         -12.51 (-15.34, -8.48)
+## Attrib fraction in the population (%)         -12.51 (-24.99, -1.28)
 ## -------------------------------------------------------------------
 ## Uncorrected chi2 test that OR = 1: chi2(1) = 4.359 Pr>chi2 = 0.037
 ## Fisher exact test that OR = 1: Pr>chi2 = 0.046
@@ -7619,26 +7600,26 @@ epi.2by2(
 # Females (sex == 1)
 epi.2by2(
   table(
-    factor(lesson4d_females$group, levels = c(1, 0)),
-    factor(lesson4d_females$response, levels = c(1, 0))
+    factor(lesson3d_females$group, levels = c(1, 0)),
+    factor(lesson3d_females$response, levels = c(1, 0))
   )
 )
 ```
 
 ```
-##              Outcome+    Outcome-      Total                 Inc risk *
-## Exposure+          27          35         62     43.55 (30.99 to 56.74)
-## Exposure-          17          27         44     38.64 (24.36 to 54.50)
-## Total              44          62        106     41.51 (32.02 to 51.49)
+##              Outcome +    Outcome -      Total        Inc risk *        Odds
+## Exposed +           27           35         62              43.5       0.771
+## Exposed -           17           27         44              38.6       0.630
+## Total               44           62        106              41.5       0.710
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 1.13 (0.71, 1.80)
-## Inc odds ratio                                 1.23 (0.56, 2.69)
+## Odds ratio                                     1.23 (0.56, 2.69)
 ## Attrib risk in the exposed *                   4.91 (-14.04, 23.87)
-## Attrib fraction in the exposed (%)            11.28 (-39.65, 45.23)
+## Attrib fraction in the exposed (%)            11.28 (-41.66, 44.44)
 ## Attrib risk in the population *                2.87 (-14.30, 20.05)
-## Attrib fraction in the population (%)         6.92 (-5.86, 23.93)
+## Attrib fraction in the population (%)         6.92 (-24.07, 30.17)
 ## -------------------------------------------------------------------
 ## Uncorrected chi2 test that OR = 1: chi2(1) = 0.256 Pr>chi2 = 0.613
 ## Fisher exact test that OR = 1: Pr>chi2 = 0.691
@@ -7649,42 +7630,42 @@ epi.2by2(
 
 What you get is a statistically significant difference between treatment groups for men (many more respond on regimen a) but not women (actually a few more respond on regimen b). How to interpret this? In the literature, this might well be trumpeted as showing that though either regimen could be used for women, regimen a is better for men. My own view is that sub-group analyses are hypothesis generating not hypothesis testing. In particular, is there any reason to believe that response to chemotherapy might depend on sex? I don't think there are any cases of this. 
 
-Testing age is a little more difficult as it is a continuous variable. One typical approach might be to create two sub-groups depending on the median. First, `quantile(lesson4d$age, c(0.5), na.rm = TRUE)` gives a median age of 43. So:
+Testing age is a little more difficult as it is a continuous variable. One typical approach might be to create two sub-groups depending on the median. First, `quantile(lesson3d$age, c(0.5), na.rm = TRUE)` gives a median age of 43. So:
 
 
 ``` r
 # Use "filter" again to select age
-lesson4d_younger <-
-  lesson4d %>%
+lesson3d_younger <-
+  lesson3d %>%
   filter(age <= 42)
 
-lesson4d_older <-
-  lesson4d %>%
+lesson3d_older <-
+  lesson3d %>%
   filter(age > 42)
 
 # Younger patients 
 epi.2by2(
   table(
-    factor(lesson4d_younger$group, levels = c(1, 0)),
-    factor(lesson4d_younger$response, levels = c(1, 0))
+    factor(lesson3d_younger$group, levels = c(1, 0)),
+    factor(lesson3d_younger$response, levels = c(1, 0))
   )
 )
 ```
 
 ```
-##              Outcome+    Outcome-      Total                 Inc risk *
-## Exposure+          44          52         96     45.83 (35.62 to 56.31)
-## Exposure-          56          47        103     54.37 (44.26 to 64.22)
-## Total             100          99        199     50.25 (43.10 to 57.40)
+##              Outcome +    Outcome -      Total        Inc risk *        Odds
+## Exposed +           44           52         96              45.8       0.846
+## Exposed -           56           47        103              54.4       1.191
+## Total              100           99        199              50.3       1.010
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 0.84 (0.64, 1.12)
-## Inc odds ratio                                 0.71 (0.41, 1.24)
+## Odds ratio                                     0.71 (0.41, 1.24)
 ## Attrib risk in the exposed *                   -8.54 (-22.39, 5.32)
-## Attrib fraction in the exposed (%)            -18.62 (-57.90, 10.12)
+## Attrib fraction in the exposed (%)            -18.62 (-57.01, 10.38)
 ## Attrib risk in the population *                -4.12 (-15.98, 7.75)
-## Attrib fraction in the population (%)         -8.19 (-11.88, -2.70)
+## Attrib fraction in the population (%)         -8.19 (-22.47, 4.42)
 ## -------------------------------------------------------------------
 ## Uncorrected chi2 test that OR = 1: chi2(1) = 1.448 Pr>chi2 = 0.229
 ## Fisher exact test that OR = 1: Pr>chi2 = 0.258
@@ -7697,26 +7678,26 @@ epi.2by2(
 # Older patients
 epi.2by2(
   table(
-    factor(lesson4d_older$group, levels = c(1, 0)),
-    factor(lesson4d_older$response, levels = c(1, 0))
+    factor(lesson3d_older$group, levels = c(1, 0)),
+    factor(lesson3d_older$response, levels = c(1, 0))
   )
 )
 ```
 
 ```
-##              Outcome+    Outcome-      Total                 Inc risk *
-## Exposure+          36          66        102     35.29 (26.09 to 45.38)
-## Exposure-          41          56         97     42.27 (32.30 to 52.72)
-## Total              77         122        199     38.69 (31.89 to 45.84)
+##              Outcome +    Outcome -      Total        Inc risk *        Odds
+## Exposed +           36           66        102              35.3       0.545
+## Exposed -           41           56         97              42.3       0.732
+## Total               77          122        199              38.7       0.631
 ## 
 ## Point estimates and 95% CIs:
 ## -------------------------------------------------------------------
 ## Inc risk ratio                                 0.84 (0.59, 1.19)
-## Inc odds ratio                                 0.75 (0.42, 1.32)
+## Odds ratio                                     0.75 (0.42, 1.32)
 ## Attrib risk in the exposed *                   -6.97 (-20.49, 6.54)
-## Attrib fraction in the exposed (%)            -19.76 (-70.41, 15.55)
+## Attrib fraction in the exposed (%)            -19.76 (-70.10, 15.68)
 ## Attrib risk in the population *                -3.57 (-15.51, 8.36)
-## Attrib fraction in the population (%)         -9.24 (-15.01, -1.29)
+## Attrib fraction in the population (%)         -9.24 (-28.78, 7.33)
 ## -------------------------------------------------------------------
 ## Uncorrected chi2 test that OR = 1: chi2(1) = 1.019 Pr>chi2 = 0.313
 ## Fisher exact test that OR = 1: Pr>chi2 = 0.382
@@ -7737,7 +7718,7 @@ There is a further problem here: we have one question ("do effects differ betwee
 
 [Statistics Notes: Interaction 3: How to examine heterogeneity](http://bmj.bmjjournals.com/cgi/content/full/313/7061/862?ijkey=c1181f258aa1146139604ac7d463ec93caa4d623&keytype2=tf_ipsecsha)
 
-### lesson4e
+### lesson3e
 
 **This is a lab study of two candidate tumor-suppressor genes (gene1 and gene2). Wild-type mice are compared with mice that have gene1 knocked-out, gene2 knocked-out or both. The presence of tumors is measured after 30 days. Do the genes suppress cancer?**
 
@@ -7749,7 +7730,7 @@ A BIG HOWEVER - have a look at the data or this table:
 ``` r
 # Formatted table of gene1 by gene2
 tbl_summary(
-  lesson4e %>% select(gene1, gene2),
+  lesson3e %>% select(gene1, gene2),
   by = gene2,
   type = list(gene1 = "categorical")
 )
@@ -8239,11 +8220,11 @@ N = 12</span><span class="gt_footnote_marks" style="white-space:nowrap;font-styl
 
 The experimental design was to knockout no genes in some animals, gene1 in some animals, gene2 in other animals and both genes in a final set of animals. This is known as a factorial or Latin-square design. Analyzing rates of cancer for mice without gene1 or gene2, as suggested above, ignores this experimental design. Presumably the design was implemented because the researchers wanted to know if the effects of gene1 differed depending on whether gene2 had been knocked-out and vice versa. Now you could start doing separate sub-groups (e.g. using `epi.2by2` for "cancer" and "gene1", filtering by "gene2==0" and "gene2==1" separately) but this produces somewhat unhelpful results. For example, it suggests that gene1 has an effect for wild-type gene2 (p=0.046) but maybe not for knocked out gene2 (p=0.079). This has all the look and feel of a spurious sub-group analysis, however. We will discuss some regression approaches to this problem later in the lecture series.
 
-## Week 5
+## Week 4
 
 
 ``` r
-# Week 5: load packages
+# Week 4: load packages
 library(skimr)
 library(gt)
 library(gtsummary)
@@ -8255,19 +8236,19 @@ library(survival)
 library(here)
 library(tidyverse)
 
-# Week 5: load data
-lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
-lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
-lesson5c <- readRDS(here::here("Data", "Week 5", "lesson5c.rds"))
-lesson5d <- readRDS(here::here("Data", "Week 5", "lesson5d.rds"))
-lesson5e <- readRDS(here::here("Data", "Week 5", "lesson5e.rds"))
-lesson5f <- readRDS(here::here("Data", "Week 5", "lesson5f.rds"))
-lesson5g <- readRDS(here::here("Data", "Week 5", "lesson5g.rds"))
-lesson5h <- readRDS(here::here("Data", "Week 5", "lesson5h.rds"))
-lesson5i <- readRDS(here::here("Data", "Week 5", "lesson5i.rds"))
+# Week 4: load data
+lesson4a <- readRDS(here::here("Data", "Week 4", "lesson4a.rds"))
+lesson4b <- readRDS(here::here("Data", "Week 4", "lesson4b.rds"))
+lesson4c <- readRDS(here::here("Data", "Week 4", "lesson4c.rds"))
+lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
+lesson4e <- readRDS(here::here("Data", "Week 4", "lesson4e.rds"))
+lesson4f <- readRDS(here::here("Data", "Week 4", "lesson4f.rds"))
+lesson4g <- readRDS(here::here("Data", "Week 4", "lesson4g.rds"))
+lesson4h <- readRDS(here::here("Data", "Week 4", "lesson4h.rds"))
+lesson4i <- readRDS(here::here("Data", "Week 4", "lesson4i.rds"))
 ```
 
-### lesson5a
+### lesson4a
 
 **These are data from marathon runners (again). Which of the following is associated with how fast runners complete the marathon: age, sex, training miles, weight?**
 
@@ -8276,7 +8257,7 @@ My guess here is that we are going to want to do a regression analysis. This wou
 
 ``` r
 # Create linear regression model for race time
-rt_model <- lm(rt ~ age + sex + tr + wt, data = lesson5a)
+rt_model <- lm(rt ~ age + sex + tr + wt, data = lesson4a)
 
 # Results of linear regression model
 summary(rt_model)
@@ -8285,7 +8266,7 @@ summary(rt_model)
 ```
 ## 
 ## Call:
-## lm(formula = rt ~ age + sex + tr + wt, data = lesson5a)
+## lm(formula = rt ~ age + sex + tr + wt, data = lesson4a)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -9289,21 +9270,21 @@ The p-values for all the predictor variables apart from weight are very low. A m
 
 A real-life decision you could take away from this is that every additional mile you run in training would be predicted to cut about 1.5 minutes from your marathon time: add a couple of extra five mile runs per week and you’ll shave a quarter of an hour off your time. 
 
-A couple of thoughts. First, you will note that I didn’t remove weight from the model (that is, use a step wise approach) then report the coefficients and p-values for the new model (by typing `lm(rt ~ age + sex + tr, data = lesson5a)`).
+A couple of thoughts. First, you will note that I didn’t remove weight from the model (that is, use a step wise approach) then report the coefficients and p-values for the new model (by typing `lm(rt ~ age + sex + tr, data = lesson4a)`).
 
 Second, race time is not normally distributed and the textbooks would have us believe that this invalidates a regression analysis. Let’s try:
 
 
 ``` r
 # Create variable for log of race time
-lesson5a <-
-  lesson5a %>%
+lesson4a <-
+  lesson4a %>%
   mutate(
     lt = log(rt)
   )
 
 # Create linear regression model for log of race time
-rtlog_model <- lm(lt ~ age + sex + tr + wt, data = lesson5a)
+rtlog_model <- lm(lt ~ age + sex + tr + wt, data = lesson4a)
 
 # Results of linear regression model
 summary(rtlog_model)
@@ -9312,7 +9293,7 @@ summary(rtlog_model)
 ```
 ## 
 ## Call:
-## lm(formula = lt ~ age + sex + tr + wt, data = lesson5a)
+## lm(formula = lt ~ age + sex + tr + wt, data = lesson4a)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -9343,13 +9324,13 @@ It might be interesting to compare the coefficients from the untransformed and l
 
 ``` r
 # Get the average time for men
-lesson5a %>%
+lesson4a %>%
   filter(sex == 0) %>% # Select only males
   skim(rt)
 ```
 
 
-Table: (\#tab:week5f)Data summary
+Table: (\#tab:week4f)Data summary
 
 |                         |           |
 |:------------------------|:----------|
@@ -9373,7 +9354,7 @@ Then multiply the men's average (238.6) by 1.10 to get the women's time, which g
 
 Subtract one from the other to get 24.6 minutes difference in race time between the sexes. This is very close to the value from the untransformed model.
 
-### lesson5b
+### lesson4b
 
 **These are data on patients with a disease that predisposes them to cancer. The disease causes precancerous lesions that can be surgically removed. A group of recently removed lesions are analyzed for a specific mutation. Does how long a patient has had the disease affect the chance that a new lesion will have a mutation?**
 
@@ -9382,7 +9363,7 @@ What you are trying to predict here is binary (mutation / no mutation). You are 
 
 ``` r
 # Create logistic regression model
-mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
+mutate_model <- glm(mutation ~ c, data = lesson4b, family = "binomial")
 
 # Formatted results with odds ratios
 tbl_regression(mutate_model, exponentiate = TRUE)
@@ -9867,12 +9848,12 @@ If you get a p-value of around 0.7, you haven't been inspecting your data. One p
 
 ``` r
 # Use "filter" to exclude patients with outlying disease duration
-lesson5b <-
-  lesson5b %>%
+lesson4b <-
+  lesson4b %>%
   filter(c <= 50)
 
 # Create logistic regression model
-mutate_model <- glm(mutation ~ c, data = lesson5b, family = "binomial")
+mutate_model <- glm(mutation ~ c, data = lesson4b, family = "binomial")
 
 # Formatted results with odds ratios
 tbl_regression(mutate_model, exponentiate = TRUE)
@@ -11336,12 +11317,12 @@ If you wanted to get flashy, you could work out the risk for each year between 2
 
 ``` r
 # Create predictions
-lesson5b_pred <-
+lesson4b_pred <-
   augment(mutate_model,
           type.predict = "response")
 
 # Show resulting dataset
-lesson5b_pred
+lesson4b_pred
 ```
 
 ```
@@ -11365,7 +11346,7 @@ lesson5b_pred
 # Graph over disease duration
 # Tells the plot what data to use, and what variables correspond
 # to the x and y axes
-ggplot(data = lesson5b_pred, aes(x = c, y = .fitted)) +
+ggplot(data = lesson4b_pred, aes(x = c, y = .fitted)) +
   # Creates the line portion of the graph
   geom_line() +
   # Creates the points along the line
@@ -11377,7 +11358,7 @@ ggplot(data = lesson5b_pred, aes(x = c, y = .fitted)) +
   )
 ```
 
-<img src="09-answers_files/figure-html/week5l-1.png" width="672" />
+<img src="09-answers_files/figure-html/week4l-1.png" alt="" width="672" />
 
 You can also use the `augment` function for linear regression and multivariable models. One other interesting thing you can do is to make "out of sample" predictions.
 
@@ -11385,8 +11366,8 @@ Try this:
 
 
 ``` r
-# Reopen lesson5b dataset
-lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
+# Reopen lesson4b dataset
+lesson4b <- readRDS(here::here("Data", "Week 4", "lesson4b.rds"))
 
 # Use original logistic regression model
 tbl_regression(mutate_model, exponentiate = TRUE)
@@ -11869,8 +11850,8 @@ tbl_regression(mutate_model, exponentiate = TRUE)
 
 ``` r
 # Create new values for "c" (disease duration)
-lesson5b_new <-
-  lesson5b %>%
+lesson4b_new <-
+  lesson4b %>%
   mutate(c = row_number()/3)
 # "row_number()" gives the observation number for each observation
 # Replace c with observation number / 3 gives a list of simulated
@@ -11879,20 +11860,20 @@ lesson5b_new <-
 # Predict risk of mutation
 # The "newdata" option allows you to get predictions for a dataset
 # other than the dataset that was used to create the model
-lesson5b_pred_new <-
+lesson4b_pred_new <-
   augment(mutate_model,
-          newdata = lesson5b_new,
+          newdata = lesson4b_new,
           type.predict = "response")
 
 # Create graph
-ggplot(data = lesson5b_pred_new,
+ggplot(data = lesson4b_pred_new,
        aes(x = c, y = .fitted)) +
   geom_line()
 ```
 
-<img src="09-answers_files/figure-html/week5n-1.png" width="672" />
+<img src="09-answers_files/figure-html/week4n-1.png" alt="" width="672" />
 
-### lesson5c
+### lesson4c
 
 **These are data from Canadian provinces giving population, unemployment rates and male and female life expectancy. Which of these variables are associated?**
 
@@ -11901,7 +11882,7 @@ A key first question: what are we likely to be interested in? For example, total
 
 ``` r
 # Open up dataset to view observations
-View(lesson5c)
+View(lesson4c)
 ```
 
 It seems that there are not only data for each province separately but for Canada as a whole. Clearly we would have to delete this row as it is not an independent observation.
@@ -11909,8 +11890,8 @@ It seems that there are not only data for each province separately but for Canad
 
 ``` r
 # Remove the observation for all of Canada from dataset
-lesson5c_fixed <-
-  lesson5c %>%
+lesson4c_fixed <-
+  lesson4c %>%
   filter(place != "Canada")
 ```
 
@@ -11921,7 +11902,7 @@ Now, we could just correlate the three variables together:
 # Calculate correlation between unemployment and male/female life expectancy
 # There are missing values for unemployment,
 # so we need to indicate that we only want to use "complete observations"
-cor(lesson5c_fixed %>% select(unemp, mlife, flife),
+cor(lesson4c_fixed %>% select(unemp, mlife, flife),
     use = "complete.obs")
 ```
 
@@ -11941,7 +11922,7 @@ Try these regression models:
 
 ``` r
 # Create linear regression model for male life expectancy
-mlife_model <- lm(mlife ~ unemp, data = lesson5c_fixed)
+mlife_model <- lm(mlife ~ unemp, data = lesson4c_fixed)
 tbl_regression(mlife_model)
 ```
 
@@ -12422,7 +12403,7 @@ tbl_regression(mlife_model)
 
 ``` r
 # Create linear regression model for female life expectancy
-flife_model <- lm(flife ~ unemp, data = lesson5c_fixed)
+flife_model <- lm(flife ~ unemp, data = lesson4c_fixed)
 tbl_regression(flife_model)
 ```
 
@@ -12906,7 +12887,7 @@ Interesting question: should you also report a p-value and 95% confidence interv
 
 Even more interesting question: the conclusion of a 5% drop in unemployment being associated with a 6 month increase in life expectancy is based on a causal relationship, that is, we believe that changes in unemployment _cause_ changes in life expectancy. This is not implausible: unemployment leads to poverty and depression, both of which reduce life expectancy. However, a causal relationship cannot be assumed. For example, it may be that life expectancy is lower in certain areas of the country (due to eating patterns or ethnic differences) that also happen to suffer higher unemployment. 
 
-### lesson5d
+### lesson4d
 
 **These are data from mice inoculated with tumor cells and then treated with different doses of a drug. The growth rate of each animal’s tumor is then calculated. Is this drug effective?**
 
@@ -12915,14 +12896,14 @@ This is a straightforward linear regression that shows a significant decrease in
 
 ``` r
 # Create linear regression model for tumor size
-tumorsize_model <- lm(s ~ dose, data = lesson5d)
+tumorsize_model <- lm(s ~ dose, data = lesson4d)
 summary(tumorsize_model)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = s ~ dose, data = lesson5d)
+## lm(formula = s ~ dose, data = lesson4d)
 ## 
 ## Residuals:
 ##       Min        1Q    Median        3Q       Max 
@@ -12942,11 +12923,11 @@ summary(tumorsize_model)
 
 A couple of thoughts. Firstly, this rather obvious analysis is not often conducted in lab research. Typically, researchers present pairwise comparisons between each dose and control. For example, see the following typical diagram. Each of the p-values compares the dose to control. The problem with such an approach is that you end up with multiple p-values (instead of just one) and that each test takes place in a vacuum: the p-value of a comparison between no treatment and, say, dose level 3, is the same regardless of whether there were 2 dose levels in the experiment, or 100, and whether all other dose levels showed an effect or did not. A regression analysis gives you a single p-value and uses all data in one analysis.
 
-<img src="09-answers_files/figure-html/week5u-1.png" width="384" />
+<img src="09-answers_files/figure-html/week4u-1.png" alt="" width="384" />
 
 A second thought: should you report the coefficient of -0.00008? This can be interpreted as "for each increase in dose of one unit, increase in log tumor size is less by -0.00008". I would argue that this coefficient might be misleading because you only have a few doses and they are widely spaced. Also, dose-response is often non-linear: it generally takes a sigmoidal curve (see below). In short, you might have too few data to be confident about a linear prediction. Finally, it is rare that you really want to estimate the effects of a treatment on a mouse: generally, laboratory studies are about testing hypotheses.
 
-<img src="09-answers_files/figure-html/week5v-1.png" width="384" />
+<img src="09-answers_files/figure-html/week4v-1.png" alt="" width="384" />
 
 My model answer would be:
 
@@ -13429,7 +13410,7 @@ My model answer would be:
 </div>
 ```
 
-### lesson5e
+### lesson4e
 
 **These are data from a study of the use of complementary medicine (e.g. massage) by UK breast cancer patients. There are data for the women’s age, time since diagnosis, presence of distant metastases, use of complementary medicine before diagnosis, whether they received a qualification after high school, the age they left education, whether usual employment is a manual trade, socioeconomic status. What predicts use of complementary medicine by women with breast cancer?**
 
@@ -13439,7 +13420,7 @@ This is a fairly simple analysis: the outcome is binary and as we want to make p
 ``` r
 # Create multivariable logistic regression model for CAM
 cam_model1 <- glm(CAM ~ age + t + mets + u + q18 + e + m + ses,
-                  data = lesson5e,
+                  data = lesson4e,
                   family = "binomial")
 tbl_regression(cam_model1, exponentiate = TRUE)
 ```
@@ -13966,7 +13947,7 @@ $shoesize = 0.4*x + 0.2*y - 30.5$
 
 $shoesize = 0.1*x + 0.5*y - 30.5$
 
-There is no way of telling these apart in terms of regression. Bottom line: care is needed with correlated variables both in a clinical  / scientific sense (you don’t need both of two correlated variables in a model) and a statistical sense (regression results can be misleading).
+There is no way of telling these apart in terms of regression. Bottom line: care is needed with correlated variables both in a clinical / scientific sense (you don’t need both of two correlated variables in a model) and a statistical sense (regression results can be misleading).
 
 So I would start with the full model and then remove the least predictive of socioeconomic status and manual trade, and the least predictive of qualification and age left education. You end up with:
 
@@ -13974,7 +13955,7 @@ So I would start with the full model and then remove the least predictive of soc
 ``` r
 # Create logistic regression model for CAM removing "e" and "m"
 cam_model2 <- glm(CAM ~ age + t + mets + u + q18 + ses,
-                  data = lesson5e,
+                  data = lesson4e,
                   family = "binomial")
 tbl_regression(cam_model2, exponentiate = TRUE)
 ```
@@ -14479,7 +14460,7 @@ Now it appears that "q18" is predictive but not "ses". So try removing one of th
 ``` r
 # Create logistic regression model for CAM removing "q18"
 cam_model3 <- glm(CAM ~ age + t + mets + u + ses,
-                  data = lesson5e,
+                  data = lesson4e,
                   family = "binomial")
 tbl_regression(cam_model3, exponentiate = TRUE)
 ```
@@ -14978,7 +14959,7 @@ tbl_regression(cam_model3, exponentiate = TRUE)
 ``` r
 # Create logistic regression model for CAM removing "ses"
 cam_model4 <- glm(CAM ~ age + t + mets + u + q18,
-                  data = lesson5e,
+                  data = lesson4e,
                   family = "binomial")
 tbl_regression(cam_model4, exponentiate = TRUE)
 ```
@@ -15481,7 +15462,7 @@ It turns out that both are predictive independently, but not together. When you 
 
 </div>
 
-### lesson5f
+### lesson4f
 
 **These are the distance records for Frisbee for various ages in males. What is the relationship between age and how far a man can throw a Frisbee?**
 
@@ -15490,14 +15471,14 @@ Well the obvious thing to do would be a linear regression:
 
 ``` r
 # Create linear regression model for distance
-frisbee_model <- lm(distance ~ age, data = lesson5f)
+frisbee_model <- lm(distance ~ age, data = lesson4f)
 summary(frisbee_model)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = distance ~ age, data = lesson5f)
+## lm(formula = distance ~ age, data = lesson4f)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -15520,12 +15501,12 @@ You get a coefficient of 1.62, meaning that the furthest a man can throw a Frisb
 
 ``` r
 # Scatterplot of distance by age
-ggplot(data = lesson5f,
+ggplot(data = lesson4f,
        aes(x = age, y = distance)) + 
   geom_point()
 ```
 
-<img src="09-answers_files/figure-html/week53-1.png" width="672" />
+<img src="09-answers_files/figure-html/week43-1.png" alt="" width="672" />
 
 In other words, there is not a linear relationship between your age and the distance you can throw a Frisbee. There are two options. You can either do two linear regressions, one for age up to 30 and one for age >30. But this is a little sloppy: better, you could try including non-linear terms (see below). In either case, remember not to report p-values or 95% confidence intervals: these are meaningless because there is only one record per distance.
 
@@ -15536,21 +15517,21 @@ Often the relationship between an $x$ and a $y$ does not follow a straight line.
 
 ``` r
 # Create new variable for age squared
-lesson5f <-
-  lesson5f %>%
+lesson4f <-
+  lesson4f %>%
   mutate(
     age2 = age^2
   )
 
 # Create linear regression model using age and age squared
-frisbee_model2 <- lm(distance ~ age + age2, data = lesson5f)
+frisbee_model2 <- lm(distance ~ age + age2, data = lesson4f)
 summary(frisbee_model2)
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = distance ~ age + age2, data = lesson5f)
+## lm(formula = distance ~ age + age2, data = lesson4f)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -15580,11 +15561,11 @@ Here is the predicted fit from the model using age and age^2^:
 ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
 ```
 
-<img src="09-answers_files/figure-html/week55a-1.png" width="672" />
+<img src="09-answers_files/figure-html/week45a-1.png" alt="" width="672" />
 
 Note: while adding a quadratic term (here, the squared term) fit this data well, statisticians do not often use quadratic terms to model non-linear associations. There are a number of other methods for creating models for a non-linear association, but these will not be covered in this course.
 
-### lesson5g
+### lesson4g
 
 **You’ve seen this dataset before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no difference between regimes (you can test this if you like).  However, do the treatments work differently depending on age or sex?**
 
@@ -15596,7 +15577,7 @@ Try this:
 ``` r
 # For men
 tbl_summary(
-  lesson5g %>% filter(sex == 0) %>% select(response, chemo),
+  lesson4g %>% filter(sex == 0) %>% select(response, chemo),
   by = chemo,
   type = list(response = "categorical")
 )
@@ -16085,7 +16066,7 @@ N = 156</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 ``` r
 # For women
 tbl_summary(
-  lesson5g %>% filter(sex == 1) %>% select(response, chemo),
+  lesson4g %>% filter(sex == 1) %>% select(response, chemo),
   by = chemo,
   type = list(response = "categorical")
 )
@@ -16573,7 +16554,7 @@ N = 44</span><span class="gt_footnote_marks" style="white-space:nowrap;font-styl
 
 ``` r
 # Here, the "summarize" function stores out the p-values for the chi-squared test by sex
-lesson5g %>%
+lesson4g %>%
   group_by(sex) %>%
   summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
 ```
@@ -16594,7 +16575,7 @@ This shows that regime b is better for men (51% vs 39% response rate, p=0.037). 
 ``` r
 # Create two-way table of response by sex
 tbl_summary(
-  lesson5g %>% select(response, sex),
+  lesson4g %>% select(response, sex),
   by = sex,
   type = list(response = "categorical")
 )
@@ -17082,7 +17063,7 @@ N = 106</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 
 ``` r
 # Test for a difference in response by sex using chi-squared test
-table(lesson5g$response, lesson5g$sex) %>%
+table(lesson4g$response, lesson4g$sex) %>%
   chisq.test(correct = FALSE)
 ```
 
@@ -17102,7 +17083,7 @@ Now we want to test for interaction between chemo regime and sex in a multivaria
 ``` r
 # Create logistic regression model for response including interaction between sex and chemo
 sex_int_model <- glm(response ~ sex + chemo + sex*chemo,
-                     data = lesson5g,
+                     data = lesson4g,
                      family = "binomial")
 tbl_regression(sex_int_model, exponentiate = TRUE)
 ```
@@ -17596,15 +17577,15 @@ You can repeat this for age by creating a new variable based on the median age:
 
 ``` r
 # First, get the median age
-skim(lesson5g$age)
+skim(lesson4g$age)
 ```
 
 
-Table: (\#tab:week510)Data summary
+Table: (\#tab:week410)Data summary
 
 |                         |             |
 |:------------------------|:------------|
-|Name                     |lesson5g$age |
+|Name                     |lesson4g$age |
 |Number of rows           |400          |
 |Number of columns        |1            |
 |_______________________  |             |
@@ -17622,8 +17603,8 @@ Table: (\#tab:week510)Data summary
 
 ``` r
 # Then, create a category variable based on median age
-lesson5g <-
-  lesson5g %>%
+lesson4g <-
+  lesson4g %>%
   mutate(
     hiage = if_else(age > 42.5, 1, 0)
   )
@@ -17635,7 +17616,7 @@ Then do the subgroup analysis as above:
 ``` r
 # For younger patients
 tbl_summary(
-  lesson5g %>% filter(hiage == 0) %>% select(response, chemo),
+  lesson4g %>% filter(hiage == 0) %>% select(response, chemo),
   by = chemo,
   type = list(response = "categorical")
 )
@@ -18124,7 +18105,7 @@ N = 103</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 ``` r
 # For older patients
 tbl_summary(
-  lesson5g %>% filter(hiage == 1) %>% select(response, chemo),
+  lesson4g %>% filter(hiage == 1) %>% select(response, chemo),
   by = chemo,
   type = list(response = "categorical")
 )
@@ -18612,7 +18593,7 @@ N = 97</span><span class="gt_footnote_marks" style="white-space:nowrap;font-styl
 
 ``` r
 # Calculate p-value for each comparison
-lesson5g %>%
+lesson4g %>%
   filter(!is.na(age)) %>% # Exclude 2 patients missing age
   group_by(hiage) %>%
   summarize(p = chisq.test(response, chemo, correct = FALSE)$p.value)
@@ -18633,7 +18614,7 @@ There do not appear to be any differences between groups. Now to do the interact
 # Logistic regression model with interaction between chemo and age (continuous)
 age_int_model1 <-
   glm(response ~ chemo + age + chemo*age,
-      data = lesson5g,
+      data = lesson4g,
       family = "binomial")
 tbl_regression(age_int_model1, exponentiate = TRUE)
 ```
@@ -19125,7 +19106,7 @@ tbl_regression(age_int_model1, exponentiate = TRUE)
 # Logistic regression model with interaction between chemo and hiage (binary)
 age_int_model2 <-
   glm(response ~ chemo + hiage + chemo*hiage,
-      data = lesson5g,
+      data = lesson4g,
       family = "binomial")
 tbl_regression(age_int_model2, exponentiate = TRUE)
 ```
@@ -19624,7 +19605,7 @@ Incidentally, I have often emphasized the importance of including an estimate an
 
 </div>
 
-### lesson5h
+### lesson4h
 
 **PSA is used to screen for prostate cancer. In this dataset, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict prostate cancer? How accurate would this test be?**
 
@@ -19635,7 +19616,7 @@ One approach to selecting which variables to include in a predictive model would
 
 ``` r
 # Model with all variables
-glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial") %>%
+glm(cancer ~ psa + psan + psai + psant, data = lesson4h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
@@ -20130,7 +20111,7 @@ You might notice that "psant" is not a good predictor (p=0.3) and decide to take
 
 ``` r
 # Model excluding "psant"
-glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial") %>%
+glm(cancer ~ psa + psan + psai, data = lesson4h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
@@ -20621,7 +20602,7 @@ In a regression using the remaining three variables, "psai" is not statistically
 
 ``` r
 # Model excluding "psant" and "psai"
-glm(cancer ~ psa + psan, data = lesson5h, family = "binomial") %>%
+glm(cancer ~ psa + psan, data = lesson4h, family = "binomial") %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
@@ -21109,7 +21090,7 @@ Both "psa" and "psan" are highly predictive, so you could leave them in the mode
 ``` r
 # Save out final model
 final_model <-
-  glm(cancer ~ psa + psan, data = lesson5h, family = "binomial")
+  glm(cancer ~ psa + psan, data = lesson4h, family = "binomial")
 
 # Get predicted probabilities from final model
 final_model_pred <-
@@ -21133,7 +21114,7 @@ However, I would have my doubts about such an approach. What you are trying to d
 
 ``` r
 # Full model
-model1 <- glm(cancer ~ psa + psan + psai + psant, data = lesson5h, family = "binomial")
+model1 <- glm(cancer ~ psa + psan + psai + psant, data = lesson4h, family = "binomial")
 model1_pred <- augment(model1, type.predict = "response")
 roc(cancer ~ .fitted, data = model1_pred)
 ```
@@ -21149,7 +21130,7 @@ roc(cancer ~ .fitted, data = model1_pred)
 
 ``` r
 # Model without "psant"
-model2 <- glm(cancer ~ psa + psan + psai, data = lesson5h, family = "binomial")
+model2 <- glm(cancer ~ psa + psan + psai, data = lesson4h, family = "binomial")
 model2_pred <- augment(model2, type.predict = "response")
 roc(cancer ~ .fitted, data = model2_pred)
 ```
@@ -21165,7 +21146,7 @@ roc(cancer ~ .fitted, data = model2_pred)
 
 ``` r
 # Model without "psant" or "psai"
-model3 <- glm(cancer ~ psa + psan, data = lesson5h, family = "binomial")
+model3 <- glm(cancer ~ psa + psan, data = lesson4h, family = "binomial")
 model3_pred <- augment(model3, type.predict = "response")
 roc(cancer ~ .fitted, data = model3_pred)
 ```
@@ -22153,7 +22134,7 @@ So a model answer might be:
 </div>
 ```
 
-### lesson5i
+### lesson4i
 
 **This is a randomized trial of behavioral therapy in cancer patients with depressed mood. Patients are randomized to no treatment (group 1), informal contact with a volunteer (group 2) or behavior therapy with a trained therapist (group 3). What would you conclude about the effectiveness of these treatments?**
 
@@ -22164,8 +22145,8 @@ What I would use is a regression analysis.
 
 ``` r
 # Create variables for treatment (yes/no) and therapy (yes/no)
-lesson5i <-
-  lesson5i %>%
+lesson4i <-
+  lesson4i %>%
   mutate(
     treat = if_else(group > 1, 1, 0),
     therapy = if_else(group == 3, 1, 0),
@@ -22173,7 +22154,7 @@ lesson5i <-
 
 # Create linear regression model for followup
 treat_model <- lm(followup ~ baseline + treat + therapy,
-                  data = lesson5i)
+                  data = lesson4i)
 tbl_regression(treat_model)
 ```
 
@@ -23144,11 +23125,11 @@ Now when you regress the change score using the variables "treat" and "therapy" 
 
 </div>
 
-## Week 6
+## Week 5
 
 
 ``` r
-# Week 6: load packages
+# Week 5: load packages
 library(skimr)
 library(gt)
 library(gtsummary)
@@ -23160,16 +23141,16 @@ library(survival)
 library(here)
 library(tidyverse)
 
-# Week 6: load data
-lesson6a <- readRDS(here::here("Data", "Week 6", "lesson6a.rds"))
-lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
-lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
-lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
+# Week 5: load data
+lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
+lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
+lesson5c <- readRDS(here::here("Data", "Week 5", "lesson5c.rds"))
+lesson5d <- readRDS(here::here("Data", "Week 5", "lesson5d.rds"))
 ```
 
-### lesson6a and lesson6b
+### lesson5a and lesson5b
 
-**These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (06b) and a general hospital population (06c). What is the sensitivity, specificity, positive predictive value and negative predictive value?**
+**These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (5a) and a general hospital population (5b). What is the sensitivity, specificity, positive predictive value and negative predictive value?**
 
 
 
@@ -23628,23 +23609,23 @@ lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
   <thead>
     <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="test"></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value_6a">Coronary Care Population</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value_6b">General Hospital Population</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value_5a">Coronary Care Population</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value_5b">General Hospital Population</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="test" class="gt_row gt_left">Sensitivity</td>
-<td headers="value_6a" class="gt_row gt_right">93</td>
-<td headers="value_6b" class="gt_row gt_right">93</td></tr>
+<td headers="value_5a" class="gt_row gt_right">93</td>
+<td headers="value_5b" class="gt_row gt_right">93</td></tr>
     <tr><td headers="test" class="gt_row gt_left">Specificity</td>
-<td headers="value_6a" class="gt_row gt_right">88</td>
-<td headers="value_6b" class="gt_row gt_right">88</td></tr>
+<td headers="value_5a" class="gt_row gt_right">88</td>
+<td headers="value_5b" class="gt_row gt_right">88</td></tr>
     <tr><td headers="test" class="gt_row gt_left">Positive Predictive Value</td>
-<td headers="value_6a" class="gt_row gt_right">93</td>
-<td headers="value_6b" class="gt_row gt_right">46</td></tr>
+<td headers="value_5a" class="gt_row gt_right">93</td>
+<td headers="value_5b" class="gt_row gt_right">46</td></tr>
     <tr><td headers="test" class="gt_row gt_left">Negative Predictive Value</td>
-<td headers="value_6a" class="gt_row gt_right">88</td>
-<td headers="value_6b" class="gt_row gt_right">99</td></tr>
+<td headers="value_5a" class="gt_row gt_right">88</td>
+<td headers="value_5b" class="gt_row gt_right">99</td></tr>
   </tbody>
   
 </table>
@@ -23653,7 +23634,7 @@ lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
 
 The thing to take away from this is that sensitivity and specificity don’t change, but the positive and negative predictive value do. The prevalence of myocardial infarct is obviously much lower in the general hospital population compared to the coronary care population. So negative predictive value is higher in general patients (you are unlikely to have an MI anyway, so if the test says you’re negative, it is almost definite) and positive predictive value higher in coronary care patients (you are at high risk of having an MI, so a positive test just about confirms it).
 
-### lesson6c
+### lesson5c
 
 **Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy?**
 
@@ -23662,13 +23643,13 @@ You might be tempted just to try:
 
 ``` r
 # Calculate AUC for marker predicting cancer using marker
-roc(cancer ~ marker, data = lesson6c)
+roc(cancer ~ marker, data = lesson5c)
 ```
 
 ```
 ## 
 ## Call:
-## roc.formula(formula = cancer ~ marker, data = lesson6c)
+## roc.formula(formula = cancer ~ marker, data = lesson5c)
 ## 
 ## Data: marker in 500 controls (cancer 0) < 500 cases (cancer 1).
 ## Area under the curve: 0.7
@@ -23682,7 +23663,7 @@ Let's try:
 ``` r
 # Here we will drop observations missing marker data from the table (filter function)
 tbl_summary(
-  lesson6c %>% filter(!is.na(marker)) %>% select(cancer, marker),
+  lesson5c %>% filter(!is.na(marker)) %>% select(cancer, marker),
   by = marker,
   type = list(cancer = "categorical")
 )
@@ -24170,7 +24151,7 @@ N = 400</span><span class="gt_footnote_marks" style="white-space:nowrap;font-sty
 
 So you can see that, if you only biopsied patients who were positive for the marker, you do 600 fewer biopsies per 1000, but you’d also miss 200 cancers. That is a lot of cancers to miss and so you might feel that using the marker to make biopsy decisions would do more harm than good. 
 
-### lesson6d
+### lesson5d
 
 **This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:**
 
@@ -24185,7 +24166,7 @@ The first question concerns the value of the current method of determining refer
 ``` r
 # Two-way table of recurrence by hi_risk
 tbl_summary(
-  lesson6d %>% select(recurrence, hi_risk),
+  lesson5d %>% select(recurrence, hi_risk),
   by = hi_risk,
   type = list(recurrence = "categorical")
 )
@@ -24678,13 +24659,13 @@ You can see that 27% of patients who met high risk criteria recurred compared to
 
 ``` r
 # Calculate AUC for prediction of recurrence using hi_risk
-roc(recurrence ~ hi_risk, data = lesson6d)
+roc(recurrence ~ hi_risk, data = lesson5d)
 ```
 
 ```
 ## 
 ## Call:
-## roc.formula(formula = recurrence ~ hi_risk, data = lesson6d)
+## roc.formula(formula = recurrence ~ hi_risk, data = lesson5d)
 ## 
 ## Data: hi_risk in 5734 controls (recurrence 0) < 841 cases (recurrence 1).
 ## Area under the curve: 0.7111
@@ -24699,14 +24680,14 @@ So now let’s look at the statistical model of stage and grade. We'll first cre
 # Create the model
 # "grade" is a categorical variable, so use "factor()"
 recur_model <- glm(recurrence ~ stage + factor(grade_numeric),
-                   data = lesson6d,
+                   data = lesson5d,
                    family = "binomial")
 
 # Get the predicted probability for each patient
-lesson6d_pred <-
+lesson5d_pred <-
   augment(
     recur_model,
-    newdata = lesson6d,
+    newdata = lesson5d,
     type.predict = "response",
     se = TRUE
   ) %>%
@@ -24714,13 +24695,13 @@ lesson6d_pred <-
   rename(clinpred = .fitted, clinpred_se = .se.fit)
 
 # Calculate the AUC for the clinical model
-roc(recurrence ~ clinpred, data = lesson6d_pred)
+roc(recurrence ~ clinpred, data = lesson5d_pred)
 ```
 
 ```
 ## 
 ## Call:
-## roc.formula(formula = recurrence ~ clinpred, data = lesson6d_pred)
+## roc.formula(formula = recurrence ~ clinpred, data = lesson5d_pred)
 ## 
 ## Data: clinpred in 5734 controls (recurrence 0) < 841 cases (recurrence 1).
 ## Area under the curve: 0.7567
@@ -24731,8 +24712,8 @@ So the AUC is better for the model than for simple risk grouping. But would usin
 
 ``` r
 # Create a new variable to define patients at high risk from the model
-lesson6d_pred <-
-  lesson6d_pred %>%
+lesson5d_pred <-
+  lesson5d_pred %>%
   mutate(
     clinmodel_hirisk = if_else(clinpred >= 0.1, 1, 0)
   )
@@ -24740,7 +24721,7 @@ lesson6d_pred <-
 # Compare who is defined as high risk from the model
 # with those defined as high risk using clinical criteria
 tbl_summary(
-  lesson6d_pred %>% select(clinmodel_hirisk, hi_risk),
+  lesson5d_pred %>% select(clinmodel_hirisk, hi_risk),
   by = hi_risk,
   type = list(clinmodel_hirisk = "categorical")
 )
@@ -25234,7 +25215,7 @@ How about adding in the marker?
 ``` r
 # Create the model
 marker_recur_model <- glm(recurrence ~ stage + factor(grade_numeric) + marker,
-                          data = lesson6d,
+                          data = lesson5d,
                           family = "binomial")
 tbl_regression(marker_recur_model, exponentiate = TRUE)
 ```
@@ -25735,23 +25716,23 @@ tbl_regression(marker_recur_model, exponentiate = TRUE)
 
 ``` r
 # Get the predicted probability for each patient
-lesson6d_pred <-
+lesson5d_pred <-
   augment(
     marker_recur_model,
-    newdata = lesson6d_pred,
+    newdata = lesson5d_pred,
     type.predict = "response",
     se = TRUE
   ) %>%
   rename(markerpred = .fitted, markerpred_se = .se.fit)
 
 # Calculate the AUC from the marker for the marker model
-roc(recurrence ~ markerpred, data = lesson6d_pred)
+roc(recurrence ~ markerpred, data = lesson5d_pred)
 ```
 
 ```
 ## 
 ## Call:
-## roc.formula(formula = recurrence ~ markerpred, data = lesson6d_pred)
+## roc.formula(formula = recurrence ~ markerpred, data = lesson5d_pred)
 ## 
 ## Data: markerpred in 5734 controls (recurrence 0) < 841 cases (recurrence 1).
 ## Area under the curve: 0.7982
@@ -25764,14 +25745,14 @@ A couple of things to note here. First, the marker is a statistically significan
 
 ``` r
 # Identify patients at >= 10% risk from clinical+marker model
-lesson6d_pred <-
-  lesson6d_pred %>%
+lesson5d_pred <-
+  lesson5d_pred %>%
   mutate(markermodel_hirisk = if_else(markerpred >= 0.1, 1, 0))
 
 # Compare who is defined as high risk from the clinical+marker model
 # with those defined as high risk using clinical criteria
 tbl_summary(
-  lesson6d_pred %>% select(markermodel_hirisk, hi_risk),
+  lesson5d_pred %>% select(markermodel_hirisk, hi_risk),
   by = hi_risk,
   type = list(markermodel_hirisk = "categorical")
 )
@@ -26265,7 +26246,7 @@ You can see now that 133 patients who would otherwise be referred to adjuvant ch
 ``` r
 # Table of recurrences for those at high risk from the marker model but not clinically
 tbl_summary(
-  lesson6d_pred %>%
+  lesson5d_pred %>%
     filter(markermodel_hirisk == 1 & hi_risk == 0) %>%
     select(recurrence),
   type = list(recurrence = "categorical")
@@ -26749,7 +26730,7 @@ tbl_summary(
 ``` r
 # Table of recurrences for those at low risk from the marker model but high risk clinically
 tbl_summary(
-  lesson6d_pred %>%
+  lesson5d_pred %>%
     filter(markermodel_hirisk == 0 & hi_risk == 1) %>%
     select(recurrence),
   type = list(recurrence = "categorical")
@@ -27238,27 +27219,27 @@ As for imaging, if you try:
 ``` r
 # Create model that includes imaging score
 imaging_model <- glm(recurrence ~ stage + factor(grade_numeric) + marker + imaging_score,
-                     data = lesson6d,
+                     data = lesson5d,
                      family = "binomial")
 
 # Get predictions for imaging model
-lesson6d_pred <-
+lesson5d_pred <-
   augment(
     imaging_model,
-    newdata = lesson6d_pred,
+    newdata = lesson5d_pred,
     type.predict = "response",
     se = TRUE
   ) %>%
   rename(imagingpred = .fitted, imagingpred_se = .se.fit)
 
 # Calculate AUC for imaging model
-roc(recurrence ~ imagingpred, data = lesson6d_pred)
+roc(recurrence ~ imagingpred, data = lesson5d_pred)
 ```
 
 ```
 ## 
 ## Call:
-## roc.formula(formula = recurrence ~ imagingpred, data = lesson6d_pred)
+## roc.formula(formula = recurrence ~ imagingpred, data = lesson5d_pred)
 ## 
 ## Data: imagingpred in 5734 controls (recurrence 0) < 841 cases (recurrence 1).
 ## Area under the curve: 0.8004
@@ -27271,15 +27252,15 @@ You'll find that imaging is a statistically significant predictor of recurrence,
 
 ``` r
 # Create variable indicating whether patient is high risk from imaging model
-lesson6d_pred <-
-  lesson6d_pred %>%
+lesson5d_pred <-
+  lesson5d_pred %>%
   mutate(
     imagingmodel_hirisk = if_else(imagingpred >= 0.1, 1, 0)
   )
 
 # Two-way table of high risk status, based on marker model and imaging model
 tbl_summary(
-  lesson6d_pred %>%
+  lesson5d_pred %>%
     select(imagingmodel_hirisk, markermodel_hirisk),
   by = markermodel_hirisk,
   type = list(imagingmodel_hirisk = "categorical")
@@ -27772,7 +27753,7 @@ You'll see that only 172 patients are reclassified. It is questionable whether w
 
 And here are the answers to the questions without data!
 
-### lesson6e
+### lesson5e
 
 **Hospitalized neutropenic patients were randomized to receive drug a or placebo. Bloods were taken every day. The time until patients were no longer neutropenic was measured (all patients eventually did get better).**
 
@@ -27791,7 +27772,7 @@ If the data were very skewed, which wouldn’t be uncommon for data of this sort
 >Median time to recovery was ?? (interquartile range ?? - ??) in the ?? patients randomized to drug a, compared to ?? (interquartile range ?? - ??) in the ?? patients receiving placebo. The difference between medians of ?? fewer / more days with neutropenia (95% C.I. ??, ??) was / was not statistically significant (p=??). 
 </div>
 
-### lesson6f
+### lesson5f
 
 **A new lab machine sometimes fails to give a readout with the result that the sample is wasted. To try and get a handle on this problem, a researcher carefully documents the number of failures for the 516 samples that she analyzes in the month of September.**
 
@@ -27803,7 +27784,7 @@ This is a simple one:
 
 </div>
 
-### lesson6g
+### lesson5g
 
 **Drug a appears to be effective against cancer cells in vitro. Researchers create two new drugs, b and c, by making slight molecular rearrangements of drug a. The three drugs are then added to tumor cells in the test tube and the degree of cell growth measured.**
 
@@ -27815,11 +27796,11 @@ The key thing to think about here is the comparisons you want to make. Drug a al
 
 </div>
 
-## Week 7
+## Week 6
 
 
 ``` r
-# Week 7: load packages
+# Week 6: load packages
 library(skimr)
 library(gt)
 library(gtsummary)
@@ -27831,14 +27812,14 @@ library(survival)
 library(here)
 library(tidyverse)
 
-# Week 7: load data
-lesson7a <- readRDS(here::here("Data", "Week 7", "lesson7a.rds"))
-lesson7b <- readRDS(here::here("Data", "Week 7", "lesson7b.rds"))
-lesson7c <- readRDS(here::here("Data", "Week 7", "lesson7c.rds"))
-lesson7d <- readRDS(here::here("Data", "Week 7", "lesson7d.rds"))
+# Week 6: load data
+lesson6a <- readRDS(here::here("Data", "Week 6", "lesson6a.rds"))
+lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
+lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
+lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
 ```
 
-### lesson7a
+### lesson6a
 
 **This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this dataset and determine which, if any, variables are prognostic in this patient group.**
 
@@ -27849,11 +27830,11 @@ We can use `survfit` and `skim` to get the median time for all patients and for 
 
 ``` r
 # Median followup for all patients
-survfit(Surv(survival_time, died) ~ 1, data = lesson7a)
+survfit(Surv(survival_time, died) ~ 1, data = lesson6a)
 ```
 
 ```
-## Call: survfit(formula = Surv(survival_time, died) ~ 1, data = lesson7a)
+## Call: survfit(formula = Surv(survival_time, died) ~ 1, data = lesson6a)
 ## 
 ##        n events median 0.95LCL 0.95UCL
 ## [1,] 614    284   2910    2482      NA
@@ -27861,13 +27842,13 @@ survfit(Surv(survival_time, died) ~ 1, data = lesson7a)
 
 ``` r
 # Median followup for survivors
-lesson7a %>%
+lesson6a %>%
   filter(died == 0) %>%
   skim(survival_time)
 ```
 
 
-Table: (\#tab:week7b)Data summary
+Table: (\#tab:week6b)Data summary
 
 |                         |           |
 |:------------------------|:----------|
@@ -27893,7 +27874,7 @@ To look at predictors of survival, we might conduct a multivariable regression:
 ``` r
 # Multivariable Cox model for time to death
 coxph(Surv(survival_time, died) ~ sex + age + obstruction + perforation + adhesions + nodes,
-      data = lesson7a) %>%
+      data = lesson6a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
@@ -28397,7 +28378,7 @@ This suggests that the presence of obstruction or adhesion influences survival, 
 ``` r
 # Table of perforation rate
 tbl_summary(
-  lesson7a %>% select(perforation)
+  lesson6a %>% select(perforation)
 )
 ```
 
@@ -28876,12 +28857,12 @@ You will see that less than 3% of patients had perforations, making it almost im
 
 ``` r
 # Summarize number of nodes
-lesson7a %>%
+lesson6a %>%
   skim(nodes)
 ```
 
 
-Table: (\#tab:week7e)Data summary
+Table: (\#tab:week6e)Data summary
 
 |                         |           |
 |:------------------------|:----------|
@@ -28906,8 +28887,8 @@ You can see that patients had up to 33 nodes affected, yet all but a handful had
 
 ``` r
 # Create new nodes variable, capped at 10 nodes
-lesson7a <-
-  lesson7a %>%
+lesson6a <-
+  lesson6a %>%
   mutate(
     n2 = 
       case_when(
@@ -28918,7 +28899,7 @@ lesson7a <-
 
 # Re-run cox model using "n2" (which caps the number of nodes at 10)
 coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + n2,
-      data = lesson7a) %>%
+      data = lesson6a) %>%
   tbl_regression(exponentiate = TRUE)
 ```
 
@@ -29417,8 +29398,8 @@ However, it might be better to group patients. Here we create a new variable cal
 
 ``` r
 # Categorize values of nodes removed
-lesson7a <-
-  lesson7a %>%
+lesson6a <-
+  lesson6a %>%
   mutate(
     node4 =
       case_when(
@@ -29439,13 +29420,13 @@ The regression code would then be:
 # Re-run Cox model using categorized variable for nodes
 # Since "node4" is categorical, we must use "factor()" with this variable
 coxph(Surv(survival_time, died) ~ sex + age + obstruction + adhesions + factor(node4),
-      data = lesson7a)
+      data = lesson6a)
 ```
 
 ```
 ## Call:
 ## coxph(formula = Surv(survival_time, died) ~ sex + age + obstruction + 
-##     adhesions + factor(node4), data = lesson7a)
+##     adhesions + factor(node4), data = lesson6a)
 ## 
 ##                     coef exp(coef)  se(coef)      z        p
 ## sex            -0.006908  0.993116  0.121775 -0.057  0.95476
@@ -30471,7 +30452,7 @@ A model answer for this dataset might be:
 </div>
 ```
 
-### lesson7b
+### lesson6b
 
 **These are time to recurrence data on forty patients with biliary cancer treated at one of two hospitals, one of which treats a large number of cancer patients and one of which does not. Do patients treated at a “high volume” hospital have a longer time to recurrence?**
 
@@ -30480,12 +30461,12 @@ We can test the difference between groups by using the `survdiff` function:
 
 ``` r
 # Test for difference in time to recurrence by hivolume
-survdiff(Surv(time, recurrence) ~ hivolume, data = lesson7b)
+survdiff(Surv(time, recurrence) ~ hivolume, data = lesson6b)
 ```
 
 ```
 ## Call:
-## survdiff(formula = Surv(time, recurrence) ~ hivolume, data = lesson7b)
+## survdiff(formula = Surv(time, recurrence) ~ hivolume, data = lesson6b)
 ## 
 ##             N Observed Expected (O-E)^2/E (O-E)^2/V
 ## hivolume=0 20        7      4.5      1.39      2.53
@@ -30503,11 +30484,11 @@ This is not sufficient evidence to conclude that high volume hospitals and more 
 
 ``` r
 # Look at number of recurrence events in this dataset
-survfit(Surv(time, recurrence) ~ 1, data = lesson7b)
+survfit(Surv(time, recurrence) ~ 1, data = lesson6b)
 ```
 
 ```
-## Call: survfit(formula = Surv(time, recurrence) ~ 1, data = lesson7b)
+## Call: survfit(formula = Surv(time, recurrence) ~ 1, data = lesson6b)
 ## 
 ##       n events median 0.95LCL 0.95UCL
 ## [1,] 40     10     NA      NA      NA
@@ -30518,9 +30499,9 @@ You can then look at a Cox model:
 
 ``` r
 # Cox model for time to recurrence
-lesson7b_cox <-
-  coxph(Surv(time, recurrence) ~ hivolume, data = lesson7b)
-tbl_regression(lesson7b_cox, exponentiate = TRUE)
+lesson6b_cox <-
+  coxph(Surv(time, recurrence) ~ hivolume, data = lesson6b)
+tbl_regression(lesson6b_cox, exponentiate = TRUE)
 ```
 
 ```{=html}
@@ -31011,19 +30992,19 @@ A model answer:
 
 **Figure 1.** Kaplan-Meier curve for recurrence in low volume (blue) and high volume (red) centers
 
-<img src="09-answers_files/figure-html/week7q-1.png" width="672" />
+<img src="09-answers_files/figure-html/week6q-1.png" alt="" width="672" />
 
 Another way of doing this would be to estimate survival at say, 6, 12 and 18 months in each hospital. The command would be:
 
 
 ``` r
 # Estimate survival at 6, 12 and 18 months
-summary(survfit(Surv(time, recurrence) ~ hivolume, data = lesson7b),
+summary(survfit(Surv(time, recurrence) ~ hivolume, data = lesson6b),
         times = c(183, 365, 548))
 ```
 
 ```
-## Call: survfit(formula = Surv(time, recurrence) ~ hivolume, data = lesson7b)
+## Call: survfit(formula = Surv(time, recurrence) ~ hivolume, data = lesson6b)
 ## 
 ##                 hivolume=0 
 ##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
@@ -31040,7 +31021,7 @@ summary(survfit(Surv(time, recurrence) ~ hivolume, data = lesson7b),
 
 You could report survival of 100%, 90%, and 85% in the high volume hospital compared to 90%, 75% and 56% in the low volume hospital.
 
-### lesson7c
+### lesson6c
 
 **These are data from a randomized trial comparing no treatment, 5FU (a chemotherapy agent) and 5FU plus levamisole in the adjuvant treatment of colon cancer. Describe the dataset. What conclusions would you draw about the effectiveness of the different treatments?**
 
@@ -31056,7 +31037,7 @@ Let's jump straight to the model answer.
 
 </div>
 
-<img src="09-answers_files/figure-html/week7t-1.png" width="672" />
+<img src="09-answers_files/figure-html/week6t-1.png" alt="" width="672" />
 
 In case you are wondering how I did all this, one key is to see that in the dataset "group" and "treatment" are equivalent:
 
@@ -31064,7 +31045,7 @@ In case you are wondering how I did all this, one key is to see that in the data
 ``` r
 # Two-way table of group by treatment
 tbl_summary(
-  lesson7c %>% select(group, treatment),
+  lesson6c %>% select(group, treatment),
   by = treatment
 )
 ```
@@ -31563,7 +31544,7 @@ When I did the graph, I used the variable "treatment" to get the names of the tr
 
 ``` r
 # Create Kaplan-Meier plot by treatment group
-ggsurvfit::survfit2(Surv(survival_time/365.25, died) ~ treatment, data = lesson7c) %>%
+ggsurvfit::survfit2(Surv(survival_time/365.25, died) ~ treatment, data = lesson6c) %>%
   ggsurvfit::ggsurvfit() +
   labs(
     x = "Survival Time (Years)"
@@ -31571,15 +31552,15 @@ ggsurvfit::survfit2(Surv(survival_time/365.25, died) ~ treatment, data = lesson7
   scale_y_continuous(label = scales::percent)
 ```
 
-<img src="09-answers_files/figure-html/week7v-1.png" width="672" />
+<img src="09-answers_files/figure-html/week6v-1.png" alt="" width="672" />
 
 When I did the Cox regression, I created dummy variables by typing:
 
 
 ``` r
 # Create dummy variable for treatment
-lesson7c <-
-  lesson7c %>%
+lesson6c <-
+  lesson6c %>%
   mutate(
     fu = if_else(group == 2, 1, 0),
     lev = if_else(group == 3, 1, 0)
@@ -31591,12 +31572,12 @@ Then it was straightforward to create the cox model and get the overall p-value 
 
 ``` r
 # Cox model with dummy variables
-coxph(Surv(survival_time, died) ~ fu + lev, data = lesson7c)
+coxph(Surv(survival_time, died) ~ fu + lev, data = lesson6c)
 ```
 
 ```
 ## Call:
-## coxph(formula = Surv(survival_time, died) ~ fu + lev, data = lesson7c)
+## coxph(formula = Surv(survival_time, died) ~ fu + lev, data = lesson6c)
 ## 
 ##         coef exp(coef) se(coef)      z       p
 ## fu  -0.02664   0.97371  0.11030 -0.241 0.80917
@@ -31608,12 +31589,12 @@ coxph(Surv(survival_time, died) ~ fu + lev, data = lesson7c)
 
 ``` r
 # Overall p-value for all 3 groups
-survdiff(Surv(survival_time, died) ~ group, data = lesson7c)
+survdiff(Surv(survival_time, died) ~ group, data = lesson6c)
 ```
 
 ```
 ## Call:
-## survdiff(formula = Surv(survival_time, died) ~ group, data = lesson7c)
+## survdiff(formula = Surv(survival_time, died) ~ group, data = lesson6c)
 ## 
 ##           N Observed Expected (O-E)^2/E (O-E)^2/V
 ## group=1 315      168      148      2.58      3.85
@@ -31625,9 +31606,9 @@ survdiff(Surv(survival_time, died) ~ group, data = lesson7c)
 
 Any oncologists notice a problem here? It is this: Levamisole doesn’t work at all, but 5FU (obviously) does. It turns out that this whole dataset (which I downloaded from the internet) was miscoded: it should have been: control, levamisole alone, levamisole + 5FU. Which goes to show the importance of checking your data.
 
-### lesson7d
+### lesson6d
 
 **More data on time to recurrence by hospital volume. Given this dataset, determine whether patients treated at a “high volume” hospital have a longer time to recurrence.**
 
-These data are comparable to **lesson7b**, except with a longer length of follow-up. There are more recurrences (events) because more time has elapsed. So though the hazard ratio is very similar, and the number of patients identical, the confidence interval is much narrower and the results statistically significant. However, do be careful about drawing causal inferences: just because recurrence rates are lower at the high volume hospital, it doesn't mean that treatment at a high volume hospital reduces risk of recurrence. There may be other differences between hospitals (e.g. case mix).
+These data are comparable to **lesson6b**, except with a longer length of follow-up. There are more recurrences (events) because more time has elapsed. So though the hazard ratio is very similar, and the number of patients identical, the confidence interval is much narrower and the results statistically significant. However, do be careful about drawing causal inferences: just because recurrence rates are lower at the high volume hospital, it doesn't mean that treatment at a high volume hospital reduces risk of recurrence. There may be other differences between hospitals (e.g. case mix).
 

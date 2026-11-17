@@ -9,7 +9,7 @@ output:
         facebook: false
         twitter: false
 documentclass: book
-rmd_files: ["index.Rmd", "01-week1.Rmd", "02-week2.Rmd", "03-week3.Rmd", "04-week4.Rmd", "05-week5.Rmd", "06-week6.Rmd", "07-week7.Rmd", "08-week8.Rmd", "09-answers.Rmd", "10-exam.Rmd"]
+rmd_files: ["index.Rmd", "01-week1.Rmd", "02-week2.Rmd", "03-week3.Rmd", "04-week4.Rmd", "05-week5.Rmd", "06-week6.Rmd", "07-week7.Rmd", "08-answers.Rmd", "09-exam.Rmd"]
 bibliography: [packages.bib]
 biblio-style: apalike
 link-citations: yes
@@ -22,6 +22,44 @@ always_allow_html: true
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load packages
+# library(skimr)
+library(gt)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(here)
+library(tidyverse)
+
+# Set seed
+set.seed(34634986)
+
+# Load data
+
+# Save out list of all files
+all_data <-
+  list.files(here::here("Data"), pattern = ".rds", recursive = TRUE) %>%
+  map(~ glue::glue("Data/{..1}") %>% as.character())
+
+# Give names to list (will be object names)
+all_data_names <-
+  map(all_data,
+      ~ str_split(..1, "/") %>%
+        unlist() %>%
+        pluck(3) %>%
+        str_replace(".rds", "")
+      )
+names(all_data) <- all_data_names
+
+# Load all data to environment
+list2env(map(all_data, readRDS), envir = .GlobalEnv)
+
 ```
 
 # General Course Materials {-}
@@ -171,3 +209,594 @@ Please review these guidelines on the course website.
 [Guidelines for Reporting Observational Research in Urology: The Importance of Clear Reference to Causality](https://github.com/emilyvertosick/Statistics-Course/blob/master/Guidelines%20for%20Reporting%20Observational%20Research%20in%20Urology.pdf?raw=true)
 
 [Guidelines for Meta-analyses and Systematic Reviews in Urology](https://github.com/emilyvertosick/Statistics-Course/blob/master/Guidelines%20for%20Meta-analyses%20and%20Systematic%20Reviews%20in%20Urology.pdf?raw=true)
+
+# Before You Start {-}
+
+## Setting Up {-}
+
+As a note about this book - you can copy and paste code referenced in this book by hovering over the gray box containing the code, and clicking on the icon that appears in the top right corner.
+
+![ ](Images/copycode.PNG)
+
+### Software Installation
+
+Note: you'll need to put aside 20 - 30 minutes to install the software on your computer. 
+
+**R**
+
+Install a pre-compiled binary of R for your OS from here by clicking on "Download R for [your operating system]":
+https://cloud.r-project.org
+
+Please install R version 4.4.0 or higher, as this will ensure that given code examples will run correctly.
+
+**RStudio**
+
+Install RStudio Desktop by selecting the installer for your operating system under "Desktop Version":
+
+https://www.rstudio.com/products/rstudio/download/preview/
+
+### Setting up course files
+
+To access this course, download the "Statistics Course Data.zip" file [here](https://github.com/emilyvertosick/Statistics-Course/blob/master/Statistics%20Course%20Data%202026.zip?raw=true). Create and name a folder (e.g. "MSKCC biostats course") on your hard drive, and then unzip the file and save it in that folder. Open the "Statistics Course" folder and click to open the R project file called "Statistics Course.Rproj". Opening this file will open RStudio (once you have it installed), and you can easily access all files from the "files" tab in the bottom right panel in RStudio.
+
+There is a "Data" folder with 6 subfolders inside, which contain the data files needed for the examples and assignments for weeks 1-6.
+
+There is a code file called "Install Packages Code.R" which contains the necessary code for you to install the packages for the course (see below for more details). There is another code file called "Code templates for students.R" which includes some example code that you can adapt.
+
+Every time you work on this course, you should open RStudio by opening the “Statistics Course.Rproj” file. This allows R to automatically determine the file path location for the data files so you can access them without having to make any changes to the code. It may be helpful to create a desktop shortcut to the “Statistics Course.Rproj” file so you can easily access the course materials.
+
+### Using RStudio
+
+When you open the "Statistics Course.Rproj" file, RStudio will open, and you will see four panes in the RStudio window (if you only see three panes, select "new file" and "New R script").
+
+1. The "console" window at the bottom left is where results will be shown if running R code from a .R file or interactively. The console window is also where you type in instructions for R. To run code in the console window, you can type or copy and paste the code and press "enter."
+
+2. The "source" window in the top left is where you will write out R code for your  .R analysis file. To run code from the source window, highlight the lines of code you'd like to run and click the "run" button, located in the upper right corner of the source window, or use the shortcut "ctrl+enter" on your keyboard.
+
+3. The top right panel includes several tabs. The most important tabs here are "environment", which shows your current datasets and objects, and "history", which shows previous commands that have been run from either the "console" or the "source" window.
+
+4. The bottom right panel also includes several tabs. The "files" tab shows all files in your current directory. The "plots" tab is where plots will be shown if a plot is created. The "packages" tab shows all R packages that are available on your machine. The "help" tab will show help files, and help files can be searched from this tab. The "viewer" tab will show any other files that are created, for example, formatted tables.
+
+![ ](Images/rstudio_window.jpg)
+
+### Installing packages
+
+For this course, you will need to install several packages which will allow you to use the set of functions included in that package. To install the necessary packages, open the "Install Packages Code.R" file. Run each line in this file by highlighting the line of code and clicking the "Run" button in the top right hand corner, or using the keyboard shortcut "ctrl-enter". If you get the following popup message, please click "yes". If after clicking "yes" once, the pop-up reappears, you can click "no" the second time.
+
+![ ](Images/rinstallmsg.png)
+
+Enter one line at a time, and wait for the packages to install before entering the next line. While the package is installing, you will see a red stop sign icon at the top right corner of the "console" window. Once the stop sign icon disappears, the package installation is complete and you can install the next package. You will only have to install the packages one time.
+
+```{r install, echo = TRUE, eval = FALSE, purl = TRUE}
+
+# Installing packages
+install.packages("tidyverse")
+install.packages("here")
+install.packages("skimr")
+remotes::install_version("epiR", version = "2.0.33", repos = "https://cloud.r-project.org")
+install.packages("broom")
+install.packages("pROC")
+install.packages("gmodels")
+install.packages("survival")
+install.packages("ggsurvfit")
+install.packages("gt")
+install.packages("cardx")
+install.packages("broom.helpers")
+
+```
+
+If you get a message that says "These packages have more recent versions available. Which would you like to update?", you can enter "1" in the console window and press enter. This will update all necessary packages and complete the installation.
+
+![ ](Images/updatepackage.PNG)
+
+If you are using a Windows computer and get an error message that states <span style="color:red">Error: Could not find tools necessary to compile a package</span>, you will need to download and install the Rtools program before proceeding. The instructions are below:
+
+1. Download the "recommended" version of Rtools (in green) from [this site](https://cran.rstudio.com/bin/windows/Rtools/).
+2. Open the "Rtools##.exe" file and follow the installation instructions.
+3. After installation is complete, close RStudio and re-open by clicking on the "Statistics Course.RProj" file.
+4. Re-run the above code in the console to install the packages.
+
+We will also be installing a package called {gtsummary} written by Dan Sjoberg, a statistician at MSKCC, which can format the results from your R code into a clean, publication-ready table which can be exported in many formats, including html, pdf and Word documents. The code below will install this package.
+
+```{r install3, echo = TRUE, eval = FALSE, warning = FALSE, message = FALSE, purl = TRUE}
+
+install.packages("gtsummary")
+
+```
+
+### A Note About Packages
+
+R is "open source" software. Unlike, say, Microsoft Word, where only Microsoft engineers can make changes, R packages are written by statisticians all over the world. There are hundreds of R packages available, and often there are many packages available to perform the same analyses. The packages you will use in this course have been chosen because they make coding easier, perform the necessary analyses and/or create nicely formatted output such as tables and graphs. You may work with statisticians who use different packages to perform these same analyses or to format tables and graphs. For all packages used in the course, if you give the package name to your statistician, they will be able to find and install the packages directly using the `install.packages` function as we have done above.
+
+## R Instructions {-}
+
+### Opening a data file created by someone else
+
+This is mainly what you will be doing during this course. You will be loading data from files with a ".rds" extension, which is a type of file that can be exported from R. There are two ways to do this:
+
+1. You can load files by typing or copying the following code into the console window and pressing enter. Each lesson will have code in the "Setting Up" section that will load all data necessary to run the examples in the lesson. You can copy and paste that code into your console window and press "enter" to load the files. In the "Assignments" section, there will also be code to load the files necessary for the assignment.
+
+```{r loaddata, eval = TRUE, purl = TRUE}
+
+# You can copy and paste this code into the console window and press "enter"
+# to load the data needed for the week 1 examples
+lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+
+```
+
+2. Using the "files" tab on the bottom righthand side of the RStudio window. Click on the "files" tab, and navigate to the folder where the data is stored, for example, by clicking on the "Data" folder. Click on the desired data ".rds" file. A "Load R Object" popup will appear, which allows you to change the name of the dataset when you import it. It is fine for this course to leave the dataset names as is. Clicking "OK" will load this file to your environment, which you can confirm by looking for the dataset in the top right "environment" tab.
+
+![ ](images\load_data.jpg)
+<br>
+
+### Loading packages
+
+The packages you have installed contain a number of functions. There are two ways to use the functions from these packages: by loading the package, or specifying the package name every time you use a function from that package.
+
+If you attempt to use a function from a package without loading that package or specifying the package name, you will get an error.
+
+As an example, the `skim` function comes from the {skimr} package. Using `skim` without loading or specifying the {skimr} package will give an error:
+
+```{r loadpkgs1, echo = TRUE, eval = TRUE, error = TRUE}
+
+# This will give an error - the "skimr" package isn't loaded yet
+skim(lesson1a$age)
+
+```
+
+You can give both the package name and function name to avoid this error:
+
+```{r loadpkgs2, echo = TRUE, eval = TRUE}
+
+# You can use the function "skim" by specifying package "skimr"
+skimr::skim(lesson1a$age)
+
+```
+
+However, for commonly used packages, it is easier to load the whole package so you do not need to type out the package name every time you use a function. Packages are loaded by typing the package name into the `library` function. While you only need to install the packages once, you will need to load any packages you want to use every time you open up the "Statistics Course.Rproj" file in RStudio. For example, to load the {skimr} package, type or copy and paste the following line of code into the console window, and press enter.
+
+```{r loadpkgs3, echo = TRUE, eval = TRUE, purl = FALSE, warning = FALSE, message = FALSE}
+
+library(skimr)
+
+```
+
+Now you will be able to use all functions in the {skimr} package without specifying the package name each time. Below is R code that will load all the packages you will need to use in this course. You can copy and paste these lines into your console window every time you start working in RStudio (so if you keep RStudio open, say on your laptop, you won't generally have to reload packages). This code will also be available at the beginning of each lesson.
+
+```{r loadpkgs4, echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE}
+
+# Here is the code to load all necessary packages
+library(skimr)
+library(gt)
+library(gtsummary)
+library(epiR)
+library(broom)
+library(pROC)
+library(gmodels)
+library(survival)
+library(ggsurvfit)
+library(tidyverse)
+
+```
+
+### Looking at the data
+
+R stores the data in the form of a spreadsheet. The rows are individual observations, normally a patient. The columns are variables giving data for that observation. View the dataset **lesson1a** by typing the following into the console window and hitting enter (a new window will pop up):
+
+```{r section1a, echo = TRUE, eval = FALSE, results = "hide"}
+
+# View the data as a spreadsheet
+View(lesson1a)
+
+```
+
+This is data from 386 patients undergoing surgery. You can see the patient’s hospital code number as the variable "id" and then their age and sex. There are then lists of other variables with names such as "p1", "t", "x" and so on. You can see that you can have both numbers and text as a variable. You may also notice that some variables have a value of "NA" for a particular observation (e.g. the 3rd and 4th observations for variable "z"). In R, "NA" indicates missing data. 
+
+### Typing a command
+
+There are two options to run R code: you can type or copy and paste code into either the "console" window or the "source" window. To run code from the "console" window, simply press "enter". To run code from the "source" window, highlight the code you would like to run, and click the "run" button (top right corner of the "source" window) or use the keyboard shortcut "ctrl+enter".
+
+A typical command is of the form: `packagename::function(options)`. If a package has already been loaded using the `library` function (as we did above), you can omit `packagename::` when running the code.
+
+Since you can have multiple datasets in R at the same time, your command must indicate which dataset you are referring to. This is usually done by including the dataset name inside the parentheses of the function.
+
+For example, this will summarize the data for the full **lesson1a** dataset.
+
+```{r section1b_1, echo = TRUE, include = TRUE, results = "hide"}
+
+# View a summary of the dataset
+skim(lesson1a)
+
+```
+
+The output above this text is the code, and the output below this shows the results produced by running that code. (We will discuss the results output in more detail later.)
+
+```{r section1b_1a, echo = FALSE}
+
+# Print
+skim(lesson1a)
+
+```
+
+### Some Useful Commands
+
+#### Extracting a variable by name ($)
+
+To refer to one variable in your dataset, you can use the notation `dataset$variable` to indicate which dataset you are referencing, and which variable within that dataset.
+
+For example, this will summarize just the variable "age" from the **lesson1a** dataset.
+
+```{r section1c}
+
+# View a summary of the "age" variable only
+skim(lesson1a$age)
+
+```
+
+#### Pipe operator (%>%)
+
+One of the most useful commands is known as the pipe operator (%>%). The pipe operator can be read as "and then". Pipes allow a dataset to be passed from the left side of the pipe to the command on the right side. The dataset you are using will be referenced on the left side of the pipe, rather than included as an option in the next function. This notation is useful because it can make your code more clear if you are using more than one function.
+
+Here is an example of piping using the `skim` function.
+
+This piece of code can be read as, "Use the `skim` function on the **lesson1a** dataset".
+
+```{r section1d_1, eval = TRUE, results = "hide"}
+
+# You can put the dataset into the function
+skim(lesson1a)
+
+```
+
+This piece of code can be read as, "Take the **lesson1a** dataset, **and then** give this data to the `skim` function to use."
+
+```{r section1d_2, eval = TRUE, results = "hide"}
+
+# You can also use the "pipe" operator
+lesson1a %>% skim()
+
+```
+
+You can see that both of these lines of code are doing the same thing, although the order of the function and the dataset are different. Both will give the same results - try copying both lines of code into your console window to check that this is true.
+
+```{r section1d_3, eval = TRUE, results = "hide"}
+
+# These two pieces of code will also give the same results
+skim(lesson1a$age)
+lesson1a %>% skim(age)
+
+```
+
+In this example, the pipe operator is not particularly useful - it actually involves more typing (`lesson1a %>% skim()`) than not using the pipe operator (`skim(lesson1a)`).
+
+However, the pipe operator is very helpful in more complex code. Here is an example of two pieces of code that do the same thing, with the second example using the pipe notation. You don't need to understand what this code does, but you can see that the pipe notation makes the code shorter and easier to read. It allows you to see what is happening in the code in order from left to right and top to bottom, while the code without pipes has to be read from the inside (the innermost set of parentheses) to the outside (the outermost set of parentheses).
+
+```{r section1d_4}
+
+# Without piping
+new_data <- 
+  select(filter(mutate(trial, trt = as_factor(str_sub(str_to_upper(trt), 1, 4))), age > 60), trt, age, marker, stage, grade)
+
+new_data
+
+# With piping
+new_data_pipe <-
+  trial %>%
+  mutate(
+    trt = str_to_upper(trt) %>%
+      str_sub(1, 4) %>%
+      as_factor()
+  ) %>%
+  select(trt, age, marker, stage, grade) %>%
+  filter(age > 60)
+
+new_data_pipe
+
+```
+
+#### Assignment Operator (<-)
+
+The assignment operator allows you save out changes you have made, for example, changes to datasets, or new objects you have created, like a table. You can make changes to a dataset, which will print in the console window. However, you must use the assignment operator to store out these changes.
+
+Below is an example of how to create a dataset that contains only patients in the "Drug A" group and how to save this dataset out. You do not need to know all of these functions at this point, although you will learn them in the future.
+
+**Note:** the **trial** dataset is automatically loaded when you load the {gtsummary} package, which we've done above, so this dataset does not have to be manually loaded like the **lesson1a** dataset.
+
+```{r section1d1}
+
+# Here we are only keeping patients from the "Drug A" group
+trial %>%
+  filter(trt == "Drug A")
+
+```
+
+You can see that the data that prints out only includes observations where "trt" is "Drug A". While this dataset printed out, it no longer exists, because we did not give it a name and save it out. You can see this below - the dataset still has all observations.
+
+```{r section1d2}
+
+# Print original dataset to confirm no changes
+trial
+
+```
+
+Sometimes, this is fine - for example, if you simply want to take a look at the data. If you need to use this data again, give the dataset a name and use the assignment operator.
+
+```{r section1d3}
+
+# Save out dataset including only patients in drug group
+trial_drug <-
+  trial %>%
+  filter(trt == "Drug A")
+
+trial_drug
+  
+```
+
+Here, we've called this dataset **trial_drug**, and you can see that this dataset only includes the patients in the "Drug A" group.
+
+#### `head` function
+
+The `head` function allows you to see the first few rows of your dataset in the console window, including the variable names and variable types at the top of the table. (Using the code `head(lesson1a)` will also give you the same results.)
+
+```{r section1e}
+
+# Look at the first few rows of your data
+lesson1a %>% head()
+
+```
+
+#### `table` function
+
+The `table` function is the basic function for creating one-way and two-way tables. However, these tables often do not provide much information and are not formatted nicely or in a way that can easily be copied to a Word document.
+
+
+
+Here is an example of a one-way table using the `table` function:
+
+```{r section1e1}
+
+# Create one-way table for death
+table(trial$death)
+
+```
+
+While this table does not give column names and is not formatted, you can see that it shows that there are `r table(trial$death)[2][[1]]` patients who died, and `r table(trial$death)[1][[1]]` patients who did not.
+
+Here is an example of a two-way table:
+
+```{r section1e2}
+
+# Create two-way table for response and death
+table(trial$response, trial$death)
+
+```
+
+Unlike the one-way table, these results are not easily interpretable. If you are not familiar with R code or with your data, this table is not very useful. There is nothing to indicate which variable is represented by the columns, and which variable is represented by the rows. The table only provides counts, and does not provide any percents.
+
+If you print the "response" variable, you can also see that there are "NA" values in the response variable, which the table doesn't include at all.
+
+```{r section1e3}
+
+# Print response variable values
+trial$response
+
+```
+
+#### `tbl_summary` function
+
+The `tbl_summary` function (from the {gtsummary} package) creates and formats tables so that it is clear what the columns and rows are, and also includes any missing values. This function also formats the tables in a way that can easily be copied and pasted into a Word document for publication.
+
+In this course, we will be using the `tbl_summary` function instead of the `table` function for all tables that will be displayed. There are some cases where the `table` function will be used in conjunction with another function to perform an analysis, but these tables will not be displayed.
+
+**Note:** Tables created by the `tbl_summary` package will not display in the "console" window, and will instead display in the "Viewer" pane on the bottom right-hand side of the screen.
+
+The `tbl_summary` function can create one-way and two-way tables for binary and categorical variables. It can also create tables which include summary statistics for continuous variables (by default, median and quartiles). The `select` function allows you to list the variables you would like to include in your table. Here, we are only showing sex in the table.
+
+Here is an example of a one-way table created using the `tbl_summary` function:
+
+```{r section1f, warning = FALSE}
+
+# Create a formatted table for the "sex" variable
+tbl_summary(
+  lesson1a %>% select(sex) 
+)
+
+```
+
+As you can see, there is currently only one row in the table. If a variable has values of 0 and 1 only, the `tbl_summary` function gives the percentage of values that are equal to 1 by default. If you would like to see the percentage of both 0 and 1 values, you can use the "type" option and specify that the variable is categorical.
+
+```{r section1g, warning = FALSE}
+
+# Create a formatted table for the "sex" variable, showing both "0" and "1" values
+tbl_summary(
+  lesson1a %>% select(sex),
+  type = list(sex = "categorical")
+)
+
+```
+
+<br>
+
+This tells you that the "sex" variable has no missing data because the table only shows values of "0" and "1", with no "NA" values. It also shows that there only 2 different values, all of which are integers (i.e. whole numbers). Now this is useful because if you had been sent a set of data for sex and the `tbl_summary` function told you that there were 4 unique values, some of which were not integers, you would want to check the data further before doing any analysis.
+
+Since 0 = man and 1 = woman based on the variable label (see the first row of the table), this means that there were `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(sex = "categorical"), statistic = list(sex = "{n}")), variable = "sex", level = "0")` men in the `r nrow(lesson1a)` patients and that they constituted `r inline_text(tbl_summary(lesson1a %>% select(sex), type = list(sex = "categorical"), statistic = list(sex = "{p}%")), variable = "sex", level = "0")` of the population.
+
+The `tbl_summary` function can also be used for two-way tables. The `select` function is used to select both variables of interest, and the name of the column variable is specified in the `by` statement. As you can see, this table is much clearer, as well as nicer looking, than the table created by the `table` function. It also includes information on the missing (NA) values, which are excluded when using the `table` function.
+
+```{r section1h}
+
+# Create two-way table for response and death using "table" function
+table(trial$response, trial$death)
+
+# Create two-way table for response and death using "tbl_summary" function
+tbl_summary(
+  trial %>% select(response, death),
+  by = death,
+  type = list(response = "categorical")
+)
+
+```
+
+#### `skim` function
+
+The `skim` function (from the {skimr} package) gives basic summary data.
+
+```{r section1i}
+
+# Show summary statistics for "age"
+skim(lesson1a$age)
+
+```
+
+So of the `r nrow(lesson1a)` patients, there are no patients who are missing the "age" variable (the "n_missing" column = 0), the mean age (a type of average, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.mean), digits = 4)` (column "mean"), the standard deviation (again, I’ll explain next week) is `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.sd), digits = 4)` (column "sd"). The youngest patient was `r skim(lesson1a$age) %>% pull(numeric.p0)` (column "p0") and the oldest is `r skim(lesson1a$age) %>% pull(numeric.p100)` (column "p100"). 
+
+This simple command gives us our first lesson about the dangers of statistical software: it gives the age to within a few days. So if you were reporting results for a journal, you would never say that mean age was `r style_sigfig(skim(lesson1a$age) %>% pull(numeric.mean), digits = 4)`, you’d probably just say `r round(skim(lesson1a$age) %>% pull(numeric.mean), 0)`.
+
+"p0" here represents the minimum age in the dataset - `r skim(lesson1a$age) %>% pull(numeric.p0)`. "p100" represents the maximum age of `r skim(lesson1a$age) %>% pull(numeric.p100)`. "p25", "p50" and "p75" are the centiles. We'll talk more about this later, but briefly, "p25 = `r skim(lesson1a$age) %>% pull(numeric.p25)`" means that 25% of the patients were aged `r skim(lesson1a$age) %>% pull(numeric.p25)` and younger. The number by "p50" (i.e. `r skim(lesson1a$age) %>% pull(numeric.p50)`) is the median.
+
+#### `mutate` function
+
+The `mutate` function is used to create new variables, or replace variable values.
+
+The code below means: create a new variable called "a" and set it equal to 1 in all observations. The "<-" indicator means to then save out this new dataset including the "a" variable as **lesson1a**, replacing the old **lesson1a** dataset that does not include "a".
+
+```{r section1j}
+
+# Save the data out as "lesson1a"
+lesson1a <-
+  lesson1a %>% # Take the current "lesson1a" dataset
+  mutate(a = 1) # And add a variable called "a" with a value of "1"
+
+```
+
+Since we have already created the variable "a" above, the code below means: replace the variable "a" with the value of 2 in all observations.
+
+```{r section1k}
+
+# Replace the value of "a" with "2" for all observations
+lesson1a <-
+  lesson1a %>%
+  mutate(a = 2)
+
+```
+
+You can also replace one variable with the value of another variable. The code below means: replace the variable "a" with whatever the value of "p1" is in each observation.
+
+```{r section1l}
+
+# Replace the value of "a" with the value of "p1" for all observations
+lesson1a <-
+  lesson1a %>%
+  mutate(a = p1)
+
+```
+
+You can also calculate values inside a `mutate` statement. For example, you can create an average of the four variables "p1" - "p4".
+
+```{r section1m}
+
+# Replace "a" with the average of "p1", "p2", "p3" and "p4"
+lesson1a <-
+  lesson1a %>%
+  mutate(a = (p1 + p2 + p3 + p4)/4)
+
+```
+
+#### `if_else` function
+
+The `if_else` function can be used with the `mutate` function to assign values to a variable based on a specific condition.
+
+The first argument in the `if_else` function is the "if" condition. The second argument is the value of the variable for observations that meet the "if" condition. The third argument is the value of the variable for observations that do not meet the "if" condition.
+
+For example, the code below says: replace the value of "a" with "p1" if "p1" is greater than 4. Otherwise, keep the original value "a".
+
+```{r section1n}
+
+# Replace the value of "a" with "p1" if the value of "p1" is greater than 4
+lesson1a <-
+  lesson1a %>%
+  mutate(a = if_else(p1 > 4, p1, a))
+
+```
+
+In this case, we are only replacing for females. Note that when you use an equal sign after an "if" statement you have to use two of them in a row to signify "is equal to" (==) rather than "make equal to" (=).
+
+```{r section1o}
+
+# Replace the value of "a" with "p1" if "sex" equals 1 (female)
+lesson1a <-
+  lesson1a %>%
+  mutate(a = if_else(sex == 1, p1, a))
+
+```
+
+The `|` sign means "or", such that the code below means: set "a" equal to 1 if "y" is equal to either "campus" or "peds". Otherwise, keep the original value of "a".
+
+```{r section1p}
+
+# Replace the value of "a" with "1" if "y" is equal to either "campus" or "peds"
+lesson1a <-
+  lesson1a %>%
+  mutate(a = if_else(y == "campus" | y == "peds", 1, a))
+
+```
+
+You can give check for more than one condition by using the `&` sign. This code looks for observations where the patient is female (sex == 1) and the patient is older than 50 (age > 50). This creates a subgroup of older women: "a" is 1 for older women and 0 for everybody else.
+
+```{r section1q}
+
+# Replace the value of "a" with 1 if sex equals 1 (female) and age > 50
+# For all other observations, replace "a" with 0
+lesson1a <-
+  lesson1a %>%
+  mutate(a = if_else(sex == 1 & age > 50, 1, 0))
+
+```
+
+#### Renaming and Labeling Variables
+
+To rename a variable, you can use the `rename` function. We have to make sure that the new variable name overwrites the old variable name, so we have to use the assignment operator (`<-`).
+
+```{r section1r}
+
+# Rename variable y
+lesson1a <-
+  lesson1a %>%
+  rename(location = y)
+
+```
+
+To label a variable, use `attr`. This automatically overwrites the old label.
+
+```{r section1s}
+
+# Print the variable with the old label
+str(trial$response)
+
+# Label the response variable
+attr(trial$response, "label") <- "0: No Tumor Response, 1: Tumor Response"
+
+# Confirm new label is correct
+str(trial$response)
+
+```
+
+### Using Help
+
+The help feature in R can be useful if you know the name of the function that you need assistance with. Sometimes, the help file for a function can be very technical at the top, but if you scroll to the bottom, there is an "examples" section which will show different examples of the code. You can copy and paste these examples and run them on your own machine which can help you better understand how to use the functions. To access the help file for a function, you can type `?functionname` (e.g., `?skim`) or `?packagename::functionname` if you have not loaded the package using the `library` command.
+
+Unfortunately, the R help function is not very useful if you don't know the function you are trying to use. However, there are some websites that can be useful to learn more about the common functions used in the course.
+
+#### Data Manipulation
+
+Most of the data manipulation we will be doing in this course, such as creating variables and selecting specific variables and observations to keep, is done using functions from the {dplyr} package (part of the {tidyverse} package). This includes the `select` and `mutate` functions that you've seen in this lesson, as well as other functions you will see in future lessons, like `filter`. Click [here](https://dplyr.tidyverse.org/) if you need help remembering which function to use, or need code examples for these functions.
+
+#### Statistical Functions
+
+Most of the statistical functions that will be used in this course are included in the {stats} package, which is pre-loaded when you install R. These include the following functions, among others: `quantile`, `binom.test`, `t.test`, `wilcox.test`, `fisher.test`, `lm` and `glm`. You can access the help files for these using the `?functionname` notation, for example, `?quantile`.
+
+If you need help deciding which statistical functions to use, the best place to start would be searching through the statistics course online book, using the magnifying glass option at the top left. For example, if you search "logistic regression", you can find section 5.2.4 "Logistic regression", which will take you to the section of the course on this topic.
+
+#### Tables
+
+For more information on the {gtsummary} package, which creates formatted tables, click [here](http://www.danieldsjoberg.com/gtsummary/).

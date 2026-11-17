@@ -24,136 +24,214 @@ example6a <- readRDS(here::here("Data", "Week 6", "example6a.rds"))
 
 ## R Instructions
 
-### Diagnostic Tests
+### Introductory remarks on time-to-event analysis
 
-For this, we will use the `epi.tests` function from the {epiR} package.
+In a typical study of a cancer drug, patients are entered on the study and then followed until death. When the data are analyzed, some patients will have died but others will still be alive. For instance, if John Doe entered the study on 4/1/2017 and died on 3/31/2019, we know that he survived exactly two years on the drug. However, if Jane Doe entered the study on 7/1/2018 and was still alive on 6/30/2019, when the study was closed for analysis, we know that she lived for more than one year, but not how much longer. We say that Jane Doe was "censored". 
 
-Imagine you want to calculate the sensitivity. If you already know the counts for disease-positive and disease-negative, and test-positive and test-negative, you can easily create a table and use the `epi.tests` function.
+When running statistical analyses, we cannot ignore the fact that Jane’s data point "1 year survival" is actually ">1 year survival". This means that, for instance, we couldn’t calculate the mean of Jane and Joe’s survival and say that average survival was 1.5 years. 
+
+The approach used in time-to-event analysis is known as "cumulative probability". One way to think about this is the fairy tale about the brave knight who has to complete a series of challenges set by the king in order to win the hand of the princess in marriage. Imagine that he has to climb the wall of death, cross the valley of mists and slay the dragon. We might estimate the probability that he will die on each task as, respectively, 20%, 10% and 30%. In other words, he has an 80% chance of climbing the wall of death, a 90% chance of getting across the valley of mists and a 70% chance of slaying the dragon. To calculate the probability that he lives to marry the princess, we multiply those probabilities together to get 80% × 90% × 70% = 50%. 
+
+Now let’s apply that to a cancer study. As a simple example, imagine that there are 10 patients and that one dies every month. After four months, four patients have died and so the probability of survival at four months is, obviously, 60%. But let’s think about that using the same methods as we did for the fairy tale. There were 10 patients at the start of the trial, and one died at the end of the first month. Hence the chance of surviving the first month is 90%. Nine patients were alive at the start of the second month and 8 survived till the end of the month, giving a probability of surviving the second month as 8 ÷ 9 = 88.89%. We can do similar calculations for month 3 (7 ÷ 8 = 87.50%) and month 4 (6 ÷ 7 = 85.71%). If we multiply those probabilities together, we get 90% × 88.89% × 87.50% × 85.71% = 60% survival probability, exactly what we would expect. 
+
+However, let's imagine that the research assistant comes back to us, saying that there has been a miscommunication. The patient who was said to have died after two months actually went back to her home country and we don’t know anything more about her, so she didn’t die, she was censored. Let’s do the calculation again. The first month is unchanged: 9 out of 10 = 90% survival rate. Nine patients were alive at the start of the second month and all were alive at the end of the month, a 100% survival rate. At the start of the third month, we only have 8 patients (10 minus 1 who died and 1 who was censored), so the probability of surviving month 3 is 7 ÷ 8 = 87.5% and the probability of surviving month 4 is 6 ÷ 7 = 85.71%. Now when we multiply 90% × 100% × 87.50% × 85.71% we get 67.5%. Now let’s imagine that the woman is actually found to be still alive, 8 months in. We now calculate the 4 months probability as 90% for month 1, 100% for month 2 (there were no deaths), 8 ÷ 9 = 88.89% for month 3 and 7 ÷ 8 = 87.50% for months 4, a survival probability of 90% × 100% × 88.89% × 87.50% = 70%. 
+
+Here are some key takeaways. 
+
+1)	Time-to-event analysis is all about probabilities. Note that 3 patients died in both the second and third example, but it would be unsound to say "Of the ten patients that entered the trial, 3 (30%) died". You would need to say instead, "Three patients died. The probability of survival at four months was 67.5% / 70%" for example 2 / 3. 
+2)	Survival probabilities don’t change until there is a death. In example 2, for instance, there is a 100% chance of surviving the second month, so the survival probabilities at month 1 and 2 are the same. This is why survival curves look like "steps", with the curve being flat (for periods when there are no deaths) and then a step down (when a death occurs). 
+3)	We don’t always have death as an endpoint. It could be cancer progression, change in treatment or in fact anything that takes place over time (in engineering studies, for instance, we look at time to failure of a machine part). So the usual terminology is to talk about “time to event” and the number of "events" rather than "survival" analysis. 
+
+### Time to event data
+
+You need at least two variables to describe a time to event dataset: how long the patients were followed (the time variable), and whether they had the event (e.g. were alive or dead) at last observation (the failure variable). The failure variable is coded 1 if the patient had the event (e.g. died, had a recurrence) and 0 otherwise. You can have any other variables (patient codes, stage of cancer, treatment, hair color, etc.) but these are not essential.
+
+For survival analyses, you need to indicate that your outcome is a time-to-event outcome by providing both the event status, such as death, and time to event, for example time from surgery to death or last followup. The function used to do this is the `Surv` function from the {survival} package. The function is of the form `Surv(t, d)` where "t" is the time variable and "d" is the "failure" variable (e.g. died if 1, alive at last follow-up if 0).
+
+The `survfit` function (also from the {survival} package) describes the survival data. It is common to report the median survival.
 
 
 ``` r
-# Enter the data in the following order to create the 2x2 table
-# Disease-positive, test-positive
-# Disease-negative, test-positive
-# Disease-positive, test-negative
-# Disease-negative, test-negative
-tbl_disease_test <-
-  as.table(matrix(c(670, 202, 74, 640),
-                  nrow = 2, byrow = TRUE))
-# The matrix function allows you to enter in the numbers and convert to a table
-# "nrow = 2" indicates that there should be 2 rows in the table (test-positive and test-negative)
-# "byrow = TRUE" correctly assigns the columns as "disease-positive" first and "disease-negative" second
-
-# Use the "epi.tests" function with the new 2x2 table
-epi.tests(tbl_disease_test)
+# Calculate descriptive statistics on time to event data
+# The "~ 1" indicates that we want survival estimates for the entire group
+survfit(Surv(t, d) ~ 1, data = example6a)
 ```
 
 ```
-##           Outcome +    Outcome -      Total
-## Test +          670          202        872
-## Test -           74          640        714
-## Total           744          842       1586
+## Call: survfit(formula = Surv(t, d) ~ 1, data = example6a)
 ## 
-## Point estimates and 95% CIs:
-## --------------------------------------------------------------
-## Apparent prevalence *                  0.55 (0.52, 0.57)
-## True prevalence *                      0.47 (0.44, 0.49)
-## Sensitivity *                          0.90 (0.88, 0.92)
-## Specificity *                          0.76 (0.73, 0.79)
-## Positive predictive value *            0.77 (0.74, 0.80)
-## Negative predictive value *            0.90 (0.87, 0.92)
-## Positive likelihood ratio              3.75 (3.32, 4.24)
-## Negative likelihood ratio              0.13 (0.11, 0.16)
-## False T+ proportion for true D- *      0.24 (0.21, 0.27)
-## False T- proportion for true D+ *      0.10 (0.08, 0.12)
-## False T+ proportion for T+ *           0.23 (0.20, 0.26)
-## False T- proportion for T- *           0.10 (0.08, 0.13)
-## Correctly classified proportion *      0.83 (0.81, 0.84)
-## --------------------------------------------------------------
-## * Exact CIs
+##       n events median 0.95LCL 0.95UCL
+## [1,] 23     18     27      18      45
 ```
 
-
-
-Your result in this case is that sensitivity is 90%, with a 95% CI 88%, 92%. For reasons that I am not quite sure, most investigators do not cite 95% CI with sensitivity, specificity, etc. so stating just 90% is probably fine.
-
-You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the `epi.2by2` function from week 4 (also from the {epiR} package), the table needs to be flipped so the columns and rows are correctly ordered. As a reminder, you can do this by converting the variables to factors using the `factor` function and using the `levels` option to assign the sort order.
+You often also report the median time of follow-up for survivors, which can easily be calculated manually.
 
 
 ``` r
-# This is the same code for week 4 that reverses the order of columns and rows
-tbl_example6a <-
-  table(
-    factor(example6a$test, levels = c(1, 0)),
-    factor(example6a$disease, levels = c(1, 0))
-  )
+# Calculate median followup for survivors only
+example6a %>%
+  filter(d == 0) %>% # Keep only the surviving patients
+  skim(t) # Remember, "p50" indicates the median
+```
 
-# Calculate sensitivity and specificity from table above
-epi.tests(tbl_example6a)
+
+Table: (\#tab:week6c)Data summary
+
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |5          |
+|Number of columns        |6          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |None       |
+
+
+**Variable type: numeric**
+
+|skim_variable | n_missing| complete_rate| mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|----:|-----:|--:|---:|---:|---:|----:|:-----|
+|t             |         0|             1| 52.6| 61.89| 13|  16|  28|  45|  161|▇▂▁▁▂ |
+
+You can also plot the survival curve by adding the `plot` function around your `survfit` function:
+
+
+``` r
+# Plot survival curve
+plot(survfit(Surv(t, d) ~ 1, data = example6a))
+```
+
+<img src="06-week6_files/figure-html/week6d-1.png" alt="" width="672" />
+
+Use "~ covariate" instead of "~ 1" to plot survival curves by group:
+
+
+``` r
+# Plot survival curve by group (drug vs no drug)
+# "~ drug" indicates to plot by "drug", vs "~ 1" which plots for all patients
+plot(survfit(Surv(t, d) ~ drug, data = example6a))
+```
+
+<img src="06-week6_files/figure-html/week6e-1.png" alt="" width="672" />
+
+As you may notice, this graph shows both lines in black, which makes it difficult to determine which line corresponds to which group. However, you can add color to the lines to differentiate them. The order of the colors corresponds to the order of the variable values - in this case, drug is "0" and "1", so the following code creates a graph where the placebo group (drug = 0) is plotted in blue and the drug group (drug = 1) is plotted in red.
+
+
+``` r
+# Plot survival curve by group (drug vs no drug) with colors
+plot(survfit(Surv(t, d) ~ drug, data = example6a), col = c("blue", "red"))
+```
+
+<img src="06-week6_files/figure-html/week6e1-1.png" alt="" width="672" />
+
+Graphs can be saved out by using the "Export" option at the top of the "Plots" tab.
+
+The `survdiff` function compares survival for different groups. For example, the following code compares survival for each value of the variable "drug" (generally 0 and 1).
+
+
+``` r
+# Compare survival between drug groups
+survdiff(Surv(t, d) ~ drug, data = example6a)
 ```
 
 ```
-##           Outcome +    Outcome -      Total
-## Test +           20          180        200
-## Test -           10         1820       1830
-## Total            30         2000       2030
+## Call:
+## survdiff(formula = Surv(t, d) ~ drug, data = example6a)
 ## 
-## Point estimates and 95% CIs:
-## --------------------------------------------------------------
-## Apparent prevalence *                  0.10 (0.09, 0.11)
-## True prevalence *                      0.01 (0.01, 0.02)
-## Sensitivity *                          0.67 (0.47, 0.83)
-## Specificity *                          0.91 (0.90, 0.92)
-## Positive predictive value *            0.10 (0.06, 0.15)
-## Negative predictive value *            0.99 (0.99, 1.00)
-## Positive likelihood ratio              7.41 (5.55, 9.89)
-## Negative likelihood ratio              0.37 (0.22, 0.61)
-## False T+ proportion for true D- *      0.09 (0.08, 0.10)
-## False T- proportion for true D+ *      0.33 (0.17, 0.53)
-## False T+ proportion for T+ *           0.90 (0.85, 0.94)
-## False T- proportion for T- *           0.01 (0.00, 0.01)
-## Correctly classified proportion *      0.91 (0.89, 0.92)
-## --------------------------------------------------------------
-## * Exact CIs
+##         N Observed Expected (O-E)^2/E (O-E)^2/V
+## drug=0 12       11     7.31      1.86       3.4
+## drug=1 11        7    10.69      1.27       3.4
+## 
+##  Chisq= 3.4  on 1 degrees of freedom, p= 0.07
 ```
 
-As you can see, `epi.tests` also provides other information. Specificity and positive and negative predictive value you should know (remember that sensitivity is the probability of a positive result if you have the disease; specificity is the probability of a negative result if you don't have the disease; positive predictive value is the probability you have the disease if you test positive; negative predictive value is the probability that you don't have the disease if you test negative). True prevalence is the proportion of patients with disease in the data set. Apparent prevalence is a pretty misleading term and is the proportion of patients who test positive. You can generally ignore that, it isn't a commonly used statistic. Positive and negative likelihood ratios are used in Bayesian approaches to diagnostic tests and aren't taught on this course, so don't worry about those for now. 
-
-See instructions from lecture 5 on how to get an area-under-the-curve.
-
-## Assignments
+Using the `summary` function with `survfit` lists all available followup times along with survival probabilities (you get a 95% C.I. as well):
 
 
 ``` r
-# Copy and paste this code to load the data for week 6 assignments
-lesson6a <- readRDS(here::here("Data", "Week 6", "lesson6a.rds"))
-lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
-lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
-lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
+# Survival probabilities for the entire cohort
+summary(survfit(Surv(t, d) ~ 1, data = example6a))
 ```
 
-- **lesson6a** and **lesson6b**: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson6a.rds) and a general hospital population (lesson6b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
+```
+## Call: survfit(formula = Surv(t, d) ~ 1, data = example6a)
+## 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##     5     23       2   0.9130  0.0588       0.8049        1.000
+##     8     21       2   0.8261  0.0790       0.6848        0.996
+##     9     19       1   0.7826  0.0860       0.6310        0.971
+##    12     18       1   0.7391  0.0916       0.5798        0.942
+##    13     17       1   0.6957  0.0959       0.5309        0.912
+##    18     14       1   0.6460  0.1011       0.4753        0.878
+##    23     13       2   0.5466  0.1073       0.3721        0.803
+##    27     11       1   0.4969  0.1084       0.3240        0.762
+##    30      9       1   0.4417  0.1095       0.2717        0.718
+##    31      8       1   0.3865  0.1089       0.2225        0.671
+##    33      7       1   0.3313  0.1064       0.1765        0.622
+##    34      6       1   0.2761  0.1020       0.1338        0.569
+##    43      5       1   0.2208  0.0954       0.0947        0.515
+##    45      4       1   0.1656  0.0860       0.0598        0.458
+##    48      2       1   0.0828  0.0727       0.0148        0.462
+```
 
-- **lesson6c**: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy? 
+``` r
+# You can also summarize the survival by group:
+summary(survfit(Surv(t, d) ~ drug, data = example6a))
+```
 
-- **lesson6d**: This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high-grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:
-  - How good is the current method for determining whether patients should be referred to adjuvant therapy?
-  - It has been suggested that a statistical model using stage and grade would be better than the current risk grouping. How good do you think this model would be?
-  - Does the marker add information to the model of stage and grade?
-  - Does imaging add information to the model including stage, grade and the marker?
+```
+## Call: survfit(formula = Surv(t, d) ~ drug, data = example6a)
+## 
+##                 drug=0 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##     5     12       2   0.8333  0.1076       0.6470        1.000
+##     8     10       2   0.6667  0.1361       0.4468        0.995
+##    12      8       1   0.5833  0.1423       0.3616        0.941
+##    23      6       1   0.4861  0.1481       0.2675        0.883
+##    27      5       1   0.3889  0.1470       0.1854        0.816
+##    30      4       1   0.2917  0.1387       0.1148        0.741
+##    33      3       1   0.1944  0.1219       0.0569        0.664
+##    43      2       1   0.0972  0.0919       0.0153        0.620
+##    45      1       1   0.0000     NaN           NA           NA
+## 
+##                 drug=1 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##     9     11       1    0.909  0.0867       0.7541        1.000
+##    13     10       1    0.818  0.1163       0.6192        1.000
+##    18      8       1    0.716  0.1397       0.4884        1.000
+##    23      7       1    0.614  0.1526       0.3769        0.999
+##    31      5       1    0.491  0.1642       0.2549        0.946
+##    34      4       1    0.368  0.1627       0.1549        0.875
+##    48      2       1    0.184  0.1535       0.0359        0.944
+```
 
-**And now, a complete different type of question...**
+The `times` option allows you to get survival probabilities for specific timepoints. For example, at 1 year, 2 years and 5 years:
 
-In this question, I give you an experimental set up _but no data._ What you have to do is give me an answer. Now obviously you can’t give me any numbers because I didn’t give you any. However, you can write an answer with some blanks.
 
-For example, if you hadn't been given any data, an answer to lesson5b.rds might be:
+``` r
+# Get survival probabilities for specific time points in full dataset
+# "~ 1" indicates all patients
+# "t" variable is in months, so 12, 24 and 60 months used for 1, 2 and 5 years
+summary(survfit(Surv(t, d) ~ 1, data = example6a), times = c(12, 24, 60))
+```
 
-<div class="quote-container">
+```
+## Call: survfit(formula = Surv(t, d) ~ 1, data = example6a)
+## 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##    12     18       6   0.7391  0.0916       0.5798        0.942
+##    24     11       4   0.5466  0.1073       0.3721        0.803
+##    60      1       8   0.0828  0.0727       0.0148        0.462
+```
 
->? of the ? (?%) patients on chemotherapy regime a responded compared to ? of the ? patients on regime b (?%). The difference between groups (?%, 95% CI ?, ?) was / was not statistically significant (p = ?). Response by sex and group is shown in the table. The interaction term for group and sex was / was not significant (p = ?).
+If you'd like this information formatted in a table, you can use the function `tbl_survfit` from {gtsummary}. You can use the exact same code as above and simply substitute `tbl_survfit` for the `summary` function:
 
-</div>
 
+``` r
+tbl_survfit(survfit(Surv(t, d) ~ 1, data = example6a), times = c(12, 24, 60))
+```
 
 ```{=html}
 <div id="iwrgxmosvm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -608,28 +686,1579 @@ For example, if you hadn't been given any data, an answer to lesson5b.rds might 
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Chemotherapy">Chemotherapy</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Male">Male</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Female">Female</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'><strong>Time 12</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'><strong>Time 24</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span class='gt_from_md'><strong>Time 60</strong></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="Chemotherapy" class="gt_row gt_left">Regime a</td>
-<td headers="Male" class="gt_row gt_left">? of ? (?%) responded</td>
-<td headers="Female" class="gt_row gt_left">? of ? (?%) responded</td></tr>
-    <tr><td headers="Chemotherapy" class="gt_row gt_left">Regime b</td>
-<td headers="Male" class="gt_row gt_left">? of ? (?%) responded</td>
-<td headers="Female" class="gt_row gt_left">? of ? (?%) responded</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">Overall</td>
+<td headers="stat_1" class="gt_row gt_center">74% (58%, 94%)</td>
+<td headers="stat_2" class="gt_row gt_center">55% (37%, 80%)</td>
+<td headers="stat_3" class="gt_row gt_center">8.3% (1.5%, 46%)</td></tr>
   </tbody>
   
 </table>
 </div>
 ```
 
-So, I want you to give similar answers to the following research questions:
+The `coxph` function (from {survival}) is for regression analyses. For example, a univariate regression for the effects of "drug" on survival:
 
-- **lesson6e**: Hospitalized neutropenic patients were randomized to receive drug a or placebo. Bloods were taken every day. The time until patients were no longer neutropenic was measured (all patients eventually did get better).
 
-- **lesson6f**: A new lab machine sometimes fails to give a readout with the result that the sample is wasted. To try and get a handle on this problem, a researcher carefully documents the number of failures for the 516 samples that she analyzes in the month of September. 
+``` r
+# Create Cox regression model
+coxph(Surv(t, d) ~ drug, data = example6a)
+```
 
-- **lesson6g**: Drug a appears to be effective against cancer cells _in vitro._ Researchers create two new drugs, b and c, by making slight molecular rearrangements of drug a. The three drugs are then added to tumor cells in the test tube and the degree of cell growth measured. 
+```
+## Call:
+## coxph(formula = Surv(t, d) ~ drug, data = example6a)
+## 
+##         coef exp(coef) se(coef)      z      p
+## drug -0.9155    0.4003   0.5119 -1.788 0.0737
+## 
+## Likelihood ratio test=3.38  on 1 df, p=0.06581
+## n= 23, number of events= 18
+```
+
+``` r
+# You can use the tbl_regression function with Cox models to see the hazard ratios
+example6a_cox <- coxph(Surv(t, d) ~ drug, data = example6a)
+tbl_regression(example6a_cox, exponentiate = TRUE)
+```
+
+```{=html}
+<div id="eaoptgxhge" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eaoptgxhge table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#eaoptgxhge thead, #eaoptgxhge tbody, #eaoptgxhge tfoot, #eaoptgxhge tr, #eaoptgxhge td, #eaoptgxhge th {
+  border-style: none;
+}
+
+#eaoptgxhge p {
+  margin: 0;
+  padding: 0;
+}
+
+#eaoptgxhge .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#eaoptgxhge .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#eaoptgxhge .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#eaoptgxhge .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#eaoptgxhge .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#eaoptgxhge .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#eaoptgxhge .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#eaoptgxhge .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#eaoptgxhge .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#eaoptgxhge .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#eaoptgxhge .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#eaoptgxhge .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#eaoptgxhge .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#eaoptgxhge .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#eaoptgxhge .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eaoptgxhge .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#eaoptgxhge .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#eaoptgxhge .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#eaoptgxhge .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eaoptgxhge .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#eaoptgxhge .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eaoptgxhge .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#eaoptgxhge .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eaoptgxhge .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#eaoptgxhge .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#eaoptgxhge .gt_left {
+  text-align: left;
+}
+
+#eaoptgxhge .gt_center {
+  text-align: center;
+}
+
+#eaoptgxhge .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#eaoptgxhge .gt_font_normal {
+  font-weight: normal;
+}
+
+#eaoptgxhge .gt_font_bold {
+  font-weight: bold;
+}
+
+#eaoptgxhge .gt_font_italic {
+  font-style: italic;
+}
+
+#eaoptgxhge .gt_super {
+  font-size: 65%;
+}
+
+#eaoptgxhge .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#eaoptgxhge .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#eaoptgxhge .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#eaoptgxhge .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#eaoptgxhge .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#eaoptgxhge .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#eaoptgxhge .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#eaoptgxhge .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#eaoptgxhge div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">drug</td>
+<td headers="estimate" class="gt_row gt_center">0.40</td>
+<td headers="conf.low" class="gt_row gt_center">0.15, 1.09</td>
+<td headers="p.value" class="gt_row gt_center">0.074</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="4"><span class='gt_from_md'>Abbreviations: CI = Confidence Interval, HR = Hazard Ratio</span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+```
+
+The following multivariable model also includes some demographic and medical characteristics:
+
+
+``` r
+# Create multivariable Cox regression model
+# You can use the pipe operator (%>%) to show the tbl_regression table directly
+# without storing the Cox model
+coxph(Surv(t, d) ~ drug + age + sex + marker, data = example6a) %>%
+  tbl_regression(exponentiate = TRUE)
+```
+
+```{=html}
+<div id="lwczjxtfnq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lwczjxtfnq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lwczjxtfnq thead, #lwczjxtfnq tbody, #lwczjxtfnq tfoot, #lwczjxtfnq tr, #lwczjxtfnq td, #lwczjxtfnq th {
+  border-style: none;
+}
+
+#lwczjxtfnq p {
+  margin: 0;
+  padding: 0;
+}
+
+#lwczjxtfnq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lwczjxtfnq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lwczjxtfnq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lwczjxtfnq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lwczjxtfnq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lwczjxtfnq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lwczjxtfnq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lwczjxtfnq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lwczjxtfnq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lwczjxtfnq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lwczjxtfnq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lwczjxtfnq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lwczjxtfnq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lwczjxtfnq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lwczjxtfnq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwczjxtfnq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lwczjxtfnq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lwczjxtfnq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lwczjxtfnq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwczjxtfnq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lwczjxtfnq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwczjxtfnq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lwczjxtfnq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwczjxtfnq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lwczjxtfnq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lwczjxtfnq .gt_left {
+  text-align: left;
+}
+
+#lwczjxtfnq .gt_center {
+  text-align: center;
+}
+
+#lwczjxtfnq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lwczjxtfnq .gt_font_normal {
+  font-weight: normal;
+}
+
+#lwczjxtfnq .gt_font_bold {
+  font-weight: bold;
+}
+
+#lwczjxtfnq .gt_font_italic {
+  font-style: italic;
+}
+
+#lwczjxtfnq .gt_super {
+  font-size: 65%;
+}
+
+#lwczjxtfnq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lwczjxtfnq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lwczjxtfnq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lwczjxtfnq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lwczjxtfnq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lwczjxtfnq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lwczjxtfnq .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lwczjxtfnq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lwczjxtfnq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">drug</td>
+<td headers="estimate" class="gt_row gt_center">0.17</td>
+<td headers="conf.low" class="gt_row gt_center">0.05, 0.65</td>
+<td headers="p.value" class="gt_row gt_center">0.010</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="estimate" class="gt_row gt_center">1.01</td>
+<td headers="conf.low" class="gt_row gt_center">0.97, 1.06</td>
+<td headers="p.value" class="gt_row gt_center">0.6</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">sex</td>
+<td headers="estimate" class="gt_row gt_center">2.76</td>
+<td headers="conf.low" class="gt_row gt_center">0.88, 8.65</td>
+<td headers="p.value" class="gt_row gt_center">0.081</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">marker</td>
+<td headers="estimate" class="gt_row gt_center">0.45</td>
+<td headers="conf.low" class="gt_row gt_center">0.19, 1.03</td>
+<td headers="p.value" class="gt_row gt_center">0.059</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="4"><span class='gt_from_md'>Abbreviations: CI = Confidence Interval, HR = Hazard Ratio</span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+```
+
+So, some typical code to analyze a dataset:
+
+
+``` r
+# Get median survival and number of events for group
+# Use the "Surv" function to indicate the event status and time to event
+survfit(Surv(t, d) ~ 1, data = example6a)
+```
+
+```
+## Call: survfit(formula = Surv(t, d) ~ 1, data = example6a)
+## 
+##       n events median 0.95LCL 0.95UCL
+## [1,] 23     18     27      18      45
+```
+
+``` r
+# Get median followup for survivors
+example6a %>%
+  filter(d == 0) %>%
+  skim(t)
+```
+
+
+Table: (\#tab:week6k)Data summary
+
+|                         |           |
+|:------------------------|:----------|
+|Name                     |Piped data |
+|Number of rows           |5          |
+|Number of columns        |6          |
+|_______________________  |           |
+|Column type frequency:   |           |
+|numeric                  |1          |
+|________________________ |           |
+|Group variables          |None       |
+
+
+**Variable type: numeric**
+
+|skim_variable | n_missing| complete_rate| mean|    sd| p0| p25| p50| p75| p100|hist  |
+|:-------------|---------:|-------------:|----:|-----:|--:|---:|---:|---:|----:|:-----|
+|t             |         0|             1| 52.6| 61.89| 13|  16|  28|  45|  161|▇▂▁▁▂ |
+
+``` r
+# Show a graph
+plot(survfit(Surv(t, d) ~ 1, data = example6a))
+```
+
+<img src="06-week6_files/figure-html/week6k-1.png" alt="" width="672" />
+
+``` r
+# Look at predictors of survival
+coxph(Surv(t, d) ~ drug + age + sex + marker, data = example6a) %>%
+  tbl_regression(exponentiate = TRUE)
+```
+
+```{=html}
+<div id="sijydijclv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sijydijclv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sijydijclv thead, #sijydijclv tbody, #sijydijclv tfoot, #sijydijclv tr, #sijydijclv td, #sijydijclv th {
+  border-style: none;
+}
+
+#sijydijclv p {
+  margin: 0;
+  padding: 0;
+}
+
+#sijydijclv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sijydijclv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sijydijclv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sijydijclv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sijydijclv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sijydijclv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sijydijclv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sijydijclv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sijydijclv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sijydijclv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sijydijclv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sijydijclv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sijydijclv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sijydijclv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sijydijclv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sijydijclv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sijydijclv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sijydijclv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sijydijclv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sijydijclv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sijydijclv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sijydijclv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sijydijclv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sijydijclv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sijydijclv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sijydijclv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sijydijclv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sijydijclv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sijydijclv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sijydijclv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sijydijclv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sijydijclv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sijydijclv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sijydijclv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sijydijclv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sijydijclv .gt_left {
+  text-align: left;
+}
+
+#sijydijclv .gt_center {
+  text-align: center;
+}
+
+#sijydijclv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sijydijclv .gt_font_normal {
+  font-weight: normal;
+}
+
+#sijydijclv .gt_font_bold {
+  font-weight: bold;
+}
+
+#sijydijclv .gt_font_italic {
+  font-style: italic;
+}
+
+#sijydijclv .gt_super {
+  font-size: 65%;
+}
+
+#sijydijclv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sijydijclv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sijydijclv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sijydijclv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sijydijclv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sijydijclv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sijydijclv .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#sijydijclv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#sijydijclv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>HR</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">drug</td>
+<td headers="estimate" class="gt_row gt_center">0.17</td>
+<td headers="conf.low" class="gt_row gt_center">0.05, 0.65</td>
+<td headers="p.value" class="gt_row gt_center">0.010</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="estimate" class="gt_row gt_center">1.01</td>
+<td headers="conf.low" class="gt_row gt_center">0.97, 1.06</td>
+<td headers="p.value" class="gt_row gt_center">0.6</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">sex</td>
+<td headers="estimate" class="gt_row gt_center">2.76</td>
+<td headers="conf.low" class="gt_row gt_center">0.88, 8.65</td>
+<td headers="p.value" class="gt_row gt_center">0.081</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">marker</td>
+<td headers="estimate" class="gt_row gt_center">0.45</td>
+<td headers="conf.low" class="gt_row gt_center">0.19, 1.03</td>
+<td headers="p.value" class="gt_row gt_center">0.059</td></tr>
+  </tbody>
+  <tfoot>
+    <tr class="gt_sourcenotes">
+      <td class="gt_sourcenote" colspan="4"><span class='gt_from_md'>Abbreviations: CI = Confidence Interval, HR = Hazard Ratio</span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+```
+
+## Assignments
+
+
+``` r
+# Copy and paste this code to load the data for week 6 assignments
+lesson6a <- readRDS(here::here("Data", "Week 6", "lesson6a.rds"))
+lesson6b <- readRDS(here::here("Data", "Week 6", "lesson6b.rds"))
+lesson6c <- readRDS(here::here("Data", "Week 6", "lesson6c.rds"))
+lesson6d <- readRDS(here::here("Data", "Week 6", "lesson6d.rds"))
+```
+
+Try to do at least lesson6a and lesson6b.
+
+- **lesson6a**: This is a large set of data on patients receiving adjuvant therapy after surgery for colon cancer. Describe this dataset and determine which, if any, variables are prognostic in this patient group.
+
+- **lesson6b**: These are time to recurrence data on forty patients with biliary cancer treated at one of two hospitals, one of which treats a large number of cancer patients and one of which does not. Do patients treated at a “high volume” hospital have a longer time to recurrence?
+
+- **lesson6c**: These are data from a randomized trial comparing no treatment, levamisole (an immune stimulant) and levamisole combined with 5FU (a chemotherapy agent) and in the adjuvant treatment of colon cancer. Describe the dataset. What conclusions would you draw about the effectiveness of the different treatments?
+
+- **lesson6d**: More data on time to recurrence by hospital volume. Given this dataset, determine whether patients treated at a “high volume” hospital have a longer time to recurrence.

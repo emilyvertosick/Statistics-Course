@@ -1,8 +1,3 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 ```{r setup2, include=FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -45,9 +40,9 @@ list2env(map(all_data, readRDS), envir = .GlobalEnv)
 
 # Week 2
 
-## Setting Up
+## Setting up
 
-```{r loadpkgs2, echo = TRUE, results = "hide", warning = FALSE, message = FALSE, purl = TRUE}
+```{r loadpkgs2, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Load packages
 library(skimr)
@@ -61,385 +56,193 @@ library(survival)
 library(here)
 library(tidyverse)
 
-# Load data necessary to run Week 2 examples
+# The "trial" and "midwest" datasets are available automatically after you load the packages above
+
+# Load other data necessary to run Week 2 examples
 lesson1a <- readRDS(here::here("Data", "Week 1", "lesson1a.rds"))
+example2a <- readRDS(here::here("Data", "Week 2", "example2a.rds"))
 
 ```
 
 ## R Instructions
 
-### Looking at your data
+### Example Datasets
 
-There are several ways to see the variables in your dataset.
+Normally, to do an analysis in R, you will have to load in a dataset. However, R and some packages come with built-in example datasets. For example, there is a dataset called **trial** that comes built in with the {gtsummary} package. We will use the **trial** dataset for many examples, but you do not need to load it, as the **trial** dataset will automatically be loaded after you run `library(gtsummary)`.
 
-Click on the blue circle with an arrow next to the name of your dataset in the "environment" tab (top right). You will see the number of observations and the number of variables in your dataset next to the name of your dataset.
+### Hypothesis Testing
 
-Underneath, you can see the variable name, the variable type, the values from the first several observations, and variable labels (if they exist). In some datasets, variables are labeled with information on what data is stored in the variable and/or what the variable values mean.
+For this week's assignment, you will need to learn the following functions:
 
-For example, look below at the variable "sex" under **lesson1a**. To the right of the variable name, it shows that this is a numeric variable ("num") and displays the first ten values. What we would expect to find in the "sex" variable is self-explanatory, based on the variable name. However, we don't know how to interpret the values. Luckily, this information is included in the variable label on the following line.
+- `t.test`
+- `wilcox.test`
+- `binom.test`
 
-Other variables have names that are not self-explanatory, for example, "p1". This variable has a label that indicates that this is "pain at time 1 postop". You will also notice that sometimes there are variables that are not labeled. In this dataset, "age" does not have a label - the variable name is self-explanatory, and by looking at the values we can see that this is age in years.
+#### t-test
 
-![ ](images\environment_window_data.jpg)
+This is used to compare a continuous outcome (such as hemoglobin) in two groups (e.g. vegetarians and carnivores, or patients in a randomized trial receiving an anemia treatment or placebo). Now statisticians normally say that the t-test makes two assumptions: (1) data are normally distributed and (2) variances are equal. Don’t worry about assumption (2) for now. Also, assumption (1) has an odd feature: it doesn’t matter once sample sizes get large (for those of you who want to boast that you know a "theorem", this is called the "central limit theorem"). Just how large is "large" is a matter of judgment, but generally speaking, it is said that you can feel okay using a t-test on non-normal data once the sample size is above 30 a group. As it turns out, the t-test is "robust" to non-normal data, even if sample sizes are low. "Robust" means that it gives similar results regardless of whether the data are normally distributed or not. So many people feel comfortable using the t-test for to compare a continuous outcome between two groups even if the data are pretty skewed.
 
-If you would like to print out this information in the console window, you can also use the `str` function:
+**Different forms of the t-test**
 
-```{r section2a1}
+The two main forms of the t-test are "paired" and "unpaired". "Unpaired" is the default.
 
-# Shows a list of variables and labels
-str(lesson1a)
+"Unpaired" is used when, for example, testing marker levels between two groups taking different drugs, as there are different patients in each group:
+
+```{r section2a}
+
+# t-test for marker levels between treatment arms
+t.test(marker ~ trt, data = trial, var.equal = TRUE)
 
 ```
 
-The "environment" tab and the `str` function are useful for getting an overview of the variables available in your dataset, they are not as useful for getting an overview of the data values available.
+The first variable, "marker", is the continuous endpoint that you are comparing by the two groups of the second variable, "trt" (Drug A vs Drug B). Next, you are telling R to get the data from the dataset called **trial**. By default an "unpaired" test is performed. The last option (`var.equal = TRUE`) tells the `t.test` function to treat the two variances as being equal. For this course, you will need to include this option in two-group `t.test` commands but you do not need to know specific details about this concept.
 
-The commands you might think about using for the datasets sent after lecture 2 are given below. I give examples from `lesson1a.rds`, the data I sent after lecture 1.
+A "paired" test would be used for comparing blood pressure taken before and after an intervention, for example, because you are looking at two observations on the same patient.
 
-### Summarizing continuous variables
+<!-- Note: Don't need to specify "var.equal = TRUE" for paired tests, as this is the default, but I thought it might be easier to be consistent across all. -->
 
-The function `skim` will give summary statistics for specified variables.
+Since these are two measurements taken on the same patient, a paired t-test is necessary. To perform a paired t-test, you use the `t.test` function including the outcome variable, the predictor variable, and the option `paired = TRUE`.
 
 ```{r section2b}
 
-# Summary of "age" variable from "lesson1a" dataset
-lesson1a %>% skim(age)
+# paired t-test for blood pressure between "before" and "after" groups
+t.test(example2a$bp_after, example2a$bp_before, paired = TRUE, var.equal = TRUE)
 
 ```
 
-So you can tell you have data on age for `r nrow(lesson1a)` patients ("number of rows" is the number of observations and "n_missing" = 0 indicates no missing values for age), the mean age was about `r round(skim(lesson1a$age) %>% pull(numeric.mean), 0)` years, and the standard deviation of the mean was about `r round(skim(lesson1a$age) %>% pull(numeric.sd), 1)`.
-
-The numbers below "p0", "p25", "p50", "p75" and "p100" are the centiles. "p0" indicates the minimum value, and "p100" indicates the maximum value, so you can tell that the youngest patient was `r skim(lesson1a$age) %>% pull(numeric.p0)` and the oldest was `r skim(lesson1a$age) %>% pull(numeric.p100)`. "p50" is the median (`r skim(lesson1a$age) %>% pull(numeric.p50)` years), and the interquartile range is reported under "p25" and "p75" (`r skim(lesson1a$age) %>% pull(numeric.p25)`, `r skim(lesson1a$age) %>% pull(numeric.p75)`).
+A single sample test compares the mean of a group of observations with some hypothetical value, for example, is the average rate of college-educated adults in the Midwest different than the national average of 32%?
 
 ```{r section2c}
 
-# Summary of "age" within men and women separately
-lesson1a %>%
-  group_by(sex) %>%
-  skim(age)
+# t-test assessing whether the rate of college education is different than 32%
+t.test(midwest$percollege, mu = 32)
 
 ```
 
-The `group_by` function allows you to group your data and perform analyses separately by group. For example, the above code groups by sex, so the mean, standard deviation and other summary statistics are presented separately among men and among women.
-
-### Centiles
-
-You can get R to give you centiles directly by using the `quantile` function. The option `na.rm = TRUE` tells R to ignore any missing (NA) values when calculating the centiles.
+Let’s look at the print out from a t-test in more detail:
 
 ```{r section2d}
 
-# Get centiles for "age" variable
-quantile(lesson1a$age, na.rm = TRUE)
+# t-test for difference in horsepower for manual vs automatic transmission
+t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 ```
 
-The first row of the results says that you are looking at the 0, 25, 50, 75, and 100 centiles, i.e. the minimum and maximum, and the median and quartiles. The second row gives you the actual values. So you could report this as “Median age was `r quantile(lesson1a$age, na.rm = TRUE)[[3]]` (quartiles `r quantile(lesson1a$age, na.rm = TRUE)[[2]]`, `r quantile(lesson1a$age, na.rm = TRUE)[[4]]`)."
+This example is testing whether there is a difference in horsepower (hp) between cars with an automatic transmission (`am == 0`) vs manual transmission (`am == 1`).
 
-You aren't restricted to quartiles with the `quantile` function. For example, you can use the code below to give you the 11th, 45th and 78th centile, as well as 91.5 centile, which would be the 915th highest value in a dataset of 1000 observations. 
+The `t.test` function reports the data and variables you are testing, followed by the t statistic (t), degrees of freedom (df) and p-value. Below that, it states the alternative hypothesis you are testing, prints the mean in each group, and gives the 95% confidence interval around the difference in group means. You don't need to worry about the t statistic or degrees of freedom (df). The numbers you are most interested in are the p-value, the group means, and the 95% confidence interval.
 
-```{r section2e}
+While for an unpaired test, the `t.test` command prints the group means in each group, you may want to report the difference between means.
 
-# Get specific centiles (11th, 45th, 78th, 91.5th) for "age" variable
-quantile(lesson1a$age, probs = c(0.11, 0.45, 0.78, 0.915), na.rm = TRUE)
+To easily calculate and display the mean and standard deviation in each group, the difference in means with 95% confidence interval and the p-value for this difference, you can use the functions `tbl_summary` and `add_difference` from the {gtsummary} package.
+
+```{r section2e1, echo = FALSE, results = "hide", purl = FALSE, warning = FALSE}
+
+hp_test <- t.test(hp ~ am, data = mtcars, var.equal = TRUE)
 
 ```
 
-### One-way tables
+```{r section2e2}
 
-As mentioned in the first lesson, the `tbl_summary` function (from the {gtsummary} package) can be used to create a frequency table, in this case, the number of men and women.
-
-```{r section2f, warning = FALSE}
-
-# Get formatted one-way frequency table
+# Start off with the tbl_summary function
 tbl_summary(
-  lesson1a %>% select(sex), # Specify data to use and variables to include
-  type = list(sex = "categorical") # Show all levels of binary variables
-)
+  # keep the "am" and "hp" variables from the "mtcars" dataset
+  mtcars %>%
+    select(am, hp),
+  # group by "am"
+  by = am,
+  # display mean and SD (rather than default median and IQR)
+  statistic = list(hp = "{mean} ({sd})")
+) %>%
+  # the "add_difference" function adds the difference, 95% confidence interval and p-value
+  add_difference(
+    test = list(hp = "ancova")
+  )
 
 ```
 
-```{r section2g, echo = FALSE, results = "hide", purl = FALSE, warning = FALSE}
+As you can see, this table gives the same results as using the `t.test` function, formatted as a clean table. To get the results for a t-test with equal variances (`var.equal = TRUE` in the `t.test` function), specify "ancova" for the `test` option in the `add_difference` function. If you specify "t.test" for the `test` option in the `add_difference` function, this is the same as running the `t.test` function with `var.equal = FALSE`.
 
-tbl_sex <-
-  tbl_summary(
-    lesson1a %>% select(sex),
-    type = list(sex = "categorical")
-  )
+Now we haven’t discussed the 95% confidence interval yet, but think of it in simple terms as a plausible range of true values of the difference between means. In this data, the average horsepower is `r round(hp_test$estimate[[1]] - hp_test$estimate[[2]], 1)` higher in cars with an automatic transmission, but it could be that, in fact, the true horsepower is between `r round(abs(hp_test$conf.int[[1]]), 1)` lower or `r round(abs(hp_test$conf.int[[2]]), 1)` higher in the automatic group vs the manual group.
 
-tbl_sex_y1 <-
-  tbl_summary(
-    lesson1a %>% select(sex, y),
-    by = y,
-    type = list(sex = "categorical"),
-    percent = "row",
-    statistic = list(sex = "{n}")
-  )
+#### Non-parametric methods
 
-tbl_sex_y2 <-
-  tbl_summary(
-    lesson1a %>% select(sex, y),
-    by = y,
-    type = list(sex = "categorical"),
-    statistic = list(sex = "{p}%")
-  ) %>%
-  add_overall(last = TRUE)
+These are used to compare continuous outcomes in two groups. There are no assumptions about normality or variance. 
 
-tbl_sex_y3 <-
-  tbl_summary(
-    lesson1a %>% select(sex, y),
-    by = y,
-    type = list(sex = "categorical"),
-    percent = "row",
-    statistic = list(sex = "{p}%")
-  )
+Unpaired case, for example, do marker levels differ between the drug and placebo groups?
 
-siteN <-
-  lesson1a %>%
-  filter(y == "campus") %>%
-  nrow()
+```{r section2f1}
+
+# non-parametric test for difference in marker levels by treatment group
+wilcox.test(marker ~ trt, data = trial, exact = FALSE)
 
 ```
 
-<br>
+The inputs for the `wilcox.test` function are very similar to the inputs for the `t.test` function. You will see here we are using the same example - comparing marker levels by treatment group, so the outcome variable ("marker"), the group variable ("trt") and the dataset (**trial**) are all the same. As with the `t.test` function, this is an unpaired test by default.
 
-So there are `r inline_text(tbl_sex, variable = "sex", level = "1")` women and `r inline_text(tbl_sex, variable = "sex", level = "0")` men.
+Paired case, for example, does an intervention cause a change in a patient's blood pressure?
 
-### Two-way tables
+```{r section2g}
 
-The `tbl_summary` function can also give a two-way table, for example, a table that shows where operations were done (remember that the variable "y" gives the part of the hospital) in men and women separately. In the last lesson, a 2-by-2 table was created, but `tbl_summary` can also create a two-way table with more than 2 rows or more than 2 columns.
-
-```{r section2h, warning = FALSE}
-
-# Create a formatted two-way summary table
-tbl_summary(
-  lesson1a %>% select(sex, y), # Select both variables
-  by = y, # The "by" option specifies which will be the column variable
-  type = list(sex = "categorical")
-)
+# paired non-parametric test for difference in "before" and "after" blood pressure measurements
+wilcox.test(example2a$bp_after, example2a$bp_before, paired = TRUE)
 
 ```
 
-<br>
+Single sample, for example, is the rate of college education in the midwest different than the national average (32%)?
 
-This shows that, for example, there were `r siteN` operations done at the main campus, `r inline_text(tbl_sex_y1, variable = "sex", level = "0", column = "campus")` of these were done on men and `r inline_text(tbl_sex_y1, variable = "sex", level = "1", column = "campus")` on women. This shows that `r inline_text(tbl_sex_y2, variable = "sex", level = "0", column = "satellite")` of the operations at the satellite were on men and `r inline_text(tbl_sex_y2, variable = "sex", level = "1", column = "satellite")` on women.
+```{r section2h}
 
-You can use the `add_overall` function to add a column which shows the total across all sites. This is not generally advised - for instance, if the median age in the drug group is 65 and in the placebo group is 67, you don't need to be told that the median age in the cohort is somewhere near 66 - but there are sometimes reasons to report on the whole cohort as well.
+# non-parametric test - is rate of college education different from 32%?
+wilcox.test(midwest$percollege, mu = 32)
+
+```
+
+Note here that you don’t get any parameters for the groups such as means, medians or standard deviations. You also don’t get an estimate for the difference between groups.
+
+#### Binomial test
+
+The binomial test compares a proportion to a hypothesized value. For example, what is the probability that an unbiased coin thrown 100 times would give a result as or more extreme than 60 heads? (This probability is equivalent to the p-value). 
+
+The first argument of `binom.test` is the number of successes, then the number of total tests (total observations). The hypothesized probability is specified by the `p =` option - the default is 0.5 (50%).
 
 ```{r section2i}
 
-# Create a formatted two-way summary table and add column for all patients
-tbl_summary(
-  lesson1a %>% select(sex, y),
-  by = y,
-  type = list(sex = "categorical")
-) %>%
-  # Add a column with totals across all locations
-  # "last = TRUE" puts the column on the right side of the table
-  add_overall(last = TRUE)
+# Compare a proportion to a hypothesized value "p"
+binom.test(60, 100, p = 0.5)
 
 ```
 
-<br>
+You can also use `binom.test` on data from a dataset. For example, if we want to test whether the proportion of women (sex = 1) is different from 50%:
 
-Overall, `r inline_text(tbl_sex_y2, variable = "sex", level = "0", column = "stat_0")` of the patients treated in the hospital were men and `r inline_text(tbl_sex_y2, variable = "sex", level = "1", column = "stat_0")` were women.
+```{r section2j}
 
-By default `tbl_summary` gives column percents (here, the percentage of patients who are men and women at each site). You can also get the row percents (for example, the percentage of women treated at each site) using the `percent` option and specifying "row".
+# The "sum" function adds up the number of observations where sex == 1 (women)
+nwomen <- sum(lesson1a$sex)
+nwomen
 
-```{r section2j, warning = FALSE}
+# The "nrow" function (for "number of rows") counts the total number of observations
+# The "filter" function is used to count only the number of observations where
+# "sex" is not missing (NA)
+ntotal <- nrow(lesson1a %>% filter(!is.na(sex)))
+ntotal
 
-# The two-way summary table can give you row percent instead of column percent
-tbl_summary(
-  lesson1a %>% select(sex, y),
-  by = y,
-  type = list(sex = "categorical"),
-  percent = "row" # get the row percent instead of column percent
-)
-
-```
-
-<br>
-
-This shows that, for example, `r inline_text(tbl_sex_y3, variable = "sex", level = "0", column = "harding")` of men and `r inline_text(tbl_sex_y3, variable = "sex", level = "1", column = "harding")` of women had operations at the "Harding" site.
-
-### Subsetting Data
-
-Sometimes, you will want to subset your data - for instance, by keeping only the women from the full dataset. This can be done using the `filter` function. The `filter` function takes a condition, similar to an `if_else` statement. However, `filter` only keeps observations in the data that meet that condition.
-
-To start, we will count the number of observations in the full dataset, so we will be able to confirm whether we have subset correctly. Passing a dataset to the `count` function will count the number of total observations.
-
-```{r section2k, warning = FALSE}
-
-# Count all patients in the dataset
-lesson1a %>% count()
+# Compare a proportion of patients in a dataset to a hypothesized value "p"
+binom.test(nwomen, ntotal, p = 0.5)
 
 ```
 
-In this example, we can use `filter` to count the number of women in the dataset, or the number of operations on women at the main campus. Don't forget that you need to use two equals signs here.
+Note that above, we used the `filter` function to only count those observations where "sex" was not missing (NA). The function `is.na` gives a value of TRUE if the data is missing (NA) and FALSE if the data is non-missing. The `!` means "is not" in R, so that the statement `!is.na(sex)` is indicating that we want to keep the data where sex **is not** missing.
 
-```{r section2l, warning = FALSE}
+In this dataset, there are no missing values for "sex", but it is a good habit to include this condition so you are using the correct denominator if your dataset does have missing values.
 
-# Count the number of women
-lesson1a %>%
-  filter(sex == 1) %>%
-  count()
+```{r section2k, echo = FALSE, purl = FALSE}
 
-# Count the number of women treated at the main campus
-lesson1a %>%
-  filter(sex == 1 & y == "campus") %>%
-  count()
+sex_test <- binom.test(sum(lesson1a$sex), nrow(lesson1a), p = 0.5)
 
 ```
 
-Note that because we did not use the assignment operator (`<-`) to save these datasets, we did not alter our original dataset. You can use the `count` function to confirm that **lesson1a** still contains all observations.
-
-### Graphing
-
-We won’t be doing much on the graphical presentation of data in this course (this has been called "graphicacy"). The only reason we are doing it here is to get a visual impression of whether data are normally presented (not something you’d want to publish).
-
-The following might sound a little complicated, but just follow it through and everything will be fine.
-
-First, run the following code.
-
-```{r section2m}
-
-# This code creates a histogram of the "age" variable
-ggplot(data = lesson1a,
-       aes(x = age)) +
-  geom_histogram()
-
-```
-
-`ggplot` indicates that you want to create a graph. The dataset **lesson1a** is specified in the `data` option, and `aes(x = age)` means that the variable on the x-axis should be age. `geom_histogram` takes this data and graphs it as a histogram.
-
-One of the things that R does is to choose the number of bars for you. Notice how the graph looks "lumpy". The output also displays a message that tells you that the default number of bars (also called "bins") is 30 and suggests to "pick a better value". This is because you are breaking the data up into too many small pieces.
-
-You can pick the number of bars yourself by using the `bins` option. Try setting the number of bins to 20, which will break the data into fewer pieces.
-
-```{r section2n}
-
-# Here is the same histogram, setting the number of bins to 20
-ggplot(data = lesson1a,
-       aes(x = age)) +
-  geom_histogram(bins = 20)
-
-```
-
-The following code will superimpose a curve for the normal distribution.
-
-```{r section2o}
-
-# Here is the histogram with 20 bins and density curve overlay
-ggplot(data = lesson1a,
-       aes(x = age)) +
-  geom_histogram(aes(y = after_stat(density)), bins = 20) +
-  geom_density()
-
-```
-
-### Further Reading
-
-Only read this if you are feeling really keen...
-
-```{r section2p, warning = FALSE}
-
-# The "ci" function is from the "gmodels" package
-# This gives the mean of age and 90% confidence interval
-ci(lesson1a$age, confidence = 0.90, na.rm = TRUE)
-
-```
-
-This gives the mean of age, its standard error and its 90% confidence interval (I’ll explain confidence intervals next week: one thing you might want to think about is to compare the two numbers given for the confidence interval with the 5% and 95% centile using `quantile(lesson1a$age, na.rm = TRUE)`).
-
-```{r section2q, warning = FALSE}
-
-# The "ci.binom" function gives the same information as "ci" but is used for binary variables
-ci.binom(lesson1a$sex, na.rm = TRUE)
-
-```
-
-For a binary variable, the function `ci.binom` from the {gmodels} package is used. This gives the proportion of women along with 95% confidence intervals (95% is the default, meaning if you don’t specify a level, it assumes you want the 95% confidence interval.)
-
-### Using R as a calculator
-
-R can be used as a calculator:
-
-```{r section2r}
-
-# Multiplication
-7*7
-
-```
-
-`log()` is the natural logarithm (to base e)
-
-```{r section2s}
-
-# Natural logarithm
-log(2.71828)
-
-```
-
-`exp()` is the inverse natural logarithm, that is, if exp(x)=y, e^y^=x
-
-```{r section2t}
-
-# Inverse natural logarithm
-exp(1)
-
-```
-
-`log10()` gives the log to base 10
-
-```{r section2u}
-
-# Base 10 logarithm
-log10(100)
-
-```
-
-`cos(45)` gives the cosine of 45
-
-```{r section2v}
-
-# Cosine
-cos(45)
-
-```
-
-Some of the functions give useful statistical constants.
-
-`pnorm(x)` gives the probability that an observation will be less than mean + x standard deviations.
-
-```{r section2w}
-
-# Probability that an observation will be less than mean + 1 standard deviations
-pnorm(1)
-
-# Probability that an observation will be less than mean - 0.5 standard deviations
-pnorm(-0.5)
-
-```
-
-`pnorm(1)` gives 0.84 - this means that 84% of a normally distributed set of data will be less than one standard deviation above the mean.
-
-`pnorm(-0.5)` gives 0.31, meaning that 31% of a normally distributed set of data will be less than half a standard deviation below the mean.
-
-Therefore, if you had a data set where the pain score had a mean of 5 and a standard deviation of 2, you could predict that only 16% of patients would have pain scores of 7 or more (i.e. more than one standard deviation higher than the mean) and that 69% would have pain scores of 4 or more (i.e. more than half a standard deviation below the mean: 31% of observations are half a standard deviation or more less than the mean).
-
-```{r section2x}
-
-# Probability that an observation will be less than mean + 1.96
-pnorm(1.96)
-
-# Probability that an observation will be less than mean - 1.96
-pnorm(-1.96)
-
-```
-
-`pnorm(1.96)` gives 0.975 and `pnorm(-1.96)` gives 0.025. So 97.5% of observations are less than 1.96 standard deviations greater than the mean, and 2.5% are less than 1.96 standard deviations lower than the mean. In other words, 95% of observations are within 1.96 standard deviations of the mean.
-
-`pnorm(0.675)` gives 0.75 and `pnorm(-0.675)` gives 0.25, meaning that 50% of observations fall within approximately 2/3 of a standard deviation on either side of the mean.
-
-Almost all observations fall within 3 standard deviations of the mean, as shown by `pnorm(3)` and `pnorm(-3)`, which give `r round(pnorm(3), 4)` and `r round(pnorm(-3), 4)`, respectively. This means that 99.7% of all observations fall into this range.
+This tells you that you had `r sex_test$parameter` observations, and there were `r sex_test$statistic` where sex was coded as 1, an observation proportion of `r round(sex_test$estimate, 2)`. Now the "assumed" proportion was `r sex_test$null.value`, giving an expected number of `r sex_test$parameter*sex_test$null.value` women. These two values are quite close and the p-value is `r style_pvalue(sex_test$p.value)`. 
 
 ## Assignments
 
@@ -451,20 +254,15 @@ lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
 lesson2c <- readRDS(here::here("Data", "Week 2", "lesson2c.rds"))
 lesson2d <- readRDS(here::here("Data", "Week 2", "lesson2d.rds"))
 lesson2e <- readRDS(here::here("Data", "Week 2", "lesson2e.rds"))
+lesson2f <- readRDS(here::here("Data", "Week 2", "lesson2f.rds"))
 
 ```
 
-It seems like a lot of them, but the task shouldn’t take you very long. However, a general rule in this class is: you don't have to do all the questions in the assignment. Try to do at least some (say, at least 2a and 2b), so that you know what we are talking about next week in class. Also, the more you do the more you'll learn. However, don't drive yourself crazy trying to get them all done.
+Again, more questions than you need to do, unless you’re keen (also, most won’t take long). Try to do at least the first three. 
 
-I am phrasing the questions in ordinary English, pretty much as you would do if you were an investigator. For example, I ask you to summarize the data on race time in marathon runners, rather than say: "provide the mean of the variable "rt" by typing `skim(lesson2a$rt)`". But this means you are going to have to work out what the various variable codes are and what commands to use.
-
-All of these questions ask you to "summarize" data. In other words, how would you describe the data in a journal article (say, your table 1)? One quick clue here: I don't ever want the standard error, we'll talk more about that next week.
-
-- **lesson2a**: This is data from marathon runners: summarize age, sex, race time in minutes (i.e. how long it took them to complete the race) and favorite running shoe.
-- **lesson2b**: Postoperative pain (this is a similar dataset as you had before for the assignment for the first class). Summarize average pain after the operation.  Imagine you had to draw a graph of "time course of pain after surgery". What numbers would you use for pain at time 1, time 2, time 3 etc.?
-- **lesson2c**: This is data on 241 patients undergoing radical prostatectomy. Summarize age, stage, grade and PSA.
-- **lesson2d**: Cost of a minor medical procedure. Summarize cost.
-- **lesson2e**: Total cancer pain in one month in a group with chronic cancer pain. Summarize pain scores and number of days with pain.
-
-
-
+- **lesson2a**: These are data from over 1000 patients undergoing chemotherapy reporting a nausea and vomiting score from 0 to 10 on the day of treatment.  Does previous chemotherapy increase nausea scores? What about sex? 
+- **lesson2b**: Patients with wrist osteoarthritis are randomized to a new drug or placebo. Pain is measured before and two hours after taking a dose of the drug. Is the drug effective?
+- **lesson2c**: Some postoperative pain data again. Is pain on day 2 different than pain on day 1? Is pain on day 3 different from pain on day 2? 
+- **lesson2d**: This is a single-arm, uncontrolled study of acupuncture for patients with neck pain. Does acupuncture increase range of motion?  Just as many men as women get neck pain. Can we say anything about the sample chosen for this trial with respect to gender? The mean age of patients with neck pain is 58.2 years. Is the trial population representative with respect to age?
+- **lesson2e**: These data are length of stay from two different hospitals. One of the hospitals uses a new chemotherapy regimen that is said to reduce adverse events and therefore length of stay. Does the new regimen decrease length of stay? 
+- **lesson2f**: These data are from a randomized trial on the effects of physiotherapy treatment on physical function in pediatric patients recovering from cancer surgery. Function is measured on a 100 point scale. Does physiotherapy help improve physical functioning?

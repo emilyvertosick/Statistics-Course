@@ -1,4 +1,4 @@
-```{r setup5, include=FALSE, purl = FALSE}
+```{r setup5, include = FALSE, purl = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 # Load packages
@@ -57,318 +57,64 @@ library(here)
 library(tidyverse)
 
 # Load data necessary to run Week 5 examples
-lesson2b <- readRDS(here::here("Data", "Week 2", "lesson2b.rds"))
-lesson3d <- readRDS(here::here("Data", "Week 3", "lesson3d.rds"))
-lesson4d <- readRDS(here::here("Data", "Week 4", "lesson4d.rds"))
-lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
 example5a <- readRDS(here::here("Data", "Week 5", "example5a.rds"))
-example5b <- readRDS(here::here("Data", "Week 5", "example5b.rds"))
 
 ```
 
 ## R Instructions
 
-### Correlation
+### Diagnostic Tests
 
-Correlating two or more variables is very easy: just use the `cor` function and then the dataset and selected variables.
+For this, we will use the `epi.tests` function from the {epiR} package.
 
-For example, if you use the **lesson2b** dataset and correlate the first four pain scores, you get the following table:
+Imagine you want to calculate the sensitivity. If you already know the counts for disease-positive and disease-negative, and test-positive and test-negative, you can easily create a table and use the `epi.tests` function.
 
-```{r section5a}
+```{r week5a}
 
-# Display the correlation between variables l01, l02, l03 and l04
-cor(lesson2b %>% select(l01, l02, l03, l04))
+# Enter the data in the following order to create the 2x2 table
+# Disease-positive, test-positive
+# Disease-negative, test-positive
+# Disease-positive, test-negative
+# Disease-negative, test-negative
+tbl_disease_test <-
+  as.table(matrix(c(670, 202, 74, 640),
+                  nrow = 2, byrow = TRUE))
+# The matrix function allows you to enter in the numbers and convert to a table
+# "nrow = 2" indicates that there should be 2 rows in the table (test-positive and test-negative)
+# "byrow = TRUE" correctly assigns the columns as "disease-positive" first and "disease-negative" second
 
-```
-
-```{r section5b, include = FALSE, purl = FALSE}
-
-tbl_cor1 <- cor(lesson2b %>% select(l01, l02, l03, l04))
-
-```
-
-This shows, for example, that the correlation between l01 and l02 is `r style_sigfig(tbl_cor1[1, 2])` and the correlation between l02 and l04 is `r style_sigfig(tbl_cor1[2, 4])`. From the table you can easily see that pain scores taken on consecutive days are more strongly correlated than those taken two or three days apart.
-
-If the data are skewed, you can try a regression based on ranks, what is known as Spearman's rank correlation. What you'd type is the same as above, but adding the option `method = "spearman"`.
-
-```{r section5c}
-
-# Calculate the Spearman correlation for skewed data
-cor(lesson2b %>% select(l01, l02, l03, l04), method = "spearman")
+# Use the "epi.tests" function with the new 2x2 table
+epi.tests(tbl_disease_test)
 
 ```
 
-### Linear regression
+```{r week5b, echo = FALSE}
 
-Linear regression is when you try to predict a continuous variable. The function to use is `lm`.
-
-The first variable is the dependent variable (e.g. blood pressure) and must be continuous. The other variables are the predictor variables and can be binary or continuous: in some cases you can use ordinal variables but you have to be careful. We’ll deal with categorical variables later in the course. The dependent and predictor variables are separated by a "~", and multiple predictor variables are separated by "+".
-
-Let's use the data from **lesson3d** as an example dataset. We want to see if we can predict a patient's range of motion after treatment (variable a) in terms of their age, sex and pre-treatment range of motion (variable b).
-
-```{r section5d}
-
-# Linear regression model for a, predictors are sex, age and b
-lm(a ~ sex + age + b, data = lesson3d)
+epi_disease_test <- epi.tests(tbl_disease_test)$detail
 
 ```
 
-This gives you the very basic information from the regression, but you can get more information using the `summary` function:
+Your result in this case is that sensitivity is `r style_percent(epi_disease_test$se$est)`%, with a 95% CI `r style_percent(epi_disease_test$se$lower)`%, `r style_percent(epi_disease_test$se$upper)`%. For reasons that I am not quite sure, most investigators do not cite 95% CI with sensitivity, specificity, etc. so stating just `r style_percent(epi_disease_test$se$est)`% is probably fine.
 
-```{r section5e}
+You can also use this function with a dataset that includes a binary variable indicating disease positive or negative, and a binary variable indicating test positive or negative. Similar to the `epi.2by2` function from week 4 (also from the {epiR} package), the table needs to be flipped so the columns and rows are correctly ordered. As a reminder, you can do this by converting the variables to factors using the `factor` function and using the `levels` option to assign the sort order.
 
-# Save out linear regression model
-rom_model <- lm(a ~ sex + age + b, data = lesson3d)
+```{r week5c}
 
-# Show additional model results
-summary(rom_model)
-
-```
-
-The first column of numbers listed under "Coefficients" are the coefficients. You can interpret this as follows: start with `r style_sigfig(rom_model$coefficients[[1]], digits = 4)` degrees of range of motion (the intercept or constant). Then add `r style_sigfig(rom_model$coefficients[[2]], digits = 3)` if the patient is a woman, and take away `r style_sigfig(abs(rom_model$coefficients[[3]]), digits = 3)` degrees for every year of age. Finally, add `r style_sigfig(rom_model$coefficients[[4]], digits = 3)` degrees for every degree of range of motion the patient had before the trial.
-
-Let's take a single patient: a 54 year old woman with a range of motion of 301 before treatment. Her predicted range of motion afterwards is `r style_sigfig(rom_model$coefficients[[1]], digits = 4)` + `r style_sigfig(rom_model$coefficients[[2]], digits = 3)` - `r style_sigfig(abs(rom_model$coefficients[[3]]), digits = 3)`\*54 + `r style_sigfig(rom_model$coefficients[[4]], digits = 3)`\*301 = `r style_sigfig(rom_model$coefficients[[1]]+rom_model$coefficients[[2]]+rom_model$coefficients[[3]]*54+rom_model$coefficients[[4]]*301, digits = 4)`. Her actual figure was 325, so we predicted quite well for this patient. You can get R to do this automatically using the `augment` function from the {broom} package.
-
-```{r section5f}
-
-# The "augment" function creates a dataset of all patients included in the model
-# and all variables included in the model, as well as the predictions
-lesson3d_pred <- augment(rom_model)
-
-# Print out new dataset to show output from "augment"
-# The ".fitted" column is your prediction
-# You can ignore all columns to the right of ".fitted"
-lesson3d_pred
-
-```
-
-To get the number of observations, coefficients, 95% confidence interval and p-values printed in a table for all covariates, you can use the `tbl_regression` function from the {gtsummary} package:
-
-```{r section5g, message = FALSE}
-
-# Print formatted table of regression results
-tbl_regression(rom_model)
-
-```
-
-```{r section5h, include = FALSE, message = FALSE, purl = FALSE}
-
-tbl_rom <- tbl_regression(rom_model)
-
-```
-
-For example, for sex, the 95% CI is `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.low} to {conf.high}")`, meaning that women might plausibly have a range of motion anywhere from `r style_sigfig(abs(tbl_rom$table_body$conf.low[1]))` degrees less than men to `r inline_text(tbl_rom, variable = "sex", pattern = "{conf.high}")` degrees more. In short, we don't have any strong evidence that sex has an effect on range of motion at all and we can see this reflected in the p-value, `r inline_text(tbl_rom, variable = "sex", pattern = "{p.value}")`. There are `r inline_text(tbl_rom, variable = "sex", pattern = "{N}")` patients included in this model. You can determine the number of observations included in the model using the `nobs()` function, or you can update the table to include this number in the header.
-
-```{r section5h2}
-
-# To get the number of observations in the model
-nobs(rom_model)
-
-# By default, the number of observations is not shown in "tbl_regression"
-# You can use the code below to print the number of observations in the table header
-tbl_regression(rom_model) %>%
-  modify_header(
-    label = "**Characteristic (N = {N})**"
+# This is the same code for week 4 that reverses the order of columns and rows
+tbl_example5a <-
+  table(
+    factor(example5a$test, levels = c(1, 0)),
+    factor(example5a$disease, levels = c(1, 0))
   )
 
-```
-
-<br>
-
-```{r section5i}
-
-# Summary of linear regression results
-summary(rom_model)
+# Calculate sensitivity and specificity from table above
+epi.tests(tbl_example5a)
 
 ```
 
-At the bottom of the `summary` readout there are a few miscellaneous tidbits:
+As you can see, `epi.tests` also provides other information. Specificity and positive and negative predictive value you should know (remember that sensitivity is the probability of a positive result if you have the disease; specificity is the probability of a negative result if you don't have the disease; positive predictive value is the probability you have the disease if you test positive; negative predictive value is the probability that you don't have the disease if you test negative). True prevalence is the proportion of patients with disease in the data set. Apparent prevalence is a pretty misleading term and is the proportion of patients who test positive. You can generally ignore that, it isn't a commonly used statistic. Positive and negative likelihood ratios are used in Bayesian approaches to diagnostic tests and aren't taught on this course, so don't worry about those for now. 
 
-- The "p-value" next to the "F-statistic" on the last line tells you whether, as a whole, your model, including the constant and three variables, is a statistically significant predictor.
-
-- The "Multiple R-squared" value (often referred to as just "r squared") tells you how good a predictor it is on a scale from 0 to 1. We’ll discuss the meaning of r squared in more detail, but it is defined as the proportion of variation that you can explain using your model. 
-
-### Graphing the data
-
-Graphing the data is done using the `ggplot` function from the {ggplot2} package. In short, the main inputs for the `ggplot` function are your dataset, the x variable and the y variable. You can then create a number of different plots using this data.
-
-To create a scatterplot, the `geom_point` function is added to the `ggplot` function:
-
-```{r section5j, warning = FALSE}
-
-# Create a scatterplot of race time by age
-ggplot(data = lesson5a,
-       aes(x = age, y = rt)) +
-  geom_point()
-
-```
-
-This scatterplot from the **lesson5a** data shows race time and age for every runner in the study. This is a useful way of getting a feel for the data before you start.
-
-### Logistic regression
-
-Logistic regression is used when the variable you wish to predict is binary (e.g. relapsed or not). The function to use is `glm`, with the option `family = "binomial"` to indicate that our outcome variable is binary.
-
-Again, the first variable is the dependent variable (e.g. hypertension) and must be binary. The other variables are the predictor variables and can be binary or continuous: again, in some cases you can use ordinal variables but you have to be careful. The variables are entered into the `glm` function the same way as the `lm` function (dependent ~ predictor1 + predictor2 + ...).
-
-We'll use the dataset **lesson4d** as an example.
-
-```{r section5k}
-
-# Create a logistic regression model for response, predictors are age, sex and group
-response_model <- glm(response ~ age + sex + group, data = lesson4d, family = "binomial")
-
-# Look at additional model results
-summary(response_model)
-
-```
-
-```{r section5l, include = FALSE, purl = FALSE}
-
-tbl_response <-
-  response_model %>%
-  tbl_regression(exponentiate = TRUE)
-
-tbl_response_logit <-
-  summary(response_model)
-
-```
-
-By default, R gives the coefficients in logits for logistic regression models. To easily see the coefficients and 95% confidence intervals for all covariates as odds ratio, we can again use the `tbl_regression` function. In this case, we use the option `exponentiate = TRUE`, which indicates that odds ratios (not logits) should be presented. (You can also use this function to see the formatted logit results by using the `exponentiate = FALSE` option.)
-
-```{r section5m, message = FALSE}
-
-# Create logistic regression model
-glm(response ~ age + sex + group, data = lesson4d, family = "binomial") %>%
-  # Pass to tbl_regression to show formatted table with odds ratios
-  tbl_regression(exponentiate = TRUE)
-
-```
-
-The key things here are the odds ratios: you can say that the odds of response is multiplied by `r style_ratio(tbl_response$table_body$estimate[1], digits = 2)` for a one year increase in age; that women have an odds of response `r style_ratio(tbl_response$table_body$estimate[2], digits = 2)` of that for the men, though this is not statistically significant, and that response is lower in group 1, with an odds of `r style_ratio(tbl_response$table_body$estimate[3], digits = 2)` (you would also cite the p-value and 95% CIs).
-
-The problem here is that you can’t use any of these data to work out an individual patient’s chance of response. Now you can get R to do this for you using the `augment` function. For a binary outcome, you need to specify `type.predict = "response"` as an option so that you will get predicted probabilities (not log odds).
-
-```{r section5n}
-
-# Get predictions from logistic regression model
-# type.predict = "response" gives predicted probabilities
-lesson4d_pred <-
-  augment(response_model, type.predict = "response")
-
-# Look at the dataset containing predicted probabilities (.fitted variable)
-# You can ignore all columns to the right of ".fitted"
-lesson4d_pred
-
-```
-
-**Note:** The **lesson4d_pred** dataset includes 398 patients. If you look at the table above, you will see at the top that all 398 patients were included in the model. Any patients who are missing data for the outcome or any predictors will be excluded from the model, and will not be included in the predicted dataset.
-
-If you want to look at calculating predictions from logistic regression in more detail, you’ll need logit (see below). 
-
-One thing to be careful about is categorical variables. Imagine that you had the patients age and cancer stage (1, 2, 3 or 4) and wanted to know whether they recurred. If you tried `glm(recurrence ~ age + stage, ...)`, then stage would be treated as if the increase in risk going from stage 1 to 2 was exactly the same as that going from 2 to 3 and 3 to 4. To tell R that it is a categorical variable, you need to use the `factor` function with the categorical variable:
-
-```{r section5o, echo = TRUE}
-
-# Create a model for recurrence using the categorical variable "stage"
-recurrence_model <-
-  glm(recurrence ~ age + factor(stage), data = example5a, family = "binomial")
-
-# Show the results of this model
-summary(recurrence_model)
-
-```
-
-```{r section5p, results = "asis", warning = FALSE}
-
-# Formatted to show odds ratios
-recurrence_model %>%
-  tbl_regression(exponentiate = TRUE)
-
-```
-
-```{r section5q, include = FALSE, purl = FALSE}
-
-tbl_recurrence <-
-  recurrence_model %>%
-  tbl_regression(exponentiate = TRUE)
-
-```
-
-What you can see here is that stage is broken into categories. The odds ratio is given comparing each stage to stage 1 (the reference). So the odds of recurrence is `r inline_text(tbl_recurrence, variable = "factor(stage)", level = "2", pattern = "{estimate}")` higher for stage 2 compared to stage 1, `r inline_text(tbl_recurrence, variable = "factor(stage)", level = "3", pattern = "{estimate}")` for stage 3 compared to stage 1 and `r inline_text(tbl_recurrence, variable = "factor(stage)", level = "4", pattern = "{estimate}")` for stage 4 compared to stage 1.
-
-**For keen students only!**
-
-Here we look at our "response" model on the logit scale.
-
-```{r section5r}
-
-# Look at details of "response" logistic regression model
-summary(response_model)
-
-```
-
-
-```{r section5s, include = FALSE, purl = FALSE}
-
-xb <- tbl_response_logit$coefficients[1]+tbl_response_logit$coefficients[2]*53+tbl_response_logit$coefficients[4]
-
-pr <- (exp(xb) / (exp(xb) + 1)*100)
-
-```
-
-Firstly, note that the p-values are the same, what differs is the coefficients. Now if you are really smart, you’ll notice that the coefficient is the natural log of the odds ratios above. You can use the coefficients to work out an individual’s probability of response. We start with the constant, and subtract `r style_sigfig(abs(tbl_response_logit$coefficients[2]), digits = 4)` for each year of age and then subtract an additional `r style_sigfig(abs(tbl_response_logit$coefficients[3]), digits = 2)` if a woman and `r style_sigfig(abs(tbl_response_logit$coefficients[4]), digits = 3)` if in group 1. Call this number "l" for the log of the odds. The probability is e^l^ / (1 + e^l^). Take a 53 year old man on regimen b (group 1): l = `r style_sigfig(tbl_response_logit$coefficients[1], digits = 4)` + `r style_sigfig(tbl_response_logit$coefficients[2], digits = 4)`\*53 + `r style_sigfig(tbl_response_logit$coefficients[4], digits = 3)`, gives `r style_sigfig(xb, digits = 4)`.
-
-To convert, type ``exp(`r style_sigfig(xb, digits = 4)`) / (exp(`r style_sigfig(xb, digits = 4)`)+1)`` to get a probability of `r style_sigfig(pr, digits = 3)`%.
-
-### Getting the area-under-the-curve
-
-Using regression models is a way to try to predict outcome based on the data we have. After we've created a model, we want to know - is the prediction from this model any good? One way to do this is by assessing the discrimination. For logistic regression, where we have a binary endpoint, discrimination tells us how well the model distinguishes between patients who have the event and patients who do not have the event. Discrimination is measured using the area-under-the-curve (AUC) and varies between 0.5 (a coin flip) and 1 (perfect discrimination).
-
-Imagine that you wanted to know how well a blood marker predicted cancer. Note that the blood marker could be continuous (e.g. ng/ml) or binary (positive or negative such as in a test for circulating tumor cells), it doesn’t matter for our purposes.
-
-```{r section5t, message = FALSE}
-
-# Calculate the AUC using the "roc" function
-roc(cancer ~ marker, data = example5b)
-
-```
-
-So the marker has an area under the curve of `r style_sigfig(roc(example5b$cancer, example5b$marker)[[9]], digits = 3)`. The `roc` function from the {pROC} package is particularly useful if you want to know the area-under-the-curve with and without a marker.
-
-For instance, the code below could tell you how much the area-under-the-curve increases when you add a new marker to a model to predict cancer that already includes age.
-
-First, get the AUC for the model with age only:
-
-```{r section5u, message = FALSE}
-
-# Calculate AUC of original model with age
-roc(cancer ~ age, data = example5b)
-
-```
-
-The `roc` function can only take one predictor variable. For a univariate model, such as the model assessing age above, you can put "age" directly into the `roc` function. If you want to assess a model with multiple variables, you can use the predicted value:
-
-```{r section5u1, warning = FALSE}
-
-# Create the multivariable model
-marker_model <- glm(cancer ~ age + marker, data = example5b, family = "binomial")
-
-# Use "augment" to get predicted probability
-marker_pred <- augment(marker_model, type.predict = "response")
-
-```
-
-Now, calculate the AUC for the model with age and the marker by using the predicted probability based on the multivariable model:
-
-```{r section5v, message = FALSE}
-
-# Calculate AUC of model with age and marker
-roc(cancer ~ .fitted, data = marker_pred)
-
-```
-
-The AUC for the model including both age and the marker value is higher than for age alone, so we can conclude that the marker adds important predictiveness to age. 
+See instructions from lecture 4 on how to get an area-under-the-curve.
 
 ## Assignments
 
@@ -379,30 +125,49 @@ lesson5a <- readRDS(here::here("Data", "Week 5", "lesson5a.rds"))
 lesson5b <- readRDS(here::here("Data", "Week 5", "lesson5b.rds"))
 lesson5c <- readRDS(here::here("Data", "Week 5", "lesson5c.rds"))
 lesson5d <- readRDS(here::here("Data", "Week 5", "lesson5d.rds"))
-lesson5e <- readRDS(here::here("Data", "Week 5", "lesson5e.rds"))
-lesson5f <- readRDS(here::here("Data", "Week 5", "lesson5f.rds"))
-lesson5g <- readRDS(here::here("Data", "Week 5", "lesson5g.rds"))
-lesson5h <- readRDS(here::here("Data", "Week 5", "lesson5h.rds"))
-lesson5i <- readRDS(here::here("Data", "Week 5", "lesson5i.rds"))
 
 ```
 
-Regression is a very important part of statistics: I probably do more regressions that any other type of analysis, apart from than calculating basic summary data such as medians, means and proportions. So, I’ve given you lots of possibilities here. I’ve coded them: you really should try to do the bold ones, do those in italics if you can, and if you get to the rest, well, the more the merrier. The reason I have included all this is so I can go over it in class.
+- **lesson5a** and **lesson5b**: These are data on a blood test (creatine kinase) to detect a recent myocardial infarct. The two datasets are from a coronary care unit population (lesson5a.rds) and a general hospital population (lesson5b.rds). What is the sensitivity, specificity, positive predictive value and negative predictive value?
 
-- __lesson5a: These are data from marathon runners (again). Which of the following is associated with how fast runners complete the marathon: age, sex, training miles, weight?__
+- **lesson5c**: Here are the data from a study of a marker to predict the results of biopsy for cancer. There are 2000 patients, half of whom had a suspicious imaging result and were biopsied. It is known that only about half of patients with abnormal imaging actually have cancer and that is what is found in this study. The marker was measured in patients undergoing biopsy. Might the new marker help decide which patients with abnormal scans should receive biopsy? 
 
-- __lesson5b: These are data on patients with a disease that predisposes them to cancer. The disease causes precancerous lesions that can be surgically removed. A group of recently removed lesions are analyzed for a specific mutation. Does how long a patient has had the disease affect the chance that a new lesion will have a mutation?__
+- **lesson5d**: This is a dataset of cancer patients undergoing surgery with the endpoint of recurrence within 5 years. Since this cohort was established, adjuvant therapy has been shown to be of benefit. Current guidelines are that adjuvant therapy should be considered in patients with stage 3 or high-grade disease. Recently, two new variables have been added to the dataset:  levels of a novel tumor marker were obtained from banked tissue samples and preoperative imaging scans were retrieved and scored from 0 (no evidence of local extension) to 4 (definite evidence of local extension). Here are some questions about these data:
+  - How good is the current method for determining whether patients should be referred to adjuvant therapy?
+  - It has been suggested that a statistical model using stage and grade would be better than the current risk grouping. How good do you think this model would be?
+  - Does the marker add information to the model of stage and grade?
+  - Does imaging add information to the model including stage, grade and the marker?
 
-- **lesson5c**: These are data from Canadian provinces giving population, unemployment rates and male and female life expectancy. Which of these variables are associated?
+**And now, a complete different type of question...**
 
-- _**lesson5d**: These are data from mice inoculated with tumor cells and then treated with different doses of a drug. The growth rate of each animal’s tumor is then calculated. Is this drug effective?_
+In this question, I give you an experimental set up _but no data._ What you have to do is give me an answer. Now obviously you can’t give me any numbers because I didn’t give you any. However, you can write an answer with some blanks.
 
-- **lesson5e**: These are data from a study of the use of complementary medicine (e.g. massage) by UK breast cancer patients. There are data for the women’s age, time since diagnosis, presence of distant metastases, use of complementary medicine before diagnosis, whether they received a qualification after high school, the age they left education, whether usual employment is a manual trade, socioeconomic status. What predicts use of complementary medicine by women with breast cancer?
+For example, if you hadn't been given any data, an answer to lesson4g.rds might be:
 
-- _**lesson5f**: These are the distance records for Frisbee for various ages in males. What is the relationship between age and how far a man can throw a Frisbee?_
+<div class="quote-container">
 
-- __lesson5g: You’ve seen this dataset before. Patients with lung cancer are randomized to receive either chemotherapy regime a or b and assessed for tumor response. We know there is no statistically significant difference between regimens (you can test this if you like).  However, do the treatments work differently depending on sex? Do they work differently by age?__
+>? of the ? (?%) patients on chemotherapy regime a responded compared to ? of the ? patients on regime b (?%). The difference between groups (?%, 95% CI ?, ?) was / was not statistically significant (p = ?). Response by sex and group is shown in the table. The interaction term for group and sex was / was not significant (p = ?).
 
-- __lesson5h: PSA is used to screen for prostate cancer. In this dataset, the researchers are looking at various forms of PSA (e.g. "nicked" PSA). What variables should be used to try to predict cancer? How accurate would this test be? (NOTE: these data were taken from a real dataset, but I played around with them a bit, so please don’t draw any conclusions about PSA testing from this assignment).__
+</div>
 
-- **lesson5i**: This is a randomized trial of behavioral therapy in cancer patients with depressed mood (note that higher score means better mood). Patients are randomized to no treatment (group 1), informal contact with a volunteer (group 2) or behavior therapy with a trained therapist (group 3). What would you conclude about the effectiveness of these treatments?
+```{r week5d, echo = FALSE, results = "asis", purl = FALSE}
+
+tbl_week5 <-
+  tribble(
+    ~Chemotherapy, ~Male, ~Female,
+    "Regime a", "? of ? (?%) responded", "? of ? (?%) responded",
+    "Regime b", "? of ? (?%) responded", "? of ? (?%) responded"
+  ) %>%
+  gt()
+
+tbl_week5
+
+```
+
+So, I want you to give similar answers to the following research questions:
+
+- **lesson5e**: Hospitalized neutropenic patients were randomized to receive drug a or placebo. Bloods were taken every day. The time until patients were no longer neutropenic was measured (all patients eventually did get better).
+
+- **lesson5f**: A new lab machine sometimes fails to give a readout with the result that the sample is wasted. To try and get a handle on this problem, a researcher carefully documents the number of failures for the 516 samples that she analyzes in the month of September. 
+
+- **lesson5g**: Drug a appears to be effective against cancer cells _in vitro._ Researchers create two new drugs, b and c, by making slight molecular rearrangements of drug a. The three drugs are then added to tumor cells in the test tube and the degree of cell growth measured. 
